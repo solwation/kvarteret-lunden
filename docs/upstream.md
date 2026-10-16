@@ -135,3 +135,11 @@ Verifiering: `npm test`, `npm run build` och `tools/browser-check.mjs` med ny ko
 Överförd från `da02d90` (originalets #1084/#1085), uppföljning av #17: `buildWallAO` i `src/ao.js` vänder nu varje fyrhörning mot rummet oavsett väggstyckets polygonriktning. Tidigare ritades överstyckena över dörrar och fönster (rektanglar med motsatt riktning) och större delen av L1201:s väggar baksidesvända och syntes inte. Takets kontaktskugga (`buildAO` i `src/world.js`) räknar även dörröverstycken och fönster som väggar, så bandet bryts inte över öppningar. Originalets test och ändringslogg har inte förts över.
 
 Verifiering: `npm test`, `npm run build` och Chrome på riktig GPU: alla väggskuggans trianglar i L1007, L1004 och L1201 vetter mot rummet (före 24/43/24/27/220/278 vända in i väggen, efter 0), före/efter-bilder av hallens dörr i L1007, entrédörren och L1004; ritanropen oförändrade (552/157/381), inga sidfel.
+
+
+## Stuprör på Hus L, #26
+
+Importerad från `ecd94dd` + `d3cd84b` (original #1077): `downpipes()` och dess anrop efter `patioLamps` i `src/exterior.js` samt enbart `HUS_L_DOWNPIPES` i `src/config.js`. Fyra rör på gatusidan under loftgångens fascia och tre på gårdssidan (terrassernas krön och L1205-loftet vid portiken), med klämmor, regnvattenhuvud och utkastare vid mark; alla mått och lägen är *guess* efter Peabs gårdsillustration. Originalets frihållning kring entréplanteringarna utgår eftersom planteringarna inte finns här.
+
+Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` utan fel eller externa anrop samt skärmbilder i Chromium från gatan och gården före/efter med oförändrat antal ritanrop (536/689/448).
+
