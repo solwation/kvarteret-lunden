@@ -99,6 +99,26 @@ export const WINDOWS = [
   { level: 1, facade: 'south', x: 3.85, sill: 0.7, head: 2.25, transom: 0, blind: 'dark' }, // Sovrum 2
 ];
 
+// Radiators under the windows (original #1071). SOURCED: Peab heats with water-borne radiators on district heating (info brochure
+// 2024-09-11, informationsbroschyr text line 697; fragor-och-svar.txt:150–153), and the floor plans' legend says
+// "R RADIATOR PLACERAS UNDER FÖNSTER OM INTE ANNAT ANGES"; Peab's L1004 render (docs/peab/l1004-vardagsrum-render.jpg)
+// shows a white panel radiator. Every size below is a *guess* (no radiator schedule in Peab's material): a white compact
+// single-panel radiator with convector (type 11-ish), centred under the window board. `bottom` = its underside over the
+// floor (cleaning gap), `under` = the clearance from the window board's underside to its top grille, `step` = product
+// heights/widths come in 0.1 m steps (the height is rounded down and kept within `min`…`max`), `width` = its share of the
+// window opening (rounded to `step`), `gap` = wall to back panel (the brackets), `depth` = back panel to front face,
+// `panel` = a panel's thickness. `valve`: a thermostat valve on the east end near the top (a body `len` out of the end,
+// radius `r`, `drop` under the top; a head of radius `head` × `headLen`); `pipe` = two white pipes (radius `r`, centre
+// `spacing` along x, the first `inset` in from the end) from its underside down into the floor, each with a `rosette`.
+// Skipped where the window board is too low for `min` (glass to the floor / a door), over a cabinet or over a floor
+// opening. It sticks out under 9 cm from the wall: inside the player's own wall clearance (PLAYER.radius), so no collision.
+export const RADIATOR = {
+  bottom: 0.15, under: 0.12, step: 0.1, min: 0.3, max: 0.9, width: 0.8,
+  gap: 0.015, depth: 0.05, panel: 0.014,
+  valve: { len: 0.045, r: 0.011, drop: 0.045, head: 0.024, headLen: 0.075 },
+  pipe: { r: 0.0075, spacing: 0.05, inset: 0.035, rosette: 0.022 },
+};
+
 export const SITE = {
   // Terrain (#79). Kv. Lunden stands on a garage box: the courtyard ("den upphöjda gården", info brochure
   // p. 16) lies on the garage deck at our Entréplan / patio level (y 0; the lower row houses have their

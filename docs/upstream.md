@@ -65,3 +65,10 @@ Verifiering omfattar den riktiga visningens klocka vid start och vid ändrad lok
 Importerad från `6ddb7ba` (original #1072): `floorDrain`, `showerDrainAt` och `laundryDrainAt` i `interior.js`, anropen i duscharna och framför tvättmaskinerna i `interior.js` och `standardinterior.js` samt enbart `FLOOR_DRAIN` i `config.js`. Alla mått är antaganden; golvet förblir plant i kollisionen. Originalets ändringslogg och dokumentation har inte importerats.
 
 Verifiering: `npm test`, bygg och Chromium-bilder av duscharna i L1007 (Badrum, WC/dusch), Tvätt, L1004 och L1201 (båda planen). Ritanrop vid samma vyer ökade med 0–3.
+
+
+## Radiatorer under fönstren, #15
+
+Importerad från `5ced7a8` (original #1071): `addRadiator` och dess anrop i fönsterloopen i `src/world.js` samt enbart `RADIATOR` i `src/config.js`. Varje fönster får en vit kompakt panelradiator centrerad under fönsterbänken, med termostatventil och två rör ned i golvet, i L1007 och de besöksbara L1004/L1201. Peabs planförklaring anger radiator under fönster; alla mått är antaganden. Radiatorn utelämnas över skåp, över bjälklagsöppningar (L1201:s fönster över det öppna rummet) och där bröstningen är för låg. Den använder fönsterkarmarnas material, ger inga extra ritanrop och ingen kollision (den sticker ut 6,5 cm, inom besökarens väggavstånd).
+
+Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` samt skärmbilder i Chromium av L1007 (kök, vardagsrum, sovrum), L1004 och L1201 med oförändrat antal ritanrop per vy före/efter.
