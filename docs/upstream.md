@@ -150,3 +150,10 @@ Importerad från `ecd94dd` + `d3cd84b` (original #1077): `downpipes()` och dess 
 
 Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` utan fel eller externa anrop samt skärmbilder i Chromium från gatan och gården före/efter med oförändrat antal ritanrop (536/689/448).
 
+
+
+## Ventilationsdon i taken, #27
+
+Importerad från `23d5242` (original #1080): `ceilingVents`, `tint`, `ourCeilingThings` och anropen i `buildVisitFlat`/`buildWorld` (`src/world.js`) samt enbart `VENTS` i `src/config.js`. Vita runda FTX-don: tilluft i sovrum, allrum och vardagsrum, frånluft i badrum, WC/dusch, tvätt och kök, i L1007, L1004 och L1201. De placeras från rummets mitt bort från väggar (takets AO-band), skåp/köksfläkt, våtrummens spotlights och tvättens taklampa, trapphålet och sofittkanter. Originalets pendlar och brandvarnare finns inte här och är borttagna ur undvikandelistan. Ett vertexfärgat mesh per plan, ingen skugga, kollision eller klickyta. Alla mått och lägen är antaganden; originalets ändringslogg har inte importerats.
+
+Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` och Chromium-bilder före/efter av L1007 (vardagsrum, sovrum, badrum, kök), L1004 och L1201 utan z-fighting; ritanrop +2 per vy (ett per plan i bild).
