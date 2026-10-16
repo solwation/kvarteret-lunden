@@ -179,7 +179,7 @@ function frame() {
   if (active) {
     focus = aimed();
     const label = focus ? `${focus.press ? (focus.verb ?? 'Tryck på') : focus.isOpen ? 'Stäng' : 'Öppna'} ${focus.name ?? 'dörren'}` : '';
-    $('prompt').textContent = touch || measuring ? '' : label ? `E · ${label}` : '';
+    $('prompt').textContent = touch || measuring ? '' : label ? `Klicka eller E · ${label}` : '';
     $('action').hidden = !touch || !focus || measuring;
     $('action').textContent = label;
     const visited = world.unitAt(navigation.pos.x, navigation.pos.z, navigation.pos.y);
@@ -222,9 +222,14 @@ document.addEventListener('keydown', e => {
 document.addEventListener('keyup', e => navigation?.keys.delete(e.code));
 let lookPointer = null, previous = null, down = null;
 $('viewer').addEventListener('pointerdown', e => {
-  if (!active) return;
+  if (!active || $('help-dialog').open || e.button !== 0 || e.isPrimary === false) return;
   if (measuring) { down = {x:e.clientX,y:e.clientY}; return; }
-  if (!touch) { requestLook(); return; }
+  if (!touch) {
+    // Capturing the mouse never activates an object; subsequent primary clicks use the crosshair.
+    if (document.pointerLockElement === renderer.domElement) use();
+    else requestLook();
+    return;
+  }
   lookPointer=e.pointerId; previous={x:e.clientX,y:e.clientY}; e.target.setPointerCapture(e.pointerId);
 });
 $('viewer').addEventListener('pointermove', e => { if(e.pointerId===lookPointer && previous){look((e.clientX-previous.x)*1.3,(e.clientY-previous.y)*1.3);previous={x:e.clientX,y:e.clientY};} });
