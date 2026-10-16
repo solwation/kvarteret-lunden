@@ -44,15 +44,19 @@ På dator används W A S D/piltangenter, mus och E för dörrar. På mobil anvä
 
 Klocktornets fyra urtavlor visar besökarens lokala tid med tydliga visare och timmarkeringar.
 
-Visningen sparar inget i webbläsaren och har inga externa nätverksanrop. Three.js ingår i publiceringspaketet.
+Vid automatisk uppdatering sparas plats och blickriktning tillfälligt i flikens egen `sessionStorage` med nyckeln `kvarteret-lunden.update-resume`. Uppgifterna läses och tas bort vid nästa start, godtas i högst fem minuter och berör aldrig originalets lagring. Visningen har inga externa nätverksanrop. Three.js ingår i publiceringspaketet.
 
 ## Publicering
 
-Visningen är publicerad på **[solwation.github.io/kvarteret-lunden](https://solwation.github.io/kvarteret-lunden/)** via GitHub Pages. `.github/workflows/pages.yml` publicerar granskade ändringar på `main`. Publicering ska enbart innehålla de granskade statiska filer som visningen behöver.
+Visningen är publicerad på **[solwation.github.io/kvarteret-lunden](https://solwation.github.io/kvarteret-lunden/)** via GitHub Pages. `.github/workflows/pages.yml` kör tester, bygger och publicerar automatiskt efter varje push till `main`. En misslyckad kontroll stoppar publiceringen. Publicering ska enbart innehålla de granskade statiska filer som visningen behöver.
 
+
+En öppen visning kontrollerar nya versioner varje minut och när fliken blir synlig eller nätet återkommer. Efter tio sekunders inaktivitet visas en femsekunders nedräkning. Rörelse och annan inmatning avbryter nedräkningen; hjälp och mätning skjuter upp den. Plats och blickriktning återställs efter omladdningen. På dator klickar man Fortsätt utforska för att fånga musen igen. Om webbläsaren blockerar lagring startar den nya versionen från välkomstvyn. Ingen inloggning behövs. Nätfel låter den befintliga visningen fortsätta. Ändringar som bara berör dokumentation laddar inte om besökaren.
 
 ## Verifiering
 
 `npm test` granskar importkedjan, planunderlaget och frånvaro av privata referenser och originalets tjänster. `npm run build` skapar det statiska publiceringspaketet. Kör `CHROME_PATH=/sökväg/till/chrome node tools/browser-check.mjs http://localhost:8157` mot en server för `dist/` för integrationstest i Chromium, inklusive mobil layout, gång, dörranimation, ursprunglig lagring och nätverksanrop.
+
+För arbete med issues, `in-progress`, stängning och `/orkester`, läs [CLAUDE.md](CLAUDE.md) och [orkesterkommandot](.claude/commands/orkester.md). Även ärenden för enbart detta projekt ligger i originalrepot.
 
 Arbetet samordnas i [lunden-3d-apartment #1064](https://github.com/solwation/lunden-3d-apartment/issues/1064).

@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { buildWorld } from './world.js';
 import { Navigation } from './navigation.js';
 import { fetchStartupJSON } from './startup.js';
+import { VERSION, takeResume, watchUpdates } from './updates.js';
 import { Garage } from './garage.js';
 import { Core } from './core.js';
 import { CoreHouse } from './corehouse.js';
@@ -116,7 +117,7 @@ async function init() {
   const fill = new THREE.DirectionalLight(0xe2edff, .8); fill.position.set(10,15,-20); scene.add(fill);
   fit();
   await new Promise(requestAnimationFrame);
-  const plan = await fetchStartupJSON('./data/plan.json', { timeout: 15000 });
+  const plan = await fetchStartupJSON(`./data/plan.json${VERSION ? '?v=' + VERSION : ''}`, { timeout: 15000 });
   status('Förbereder byggnader och rum…');
   await new Promise(requestAnimationFrame);
   world = buildWorld(plan); scene.add(world.object);
@@ -132,13 +133,27 @@ async function init() {
   else Object.assign(locations.garage,{x:(CORE.x0+CORE.x1)/2,z:CORE.south[0]-1});
   navigation = new Navigation(world, camera);
   moveTo('area');
+  const resumed = takeResume();
+  if (resumed) {
+    if (locations[resumed.place]) moveTo(resumed.place);
+    navigation.teleport(...resumed.position);
+    camera.rotation.set(resumed.pitch, resumed.yaw, 0, 'YXZ');
+    active = resumed.active === true;
+    $('intro').hidden = active;
+    $('resume').hidden = !active || touch;
+  }
   world.windowLights?.update(12, 0, true);
   ready = true;
-  // Keep model access local for diagnostics; this has no persistence or service connection.
+  // Keep model access local for diagnostics, without a service connection.
   window.lundenViewer = {world, navigation, camera, renderer, scene, moveTo, locations};
   $('start').disabled = false; $('start').textContent = 'Börja utforska →';
   status('Dator och mobil · Ingen inloggning');
   renderer.setAnimationLoop(frame);
+  watchUpdates({
+    snapshot: () => ({position:navigation.pos.toArray(), yaw:camera.rotation.y, pitch:camera.rotation.x, active, place:document.querySelector('[data-place].selected')?.dataset.place}),
+    busy: () => measuring || $('help-dialog').open || navigation.keys.size > 0 || Math.abs(navigation.analog.x) + Math.abs(navigation.analog.y) > 0 || lookPointer !== null,
+    notice: text => { $('update-status').hidden = false; $('update-status').textContent = text; },
+  });
 }
 function frame() {
   const dt = Math.min(clock.getDelta(), .05);

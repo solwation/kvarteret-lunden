@@ -10,3 +10,7 @@ This is a public, impersonal 3D walkthrough derived from solwation/lunden-3d-apa
 - Review relevant upstream improvements regularly. Record source commit SHAs and verify dependencies; never blindly merge upstream or automatically publish upstream changes.
 - Preserve applicable source attribution and licenses. Verify user-visible changes in a real browser before publishing.
 - Do not describe the project as an official Peab service or apartment-specific finishes as verified standard fittings for every dwelling.
+
+## Issues and orchestration
+
+Read [CLAUDE.md](CLAUDE.md) for the mandatory issue lifecycle and [.claude/commands/orkester.md](.claude/commands/orkester.md) for `/orkester`. Changes in this repository require issues too. Implementation tracking stays in `solwation/lunden-3d-apartment`, as requested by the user, including downstream-only changes.
