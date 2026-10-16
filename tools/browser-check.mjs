@@ -23,9 +23,9 @@ try{
  const check=await page.evaluate(async()=>{
   const {world,navigation:n,camera,renderer,scene,moveTo}=window.lundenViewer;
   const report={doors:world.doors.length,levels:world.levels.length,units:world.units.length,locations:{}};
-  for(const name of ['area','home','courtyard','core','garage']){
+  for(const name of ['area','home','L1004','L1201','courtyard','core','garage']){
    moveTo(name);for(let i=0;i<20;i++)n.update(1/120);
-   report.locations[name]={pos:n.pos.toArray(),ground:n.groundAt(n.pos.x,n.pos.z),core:n.inCore,below:n.below};
+   report.locations[name]={pos:n.pos.toArray(),ground:n.groundAt(n.pos.x,n.pos.z),core:n.inCore,below:n.below,unit:world.unitAt(n.pos.x,n.pos.z,n.pos.y)?.id??null};
   }
   moveTo('home');
   const before=n.pos.clone();n.keys.add('KeyW');for(let i=0;i<60;i++)n.update(1/120);n.keys.clear();report.walked=before.distanceTo(n.pos);
@@ -40,6 +40,7 @@ try{
  assert.equal(check.keys.length,2);
  for(const [name,p]of Object.entries(check.locations))assert(Number.isFinite(p.ground)&&p.pos.every(Number.isFinite),`invalid support at ${name}`);
  assert(check.locations.garage.below,'Garage destination must be below courtyard');
+ for(const id of ['L1004','L1201'])assert.equal(check.locations[id].unit,id,`${id} destination must be inside the flat`);
  assert.equal(planRequests,2,'The actual scene must recover from one temporary plan failure');
  results.push({desktop:check,planRequests});
  await page.screenshot({path:out+'/home.png'});
@@ -67,6 +68,16 @@ try{
  await m.screenshot({path:out+'/mobile.png'});
  const layout=await m.evaluate(()=>{const ids=['joystick','measure','help'];return ids.map(id=>{const r=document.getElementById(id).getBoundingClientRect();return{id,x:r.x,y:r.y,w:r.width,h:r.height,visible:getComputedStyle(document.getElementById(id)).display!=='none'};});});
  for(const r of layout)assert(r.visible&&r.x>=0&&r.y>=0&&r.x+r.w<=391&&r.y+r.h<=845,`off-screen mobile control ${r.id}`);
+ assert(await m.locator('#place-menu').isHidden(),'Place menu must start closed');
+ await m.locator('#place-button').tap();assert(await m.locator('#place-menu').isVisible());
+ const menu=await m.locator('#place-menu').boundingBox();assert(menu.x>=0&&menu.x+menu.width<=391&&menu.y+menu.height<=845,'Place menu must fit on mobile');
+ await m.screenshot({path:out+'/mobile-menu.png'});
+ await m.locator('[data-place="L1201"]').tap();assert(await m.locator('#place-menu').isHidden());
+ assert.equal(await m.evaluate(()=>{const {world,navigation:n}=window.lundenViewer;return world.unitAt(n.pos.x,n.pos.z,n.pos.y)?.id;}),'L1201');
+ assert.equal(await m.locator('#place').textContent(),'L1201 · Entréplan');
+ const manifest=await m.evaluate(async()=>{const r=await fetch(document.querySelector('link[rel=manifest]').href);const j=await r.json();return Promise.all(j.icons.map(async i=>(await fetch(new URL(i.src,r.url))).ok)).then(ok=>({ok}));});
+ assert(manifest.ok.length>=3&&manifest.ok.every(Boolean),'Manifest icons must load');
+ assert((await m.request.get(new URL('icons/apple-touch-icon.png',base+'/').href)).ok(),'Apple touch icon must load');
  const stick=await m.locator('#joystick').boundingBox();
  const cdp=await mobile.newCDPSession(m);
  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:stick.x+stick.width/2,y:stick.y+15,id:1}]});

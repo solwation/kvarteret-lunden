@@ -8,6 +8,12 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Bufz0ylsvH5VX0RelLTkdCzDLj+JPhHmKTdEC0GXlzs='; style-src 'self'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'">
   <title>Kvarteret Lunden · Utforska i 3D</title>
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="icon" href="./icons/icon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <meta name="apple-mobile-web-app-title" content="Kv. Lunden">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="./style.css">
   <script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
   <script type="module" src="./src/main.js"></script>
@@ -16,15 +22,23 @@
   <main id="viewer" aria-label="Interaktiv 3D-visning av Kvarteret Lunden"></main>
   <header class="topbar">
     <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">L</span><span>Kvarteret Lunden<small>UTFORSKA I 3D</small></span></a>
-    <div class="top-actions"><span id="place">Området</span><button id="help" aria-label="Visa hjälp">?</button></div>
+    <div class="top-actions">
+      <nav class="locations" aria-label="Gå till en plats">
+        <button id="place-button" aria-expanded="false" aria-controls="place-menu"><span class="place-label">Plats</span><span id="place">Området</span><span class="chevron" aria-hidden="true"></span></button>
+        <div id="place-menu" hidden>
+          <span class="eyebrow">GÅ TILL</span>
+          <button data-place="area" aria-current="true">Området</button>
+          <button data-place="home">Lägenhet L1007</button>
+          <button data-place="L1004">Lägenhet L1004</button>
+          <button data-place="L1201">Lägenhet L1201</button>
+          <button data-place="courtyard">Innergården</button>
+          <button data-place="core">Trapphuset</button>
+          <button data-place="garage">Garaget</button>
+        </div>
+      </nav>
+      <button id="help" aria-label="Visa hjälp">?</button>
+    </div>
   </header>
-  <nav class="locations" aria-label="Gå till en plats">
-    <button data-place="area" class="selected">Området</button>
-    <button data-place="home">Lägenhet L1007</button>
-    <button data-place="courtyard">Innergården</button>
-    <button data-place="core">Trapphuset</button>
-    <button data-place="garage">Garaget</button>
-  </nav>
   <div id="crosshair" aria-hidden="true"></div>
   <div id="prompt" role="status"></div>
   <div class="bottom-bar"><span id="hint">W A S D · Gå &nbsp; Mus · Titta &nbsp; E · Öppna</span><button id="measure" aria-pressed="false">↔ Mät avstånd</button></div>

@@ -40,9 +40,11 @@ npm run dev
 
 Öppna http://localhost:8157. Bygg för publicering med `npm run build`; de statiska filerna hamnar i `dist/`. Ingen backend, Cloudflare-konfiguration eller driftcredential behövs. Tillfälliga fel vid hämtning av planritningen får ett automatiskt återförsök; permanent fel ger Försök igen.
 
-På dator används W A S D/piltangenter, mus och E för dörrar. På mobil används styrreglaget och dragning i vyn. Platsmenyn flyttar besökaren till området, L1007, innergården, trapphuset eller garaget. Mät avstånd väljer två punkter på ytor. Alla mått är ungefärliga modellmått.
+På dator används W A S D/piltangenter, mus och E för dörrar. På mobil används styrreglaget och dragning i vyn. Platsknappen överst öppnar en meny som flyttar besökaren till området, L1007, L1004, L1201, innergården, trapphuset eller garaget. Mät avstånd väljer två punkter på ytor. Alla mått är ungefärliga modellmått.
 
 Visningen sparar inget i webbläsaren och har inga externa nätverksanrop. Three.js ingår i publiceringspaketet.
+
+Visningen kan läggas till på hemskärmen och har då en egen ikon (`manifest.webmanifest`, `icons/`). Ikonerna renderas från `icon.svg` med `CHROME_PATH=/sökväg/till/chrome node tools/icons.mjs`. Ingen service worker eller offlinecache används.
 
 ## Publicering
 

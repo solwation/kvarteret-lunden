@@ -22,6 +22,8 @@ const locations = {
   core: { name: 'Trapphuset', x: (CORE.x0 + CORE.x1) / 2, y: 0, z: CORE.south[1] - 1, yaw: 0 },
   garage: { name: 'Garaget', x: 0, y: GARAGE.floor, z: 0, yaw: Math.PI },
 };
+// The other walk-in flats: a point inside each one's entrance (plan coordinates) and the view from it.
+const unitEntries = { L1004: [2.8, 1.4, Math.PI], L1201: [1.0, 0.7, -2.6] };
 
 function status(text) { $('load-status').textContent = text; }
 function look(dx, dy) {
@@ -35,7 +37,12 @@ function moveTo(name) {
   navigation.teleport(p.x, p.y, p.z);
   camera.rotation.set(0, p.yaw, 0, 'YXZ');
   $('place').textContent = p.name;
-  document.querySelectorAll('[data-place]').forEach(b => b.classList.toggle('selected', b.dataset.place === name));
+  document.querySelectorAll('[data-place]').forEach(b => b.dataset.place === name ? b.setAttribute('aria-current', 'true') : b.removeAttribute('aria-current'));
+}
+function placeMenu(open) {
+  $('place-menu').hidden = !open;
+  $('place-button').setAttribute('aria-expanded', String(open));
+  if (open) release();
 }
 function release() {
   navigation?.keys.clear();
@@ -130,6 +137,10 @@ async function init() {
   const lobby = GARAGE.rects.find(r => r.id === 'hallE');
   if (lobby && lobby.x0 !== undefined) Object.assign(locations.garage, {x:(lobby.x0+lobby.x1)/2,z:(lobby.z0+lobby.z1)/2});
   else Object.assign(locations.garage,{x:(CORE.x0+CORE.x1)/2,z:CORE.south[0]-1});
+  for (const u of world.units) {
+    const at = unitEntries[u.id];
+    if (at) locations[u.id] = { name: `${u.id} · ${u.levels[0].name}`, x: u.ox + at[0], y: u.levels[0].floor, z: u.oz + at[1], yaw: at[2] };
+  }
   navigation = new Navigation(world, camera);
   moveTo('area');
   world.windowLights?.update(12, 0, true);
@@ -156,6 +167,9 @@ function frame() {
     if (own) {
       const lv = navigation.pos.y > LEVELS[1].floor - .3 ? 1 : 0;
       $('place').textContent = `L1007 · ${world.roomAt(lv,navigation.pos.x,navigation.pos.z) ?? (lv ? 'Övre plan':'Entréplan')}`;
+    } else {
+      const {x, y, z} = navigation.pos, unit = world.unitAt(x, z, y);
+      if (unit) $('place').textContent = unit.label(unit.levelAt(y), x, z);
     }
   }
   renderer.render(scene,camera);
@@ -169,7 +183,10 @@ $('close-help').addEventListener('click', () => $('help-dialog').close());
 $('resume').addEventListener('click', requestLook);
 $('measure').addEventListener('click', setMeasure);
 $('action').addEventListener('click', use);
-document.querySelectorAll('[data-place]').forEach(b => b.addEventListener('click', () => { if (ready) moveTo(b.dataset.place); }));
+document.querySelectorAll('[data-place]').forEach(b => b.addEventListener('click', () => { if (ready) moveTo(b.dataset.place); placeMenu(false); }));
+$('place-button').addEventListener('click', () => placeMenu($('place-menu').hidden));
+document.addEventListener('pointerdown', e => { if (!e.target.closest?.('.locations')) placeMenu(false); });
+document.addEventListener('keydown', e => { if (e.code === 'Escape' && !$('place-menu').hidden) { placeMenu(false); $('place-button').focus(); } });
 addEventListener('resize', fit);
 addEventListener('blur', release);
 document.addEventListener('visibilitychange', () => { if (document.hidden) release(); });
