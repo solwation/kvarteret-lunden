@@ -7,7 +7,7 @@ import { installPlaceShortcuts } from './place-shortcuts.js';
 import { Garage } from './garage.js';
 import { Core } from './core.js';
 import { CoreHouse } from './corehouse.js';
-import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS } from './config.js';
+import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, LIGHTING } from './config.js';
 
 const $ = id => document.getElementById(id);
 const touch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
@@ -123,9 +123,10 @@ async function init() {
   $('viewer').append(renderer.domElement);
   camera = new THREE.PerspectiveCamera(65, 1, .06, 700); camera.rotation.order = 'YXZ';
   scene = new THREE.Scene(); scene.background = new THREE.Color(0xcbd9dd); scene.fog = new THREE.Fog(0xcbd9dd, 200, 650);
-  scene.add(new THREE.HemisphereLight(0xf1f7ff, 0xabb69a, 2.6), new THREE.AmbientLight(0xfff5e7, 1.3));
-  const sunlight = new THREE.DirectionalLight(0xffefd8, 2.6); sunlight.position.set(-20,50,25); scene.add(sunlight);
-  const fill = new THREE.DirectionalLight(0xe2edff, .8); fill.position.set(10,15,-20); scene.add(fill);
+  const S = LIGHTING.sky;
+  scene.add(new THREE.HemisphereLight(S.hemi.sky, S.hemi.ground, S.hemi.intensity), new THREE.AmbientLight(S.ambient.color, S.ambient.intensity));
+  const sunlight = new THREE.DirectionalLight(S.sun.color, S.sun.intensity); sunlight.position.set(...S.sun.pos); scene.add(sunlight);
+  const fill = new THREE.DirectionalLight(S.fill.color, S.fill.intensity); fill.position.set(...S.fill.pos); scene.add(fill);
   fit();
   await new Promise(requestAnimationFrame);
   const plan = await fetchStartupJSON(`./data/plan.json${VERSION ? '?v=' + VERSION : ''}`, { timeout: 15000 });

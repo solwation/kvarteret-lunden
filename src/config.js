@@ -1825,6 +1825,17 @@ export const TAP_LEVER = { seconds: 0.24, angle: 38, pickRadius: 0.075, pickHeig
   joint: { radius: 0.0135, length: 0.02, segments: 18 } };
 
 export const LIGHTING = {
+// Static daylight (#16, from original e77fe5e2 LIGHTING.sky, src/main.js). This view has no day cycle and no shadow map,
+// so the sun lights every surface facing it, indoors too. Balanced instead of copied: less flat ambient/fill and a
+// stronger sun, scaled so rooms keep about the same mean brightness. Sunlit vs shaded brick 1.07 -> 1.29 in the
+// street/courtyard views; L1007 rooms within ~2 % and sun-facing inner walls +1 %. Was hemi 2.6, ambient 1.3, sun 2.6,
+// fill 0.8. Tuned by mean luminance in Chrome; *guess*.
+sky: {
+    hemi: { sky: 0xf1f7ff, ground: 0xabb69a, intensity: 3.0 },
+    ambient: { color: 0xfff5e7, intensity: 0.75 },
+    sun: { color: 0xffefd8, intensity: 5.25, pos: [-20, 50, 25] },
+    fill: { color: 0xe2edff, intensity: 0.5, pos: [10, 15, -20] },
+},
 pool: 4,
 switchHeight: 1.05,
 ceiling: { intensity: 2.4, range: 6, color: 0xffe2b8 },

@@ -100,3 +100,10 @@ Verifiering: `npm test`, `npm run build` och Chromium-bilder av Hus L:s altan oc
 Importerad från `65dc724` och `1e6b988` (original #1079): `src/groundao.js`, insamlingen av trädkronor och väggslingor i `src/surroundings.js` (`aoTrees`, `siteGroundAO`), Hus L-rektangeln från `src/world.js` och enbart `GROUND_AO` i `src/config.js`. Ett multiplicerande mesh ger mjuka skivor under 344 trädkronor och tunna band vid fasadfötterna på 89 väggslingor (A/B/C, Hus L, gamla S:t Lars-husen och bakgrundshusen). Originalet tonar bort skuggorna där solens skuggkarta täcker; här finns ingen skuggkastande sol, så `bindGroundAOShadow` anropas inte och skuggorna visas överallt. Alla värden är antaganden.
 
 Verifiering: `npm test`, `npm run build` och Chromium-bilder (GPU) av området uppifrån, gatan och parken före/efter. +1 ritanrop per vy, ca 24 000 trianglar, inga sidfel eller externa anrop.
+
+
+## Tydligare sol- och skuggsida, #16
+
+Anpassad från `e77fe5e2` (original #1073). Originalet blandar i sin dygnscykel ett jämnt mulet ljus mot ett klart (mindre himmel/ambient/fyllnad, sol 3,0, exponering 1,5) och förlitar sig på en skuggande sol. Den här visningen har varken dygnscykel eller skuggkarta, så originalets värden och `DayCycle` har inte importerats. Enligt användarens beslut balanseras i stället de fasta ljusen om, utan skuggkarta: `LIGHTING.sky` i `src/config.js` (läses i `src/main.js`) har halverat flat ambient och lägre fyllnad, samt en starkare sol, skalade så att rummen behåller ungefär samma ljushet. Exponeringen är oförändrad, så sken och glödande material påverkas inte. Ljusens färger och riktningar är oförändrade.
+
+Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` och medelluminans (Y′, 0–255) i Chrome på riktig GPU i samma vyer före/efter: gata 139,0 → 140,5, innergård 112,9 → 117,8, L1007 vardagsrum 212,4 → 207,7 (−2,2 %), kök 192,6 → 194,8 och 199,7 → 202,1, L1004 223,3 → 218,3, L1201 232,6 → 229,2. Tegel på solsidan (gården, söder) mot skuggsidan (gatan, norr) gick från 1,07 till 1,29. En solvänd innervägg i vardagsrummet blev 1 % ljusare (237,0 → 239,6), så solen lyser inte märkbart igenom väggarna.
