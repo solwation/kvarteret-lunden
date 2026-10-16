@@ -38,7 +38,10 @@ function moveTo(name) {
   navigation.teleport(p.x, p.y, p.z);
   camera.rotation.set(0, p.yaw, 0, 'YXZ');
   $('place').textContent = p.name;
-  $('place-select').value = name;
+  const label = placeLabels.get(name) ?? p.name;
+  $('place-current').textContent = label;
+  $('place-toggle').setAttribute('aria-label', `Välj område: ${label}`);
+  closePlaceMenu(document.querySelector('.locations').classList.contains('open'));
   document.querySelectorAll('[data-place]').forEach(b => {
     b.classList.toggle('selected', b.dataset.place === name);
     if (b.dataset.place === name) b.scrollIntoView({block:'nearest', inline:'nearest'});
@@ -157,7 +160,7 @@ async function init() {
   }
   world.windowLights?.update(12, 0, true);
   ready = true;
-  $('place-select').disabled = false;
+  $('place-toggle').disabled = false;
   // Keep model access local for diagnostics, without a service connection.
   window.lundenViewer = {world, navigation, camera, renderer, scene, moveTo, locations};
   $('start').disabled = false; $('start').textContent = 'Börja utforska →';
@@ -165,7 +168,7 @@ async function init() {
   renderer.setAnimationLoop(frame);
   watchUpdates({
     snapshot: () => ({position:navigation.pos.toArray(), yaw:camera.rotation.y, pitch:camera.rotation.x, active, place:document.querySelector('[data-place].selected')?.dataset.place}),
-    busy: () => measuring || $('help-dialog').open || navigation.keys.size > 0 || Math.abs(navigation.analog.x) + Math.abs(navigation.analog.y) > 0 || lookPointer !== null,
+    busy: () => measuring || $('help-dialog').open || document.querySelector('.locations').classList.contains('open') || navigation.keys.size > 0 || Math.abs(navigation.analog.x) + Math.abs(navigation.analog.y) > 0 || lookPointer !== null,
     notice: text => { $('update-status').hidden = false; $('update-status').textContent = text; },
   });
 }
@@ -207,12 +210,53 @@ $('resume').addEventListener('click', requestLook);
 $('measure').addEventListener('click', setMeasure);
 $('action').addEventListener('click', use);
 document.querySelectorAll('[data-place]').forEach(b => b.addEventListener('click', () => { if (ready) moveTo(b.dataset.place); }));
-// Keep the compact picker and numbered desktop menu on the same destinations.
+// The compact disclosure and desktop row share the same destination buttons.
 const placeButtons = [...document.querySelectorAll('[data-place]')];
-$('place-select').replaceChildren(...placeButtons.map(button => new Option(button.textContent.trim(), button.dataset.place)));
-$('place-select').addEventListener('change', event => { if (ready) moveTo(event.target.value); });
+const placeLabels = new Map(placeButtons.map(button => [button.dataset.place, button.textContent.trim()]));
+const placeNav = document.querySelector('.locations');
+const compactPlaces = matchMedia('(max-width:960px)');
+function closePlaceMenu(focus = false) {
+  placeNav.classList.remove('open');
+  $('place-toggle').setAttribute('aria-expanded', 'false');
+  if (focus && compactPlaces.matches) $('place-toggle').focus({preventScroll:true});
+}
+function openPlaceMenu() {
+  if (!ready || !compactPlaces.matches) return;
+  release();
+  placeNav.classList.add('open');
+  $('place-toggle').setAttribute('aria-expanded', 'true');
+}
+$('place-toggle').addEventListener('click', () => {
+  if (placeNav.classList.contains('open')) closePlaceMenu(); else openPlaceMenu();
+});
+placeNav.addEventListener('keydown', event => {
+  if (!compactPlaces.matches || !['ArrowDown','ArrowUp','Home','End'].includes(event.code)) return;
+  event.preventDefault(); event.stopPropagation();
+  openPlaceMenu();
+  const current = placeButtons.indexOf(document.activeElement);
+  const index = event.code === 'Home' ? 0 : event.code === 'End' ? placeButtons.length - 1
+    : event.code === 'ArrowUp' ? (current < 0 ? placeButtons.length - 1 : (current - 1 + placeButtons.length) % placeButtons.length)
+    : (current + 1) % placeButtons.length;
+  placeButtons[index].focus({preventScroll:true});
+});
+document.addEventListener('keydown', event => {
+  if (event.code === 'Escape' && placeNav.classList.contains('open')) {
+    event.preventDefault(); event.stopImmediatePropagation(); closePlaceMenu(true);
+  }
+}, true);
+document.addEventListener('pointerdown', event => {
+  if (!placeNav.classList.contains('open') || placeNav.contains(event.target)) return;
+  // Dismissing over the scene must not also interact with or measure the model.
+  const overScene = $('viewer').contains(event.target);
+  closePlaceMenu(overScene);
+  if (overScene) { event.preventDefault(); event.stopPropagation(); }
+}, true);
+placeNav.addEventListener('focusout', event => {
+  if (event.relatedTarget && !placeNav.contains(event.relatedTarget)) closePlaceMenu();
+});
+compactPlaces.addEventListener('change', () => closePlaceMenu());
 installPlaceShortcuts({buttons:placeButtons, canNavigate:() => ready && active, moveTo});
-addEventListener('resize', fit);
+addEventListener('resize', () => { fit(); closePlaceMenu(); });
 addEventListener('blur', release);
 document.addEventListener('visibilitychange', () => { if (document.hidden) release(); });
 document.addEventListener('pointerlockchange', () => {

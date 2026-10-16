@@ -161,6 +161,12 @@ try {
   const m = mobile.page;
   assert(await m.evaluate(() => navigator.maxTouchPoints > 0 && matchMedia('(pointer: coarse)').matches));
   await destination(m, 'area', 'initial touch');
+  assert(await m.locator('#intro').isVisible(), 'welcome cover visible before start');
+  assert(await m.locator('#place-toggle').evaluate(button => {
+    const r = button.getBoundingClientRect();
+    return document.getElementById('intro').contains(document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2));
+  }), 'welcome cover blocks the navigation button before start');
+  await m.screenshot({path: `${out}/touch-390-intro.png`});
   await m.locator('#start').tap();
   await layout(m, 390, 844, '390x844 touch');
   await screenshot(m, 'touch-390-before');
