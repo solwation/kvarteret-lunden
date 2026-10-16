@@ -21,3 +21,5 @@ Read [AGENTS.md](AGENTS.md) for public-content, storage and service boundaries. 
 ## /orkester
 
 Use [.claude/commands/orkester.md](.claude/commands/orkester.md). Issues, active labels, code and Pages checks stay in this repository. Shared coordination is [#4](https://github.com/solwation/kvarteret-lunden/issues/4). This static project has no report service, authentication or Cloudflare integration.
+
+An active `/orkester` keeps polling the complete queue every minute for 60 minutes after the last resolved implementation issue. New in-scope work is handled without restarting; resolving it resets the full hour. Keep UTC checkpoint/status timestamps and stop promptly on the user’s pause/stop. See the command for scope, labels, failures and final-check rules.
