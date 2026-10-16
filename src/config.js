@@ -1830,3 +1830,6 @@ export const NEIGHBOR_OPENINGS = {frame: .06, depth: .1, sash: .045, sashDepth: 
 export const SHOWER_FITTINGS = {
   hoseSegments: 48, hoseRadius: 0.007, safetyColor: 0xbf2d24,
 };
+
+// Bounded startup data recovery, adapted from original issue #1065; safeguards, not device measurements.
+export const STARTUP = { dataTimeout: 5000, planTimeout: 15000, dataAttempts: 2, retryDelay: 250 };

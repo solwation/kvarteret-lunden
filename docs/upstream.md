@@ -40,5 +40,12 @@ Automatisk publicering kan införas för detta repos egna granskade commits. Aut
 
 ## Register
 
-- Senast granskade originalversion: `c079371f6782225e29e9dac51518c509ed8c37e6`.
+- Senast granskade originalversion: `502404a25063b954349a858edf72a74eaa02d14e`.
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
+
+
+## Startåterhämtning, #1065
+
+Importerad från `502404a25063b954349a858edf72a74eaa02d14e`: avgränsad hämtning av planritningen med högst två försök, 15 sekunder per försök och 250 ms mellanrum. Ett tillfälligt nätfel, timeout eller HTTP408/429/5xx får ett nytt försök utan att läsa ett cachat felsvar;404 och felaktig JSON avbryter direkt. `src/startup.js` innehåller endast den rena hämtningsfunktionen, med parametrar i `src/config.js`. Originalets felrapportering och sessionStorage-diagnostik har inte importerats.
+
+Verifiering: `npm test`, bygg och hela Chromium-kontrollen för dator/mobil med en injicerad första plan503. Den verkliga scenen startar efter exakt två hämtningar, inga externa anrop sker och originalets sparade markörer är orörda.

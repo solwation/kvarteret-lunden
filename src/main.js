@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { buildWorld } from './world.js';
 import { Navigation } from './navigation.js';
+import { fetchStartupJSON } from './startup.js';
 import { Garage } from './garage.js';
 import { Core } from './core.js';
 import { CoreHouse } from './corehouse.js';
@@ -115,9 +116,7 @@ async function init() {
   const fill = new THREE.DirectionalLight(0xe2edff, .8); fill.position.set(10,15,-20); scene.add(fill);
   fit();
   await new Promise(requestAnimationFrame);
-  const response = await fetch('./data/plan.json');
-  if (!response.ok) throw new Error('Planunderlaget kunde inte läsas.');
-  const plan = await response.json();
+  const plan = await fetchStartupJSON('./data/plan.json', { timeout: 15000 });
   status('Förbereder byggnader och rum…');
   await new Promise(requestAnimationFrame);
   world = buildWorld(plan); scene.add(world.object);

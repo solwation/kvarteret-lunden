@@ -10,6 +10,8 @@ try{
  const context=await browser.newContext({viewport:{width:1000,height:700},deviceScaleFactor:1});
  await context.addInitScript(()=>{localStorage.setItem('lunden.drawing','original-drawing-sentinel');localStorage.setItem('lunden.cloud.queue','original-queue-sentinel');sessionStorage.setItem('lunden.session','original-session-sentinel');});
  const page=await context.newPage();page.setDefaultTimeout(30000);
+ let planRequests=0;
+ await page.route('**/data/plan.json',route=>++planRequests===1?route.fulfill({status:503,body:'temporary failure'}):route.continue());
  page.on('pageerror',e=>errors.push(e.message));
  page.on('request',r=>{if(new URL(r.url()).origin!==new URL(base).origin)external.push(r.url());});
  await page.goto(base+'/?cloud=https://ignored.invalid&sync=debug');
@@ -38,7 +40,8 @@ try{
  assert.equal(check.keys.length,2);
  for(const [name,p]of Object.entries(check.locations))assert(Number.isFinite(p.ground)&&p.pos.every(Number.isFinite),`invalid support at ${name}`);
  assert(check.locations.garage.below,'Garage destination must be below courtyard');
- results.push({desktop:check});
+ assert.equal(planRequests,2,'The actual scene must recover from one temporary plan failure');
+ results.push({desktop:check,planRequests});
  await page.screenshot({path:out+'/home.png'});
  // The real E listener must open an aimed physical door.
  const interaction=await page.evaluate(()=>{

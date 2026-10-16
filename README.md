@@ -2,6 +2,8 @@
 
 En fristående, opersonlig 3D-visning av Kv. Lunden för den som vill utforska området och den modellerade bostaden L1007.
 
+**[Öppna Kvarteret Lunden i 3D](https://solwation.github.io/kvarteret-lunden/)**
+
 En första statisk 3D-visning finns i projektet. Den innehåller området, L1007 och ytterligare befintliga lägenhetsmodeller, trapphus med hissar och ett garage med tomma förråd.
 
 ## Omfattning
@@ -36,7 +38,7 @@ npm ci
 npm run dev
 ```
 
-Öppna http://localhost:8157. Bygg för publicering med `npm run build`; de statiska filerna hamnar i `dist/`. Ingen backend, Cloudflare-konfiguration eller driftcredential behövs.
+Öppna http://localhost:8157. Bygg för publicering med `npm run build`; de statiska filerna hamnar i `dist/`. Ingen backend, Cloudflare-konfiguration eller driftcredential behövs. Tillfälliga fel vid hämtning av planritningen får ett automatiskt återförsök; permanent fel ger Försök igen.
 
 På dator används W A S D/piltangenter, mus och E för dörrar. På mobil används styrreglaget och dragning i vyn. Platsmenyn flyttar besökaren till området, L1007, innergården, trapphuset eller garaget. Mät avstånd väljer två punkter på ytor. Alla mått är ungefärliga modellmått.
 
@@ -44,7 +46,7 @@ Visningen sparar inget i webbläsaren och har inga externa nätverksanrop. Three
 
 ## Publicering
 
-Planerad publicering: GitHub Pages på `https://solwation.github.io/kvarteret-lunden/`. Publiceringen sker via `.github/workflows/pages.yml`. Publicering ska enbart innehålla de granskade statiska filer som visningen behöver.
+Visningen är publicerad på **[solwation.github.io/kvarteret-lunden](https://solwation.github.io/kvarteret-lunden/)** via GitHub Pages. `.github/workflows/pages.yml` publicerar granskade ändringar på `main`. Publicering ska enbart innehålla de granskade statiska filer som visningen behöver.
 
 
 ## Verifiering
