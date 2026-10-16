@@ -4,11 +4,11 @@ Read [AGENTS.md](AGENTS.md) for public-content, storage and service boundaries. 
 
 ## Issues are required
 
-- Every implementation task, including changes only to this repository, has an issue in **solwation/lunden-3d-apartment**. Keep tracking there so the user can see all Lunden work together. Name this repository and its affected files in downstream issues. Search before creating to avoid duplicates.
+- Every implementation task for this project has an issue in **solwation/kvarteret-lunden**, as explicitly requested by the user on 2026-10-16. This replaces the previous central original-repository queue. Name affected files and acceptance criteria. Original-only work belongs in the original repository. Search before creating to avoid duplicates.
 - Add `Lapp: <2–6 everyday Swedish words>` and exactly one priority label: `priority: high`, `priority: medium` (default) or `priority: low`. Do not change priorities without the user's direction.
 - Read the current issue, all comments and labels before claiming it. Never take another agent's `in-progress` issue or active reservation.
-- Set `in-progress` **in the original repository** when work actually starts. Keep it only while actively working. Remove it when finished, paused, released or reopened.
-- Verify the implementation, commit and publish. Link the downstream commit and validation in the original issue, close it when the requested result is complete, and remove `in-progress`. A downstream `Fixes #N` would refer to this repository; use an explicit original issue link and close the correct original issue.
+- Set `in-progress` **in this repository** when work actually starts. Keep it only while actively working. Remove it when finished, paused, released or reopened.
+- Verify the implementation, commit and publish. Link the commit and validation in this repository's issue, close it when the requested result is complete, and remove `in-progress`. Use `Fixes #N` only for this repository's issues; cross-repository work needs explicit links and verification in each affected issue.
 - New issues discovered outside the task get their own issue; do not expand the task silently.
 
 ## Working and publishing
@@ -20,4 +20,4 @@ Read [AGENTS.md](AGENTS.md) for public-content, storage and service boundaries. 
 
 ## /orkester
 
-Use [.claude/commands/orkester.md](.claude/commands/orkester.md). Issues, active labels and shared coordination stay in the original repository; code and Pages checks for this project stay here. This static project has no report service, authentication or Cloudflare integration.
+Use [.claude/commands/orkester.md](.claude/commands/orkester.md). Issues, active labels, code and Pages checks stay in this repository. Shared coordination is [#4](https://github.com/solwation/kvarteret-lunden/issues/4). This static project has no report service, authentication or Cloudflare integration.

@@ -3,10 +3,12 @@ import { buildWorld } from './world.js';
 import { Navigation } from './navigation.js';
 import { fetchStartupJSON } from './startup.js';
 import { VERSION, takeResume, watchUpdates } from './updates.js';
+import { installPlaceShortcuts } from './place-shortcuts.js';
+import { husLLayout } from './exterior.js';
 import { Garage } from './garage.js';
 import { Core } from './core.js';
 import { CoreHouse } from './corehouse.js';
-import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS } from './config.js';
+import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, HUS_L, storeyFloor } from './config.js';
 
 const $ = id => document.getElementById(id);
 const touch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
@@ -36,7 +38,10 @@ function moveTo(name) {
   navigation.teleport(p.x, p.y, p.z);
   camera.rotation.set(0, p.yaw, 0, 'YXZ');
   $('place').textContent = p.name;
-  document.querySelectorAll('[data-place]').forEach(b => b.classList.toggle('selected', b.dataset.place === name));
+  document.querySelectorAll('[data-place]').forEach(b => {
+    b.classList.toggle('selected', b.dataset.place === name);
+    if (b.dataset.place === name) b.scrollIntoView({block:'nearest', inline:'nearest'});
+  });
 }
 function release() {
   navigation?.keys.clear();
@@ -131,6 +136,13 @@ async function init() {
   const lobby = GARAGE.rects.find(r => r.id === 'hallE');
   if (lobby && lobby.x0 !== undefined) Object.assign(locations.garage, {x:(lobby.x0+lobby.x1)/2,z:(lobby.z0+lobby.z1)/2});
   else Object.assign(locations.garage,{x:(CORE.x0+CORE.x1)/2,z:CORE.south[0]-1});
+  // Use each modeled apartment's own placement rather than a duplicate global offset.
+  const l1004 = world.units.find(unit => unit.id === 'L1004');
+  if (l1004) locations.l1004 = {name:'L1004 · Entréplan', x:l1004.ox + 2.8, y:l1004.bottom, z:l1004.oz + 1.4, yaw:Math.PI};
+  // L1202 has an exterior entrance but no modeled interior. Place the visitor on its loftgång.
+  const l1202 = husLLayout(world.size.x).units.find(unit => unit.upper === 'L1202');
+  const entrance = HUS_L.street.std.find(opening => opening.door && opening.floor === 0);
+  locations.l1202 = {name:'L1202 · Entré (interiör saknas)', x:l1202.ox + (entrance.x0 + entrance.x1) / 2, y:storeyFloor(HUS_L.street.storey), z:HUS_L.loftgangDepth / 2, yaw:Math.PI};
   navigation = new Navigation(world, camera);
   moveTo('area');
   const resumed = takeResume();
@@ -170,6 +182,11 @@ function frame() {
     $('prompt').textContent = touch || measuring ? '' : label ? `E · ${label}` : '';
     $('action').hidden = !touch || !focus || measuring;
     $('action').textContent = label;
+    const visited = world.unitAt(navigation.pos.x, navigation.pos.z, navigation.pos.y);
+    if (visited) {
+      const level = visited.levelAt(navigation.pos.y);
+      $('place').textContent = `${visited.id} · ${visited.roomAt(level, navigation.pos.x, navigation.pos.z) ?? visited.levels[level].name}`;
+    }
     const own = navigation.pos.x > 0 && navigation.pos.x < world.size.x && navigation.pos.z > 0 && navigation.pos.z < world.size.z;
     if (own) {
       const lv = navigation.pos.y > LEVELS[1].floor - .3 ? 1 : 0;
@@ -188,6 +205,7 @@ $('resume').addEventListener('click', requestLook);
 $('measure').addEventListener('click', setMeasure);
 $('action').addEventListener('click', use);
 document.querySelectorAll('[data-place]').forEach(b => b.addEventListener('click', () => { if (ready) moveTo(b.dataset.place); }));
+installPlaceShortcuts({buttons:document.querySelectorAll('[data-place]'), canNavigate:() => ready && active, moveTo});
 addEventListener('resize', fit);
 addEventListener('blur', release);
 document.addEventListener('visibilitychange', () => { if (document.hidden) release(); });

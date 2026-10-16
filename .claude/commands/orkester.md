@@ -1,5 +1,5 @@
 ---
-description: Orkestrera arbete för Kvarteret Lunden med issues och status i originalrepot
+description: Orkestrera arbete för Kvarteret Lunden med issues och status i detta repo
 argument-hint: "[område eller issuenummer]"
 ---
 
@@ -9,11 +9,11 @@ Område: $ARGUMENTS. Utan argument gäller öppna ärenden som uttryckligen avse
 
 ## Gemensam kö och ägarskap
 
-1. Alla implementationsärenden, också för detta repo, finns i `solwation/lunden-3d-apartment`. Läs hela den öppna kön med `gh api --paginate 'repos/solwation/lunden-3d-apartment/issues?state=open&per_page=100'`. Filtrera bort PR:er och samordningsärenden samt sådant utanför området.
-2. Läs originalets #420 och alla kommentarer, vald issues body och alla kommentarer. Sidindela kommentarerna med `per_page=100` och `--paginate`. Respektera andra sessioners aktiva reservationer och `in-progress`.
-3. Välj hög → medel → låg, äldst först inom nivån (created_at, sedan nummer). Utan prioritet räknas som medel. Hämta en färsk kö inför varje nytt val. Dokumentera konkreta hinder för överhoppade äldre/högre ärenden i #420. En direkt begäran från användaren styr avgränsningen.
-4. Välj ett stabilt sessions-id. Skapa vid behov `orkester: <id>` i originalrepot. Håll en statuskommentar i originalets #420 uppdaterad med område, agenter, filer, aktivt ärende, reservationer, resultat och UTC-tid. Ändra samma kommentar vid fortsättning.
-5. Reservera valt arbete med en kommentar i originalärendet, läs sedan om kommentarer och etiketter för att upptäcka kapplöpningar. Lägg `in-progress` och den egna `orkester: <id>` endast på arbete som faktiskt pågår. Låt väntande ärenden sakna aktivetiketter. Ta aldrig bort någon annans ägaretikett.
+1. Alla implementationsärenden för detta projekt finns i `solwation/kvarteret-lunden` enligt användarens uttryckliga instruktion 2026-10-16; detta ersätter den tidigare kön här. Läs hela den öppna kön med `gh api --paginate 'repos/solwation/kvarteret-lunden/issues?state=open&per_page=100'`. Filtrera bort PR:er och samordningsärenden samt sådant utanför området.
+2. Läs detta repos #4 och alla kommentarer, vald issues body och alla kommentarer. Sidindela kommentarerna med `per_page=100` och `--paginate`. Respektera andra sessioners aktiva reservationer och `in-progress`.
+3. Välj hög → medel → låg, äldst först inom nivån (created_at, sedan nummer). Utan prioritet räknas som medel. Hämta en färsk kö inför varje nytt val. Dokumentera konkreta hinder för överhoppade äldre/högre ärenden i #4. En direkt begäran från användaren styr avgränsningen.
+4. Välj ett stabilt sessions-id. Skapa vid behov `orkester: <id>` i detta repo. Håll en statuskommentar i detta repos #4 uppdaterad med område, agenter, filer, aktivt ärende, reservationer, resultat och UTC-tid. Ändra samma kommentar vid fortsättning.
+5. Reservera valt arbete med en kommentar i ärendet i detta repo, läs sedan om kommentarer och etiketter för att upptäcka kapplöpningar. Lägg `in-progress` och den egna `orkester: <id>` endast på arbete som faktiskt pågår. Låt väntande ärenden sakna aktivetiketter. Ta aldrig bort någon annans ägaretikett.
 
 ## Genomförande
 
@@ -22,5 +22,5 @@ Område: $ARGUMENTS. Utan argument gäller öppna ärenden som uttryckligen avse
 - Följ originalets reservations- och övertaganderegler i dess `.claude/commands/orkester.md` när andra sessioner berörs. Denna publicsida har **ingen** spelrapportkö; kör inte originalets KV-import, Wrangler, Workers eller molntjänster för ett uppdrag avgränsat till Kvarteret Lunden. En blandad originalsession följer originalets regler för originalarbetet.
 - Skapa saknade issues enligt CLAUDE.md innan implementation. Publicera inga personliga bilder, teckningar, familjereferenser, karaktärer, poäng eller andra spelinslag. Använd inte originalets lagring eller tjänster.
 - Testa berört beteende i riktig webbläsare, kör `npm test` och `npm run build`. Granska importer och statiska publiceringsfiler. Commit/push direkt till detta repos `main` efter rebase; inga branches/PR:er. Förbättringar från originalet kräver granskning och registrerat käll-SHA.
-- Vänta in Pages-körning och verifiera den publicerade versionen. Länka commit, tester och eventuella begränsningar i originalärendet. Stäng när klart; ta bort både `in-progress` och den egna orkesteretiketten. Vid paus/hinder: dokumentera konkret återstående arbete och ta bort aktivetiketterna; stäng inte ofärdigt arbete.
+- Vänta in Pages-körning och verifiera den publicerade versionen. Länka commit, tester och eventuella begränsningar i ärendet i detta repo. Stäng när klart; ta bort både `in-progress` och den egna orkesteretiketten. Vid paus/hinder: dokumentera konkret återstående arbete och ta bort aktivetiketterna; stäng inte ofärdigt arbete.
 - Läs om kön när en agent blir klar. Städa bara egna avslutade worktrees. Rapportera resultat och kvarvarande arbete på svenska. Starta inte orelaterad originalutveckling för att fylla lediga agentplatser.

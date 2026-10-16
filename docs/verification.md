@@ -27,4 +27,12 @@ Därefter laddas den riktiga WebGL-visningen, en andra Pages-publicering simuler
 
 Två byggen av samma innehåll ska ge samma innehållsversion trots skilda byggtider; dokumentation ingår inte i innehållshashen. Filnamn för JS/CSS och planritningens versionsparameter undviker blandade cacheversioner. Publicerad `version.json`, HTML och Pages-körningen kontrolleras efter push.
 
-Arbetsinstruktionerna och `/orkester` finns i båda reporna. Ärenden, inklusive downstreamändringar, spåras i originalrepot med `in-progress` endast under aktivt arbete och stängs efter verifierat resultat. Downstreamkommandot avgränsar bort originalets spelrapport-/molnflöden.
+Arbetsinstruktionerna och `/orkester` finns i båda reporna. Den då införda centrala ärendekön ersätts av användarens senare instruktion: nya ärenden för Kvarteret Lunden spåras här i eget repo med `in-progress` endast under aktivt arbete och stängs efter verifierat resultat. Downstreamkommandot avgränsar bort originalets spelrapport-/molnflöden.
+
+## Platsmeny och siffergenvägar, #2–#3 i detta repo
+
+`tools/place-shortcuts-check.mjs` testar den riktiga fristående genvägsmodulen i Chromium: menyordning och synliga siffror för 5/6/7/9 platser, Digit/Numpad, tillgänglighetsattribut, välkomst-/readinessspärr, dialoger och redigerbara fält, modifierare, upprepning och förbrukade tangenttryckningar.
+
+`CHROME_PATH=/sökväg/till/chrome node tools/places-browser-check.mjs http://localhost:8165 /tmp/kvarteret-places` körs mot färdigt `dist/`. Den riktiga WebGL-visningens sju mål kontrolleras med ordinarie siffertangenter: samma mål som menyn, stabil våningshöjd/mark och ingen vägg som trycker undan startpositionen. L1004 måste identifieras som L1004 av världens lägenhetsmodell. L1202 måste vara dess entré på loftgången, utan att L1201 eller en påhittad interiör används. Numeriskt tangentbord, välkomst-/hjälpspärr och samtliga menyval på 390 px bredd kontrolleras. Ingen webbläsarexception eller extern tjänst tillåts. Skärmbilder av L1004, L1202:s entré och smal meny granskas. Detta är Chromium med responsiv vy, inte fysisk telefon.
+
+L1202 har för närvarande ingen modellerad interiör. Menyvalet är därför uttryckligen märkt Entré, och platsstatus/hjälp/README beskriver begränsningen. Entréns koordinater följer Hus L:s befintliga numrerade byggnadsplacering och dörröppning, inte L1201:s modell. L1004:s koordinater följer dess befintliga VisitUnit. Arkitekturgeometrin ändras inte.

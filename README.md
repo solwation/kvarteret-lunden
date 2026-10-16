@@ -40,7 +40,7 @@ npm run dev
 
 Öppna http://localhost:8157. Bygg för publicering med `npm run build`; de statiska filerna hamnar i `dist/`. Ingen backend, Cloudflare-konfiguration eller driftcredential behövs. Tillfälliga fel vid hämtning av planritningen får ett automatiskt återförsök; permanent fel ger Försök igen.
 
-På dator används W A S D/piltangenter, mus och E för dörrar. På mobil används styrreglaget och dragning i vyn. Platsmenyn flyttar besökaren till området, L1007, innergården, trapphuset eller garaget. Mät avstånd väljer två punkter på ytor. Alla mått är ungefärliga modellmått.
+På dator används W A S D/piltangenter, mus och E för dörrar. På mobil används styrreglaget och dragning i vyn. Platsmenyn och tangenterna 1–7 flyttar besökaren till området, L1007, L1004, L1202:s entré, innergården, trapphuset eller garaget, i den ordningen. L1004 har en modellerad interiör. L1202:s val tar besökaren till rätt entré på loftgången; dess interiör finns ännu inte i modellen. Sifferraden och det numeriska tangentbordet fungerar under en aktiv visning; genvägar ignoreras i hjälpdialoger och textfält. Mät avstånd väljer två punkter på ytor. Alla mått är ungefärliga modellmått.
 
 Klocktornets fyra urtavlor visar besökarens lokala tid med tydliga visare och timmarkeringar.
 
@@ -57,6 +57,6 @@ En öppen visning kontrollerar nya versioner varje minut och när fliken blir sy
 
 `npm test` granskar importkedjan, planunderlaget och frånvaro av privata referenser och originalets tjänster. `npm run build` skapar det statiska publiceringspaketet. Kör `CHROME_PATH=/sökväg/till/chrome node tools/browser-check.mjs http://localhost:8157` mot en server för `dist/` för integrationstest i Chromium, inklusive mobil layout, gång, dörranimation, ursprunglig lagring och nätverksanrop.
 
-För arbete med issues, `in-progress`, stängning och `/orkester`, läs [CLAUDE.md](CLAUDE.md) och [orkesterkommandot](.claude/commands/orkester.md). Även ärenden för enbart detta projekt ligger i originalrepot.
+För arbete med issues, `in-progress`, stängning och `/orkester`, läs [CLAUDE.md](CLAUDE.md) och [orkesterkommandot](.claude/commands/orkester.md). Ärenden för detta projekt skapas här i [kvarteret-lunden](https://github.com/solwation/kvarteret-lunden/issues).
 
-Arbetet samordnas i [lunden-3d-apartment #1064](https://github.com/solwation/lunden-3d-apartment/issues/1064).
+Orkesterarbete samordnas i [#4](https://github.com/solwation/kvarteret-lunden/issues/4). Den första importens historik finns i [originalets #1064](https://github.com/solwation/lunden-3d-apartment/issues/1064).

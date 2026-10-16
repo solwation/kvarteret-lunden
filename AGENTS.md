@@ -13,4 +13,4 @@ This is a public, impersonal 3D walkthrough derived from solwation/lunden-3d-apa
 
 ## Issues and orchestration
 
-Read [CLAUDE.md](CLAUDE.md) for the mandatory issue lifecycle and [.claude/commands/orkester.md](.claude/commands/orkester.md) for `/orkester`. Changes in this repository require issues too. Implementation tracking stays in `solwation/lunden-3d-apartment`, as requested by the user, including downstream-only changes.
+Read [CLAUDE.md](CLAUDE.md) for the mandatory issue lifecycle and [.claude/commands/orkester.md](.claude/commands/orkester.md) for `/orkester`. Changes in this repository require issues too. The user explicitly requested on 2026-10-16 that issues for this project live in `solwation/kvarteret-lunden`. Claim, label, verify and close them here; coordination lives in issue #4. Original-only work stays in the original repository.
