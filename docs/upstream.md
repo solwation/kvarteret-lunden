@@ -128,3 +128,10 @@ Verifiering: `npm test`, `npm run build` och Chrome på riktig GPU: lövkort inn
 Avgränsad överföring från `211e0e9` (originalets #1088): `steer()` i `src/main.js` ger ingen rörelse inom 10 % av knoppens väg (en vilande tumme driver inte), därefter `t^1,5` upp till 90 % och full fart därifrån; riktningen behålls och kantens glöd följer utfallet. Värdena ligger i `TOUCH.stick` i `src/config.js` (*guess*). Originalets följ-läge förutsätter en flytande spak och är inte tillämpligt på den fasta spaken här; spaksprint finns inte i visningen, och originalets utjämnade titta-dragning ingick inte i denna överföring.
 
 Verifiering: `npm test`, `npm run build` och `tools/browser-check.mjs` med ny kontroll i mobil 390×844 (2 px från mitten → 0, halv väg → 0,35, förbi kanten → 1).
+
+
+## Hörnskuggor ovanför dörrar och fönster, #24
+
+Överförd från `da02d90` (originalets #1084/#1085), uppföljning av #17: `buildWallAO` i `src/ao.js` vänder nu varje fyrhörning mot rummet oavsett väggstyckets polygonriktning. Tidigare ritades överstyckena över dörrar och fönster (rektanglar med motsatt riktning) och större delen av L1201:s väggar baksidesvända och syntes inte. Takets kontaktskugga (`buildAO` i `src/world.js`) räknar även dörröverstycken och fönster som väggar, så bandet bryts inte över öppningar. Originalets test och ändringslogg har inte förts över.
+
+Verifiering: `npm test`, `npm run build` och Chrome på riktig GPU: alla väggskuggans trianglar i L1007, L1004 och L1201 vetter mot rummet (före 24/43/24/27/220/278 vända in i väggen, efter 0), före/efter-bilder av hallens dörr i L1007, entrédörren och L1004; ritanropen oförändrade (552/157/381), inga sidfel.
