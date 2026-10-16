@@ -23,6 +23,7 @@
     <div class="top-actions"><span id="place">Området</span><button id="help" aria-label="Visa hjälp">?</button></div>
   </header>
   <nav class="locations" aria-label="Gå till en plats">
+    <div class="place-buttons">
     <button data-place="area" class="selected">Området</button>
     <button data-place="home">Lägenhet L1007</button>
     <button data-place="l1004">Lägenhet L1004</button>
@@ -30,6 +31,8 @@
     <button data-place="courtyard">Innergården</button>
     <button data-place="core">Trapphuset</button>
     <button data-place="garage">Garaget</button>
+    </div>
+    <label class="place-picker" for="place-select"><span>Område</span><select id="place-select" aria-label="Välj område" disabled></select></label>
   </nav>
   <div id="update-status" role="status" hidden></div>
   <div id="crosshair" aria-hidden="true"></div>

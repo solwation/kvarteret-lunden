@@ -38,6 +38,7 @@ function moveTo(name) {
   navigation.teleport(p.x, p.y, p.z);
   camera.rotation.set(0, p.yaw, 0, 'YXZ');
   $('place').textContent = p.name;
+  $('place-select').value = name;
   document.querySelectorAll('[data-place]').forEach(b => {
     b.classList.toggle('selected', b.dataset.place === name);
     if (b.dataset.place === name) b.scrollIntoView({block:'nearest', inline:'nearest'});
@@ -156,6 +157,7 @@ async function init() {
   }
   world.windowLights?.update(12, 0, true);
   ready = true;
+  $('place-select').disabled = false;
   // Keep model access local for diagnostics, without a service connection.
   window.lundenViewer = {world, navigation, camera, renderer, scene, moveTo, locations};
   $('start').disabled = false; $('start').textContent = 'Börja utforska →';
@@ -205,7 +207,11 @@ $('resume').addEventListener('click', requestLook);
 $('measure').addEventListener('click', setMeasure);
 $('action').addEventListener('click', use);
 document.querySelectorAll('[data-place]').forEach(b => b.addEventListener('click', () => { if (ready) moveTo(b.dataset.place); }));
-installPlaceShortcuts({buttons:document.querySelectorAll('[data-place]'), canNavigate:() => ready && active, moveTo});
+// Keep the compact picker and numbered desktop menu on the same destinations.
+const placeButtons = [...document.querySelectorAll('[data-place]')];
+$('place-select').replaceChildren(...placeButtons.map(button => new Option(button.textContent.trim(), button.dataset.place)));
+$('place-select').addEventListener('change', event => { if (ready) moveTo(event.target.value); });
+installPlaceShortcuts({buttons:placeButtons, canNavigate:() => ready && active, moveTo});
 addEventListener('resize', fit);
 addEventListener('blur', release);
 document.addEventListener('visibilitychange', () => { if (document.hidden) release(); });

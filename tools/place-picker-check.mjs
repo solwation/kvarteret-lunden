@@ -7,7 +7,8 @@ import {chromium} from 'playwright';
 const base = (process.argv[2] ?? 'http://localhost:8170').replace(/\/$/, '') + '/';
 const out = process.argv[3] ?? '/tmp/kvarteret-picker-8';
 const ids = ['area', 'home', 'l1004', 'l1202', 'courtyard', 'core', 'garage'];
-const resumeKey = 'kvarteret-lunden.place-picker-check.resume';
+// A fresh isolated browser context seeds only this app's own one-use resume key.
+const resumeKey = 'kvarteret-lunden.update-resume';
 const report = {base, checks: [], errors: [], external: []};
 await mkdir(out, {recursive: true});
 const browser = await chromium.launch({executablePath: process.env.CHROME_PATH, headless: true,
@@ -28,16 +29,6 @@ async function openApp(options, resume) {
       }
     });
   }, {resume, resumeKey});
-  if (resume) {
-    // Only redirect the built app's own storage key. Its actual takeResume and
-    // init/moveTo run unchanged, with the currently served build version.
-    await context.route('**/assets/viewer-*.js', async route => {
-      const response = await route.fetch();
-      const source = await response.text();
-      assert(source.includes('kvarteret-lunden.update-resume'), 'built resume key exists');
-      await route.fulfill({response, body: source.replaceAll('kvarteret-lunden.update-resume', resumeKey)});
-    });
-  }
   const page = await context.newPage();
   page.on('pageerror', error => report.errors.push(error.message));
   page.on('request', request => {
@@ -106,6 +97,10 @@ async function layout(page, width, height, label) {
 async function screenshot(page, name) {
   await page.evaluate(() => {
     const v = window.lundenViewer;
+    // Match the normal frame visibility updates after teleporting with the loop paused.
+    v.world.core.update(0, v.navigation, v.camera);
+    v.world.garage.update(0, v.navigation, v.camera);
+    v.scene.updateMatrixWorld();
     v.renderer.render(v.scene, v.camera);
   });
   await page.screenshot({path: `${out}/${name}.png`});
