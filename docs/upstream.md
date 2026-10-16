@@ -114,3 +114,10 @@ Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` och medellum
 Avgränsad överföring från `e3d2873` (originalets #1087): spaken skalar med skärmens kortsida (`clamp(96px, 30vmin, 168px)` i `style.css`), knoppens rörelse följer den renderade storleken (32 % av bredden, som tidigare 36 px vid 112 px) och kanten lyser svagt i visningens gröna färg åt det håll man drar. Originalets glasutseende, vilo-hint (spaken är redan alltid synlig här), knappkluster och sprintläge är inte tillämpliga och har inte förts över.
 
 Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` (mobil 390×844: spaken 117 px, framåt och avbrott) samt skärmdumpar med beröring i 844×390 (117 px) och 1180×820 (168 px).
+
+
+## Gårdsträdens kronor utanför fasaderna, #22
+
+Överförd från `8f251e7` (originalets #1083): `fitCrown` i `src/surroundings.js` smalnar av en trädkrona vars lövkort annars skulle nå närmare än `FOLIAGE.wallClearance` (0,2 m, *guess*) ett hus fotavtryck i `SITE.blocks` på samma höjd. Stammarnas placering och kronornas höjd är oförändrade. Originalets dokumentation, ändringslogg och testkörningar har inte förts över.
+
+Verifiering: `npm test`, `npm run build` och Chrome på riktig GPU: lövkort inne i Hus A/B/C:s fotavtryck 10 kronor (upp till 1,56 m) → 0, inga sidfel; före/efter-bilder inifrån Hus B:s fönster mot de två träden.
