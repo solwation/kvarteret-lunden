@@ -79,3 +79,10 @@ Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` samt skärmb
 Importerad från `e80203f2` (original #1074): `buildWallAO` i `src/ao.js`, dess anrop i `buildLevel` (`src/world.js`) och enbart `AO.wall` i `src/config.js`. Väggarna får ett multiplicerande överlägg per plan med mjuka band mot golv och tak och i innerhörn; glas, dörröppningar och speglar mörkas inte och trapphålet får inget golvband. Inga nya beroenden, resurser eller nätverksanrop.
 
 Verifiering: `npm test`, bygg och den riktiga visningen i Chrome (vardagsrum, hall, sovrum 1 med och utan överlägget), utan webbläsarfel.
+
+
+## Fönster i smygar, #18
+
+Importerad från `703e1b5` (original #1076): `reveal`, `mass` och `recessed` i `src/exterior.js`, karmplanet `HUS_L_REVEAL.frame` i `src/world.js` (samma 0,1 m som förut) och enbart `HUS_L_REVEAL` i `src/config.js`. Alla fönster i Hus L på gatu- och gårdssidan sitter indragna i smygar av fasadens eget skikt (tegel eller puts), med ett plåtbleck under. Grannarnas förenklade volymer lämnar smygfickorna öppna, och L1007, L1004 och L1201 får smygar in till sina egna karmar. Dörrar och gavelfönster är oförändrade. Alla mått är antaganden. Originalets ändringslogg har inte importerats.
+
+Verifiering: `npm test`, bygg, `tools/browser-check.mjs` och skärmbilder i Chrome av gatan, gården, våning 3 och terrassen före och efter. Ritanropen är oförändrade, med cirka 6 300 fler trianglar.
