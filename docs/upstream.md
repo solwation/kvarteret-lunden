@@ -95,6 +95,13 @@ Importerad från `d29a218` och `ce72fb1` (original #1078): `patioLamps` och dess
 Verifiering: `npm test`, `npm run build` och Chromium-bilder av Hus L:s altan och takterrass samt Hus A:s loggior i dagsljus och med påtvingad natt (31 väggsken i entrélampornas mesh = 8 + 6 + 17, 52 loggialampor, inga sidfel).
 
 
+## Lampsken utanför glaset, #25
+
+Importerad från `195cf9b` (original #1092): `washGeometry` i `src/groundglow.js` tar `holes` och skär bort väggens öppningar, och `src/exterior.js` skickar fasadens öppningar för entrélampornas och altan-/terrasslampornas väggsken samt sparar hörn per lampa i `userData.parts`. Skenet ligger därmed på teglet runt fönster och dörrar i stället för på glaset. Inga nya meshar, material eller ljus. Loggialamporna i hus A/B/C ändras inte (glaset står framför skenet). Originalets ändringslogg och test har inte importerats.
+
+Verifiering: `npm test`, `npm run build` och Chromium-bilder av en granne på Hus L:s gårdssida och gatusida med påtvingad natt före/efter (skenet syntes före över altandörrens överruta och fönstrets vänstra ruta, efter ingen glöd på glaset); dagsljuset oförändrat (skenet släckt).
+
+
 ## Markskuggor under träd och vid husfötter, #20
 
 Importerad från `65dc724` och `1e6b988` (original #1079): `src/groundao.js`, insamlingen av trädkronor och väggslingor i `src/surroundings.js` (`aoTrees`, `siteGroundAO`), Hus L-rektangeln från `src/world.js` och enbart `GROUND_AO` i `src/config.js`. Ett multiplicerande mesh ger mjuka skivor under 344 trädkronor och tunna band vid fasadfötterna på 89 väggslingor (A/B/C, Hus L, gamla S:t Lars-husen och bakgrundshusen). Originalet tonar bort skuggorna där solens skuggkarta täcker; här finns ingen skuggkastande sol, så `bindGroundAOShadow` anropas inte och skuggorna visas överallt. Alla värden är antaganden.
