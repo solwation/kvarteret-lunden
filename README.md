@@ -2,7 +2,7 @@
 
 En fristående, opersonlig 3D-visning av Kv. Lunden för den som vill utforska området och den modellerade bostaden L1007.
 
-Projektet är under uppbyggnad. Ingen färdig 3D-visning är publicerad ännu.
+En första statisk 3D-visning finns i projektet. Den innehåller området, L1007 och ytterligare befintliga lägenhetsmodeller, trapphus med hissar och ett garage med tomma förråd.
 
 ## Omfattning
 
@@ -29,8 +29,26 @@ git remote add upstream https://github.com/solwation/lunden-3d-apartment.git
 git fetch upstream main
 ```
 
-Det finns ännu ingen applikationskod eller lokal 3D-server att starta. Hämta inte över hela originalets filträd: första importen ska vara granskad och rensad.
+Installera och starta visningen:
+
+```sh
+npm ci
+npm run dev
+```
+
+Öppna http://localhost:8157. Bygg för publicering med `npm run build`; de statiska filerna hamnar i `dist/`. Ingen backend, Cloudflare-konfiguration eller driftcredential behövs.
+
+På dator används W A S D/piltangenter, mus och E för dörrar. På mobil används styrreglaget och dragning i vyn. Platsmenyn flyttar besökaren till området, L1007, innergården, trapphuset eller garaget. Mät avstånd väljer två punkter på ytor. Alla mått är ungefärliga modellmått.
+
+Visningen sparar inget i webbläsaren och har inga externa nätverksanrop. Three.js ingår i publiceringspaketet.
 
 ## Publicering
 
-Planerad publicering: GitHub Pages på `https://solwation.github.io/kvarteret-lunden/`. Adressen är inte aktiverad ännu. Publicering ska enbart innehålla de granskade statiska filer som visningen behöver.
+Planerad publicering: GitHub Pages på `https://solwation.github.io/kvarteret-lunden/`. Publiceringen sker via `.github/workflows/pages.yml`. Publicering ska enbart innehålla de granskade statiska filer som visningen behöver.
+
+
+## Verifiering
+
+`npm test` granskar importkedjan, planunderlaget och frånvaro av privata referenser och originalets tjänster. `npm run build` skapar det statiska publiceringspaketet. Kör `CHROME_PATH=/sökväg/till/chrome node tools/browser-check.mjs http://localhost:8157` mot en server för `dist/` för integrationstest i Chromium, inklusive mobil layout, gång, dörranimation, ursprunglig lagring och nätverksanrop.
+
+Arbetet samordnas i [lunden-3d-apartment #1064](https://github.com/solwation/lunden-3d-apartment/issues/1064).

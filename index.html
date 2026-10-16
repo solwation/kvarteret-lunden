@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ecebe5">
+  <meta name="description" content="Utforska Kvarteret Lunden i 3D. Byggnader, gård och fast inredning i en fristående visualisering.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Bufz0ylsvH5VX0RelLTkdCzDLj+JPhHmKTdEC0GXlzs='; style-src 'self'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'">
+  <title>Kvarteret Lunden · Utforska i 3D</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+  <script type="module" src="./src/main.js"></script>
+</head>
+<body>
+  <main id="viewer" aria-label="Interaktiv 3D-visning av Kvarteret Lunden"></main>
+  <header class="topbar">
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">L</span><span>Kvarteret Lunden<small>UTFORSKA I 3D</small></span></a>
+    <div class="top-actions"><span id="place">Området</span><button id="help" aria-label="Visa hjälp">?</button></div>
+  </header>
+  <nav class="locations" aria-label="Gå till en plats">
+    <button data-place="area" class="selected">Området</button>
+    <button data-place="home">Lägenhet L1007</button>
+    <button data-place="courtyard">Innergården</button>
+    <button data-place="core">Trapphuset</button>
+    <button data-place="garage">Garaget</button>
+  </nav>
+  <div id="crosshair" aria-hidden="true"></div>
+  <div id="prompt" role="status"></div>
+  <div class="bottom-bar"><span id="hint">W A S D · Gå &nbsp; Mus · Titta &nbsp; E · Öppna</span><button id="measure" aria-pressed="false">↔ Mät avstånd</button></div>
+  <div id="measurement" role="status" hidden></div>
+  <div id="joystick" aria-label="Dra för att gå"><span></span></div>
+  <button id="action" hidden>Öppna</button>
+  <button id="resume" hidden>Fortsätt utforska</button>
+  <section id="intro" class="cover" aria-label="Välkommen">
+    <div class="intro-card"><span class="eyebrow">EN PLATS ATT LÄRA KÄNNA</span><h1>Välkommen till<br>Kvarteret Lunden.</h1><p>Ta en promenad genom kvarteret, upptäck innergården och kliv in i L1007. Här visas rummen och den fasta inredningen.</p><button id="start" disabled>Förbereder kvarteret…</button><p id="load-status" role="status">Bygger 3D-modellen</p><div class="intro-footer">Fristående visualisering. Detaljer och material kan avvika från verkligheten. L1007 visar ett exempel på val av fast inredning. Ingen officiell tjänst från Peab.</div></div>
+  </section>
+  <dialog id="help-dialog"><button id="close-help" aria-label="Stäng hjälp">×</button><span class="eyebrow">SÅ HITTAR DU RUNT</span><h2>Utforska i din egen takt.</h2><p>På dator: klicka i vyn för att titta med musen. Gå med W A S D eller piltangenterna. Tryck E för att öppna en dörr eller lucka och Esc för att släppa musen.</p><p>På mobil: dra i reglaget till vänster för att gå. Dra i bilden till höger för att titta. Använd knappen som visas för dörrar.</p><p>Välj en plats i menyn för att hoppa dit. Med Mät avstånd väljer du två punkter på ytor i bilden. Måtten är ungefärliga modellmått.</p><p class="muted">Visualiseringen är fristående och kan avvika från verkligheten. Den visar inte alla lägenhetstyper eller verifierade standardval för alla bostäder.</p></dialog>
+</body>
+</html>

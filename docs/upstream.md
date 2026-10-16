@@ -14,7 +14,11 @@ En GitHub-fork skulle inte heller uppdatera sig själv. Fördelen med denna stru
 4. Kontrollera i webbläsare att visningen fungerar utan originalets data, spelmoment och Cloudflare. Granska även publiceringspaketet.
 5. Registrera importerad version och verifiering i denna fil.
 
-Ingen applikationskod har importerats ännu. När repo-upplägget skapades observerades `1281bfc5b643afdf7543f8818155439d45d91614` i originalets primära lokala checkout; detta är en orienteringspunkt, inte en importerad eller verifierad version.
+Första granskade importen utgår från `c079371f6782225e29e9dac51518c509ed8c37e6` i originalet. Världsbyggaren, fast inredning, navigation, garage/trapphus och hjälpfunktioner har anpassats. `data/plan.json` är det geometriska underlaget. Inga personliga bild-, ljud- eller fontresurser har importerats.
+
+`src/world.js` bygger arkitekturen; `src/interior.js` och `src/standardinterior.js` bygger enbart fast inredning. `src/navigation.js` är anpassad från originalets förflyttning. `src/config.js` är ett beskuret arkitektururval. `src/patio.js` innehåller enbart markmaterial. Garage och trapphus har separata `architectural-settings.js`, `architectural-edges.js` och `fixed-racks.js` för fasta byggdelar.
+
+Nästa import ska granskas mot dessa anpassningar. Ersätt inte nedströmsfilerna med originalets fullständiga versioner.
 
 ## Löpande uppdateringar
 
@@ -36,5 +40,5 @@ Automatisk publicering kan införas för detta repos egna granskade commits. Aut
 
 ## Register
 
-- Senast granskade originalversion: ingen.
-- Importerade ändringar: inga.
+- Senast granskade originalversion: `c079371f6782225e29e9dac51518c509ed8c37e6`.
+- Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.

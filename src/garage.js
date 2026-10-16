@@ -1,0 +1,784 @@
+// Architectural source: solwation/lunden-3d-apartment, c079371f6782225e29e9dac51518c509ed8c37e6.
+// Adapted for the independent, impersonal Kvarteret Lunden walkthrough.
+import * as THREE from 'three';
+import { standGeometry } from './fixed-racks.js';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { GARAGE as G, SITE, CORE, PLAYER } from './config.js';
+import { groundY } from './surroundings.js';
+import { escapeField, exitTexture, EXIT_CELLS, planTexture } from './escape.js';
+
+const T = SITE.terrain, GD = T.garageDoor, F = G.floor, C = G.ceiling, S = G.stalls, ST = G.storage, LI = G.lights, DD = G.doorDetails;
+const westYAt = (x, z) => groundY(x, z);
+const RECTS = G.rects, R = Object.fromEntries(RECTS.map((r) => [r.id, r])), ENTR = R.entrance;
+const AREAS = [...new Set(RECTS.map((r) => r.area))];
+const inRect = (r, x, z, e = 0) => x >= r.x0 - e && x <= r.x1 + e && z >= r.z0 - e && z <= r.z1 + e;
+const rectAt = (x, z) => RECTS.find((r) => inRect(r, x, z)) ?? null;
+
+
+export const STALLS = (() => {
+  const out = [];
+  S.rows.forEach(([x0, x1, z0, z1, nose, w], row) => {
+    const n = Math.floor((x1 - x0) / w + 1e-6);
+    for (let k = 0; k < n; k++) {
+      const a = x0 + k * w, b = a + w, mid = (a + b) / 2;
+      if (row === 0 && S.skip.some(([s0, s1]) => mid > s0 && mid < s1)) continue;
+      // #523: assumed parking rows must leave the drawing's actual basement doorways clear.
+      if(RECTS.some(r=>r.door&&(nose==='n'?Math.abs(r.z1-z0)<.01:Math.abs(r.z0-z1)<.01)&&b>r.x0-G.doorClearance&&a<r.x1+G.doorClearance))continue; // (in front of the basement door)
+      out.push({ n: out.length + 1, x0: a, x1: b, z0, z1, nose, pool: row === 0 && S.pool.some(([p0, p1]) => mid > p0 && mid < p1) }); // (both in the big hall's north row)
+    }
+  });
+  return out;
+})();
+
+/** The förråd: { n, x0, x1, z0, z1, front: 'n' | 's' (the face with the door) }. */
+export const CAGES = (() => {
+  const out = [];
+  ST.bays.forEach(([a0, a1], i) => {
+    const h = (a1 - a0) / 2;
+    for (const k of [0, 1]) out.push({ x0: a0 + k * h, x1: a0 + (k + 1) * h, z0: ST.north[0], z1: ST.north[1], front: 's' });
+    for (const k of [0, 1]) if (!(i === ST.skipSouth && k === 1)) out.push({ x0: a0 + k * h, x1: a0 + (k + 1) * h, z0: ST.south[0], z1: ST.south[1], front: 'n' });
+  });
+  const cages=out.map((c,i)=>({...c,n:i+1,rental:true,room:'forrad',label:`HYRFÖRRÅD ${i+1}`}));
+  const numbers={};
+  for(const [x0,x1,z0,z1,front,count,room,building] of ST.ordinary??[])for(let k=0;k<count;k++){
+    const n=numbers[building]=(numbers[building]??0)+1,w=(x1-x0)/count;
+    cages.push({x0:x0+k*w,x1:x0+(k+1)*w,z0,z1,front,room,rental:false,n:`${building}${n}`,label:`FÖRRÅD ${building}${n}`});
+  }
+  return cages;
+})();
+
+/** The columns' centres [x, z]. */
+export const COLUMNS = [
+  ...G.columns.grid.xs.flatMap((x) => G.columns.grid.zs.map((z) => [x, z])),
+  ...G.columns.south.xs.map((x) => [x, G.columns.south.z]),
+  ...G.columns.entrance.xs.flatMap((x) => G.columns.entrance.zs.map((z) => [x, z])),
+];
+
+/** Where the tubes hang: a grid over every room (plan x, z; `ax` = along x; `rect` = the room it lights). */
+const TUBES = RECTS.filter((r) => !r.core && (r.x1 - r.x0) > 1.2 && (r.z1 - r.z0) > 1.2).flatMap((r) => {
+  const w = r.x1 - r.x0, d = r.z1 - r.z0, nx = Math.max(1, Math.round(w / LI.spacing)), nz = Math.max(1, Math.round(d / LI.spacing)), out = [];
+  for (let i = 0; i < nx; i++) for (let j = 0; j < nz; j++) out.push({ x: r.x0 + (i + 0.5) * w / nx, z: r.z0 + (j + 0.5) * d / nz, ax: w >= d, rect: r, area: r.area });
+  return out;
+});
+const TUBE_Y = C - 0.09;
+
+/** The baked fluorescent light at a point (0 … ~1.15): the tubes of the rooms it is in or on the wall of. */
+function light(x, y, z) {
+  let s = LI.amb;
+  for (const t of TUBES) if (inRect(t.rect, x, z, 0.4)) s += 0.8 / (1 + ((x - t.x) ** 2 + ((y - TUBE_Y) * 1.3) ** 2 + (z - t.z) ** 2) / (LI.r * LI.r));
+  return Math.min(1.15, s);
+}
+
+/** A geometry → non-indexed, colour = `hex` × the light at each vertex (uv kept only with `uv`). */
+function bake(geo, hex, uv = false) {
+  const g = geo.index ? geo.toNonIndexed() : geo;
+  for (const k of Object.keys(g.attributes)) if (k !== 'position' && !(uv && k === 'uv')) g.deleteAttribute(k);
+  const p = g.attributes.position, c = new THREE.Color(hex), col = new Float32Array(p.count * 3);
+  for (let i = 0; i < p.count; i++) { const l = light(p.getX(i), p.getY(i), p.getZ(i)); col.set([c.r * l, c.g * l, c.b * l], i * 3); }
+  g.setAttribute('color', new THREE.BufferAttribute(col, 3));
+  if (uv && !g.attributes.uv) g.setAttribute('uv', new THREE.BufferAttribute(new Float32Array(p.count * 2), 2));
+  return g;
+}
+/** A vertical panel from (ax, az) to (bx, bz), y0 … y1, subdivided for the baked light. */
+function panel(ax, az, bx, bz, y0, y1) {
+  const len = Math.hypot(bx - ax, bz - az);
+  return new THREE.PlaneGeometry(len, y1 - y0, Math.max(1, Math.ceil(len / 1.2)), Math.max(1, Math.ceil((y1 - y0) / 1.3)))
+    .rotateY(-Math.atan2(bz - az, bx - ax)).translate((ax + bx) / 2, (y0 + y1) / 2, (az + bz) / 2);
+}
+/** A horizontal rectangle at y (facing up; the materials are double-sided). */
+const flat = (x0, x1, z0, z1, y, step = 1.25) => new THREE.PlaneGeometry(x1 - x0, z1 - z0, Math.max(1, Math.ceil((x1 - x0) / step)), Math.max(1, Math.ceil((z1 - z0) / step)))
+  .rotateX(-Math.PI / 2).translate((x0 + x1) / 2, y, (z0 + z1) / 2);
+const box = (sx, sy, sz, x, y, z) => new THREE.BoxGeometry(sx, sy, sz).translate(x, y, z);
+const seg = (out, ax, az, bx, bz) => out.push([ax, az, bx, bz]);
+const rectSegs = (out, x0, x1, z0, z1) => { seg(out, x0, z0, x1, z0); seg(out, x1, z0, x1, z1); seg(out, x1, z1, x0, z1); seg(out, x0, z1, x0, z0); };
+function rng(seed) { let s = seed; return () => ((s = (s * 16807) % 2147483647) / 2147483647); }
+
+/** The walls: every rectangle edge, cut where the ground just outside it is another rectangle (5 cm samples). */
+function wallLines() {
+  const out = [], h = 0.05;
+  for (const r of RECTS) for (const [ax, az, bx, bz, ox, oz] of [[r.x0, r.z0, r.x1, r.z0, 0, -1], [r.x1, r.z0, r.x1, r.z1, 1, 0], [r.x0, r.z1, r.x1, r.z1, 0, 1], [r.x0, r.z0, r.x0, r.z1, -1, 0]]) {
+    if ((r.outside === 'w' && ox < 0) || (r.outside === 'e' && ox > 0) || (r.id === 'doorway' && ox < 0)) continue; // the garage door's opening: GarageDoor
+    if (r.id === 'core' || r.core) continue; // the stair cores' walls: core.js (#415), corehouse.js (#637 …: `core` rects)
+    const len = Math.hypot(bx - ax, bz - az), n = Math.max(1, Math.round(len / h));
+    let start = null;
+    const open = (t) => { const x = ax + (bx - ax) * t + ox * 0.03, z = az + (bz - az) * t + oz * 0.03; return !!rectAt(x, z); };
+    // #646/#647: the 5 cm samples only find *which* cell a wall starts / stops in; the end itself is bisected to the exact
+    // coordinate of the neighbouring rectangle's edge (up to 2 cm of the old cell grid left cracks at doorway jambs and corners
+    // where the terrain / the park below shows through as a green line)
+    const edge = (k) => { let a = (k - 0.5) / n, b = Math.min(1, (k + 0.5) / n); const openA = open(a); for (let i = 0; i < 20; i++) { const m = (a + b) / 2; if (open(m) === openA) a = m; else b = m; } return (a + b) / 2; };
+    for (let k = 0; k <= n; k++) {
+      const t = Math.min(1, (k + 0.5) / n), wall = k < n && !open(t);
+      if (wall && start === null) start = k === 0 ? 0 : edge(k);
+      if (!wall && start !== null) { const e = k === n ? 1 : edge(k); out.push([ax + (bx - ax) * start, az + (bz - az) * start, ax + (bx - ax) * e, az + (bz - az) * e, r]); start = null; }
+    }
+  }
+  return out;
+}
+
+
+const PPM = 40; // px per metre
+function floorTexture(r, arrows = []) {
+  const w = r.x1 - r.x0, d = r.z1 - r.z0;
+  const c = document.createElement('canvas'); c.width = Math.round(w * PPM); c.height = Math.round(d * PPM);
+  const g = c.getContext('2d'), Rn = rng(Math.round(r.x0 * 7 + r.z0));
+  g.fillStyle = '#8e8f8c'; g.fillRect(0, 0, c.width, c.height);
+  for (let i = 0; i < w * d * 12; i++) { const v = 120 + Math.floor(Rn() * 40); g.fillStyle = `rgba(${v},${v},${v - 4},0.35)`; g.fillRect(Rn() * c.width, Rn() * c.height, 2 + Rn() * 3, 2 + Rn() * 3); }
+  const X = (x) => (x - r.x0) * PPM, Z = (z) => (z - r.z0) * PPM;
+  g.textAlign = 'center'; g.textBaseline = 'middle';
+  for (const s of STALLS) {
+    const cx = (s.x0 + s.x1) / 2;
+    if (s.x1 < r.x0 || s.x0 > r.x1 || s.z1 < r.z0 || s.z0 > r.z1) continue; // (the canvas clips what lies beyond it)
+    g.fillStyle = '#ecebe4';
+    for (const x of [s.x0, s.x1]) g.fillRect(X(x) - 0.06 * PPM, Z(s.z0), 0.12 * PPM, (s.z1 - s.z0) * PPM);
+    const front = s.nose === 'n' ? s.z1 - 0.7 : s.z0 + 0.7, back = s.nose === 'n' ? s.z0 + 1.6 : s.z1 - 1.6;
+    const text = (t, z, size, col, dy = 0) => { g.save(); g.translate(X(cx), Z(z)); if (s.nose === 's') g.rotate(Math.PI); g.fillStyle = col; g.font = `bold ${size * PPM}px sans-serif`; g.fillText(t, 0, dy * PPM); g.restore(); };
+    text(String(s.n), front, 0.7, '#ecebe4');
+    const mark = s.pool ? ['#3fa34d', 'BILPOOL', 'LADDPLATS'] : null;
+    if (mark) {
+      text(mark[1], back, 0.36, mark[0]); text(mark[2], back, 0.2, mark[0], 0.42);
+      g.strokeStyle = mark[0]; g.lineWidth = 0.08 * PPM; g.strokeRect(X(s.x0) + 0.2 * PPM, Z(s.z0) + 0.2 * PPM, (s.x1 - s.x0 - 0.4) * PPM, (s.z1 - s.z0 - 0.4) * PPM);
+    }
+  }
+  g.fillStyle = '#ecebe4';
+  for (const [x, z, dx, dz] of arrows) { // an arrow along the aisle, pointing (dx, dz)
+    g.save(); g.translate(X(x), Z(z)); g.rotate(Math.atan2(dz, dx)); g.beginPath();
+    g.moveTo(0.9 * PPM, 0); g.lineTo(0.1 * PPM, -0.45 * PPM); g.lineTo(0.1 * PPM, -0.18 * PPM); g.lineTo(-0.9 * PPM, -0.18 * PPM);
+    g.lineTo(-0.9 * PPM, 0.18 * PPM); g.lineTo(0.1 * PPM, 0.18 * PPM); g.lineTo(0.1 * PPM, 0.45 * PPM); g.closePath(); g.fill(); g.restore();
+  }
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; // drawn once (#628)
+  return t;
+}
+
+/** The wire mesh of the förråd walls: a square grid; the top rows are solid (frames use uv there). */
+function meshTexture() {
+  const c = document.createElement('canvas'); c.width = c.height = 64;
+  const g = c.getContext('2d');
+  g.fillStyle = '#c9ccce';
+  for (let k = 0; k < 4; k++) { g.fillRect(k * 16, 0, 5, 64); g.fillRect(0, k * 16, 64, 5); }
+  g.fillRect(0, 0, 64, 6); // (v 0.91…1: solid)
+  const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 4;
+  return t;
+}
+const SOLID_V = 0.97;
+
+/** Signs: one atlas of plates (cells of 256 × 64; green for the car pool and the way out). */
+const SIGNS = ['HISS', 'TRAPPHUS L', 'UTFART', 'GARAGE', 'BILPOOL', 'MILJÖRUM', 'ELRUM', 'CYKELFÖRRÅD', 'FÖRRÅD', 'HYRFÖRRÅD', 'KÄLLARE · HISS',
+  ...new Set([...G.fakeDoors.map(f=>f[3]),...RECTS.filter(r=>r.door).map(r=>r.room.toUpperCase())]), ...CAGES.map(c=>c.label)];
+function signTexture() {
+  const c = document.createElement('canvas'); c.width = 1024; c.height = 64 * Math.ceil(SIGNS.length / 4);
+  const g = c.getContext('2d');
+  g.textAlign = 'center'; g.textBaseline = 'middle';
+  SIGNS.forEach((s, i) => {
+    const x = (i % 4) * 256, y = Math.floor(i / 4) * 64;
+    g.fillStyle = s === 'UTFART' || s === 'BILPOOL' ? '#1d7a3a' : '#21508c'; g.fillRect(x, y, 256, 64);
+    g.strokeStyle = '#f4f4f0'; g.lineWidth = 3; g.strokeRect(x + 5, y + 5, 246, 54);
+    g.fillStyle = '#f4f4f0'; g.font = `bold ${s.length > 12 ? 24 : 32}px sans-serif`; g.fillText(s, x + 128, y + 33);
+  });
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;
+  return { tex: t, rows: c.height / 64 };
+}
+const SIGN_TEX = { v: null };
+/** A sign plate (atlas text `s`) centred at (x, y, z), turned `ry`, `w` m wide (4:1). */
+function plate(s, x, y, z, ry, w) {
+  SIGN_TEX.v ??= signTexture();
+  const i = SIGNS.indexOf(s), g = new THREE.PlaneGeometry(w, w / 4).rotateY(ry).translate(x, y, z), uv = g.attributes.uv, rows = SIGN_TEX.v.rows;
+  const u0 = (i % 4) / 4, v0 = 1 - (Math.floor(i / 4) + 1) / rows;
+  for (let k = 0; k < uv.count; k++) uv.setXY(k, u0 + uv.getX(k) / 4, v0 + uv.getY(k) / rows);
+  return bake(g, 0xffffff, true);
+}
+/** The rotation of a plate facing (ox, oz) (a PlaneGeometry faces +z). */
+const facing = (ox, oz) => Math.atan2(ox, oz);
+const FACES = { n: [0, -1], s: [0, 1], e: [1, 0], w: [-1, 0] };
+
+export class Garage {
+  constructor() {
+    const group = new THREE.Group();
+    this.object = group;
+    this.rects = RECTS;
+    this.roomNames = [...new Set(RECTS.map((r) => r.room))];
+    // per area: the geometries per material, an own group (drawn or not), the sensor's state
+    this.areas = Object.fromEntries(AREAS.map((a) => [a, { name: a, group: new THREE.Group(), geos: { shell: [], mesh: [], signs: [], tubes: [], exits: [], plans: [] }, floors: [],
+      on: false, level: 0, hold: 0, flickT: 0 }]));
+    for (const a of Object.values(this.areas)) group.add(a.group);
+    const areaAt = (x, z) => this.areas[rectAt(x, z)?.area ?? 'entrance'] ?? this.areas.entrance;
+    const segs = [];
+    const put = (kind, g, x, z) => areaAt(x, z).geos[kind].push(g);
+    const WALL_LO = 0x7f8a90, WALL = 0xc6c4bd, CEIL = 0xb7b5b0, FLOOR = 0x8d8e8b;
+    // the walls (a painted band below, light concrete above) on every free rectangle edge; collision on the same lines
+    for (const [ax, az, bx, bz, r] of wallLines()) {
+      const into = (g) => this.areas[r.area].geos.shell.push(g); // (the room it bounds: its sensor)
+      into(bake(panel(ax, az, bx, bz, F, F + 1.0), WALL_LO)); into(bake(panel(ax, az, bx, bz, F + 1.0, C), WALL));
+      seg(segs, ax, az, bx, bz);
+    }
+    // over every doorway (a thin rectangle through a wall): the lintel; the garage door's: up to the ceiling from its head
+    for (const r of RECTS.filter((q) => Math.min(q.x1 - q.x0, q.z1 - q.z0) < 0.7)) {
+      const across = r.x1 - r.x0 < r.z1 - r.z0, head = r.id === 'doorway' ? F + GD.h : F + G.doorHead;
+      for (const v of across ? [r.x0, r.x1] : [r.z0, r.z1]) this.areas[r.area].geos.shell.push(bake(across ? panel(v, r.z0, v, r.z1, head, C) : panel(r.x0, v, r.x1, v, head, C), WALL));
+      // #646: the soffit across the wall's thickness — without it the 5 cm gap over a steel leaf (2.05 under a 2.1 head) looks
+      // through the wall's depth, where the terrain's surface (the green "grass", y ≈ −0.8 over Hus A's basement) shows as a green strip
+      this.areas[r.area].geos.shell.push(bake(flat(r.x0, r.x1, r.z0, r.z1, head, 1.5), WALL));
+    }
+    // #977: Steel door frames (karmar) around doorways: jambs, header and threshold
+    const parkFrameBoxes = [];
+    for (const r of RECTS.filter((q) => q.door)) {
+      const along = r.x1 - r.x0 > r.z1 - r.z0;
+      const w = along ? r.x1 - r.x0 : r.z1 - r.z0;
+      const t = along ? r.z1 - r.z0 : r.x1 - r.x0;
+      const line = (along ? (r.z0 + r.z1) : (r.x0 + r.x1)) / 2;
+      const fw = DD.frameWidth, casing = t + DD.frameCasingProud * 2;
+      const headY = F + G.doorHead, jambH = G.doorHead, jambY = F + jambH / 2;
+      const fGeos = [
+        along ? box(fw, jambH, casing, r.x0 + fw / 2, jambY, line) : box(casing, jambH, fw, line, jambY, r.z0 + fw / 2),
+        along ? box(fw, jambH, casing, r.x1 - fw / 2, jambY, line) : box(casing, jambH, fw, line, jambY, r.z1 - fw / 2),
+        along ? box(w - 2 * fw, fw, casing, (r.x0 + r.x1) / 2, headY - fw / 2, line) : box(casing, fw, w - 2 * fw, line, headY - fw / 2, (r.z0 + r.z1) / 2),
+        along ? box(w - 2 * fw, DD.thresholdHeight, 0.08, (r.x0 + r.x1) / 2, F + DD.thresholdHeight / 2, line) : box(0.08, DD.thresholdHeight, w - 2 * fw, line, F + DD.thresholdHeight / 2, (r.z0 + r.z1) / 2),
+      ];
+      if (r.door.park) {
+        for (const g of fGeos) parkFrameBoxes.push(g.toNonIndexed());
+      } else {
+        for (const g of fGeos) this.areas[r.area].geos.shell.push(bake(g, DD.colors.frame));
+      }
+    }
+    // the partial walls and the columns: concrete boxes (a yellow foot band on the columns)
+    for (const [x0, x1, z0, z1] of G.partials) { put('shell', bake(box(x1 - x0, C - F, z1 - z0, (x0 + x1) / 2, (F + C) / 2, (z0 + z1) / 2), WALL), (x0 + x1) / 2, (z0 + z1) / 2); rectSegs(segs, x0, x1, z0, z1); }
+    const K = G.columns.size;
+    this.columns = COLUMNS;
+    for (const [x, z] of COLUMNS) {
+      put('shell', bake(box(K, 0.35, K, x, F + 0.175, z), 0xe0b52a), x, z); put('shell', bake(box(K, C - F - 0.35, K, x, (F + 0.35 + C) / 2, z), 0xc9c7c0), x, z);
+      rectSegs(segs, x - K / 2, x + K / 2, z - K / 2, z + K / 2);
+    }
+    // floors: the garage rooms on canvases (lines, numbers), the rest plain concrete; ceilings everywhere
+    const canvasRooms = { entrance: [[-62, 42.6, -1, 0], [-50, 45.2, 1, 0], [-46.6, 37, 0, -1]], hallW: [[-30, 20.2, -1, 0], [-20, 22.6, 1, 0], [-46.6, 28, 0, 1]], hallE: [[-3, 20.2, -1, 0], [4, 22.6, 1, 0]] };
+    for (const r of RECTS) {
+      const mx = (r.x0 + r.x1) / 2, mz = (r.z0 + r.z1) / 2;
+      if (canvasRooms[r.id]) this.areas[r.area].floors.push({ geo: bake(flat(r.x0, r.x1, r.z0, r.z1, F + G.floorLift, 1.0), 0xffffff, true), tex: floorTexture(r, canvasRooms[r.id]) });
+      else if (!r.core && !r.outside && !r.door?.park) put('shell', bake(flat(r.x0, r.x1, r.z0, r.z1, F + G.floorLift), FLOOR), mx, mz); // (a `core` rect's floor is the stair core's own, #637)
+      if (r.id !== 'core' && !r.core) put('shell', bake(flat(r.x0, r.x1, r.z0, r.z1, C), CEIL), mx, mz); // (the stairwell goes on up, #415, #637)
+    }
+    // wheel stops and shared charging posts, ducts and a sprinkler main under the big hall's ceiling
+    for (const s of STALLS) {
+      const cx = (s.x0 + s.x1) / 2, bz = s.nose === 'n' ? s.z0 : s.z1, sg = s.nose === 'n' ? 1 : -1;
+      put('shell', bake(box(1.6, 0.1, 0.15, cx, F + 0.05, bz + sg * 0.6), 0x5b5e60), cx, bz + sg);
+      if (s.pool) { // a wall box charger with a green light
+        put('shell', bake(box(0.3, 0.45, 0.14, s.x1 - 0.45, F + 1.25, bz + sg * 0.08), 0xe9ebec), cx, bz + sg);
+        put('shell', bake(box(0.05, 0.05, 0.02, s.x1 - 0.45, F + 1.38, bz + sg * 0.16), 0x2fd35a), cx, bz + sg);
+        put('signs', plate('BILPOOL', cx - 0.3, F + 1.9, bz + sg * 0.03, facing(0, sg), 0.9), cx, bz + sg);
+      }
+    }
+    const duct = (ax, az, bx, bz, y, r, col) => { const len = Math.hypot(bx - ax, bz - az), g = new THREE.CylinderGeometry(r, r, len, 10, Math.max(1, Math.ceil(len / 2)), true).rotateZ(Math.PI / 2).rotateY(-Math.atan2(bz - az, bx - ax)).translate((ax + bx) / 2, y, (az + bz) / 2); put('shell', bake(g, col), (ax + bx) / 2, (az + bz) / 2); };
+    duct(-69.6, 37.5, -42, 37.5, C - 0.32, 0.22, 0xa7abae);
+    duct(-51, 19.4, 8.5, 19.4, C - 0.32, 0.22, 0xa7abae); duct(-51, 26.4, -10, 26.4, C - 0.32, 0.22, 0xa7abae);
+    duct(-69.6, 45.6, -42, 45.6, C - 0.12, 0.035, 0xb3261e); duct(-51, 22.2, 8.5, 22.2, C - 0.12, 0.035, 0xb3261e);
+    // signs: the way out, over the doors to the rooms
+    put('signs', plate('UTFART', ENTR.x0 + 0.03, F + 2.25, GD.z1 + 0.75, facing(1, 0), 0.8), ENTR.x0 + 1, 48);
+    put('signs', plate('GARAGE', -45, F + 2.35, 34.6, facing(0, 1), 0.8), -45, 35);
+    put('signs', plate('KÄLLARE · HISS', -15.0, F + 2.35, 12.65, facing(0, 1), 0.9), -15, 13);
+    put('signs', plate('MILJÖRUM', -64.5, F + 2.35, 34.55, facing(0, 1), 0.7), -64.5, 35);
+    put('signs', plate('ELRUM', -23.55, F + 2.35, 2.7, facing(0, 1), 0.6), -23.55, 3);
+    put('signs', plate('HYRFÖRRÅD', -0.53, F + 2.35, 7.82, facing(0, 1), 0.6), -0.53, 8.2);
+    put('signs', plate('CYKELFÖRRÅD', -15.0, F + 2.35, 7.82, facing(0, 1), 0.8), -15, 8.2);
+    for(const r of RECTS.filter(r=>r.door&&!['miljoDoor','elDoor','garageDoorL'].includes(r.id))){
+      const mx=(r.x0+r.x1)/2,mz=(r.z0+r.z1)/2,along=r.x1-r.x0>r.z1-r.z0;
+      const label=r.room==='Hyrförråd'?'HYRFÖRRÅD':r.room==='Cykelförråd'?'CYKELFÖRRÅD':r.room.toUpperCase();
+      if(!SIGNS.includes(label))continue;
+      for(const sign of [-1,1])put('signs',plate(label,mx+(along?0:sign*.03),F+2.35,mz+(along?sign*.03:0),facing(along?0:sign,along?sign:0),.8),mx,mz);
+    }
+    // doors we cannot open: a steel leaf on the wall and its sign
+    for (const [x, z, face, label] of G.fakeDoors) {
+      const [ox, oz] = FACES[face], along = oz !== 0, px = x + ox * 0.03, pz = z + oz * 0.03, ax = x + ox, az = z + oz;
+      put('shell', bake(box(along ? 1.0 : 0.04, 2.12, along ? 0.04 : 1.0, px, F + 1.06, pz), 0x5e6266), ax, az);
+      put('shell', bake(box(along ? 0.9 : 0.05, 2.04, along ? 0.05 : 0.9, px + ox * 0.01, F + 1.03, pz + oz * 0.01), 0x7d858b), ax, az);
+      put('shell', bake(box(along ? 0.14 : 0.06, 0.03, along ? 0.06 : 0.14, px + ox * 0.04 + (along ? 0.33 : 0), F + 1.05, pz + oz * 0.04 + (along ? 0 : 0.33)), 0xc8cccf), ax, az);
+      put('signs', plate(label, px + ox * 0.03, F + 2.35, pz + oz * 0.03, facing(ox, oz), 0.6), ax, az);
+    }
+    // the tubes: housings (shell) and the tubes themselves (lit)
+    for (const t of TUBES) {
+      const [sx2, sz2] = t.ax ? [1.3, 0.15] : [0.15, 1.3];
+      put('shell', bake(box(sx2, 0.07, sz2, t.x, C - 0.035, t.z), 0xdedede), t.x, t.z);
+      this.areas[t.area].geos.tubes.push(box(t.ax ? 1.22 : 0.07, 0.035, t.ax ? 0.07 : 1.22, t.x, TUBE_Y, t.z));
+    }
+    // the miljörum's bins (660 l, lids): mixed waste, food, paper, packaging
+    [0x3d4245, 0x6b4a2b, 0x2f5f9e, 0xd8c23a, 0x4d8a3c].forEach((col, i) => {
+      const x = R.miljo.x0 + 0.8 + i * 1.35, z = R.miljo.z0 + 0.65;
+      put('shell', bake(box(1.26, 1.1, 0.8, x, F + 0.6, z), col), x, z); put('shell', bake(box(1.3, 0.06, 0.85, x, F + 1.18, z), col), x, z);
+      for (const dx of [-0.5, 0.5]) put('shell', bake(new THREE.CylinderGeometry(0.06, 0.06, 0.04, 8).rotateX(Math.PI / 2).translate(x + dx, F + 0.06, z + 0.36), 0x111111), x, z);
+      rectSegs(segs, x - 0.65, x + 0.65, z - 0.45, z + 0.45);
+    });
+    // Empty fixed racks in the designated parking and bicycle rooms.
+    const stand = standGeometry();
+    for (const [x0, x1, z, facing] of G.bikes) {
+      put('shell', bake(new THREE.CylinderGeometry(0.014, 0.014, x1 - x0, 8).rotateZ(Math.PI / 2).translate((x0 + x1) / 2, F + 0.03, z), 0xb4b9bd), (x0 + x1) / 2, z + facing * 0.5);
+      for (let x = x0 + 0.3; x < x1 - 0.2; x += 0.62) {
+        put('shell', bake(stand.clone().rotateY(facing * Math.PI / 2).translate(x, F, z + facing * 0.42), 0xb4b9bd), x, z + facing * 0.5);
+      }
+      rectSegs(segs, x0, x1, Math.min(z, z + facing * 0.75), Math.max(z, z + facing * 0.75));
+    }
+    // the förråd: wire-mesh walls and fronts with a door each
+    this.cageDoors = [];
+    const meshWall = (ax, az, bx, bz) => {
+      const len = Math.hypot(bx - ax, bz - az), g = panel(ax, az, bx, bz, F + 0.05, C - 0.02);
+      const uv = g.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * len / 0.16, uv.getY(i) * (C - F) / 0.16);
+      put('mesh', bake(g, 0xffffff, true), (ax + bx) / 2, (az + bz) / 2);
+      seg(segs, ax, az, bx, bz);
+    };
+    const solid = (g) => { g = bake(g, 0x9aa0a4, true); const uv = g.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, 0.5, SOLID_V); return g; };
+    const post = (x, z) => put('mesh', solid(box(0.04, C - F, 0.04, x, (F + C) / 2, z)), x, z);
+    for (const c of CAGES) {
+      const room=R[c.room];
+      const line = c.front === 'n' ? c.z0 : c.z1, back = c.front === 'n' ? c.z1 : c.z0, out = c.front === 'n' ? -1 : 1;
+      const cageSegs = [];
+      const cageMeshWall = (ax, az, bx, bz) => {
+        meshWall(ax, az, bx, bz);
+        cageSegs.push(segs[segs.length - 1]);
+      };
+      if (!c.rental) cageMeshWall(c.x0, back, c.x1, back); // illustrative ordinary cages stand clear of the concrete walls
+      for (const x of [c.x0, c.x1]) if (!G.partials.some(([p0, p1, q0, q1]) => x > p0 - 0.35 && x < p1 + 0.35 && (q0 + q1) / 2 > Math.min(line, back) && (q0 + q1) / 2 < Math.max(line, back)) && x > room.x0 + 0.1 && x < room.x1 - 0.1) cageMeshWall(x, line, x, back);
+      const h0 = c.x0 + 0.15, h1 = h0 + ST.door;
+      cageMeshWall(c.x0, line, h0, line); cageMeshWall(h1, line, c.x1, line);
+      c.segments = cageSegs;
+      const lg = panel(h0, line, h1, line, F + G.doorHead, C - 0.02), uv = lg.attributes.uv;
+      for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * ST.door / 0.16, uv.getY(i) * (C - F - 2.1) / 0.16);
+      put('mesh', bake(lg, 0xffffff, true), (h0 + h1) / 2, line);
+      for (const x of [c.x0, h0, h1, c.x1]) post(x, line);
+      this.cageDoors.push({ cage: c, hx: h0, hz: line, dir: [1, 0], out: [0, out], w: ST.door, angle: 0, target: 0, steel: false, max: ST.max });
+      put('signs', plate(c.label, (h0 + h1) / 2, F + 2.3, line + out * 0.03, facing(0, out), 0.5), (h0 + h1) / 2, line);
+    }
+    for (const c of CAGES) {
+      const line = c.front === 'n' ? c.z0 : c.z1, back = c.front === 'n' ? c.z1 : c.z0;
+      const minZ = Math.min(line, back) - 0.05, maxZ = Math.max(line, back) + 0.05;
+      c.segments = segs.filter(s =>
+        (Math.min(s[0], s[2]) >= c.x0 - 0.05 && Math.max(s[0], s[2]) <= c.x1 + 0.05 &&
+        Math.min(s[1], s[3]) >= minZ && Math.max(s[1], s[3]) <= maxZ) ||
+        (Math.abs(s[1] - line) < 0.05 && Math.abs(s[3] - line) < 0.05 &&
+         Math.min(s[0], s[2]) <= c.x1 + 0.8 && Math.max(s[0], s[2]) >= c.x0 - 0.8)
+      );
+    }
+    // the steel doors (the miljörum, the elrum, the basement ↔ garage): a leaf in each such doorway, E opens it
+    for (const r of RECTS.filter((q) => q.door)) {
+      const along = r.x1 - r.x0 > r.z1 - r.z0, D = r.door; // (a door across a wall along x)
+      const line = D.line ?? (along ? (r.z0 + r.z1) / 2 : (r.x0 + r.x1) / 2);
+      const hx = along ? r[D.hinge] : line, hz = along ? line : r[D.hinge === 'x0' ? 'z0' : 'z1'];
+      this.cageDoors.push({ rect: r, name: D.name, hx, hz, dir: along ? [D.hinge === 'x0' ? 1 : -1, 0] : [0, 1], out: along ? [0, D.open] : [D.open, 0], w: along ? r.x1 - r.x0 : r.z1 - r.z0,
+        angle: 0, target: 0, steel: true, max: 1.55 });
+    }
+    this.escape(put, segs);
+    // the meshes per area: their colour follows the area's tubes (setLevel)
+    const meshTex = meshTexture();
+    for (const a of Object.values(this.areas)) {
+      a.mats = {
+        shell: new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.DoubleSide, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -4 }), // (wins over a façade a few cm behind a wall, Hus B's)
+        mesh: new THREE.MeshBasicMaterial({ vertexColors: true, map: meshTex, alphaTest: 0.5, side: THREE.DoubleSide }),
+        signs: new THREE.MeshBasicMaterial({ vertexColors: true, map: SIGN_TEX.v.tex }),
+        tubes: new THREE.MeshBasicMaterial({ color: 0xffffff }),
+        floors: a.floors.map((f) => new THREE.MeshBasicMaterial({ vertexColors: true, map: f.tex })),
+        exits: this.exitMat, // (always lit, #452)
+        plans: a.geos.plans.length ? new THREE.MeshBasicMaterial({ vertexColors: true, map: this.planTex }) : null,
+      };
+      const add = (geos, mat) => { if (!geos.length) return; const m = new THREE.Mesh(mergeGeometries(geos), mat); m.raycast = () => {}; a.group.add(m); };
+      for (const k of ['shell', 'mesh', 'signs', 'tubes', 'exits', 'plans']) add(a.geos[k], a.mats[k]);
+      a.floors.forEach((f, i) => add([f.geo], a.mats.floors[i]));
+      delete a.geos;
+    }
+    // the doors: one instanced leaf for the cages (mesh in a steel frame), one for the steel doors; an invisible pick box each
+    const leafGeo = (w, h, mesh) => {
+      const parts = [];
+      if (mesh) {
+        const g = new THREE.PlaneGeometry(w, h).translate(w / 2, F + 0.05 + h / 2, 0), uv = g.attributes.uv;
+        for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * w / 0.16, uv.getY(i) * h / 0.16);
+        parts.push(g.toNonIndexed());
+        const addMeshBox = (sx, sy, sz, px, py, pz) => {
+          const b = new THREE.BoxGeometry(sx, sy, sz).translate(px, py, pz).toNonIndexed(), u = b.attributes.uv;
+          for (let i = 0; i < u.count; i++) u.setXY(i, 0.5, SOLID_V);
+          parts.push(b);
+        };
+        // Stile and rail frame
+        addMeshBox(0.03, h, 0.03, 0.015, F + 0.05 + h / 2, 0);
+        addMeshBox(0.03, h, 0.03, w - 0.015, F + 0.05 + h / 2, 0);
+        addMeshBox(w, 0.03, 0.03, w / 2, F + 0.065, 0);
+        addMeshBox(w, 0.03, 0.03, w / 2, F + 0.035 + h, 0);
+        addMeshBox(w, 0.03, 0.03, w / 2, F + 1.05, 0); // mid rail
+        // 2 barrel hinges
+        for (const yPos of DD.cage.hinges.positions) {
+          addMeshBox(0.022, DD.cage.hinges.height, 0.025, 0.005, F + yPos, 0);
+        }
+        // Hasp plate & padlock eye
+        addMeshBox(DD.cage.haspPlate[0], DD.cage.haspPlate[1], DD.cage.haspPlate[2], w - 0.055, F + 1.05, 0.018);
+        addMeshBox(DD.cage.haspLoop[0], DD.cage.haspLoop[1], DD.cage.haspLoop[2], w - 0.035, F + 1.05, 0.03);
+        // Pull handle on both faces
+        for (const s of [-1, 1]) {
+          addMeshBox(0.016, 0.016, 0.035, w - 0.075, F + 1.05 + 0.05, s * (0.015 + 0.0175));
+          addMeshBox(0.016, 0.016, 0.035, w - 0.075, F + 1.05 - 0.05, s * (0.015 + 0.0175));
+          addMeshBox(DD.cage.pullHandle[0], DD.cage.pullHandle[1], 0.016, w - 0.075, F + 1.05, s * (0.015 + 0.035));
+        }
+      } else {
+        const addSteelBox = (sx, sy, sz, px, py, pz, colorHex) => {
+          const b = new THREE.BoxGeometry(sx, sy, sz).translate(px, py, pz).toNonIndexed();
+          const c = new THREE.Color(colorHex), p = b.attributes.position, count = p.count;
+          const col = new Float32Array(count * 3);
+          for (let i = 0; i < count; i++) col.set([c.r, c.g, c.b], i * 3);
+          b.setAttribute('color', new THREE.BufferAttribute(col, 3));
+          parts.push(b);
+        };
+        const t = DD.leafThickness, lw = w - 0.01, lh = h - 0.015;
+        // Main steel leaf body
+        addSteelBox(lw, lh, t, 0.005 + lw / 2, F + 0.005 + lh / 2, 0, DD.colors.leaf);
+        // Rebated leaf perimeter trim (överfals)
+        addSteelBox(lw, 0.014, t + 0.006, 0.005 + lw / 2, F + 0.005 + lh - 0.007, 0, DD.colors.frame);
+        addSteelBox(0.014, lh, t + 0.006, 0.005 + lw - 0.007, F + 0.005 + lh / 2, 0, DD.colors.frame);
+        addSteelBox(0.014, lh, t + 0.004, 0.005 + 0.007, F + 0.005 + lh / 2, 0, DD.colors.frame);
+        // 3 heavy-duty welded barrel hinges on hinge edge
+        for (const yPos of DD.hinges.positions) {
+          addSteelBox(0.022, DD.hinges.height, 0.032, 0.005, F + yPos, 0, DD.colors.hinge);
+          addSteelBox(0.014, 0.05, 0.022, 0.012, F + yPos, 0, DD.colors.frame);
+        }
+        // Handle, escutcheon plate and lock cylinder on both faces
+        const hx = w - DD.handleBackset, hy = F + DD.handleHeight;
+        for (const s of [-1, 1]) {
+          // Escutcheon plate
+          addSteelBox(DD.escutcheon[0], DD.escutcheon[1], DD.escutcheon[2], hx, hy, s * (t / 2 + DD.escutcheon[2] / 2), DD.colors.plate);
+          // Lock cylinder / thumbturn housing and plug
+          addSteelBox(DD.cylinder[0], DD.cylinder[0], DD.cylinder[1], hx, hy + 0.08, s * (t / 2 + DD.escutcheon[2] + DD.cylinder[1] / 2), DD.colors.plate);
+          addSteelBox(0.014, 0.022, DD.cylinder[1] + 0.002, hx, hy + 0.08, s * (t / 2 + DD.escutcheon[2] + DD.cylinder[1] / 2), DD.colors.cylinder);
+          // Lever handle neck
+          addSteelBox(0.018, 0.018, DD.leverNeck, hx, hy, s * (t / 2 + DD.escutcheon[2] + DD.leverNeck / 2), DD.colors.plate);
+          // L-shaped lever pointing towards hinge
+          addSteelBox(DD.lever[0], DD.lever[1], DD.lever[2], hx - DD.lever[0] / 2, hy, s * (t / 2 + DD.escutcheon[2] + DD.leverNeck - DD.lever[2] / 2), DD.colors.lever);
+        }
+        // Latch bolt on strike edge
+        addSteelBox(0.012, 0.035, 0.018, w - 0.001, hy, 0, DD.colors.plate);
+      }
+      parts.forEach((g) => g.deleteAttribute('normal'));
+      return mergeGeometries(parts);
+    };
+    const cages = this.cageDoors.filter((d) => !d.steel), park = this.cageDoors.filter(d=>d.rect?.door?.park), steel = this.cageDoors.filter(d=>d.steel && !d.rect?.door?.park);
+    this.parkObject=new THREE.Group();this.parkObject.name='park-basement-doors';
+    if (parkFrameBoxes.length) {
+      const parkFrameMesh = new THREE.Mesh(mergeGeometries(parkFrameBoxes), new THREE.MeshStandardMaterial({
+        color: DD.colors.frame,
+        roughness: 0.65,
+      }));
+      parkFrameMesh.castShadow = parkFrameMesh.receiveShadow = true;
+      this.parkObject.add(parkFrameMesh);
+    }
+    this.leaves = new THREE.InstancedMesh(leafGeo(ST.door, 2.0, true), new THREE.MeshBasicMaterial({ map: meshTex, alphaTest: 0.5, side: THREE.DoubleSide }), cages.length);
+    this.steelLeaves = new THREE.InstancedMesh(leafGeo(ST.door, G.doorHead, false), new THREE.MeshBasicMaterial({ color: 0xffffff, vertexColors: true }), steel.length);
+    const parkGeo=this.steelLeaves.geometry.clone();parkGeo.computeVertexNormals(); // Basic steel geometry has no normals; outdoor lighting needs its own clone
+    this.parkLeaves=new THREE.InstancedMesh(parkGeo, new THREE.MeshStandardMaterial({ ...G.parkDoorMaterial, color: 0xffffff, vertexColors: true }), park.length);
+    this.parkLeaves.raycast=()=>{};this.parkLeaves.frustumCulled=false;this.parkLeaves.castShadow=this.parkLeaves.receiveShadow=true;this.parkObject.add(this.parkLeaves);
+    for (const m of [this.leaves, this.steelLeaves]) { m.raycast = () => {}; m.frustumCulled = false; group.add(m); }
+    const pickMat = new THREE.MeshBasicMaterial();
+    this.targets = this.cageDoors.map((d) => {
+      const exterior=!!d.rect?.door?.park, inst=exterior?this.parkLeaves:d.steel?this.steelLeaves:this.leaves, list=exterior?park:d.steel?steel:cages;
+      d.inst = inst; d.index = list.indexOf(d);
+      if(!exterior) {
+        const L = light(d.hx + d.out[0] * 0.6, F + 1, d.hz + d.out[1] * 0.6);
+        inst.setColorAt(d.index, new THREE.Color(d.steel ? 0xffffff : 0x9aa0a4).multiplyScalar(L));
+      }
+      const pivot = new THREE.Object3D(); pivot.position.set(d.hx, 0, d.hz);
+      const pick = new THREE.Mesh(new THREE.BoxGeometry(d.w, 2.0, 0.12), pickMat); pick.position.set(d.w / 2, F + 1.05, 0); pick.visible = false;
+      pivot.add(pick);(exterior?this.parkObject:group).add(pivot);
+      const garage = this;
+      const t = { kind: 'cabinet', name: d.steel ? d.name : d.cage.rental ? `hyrförråd ${d.cage.n}` : `förråd ${d.cage.n}`, pickable: pick, door: d,
+        get isOpen() { return d.target > 0; },
+        toggle() { d.target = d.target > 0 ? 0 : d.max; } };
+      pick.userData.door = t;
+      d.pivot = pivot;
+      this.place(d);
+      return t;
+    });
+    this.walls = segs; // walls, förråd, columns, racks, bins (what a way out must not cross, #314)
+    this.segments = segs;
+    // seen from outside while the entrance is not drawn: a dark opening
+    this.blackout = new THREE.Mesh(new THREE.PlaneGeometry(GD.z1 - GD.z0, GD.h).rotateY(Math.PI / 2).translate(GD.x + 0.3, F + GD.h / 2, (GD.z0 + GD.z1) / 2),
+      new THREE.MeshBasicMaterial({ color: 0x141618 }));
+    this.blackout.raycast = () => {};
+    // the pool lights' spots (lights.extra; k: the area's tubes while the visitor is down here)
+    this.lamps = AREAS.map((a) => {
+      const rs = RECTS.filter((r) => r.area === a).sort((p, q) => (q.x1 - q.x0) * (q.z1 - q.z0) - (p.x1 - p.x0) * (p.z1 - p.z0)), r = rs[0];
+      return { pos: new THREE.Vector3((r.x0 + r.x1) / 2, C - 0.4, (r.z0 + r.z1) / 2), intensity: LI.intensity, range: LI.range * 1.6, color: 0xeef3ff, level: 0, k: 0, area: a };
+    });
+    Object.assign(this, { under: 0, lit: 0, present: false, powerOff: false }); // powerOff: a power cut in Kv. Lunden (#604)
+    this.door = new GarageDoor(this.areas.entrance.group); // #358
+    this.targets.push(...this.door.targets);
+    for (const a of Object.values(this.areas)) this.setLevel(a, 0);
+  }
+
+  /**
+   * The ways out (#452, GARAGE.escape): a distance field to the garage door and the stairwell, green "Nödutgång" signs
+   * under the ceiling pointing along it (and flat over the doorways towards them), framed utrymningsplaner with an
+   * extinguisher beside each. `this.exitWay(x, z)` = the way from there (tools/garagetest.html).
+   */
+  escape(put, segs) {
+    const E = G.escape, K = G.columns.size / 2 + 0.15;
+    const blocks = [...G.partials, ...COLUMNS.map(([x, z]) => [x - G.columns.size / 2, x + G.columns.size / 2, z - G.columns.size / 2, z + G.columns.size / 2])];
+    const field = escapeField(RECTS, (x, z) => {
+      const r = rectAt(x, z);
+      if (!r || (r.id === 'core' && z < CORE.south[0])) return false; // (not up the stair: the landing is the way out)
+      if (G.partials.some(([x0, x1, z0, z1]) => x > x0 - 0.15 && x < x1 + 0.15 && z > z0 - 0.15 && z < z1 + 0.15)) return false;
+      if (COLUMNS.some(([cx, cz]) => Math.abs(x - cx) < K && Math.abs(z - cz) < K)) return false;
+      return !CAGES.some((c) => x > c.x0 && x < c.x1 && z > c.z0 && z < c.z1);
+    }, (x, z) => rectAt(x, z)?.id === 'doorway' || rectAt(x, z)?.id === 'core');
+    this.exitWay = (x, z, len = 3) => { const p = field.path(x, z, len), [ax, az] = p[0], [bx, bz] = p[p.length - 1], l = Math.hypot(bx - ax, bz - az); return l < 1e-6 ? null : [(bx - ax) / l, (bz - az) / l]; };
+    this.exitDist = (x, z) => field.at(x, z);
+    // the signs: a white housing, the pictogram on each face (atlas rows: EXIT_CELLS), two rods up to the ceiling
+    this.exitMat ??= new THREE.MeshBasicMaterial({ map: exitTexture(), toneMapped: false });
+    const w = E.w, h = w / 2, y = F + E.y;
+    const face = (x, yy, z, n, cell) => {
+      const g = new THREE.PlaneGeometry(w, h).rotateY(facing(n[0], n[1])).translate(x + n[0] * 0.022, yy, z + n[1] * 0.022).toNonIndexed(), uv = g.attributes.uv, i = EXIT_CELLS.indexOf(cell);
+      for (let k = 0; k < uv.count; k++) uv.setXY(k, uv.getX(k), (EXIT_CELLS.length - 1 - i + uv.getY(k)) / EXIT_CELLS.length);
+      g.deleteAttribute('normal');
+      return g;
+    };
+    /** The arrow on a face with normal n (towards its reader) for the way `dir`: right of the reader = (n.z, −n.x). */
+    /** The cell on a face with normal n (towards its reader) for the way `dir`: ahead of the reader (f = −n), to the
+     * reader's right (n.z, −n.x) / left, or behind (a U-turn). */
+    const cellFor = (n, dir) => {
+      const a = -(n[0] * dir[0] + n[1] * dir[1]), l = n[1] * dir[0] - n[0] * dir[1];
+      return a >= 0.5 ? 'ahead' : a <= -0.3 ? 'back' : l > 0 ? 'right' : 'left';
+    };
+    this.exitSigns = [];
+    for (const [x, z, f] of E.hang) {
+      const dir = this.exitWay(x, z, E.look) ?? [1, 0];
+      // square across the way (seen by whoever walks along it): the plane along x when the way runs along z
+      const along = f ? Math.abs(FACES[f][1]) > 0.5 : Math.abs(dir[1]) > Math.abs(dir[0]);
+      put('shell', bake(along ? box(w + 0.03, h + 0.03, 0.04, x, y, z) : box(0.04, h + 0.03, w + 0.03, x, y, z), 0xe9eae6), x, z);
+      for (const s of [-1, 1]) put('shell', bake(box(0.012, C - y - h / 2, 0.012, x + (along ? s * w * 0.35 : 0), (C + y + h / 2) / 2, z + (along ? 0 : s * w * 0.35)), 0x9a9ea2), x, z);
+      const faces = (f ? [FACES[f]] : along ? [[0, 1], [0, -1]] : [[1, 0], [-1, 0]]).map((n) => [n, cellFor(n, dir)]);
+      for (const [n, cell] of faces) { put('exits', face(x, y, z, n, cell), x, z); this.exitSigns.push({ x, z, n, cell }); }
+    }
+    for (const [x, z, f, yy] of E.wall) {
+      const n = FACES[f], along = Math.abs(n[1]) > 0.5;
+      put('shell', bake(along ? box(w + 0.03, h + 0.03, 0.03, x, F + yy, z + n[1] * 0.015) : box(0.03, h + 0.03, w + 0.03, x + n[0] * 0.015, F + yy, z), 0xe9eae6), x + n[0], z + n[1]);
+      put('exits', face(x + n[0] * 0.01, F + yy, z + n[1] * 0.01, n, 'ahead'), x + n[0], z + n[1]);
+      this.exitSigns.push({ x, z, n, cell: 'ahead', wall: true });
+    }
+    // the plans: framed, turned the way the reader faces; the extinguisher to the reader's right of each
+    const plans = E.plans.map(([x, z, f, yy]) => {
+      const n = FACES[f], r = [n[1], -n[0]], ex = [x + r[0] * (E.size[0] / 2 + 0.16) + n[0] * 0.09, z + r[1] * (E.size[0] / 2 + 0.16) + n[1] * 0.09];
+      return { x, z, n, y: F + yy, here: [x + n[0] * 0.5, z + n[1] * 0.5], ext: [ex] };
+    });
+    const exits = [{ x: (GD.x + ENTR.x0) / 2 + 0.6, z: (GD.z0 + GD.z1) / 2, label: 'Garageport' }, { x: (CORE.x0 + CORE.x1) / 2, z: (CORE.south[0] + CORE.south[1]) / 2, label: 'Trapphus' }];
+    const rooms = [['GARAGE', -56, 49.5], ['GARAGE', -30, 15.2], ['GARAGE', 0, 25], ['MILJÖRUM', -66.3, 31.3], ['CYKELFÖRRÅD', -27.4, 6.2], ['CYKELFÖRRÅD', -2.6, 10.5],
+      ['ELRUM', -21.8, 1.4], ['HYRFÖRRÅD', 0.2, 4.0],['FÖRRÅD C',-66.3,21],['FÖRRÅD C',-55,28.5],['FÖRRÅD B',-38,38],['FÖRRÅD A',5,33]];
+    const P = planTexture(plans, { rects: RECTS, walls: wallLines(), blocks, cages: CAGES, core: { x0: CORE.x0, x1: CORE.split, z0: R.core.z0, landing: CORE.south[0] }, lift: CORE.lift, exits, field, rooms });
+    this.planTex = P.tex; this.planCanvas = P.canvas;
+    this.plans = plans;
+    plans.forEach((p, i) => {
+      const c = P.cells[i], [pw, ph] = c.land ? E.size : [E.size[1], E.size[0]], along = Math.abs(p.n[1]) > 0.5;
+      const g = new THREE.PlaneGeometry(pw, ph).rotateY(facing(p.n[0], p.n[1])).translate(p.x + p.n[0] * 0.016, p.y, p.z + p.n[1] * 0.016), uv = g.attributes.uv;
+      for (let k = 0; k < uv.count; k++) uv.setXY(k, c.u0 + uv.getX(k) * (c.u1 - c.u0), c.v0 + uv.getY(k) * (c.v1 - c.v0));
+      put('plans', bake(g, 0xffffff, true), p.here[0], p.here[1]);
+      put('shell', bake(along ? box(pw + 0.03, ph + 0.03, 0.012, p.x, p.y, p.z + p.n[1] * 0.006) : box(0.012, ph + 0.03, pw + 0.03, p.x + p.n[0] * 0.006, p.y, p.z), 0xb9bdc1), p.here[0], p.here[1]);
+      // the extinguisher (6 kg powder, on a wall bracket): a red body, a black head and hose
+      const [ex, ez] = p.ext[0];
+      put('shell', bake(new THREE.CylinderGeometry(0.075, 0.075, 0.5, 14).translate(ex, F + 0.85, ez), 0xc62a20), p.here[0], p.here[1]);
+      put('shell', bake(new THREE.CylinderGeometry(0.03, 0.045, 0.1, 10).translate(ex, F + 1.15, ez), 0x1c1c1c), p.here[0], p.here[1]);
+      put('shell', bake(box(0.025, 0.4, 0.025, ex + p.n[0] * 0.08 + (along ? 0.05 : 0), F + 0.95, ez + p.n[1] * 0.08 + (along ? 0 : 0.05)), 0x1c1c1c), p.here[0], p.here[1]);
+    });
+  }
+
+  contains(x, z, y = F) { return y >= F - 0.4 && y < C && this.inside(x, z); }
+  heights(x, z) { return this.inside(x, z) ? [F] : []; }
+
+  inside(x, z) { return !!rectAt(x, z); }
+
+  /** Room name at (x, z) including rental / ordinary storage and A/B/C basement lobbies, or null. */
+  roomAt(x, z) { return rectAt(x, z)?.room ?? null; }
+
+  /** The sensor area at (x, z) or null. */
+  areaAt(x, z) { return rectAt(x, z)?.area ?? null; }
+
+  
+  dynamic() {
+    return [...(this.door?.segments() ?? []), ...this.cageDoors.map((d) => d.segment)];
+  }
+
+  /** Park-door leaves for outdoor collisions, only at their basement height (#729). */
+  parkDoorSegments(feet) {
+    if (feet >= F + G.doorHead || feet + PLAYER.headroom <= F) return [];
+    return this.cageDoors.filter(d=>d.rect?.door?.park).map(d=>{const a=d.angle;
+      return [d.hx,d.hz,d.hx+(d.dir[0]*Math.cos(a)+d.out[0]*Math.sin(a))*d.w,d.hz+(d.dir[1]*Math.cos(a)+d.out[1]*Math.sin(a))*d.w];});
+  }
+
+  /** Which park entrance can be seen/reached from outside; no courtyard-level activation. */
+  parkEntrance(p, camera = false) {
+    const feet = p.y - (camera ? PLAYER.eye : 0);
+    if (feet >= F + G.doorHead || feet + PLAYER.headroom <= F) return null;
+    const distance=r=>Math.hypot(Math.max(r.x0-p.x,0,p.x-r.x1),Math.max(r.z0-p.z,0,p.z-r.z1));
+    return RECTS.filter(r=>r.outside && inRect(r,p.x,p.z,LI.sensor)).reduce((best,r)=>!best||distance(r)<distance(best)?r:best,null);
+  }
+
+  
+  obstacles() { return []; }
+
+  place(d) {
+    const a = d.angle, dx = d.dir[0] * Math.cos(a) + d.out[0] * Math.sin(a), dz = d.dir[1] * Math.cos(a) + d.out[1] * Math.sin(a), yaw = Math.atan2(-dz, dx);
+    d.pivot.rotation.y = yaw; d.pivot.updateMatrix(); d.pivot.updateMatrixWorld(true);
+    d.inst.setMatrixAt(d.index, new THREE.Matrix4().makeRotationY(yaw).scale(new THREE.Vector3(d.w / ST.door, 1, 1)).setPosition(d.hx, 0, d.hz));
+    d.inst.instanceMatrix.needsUpdate = true;
+    (d.segment ??= [])[0] = d.hx; d.segment[1] = d.hz; d.segment[2] = d.hx + dx * d.w; d.segment[3] = d.hz + dz * d.w;
+  }
+
+
+  /** Is the camera down here, or west of the door where it can look in? (`outside`: the latter) */
+  near(cam) {
+    const p = cam.position;
+    if (p.y < C && this.inside(p.x, p.z)) return true;
+    if (this.parkEntrance(p, true)) return 'park';
+    if (p.y < C + 1 && p.x > CORE.x0 - 0.1 && p.x < CORE.x1 + 0.1 && p.z > CORE.north[1] && p.z < CORE.lift.z1) return true; // the stairwell's foot, the lift at its basement stop (#450)
+    return p.x < GD.x + 0.5 && p.x > GD.x - 60 && Math.abs(p.z - (GD.z0 + GD.z1) / 2) < 25 && p.y < F + 6 ? 'outside' : false;
+  }
+
+  setLevel(a, k) {
+    a.level = k;
+    const v = 0.035 + 0.965 * k;
+    for (const m of [a.mats.shell, a.mats.mesh, a.mats.signs, ...a.mats.floors, a.mats.plans]) m?.color.setScalar(v);
+    a.mats.tubes.color.setScalar(0.25 + 0.75 * k);
+  }
+
+  /** Each frame: the doors swing, the motion sensors, what is drawn, how much daylight is left (`under`). */
+  update(dt, player, camera) {
+    this.door.update(dt, player);
+    for (const d of this.cageDoors) {
+      if (Math.abs(d.target - d.angle) < 1e-4) continue;
+      d.angle += Math.sign(d.target - d.angle) * Math.min(Math.abs(d.target - d.angle), ST.speed * dt);
+      this.place(d);
+    }
+    const p = player.pos, below = !!player.below || (!!player.inCore && p.y < F + 1.5); // (the stairwell's foot is the basement too, #448)
+    const atDoor = p.y < F + 1.5 && Math.hypot(p.x - GD.x, p.z - (GD.z0 + GD.z1) / 2) < LI.sensor;
+    const park = this.parkEntrance(p);
+    for (const d of this.cageDoors) if (d.rect?.door?.park) d.pivot.visible = park?.area === d.rect.area; // exterior leaves remain drawn; courtyard/far picks stay disabled
+    this.present = below || atDoor || !!park;
+    // each area's sensor: the visitor in it or within `sensor` m of one of its rooms (the entrance: also at the door)
+    for (const a of Object.values(this.areas)) {
+      const sees = !this.powerOff && ((below && RECTS.some((r) => r.area === a.name && inRect(r, p.x, p.z, LI.sensor))) || (a.name === 'entrance' && atDoor) || a.name === park?.area); // (no tubes in a power cut, #604)
+      if (sees) {
+        if (!a.on) { a.on = true; a.flickT = LI.flicker; }
+        a.hold = LI.hold;
+      } else if (a.on && ((a.hold -= dt) <= 0 || this.powerOff)) a.on = false;
+      let k = a.on ? 1 : Math.max(0, a.level - dt * 2);
+      if (a.on && a.flickT > 0) { // a fluorescent starting up: a few blinks
+        a.flickT -= dt;
+        const t = LI.flicker - a.flickT;
+        k = t < 0.08 || (t > 0.2 && t < 0.28) || (t > 0.42 && t < 0.5) ? 0.9 : t < LI.flicker ? 0.15 : 1;
+      }
+      if (Math.abs(k - a.level) > 1e-3) this.setLevel(a, k);
+    }
+    this.on = Object.values(this.areas).some((a) => a.on);
+    this.level = Math.max(...Object.values(this.areas).map((a) => a.level));
+    for (const l of this.lamps) l.k = below ? this.areas[l.area].level : 0;
+    // drawn: everything while the camera is down here; only the entrance hall from outside the door
+    const vis = this.near(camera);
+    this.object.visible = !!vis;
+    for (const a of Object.values(this.areas)) a.group.visible = vis === true || (vis === 'park' ? a.name === this.parkEntrance(camera.position, true)?.area : a.name === 'entrance');
+    this.blackout.visible = !vis;
+    // the daylight down here: none deep inside, some by the open door
+    const want = below ? LI.dim * THREE.MathUtils.clamp((p.x - GD.x) / 7, 0, 1) : 0;
+    this.under += (want - this.under) * Math.min(1, dt * 4);
+    if (Math.abs(want - this.under) < 1e-3) this.under = want;
+    // the tubes' light on the lit materials in the basement: the visitor's area's tubes, as far in as the daylight is cut
+    const here = below ? this.areas[this.areaAt(p.x, p.z) ?? 'entrance'] : null;
+    this.lit = here ? here.level * (this.under / LI.dim) : 0;
+  }
+
+}
+
+/** The ribbed panels of the garage door. */
+function ribTexture() {
+  const c = document.createElement('canvas'); c.width = 16; c.height = 64;
+  const g = c.getContext('2d');
+  g.fillStyle = '#e4e5e2'; g.fillRect(0, 0, 16, 64);
+  g.fillStyle = '#b9bcbc'; for (let y = 0; y < 64; y += 16) g.fillRect(0, y, 16, 2);
+  g.fillStyle = '#9a9d9e'; g.fillRect(0, 62, 16, 2);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+  return t;
+}
+
+
+export class GarageDoor {
+  constructor(inside) {
+    const D = G.door, N = D.sections, w = GD.z1 - GD.z0;
+    this.object = new THREE.Group();
+    this.sh = GD.h / N; this.xd = GD.x + 0.1;
+    const panel = new THREE.BoxGeometry(0.045, this.sh - 0.004, w - 0.02).translate(0, this.sh / 2, 0);
+    { const uv = panel.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i), uv.getY(i)); }
+    this.panels = new THREE.InstancedMesh(panel, new THREE.MeshStandardMaterial({ map: ribTexture(), roughness: 0.55, metalness: 0.25 }), N);
+    this.panels.castShadow = this.panels.receiveShadow = true;
+    this.object.add(this.panels);
+    // the warning lights (outside over the door's north corner, inside the same) and the buttons
+    this.lampMat = new THREE.MeshStandardMaterial({ color: 0x8a5a10, emissive: 0xffa21a, emissiveIntensity: 0, roughness: 0.4 });
+    const grey = new THREE.MeshStandardMaterial({ color: 0x5d6266, roughness: 0.6, metalness: 0.3 });
+    const btnMat = new THREE.MeshStandardMaterial({ color: 0xf2c230, roughness: 0.5 });
+    const mk = (geo, mat, parent, x, y, z) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); parent.add(m); return m; };
+    mk(new THREE.BoxGeometry(0.1, 0.12, 0.16), this.lampMat, this.object, GD.x - 0.09, F + GD.h + 0.18, GD.z0 - 0.35);
+    mk(new THREE.BoxGeometry(0.1, 0.12, 0.16), this.lampMat, inside, ENTR.x0 + 0.06, F + 2.35, GD.z1 + 0.5);
+    const [px, pz] = D.post, [ix, iz] = D.inside;
+    mk(new THREE.BoxGeometry(0.1, 1.1, 0.1), grey, this.object, px, westYAt(px, pz) + 0.55, pz);
+    // (#439: the housing and the button on the post's west face, towards whoever comes down the drive)
+    mk(new THREE.BoxGeometry(0.06, 0.2, 0.16), grey, this.object, px - 0.05, westYAt(px, pz) + 1.05, pz);
+    const outBtn = mk(new THREE.BoxGeometry(0.03, 0.07, 0.07), btnMat, this.object, px - 0.09, westYAt(px, pz) + 1.06, pz);
+    mk(new THREE.BoxGeometry(0.03, 0.2, 0.14), grey, inside, ix + 0.015, F + 1.2, iz);
+    const inBtn = mk(new THREE.BoxGeometry(0.03, 0.07, 0.07), btnMat, inside, ix + 0.04, F + 1.21, iz);
+    const door = this;
+    this.targets = [outBtn, inBtn].map((pick) => {
+      const t = { kind: 'garagebutton', name: 'knappen till garageporten', verb: 'trycka på', pickable: pick, press() { door.toggle(); } };
+      pick.userData.door = t;
+      return t;
+    });
+    Object.assign(this, { t: 0, target: 0, autoT: 0, blinkT: 0 });
+    this.place();
+  }
+
+  get isOpen() { return this.t >= 1 - 1e-6; }
+  get moving() { return this.t !== this.target; }
+
+  open() { if (this.target !== 1) { this.target = 1; } this.autoT = G.door.auto; }
+  close() { if (this.target !== 0) { this.target = 0; } }
+  toggle() { if (this.target > 0) this.close(); else this.open(); }
+
+  /** In the way while it is too low to walk / drive under. */
+  segments() { return this.t < G.door.passable ? [[GD.x, GD.z0, GD.x, GD.z1]] : []; }
+
+  /** Where along the track a point `u` m from the sill is: the vertical run, then in under the ceiling. */
+  track(u) { return u <= GD.h ? [this.xd, F + u] : [this.xd + (u - GD.h), F + GD.h + 0.02]; }
+
+  place() {
+    const m = new THREE.Matrix4(), q = new THREE.Quaternion(), zc = (GD.z0 + GD.z1) / 2, one = new THREE.Vector3(1, 1, 1);
+    for (let i = 0; i < G.door.sections; i++) {
+      const u = i * this.sh + this.t * GD.h, [ax, ay] = this.track(u), [bx, by] = this.track(u + this.sh);
+      q.setFromAxisAngle(new THREE.Vector3(0, 0, 1), Math.atan2(-(bx - ax), by - ay));
+      this.panels.setMatrixAt(i, m.compose(new THREE.Vector3(ax, ay, zc), q, one));
+    }
+    this.panels.instanceMatrix.needsUpdate = true;
+  }
+
+  /** Someone / something in the opening (a strip either side of the door line)? */
+  inOpening(x, z, y, r = 0.6) { return Math.abs(x - GD.x) < r + 0.3 && z > GD.z0 - 0.2 && z < GD.z1 + 0.2 && y < F + GD.h; }
+
+  update(dt, player) {
+    const p = player.pos;
+    const busy = this.inOpening(p.x, p.z, p.y);
+    if (this.target === 0 && this.t > 0 && busy) this.open(); // never down on the visitor or the car (#314)
+    if (this.isOpen && this.target === 1) {
+      if (busy) this.autoT = G.door.auto;
+      else if ((this.autoT -= dt) <= 0) this.close();
+    }
+    if (this.moving) {
+      const step = dt / G.door.seconds;
+      this.t = this.target > this.t ? Math.min(this.target, this.t + step) : Math.max(this.target, this.t - step);
+      this.place();
+      this.blinkT += dt;
+    }
+    this.lampMat.emissiveIntensity = this.moving && Math.floor(this.blinkT * 2.5) % 2 === 0 ? 2.2 : 0;
+  }
+
+  /** For a reload record: > 0 opening / open (at t), < 0 shutting (at −t), 0 shut. */
+  saveState() { const t = Math.round(this.t * 1000) / 1000; return this.target > 0 ? Math.max(0.001, t) : t > 0 ? -t : 0; }
+  /** Back as saved: `v` > 0 opening / open at |v|, < 0 shutting at |v|. */
+  loadState(v) {
+    if (!Number.isFinite(v) || v === 0) return;
+    this.t = Math.min(1, Math.abs(v)); this.target = v > 0 ? 1 : 0;
+    if (this.target === 1) this.autoT = G.door.auto;
+    this.place();
+  }
+}

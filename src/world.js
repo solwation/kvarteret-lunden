@@ -1,0 +1,996 @@
+import * as THREE from 'three';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import {
+  WARDROBE, LEVELS, UNIT_TOP, SOFFITS, DOOR_HEIGHT, DOOR_TRIM, EXT_DOOR_HEAD, WINDOWS, WINDOW_TOP_HUNG_MAX, CABINET_HEIGHT, BASE_CABINET, SHELF_HEIGHT, TOILET,
+  STAIR, COLORS, FENCE_HEIGHT, SITE, OUTDOOR, CABINET_FIXES, KLK, SEASON, FINISH, OPTIONS, EXTRA_WALLS, SLIDE_FLIP, ROOM_RENAMES, EXTRA_ROOMS, ROOM_DIVIDERS, CORE, PORTIK,
+  STANDARD, VISIT_UNITS, L1201, HUS_L, storeyFloor,
+} from './config.js';
+import { buildStairs, buildHandrails, stairHeight, stairUnderside } from './stairs.js';
+import { klkFittings } from './closet.js';
+import { cleaningFittings } from './cleaning.js';
+import { Openable } from './openables.js';
+import { sfx } from './audio.js';
+import { SwingDoor, SlidingDoor, wardrobeDoors } from './doors.js';
+import { fitPrivacyDoors } from './doorfittings.js';
+import { buildExterior, husLLayout } from './exterior.js';
+import { mergeStatic } from './merge.js';
+import { architectureEdges } from './architectureedges.js';
+import { registerSnow } from './seasons.js';
+import { buildCourtyard } from './courtyard.js';
+import { grassMaterial } from './grass.js';
+import { pavingTexture } from './patio.js';
+import { patioHedgeMaterial } from './patiohedge.js';
+import { mirrorLamps, buildInterior, buildElCabinet } from './interior.js';
+import { Toilet } from './toilet.js';
+import { RoomMap } from './rooms.js';
+import { buildAO } from './ao.js';
+import { buildSurroundings, terrainNorth } from './surroundings.js';
+import { Roofs, wallRect } from './roofs.js';
+import { buildStandardInterior, batchFronts } from './standardinterior.js';
+import { VisitUnit } from './visitunit.js';
+import { L1201_PLAN } from './l1201plan.js';
+
+const mat = (color, extra = {}) => new THREE.MeshStandardMaterial({ color, roughness: 0.85, ...extra });
+
+/** Parquet (1-stav planks, FINISH.parquet): one texture repeat = `n` planks across. `staves` > 1 (STANDARD, #574): each
+ * board is that many narrow rows of short staves (3-stav). */
+function plankTexture(P = FINISH.parquet) {
+  const { base: [r0, g0, b0], width, length, staves = 1 } = P;
+  const ppm = 300, n = 6;
+  const pw = Math.round(width * ppm), pl = Math.round(length * ppm);
+  const c = document.createElement('canvas');
+  c.width = pw * n; c.height = pl * 2;
+  const g = c.getContext('2d');
+  let seed = 7;
+  const rand = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+  if (staves > 1) { // 3-stav: rows of short staves (a third of the board's length, staggered), the boards' long joints darker
+    const sw = pw / staves, sl = Math.round(pl / staves);
+    for (let col = 0; col < n * staves; col++) {
+      const offset = Math.round(((col * 0.53) % 1) * sl);
+      for (let y = -offset; y < c.height; y += sl) {
+        const k = 0.93 + rand() * 0.12;
+        g.fillStyle = `rgb(${r0 * k},${g0 * k},${b0 * k})`;
+        g.fillRect(col * sw, y, sw, sl);
+        for (let i = 0; i < 5; i++) { g.fillStyle = `rgba(120,90,60,${0.04 + rand() * 0.05})`; g.fillRect(col * sw + rand() * sw, y, 1 + rand(), sl); }
+        g.strokeStyle = 'rgba(90,70,50,0.22)';
+        g.strokeRect(col * sw + 0.5, y + 0.5, sw - 1, sl - 1);
+      }
+      if (col % staves === 0) { g.fillStyle = 'rgba(80,60,40,0.35)'; g.fillRect(col * sw, 0, 1, c.height); }
+    }
+  }
+  for (let col = 0; col < (staves > 1 ? 0 : n); col++) {
+    const offset = Math.round(((col * 0.37) % 1) * pl); // staggered end joints
+    for (let y = -offset; y < c.height; y += pl) {
+      const k = 0.95 + rand() * 0.08;
+      g.fillStyle = `rgb(${r0 * k},${g0 * k},${b0 * k})`;
+      g.fillRect(col * pw, y, pw, pl);
+      // faint grain along the plank
+      for (let i = 0; i < 14; i++) {
+        g.fillStyle = `rgba(120,95,70,${0.04 + rand() * 0.05})`;
+        g.fillRect(col * pw + rand() * pw, y, 1 + rand() * 1.5, pl);
+      }
+      g.strokeStyle = 'rgba(90,70,50,0.3)';
+      g.strokeRect(col * pw + 0.5, y + 0.5, pw - 1, pl - 1);
+    }
+  }
+  const tex = new THREE.CanvasTexture(c);
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.repeat.set(1 / (width * n), 1 / (length * 2));
+  tex.anisotropy = 8;
+  return tex;
+}
+
+const M = {
+  wall: mat(COLORS.wall),
+  ceiling: mat(COLORS.ceiling),
+  floor: mat(0xffffff, { map: plankTexture(), roughness: 0.7 }),
+  tile: mat(COLORS.tile, { roughness: 0.4 }),
+  cabinet: mat(COLORS.cabinet, { roughness: 0.5 }),
+  counter: mat(COLORS.counter, { roughness: 0.35 }),
+  appliance: mat(COLORS.appliance, { roughness: 0.3 }),
+  porcelain: mat(COLORS.porcelain, { roughness: 0.15 }),
+  frame: mat(COLORS.frame, { roughness: 0.5 }),
+  glass: new THREE.MeshPhysicalMaterial({
+    color: COLORS.glass, transparent: true, opacity: 0.1, roughness: 0.02, metalness: 0, depthWrite: false,
+  }),
+  door: mat(COLORS.door, { roughness: 0.6 }),
+  rail: mat(COLORS.rail, { roughness: 0.4, metalness: 0.3 }),
+  riser: mat(COLORS.riser, { roughness: 0.6 }), // stair risers and stringers (white)
+  dark: mat(0x1d2023, { roughness: 0.3 }),
+  grass: grassMaterial(),
+  patio: mat(0xffffff, { map: pavingTexture(), roughness: 0.95 }), // slab paving (PATIO.paving)
+  hedge: patioHedgeMaterial(),
+  fence: mat(COLORS.fence, { roughness: 0.9 }),
+};
+// Peab's standard finish for the visitable flats (#574, STANDARD): its own parquet and limestone window boards; walls,
+// ceilings, doors, frames, glass and the stair's white parts are the same white as ours
+const SM = { ...M, floor: mat(0xffffff, { map: plankTexture(STANDARD.parquet), roughness: 0.75 }), sill: mat(STANDARD.sill, { roughness: 0.55 }) };
+/** How a level is built: ours (L1007, every choice we made), or a visitable flat in the standard finish (#574). */
+const OURS = { standard: false, mats: M, ox: 0 };
+
+/** Axis-aligned box from plan ranges (x, z) and height range y. */
+function box(x0, x1, z0, z1, y0, y1, material, { shadow = true } = {}) {
+  const geo = new THREE.BoxGeometry(Math.abs(x1 - x0), Math.abs(y1 - y0), Math.abs(z1 - z0));
+  const mesh = new THREE.Mesh(geo, material);
+  mesh.position.set((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2);
+  mesh.castShadow = shadow;
+  mesh.receiveShadow = true;
+  return mesh;
+}
+
+function polygonShape(points) {
+  return new THREE.Shape(points.map(([x, z]) => new THREE.Vector2(x, -z)));
+}
+
+function prism(points, y0, y1, material) {
+  const geo = new THREE.ExtrudeGeometry(polygonShape(points), { depth: y1 - y0, bevelEnabled: false });
+  geo.rotateX(-Math.PI / 2);
+  geo.translate(0, y0, 0);
+  const mesh = new THREE.Mesh(geo, material);
+  mesh.castShadow = mesh.receiveShadow = true;
+  return mesh;
+}
+
+/** Horizontal plate (floor/ceiling). */
+function plate(x0, x1, z0, z1, y, material, faceDown = false) {
+  const geo = new THREE.PlaneGeometry(x1 - x0, z1 - z0);
+  geo.rotateX(faceDown ? Math.PI / 2 : -Math.PI / 2);
+  // planar UVs in metres so textures tile by world size
+  const pos = geo.attributes.position, uv = geo.attributes.uv;
+  for (let i = 0; i < pos.count; i++) uv.setXY(i, pos.getX(i) + (x0 + x1) / 2, pos.getZ(i) + (z0 + z1) / 2);
+  geo.translate((x0 + x1) / 2, y, (z0 + z1) / 2);
+  const mesh = new THREE.Mesh(geo, material);
+  mesh.receiveShadow = true;
+  return mesh;
+}
+
+/** Plate split into rectangles around one rectangular opening (avoids triangulating holes). */
+function plateAround(x0, x1, z0, z1, h, y, material, faceDown = false) {
+  if (!h) return [plate(x0, x1, z0, z1, y, material, faceDown)];
+  return [
+    [x0, x1, z0, h.z0], [x0, x1, h.z1, z1], [x0, h.x0, h.z0, h.z1], [h.x1, x1, h.z0, h.z1],
+  ].map(([a, b, c, d]) => plate(a, b, c, d, y, material, faceDown));
+}
+
+const bboxOf = (pts) => {
+  const xs = pts.map((p) => p[0]), zs = pts.map((p) => p[1]);
+  return { x0: Math.min(...xs), x1: Math.max(...xs), z0: Math.min(...zs), z1: Math.max(...zs) };
+};
+
+/** A rectangle inside a wall's plan polygon, as long as the wall (#695, the DetailCuller's occluders): the bounding box
+ * when the polygon is one (the plan's walls often carry an extra point on an edge), else the widest strip across its
+ * thickness that the polygon covers along its whole length (sampled every cm; notches and recesses make it thinner). */
+export function wallStrip(pts) {
+  const b = bboxOf(pts), area = Math.abs(pts.reduce((a, [x, z], i) => { const [x2, z2] = pts[(i + 1) % pts.length]; return a + x * z2 - x2 * z; }, 0)) / 2;
+  if (Math.abs(area - (b.x1 - b.x0) * (b.z1 - b.z0)) < 1e-6) return b;
+  const inside = (x, z) => { let c = false; for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) { const [xi, zi] = pts[i], [xj, zj] = pts[j]; if ((zi > z) !== (zj > z) && x < (xj - xi) * (z - zi) / (zj - zi) + xi) c = !c; } return c; };
+  const alongX = b.x1 - b.x0 >= b.z1 - b.z0, [l0, l1, t0, t1] = alongX ? [b.x0, b.x1, b.z0, b.z1] : [b.z0, b.z1, b.x0, b.x1];
+  const ts = []; for (let t = t0 + 0.0025; t < t1; t += 0.005) ts.push(t);
+  let ok = ts.map(() => true);
+  for (let l = l0 + 0.005; l < l1; l += 0.01) ok = ok.map((k, i) => k && (alongX ? inside(l, ts[i]) : inside(ts[i], l)));
+  let best = null; // the longest run of thickness samples inside everywhere
+  for (let i = 0, s = -1; i <= ts.length; i++) {
+    if (i < ts.length && ok[i]) { if (s < 0) s = i; continue; }
+    if (s >= 0 && (!best || i - s > best[1] - best[0])) best = [s, i];
+    s = -1;
+  }
+  if (!best || best[1] - best[0] < 2) return null;
+  const a = ts[best[0]], c = ts[best[1] - 1]; // (sample centres: the strip is at least this thick)
+  return alongX ? { x0: l0, x1: l1, z0: a, z1: c } : { x0: a, x1: c, z0: l0, z1: l1 };
+}
+
+/**
+ * Find the wall gap an opening sits in. `axis` is the direction along the wall ('x' or 'z'),
+ * `c` the perpendicular coordinate of a line through the gap, [a, b] a span known to lie
+ * inside the gap. Returns the gap span and the wall thickness range.
+ */
+function findGap(wallBoxes, axis, c, a, b) {
+  const along = axis === 'x' ? ['x0', 'x1'] : ['z0', 'z1'];
+  const perp = axis === 'x' ? ['z0', 'z1'] : ['x0', 'x1'];
+  const tol = 0.02;
+  const crossing = wallBoxes.filter((w) => w[perp[0]] - tol <= c && w[perp[1]] + tol >= c);
+  let lo = -Infinity, hi = Infinity, loW = null, hiW = null;
+  for (const w of crossing) {
+    if (w[along[1]] <= a + tol && w[along[1]] > lo) { lo = w[along[1]]; loW = w; }
+    if (w[along[0]] >= b - tol && w[along[0]] < hi) { hi = w[along[0]]; hiW = w; }
+  }
+  if (!loW || !hiW) return null;
+  let p0 = Math.max(loW[perp[0]], hiW[perp[0]]), p1 = Math.min(loW[perp[1]], hiW[perp[1]]);
+  if (p1 - p0 < 0.03) { p0 = Math.min(loW[perp[0]], hiW[perp[0]]); p1 = Math.max(loW[perp[1]], hiW[perp[1]]); }
+  return { lo, hi, p0, p1, axis };
+}
+
+/**
+ * Architraves (dörrfoder) around a door opening on both wall faces: two jambs and a head piece,
+ * DOOR_TRIM.width wide. `slideFace` = the wall face a sliding panel runs along (thinner trim there).
+ */
+function architraves(gap, y0, head, slideFace = null) {
+  const { width: w, thickness: t, slideThickness } = DOOR_TRIM;
+  const out = [];
+  // a box from along a0..a1, height ya..yb, across the wall p0..p1, in world axes
+  const geo = (a0, a1, ya, yb, p0, p1) => {
+    const [sx, sz, cx, cz] = gap.axis === 'x'
+      ? [a1 - a0, p1 - p0, (a0 + a1) / 2, (p0 + p1) / 2]
+      : [p1 - p0, a1 - a0, (p0 + p1) / 2, (a0 + a1) / 2];
+    return new THREE.BoxGeometry(sx, yb - ya, sz).translate(cx, (ya + yb) / 2, cz);
+  };
+  for (const [face, dir] of [[gap.p0, -1], [gap.p1, 1]]) {
+    const slide = slideFace !== null && Math.sign(slideFace - (gap.p0 + gap.p1) / 2) === dir;
+    const th = slide ? slideThickness : t;
+    const [p0, p1] = dir > 0 ? [face, face + th] : [face - th, face];
+    out.push(geo(gap.lo - w, gap.lo, y0, head + w, p0, p1), geo(gap.hi, gap.hi + w, y0, head + w, p0, p1),
+      geo(gap.lo, gap.hi, head, head + w, p0, p1));
+  }
+  return out;
+}
+function gapBox(gap, y0, y1, material) {
+  return gap.axis === 'x'
+    ? box(gap.lo, gap.hi, gap.p0, gap.p1, y0, y1, material)
+    : box(gap.p0, gap.p1, gap.lo, gap.hi, y0, y1, material);
+}
+
+function rectSegments(r) {
+  return [
+    [r.x0, r.z0, r.x1, r.z0], [r.x1, r.z0, r.x1, r.z1],
+    [r.x1, r.z1, r.x0, r.z1], [r.x0, r.z1, r.x0, r.z0],
+  ];
+}
+
+function polySegments(pts) {
+  return pts.map((p, i) => {
+    const q = pts[(i + 1) % pts.length];
+    return [p[0], p[1], q[0], q[1]];
+  });
+}
+
+// Cabinets built hollow with sliding fronts: G (garderob) and L (the wardrobe in Sovrum 2).
+const WARDROBE_LABELS = ['G', 'L'];
+
+const gapRect = (g) => (g.axis === 'x' ? { x0: g.lo, x1: g.hi, z0: g.p0, z1: g.p1 } : { x0: g.p0, x1: g.p1, z0: g.lo, z1: g.hi });
+
+const insideRect = (f, r) => f.x0 >= r.x0 - 0.01 && f.x1 <= r.x1 + 0.01 && f.z0 >= r.z0 - 0.01 && f.z1 <= r.z1 + 0.01;
+
+/** Hollow wardrobe (carcass, hat shelf, rod) + two sliding doors on the open side. */
+function buildWardrobe(group, g, y0, h, wallBoxes, doors) {
+  const along = g.x1 - g.x0 > g.z1 - g.z0; // doors run along x?
+  // the front is the long side that doesn't back onto a wall
+  const backed = (side) => wallBoxes.some((w) => (along
+    ? w.x1 > g.x0 + 0.05 && w.x0 < g.x1 - 0.05 && Math.abs((side < 0 ? w.z1 : w.z0) - (side < 0 ? g.z0 : g.z1)) < 0.05
+    : w.z1 > g.z0 + 0.05 && w.z0 < g.z1 - 0.05 && Math.abs((side < 0 ? w.x1 : w.x0) - (side < 0 ? g.x0 : g.x1)) < 0.05));
+  const outward = backed(+1) && !backed(-1) ? -1 : backed(-1) ? +1 : -1;
+  const t = WARDROBE.carcass, y1 = y0 + h;
+  const [a, b] = along ? [g.x0, g.x1] : [g.z0, g.z1];
+  const [p0, p1] = along ? [g.z0, g.z1] : [g.x0, g.x1];
+  const front = outward > 0 ? p1 : p0, back = outward > 0 ? p0 : p1;
+  const trackFront = front + outward * (WARDROBE.firstTrack + WARDROBE.trackSpacing + WARDROBE.panel / 2);
+  const piece = (a0, a1, q0, q1, ya, yb) => group.add(along
+    ? box(a0, a1, Math.min(q0, q1), Math.max(q0, q1), ya, yb, M.cabinet)
+    : box(Math.min(q0, q1), Math.max(q0, q1), a0, a1, ya, yb, M.cabinet));
+  piece(a, b, back, back + outward * t, y0, y1);                // back
+  piece(a, a + t, back, trackFront, y0, y1);                         // ends
+  piece(b - t, b, back, trackFront, y0, y1);
+  piece(a, b, back, trackFront, y1 - t, y1);                         // top
+  piece(a, b, back, trackFront, y0, y0 + WARDROBE.plinth);                      // plinth
+  // Fixed track lips behind the leaves cover the small top/bottom running clearances.
+  const railFace = front + outward * (WARDROBE.firstTrack - WARDROBE.panel / 2 - WARDROBE.sealGap);
+  piece(a + t, a + t + WARDROBE.railLip, back, railFace, y0, y1);
+  piece(b - t - WARDROBE.railLip, b - t, back, railFace, y0, y1);
+  piece(a + t, b - t, front - outward * t, railFace, y0 + WARDROBE.plinth, y0 + WARDROBE.plinth + WARDROBE.railLip);
+  piece(a + t, b - t, front - outward * t, railFace, y1 - t - WARDROBE.railLip, y1 - t);
+  piece(a + t, b - t, back, front - outward * 0.05, y0 + 1.78, y0 + 1.8); // hat shelf
+  const mid = (back + front) / 2;
+  piece(a + t, b - t, mid - 0.012, mid + 0.012, y0 + 1.7, y0 + 1.724); // clothes rod
+  for (const d of wardrobeDoors({ along, front, back, outward, a, b, y0, height: h, material: M.door })) {
+    group.add(d.object);
+    doors.push(d);
+  }
+}
+
+/**
+ * Re-orient a toilet so the tank stands against the nearest wall and the bowl points
+ * into the room. Keeps the fixture centred where the plan has it along that wall.
+ */
+function toiletAgainstWall(tank, bowl, wallBoxes) {
+  const g = {
+    x0: Math.min(tank.x0, bowl.x0), x1: Math.max(tank.x1, bowl.x1),
+    z0: Math.min(tank.z0, bowl.z0), z1: Math.max(tank.z1, bowl.z1),
+  };
+  const cx = (g.x0 + g.x1) / 2, cz = (g.z0 + g.z1) / 2;
+  const width = TOILET.width;
+  const tankD = TOILET.tankDepth, bowlL = TOILET.depth - TOILET.tankDepth + 0.05;
+  const near = (lo, hi, c) => lo - 0.05 <= c && hi + 0.05 >= c;
+  let best = null;
+  for (const w of wallBoxes) {
+    const cands = [];
+    if (near(w.z0, w.z1, cz) && w.x1 <= g.x0 + 0.05) cands.push(['west', g.x0 - w.x1, w.x1]);
+    if (near(w.z0, w.z1, cz) && w.x0 >= g.x1 - 0.05) cands.push(['east', w.x0 - g.x1, w.x0]);
+    if (near(w.x0, w.x1, cx) && w.z1 <= g.z0 + 0.05) cands.push(['north', g.z0 - w.z1, w.z1]);
+    if (near(w.x0, w.x1, cx) && w.z0 >= g.z1 - 0.05) cands.push(['south', w.z0 - g.z1, w.z0]);
+    for (const c of cands) if (!best || c[1] < best[1]) best = c;
+  }
+  const [side, , face] = best ?? ['west', 0, g.x0];
+  const h = width / 2;
+  switch (side) {
+    case 'west': return { side, face, tank: { x0: face, x1: face + tankD, z0: cz - h, z1: cz + h }, bowl: { x0: face + tankD - 0.05, x1: face + tankD + bowlL, z0: cz - h, z1: cz + h } };
+    case 'east': return { side, face, tank: { x0: face - tankD, x1: face, z0: cz - h, z1: cz + h }, bowl: { x0: face - tankD - bowlL, x1: face - tankD + 0.05, z0: cz - h, z1: cz + h } };
+    case 'north': return { side, face, tank: { x0: cx - h, x1: cx + h, z0: face, z1: face + tankD }, bowl: { x0: cx - h, x1: cx + h, z0: face + tankD - 0.05, z1: face + tankD + bowlL } };
+    default: return { side, face, tank: { x0: cx - h, x1: cx + h, z0: face - tankD, z1: face }, bowl: { x0: cx - h, x1: cx + h, z0: face - tankD - bowlL, z1: face - tankD + 0.05 } };
+  }
+}
+
+/** White window frame in the plane z = fz between x0..x1, y0..y1, with glass. Below the (fixed) transom one top-hung
+ * sash opens outwards with E (#103, #272): hinged along its head, the bottom swings out; `out` = ±1 the way out along
+ * z. `split` (the living room): an off-centre mullion, the sash takes that share of the width on side `opens`
+ * ('a' = x0, 'b' = x1), the other side is a fixed pane. Returns the Openables. */
+function addWindowFrame(group, x0, x1, fz, y0, y1, transom, out = -1, opens = true, { split = 0, opens: side = 'a', max = WINDOW_TOP_HUNG_MAX, ox = 0, oz = 0 } = {}) {
+  const ft = 0.06, d = 0.05;
+  const z0 = fz - d, z1 = fz + d;
+  group.add(box(x0, x1, z0, z1, y0, y0 + ft, M.frame));
+  group.add(box(x0, x1, z0, z1, y1 - ft, y1, M.frame));
+  group.add(box(x0, x0 + ft, z0, z1, y0, y1, M.frame));
+  group.add(box(x1 - ft, x1, z0, z1, y0, y1, M.frame));
+  const ty = transom > 0 ? y1 - transom : y1;
+  if (transom > 0) group.add(box(x0, x1, z0, z1, ty - ft / 2, ty + ft / 2, M.frame));
+  if (!opens) { group.add(box(x0, x1, fz - 0.008, fz + 0.008, y0, y1, M.glass, { shadow: false })); return []; } // a fixed light
+  if (transom > 0) group.add(box(x0, x1, fz - 0.008, fz + 0.008, ty, y1, M.glass, { shadow: false })); // fixed transom light
+  const lo = y0 + ft, hi = (transom > 0 ? ty - ft / 2 : y1 - ft);
+  // the sash's span; with `split` a mullion and a fixed pane beside it
+  let a = x0 + ft, b = x1 - ft;
+  if (split > 0) {
+    const mx = side === 'a' ? x0 + split * (x1 - x0) : x1 - split * (x1 - x0);
+    group.add(box(mx - ft / 2, mx + ft / 2, z0, z1, y0, ty, M.frame));
+    const [fa, fb] = side === 'a' ? [mx + ft / 2, x1 - ft] : [x0 + ft, mx - ft / 2];
+    group.add(box(fa, fb, fz - 0.008, fz + 0.008, lo, hi, M.glass, { shadow: false }));
+    if (side === 'a') b = mx - ft / 2; else a = mx + ft / 2;
+  }
+  // the sash: a slim frame with its glass, in a pivot along the head on the outer face of the frame
+  const zo = fz + out * 0.03, s = 0.045;
+  const pivot = new THREE.Group();
+  pivot.position.set((a + b) / 2, hi, zo);
+  const rails = [box(a, b, zo - 0.02, zo + 0.02, lo, lo + s, M.frame), box(a, b, zo - 0.02, zo + 0.02, hi - s, hi, M.frame),
+    box(a, a + s, zo - 0.02, zo + 0.02, lo, hi, M.frame), box(b - s, b, zo - 0.02, zo + 0.02, lo, hi, M.frame)];
+  const sash = new THREE.Mesh(mergeGeometries(rails.map((m) => m.geometry.translate(...m.position.clone().sub(pivot.position).toArray()))), M.frame);
+  sash.castShadow = sash.receiveShadow = true; // one mesh for the sash (#48)
+  const pane = box(a + s, b - s, zo - 0.006, zo + 0.006, lo + s, hi - s, M.glass, { shadow: false });
+  pane.position.sub(pivot.position);
+  pivot.add(sash, pane);
+  group.add(pivot);
+  // top-hung: turning +y about +x sends the bottom towards −z
+  const o = new Openable({ name: 'fönstret', object: pivot, mode: 'flap', axis: [1, 0, 0], sign: -out, max, speed: 1.6 }); // (`max`: a per-window stop, #429)
+  o.normal = new THREE.Vector3(0, 0, -out); // the room side (tests stand there)
+  const toggle = o.toggle.bind(o), at = new THREE.Vector3((a + b) / 2 + ox, (lo + hi) / 2, zo + oz); // (`ox`: a visited flat's offset, #574)
+  o.toggle = () => { toggle(); o.wind?.stop(); o.wind = o.isOpen ? sfx.wind(at) : null; }; // the wind blows in while it is open
+  return [o];
+}
+
+/** The letter box in the front door (#103): a brass plate with a flap on the outside (hinged at its top, lifts
+ * out with E), a dark slot and a brushed plate inside. Built in the door's local frame (x = thickness, z along the
+ * leaf from the hinge); the flap is an Openable in a pivot kept out of the door's merge (`door.keep`). */
+function letterFlap(door) {
+  door.object.updateMatrix();
+  const outX = new THREE.Vector3(1, 0, 0).applyQuaternion(door.object.quaternion).z < 0 ? 1 : -1; // the street side
+  const brass = new THREE.MeshStandardMaterial({ color: 0xc9a650, roughness: 0.3, metalness: 0.8 });
+  const dark = new THREE.MeshStandardMaterial({ color: 0x1b1c1d, roughness: 0.7 });
+  const zc = door.len / 2, y = 0.85, w = 0.3, h = 0.06;
+  const part = (sx, sy, sz, px, py, pz, m, parent = door.object) => {
+    const mesh = new THREE.Mesh(new THREE.BoxGeometry(sx, sy, sz), m);
+    mesh.position.set(px, py, pz);
+    mesh.receiveShadow = true; // like the leaf: no evening sun through the house (#607)
+    mesh.userData.door = door;
+    parent.add(mesh);
+    return mesh;
+  };
+  part(0.004, h + 0.03, w + 0.03, outX * 0.022, y, zc, brass);                      // outer plate
+  part(0.006, h - 0.02, w - 0.03, outX * 0.022, y, zc, dark);                     // the slot behind the flap
+  part(0.004, h + 0.02, w + 0.02, -outX * 0.022, y, zc, dark);                    // inner brush plate
+  const pivot = new THREE.Group();
+  pivot.position.set(outX * 0.026, y + h / 2, zc);
+  part(0.004, h, w, 0, -h / 2, 0, brass, pivot);
+  part(0.01, 0.008, 0.08, outX * 0.006, -h + 0.008, 0, brass, pivot);                // a little lip to lift it by
+  door.object.add(pivot);
+  door.keep = [pivot];
+  // about the leaf's z axis: +angle swings the bottom edge towards +x
+  return new Openable({ name: 'brevinkastet', object: pivot, mode: 'flap', axis: [0, 0, 1], sign: outX, max: 70, speed: 3 });
+}
+
+function buildLevel(floor, li, group, how = OURS) {
+  const M = how.mats, std = how.standard; // (a visited flat: the standard finish, none of our choices, #574)
+  const L = (how.levels ?? LEVELS)[li], hole = how.hole ?? STAIR.hole; // (a visited flat's own storeys and opening, #573)
+  const y0 = L.floor;
+  const yC = y0 + L.ceiling;
+  const W = floor.size.x, D = floor.size.z;
+  const segments = [];
+
+  // Walls (polygons extruded floor → ceiling). Holes in the plan polygons are tiny
+  // niches; walls are rendered solid.
+  const walls = [...floor.walls, ...EXTRA_WALLS.filter((w) => w.level === li && !std && OPTIONS[w.option])
+    .map((r) => ({ outer: [[r.x0, r.z0], [r.x1, r.z0], [r.x1, r.z1], [r.x0, r.z1]] }))];
+  const wallBoxes = walls.map((w) => bboxOf(w.outer));
+  const wallSegments = []; // walls only: line of sight for E (main.js)
+  const wallRects = []; // the full-height rectangular walls: what hides the inside from the street (DetailCuller, #695)
+  for (const w of walls) {
+    if (!w.half) { group.add(prism(w.outer, y0, yC, M.wall)); wallSegments.push(...polySegments(w.outer)); } // (`half`: a sloping half wall, #624: built over the stair, you see and aim over it)
+    const r = w.half ? null : wallStrip(w.outer);
+    if (r) wallRects.push({ ...r, y0, y1: yC });
+    segments.push(...polySegments(w.outer));
+  }
+
+  // Windows: sill/head infill, frame with optional transom, one top-hung sash, glass, inner sill board.
+  // All windows are in the north/south façades (they run along x).
+  const openings = { north: [], south: [] };
+  const sills = []; // fixed inner window boards
+  const windows = []; // casements that open (#103), E targets with the appliances
+  for (const pr of floor.windows) {
+    const facade = pr.z0 < D / 2 ? 'north' : 'south';
+    const cx = (pr.x0 + pr.x1) / 2;
+    let spec = (how.windows ?? WINDOWS).filter((w) => w.level === li && w.facade === facade)
+      .sort((a, b) => Math.abs(a.x - cx) - Math.abs(b.x - cx))[0];
+    if (std) { const { max, ...plain } = spec; spec = { ...plain, ox: how.ox, oz: how.oz ?? 0 }; } // (our sofa's sash stop is ours, #429)
+    const sill = y0 + spec.sill, head = y0 + spec.head;
+    // `width` narrows the PDF opening around its centre; the rest is solid wall
+    let r = pr;
+    if (spec.width && spec.width < pr.x1 - pr.x0) {
+      r = { ...pr, x0: cx - spec.width / 2, x1: cx + spec.width / 2 };
+      group.add(box(pr.x0, r.x0, pr.z0, pr.z1, y0, yC, M.wall), box(r.x1, pr.x1, pr.z0, pr.z1, y0, yC, M.wall));
+    }
+    group.add(box(r.x0, r.x1, r.z0, r.z1, y0, sill, M.wall));
+    group.add(box(r.x0, r.x1, r.z0, r.z1, head, yC, M.wall));
+    // frame sits towards the outside of the wall
+    const fz = facade === 'north' ? r.z0 + 0.1 : r.z1 - 0.1;
+    const inner = facade === 'north' ? r.z1 : r.z0;
+    windows.push(...addWindowFrame(group, r.x0, r.x1, fz, sill, head, spec.transom, facade === 'north' ? -1 : 1, true, spec));
+    // inner window board (fönsterbänk)
+    const iz0 = Math.min(fz, inner + (facade === 'north' ? 0.03 : -0.03));
+    const iz1 = Math.max(fz, inner + (facade === 'north' ? 0.03 : -0.03));
+    group.add(box(r.x0 - 0.02, r.x1 + 0.02, iz0, iz1, sill - 0.03, sill, M.sill ?? M.porcelain)); // (the standard: limestone)
+    sills.push({ x0: r.x0, x1: r.x1, z0: Math.min(iz0, iz1), z1: Math.max(iz0, iz1), y: sill });
+    openings[facade].push({ x0: r.x0, x1: r.x1, y0: sill, y1: head, win: spec }); // `win`: the neighbours copy its parts
+    segments.push(...rectSegments(pr));
+  }
+
+  // Doors: lintel over the gap + an interactive leaf that fills the whole gap. All start
+  // closed (several open leaves block the passage by the stair, e.g. Badrum and Klk).
+  // Exterior doors are glazed-transom doors like the windows.
+  const doors = [];
+  const barriers = [...wallBoxes, ...floor.windows]; // closed off for room detection (rooms.js)
+  const lids = []; // toilet lids (E opens/closes them, see toilet.js)
+  const trims = []; // architrave geometry around the interior doors (merged below)
+  const doorways = []; // door openings + the closed leaf's plane: tiled floors run through them to the threshold (#306)
+  for (const d of floor.doors) {
+    const [hx, hz] = d.hinge, [tx, tz] = d.tip, [wx, wz] = d.wall;
+    const axis = Math.abs(wx - hx) > Math.abs(wz - hz) ? 'x' : 'z';
+    // The wall lies on the opposite side of the opening from where the leaf swings.
+    const leafDir = axis === 'x' ? Math.sign(tz - hz) : Math.sign(tx - hx);
+    const c = (axis === 'x' ? hz : hx) - leafDir * 0.03;
+    const [a, b] = axis === 'x' ? [Math.min(hx, wx), Math.max(hx, wx)] : [Math.min(hz, wz), Math.max(hz, wz)];
+    const gap = findGap(wallBoxes, axis, c, a + 0.02, b - 0.02);
+    const exterior = tz < 0 || tz > D;
+    const head = y0 + (exterior ? how.extDoorHead ?? EXT_DOOR_HEAD : DOOR_HEIGHT);
+    const tillval = d.optional && (std || !OPTIONS.allrumDoor); // Peab tillval (dashed door), see OPTIONS
+    if (gap && !(tillval && std)) group.add(gapBox(gap, head, yC, M.wall)); // (the standard: no tillval wall, no lintel, #574)
+    if (gap) barriers.push(gapRect(gap)); // (a room boundary even when open: Allrum | Hall)
+    if (tillval) continue;
+
+    // Stretch the leaf to the full gap (the plan's swing is the nominal leaf width).
+    let leaf = d;
+    if (gap) {
+      const hAlong = axis === 'x' ? hx : hz, wAlong = axis === 'x' ? wx : wz;
+      const dir = Math.sign(wAlong - hAlong);
+      const g = DOOR_TRIM.gap;
+      const h2 = dir > 0 ? gap.lo + g : gap.hi - g;
+      const w2 = dir > 0 ? gap.hi - g : gap.lo + g;
+      const len = Math.abs(w2 - h2);
+      leaf = axis === 'x'
+        ? { hinge: [h2, hz], wall: [w2, hz], tip: [h2, hz + leafDir * len] }
+        : { hinge: [hx, h2], wall: [hx, w2], tip: [hx + leafDir * len, h2] };
+    }
+    if (gap && !exterior) trims.push(...architraves(gap, y0, head));
+    if (gap) doorways.push({ gap, c, exterior });
+    const door = new SwingDoor(leaf, y0, M.door, false, { entrance: exterior && tz < 0, glazed: exterior && tz > D, glass: M.glass, frame: M.frame });
+    door.name = exterior ? 'ytterdörren' : 'dörren';door.exterior=exterior;
+    if (exterior && tz < 0) lids.push(letterFlap(door)); // the front door's letter box (#103)
+    group.add(door.object);
+    if (door.strike) group.add(door.strike);
+    doors.push(door);
+    if (exterior && gap) {
+      // transom above the leaf, in the plane of the closed leaf
+      addWindowFrame(group, gap.lo, gap.hi, leaf.hinge[1] + (tz < 0 ? 0.03 : -0.03), y0 + DOOR_HEIGHT, head, 0, -1, false);
+      const pane = door.entryPane, center = door.opening().center[0];
+      const entryPane = pane ? { x0: center - (pane.x1-pane.x0)/2, x1: center + (pane.x1-pane.x0)/2, y0: y0+pane.y0, y1: y0+pane.y1 } : undefined;
+      openings[tz < 0 ? 'north' : 'south'].push({ x0: gap.lo, x1: gap.hi, y0, y1: head, entryPane });
+    }
+  }
+
+  for (const s of floor.sliding) {
+    const [ax, az] = s.a, [bx, bz] = s.b;
+    const axis = Math.abs(bx - ax) > Math.abs(bz - az) ? 'x' : 'z';
+    const c = axis === 'x' ? az : ax;
+    const [a, b] = axis === 'x' ? [Math.min(ax, bx), Math.max(ax, bx)] : [Math.min(az, bz), Math.max(az, bz)];
+    const gap = findGap(wallBoxes, axis, c, a + 0.02, b - 0.02);
+    if (!gap) continue;
+    group.add(gapBox(gap, y0 + DOOR_HEIGHT, yC, M.wall));
+    barriers.push(gapRect(gap));
+    // Slide towards the side with enough wall to park the panel (the plan arrow alone sent
+    // the Tvätt door through the 19 cm wall stub into the hall). Arrow decides only if both fit.
+    const along = axis === 'x' ? ['x0', 'x1'] : ['z0', 'z1'];
+    const perp = axis === 'x' ? ['z0', 'z1'] : ['x0', 'x1'];
+    const onLine = wallBoxes.filter((w) => w[perp[0]] - 0.02 <= c && w[perp[1]] + 0.02 >= c);
+    const wallLen = (end, dir) => {
+      // contiguous wall from the gap end outwards
+      let pos = end, len = 0;
+      for (;;) {
+        const w = onLine.find((w) => (dir > 0 ? Math.abs(w[along[0]] - pos) < 0.03 : Math.abs(w[along[1]] - pos) < 0.03));
+        if (!w) return len;
+        len += w[along[1]] - w[along[0]];
+        pos = dir > 0 ? w[along[1]] : w[along[0]];
+        if (len > 5) return len;
+      }
+    };
+    const need = gap.hi - gap.lo;
+    const room = { [-1]: wallLen(gap.lo, -1), [1]: wallLen(gap.hi, 1) };
+    let dir = s.arrow ? Math.sign(axis === 'x' ? s.arrow.head[0] - s.arrow.tail[0] : s.arrow.head[1] - s.arrow.tail[1]) || 1 : 1;
+    if (room[dir] < need * 0.9 && room[-dir] > room[dir]) dir = -dir;
+    // don't run past the first wall piece (e.g. into the exterior wall)
+    const first = onLine.find((w) => (dir > 0 ? Math.abs(w[along[0]] - gap.hi) < 0.03 : Math.abs(w[along[1]] - gap.lo) < 0.03));
+    const travel = first ? first[along[1]] - first[along[0]] - 0.02 : undefined;
+    // SLIDE_FLIP (#329): the panel runs on the other face (the arrow mirrored across the wall)
+    const flip = s.arrow && SLIDE_FLIP.some(([l, x, z]) => l === li && Math.abs((axis === 'x' ? z : x) - c) < 0.2 && (axis === 'x' ? x : z) > a && (axis === 'x' ? x : z) < b);
+    const arrow = flip ? { head: axis === 'x' ? [s.arrow.head[0], 2 * c - s.arrow.head[1]] : [2 * c - s.arrow.head[0], s.arrow.head[1]], tail: s.arrow.tail } : s.arrow;
+    const door = new SlidingDoor(gap, arrow, y0, M.door, false, dir, travel);
+    trims.push(...architraves(gap, y0, y0 + DOOR_HEIGHT, door.face));
+    doorways.push({ gap, c, exterior: false });
+    door.name = 'skjutdörren';
+    group.add(door.object);
+    doors.push(door);
+  }
+
+  if (trims.length) {
+    const mesh = new THREE.Mesh(mergeGeometries(trims), M.door);
+    mesh.castShadow = mesh.receiveShadow = true;
+    group.add(mesh);
+  }
+
+  // Wardrobes (G): adjacent units become one hollow wardrobe with sliding doors.
+  const wardrobeCabs = floor.cabinets.filter((c) => WARDROBE_LABELS.includes(c.label));
+  const groups = [];
+  for (const c of wardrobeCabs) {
+    const g = groups.find((g) => (Math.abs(g.x0 - c.x0) < 0.02 && Math.abs(g.x1 - c.x1) < 0.02
+      && (Math.abs(g.z1 - c.z0) < 0.02 || Math.abs(c.z1 - g.z0) < 0.02))
+      || (Math.abs(g.z0 - c.z0) < 0.02 && Math.abs(g.z1 - c.z1) < 0.02
+      && (Math.abs(g.x1 - c.x0) < 0.02 || Math.abs(c.x1 - g.x0) < 0.02)));
+    if (g) Object.assign(g, { x0: Math.min(g.x0, c.x0), x1: Math.max(g.x1, c.x1), z0: Math.min(g.z0, c.z0), z1: Math.max(g.z1, c.z1) });
+    else groups.push({ ...c });
+  }
+  for (const g of groups) {
+    buildWardrobe(group, g, y0, CABINET_HEIGHT[g.label] ?? CABINET_HEIGHT.G, wallBoxes, doors);
+    segments.push(...rectSegments(g));
+  }
+
+  // Kitchen, laundry, bathroom fittings and tiles from our material choices (interior.js)
+  const handled = new Set();
+  const taps = []; // tap/shower outlets for running water (main.js)
+  const appliances = [...windows]; // things that open with E but aren't doors (the fridge, the windows)
+  const fitted = std ? buildStandardInterior(group, floor, li, y0, yC, wallBoxes, handled, doorways, how.kitchen, appliances) // Peab's standard (#574; its kitchen fronts open, #621)
+    : buildInterior(group, floor, li, y0, yC, wallBoxes, handled, taps, appliances, doorways);
+  for (const r of fitted) segments.push(...rectSegments(r));
+
+  // Other fixed cabinets
+  for (const cab of floor.cabinets) {
+    const label = cab.label;
+    if (WARDROBE_LABELS.includes(label) || handled.has(cab)) continue;
+    if (li === KLK.level && cab.x0 > KLK.x0 - 0.05 && cab.x1 < KLK.x1 + 0.05 && cab.z0 > KLK.z0 - 0.05 && cab.z1 < KLK.z1 + 0.05) {
+      klkFittings(group, y0); // the plan's dashed strip in Sovrum 1's Klk: Peab's shelf + rail on wall standards (#331)
+      segments.push(...rectSegments(cab));
+      continue;
+    }
+    const h = label ? CABINET_HEIGHT[label] ?? BASE_CABINET
+      : (cab.x1 - cab.x0 < 0.3 || cab.z1 - cab.z0 < 0.3) ? SHELF_HEIGHT : BASE_CABINET;
+    if (label === 'EL' && li === 0 && !std) { // the hall's EL/C cabinet opens (#103)
+      appliances.push(buildElCabinet(group, cab, 'e', y0, h, []));
+      segments.push(...rectSegments(cab));
+      continue;
+    }
+    const appliance = label === 'TT' || label === 'TM';
+    const inset = 0.01;
+    group.add(box(cab.x0 + inset, cab.x1 - inset, cab.z0 + inset, cab.z1 - inset, y0, y0 + h,
+      appliance ? M.appliance : M.cabinet));
+    if (h === BASE_CABINET || label === 'DM') {
+      group.add(box(cab.x0, cab.x1, cab.z0, cab.z1, y0 + h, y0 + h + 0.03, M.counter));
+    }
+    segments.push(...rectSegments(cab));
+  }
+
+  if (li === 0 && !std) for (const r of cleaningFittings(group, y0)) segments.push(...rectSegments(r)); // the Klk under the stair (#338)
+
+  // Sanitary fixtures, sinks, hob, shower floor
+  for (const f of floor.fixtures) {
+    if (handled.has(f)) continue;
+    const onCounter = floor.cabinets.some((c) => insideRect(f, c));
+    const top = y0 + BASE_CABINET + 0.03;
+    switch (f.kind) {
+      case 'sink':
+        if (onCounter) {
+          group.add(box(f.x0 + 0.03, f.x1 - 0.03, f.z0 + 0.03, f.z1 - 0.03, top - 0.002, top + 0.002, M.rail));
+        } else {
+          group.add(box(f.x0, f.x1, f.z0, f.z1, y0 + 0.72, y0 + 0.86, M.porcelain));
+          segments.push(...rectSegments(f));
+        }
+        break;
+      case 'hob':
+        group.add(box(f.x0 - 0.05, f.x1 + 0.05, f.z0 - 0.05, f.z1 + 0.05, top, top + 0.006, M.dark));
+        break;
+      case 'toilet_tank': {
+        // The redrawn plan shows tank + bowl schematically and sometimes rotated; Peab's
+        // bofakta has the tank against a wall. Put it against the nearest wall.
+        const bowlF = floor.fixtures.find((b) => b.kind === 'toilet_bowl'
+          && Math.hypot((b.x0 + b.x1) / 2 - (f.x0 + f.x1) / 2, (b.z0 + b.z1) / 2 - (f.z0 + f.z1) / 2) < 0.6);
+        if (!bowlF) break;
+        const t = toiletAgainstWall(f, bowlF, wallBoxes);
+        const [tx, tz] = [(t.tank.x0 + t.tank.x1) / 2, (t.tank.z0 + t.tank.z1) / 2];
+        const ew = t.side === 'west' || t.side === 'east';
+        const toilet = new Toilet(t.side, ew ? t.face : tx, ew ? tz : t.face, y0);
+        group.add(toilet.object);
+        lids.push(toilet, toilet.flush); // the lid, and the flush button (#155)
+        segments.push(...rectSegments(t.tank), ...rectSegments(t.bowl));
+        break;
+      }
+      case 'shower':
+        group.add(box(f.x0, f.x1, f.z0, f.z1, y0, y0 + 0.004, M.tile, { shadow: false }));
+        break;
+    }
+  }
+
+  // Floor of this level (upper level has the stair opening)
+  group.add(...plateAround(0, W, 0, D, li === 1 ? hole : null, y0 + 0.002, M.floor));
+  // Ceiling: underside of the slab / roof
+  group.add(...plateAround(0, W, 0, D, li === 0 ? hole : null, yC - 0.002, M.ceiling, true));
+
+  // contact shadows along walls and cabinets (floor) and in the ceiling corners
+  group.add(buildAO({ x: W, z: D }, y0, yC, [...wallBoxes, ...floor.windows, ...floor.cabinets], wallBoxes,
+    { floorHole: li === 1 ? hole : null, ceilHole: li === 0 ? hole : null }));
+
+  for (const s of (how.soffits ?? SOFFITS).filter((s) => s.level === li)) {
+    group.add(box(s.x0, s.x1, s.z0, s.z1, y0 + s.height, yC - 0.004, M.ceiling, { shadow: false }));
+  }
+
+  return { segments, wallSegments, wallRects, doors, lids, taps, appliances, openings, sills, barriers, ceiling: yC };
+}
+
+/** The slab between the levels (façade band + stair opening), the roof zone, the stair, its railing and handrails into
+ * `scene` (plan coordinates); the railing's collision goes into Övre plan's segments. Shared by our flat and the visited
+ * ones (#574: the same sheet, so the same stair). */
+function buildStructure(scene, lower, l1, W, D, M) {
+  // Slab between the levels (façade band + stair opening), and roof
+  const slabY0 = LEVELS[0].floor + LEVELS[0].ceiling, slabY1 = LEVELS[1].floor;
+  const h = STAIR.hole;
+  for (const [x0, x1, z0, z1] of [[0, W, 0, h.z0], [0, W, h.z1, D], [0, h.x0, h.z0, h.z1], [h.x1, W, h.z0, h.z1]]) {
+    scene.add(box(x0, x1, z0, z1, slabY0, slabY1, M.wall));
+  }
+  const roofY = LEVELS[1].floor + LEVELS[1].ceiling;
+  scene.add(box(0, W, 0, D, roofY, UNIT_TOP, M.wall)); // our roof zone = våning 3's floor (VERTICAL, #344)
+
+  // Stairs + upstairs railing around the opening above flight A
+  // treads: the very same Ek Chalk parquet material as the floors (our Peab choice, #54); white risers
+  scene.add(buildStairs([M.floor, M.riser]));
+  const y1 = LEVELS[1].floor, rail = STAIR.railHeight;
+  const midZ = (STAIR.aZ[0] + STAIR.bZ[1]) / 2; // the line between flight A (below) and flight B (above)
+  const railSegs = [
+    [STAIR.hole.x0, midZ, STAIR.hole.x0, STAIR.hole.z1],
+    [STAIR.hole.x0, midZ, STAIR.center[0], midZ],
+  ];
+  // The middle run stands over Entréplan's wall between the flights, which stops at the level's ceiling,
+  // a slab thickness below y1 (no slab in the hole). Carry that wall on up to the upstairs floor as an
+  // upstand, so the balusters stand on it instead of hanging in the air above the turn (#232).
+  const midWall = lower.walls.map((w) => {
+    const xs = w.outer.map((q) => q[0]), zs = w.outer.map((q) => q[1]);
+    return { x0: Math.min(...xs), x1: Math.max(...xs), z0: Math.min(...zs), z1: Math.max(...zs) };
+  }).find((b) => b.z0 <= midZ && b.z1 >= midZ && b.x0 <= STAIR.hole.x0 && b.x1 >= STAIR.center[0] - 0.1);
+  if (midWall) scene.add(box(Math.max(midWall.x0, STAIR.hole.x0), midWall.x1, midWall.z0, midWall.z1, slabY0 - 0.01, y1, M.wall));
+  for (const [ax, az, bx, bz] of railSegs) {
+    scene.add(box(Math.min(ax, bx) - 0.02, Math.max(ax, bx) + 0.02, Math.min(az, bz) - 0.02, Math.max(az, bz) + 0.02,
+      y1 + rail - 0.05, y1 + rail, M.rail));
+    const n = Math.max(2, Math.round(Math.hypot(bx - ax, bz - az) / 0.12));
+    for (let i = 1; i < n; i++) { // the ends are newel posts
+      const x = ax + ((bx - ax) * i) / n, z = az + ((bz - az) * i) / n;
+      scene.add(box(x - 0.01, x + 0.01, z - 0.01, z + 0.01, y1, y1 + rail, M.rail));
+    }
+  }
+  // newel posts at the corner and both ends (Peab's 3D plan), on the slab edge / the upstand's end
+  const np = STAIR.newel / 2, endX = Math.min(STAIR.center[0], (midWall?.x1 ?? STAIR.center[0]) - np);
+  for (const [x, z] of [[STAIR.hole.x0, midZ], [STAIR.hole.x0, STAIR.hole.z1 - np], [endX, midZ]]) {
+    scene.add(box(x - np, x + np, z - np, z + np, y1 - 0.01, y1 + rail + 0.03, M.rail));
+  }
+  l1.segments.push(...railSegs);
+  // handrails: the wall side along the flights and round the winders, one per flight on the inner side (#419)
+  for (const m of [...buildHandrails(M.rail).children]) scene.add(m);
+}
+
+/** L1201's slab, roof zone, stair and railing (#573, L1201 in config): our stair type mapped onto its sheet's outline (the
+ * same flights and winders, mirrored in x and scaled; `stairMap`), the railing along its opening, the upstand between
+ * the flights. Plan coordinates, absolute y. */
+function stairMap(P, L) {
+  const S = P.stair, sx = (S.x1 - S.x0) / (STAIR.winderX1 - STAIR.bX1), sz = (S.z1 - S.z0) / (STAIR.aZ[1] - STAIR.bZ[0]);
+  const ky = (L[1].floor - L[0].floor) / (LEVELS[1].floor - LEVELS[0].floor);
+  const toOurs = (x, z) => [STAIR.bX1 + (S.x1 - x) / sx, STAIR.bZ[0] + (z - S.z0) / sz];
+  const y = (h) => (h === null ? null : L[0].floor + (h - LEVELS[0].floor) * ky);
+  const matrix = new THREE.Matrix4().makeTranslation(S.x1 + sx * STAIR.bX1, L[0].floor - LEVELS[0].floor * ky, S.z0 - sz * STAIR.bZ[0])
+    .multiply(new THREE.Matrix4().makeScale(-sx, ky, sz));
+  return { sx, sz, ky, matrix, height: (x, z) => y(stairHeight(...toOurs(x, z))), underside: (x, z) => y(stairUnderside(...toOurs(x, z))),
+    x: (x7) => S.x1 - (x7 - STAIR.bX1) * sx, z: (z7) => S.z0 + (z7 - STAIR.bZ[0]) * sz, y };
+}
+/** The sloping half wall between the stair and the living room (#624): a solid white wall whose top follows the stair's
+ * nosings at `top` m over them and ends in a vertical edge at its low end (x1), standing on the Entréplan floor. Returns
+ * its top's profile (x descending, y) and a height function for the tests. */
+function buildHalfWall(group, H, map, floorY, cap = Infinity) {
+  const hAt = (x) => map.height(x, H.z0 - 0.1);
+  const dir = H.low === 'x0' ? 1 : -1; // which way the stair climbs along x: away from the wall's low end (L1201 mirrored: west; ours: east)
+  const [xLow, xHigh] = dir > 0 ? [H.x0, H.x1] : [H.x1, H.x0];
+  // the nosings: where the tread surface steps up going away from the low end: (x of the step, the higher tread's height)
+  const pts = [];
+  let prev = null;
+  for (let x = xLow; (xHigh - x) * dir >= -1e-9; x += dir * 0.002) {
+    const h = hAt(x);
+    if (h !== null && prev !== null && h > prev + 1e-6) pts.push([x - dir * 0.002, h]);
+    if (h !== null) prev = h;
+  }
+  const slope = (a, b) => (b[1] - a[1]) / (b[0] - a[0]);
+  const first = pts[0], last = pts.at(-1);
+  // the line extended to both ends of the wall at its own pitch, never above `cap` (the ceiling: a full wall where the stair is high)
+  const raw = [[xLow, first[1] + slope(first, pts[1]) * (xLow - first[0])], ...pts,
+    [xHigh, last[1] + slope(pts.at(-2), last) * (xHigh - last[0])]].map(([x, y]) => [x, y + H.top]);
+  const line = [];
+  raw.forEach((p, i) => {
+    const q = raw[i - 1];
+    if (q && (q[1] - cap) * (p[1] - cap) < 0) line.push([q[0] + (p[0] - q[0]) * (cap - q[1]) / (p[1] - q[1]), cap]);
+    line.push([p[0], Math.min(p[1], cap)]);
+  });
+  const shape = new THREE.Shape([[xLow, floorY], ...line, [xHigh, floorY]].map(([x, y]) => new THREE.Vector2(x, y)));
+  const geo = new THREE.ExtrudeGeometry(shape, { depth: H.z1 - H.z0, bevelEnabled: false });
+  geo.translate(0, 0, H.z0);
+  const mesh = new THREE.Mesh(geo, SM.wall);
+  mesh.castShadow = mesh.receiveShadow = true;
+  mesh.name = 'halvväggen vid trappan';
+  group.add(mesh);
+  const top = (x) => {
+    const asc = line.slice().sort((a, b) => a[0] - b[0]); // x ascending, whichever end is low
+    let i = 1;
+    while (i < asc.length - 1 && x > asc[i][0]) i++;
+    const [a, b] = [asc[i - 1], asc[i]];
+    return b[0] === a[0] ? b[1] : a[1] + (b[1] - a[1]) * (x - a[0]) / (b[0] - a[0]);
+  };
+  return { top, line };
+}
+function buildOwnStructure(group, lower, upper, l1, P, L, map) {
+  const h = P.hole, W = lower.size.x;
+  for (const [x0, x1, z0, z1] of [[0, W, 0, h.z0], [0, W, h.z1, lower.size.z], [0, h.x0, h.z0, h.z1], [h.x1, W, h.z0, h.z1]]) {
+    group.add(box(x0, x1, z0, z1, L[0].floor + L[0].ceiling, L[1].floor, SM.wall));
+  }
+  group.add(box(0, upper.size.x, 0, upper.size.z, L[1].floor + L[1].ceiling, L[1].top, SM.wall)); // under the roof
+  // the stair: ours, mapped (a mirror: the triangles' winding is turned back)
+  const stair = buildStairs([SM.floor, SM.riser]);
+  stair.updateMatrixWorld(true);
+  stair.traverse((o) => {
+    if (!o.isMesh) return;
+    let g = o.geometry.clone().applyMatrix4(new THREE.Matrix4().multiplyMatrices(map.matrix, o.matrixWorld));
+    if (g.index) g = g.toNonIndexed();
+    for (const a of Object.values(g.attributes)) for (let i = 0; i < a.count; i += 3) for (let k = 0; k < a.itemSize; k++) {
+      const t = a.getComponent(i + 1, k); a.setComponent(i + 1, k, a.getComponent(i + 2, k)); a.setComponent(i + 2, k, t);
+    }
+    const m = new THREE.Mesh(g, o.material); m.castShadow = m.receiveShadow = true; group.add(m);
+  });
+  map.halfWall = buildHalfWall(group, P.halfWall, map, L[0].floor, L[0].floor + L[0].ceiling);
+  // the railing (H 1.1): along the opening's east edge to the set-back wall, the middle run on the upstand over the wall
+  // between the flights (the Klk's south wall carried up, as ours, #232)
+  const R = P.railing, y1 = L[1].floor, rail = R.h, midZ = R.z0, cx = map.x(STAIR.center[0]);
+  const mid = lower.walls.map((w) => bboxOf(w.outer)).find((b) => b.z0 <= midZ && b.z1 >= midZ && b.x1 >= R.x - 0.05 && b.x0 < R.x);
+  if (mid) group.add(box(mid.x0, Math.min(mid.x1, R.x), mid.z0, mid.z1, L[0].floor + L[0].ceiling - 0.01, y1, SM.wall));
+  const runs = [[R.x, midZ, R.x, R.z1], [R.x, midZ, cx, midZ]];
+  for (const [ax, az, bx, bz] of runs) {
+    group.add(box(Math.min(ax, bx) - 0.02, Math.max(ax, bx) + 0.02, Math.min(az, bz) - 0.02, Math.max(az, bz) + 0.02, y1 + rail - 0.05, y1 + rail, SM.rail));
+    const n = Math.max(2, Math.round(Math.hypot(bx - ax, bz - az) / 0.12));
+    for (let i = 1; i < n; i++) { const x = ax + ((bx - ax) * i) / n, z = az + ((bz - az) * i) / n; group.add(box(x - 0.01, x + 0.01, z - 0.01, z + 0.01, y1, y1 + rail, SM.rail)); }
+  }
+  const np = STAIR.newel / 2;
+  for (const [x, z] of [[R.x, midZ], [cx, midZ], [R.x, R.z1 - np]]) group.add(box(x - np, x + np, z - np, z + np, y1 - 0.01, y1 + rail + 0.03, SM.rail));
+  l1.segments.push(...runs);
+  // handrails (#619) as ours (#419): the wall side round the winders, one per flight on the inner side — ours mapped onto
+  // its outline, at its own wall faces (P.handrail), flight B's between its newels; no collision (inside the walls' clearance)
+  map.handrail = { X: map.x, Z: map.z, Y: map.y, H: P.handrail, midZ, innerB: { from: cx, to: R.x } };
+  for (const m of [...buildHandrails(SM.rail, map.handrail).children]) group.add(m);
+}
+
+/** A flat you can walk into (#574, #573, VISIT_UNITS): built like ours from its sheet, in Peab's standard finish and
+ * empty, in a group at its own place in the row (`ox` along x, `oz` along z), then handed to visitunit.js (collision,
+ * targets, rooms). 'shared': L1007's sheet (L1004: same storeys, same stair); else its own plan + config (L1201). */
+function buildVisitFlat(plan, U, ox) {
+  const own = U.plan === 'L1201', P = own ? L1201 : null;
+  if (own) plan = L1201_PLAN;
+  const oz = own ? HUS_L.loftgangDepth : 0;
+  const group = new THREE.Group();
+  group.name = `lägenhet ${U.id}`;
+  group.position.set(ox, 0, oz);
+  group.updateMatrixWorld(true);
+  const [lower, upper] = plan.floors, W = lower.size.x, D = lower.size.z;
+  const L = own ? P.levels.map((v, i) => ({ name: v.name, floor: storeyFloor(3 + i), ceiling: v.rh, top: storeyFloor(4 + i) }))
+    : LEVELS.map((v) => ({ name: v.name, floor: v.floor, ceiling: v.ceiling, top: v.top }));
+  const how = { standard: true, mats: SM, ox, oz,
+    ...(own ? { levels: L, hole: P.hole, windows: P.windows, soffits: P.soffits, extDoorHead: P.extDoorHead, kitchen: P.kitchen } : {}) };
+  const l0 = buildLevel(lower, 0, group, how), l1 = buildLevel(upper, 1, group, how);
+  const map = own ? stairMap(P, L) : null;
+  if (own) buildOwnStructure(group, lower, upper, l1, P, L, map); else buildStructure(group, lower, l1, W, D, SM);
+  const doors = [...l0.doors, ...l1.doors], lids = [...l0.lids, ...l1.lids, ...l0.appliances, ...l1.appliances];
+  const moving = [...doors, ...lids].map((d) => d.object);
+  const edges = architectureEdges(group, { moving, floor: L[1].floor });
+  // the plan's own room names (no tillval: Allrum stays Allrum)
+  const rooms = plan.floors.map((f, li) => [...f.rooms, ...(own ? [] : EXTRA_ROOMS.filter((r) => r.level === li))]);
+  const dividers = own ? P.dividers : ROOM_DIVIDERS;
+  const roomMaps = [l0, l1].map((l, li) => new RoomMap({ x: W, z: D }, [...l.barriers, ...dividers.filter((d) => d.level === li)], rooms[li]));
+  [l0, l1].forEach((l, li) => fitPrivacyDoors(l.doors, (x, z) => roomMaps[li].at(x, z)));
+  const box3 = new THREE.Box3(), mid = new THREE.Vector3();
+  mergeStatic(group, moving.concat(edges ? [edges] : []), (o) => { box3.setFromObject(o).getCenter(mid); return mid.y < L[1].floor - 0.05 ? 'l0' : 'l1'; });
+  for (const d of doors) mergeStatic(d.object, d.keep ?? [], () => '', { tagged: true });
+  batchFronts(group, lids.filter((l) => l.batchFront)); // its kitchen's opening fronts: one mesh + one set of edges (#621)
+  const rect = (f) => ({ x0: Math.min(0, ...f.walls.flatMap((w) => w.outer.map((q) => q[0]))), x1: f.size.x, z0: 0, z1: f.size.z });
+  const levels = L.map((v, i) => ({ ...v, rect: rect(plan.floors[i]), hole: i === 1 ? (own ? P.hole : STAIR.hole) : null }));
+  return new VisitUnit({ id: U.id, ox, oz, object: group, levels, built: [l0, l1], doors, lids, roomMaps, ground: !own,
+    stair: own ? map : { height: stairHeight, underside: stairUnderside },
+    soffits: own ? P.soffits : SOFFITS, shell: [SM.wall, SM.ceiling, SM.floor, SM.frame], glass: SM.glass }); // (what shows from afar: its rooms behind glass, #574)
+}
+
+export function buildWorld(plan) {
+  mirrorLamps.length = 0; // filled by buildInterior
+  const scene = new THREE.Group();
+  const [lower, upper] = plan.floors;
+  // plan corrections for fixed cabinets (CABINET_FIXES): the hall's EL cabinet is smaller than drawn
+  plan.floors.forEach((f, li) => {
+    for (const fix of CABINET_FIXES.filter((x) => x.level === li)) {
+      const c = f.cabinets.find((k) => k.label === fix.label);
+      if (c) Object.assign(c, { ...fix, level: undefined });
+    }
+  });
+  const W = lower.size.x, D = lower.size.z;
+
+  const l0 = buildLevel(lower, 0, scene);
+  const l1 = buildLevel(upper, 1, scene);
+
+  buildStructure(scene, lower, l1, W, D, M); // the slab, the roof zone, the stair and its railing
+  // the other flats you can walk into (#574), each at its own slot in the row
+  const slots = husLLayout(W).units;
+  const units = VISIT_UNITS.map((U) => buildVisitFlat(plan, U, slots.find((u) => u.lower === U.slot || u.upper === U.slot).ox));
+
+  const PD=PORTIK.door;
+  const portikDoor=new SwingDoor({hinge:[PD.x,PD.z1],tip:[PD.x-(PD.z1-PD.z0),PD.z1],wall:[PD.x,PD.z0]},0,mat(PD.color),false);
+  portikDoor.name='dörren till lilla rummet';scene.add(portikDoor.object);
+
+  // Outline the fixed architecture, keeping opening leaves separate.
+  const edgeLines = architectureEdges(scene, {
+    moving: [...l0.doors, ...l1.doors, portikDoor, ...l0.lids, ...l1.lids, ...l0.appliances, ...l1.appliances].map(d => d.object),
+    floor: LEVELS[1].floor,
+  });
+
+  // Site: ground, patio, hedge, fences
+  const site = lower.site;
+  // the street side; south of it and where the streets slope (#256): surroundings.js's terrain (#79)
+  const T = SITE.terrain;
+  // (#415: with a hole over Hus L's stairwell, which goes down to the garage — CORE)
+  scene.add(plate(SITE.backgroundGround.x0, SITE.backgroundGround.x1, SITE.backgroundGround.z0, terrainNorth, -0.01, M.grass), plate(T.west.stair.x1, CORE.x0, terrainNorth, T.north, -0.01, M.grass),
+    plate(CORE.x1, T.east.gable, terrainNorth, T.north, -0.01, M.grass), plate(CORE.x0, CORE.x1, terrainNorth, CORE.north[1], -0.01, M.grass),
+    plate(CORE.x0, CORE.x1, CORE.south[1], T.north, -0.01, M.grass), plate(T.west.x, T.west.stair.x1, T.west.stair.z1, T.north, -0.01, M.grass));
+  if (site.patio) scene.add(plate(site.patio.x0, site.patio.x1, D, site.patio.z1, 0.0, M.patio)); // UVs in metres
+  const outdoor = [];
+  if (site.hedge) {
+    // Visible foliage is batched with the neighbours by buildExterior; preserve the original collision below.
+    outdoor.push(...rectSegments(site.hedge));
+  }
+  for (const f of site.fences ?? []) {
+    const [ax, az] = f.a, [bx, bz] = f.b;
+    scene.add(box(ax - 0.025, bx + 0.025, Math.min(az, bz), Math.max(az, bz), 0, FENCE_HEIGHT, M.fence));
+    outdoor.push([ax, az, bx, bz]);
+  }
+  // Hus L: brick façades, the neighbouring units, the stacked units above and the loftgång
+  const north = [...l0.openings.north, ...l1.openings.north];
+  const south = [...l0.openings.south, ...l1.openings.south];
+  const exterior = buildExterior({ W, D, roofTop: UNIT_TOP, north, south, frame: M.frame, wall: M.wall, site, mats: M, visits: units.map((u) => u.id) });
+  scene.add(exterior);
+  const surroundings = buildSurroundings({ grass: M.grass });
+  const courtyard = buildCourtyard(); // walks, pergola, grill, sandboxes, boule, benches, beds (#80)
+  scene.add(courtyard.object);
+  outdoor.push(...courtyard.segments);
+  // snow in the winter months (seasons.js): the lawn, the hedges and the patio paving
+  registerSnow(M.grass, SEASON.snow.ground);
+  registerSnow(M.hedge, SEASON.snow.hedge);
+  registerSnow(M.patio, SEASON.snow.paving);
+  scene.add(surroundings);
+  // the walkable block (#355): OUTDOOR's rectangle round Kv. Lunden; Hus L's row is a wall all round except our own
+  // façades (the flat's walls take over there) and the portik through the stair core; the neighbours' screen walls and
+  // hedges block like ours, the Å-husen's outlines and the garage box's edge (except down its stairs) like walls
+  const o = OUTDOOR, { xw, xe, portik: [p0, p1] } = husLLayout(W);
+  // a visited flat's façades are its own walls, like ours (#574): the row's lines are cut out there
+  const cut = (segs) => segs.flatMap(([ax, az, bx, bz]) => {
+    if (az !== bz) return [[ax, az, bx, bz]];
+    let parts = [[Math.min(ax, bx), Math.max(ax, bx)]];
+    for (const u of units.filter((v) => v.ground)) parts = parts.flatMap(([a, b]) => [[a, Math.min(b, u.ox)], [Math.max(a, u.ox + W), b]].filter(([c, d]) => d - c > 1e-6));
+    return parts.map(([a, b]) => [a, az, b, bz]);
+  });
+  outdoor.push(
+    [o.x0, o.z0, o.x1, o.z0], [o.x1, o.z0, o.x1, o.z1], [o.x1, o.z1, o.x0, o.z1], [o.x0, o.z1, o.x0, o.z0],
+    ...cut([[xw, 0, p0, 0], [p1, 0, 0, 0], [W, 0, xe, 0], [xe, 0, xe, D], [xw, D, p0, D], [p1, D, 0, D], [W, D, xe, D], [xw, D, xw, 0]]),
+    ...units.filter((u) => u.ground).flatMap((u) => u.fixed[0]), // its Entréplan walls: in the way from the street and the patio too
+    ...exterior.userData.portik.segments, // same calibrated room boundaries as actual geometry (#520)
+    ...exterior.userData.segments,
+    ...surroundings.userData.segments.filter((s) => Math.max(s[0], s[2]) > o.x0 - 1 && Math.min(s[0], s[2]) < o.x1 + 1
+      && Math.max(s[1], s[3]) > o.z0 - 1 && Math.min(s[1], s[3]) < o.z1 + 1), // the box's edge, Hus A / B / C (#255, #259)
+  );
+  l0.segments.push(...outdoor);
+  // up on the roofs (#360, src/roofs.js): Hus L's loftgång, terraces, roof, loft and drums, the Å-husen's roofs and
+  // canopies; OUTDOOR's edge is a wall at every height
+  const walkable = [exterior.userData.walk, surroundings.userData.walk], roofWalls = walkable.flatMap((w) => w.walls);
+  wallRect(roofWalls, o.x0, o.x1, o.z0, o.z1, -100, 1000);
+  const roofs = new Roofs(walkable.flatMap((w) => w.surfaces), roofWalls);
+
+  const rooms = plan.floors.map((f, li) => [...f.rooms, ...EXTRA_ROOMS.filter((r) => r.level === li)].map((r) => {
+    const re = ROOM_RENAMES.find((x) => x.level === li && x.from === r.name && OPTIONS[x.option]);
+    return re ? { ...r, name: re.to } : r;
+  }));
+  const roomMaps = [l0, l1].map((l, li) => new RoomMap({ x: W, z: D },
+    [...l.barriers, ...ROOM_DIVIDERS.filter((d) => d.level === li)], rooms[li]));
+
+  [l0, l1].forEach((l, li) => fitPrivacyDoors(l.doors, (x, z) => roomMaps[li].at(x, z)));
+
+  // bake the static fittings into one mesh per material and level (draw calls, #48)
+  const box3 = new THREE.Box3(), mid = new THREE.Vector3();
+  const merged = mergeStatic(scene, [
+    ...l0.doors, ...l1.doors, portikDoor, ...l0.lids, ...l1.lids, ...l0.appliances, ...l1.appliances,
+  ].map((d) => d.object).concat([exterior, surroundings]), (o) => {
+    box3.setFromObject(o).getCenter(mid);
+    if (mid.x < 0 || mid.x > W || mid.z < 0 || mid.z > D) return 'out';
+    return mid.y < LEVELS[1].floor - 0.05 ? 'l0' : 'l1';
+  });
+  scene.userData.merged = merged;
+  for (const d of [...l0.doors, ...l1.doors,portikDoor]) mergeStatic(d.object, d.keep ?? [], () => '', { tagged: true }); // leaf + handles (not the letter flap)
+  for (const u of units) scene.add(u.object); // (merged on their own, #574)
+
+  const levels = [l0, l1];
+  const platforms = []; // fixed courtyard seats and tables support standing
+  levels.forEach((l, i) => {
+    l.fixedSegments = l.segments;
+    const court = i === 0 ? courtyard.seats : { segments: [], footprints: [] };
+    l.segments = [...l.fixedSegments, ...court.segments];
+    l.footprints = [...court.footprints];
+    for (const q of l.footprints) if (q.top !== undefined) {
+      platforms.push({ pts: q, top: q.top, x0: Math.min(...q.map((c) => c[0])), x1: Math.max(...q.map((c) => c[0])), z0: Math.min(...q.map((c) => c[1])), z1: Math.max(...q.map((c) => c[1])) });
+    }
+  });
+
+  return {
+    object: scene,
+    edgeLines,
+    platforms,
+    /** Moving doors of adjacent ground-floor flats also block outdoor navigation. */
+    movingSegments(level) {
+      return level === 0 ? units.filter((u) => u.ground).flatMap((u) => u.doorSegments(0)) : [];
+    },
+    lamps: [...mirrorLamps],
+    windowLights: { object: surroundings.userData.windows.object, update(h, n, power = true) { surroundings.userData.windows.update(h, n, power); courtyard.update(n, power); exterior.userData.update(n, power); } }, // neighbours' lit windows, the pergola's bulbs, the loftgång lanterns (daycycle)
+    size: { x: W, z: D },
+    levels,
+    roofs, // the walkable roofs outdoors (#360)
+    units, // the other flats you can walk into (#574, visitunit.js)
+    /** The visited flat whose footprint (x, z) is in, or null (#574). */
+    unitAt: (x, z, y) => units.find((u) => u.contains(x, z, y)) ?? null,
+    upperSegments: surroundings.userData.upper, // the box's edge over the garage door: in the way only up on the courtyard (#357)
+    portik: {...exterior.userData.portik,doorTarget:portikDoor},
+    doors: [...l0.doors, ...l1.doors,portikDoor],
+    klkDoor: l0.doors.find((d) => d.kind === 'swing' && Math.abs(d.hinge[0] - 3.35) < 0.1 && Math.abs(d.hinge[1] - 5.70) < 0.1) ?? null, // door into the Klk under the stair (#389)
+    lids: [...l0.lids, ...l1.lids, ...l0.appliances, ...l1.appliances], // toggled with E, not doors
+    hob: [...l0.appliances, ...l1.appliances].find((a) => a.kind === 'hob') ?? null, // the induction hob (#158)
+    hood: [...l0.appliances, ...l1.appliances].find((a) => a.kind === 'hood') ?? null, // the cooker hood's fan (#194)
+    openings: { north, south, roof: UNIT_TOP, walls: [...l0.wallRects, ...l1.wallRects], slab: { y: l0.ceiling, hole: STAIR.hole } }, // the façade openings (plan x, absolute y) and the roof height: what the flat can be seen through from outside (#189); its walls hide the rest (#695)
+    taps: [...l0.taps, ...l1.taps],
+    rooms,
+    roomMaps,
+    /** Room name at a plan point on a level (null outside the house). */
+    roomAt: (level, x, z) => roomMaps[level]?.at(x, z) ?? null,
+  };
+}
