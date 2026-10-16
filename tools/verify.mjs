@@ -1,6 +1,39 @@
 import assert from 'node:assert/strict';
 import {readdir,readFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
 import {build} from 'esbuild';
+// Personal-reference guard. The forbidden words are stored only as SHA-256 hashes of their
+// NFC-normalised, lowercased form, so the public source never spells them out. Like the former
+// case-insensitive regex, a word matches anywhere in a file, also inside identifiers and strings.
+// Optional extra letter-only words (one per line, '#' comments) can be kept in the git-ignored
+// tools/private-denylist.txt.
+const normalise=text=>text.normalize('NFC').toLowerCase();
+const sha256=text=>createHash('sha256').update(text).digest('hex');
+const deniedHashes=new Set([
+  'd233633d9524e84c71d6fe45eb3836f8919148e4a5fc2234cc9e6494ec0f11c2',
+  'b162324935087c6b966f4c28aeadd3fa01b3e9b02645d5b80fbab3dc0e2ede41',
+  '4748d4c802a775e8db9a23ec58f0986cacdc5d2d3356d22c490a7d22331ff133',
+  '8b2cd4d1d0b36dbbb821266ea3e82f5c14c608d3766f823334d90118730cf329',
+  '0cb6d47421bcf3f9b601e0c4da13cd242e0277b9936e20ca51cdc18e19cbcb34',
+  '240910c0adbd4c324372c73437c29c8f3a38b4555259a19080af6cc5c63f033d',
+]);
+const deniedLengths=new Set([4,5,6,7]); // character lengths of the hashed words
+try {
+  for(const line of (await readFile('tools/private-denylist.txt','utf8')).split(/\r?\n/)){
+    const word=normalise(line.replace(/#.*/,'').trim());
+    if(word){deniedHashes.add(sha256(word));deniedLengths.add([...word].length);}
+  }
+} catch(error) { if(error.code!=='ENOENT')throw error; }
+const hasDeniedWord=source=>{
+  const windows=new Set();
+  // Only letter runs can contain a word; slide every hashed length over each run.
+  for(const [run] of normalise(source).matchAll(/\p{L}+/gu)){
+    const chars=[...run];
+    for(const length of deniedLengths)for(let i=0;i+length<=chars.length;i++)windows.add(chars.slice(i,i+length).join(''));
+  }
+  for(const window of windows)if(deniedHashes.has(sha256(window)))return true;
+  return false;
+};
 const files=await readdir('src');
 for(const file of files.filter(f=>f.endsWith('.js'))){
   const source=await readFile(`src/${file}`,'utf8');
@@ -9,7 +42,8 @@ for(const file of files.filter(f=>f.endsWith('.js'))){
     assert(source.includes("const RESUME_KEY = 'kvarteret-lunden.update-resume'"));
     for(const call of source.matchAll(/sessionStorage\.(?:getItem|setItem|removeItem)\(([^,)]+)/g))assert.equal(call[1],'RESUME_KEY');
   }
-  assert(!/workers\.dev|cloudflare|new\s+WebSocket|localStorage|indexedDB|Sarah|Olof|Walter|Kian|Budil|Wingren/i.test(source),`Disallowed personal/service reference in ${file}`);
+  assert(!/workers\.dev|cloudflare|new\s+WebSocket|localStorage|indexedDB/i.test(source),`Disallowed service reference in ${file}`);
+  assert(!hasDeniedWord(source),`Disallowed personal reference in ${file}`);
   assert(!/\bplate:\s*['"`]/.test(source),`Personal name plate text in ${file}`);
 }
 const result=await build({entryPoints:['src/main.js'],bundle:true,write:false,format:'esm',target:'es2022',metafile:true,logLevel:'silent'});
