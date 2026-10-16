@@ -40,7 +40,7 @@ Automatisk publicering till GitHub Pages är aktiverad vid varje push till detta
 
 ## Register
 
-- Senast granskade originalversion: `ac413b321681ba7fcc2dfb24b2339cce5b64e693`.
+- Senast granskade originalversion: `1e6b988` (för #20; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -93,3 +93,10 @@ Verifiering: `npm test`, bygg, `tools/browser-check.mjs` och skärmbilder i Chro
 Importerad från `d29a218` och `ce72fb1` (original #1078): `patioLamps` och dess anrop i `src/exterior.js`, `loggiaLamp` med lamp-meshar och uppdatering i `src/surroundings.js` (plus `door`-öppningens extra fält i `loggiaOpenings`) samt enbart `HUS_L.patioLamp` i `src/config.js`. Peabs byggbeskrivning anger utvändig belysningsarmatur med integrerat eluttag vid uteplats, balkong eller terrass; modell, höjd, sida och mått är antaganden. Lampor finns vid Hus L:s 8 altandörrar och 9 takterrassdörrar (enbart geometri i entrélampornas befintliga meshar) och vid hus A/B/C:s 52 loggiadörrar (tre meshar, inga ljus). Visningen är alltid dagsljus, så lamporna syns släckta; nattvägen är densamma som för entrélamporna. Originalets ändringslogg, test och strömavbrott har inte importerats.
 
 Verifiering: `npm test`, `npm run build` och Chromium-bilder av Hus L:s altan och takterrass samt Hus A:s loggior i dagsljus och med påtvingad natt (31 väggsken i entrélampornas mesh = 8 + 6 + 17, 52 loggialampor, inga sidfel).
+
+
+## Markskuggor under träd och vid husfötter, #20
+
+Importerad från `65dc724` och `1e6b988` (original #1079): `src/groundao.js`, insamlingen av trädkronor och väggslingor i `src/surroundings.js` (`aoTrees`, `siteGroundAO`), Hus L-rektangeln från `src/world.js` och enbart `GROUND_AO` i `src/config.js`. Ett multiplicerande mesh ger mjuka skivor under 344 trädkronor och tunna band vid fasadfötterna på 89 väggslingor (A/B/C, Hus L, gamla S:t Lars-husen och bakgrundshusen). Originalet tonar bort skuggorna där solens skuggkarta täcker; här finns ingen skuggkastande sol, så `bindGroundAOShadow` anropas inte och skuggorna visas överallt. Alla värden är antaganden.
+
+Verifiering: `npm test`, `npm run build` och Chromium-bilder (GPU) av området uppifrån, gatan och parken före/efter. +1 ritanrop per vy, ca 24 000 trianglar, inga sidfel eller externa anrop.
