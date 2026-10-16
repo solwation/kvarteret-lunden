@@ -31,12 +31,16 @@ try{
  await page.locator('#measure').click();await page.locator('[data-place="home"]').click();assert.equal(await target(),closed);results.push('menu/help clicks isolated; measurement selects two points without interaction');
  // Mobile keeps its explicit action button and uses scene touches for looking.
  const mobile=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});const m=await mobile.newPage();m.on('pageerror',e=>errors.push(e.message));
- await m.goto(base);await m.waitForFunction(()=>window.lundenViewer?.renderer.info.render.frame>0,null,{timeout:120000});await m.locator('#start').tap();
+ await m.goto(base);await m.waitForFunction(()=>window.lundenViewer?.renderer.info.render.frame>0,null,{timeout:120000});
+ // Same SwiftShader starvation as on desktop, but the frame loop must keep running so it can reveal
+ // #action. Skip only the GPU draw until the button is shown; the scene is redrawn before the screenshot.
+ await m.evaluate(()=>{const r=window.lundenViewer.renderer;window.qaRender=r.render;r.render=()=>{};});
+ await m.locator('#start').tap();
  await m.evaluate(()=>{
   const v=window.lundenViewer,d=v.world.doors.find(d=>d.kind==='swing'&&d.object.position.y<1),p=d.object.position.clone();p.x=d.hinge[0]+Math.sin(d.angle)*d.len/2;p.z=d.hinge[1]+Math.cos(d.angle)*d.len/2;p.y=1.1;
   v.navigation.teleport(p.x+Math.cos(d.angle),0,p.z-Math.sin(d.angle));v.camera.lookAt(p);v.camera.updateMatrixWorld(true);window.qaDoor=d;
  });
- await m.waitForFunction(()=>!document.getElementById('action').hidden);await m.evaluate(()=>window.lundenViewer.renderer.setAnimationLoop(null));const before=await m.evaluate(()=>qaDoor.target);
+ await m.waitForFunction(()=>!document.getElementById('action').hidden);await m.evaluate(()=>{const v=window.lundenViewer;v.renderer.setAnimationLoop(null);v.renderer.render=window.qaRender;v.renderer.render(v.scene,v.camera);});const before=await m.evaluate(()=>qaDoor.target);
  await m.touchscreen.tap(200,350);assert.equal(await m.evaluate(()=>qaDoor.target),before,'scene touch only looks');await m.locator('#action').tap();assert.notEqual(await m.evaluate(()=>qaDoor.target),before);await m.screenshot({path:out+'/mobile.png'});results.push('mobile scene touch and explicit action button preserved');
  await mobile.close();assert.deepEqual(errors,[]);await writeFile(out+'/results.json',JSON.stringify({results,errors},null,2));console.log(JSON.stringify({results,errors,out},null,2));
 }finally{await browser.close();}
