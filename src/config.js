@@ -1652,9 +1652,6 @@ export const FINISH = {
   chrome: 0xd7dadc,       // Rt2 blandare, takdusch Tvm 7200, duschset Rt 105, Alnön beslag
 };
 
-export const HAVBACK = { w: 0.4, d: 0.35, h: 1.95, bottom: 0.22, color: 0x4a4a48, knob: 0xb48a4e, max: 83,
-  shelves: [[0.42, 'grey'], [0.84, 'grey'], [1.23, 'grey'], [1.48, 'glass'], [1.7, 'glass']] };
-
 export const SKIRTING = { h: 0.07, t: 0.012 };
 
 export const TILED_ROOMS = [

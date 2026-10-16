@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { FINISH, TILED_ROOMS, KITCHEN as K, SKIRTING, LAUNDRY_SINK, LAUNDRY_CABINET, VANITY_BASIN, HAVBACK, LIGHTING, KITCHEN_SOCKETS, TAP_LEVER, LAUNDRY, SHOWER_FITTINGS } from './config.js';
+import { FINISH, TILED_ROOMS, KITCHEN as K, SKIRTING, LAUNDRY_SINK, LAUNDRY_CABINET, VANITY_BASIN, LIGHTING, KITCHEN_SOCKETS, TAP_LEVER, LAUNDRY, SHOWER_FITTINGS } from './config.js';
 import { wallCabinet } from './cabinets.js';
 import { Openable, pivotAround } from './openables.js';
 import { socketGeometry } from './sockets.js';
@@ -97,10 +97,6 @@ const M = {
   splash: textured(tileTexture({ tw: T.splash.w, th: T.splash.h, nx: 2, ny: 2, bond: true, color: T.splash.color, vary: 0.03, grout: T.splash.grout, joint: 0.003, ppm: 800, seed: 3 }), { roughness: T.splash.roughness }),
   wallTile: textured(tileTexture({ tw: T.wallTile.w, th: T.wallTile.h, nx: 2, ny: 3, color: T.wallTile.color, vary: 0.02, grout: T.grout, joint: 0.003, seed: 5 }), { roughness: 0.6 }),
   hallTile: textured(tileTexture({ tw: T.hallTile.w, th: T.hallTile.h, nx: 2, ny: 4, color: T.hallTile.color, vary: 0.12, mottle: 0.12, grout: 0x46484a, joint: 0.003, ppm: 300, seed: 11 }), { roughness: 0.7 }),
-  havback: std(HAVBACK.color, { roughness: 0.7 }),          // IKEA HAVBÄCK, dark grey (#293)
-  havbackIn: std(0x535456, { roughness: 0.75 }),
-  havbackGlass: new THREE.MeshStandardMaterial({ color: 0xdcebe6, transparent: true, opacity: 0.35, roughness: 0.1, depthWrite: false }),
-  brass: std(HAVBACK.knob, { roughness: 0.35, metalness: 0.6 }),
   wetTile: textured(tileTexture({ tw: T.wetTile.w, th: T.wetTile.h, nx: 4, ny: 4, color: T.wetTile.color, vary: 0.14, mottle: 0.14, grout: 0x45474a, joint: 0.003, ppm: 400, seed: 13 }), { roughness: 0.75 }),
 };
 
@@ -1311,34 +1307,6 @@ function buildShowerSet(B, wallX, z, y0, ceiling) {
   return outlets;
 }
 
-/**
- * IKEA HAVBÄCK tall cabinet (#293, HAVBACK): wall-hung in the room's south-east corner, back to the south wall, a hollow
- * dark grey carcass with grey and glass shelves, the door on the side-wall side (E opens it) with a brass knob; bathroom
- * things inside, drawn while it is open. Returns its collision rectangle.
- */
-function havback(B, group, list, room, y0) {
-  const H = HAVBACK, x1 = room.x1 - 0.01, z1 = room.z1 - 0.004; // clear of the wall tiles
-  const r = { x0: x1 - H.w, x1, z0: z1 - H.d, z1 };
-  const F = frame(B, r, 'n'), yb = y0 + H.bottom, yt = yb + H.h, t = 0.016;
-  shell(F, F.u0, F.u1, yb, yt, H.d, { shelf: false, inner: M.havbackIn, outer: M.havback });
-  for (const [h, kind] of H.shelves) {
-    const glass = kind === 'glass', th = glass ? 0.006 : 0.018;
-    F.box(F.u0 + t, F.u1 - t, -H.d + 0.008, -FT - 0.006, yb + h - th, yb + h, glass ? M.havbackGlass : M.havbackIn);
-  }
-  openFront({ group, list }, F, F.u0, F.u1, yb, yt, M.havback, null, {}, { mode: 'hinge', at: 'a1', name: 'högskåpet', max: H.max,
-    build: (P, a0, a1, b0, b1) => {
-      const g = 0.0015, e = 0.012;
-      P.box(a0 + g, a1 - g, -FT, -0.002, b0 + g, b1 - g, M.havback);            // the slab
-      P.box(a0 + g, a1 - g, -0.002, 0, b1 - g - e, b1 - g, M.havback);           // its thin flat frame
-      P.box(a0 + g, a1 - g, -0.002, 0, b0 + g, b0 + g + e, M.havback);
-      for (const a of [a0 + g, a1 - g - e]) P.box(a, a + e, -0.002, 0, b0 + g + e, b1 - g - e, M.havback);
-      const ku = a0 + 0.035, ky = (b0 + b1) / 2, [kx, kz] = P.at(ku, 0.022);     // the brass knob on the free edge
-      P.box(ku - 0.005, ku + 0.005, 0, 0.014, ky - 0.005, ky + 0.005, M.brass);
-      P.add(new THREE.SphereGeometry(0.013, 14, 10).scale(1, 1, 0.75).translate(kx, ky, kz), M.brass);
-    } });
-  return { x0: r.x0, x1: r.x1, z0: r.z0, z1: r.z1 };
-}
-
 function spots(B, room, y, n, material) {
   const [cx] = centre(room);
   for (let i = 0; i < n; i++) {
@@ -1404,7 +1372,7 @@ function buildBathroom(B, group, floor, room, y0, handled, taps, appliances) {
       glassPanel(B, [s.x1, s.z0], [s.x1, s.z1], y0);
     }
     taps.push(...showerSet(B, room.x0, (s.z0 + s.z1) / 2, y0, !upstairs));
-    if (!upstairs) segs.push(havback(B, group, appliances, room, y0)); // not in WC/dusch: no room beside its shower (HAVBACK)
+    // The original's loose dark grey IKEA HAVBÄCK tall cabinet is furniture, not a fixed fitting: not built here (#12).
   }
   spots(B, room, yc - 0.004, 2, lampMat(room.level, room.name));
   return segs;
