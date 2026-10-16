@@ -6,7 +6,7 @@ import {chromium} from 'playwright';
 // CHROME_PATH=/path/to/chrome node tools/place-picker-check.mjs http://localhost:8170 /tmp/kvarteret-picker-8-button
 const base = (process.argv[2] ?? 'http://localhost:8170').replace(/\/$/, '') + '/';
 const out = process.argv[3] ?? '/tmp/kvarteret-picker-8-button';
-const ids = ['area', 'home', 'l1004', 'l1202', 'courtyard', 'core', 'garage'];
+const ids = ['area', 'home', 'l1004', 'l1201', 'courtyard', 'core', 'garage'];
 // A fresh isolated browser context seeds only this app's own one-use resume key.
 const resumeKey = 'kvarteret-lunden.update-resume';
 const report = {base, checks: [], errors: [], external: []};

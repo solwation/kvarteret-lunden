@@ -4,11 +4,10 @@ import { Navigation } from './navigation.js';
 import { fetchStartupJSON } from './startup.js';
 import { VERSION, takeResume, watchUpdates } from './updates.js';
 import { installPlaceShortcuts } from './place-shortcuts.js';
-import { husLLayout } from './exterior.js';
 import { Garage } from './garage.js';
 import { Core } from './core.js';
 import { CoreHouse } from './corehouse.js';
-import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, HUS_L, storeyFloor } from './config.js';
+import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS } from './config.js';
 
 const $ = id => document.getElementById(id);
 const touch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
@@ -25,6 +24,9 @@ const locations = {
   core: { name: 'Trapphuset', x: (CORE.x0 + CORE.x1) / 2, y: 0, z: CORE.south[1] - 1, yaw: 0 },
   garage: { name: 'Garaget', x: 0, y: GARAGE.floor, z: 0, yaw: Math.PI },
 };
+
+// Destinations removed from the menu, mapped to their replacement for a resumed older view.
+const LEGACY_PLACES = {l1202: 'l1201'};
 
 function status(text) { $('load-status').textContent = text; }
 function look(dx, dy) {
@@ -143,17 +145,22 @@ async function init() {
   // Use each modeled apartment's own placement rather than a duplicate global offset.
   const l1004 = world.units.find(unit => unit.id === 'L1004');
   if (l1004) locations.l1004 = {name:'L1004 · Entréplan', x:l1004.ox + 2.8, y:l1004.bottom, z:l1004.oz + 1.4, yaw:Math.PI};
-  // L1202 has an exterior entrance but no modeled interior. Place the visitor on its loftgång.
-  const l1202 = husLLayout(world.size.x).units.find(unit => unit.upper === 'L1202');
-  const entrance = HUS_L.street.std.find(opening => opening.door && opening.floor === 0);
-  locations.l1202 = {name:'L1202 · Entré (interiör saknas)', x:l1202.ox + (entrance.x0 + entrance.x1) / 2, y:storeyFloor(HUS_L.street.storey), z:HUS_L.loftgangDepth / 2, yaw:Math.PI};
+  // L1201 has a modeled interior entered from the loftgång; start free in its entrance hall, inside the front door,
+  // looking south-east past the hall towards the kitchen.
+  const l1201 = world.units.find(unit => unit.id === 'L1201');
+  if (l1201) locations.l1201 = {name:'L1201 · Entréplan', x:l1201.ox + 1.5, y:l1201.bottom, z:l1201.oz + 1.0, yaw:Math.PI + .6};
   navigation = new Navigation(world, camera);
   moveTo('area');
   const resumed = takeResume();
   if (resumed) {
-    if (locations[resumed.place]) moveTo(resumed.place);
-    navigation.teleport(...resumed.position);
-    camera.rotation.set(resumed.pitch, resumed.yaw, 0, 'YXZ');
+    // An older version's L1202 entrance destination was replaced by L1201: resume at L1201's entrance hall instead.
+    const legacy = LEGACY_PLACES[resumed.place];
+    if (legacy && locations[legacy]) moveTo(legacy);
+    else {
+      if (locations[resumed.place]) moveTo(resumed.place);
+      navigation.teleport(...resumed.position);
+      camera.rotation.set(resumed.pitch, resumed.yaw, 0, 'YXZ');
+    }
     active = resumed.active === true;
     $('intro').hidden = active;
     $('resume').hidden = !active || touch;
