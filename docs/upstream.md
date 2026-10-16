@@ -72,3 +72,10 @@ Verifiering: `npm test`, bygg och Chromium-bilder av duscharna i L1007 (Badrum, 
 Importerad från `5ced7a8` (original #1071): `addRadiator` och dess anrop i fönsterloopen i `src/world.js` samt enbart `RADIATOR` i `src/config.js`. Varje fönster får en vit kompakt panelradiator centrerad under fönsterbänken, med termostatventil och två rör ned i golvet, i L1007 och de besöksbara L1004/L1201. Peabs planförklaring anger radiator under fönster; alla mått är antaganden. Radiatorn utelämnas över skåp, över bjälklagsöppningar (L1201:s fönster över det öppna rummet) och där bröstningen är för låg. Den använder fönsterkarmarnas material, ger inga extra ritanrop och ingen kollision (den sticker ut 6,5 cm, inom besökarens väggavstånd).
 
 Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` samt skärmbilder i Chromium av L1007 (kök, vardagsrum, sovrum), L1004 och L1201 med oförändrat antal ritanrop per vy före/efter.
+
+
+## Mjuka hörnskuggor på väggarna, #17
+
+Importerad från `e80203f2` (original #1074): `buildWallAO` i `src/ao.js`, dess anrop i `buildLevel` (`src/world.js`) och enbart `AO.wall` i `src/config.js`. Väggarna får ett multiplicerande överlägg per plan med mjuka band mot golv och tak och i innerhörn; glas, dörröppningar och speglar mörkas inte och trapphålet får inget golvband. Inga nya beroenden, resurser eller nätverksanrop.
+
+Verifiering: `npm test`, bygg och den riktiga visningen i Chrome (vardagsrum, hall, sovrum 1 med och utan överlägget), utan webbläsarfel.
