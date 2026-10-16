@@ -121,3 +121,10 @@ Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` (mobil 390×
 Överförd från `8f251e7` (originalets #1083): `fitCrown` i `src/surroundings.js` smalnar av en trädkrona vars lövkort annars skulle nå närmare än `FOLIAGE.wallClearance` (0,2 m, *guess*) ett hus fotavtryck i `SITE.blocks` på samma höjd. Stammarnas placering och kronornas höjd är oförändrade. Originalets dokumentation, ändringslogg och testkörningar har inte förts över.
 
 Verifiering: `npm test`, `npm run build` och Chrome på riktig GPU: lövkort inne i Hus A/B/C:s fotavtryck 10 kronor (upp till 1,56 m) → 0, inga sidfel; före/efter-bilder inifrån Hus B:s fönster mot de två träden.
+
+
+## Mobilspakens dödzon och responskurva, #23
+
+Avgränsad överföring från `211e0e9` (originalets #1088): `steer()` i `src/main.js` ger ingen rörelse inom 10 % av knoppens väg (en vilande tumme driver inte), därefter `t^1,5` upp till 90 % och full fart därifrån; riktningen behålls och kantens glöd följer utfallet. Värdena ligger i `TOUCH.stick` i `src/config.js` (*guess*). Originalets följ-läge förutsätter en flytande spak och är inte tillämpligt på den fasta spaken här; spaksprint finns inte i visningen, och originalets utjämnade titta-dragning ingick inte i denna överföring.
+
+Verifiering: `npm test`, `npm run build` och `tools/browser-check.mjs` med ny kontroll i mobil 390×844 (2 px från mitten → 0, halv väg → 0,35, förbi kanten → 1).

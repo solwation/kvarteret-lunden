@@ -1584,6 +1584,11 @@ panel: { w: .26, h: .065, lift: .36, offset: .008, pickDepth: .02 }
 
 export const CAMPUS_LOD = { curve: 3, roofGrid: 2, maxTris: 36000 };
 
+// Touch stick feel (upstream 211e0e9, original #1088; *guess* values tuned by eye): deflection r = distance / knob travel.
+// Below `deadZone` nothing moves (a resting thumb never drifts); up to `full` the output rises along t^`curve`
+// (fine walking near the centre), beyond it is 1 (full walking speed at the rim).
+export const TOUCH = { stick: { deadZone: 0.1, full: 0.9, curve: 1.5 } };
+
 export const PLAYER = {
 eye: 1.62,
 radius: 0.22,

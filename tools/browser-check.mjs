@@ -81,6 +81,17 @@ try{
  assert(await m.evaluate(()=>window.lundenViewer.navigation.analog.y>0));
  await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
  assert.equal(await m.evaluate(()=>window.lundenViewer.navigation.analog.y),0);
+ // Dead zone and response curve (upstream 211e0e9): a resting thumb's few px do not walk; half travel walks gently.
+ const cx=stick.x+stick.width/2,cy=stick.y+stick.height/2,travel=stick.width*.32,frame=()=>m.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:cx+2,y:cy-2,id:2}]});await frame();
+ const rest=await m.evaluate(()=>Math.hypot(window.lundenViewer.navigation.analog.x,window.lundenViewer.navigation.analog.y));
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:cx,y:cy-travel*.5,id:2}]});await frame();
+ const half=await m.evaluate(()=>window.lundenViewer.navigation.analog.y);
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:cx,y:cy-travel*1.5,id:2}]});await frame();
+ const rim=await m.evaluate(()=>window.lundenViewer.navigation.analog.y);
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
+ assert(rest===0&&half>.2&&half<.45&&rim>.999,`stick feel rest=${rest} half=${half} rim=${rim}`);
+ results.push({stickFeel:{rest,half,rim}});
  results.push({mobile:layout});
  assert.deepEqual(errors,[]);assert.deepEqual(external,[]);
  await writeFile(out+'/browser-results.json',JSON.stringify({results,errors,external},null,2));

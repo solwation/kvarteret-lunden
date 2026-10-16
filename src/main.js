@@ -7,7 +7,7 @@ import { installPlaceShortcuts } from './place-shortcuts.js';
 import { Garage } from './garage.js';
 import { Core } from './core.js';
 import { CoreHouse } from './corehouse.js';
-import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, LIGHTING } from './config.js';
+import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, LIGHTING, TOUCH } from './config.js';
 
 const $ = id => document.getElementById(id);
 const touch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
@@ -296,7 +296,9 @@ $('viewer').addEventListener('pointercancel', () => {lookPointer=null;previous=n
 let joystickPointer = null;
 const stick=$('joystick'), knob=stick.querySelector('span');
 // Knob travel follows the stick's rendered size, which scales with the screen's short side (style.css; upstream e3d2873, #1087).
-function steer(e){const r=stick.getBoundingClientRect(),t=r.width*.32,dx=e.clientX-r.left-r.width/2,dy=e.clientY-r.top-r.height/2,d=Math.hypot(dx,dy),n=Math.max(1,d/t);navigation.analog.x=dx/n/t;navigation.analog.y=-dy/n/t;knob.style.transform=`translate(${dx/n}px,${dy/n}px)`;stick.style.setProperty('--joy-a',`${Math.atan2(dx,-dy)*180/Math.PI}deg`);stick.style.setProperty('--joy-m',(Math.min(d,t)/t*.75).toFixed(2));}
+// Dead zone + response curve on the deflection, direction kept (upstream 211e0e9, #1088).
+function stickResponse(r){const {deadZone,full,curve}=TOUCH.stick;return r<=deadZone?0:Math.min(1,(r-deadZone)/(full-deadZone))**curve;}
+function steer(e){const r=stick.getBoundingClientRect(),t=r.width*.32,dx=e.clientX-r.left-r.width/2,dy=e.clientY-r.top-r.height/2,d=Math.hypot(dx,dy),n=Math.max(1,d/t),out=stickResponse(Math.min(d,t)/t),k=d>0?out/Math.min(d,t):0;navigation.analog.x=dx/n*k;navigation.analog.y=-dy/n*k;knob.style.transform=`translate(${dx/n}px,${dy/n}px)`;stick.style.setProperty('--joy-a',`${Math.atan2(dx,-dy)*180/Math.PI}deg`);stick.style.setProperty('--joy-m',(out*.75).toFixed(2));}
 stick.addEventListener('pointerdown',e=>{if(!active)return;joystickPointer=e.pointerId;stick.setPointerCapture(e.pointerId);steer(e);});
 stick.addEventListener('pointermove',e=>{if(e.pointerId===joystickPointer)steer(e);});
 for(const type of ['pointerup','pointercancel','lostpointercapture'])stick.addEventListener(type,()=>{joystickPointer=null;if(navigation)navigation.analog.x=navigation.analog.y=0;knob.style.transform='';stick.style.setProperty('--joy-m','0');});
