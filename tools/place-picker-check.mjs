@@ -3,9 +3,9 @@ import {mkdir, writeFile} from 'node:fs/promises';
 import {chromium} from 'playwright';
 
 // Run against the built, served app; no mocked world, navigation or picker handlers.
-// CHROME_PATH=/path/to/chrome node tools/place-picker-check.mjs http://localhost:8170 /tmp/kvarteret-picker-8
+// CHROME_PATH=/path/to/chrome node tools/place-picker-check.mjs http://localhost:8170 /tmp/kvarteret-picker-8-button
 const base = (process.argv[2] ?? 'http://localhost:8170').replace(/\/$/, '') + '/';
-const out = process.argv[3] ?? '/tmp/kvarteret-picker-8';
+const out = process.argv[3] ?? '/tmp/kvarteret-picker-8-button';
 const ids = ['area', 'home', 'l1004', 'l1202', 'courtyard', 'core', 'garage'];
 // A fresh isolated browser context seeds only this app's own one-use resume key.
 const resumeKey = 'kvarteret-lunden.update-resume';
@@ -38,21 +38,23 @@ async function openApp(options, resume) {
   await page.goto(base);
   await page.waitForFunction(() => window.pickerCheckStopped === true, null, {timeout: 120000});
   assert.deepEqual(await page.locator('[data-place]').evaluateAll(bs => bs.map(b => b.dataset.place)), ids);
-  const select = page.locator('select#place-select');
-  assert.equal(await select.getAttribute('aria-label'), 'Välj område');
-  assert.equal(await select.isEnabled(), true);
-  assert.deepEqual(await select.locator('option').evaluateAll(os => os.map(o => o.value)), ids);
-  const labels = await select.locator('option').allTextContents();
-  assert(labels.every(label => label.trim() && !/^\s*[1-7]\s*[·.]/.test(label)), 'clean option names');
+  assert.equal(await page.locator('select').count(), 0, 'no native select');
+  const toggle = page.locator('nav.locations button#place-toggle');
+  assert.equal(await toggle.getAttribute('aria-controls'), 'place-menu');
+  assert.equal(await toggle.isEnabled(), true);
+  assert.equal(await page.locator('nav.locations div#place-menu.place-buttons').count(), 1);
+  assert.equal(await page.locator('#place-menu [data-place]').count(), 7);
+  assert.equal(await page.locator('[role="menu"], [role="menuitem"]').count(), 0, 'ordinary disclosure buttons');
   assert.deepEqual(await page.locator('[data-place]').evaluateAll(bs => bs.map(b => b.textContent.trim()[0])),
     ['1', '2', '3', '4', '5', '6', '7']);
-  return {context, page, select};
+  await disclosure(page, false, 'startup');
+  return {context, page, toggle};
 }
 
 async function state(page) {
   return page.evaluate(() => {
     const v = window.lundenViewer;
-    return {position: v.navigation.pos.toArray(), value: document.getElementById('place-select').value,
+    return {position: v.navigation.pos.toArray(), current: document.getElementById('place-current').textContent.trim(),
       selected: [...document.querySelectorAll('[data-place].selected')].map(b => b.dataset.place),
       text: document.getElementById('place').textContent};
   });
@@ -62,36 +64,80 @@ async function destination(page, id, label) {
   const actual = await state(page);
   const expected = await page.evaluate(id => {
     const p = window.lundenViewer.locations[id];
-    return {position: [p.x, p.y, p.z], name: p.name};
+    const label = document.querySelector(`[data-place="${id}"]`).textContent.trim().replace(/^[1-7]\s*·\s*/, '');
+    return {position: [p.x, p.y, p.z], name: p.name, label};
   }, id);
   assert.deepEqual(actual.position, expected.position, `${label}: actual navigation.pos for ${id}`);
-  assert.equal(actual.value, id, `${label}: select sync`);
+  assert.equal(actual.current, expected.label, `${label}: clean current-place name`);
+  await disclosure(page, false, label);
   assert.deepEqual(actual.selected, [id], `${label}: exactly one selected button`);
   assert.equal(actual.text, expected.name, `${label}: existing current-place text`);
   report.checks.push({label, id, ...actual});
 }
 
+async function disclosure(page, open, label) {
+  assert.equal(await page.locator('#place-toggle').getAttribute('aria-expanded'), String(open), `${label}: expanded`);
+  assert.equal(await page.locator('nav.locations').evaluate(nav => nav.classList.contains('open')), open, `${label}: open class`);
+  if (await page.locator('#place-toggle').isVisible())
+    assert.equal(await page.locator('#place-menu').isVisible(), open, `${label}: menu visibility`);
+}
+
+async function openMenu(page, touch = false) {
+  await page.locator('#place-toggle')[touch ? 'tap' : 'click']();
+  await disclosure(page, true, 'open disclosure');
+}
+
 async function layout(page, width, height, label) {
   await page.setViewportSize({width, height});
   const narrow = width <= 960;
-  assert.equal(await page.locator('#place-select').isVisible(), narrow, `${label}: select visibility`);
+  await page.waitForFunction(narrow => {
+    const toggle = document.getElementById('place-toggle');
+    return (getComputedStyle(toggle).display !== 'none') === narrow &&
+      toggle.getAttribute('aria-expanded') === 'false';
+  }, narrow);
+  await disclosure(page, false, label);
+  assert.equal(await page.locator('#place-toggle').isVisible(), narrow, `${label}: toggle visibility`);
   for (const button of await page.locator('[data-place]').all())
     assert.equal(await button.isVisible(), !narrow, `${label}: button visibility`);
-  const bounds = await page.locator('.locations').evaluate(nav => {
-    const r = nav.getBoundingClientRect(), select = nav.querySelector('select');
-    const s = select.getBoundingClientRect();
+  const bounds = await page.locator('nav.locations').evaluate(nav => {
+    const r = nav.getBoundingClientRect(), s = nav.querySelector('#place-toggle').getBoundingClientRect();
     return {left: r.left, right: r.right, width: r.width, client: nav.clientWidth, scroll: nav.scrollWidth,
-      selectLeft: s.left, selectRight: s.right, selectHeight: s.height,
+      toggleWidth: s.width, toggleHeight: s.height,
       documentWidth: document.documentElement.scrollWidth, viewport: innerWidth};
   });
   assert(bounds.left >= 0 && bounds.right <= width + 1, `${label}: container inside viewport`);
   assert(bounds.scroll <= bounds.client + 1, `${label}: no horizontal navigation scroll`);
   assert(bounds.documentWidth <= width, `${label}: no document overflow`);
   if (narrow) {
-    assert(bounds.selectHeight >= 44, `${label}: 44px touch target`);
-    assert(bounds.selectLeft >= 0 && bounds.selectRight <= width, `${label}: select inside viewport`);
+    assert(bounds.toggleHeight >= 44, `${label}: 44px touch target`);
+    assert(bounds.toggleWidth > 0 && bounds.toggleWidth <= 240, `${label}: compact toggle max 240px`);
+    assert(bounds.width <= 240 && bounds.width < width - 32, `${label}: navigation is not full width`);
+    const current = await page.locator('#place-current').textContent();
+    if (current.trim() === 'Området')
+      assert(bounds.toggleWidth >= 90 && bounds.toggleWidth <= 140, `${label}: Området about 110px`);
+  } else {
+    const rows = await page.locator('[data-place]').evaluateAll(bs => bs.map(b => b.getBoundingClientRect().top));
+    assert(Math.max(...rows) - Math.min(...rows) <= 1, `${label}: desktop buttons in one row`);
   }
   report.checks.push({label, bounds});
+}
+
+async function popup(page, label) {
+  const bounds = await page.locator('#place-menu').evaluate(menu => {
+    const r = menu.getBoundingClientRect(), buttons = [...menu.querySelectorAll('[data-place]')];
+    return {left: r.left, right: r.right, top: r.top, bottom: r.bottom, width: r.width,
+      height: r.height, scrollHeight: menu.scrollHeight, clientHeight: menu.clientHeight,
+      overflowY: getComputedStyle(menu).overflowY, viewportWidth: innerWidth, viewportHeight: innerHeight,
+      buttons: buttons.map(b => {const r = b.getBoundingClientRect(); return {left: r.left, top: r.top, height: r.height};})};
+  });
+  assert(bounds.width >= 220 && bounds.width <= bounds.viewportWidth - 32 + 1, `${label}: popup width`);
+  assert(bounds.left >= 0 && bounds.right <= bounds.viewportWidth, `${label}: horizontal containment`);
+  assert(bounds.top >= 0 && bounds.bottom <= bounds.viewportHeight + 1, `${label}: vertical containment`);
+  assert(bounds.buttons.every(b => b.height >= 44), `${label}: 44px menu buttons`);
+  assert(bounds.buttons.every((b, i, bs) => !i || b.top >= bs[i - 1].top + bs[i - 1].height - 1), `${label}: vertical buttons`);
+  if (bounds.scrollHeight > bounds.clientHeight + 1)
+    assert(['auto', 'scroll'].includes(bounds.overflowY), `${label}: overflowing landscape menu scrolls`);
+  report.checks.push({label, popup: bounds});
 }
 
 async function screenshot(page, name) {
@@ -107,6 +153,10 @@ async function screenshot(page, name) {
 }
 
 try {
+  const build = await fetch(new URL('version.json', base));
+  assert(build.ok, 'served build version available before startup');
+  report.version = (await build.json()).version;
+  assert.match(report.version, /^[a-f0-9]{24}$/);
   const mobile = await openApp({viewport: {width: 390, height: 844}, isMobile: true, hasTouch: true});
   const m = mobile.page;
   assert(await m.evaluate(() => navigator.maxTouchPoints > 0 && matchMedia('(pointer: coarse)').matches));
@@ -117,21 +167,30 @@ try {
   for (const [width, height] of [[390, 844], [320, 700]]) {
     await layout(m, width, height, `${width} touch`);
     for (const id of ids) {
-      await mobile.select.selectOption(id);
-      await destination(m, id, `${width} native select`);
+      await openMenu(m, true);
+      await popup(m, `${width} ${id}`);
+      if (id === 'area') await screenshot(m, `touch-${width}-open`);
+      await m.locator(`#place-menu [data-place="${id}"]`).tap();
+      await destination(m, id, `${width} actual touch tap`);
     }
     await screenshot(m, `touch-${width}-after`);
   }
+  await layout(m, 844, 390, 'landscape touch');
+  await openMenu(m, true);
+  await popup(m, 'landscape scroll');
+  await screenshot(m, 'touch-landscape-open');
+  await m.locator('#place-menu [data-place="garage"]').tap();
+  await destination(m, 'garage', 'landscape last item');
   const saved = await m.evaluate(() => {
     const v = window.lundenViewer;
     return {position: v.navigation.pos.toArray(), yaw: v.camera.rotation.y, pitch: v.camera.rotation.x,
-      place: document.getElementById('place-select').value, active: true};
+      place: document.querySelector('[data-place].selected').dataset.place, active: true};
   });
   const versionResponse = await mobile.context.request.get(new URL('version.json', base).href);
   assert(versionResponse.ok(), 'served build version available');
   const {version} = await versionResponse.json();
   assert.match(version, /^[a-f0-9]{24}$/);
-  report.version = version;
+  assert.equal(version, report.version, 'build unchanged between mobile and resume startup');
   await mobile.context.close();
 
   // Second and final world startup also proves the real update-resume init path.
@@ -156,29 +215,65 @@ try {
     await screenshot(d, `desktop-${width}`);
   }
 
-  // Reach the native control by Tab, then use real browser selection keys.
+  // Tab follows ordinary button order; Enter and Space activate the disclosure.
   await d.locator('#help').focus();
-  for (let i = 0; i < 12 && !(await desktop.select.evaluate(s => s === document.activeElement)); i++)
+  for (let i = 0; i < 16 && !(await desktop.toggle.evaluate(s => s === document.activeElement)); i++)
     await d.keyboard.press('Tab');
-  assert(await desktop.select.evaluate(s => s === document.activeElement), 'native select reachable by Tab');
-  const focused = await state(d);
-  const ignored = await desktop.select.evaluate(s => s.dispatchEvent(new KeyboardEvent('keydown',
-    {key: '1', code: 'Digit1', bubbles: true, cancelable: true})));
-  assert(ignored, 'editable select does not consume global shortcut');
-  assert.deepEqual(await state(d), focused, 'focused select ignores global place shortcut');
-  await d.keyboard.press('Home');
+  assert(await desktop.toggle.evaluate(s => s === document.activeElement), 'toggle reachable by Tab');
   await d.keyboard.press('Enter');
-  await destination(d, 'area', 'native keyboard Home');
-  await d.keyboard.press('ArrowDown');
+  await disclosure(d, true, 'keyboard Enter opens');
+  await d.keyboard.press('Tab');
+  assert.equal(await d.evaluate(() => document.activeElement.dataset.place), 'area', 'Tab enters first button');
   await d.keyboard.press('Enter');
-  await destination(d, 'home', 'native keyboard ArrowDown');
+  await destination(d, 'area', 'keyboard Tab Enter chooses');
+  await desktop.toggle.focus();
+  await d.keyboard.press('Space');
+  await disclosure(d, true, 'keyboard Space opens');
+  await d.keyboard.press('Tab');
+  await d.keyboard.press('Tab');
+  assert.equal(await d.evaluate(() => document.activeElement.dataset.place), 'home', 'Tab reaches next button');
+  await d.keyboard.press('Space');
+  await destination(d, 'home', 'keyboard Space chooses');
+  await desktop.toggle.focus();
+  for (const [key, id] of [['ArrowUp', 'garage'], ['Home', 'area'], ['End', 'garage'], ['ArrowDown', 'area']]) {
+    await d.keyboard.press(key);
+    await disclosure(d, true, `${key} opens or keeps menu`);
+    assert.equal(await d.evaluate(() => document.activeElement.dataset.place), id, `${key}: button focus`);
+  }
+  await d.locator('#help').focus();
+  await disclosure(d, false, 'focus outside navigation closes');
+  await openMenu(d);
+  await d.locator('[data-place="core"]').focus();
+  const beforeEscape = await state(d);
+  await d.keyboard.press('Escape');
+  await disclosure(d, false, 'Escape closes');
+  assert(await desktop.toggle.evaluate(s => s === document.activeElement), 'Escape focuses toggle');
+  assert.deepEqual(await state(d), beforeEscape, 'Escape preserves destination');
+  await openMenu(d);
+  const beforeOutside = await state(d);
+  await d.mouse.move(640, 700);
+  await d.mouse.down();
+  await disclosure(d, false, 'outside pointerdown closes');
+  await d.mouse.up();
+  assert.deepEqual(await state(d), beforeOutside, 'outside preserves destination');
+  await openMenu(d);
+  await desktop.toggle.click();
+  await disclosure(d, false, 'toggle closes');
+  await openMenu(d);
+  const beforeResize = await state(d);
+  await layout(d, 960, 700, 'open popup resize to 960');
+  assert.deepEqual(await state(d), beforeResize, 'resize preserves destination');
+  await openMenu(d);
+  await layout(d, 961, 700, 'open popup resize to desktop');
+  assert.deepEqual(await state(d), beforeResize, 'desktop resize preserves destination');
+  await layout(d, 650, 800, 'return to disclosure for shortcuts');
   await screenshot(d, 'desktop-650-keyboard-after');
 
-  await desktop.select.blur();
   for (const prefix of ['Digit', 'Numpad']) {
     for (const [index, id] of ids.entries()) {
+      await openMenu(d);
       await d.keyboard.press(`${prefix}${index + 1}`);
-      await destination(d, id, `${prefix} after blur`);
+      await destination(d, id, `${prefix} closes open menu`);
     }
   }
   await layout(d, 1280, 800, 'resize back to desktop');
@@ -187,8 +282,9 @@ try {
   await desktop.context.close();
   assert.deepEqual(report.errors, [], 'no app exceptions');
   assert.deepEqual(report.external, [], 'no external requests');
+  assert.equal((await (await fetch(new URL('version.json', base))).json()).version, report.version, 'build unchanged throughout check');
   report.pass = true;
-  console.log(`PASS: native picker, seven actual destinations, touch 390/320, 650/960/961/1280, keyboard, resize and takeResume; ${out}`);
+  console.log(`PASS: button disclosure, seven actual destinations, touch 390/320/landscape, 650/960/961/1280, Tab/Enter/Space/Escape/outside, resize, Digit/Numpad and takeResume; ${out}`);
 } catch (error) {
   report.pass = false;
   report.failure = error.stack;

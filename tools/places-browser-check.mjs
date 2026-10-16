@@ -21,13 +21,13 @@ try{
   assert.equal(state.selected,ids[i]);assert.deepEqual(state.before,state.expected);assert(Number.isFinite(state.ground));assert(Math.abs(state.settled[1]-state.expected[1])<.15,`${ids[i]} must stay on the intended floor`);assert(Math.hypot(state.settled[0]-state.expected[0],state.settled[2]-state.expected[2])<.1,`${ids[i]} must not start inside a wall`);
   if(ids[i]==='l1004')assert.equal(state.unit,'L1004');if(ids[i]==='l1202')assert.equal(state.unit,null,'L1202 is an entrance, never a mislabeled other apartment');
   results.push({place:ids[i],...state});
-  if(['l1004','l1202'].includes(ids[i])){await page.evaluate(()=>{const v=window.lundenViewer;v.renderer.render(v.scene,v.camera);});await page.screenshot({path:`${out}/${ids[i]}.png`});}
+  if(['l1004','l1202'].includes(ids[i])){await page.evaluate(()=>{const v=window.lundenViewer;v.world.core.update(0,v.navigation,v.camera);v.world.garage.update(0,v.navigation,v.camera);v.scene.updateMatrixWorld();v.renderer.render(v.scene,v.camera);});await page.screenshot({path:`${out}/${ids[i]}.png`});}
  }
  await page.keyboard.press('Numpad3');assert.equal(await page.locator('[data-place].selected').getAttribute('data-place'),'l1004');
  await page.locator('#help').click();const helpPosition=await position();await page.keyboard.press('Digit1');assert.deepEqual(await position(),helpPosition);assert.match(await page.locator('#help-dialog').textContent(),/1–7/);await page.locator('#close-help').click();
  await page.setViewportSize({width:390,height:844});
- for(const id of ids){await page.locator('#place-select').selectOption(id);assert.equal(await page.locator('[data-place].selected').getAttribute('data-place'),id);}
- await page.locator('#place-select').selectOption('l1202');await page.evaluate(()=>{const v=window.lundenViewer;v.renderer.render(v.scene,v.camera);});
- const bounds=await page.locator('#place-select').boundingBox();assert(bounds.x>=0&&bounds.x+bounds.width<=390);await page.screenshot({path:out+'/narrow.png'});
+ for(const id of ids){await page.locator('#place-toggle').click();await page.locator(`#place-menu [data-place="${id}"]`).click();assert.equal(await page.locator('[data-place].selected').getAttribute('data-place'),id);assert.equal(await page.locator('#place-toggle').getAttribute('aria-expanded'),'false');}
+ await page.locator('#place-toggle').click();await page.locator('#place-menu [data-place="l1202"]').click();await page.evaluate(()=>{const v=window.lundenViewer;v.world.core.update(0,v.navigation,v.camera);v.world.garage.update(0,v.navigation,v.camera);v.scene.updateMatrixWorld();v.renderer.render(v.scene,v.camera);});
+ const bounds=await page.locator('#place-toggle').boundingBox();assert(bounds.x>=0&&bounds.x+bounds.width<=390);await page.screenshot({path:out+'/narrow.png'});
  assert.deepEqual(errors,[]);assert.deepEqual(external,[]);await writeFile(out+'/results.json',JSON.stringify({results,errors,external,narrowBounds:bounds},null,2));console.log(`PASS: seven real-world destinations, stable floors/collision, L1004 identity, L1202 entrance, Digit/Numpad, welcome/help guards, narrow menu; ${out}`);
 }finally{await browser.close();}
