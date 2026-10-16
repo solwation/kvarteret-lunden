@@ -86,3 +86,10 @@ Verifiering: `npm test`, bygg och den riktiga visningen i Chrome (vardagsrum, ha
 Importerad från `703e1b5` (original #1076): `reveal`, `mass` och `recessed` i `src/exterior.js`, karmplanet `HUS_L_REVEAL.frame` i `src/world.js` (samma 0,1 m som förut) och enbart `HUS_L_REVEAL` i `src/config.js`. Alla fönster i Hus L på gatu- och gårdssidan sitter indragna i smygar av fasadens eget skikt (tegel eller puts), med ett plåtbleck under. Grannarnas förenklade volymer lämnar smygfickorna öppna, och L1007, L1004 och L1201 får smygar in till sina egna karmar. Dörrar och gavelfönster är oförändrade. Alla mått är antaganden. Originalets ändringslogg har inte importerats.
 
 Verifiering: `npm test`, bygg, `tools/browser-check.mjs` och skärmbilder i Chrome av gatan, gården, våning 3 och terrassen före och efter. Ritanropen är oförändrade, med cirka 6 300 fler trianglar.
+
+
+## Utebelysning med eluttag, #19
+
+Importerad från `d29a218` och `ce72fb1` (original #1078): `patioLamps` och dess anrop i `src/exterior.js`, `loggiaLamp` med lamp-meshar och uppdatering i `src/surroundings.js` (plus `door`-öppningens extra fält i `loggiaOpenings`) samt enbart `HUS_L.patioLamp` i `src/config.js`. Peabs byggbeskrivning anger utvändig belysningsarmatur med integrerat eluttag vid uteplats, balkong eller terrass; modell, höjd, sida och mått är antaganden. Lampor finns vid Hus L:s 8 altandörrar och 9 takterrassdörrar (enbart geometri i entrélampornas befintliga meshar) och vid hus A/B/C:s 52 loggiadörrar (tre meshar, inga ljus). Visningen är alltid dagsljus, så lamporna syns släckta; nattvägen är densamma som för entrélamporna. Originalets ändringslogg, test och strömavbrott har inte importerats.
+
+Verifiering: `npm test`, `npm run build` och Chromium-bilder av Hus L:s altan och takterrass samt Hus A:s loggior i dagsljus och med påtvingad natt (31 väggsken i entrélampornas mesh = 8 + 6 + 17, 52 loggialampor, inga sidfel).
