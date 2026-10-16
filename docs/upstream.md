@@ -107,3 +107,10 @@ Verifiering: `npm test`, `npm run build` och Chromium-bilder (GPU) av området u
 Anpassad från `e77fe5e2` (original #1073). Originalet blandar i sin dygnscykel ett jämnt mulet ljus mot ett klart (mindre himmel/ambient/fyllnad, sol 3,0, exponering 1,5) och förlitar sig på en skuggande sol. Den här visningen har varken dygnscykel eller skuggkarta, så originalets värden och `DayCycle` har inte importerats. Enligt användarens beslut balanseras i stället de fasta ljusen om, utan skuggkarta: `LIGHTING.sky` i `src/config.js` (läses i `src/main.js`) har halverat flat ambient och lägre fyllnad, samt en starkare sol, skalade så att rummen behåller ungefär samma ljushet. Exponeringen är oförändrad, så sken och glödande material påverkas inte. Ljusens färger och riktningar är oförändrade.
 
 Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` och medelluminans (Y′, 0–255) i Chrome på riktig GPU i samma vyer före/efter: gata 139,0 → 140,5, innergård 112,9 → 117,8, L1007 vardagsrum 212,4 → 207,7 (−2,2 %), kök 192,6 → 194,8 och 199,7 → 202,1, L1004 223,3 → 218,3, L1201 232,6 → 229,2. Tegel på solsidan (gården, söder) mot skuggsidan (gatan, norr) gick från 1,07 till 1,29. En solvänd innervägg i vardagsrummet blev 1 % ljusare (237,0 → 239,6), så solen lyser inte märkbart igenom väggarna.
+
+
+## Mobilspakens storlek och riktning, #21
+
+Avgränsad överföring från `e3d2873` (originalets #1087): spaken skalar med skärmens kortsida (`clamp(96px, 30vmin, 168px)` i `style.css`), knoppens rörelse följer den renderade storleken (32 % av bredden, som tidigare 36 px vid 112 px) och kanten lyser svagt i visningens gröna färg åt det håll man drar. Originalets glasutseende, vilo-hint (spaken är redan alltid synlig här), knappkluster och sprintläge är inte tillämpliga och har inte förts över.
+
+Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` (mobil 390×844: spaken 117 px, framåt och avbrott) samt skärmdumpar med beröring i 844×390 (117 px) och 1180×820 (168 px).

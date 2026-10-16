@@ -295,8 +295,9 @@ $('viewer').addEventListener('pointerup', e => { if(measuring && down && Math.hy
 $('viewer').addEventListener('pointercancel', () => {lookPointer=null;previous=null;down=null;});
 let joystickPointer = null;
 const stick=$('joystick'), knob=stick.querySelector('span');
-function steer(e){const r=stick.getBoundingClientRect(),dx=e.clientX-r.left-r.width/2,dy=e.clientY-r.top-r.height/2,n=Math.max(1,Math.hypot(dx,dy)/36);navigation.analog.x=dx/n/36;navigation.analog.y=-dy/n/36;knob.style.transform=`translate(${dx/n}px,${dy/n}px)`;}
+// Knob travel follows the stick's rendered size, which scales with the screen's short side (style.css; upstream e3d2873, #1087).
+function steer(e){const r=stick.getBoundingClientRect(),t=r.width*.32,dx=e.clientX-r.left-r.width/2,dy=e.clientY-r.top-r.height/2,d=Math.hypot(dx,dy),n=Math.max(1,d/t);navigation.analog.x=dx/n/t;navigation.analog.y=-dy/n/t;knob.style.transform=`translate(${dx/n}px,${dy/n}px)`;stick.style.setProperty('--joy-a',`${Math.atan2(dx,-dy)*180/Math.PI}deg`);stick.style.setProperty('--joy-m',(Math.min(d,t)/t*.75).toFixed(2));}
 stick.addEventListener('pointerdown',e=>{if(!active)return;joystickPointer=e.pointerId;stick.setPointerCapture(e.pointerId);steer(e);});
 stick.addEventListener('pointermove',e=>{if(e.pointerId===joystickPointer)steer(e);});
-for(const type of ['pointerup','pointercancel','lostpointercapture'])stick.addEventListener(type,()=>{joystickPointer=null;if(navigation)navigation.analog.x=navigation.analog.y=0;knob.style.transform='';});
+for(const type of ['pointerup','pointercancel','lostpointercapture'])stick.addEventListener(type,()=>{joystickPointer=null;if(navigation)navigation.analog.x=navigation.analog.y=0;knob.style.transform='';stick.style.setProperty('--joy-m','0');});
 init().catch(error=>{console.error(error);status(`Visningen kunde inte startas: ${error.message}`);$('start').disabled=false;$('start').textContent='Försök igen';$('start').addEventListener('click',()=>location.reload(),{once:true});});
