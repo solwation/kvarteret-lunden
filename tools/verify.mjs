@@ -10,6 +10,7 @@ for(const file of files.filter(f=>f.endsWith('.js'))){
     for(const call of source.matchAll(/sessionStorage\.(?:getItem|setItem|removeItem)\(([^,)]+)/g))assert.equal(call[1],'RESUME_KEY');
   }
   assert(!/workers\.dev|cloudflare|new\s+WebSocket|localStorage|indexedDB|Sarah|Olof|Walter|Kian|Budil|Wingren/i.test(source),`Disallowed personal/service reference in ${file}`);
+  assert(!/\bplate:\s*['"`]/.test(source),`Personal name plate text in ${file}`);
 }
 const result=await build({entryPoints:['src/main.js'],bundle:true,write:false,format:'esm',target:'es2022',metafile:true,logLevel:'silent'});
 for(const file of Object.keys(result.metafile.inputs))assert(!/\/(cloud|ghosts|furniture|stuff|contents|basket|combat|avatar|posters|drawing|leaderboard|streetlife|cheats)\.js$/.test(file),`Disallowed import ${file}`);
