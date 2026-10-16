@@ -58,3 +58,10 @@ Importerad från `ac413b321681ba7fcc2dfb24b2339cce5b64e693`: `towerclock.js`, de
 I originalet får alla fyra sidor samma simulerade tid som köksklockan. Här finns inga personliga klockor eller spelkontroller; tornet följer besökarens lokala klocka och uppdateras även före Börja. Inga nätverksanrop, molntjänster eller sparade klocktillstånd har tillkommit. Originalets mellanliggande kattändring är inte tillämplig på den opersonliga visningen.
 
 Verifiering omfattar den riktiga visningens klocka vid start och vid ändrad lokal tid, samt dator-/mobilvyer, gång, dörrar, ursprunglig lagring och nätverkskontrollen. Originalets komponentprov i WebGL täcker alla fyra urtavlorna, båda detaljnivåerna och köksklockans tidskontroller.
+
+
+## Golvbrunnar, #14
+
+Importerad från `6ddb7ba` (original #1072): `floorDrain`, `showerDrainAt` och `laundryDrainAt` i `interior.js`, anropen i duscharna och framför tvättmaskinerna i `interior.js` och `standardinterior.js` samt enbart `FLOOR_DRAIN` i `config.js`. Alla mått är antaganden; golvet förblir plant i kollisionen. Originalets ändringslogg och dokumentation har inte importerats.
+
+Verifiering: `npm test`, bygg och Chromium-bilder av duscharna i L1007 (Badrum, WC/dusch), Tvätt, L1004 och L1201 (båda planen). Ritanrop vid samma vyer ökade med 0–3.
