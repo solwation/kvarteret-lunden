@@ -7,6 +7,9 @@ const errors=[],results=[];
 try{
  const page=await browser.newPage({viewport:{width:1000,height:700}});page.on('pageerror',e=>errors.push(e.message));
  await page.goto(base);await page.waitForFunction(()=>window.lundenViewer?.renderer.info.render.frame>0,null,{timeout:120000});
+ // SwiftShader renders the full scene behind the welcome screen at well under 1 fps, which starves
+ // Playwright's frame-based actionability checks; pause the loop like the other browser checks do.
+ await page.evaluate(()=>window.lundenViewer.renderer.setAnimationLoop(null));
  await page.locator('#start').click();await page.waitForFunction(()=>document.pointerLockElement===window.lundenViewer.renderer.domElement);
  await page.evaluate(()=>{
   const {world,navigation:n,camera,renderer}=window.lundenViewer;renderer.setAnimationLoop(null);

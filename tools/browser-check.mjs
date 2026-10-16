@@ -12,7 +12,8 @@ try{
  const page=await context.newPage();page.setDefaultTimeout(30000);
  await page.clock.setFixedTime(new Date('2026-10-16T08:15:00Z'));
  let planRequests=0;
- await page.route('**/data/plan.json',route=>++planRequests===1?route.fulfill({status:503,body:'temporary failure'}):route.continue());
+ // The app fetches ./data/plan.json?v=<VERSION>; match the path regardless of query string.
+ await page.route(url=>url.pathname.endsWith('/data/plan.json'),route=>++planRequests===1?route.fulfill({status:503,body:'temporary failure'}):route.continue());
  page.on('pageerror',e=>errors.push(e.message));
  page.on('request',r=>{if(new URL(r.url()).origin!==new URL(base).origin)external.push(r.url());});
  await page.goto(base+'/?cloud=https://ignored.invalid&sync=debug');
