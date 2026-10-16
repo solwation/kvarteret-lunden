@@ -9,7 +9,7 @@ async function fingerprint(path){
   catch(e){if(e.code!=='ENOTDIR')throw e;hash.update(path).update(await readFile(path));return;}
   for(const entry of entries.sort((a,b)=>a.name.localeCompare(b.name)))await fingerprint(`${path}/${entry.name}`);
 }
-for(const path of ['src','data','index.html','style.css','icon.svg','package-lock.json','tools/build.mjs','THIRD_PARTY_LICENSES.txt'])await fingerprint(path);
+for(const path of ['src','data','index.html','style.css','icon.svg','icons','manifest.webmanifest','package-lock.json','tools/build.mjs','THIRD_PARTY_LICENSES.txt'])await fingerprint(path);
 try{await fingerprint('textures');}catch(e){if(e.code!=='ENOENT')throw e;}
 const version=hash.digest('hex').slice(0,24), builtAt=Date.now();
 await rm('dist',{recursive:true,force:true});
@@ -21,7 +21,7 @@ html=html.replace(/\s*<script type="importmap">[\s\S]*?<\/script>/,'').replace('
 html=html.replace(/script-src[^;]+;/,"script-src 'self';");
 await writeFile('dist/index.html',html);
 await cp('style.css',`dist/assets/style-${version}.css`);
-for(const p of ['icon.svg','data','THIRD_PARTY_LICENSES.txt'])await cp(p,`dist/${p}`,{recursive:true});
+for(const p of ['icon.svg','icons','manifest.webmanifest','data','THIRD_PARTY_LICENSES.txt'])await cp(p,`dist/${p}`,{recursive:true});
 try{await cp('textures','dist/textures',{recursive:true});}catch(e){if(e.code!=='ENOENT')throw e;}
 await writeFile('dist/version.json',JSON.stringify({version,builtAt})+'\n');
 await writeFile('dist/.nojekyll','');

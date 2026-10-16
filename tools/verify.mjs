@@ -19,3 +19,19 @@ for(const floor of plan.floors)assert(floor.walls.length && floor.doors.length &
 const html=await readFile('index.html','utf8');
 assert(html.includes('connect-src \'self\''));
 console.log(`PASS: ${files.length} modules audited, import graph bundles, two architectural floor plans, same-origin network policy.`);
+const manifest=JSON.parse(await readFile('manifest.webmanifest','utf8'));
+const manifestURL=new URL('https://example.invalid/kvarteret-lunden/manifest.webmanifest');
+for(const member of ['id','start_url','scope'])assert.equal(new URL(manifest[member],manifestURL).href,'https://example.invalid/kvarteret-lunden/');
+assert.equal(manifest.display,'standalone');
+assert(html.includes('rel="manifest" href="./manifest.webmanifest"'));
+assert(html.includes('rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png"'));
+const iconFiles=[...manifest.icons,{src:'./icons/apple-touch-icon.png',sizes:'180x180'}];
+assert(manifest.icons.some(i=>i.sizes==='192x192'&&i.purpose==='any'));
+assert(manifest.icons.some(i=>i.sizes==='512x512'&&i.purpose==='any'));
+assert(manifest.icons.some(i=>i.sizes==='512x512'&&i.purpose==='maskable'));
+for(const icon of iconFiles){
+  const resolved=new URL(icon.src,manifestURL);assert(resolved.href.startsWith('https://example.invalid/kvarteret-lunden/icons/'));
+  const png=await readFile(icon.src);assert.equal(png.subarray(0,8).toString('hex'),'89504e470d0a1a0a');
+  assert.equal(`${png.readUInt32BE(16)}x${png.readUInt32BE(20)}`,icon.sizes);
+}
+console.log('PASS: app identity/start/scope, Apple icon, PNG dimensions and Android icon declarations.');

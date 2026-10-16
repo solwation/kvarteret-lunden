@@ -46,6 +46,10 @@ Klocktornets fyra urtavlor visar besökarens lokala tid med tydliga visare och t
 
 Vid automatisk uppdatering sparas plats och blickriktning tillfälligt i flikens egen `sessionStorage` med nyckeln `kvarteret-lunden.update-resume`. Uppgifterna läses och tas bort vid nästa start, godtas i högst fem minuter och berör aldrig originalets lagring. Visningen har inga externa nätverksanrop. Three.js ingår i publiceringspaketet.
 
+## Lägg till på hemskärmen
+
+På iPhone/iPad: öppna länken i Safari, välj Dela och Lägg till på hemskärmen. På Android: öppna webbläsarens meny och välj installation eller Lägg till på startskärmen, beroende på webbläsare. Appen har egen grön L-ikon, Apple Touch-ikon och manifest med ikoner för Android. Manifestet anger en beständig startlänk till projektets egen GitHub Pages-adress, utan tillfälliga versionsparametrar. En redan skapad genväg kan behöva tas bort och läggas till igen för att visa den nya ikonen.
+
 ## Publicering
 
 Visningen är publicerad på **[solwation.github.io/kvarteret-lunden](https://solwation.github.io/kvarteret-lunden/)** via GitHub Pages. `.github/workflows/pages.yml` kör tester, bygger och publicerar automatiskt efter varje push till `main`. En misslyckad kontroll stoppar publiceringen. Publicering ska enbart innehålla de granskade statiska filer som visningen behöver.
