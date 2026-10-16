@@ -143,6 +143,9 @@ async function init() {
 function frame() {
   const dt = Math.min(clock.getDelta(), .05);
   if (active && !$('help-dialog').open) navigation.update(dt);
+  // The public walkthrough has no time controls; the tower follows the visitor's local clock.
+  const now = new Date(), hour = now.getHours() + now.getMinutes() / 60 + now.getSeconds() / 3600;
+  for (const clock of world.clocks) clock.update(hour);
   core.update(dt, navigation, camera);
   garage.update(dt, navigation, camera);
   scene.updateMatrixWorld();

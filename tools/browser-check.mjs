@@ -10,12 +10,16 @@ try{
  const context=await browser.newContext({viewport:{width:1000,height:700},deviceScaleFactor:1});
  await context.addInitScript(()=>{localStorage.setItem('lunden.drawing','original-drawing-sentinel');localStorage.setItem('lunden.cloud.queue','original-queue-sentinel');sessionStorage.setItem('lunden.session','original-session-sentinel');});
  const page=await context.newPage();page.setDefaultTimeout(30000);
+ await page.clock.setFixedTime(new Date('2026-10-16T08:15:00Z'));
  let planRequests=0;
  await page.route('**/data/plan.json',route=>++planRequests===1?route.fulfill({status:503,body:'temporary failure'}):route.continue());
  page.on('pageerror',e=>errors.push(e.message));
  page.on('request',r=>{if(new URL(r.url()).origin!==new URL(base).origin)external.push(r.url());});
  await page.goto(base+'/?cloud=https://ignored.invalid&sync=debug');
- await page.waitForFunction(()=>window.lundenViewer?.renderer.info.render.frame>0,{timeout:120000});
+ await page.waitForFunction(()=>window.lundenViewer?.renderer.info.render.frame>0,null,{timeout:120000});
+ const initialHour=await page.evaluate(()=>window.lundenViewer.world.clocks[0].hour);
+ await page.clock.setFixedTime(new Date('2026-10-16T08:30:00Z'));
+ await page.waitForFunction(previous=>window.lundenViewer.world.clocks[0].hour!==previous,initialHour);
  await page.evaluate(()=>window.lundenViewer.renderer.setAnimationLoop(null));
  await page.screenshot({path:out+'/intro.png'});
  await page.locator('#start').click();
@@ -23,6 +27,8 @@ try{
  const check=await page.evaluate(async()=>{
   const {world,navigation:n,camera,renderer,scene,moveTo}=window.lundenViewer;
   const report={doors:world.doors.length,levels:world.levels.length,units:world.units.length,locations:{}};
+  const now=new Date(),localHour=now.getHours()+now.getMinutes()/60+now.getSeconds()/3600;
+  report.clock={count:world.clocks.length,hour:world.clocks[0]?.hour,localHour};
   for(const name of ['area','home','courtyard','core','garage']){
    moveTo(name);for(let i=0;i<20;i++)n.update(1/120);
    report.locations[name]={pos:n.pos.toArray(),ground:n.groundAt(n.pos.x,n.pos.z),core:n.inCore,below:n.below};
@@ -35,6 +41,7 @@ try{
   moveTo('home');renderer.render(scene,camera);
   return report;
  });
+ assert.equal(check.clock.count,1);assert(Math.abs(check.clock.hour-check.clock.localHour)<2/3600,'Tower clock follows local time');
  assert.equal(check.levels,2);assert(check.doors>5);assert(check.walked>.2);assert(check.doorAnimated);
  assert.deepEqual(check.sentinel,['original-drawing-sentinel','original-queue-sentinel','original-session-sentinel']);
  assert.equal(check.keys.length,2);
@@ -58,9 +65,9 @@ try{
  await page.locator('#measure').click();assert.equal(await page.locator('#measure').getAttribute('aria-pressed'),'true');
  await page.locator('#measure').click();
  const mobile=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true,deviceScaleFactor:1});
- const m=await mobile.newPage();m.on('pageerror',e=>errors.push(e.message));m.on('request',r=>{if(new URL(r.url()).origin!==new URL(base).origin)external.push(r.url());});
+ const m=await mobile.newPage();m.on('pageerror',e=>{errors.push(e.message);console.error('Mobile page error:',e.message)});m.on('console',event=>{if(event.type()==='error')console.error('Mobile console:',event.text())});m.on('request',r=>{if(new URL(r.url()).origin!==new URL(base).origin)external.push(r.url());});
  await m.goto(base);
- await m.waitForFunction(()=>window.lundenViewer?.renderer.info.render.frame>0,{timeout:120000});
+ await m.waitForFunction(()=>window.lundenViewer?.renderer.info.render.frame>0,null,{timeout:120000});
  await m.evaluate(()=>window.lundenViewer.renderer.setAnimationLoop(null));
  await m.locator('#start').tap();
  await m.evaluate(()=>{const v=window.lundenViewer;v.moveTo('home');v.renderer.render(v.scene,v.camera);});

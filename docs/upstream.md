@@ -40,7 +40,7 @@ Automatisk publicering kan införas för detta repos egna granskade commits. Aut
 
 ## Register
 
-- Senast granskade originalversion: `502404a25063b954349a858edf72a74eaa02d14e`.
+- Senast granskade originalversion: `ac413b321681ba7fcc2dfb24b2339cce5b64e693`.
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -49,3 +49,12 @@ Automatisk publicering kan införas för detta repos egna granskade commits. Aut
 Importerad från `502404a25063b954349a858edf72a74eaa02d14e`: avgränsad hämtning av planritningen med högst två försök, 15 sekunder per försök och 250 ms mellanrum. Ett tillfälligt nätfel, timeout eller HTTP408/429/5xx får ett nytt försök utan att läsa ett cachat felsvar;404 och felaktig JSON avbryter direkt. `src/startup.js` innehåller endast den rena hämtningsfunktionen, med parametrar i `src/config.js`. Originalets felrapportering och sessionStorage-diagnostik har inte importerats.
 
 Verifiering: `npm test`, bygg och hela Chromium-kontrollen för dator/mobil med en injicerad första plan503. Den verkliga scenen startar efter exakt två hämtningar, inga externa anrop sker och originalets sparade markörer är orörda.
+
+
+## Fungerande klocktorn, #1067
+
+Importerad från `ac413b321681ba7fcc2dfb24b2339cce5b64e693`: `towerclock.js`, de avgränsade ändringarna i `campusfacades.js`, `sitebackdrop.js` och `surroundings.js` samt enbart `TOWER_CLOCK`-parametrarna. Tidigare rensningar av omgivningarna är bevarade. Tornets plats, storlek och urtavlornas radie är oförändrade.
+
+I originalet får alla fyra sidor samma simulerade tid som köksklockan. Här finns inga personliga klockor eller spelkontroller; tornet följer besökarens lokala klocka och uppdateras även före Börja. Inga nätverksanrop, molntjänster eller sparade klocktillstånd har tillkommit. Originalets mellanliggande kattändring är inte tillämplig på den opersonliga visningen.
+
+Verifiering omfattar den riktiga visningens klocka vid start och vid ändrad lokal tid, samt dator-/mobilvyer, gång, dörrar, ursprunglig lagring och nätverkskontrollen. Originalets komponentprov i WebGL täcker alla fyra urtavlorna, båda detaljnivåerna och köksklockans tidskontroller.

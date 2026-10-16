@@ -965,6 +965,7 @@ export function buildWorld(plan) {
 
   return {
     object: scene,
+    clocks: surroundings.userData.clocks,
     edgeLines,
     platforms,
     /** Moving doors of adjacent ground-floor flats also block outdoor navigation. */

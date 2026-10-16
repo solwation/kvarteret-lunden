@@ -1833,3 +1833,10 @@ export const SHOWER_FITTINGS = {
 
 // Bounded startup data recovery, adapted from original issue #1065; safeguards, not device measurements.
 export const STARTUP = { dataTimeout: 5000, planTimeout: 15000, dataAttempts: 2, retryDelay: 250 };
+
+// Clock readability proportions are visual assumptions; original tower dimensions remain unchanged.
+export const TOWER_CLOCK = {
+  textureSize: 256, segments: 32, dialOffset: .06, handOffset: .11, handSeparation: .005,
+  hourLength: .56, minuteLength: .84, hourWidth: .18, minuteWidth: .12,
+  tickRadius: .91, tickLength: .17, tickWidth: .045, numeralRadius: .54, numeralSize: .36,
+};

@@ -42,6 +42,8 @@ npm run dev
 
 På dator används W A S D/piltangenter, mus och E för dörrar. På mobil används styrreglaget och dragning i vyn. Platsmenyn flyttar besökaren till området, L1007, innergården, trapphuset eller garaget. Mät avstånd väljer två punkter på ytor. Alla mått är ungefärliga modellmått.
 
+Klocktornets fyra urtavlor visar besökarens lokala tid med tydliga visare och timmarkeringar.
+
 Visningen sparar inget i webbläsaren och har inga externa nätverksanrop. Three.js ingår i publiceringspaketet.
 
 ## Publicering
