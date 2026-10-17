@@ -5,7 +5,8 @@ Read [AGENTS.md](AGENTS.md) for public-content, storage and service boundaries. 
 ## Issues are required
 
 - Every implementation task for this project has an issue in **solwation/kvarteret-lunden**, as explicitly requested by the user on 2026-10-16. This replaces the previous central original-repository queue. Name affected files and acceptance criteria. Original-only work belongs in the original repository. Search before creating to avoid duplicates.
-- Add `Lapp: <2–6 everyday Swedish words>` and exactly one priority label: `priority: high`, `priority: medium` (default) or `priority: low`. Do not change priorities without the user's direction.
+- Add `Lapp: <2–6 everyday Swedish words>` and exactly one priority label, judged by whoever creates the issue (user, 2026-10-17): bugs `priority: high`; requests `high`/`medium`/`low` by value (blocking → high, solid improvement → medium, nice-to-have/some day → low). Do not default to medium. Do not change existing priorities without the user's direction.
+- Questions for the user go on the issue as a comment with the `user-question` label, never in chat; the issue is blocked until answered (user, 2026-10-17).
 - Read the current issue, all comments and labels before claiming it. Never take another agent's `in-progress` issue or active reservation.
 - Set `in-progress` **in this repository** when work actually starts. Keep it only while actively working. Remove it when finished, paused, released or reopened.
 - Verify the implementation, commit and publish. Link the commit and validation in this repository's issue, close it when the requested result is complete, and remove `in-progress`. Use `Fixes #N` only for this repository's issues; cross-repository work needs explicit links and verification in each affected issue.

@@ -34,6 +34,16 @@ Varje arbetsagent arbetar i en egen isolerad ext4-checkout/worktree för rätt r
 4. Välj ett stabilt sessions-id. Skapa vid behov `orkester: <id>` i detta repo. Håll korslänkade statuskommentarer i detta repos #4 och originalets #420 uppdaterade med område, agenter, filer, aktivt ärende, reservationer, resultat och UTC-tid. Ändra samma kommentar vid fortsättning.
 5. Reservera valt arbete med en kommentar i ärendet i detta repo, läs sedan om kommentarer och etiketter för att upptäcka kapplöpningar. Lägg `in-progress` och den egna `orkester: <id>` endast på arbete som faktiskt pågår. Låt väntande ärenden sakna aktivetiketter. Ta aldrig bort någon annans ägaretikett.
 
+## Frågor och prioriteter (användaren 2026-10-17)
+
+- **Oövervakad orkester:** fråga aldrig användaren i chatten. En fråga ställs som kommentar på det berörda ärendet i rätt repo
+  (skapa ett ärende vid behov), med konkreta alternativ. Ärendet får etiketten **`user-question`** och tappar
+  `in-progress`/orkesteretiketten. Ärendet räknas som blockerat tills användaren svarat i ärendet. Läs svaret vid varje
+  kökontroll, ta då bort `user-question` och fortsätt i vanlig ordning. Svarar användaren i chatten: för in svaret i ärendet.
+- **Prioritet avgörs av den som skapar ärendet** (orkestern/agenten), aldrig av rapportören. Buggar får `priority: high`.
+  Önskemål bedöms efter värde: `high` om det blockerar eller tydligt försämrar besöket, `medium` för rejäla förbättringar,
+  `low` för trevligt-att-ha eller "någon gång". Sätt inte allt till medel. Befintliga prioriteter ändras bara på användarens uppdrag.
+
 ## Bevakning efter sista lösta ärendet (användaren 2026-10-16)
 
 En aktiv `/orkester` får inte avslutas direkt när kön blir tom. Fortsätt kontrollera hela den öppna kön i båda reporna **var femte minut (300 sekunder) i 60 minuter efter det senast lösta implementationsärendet**.
