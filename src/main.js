@@ -8,10 +8,12 @@ import { Garage } from './garage.js';
 import { Core } from './core.js';
 import { CoreHouse } from './corehouse.js';
 import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, LIGHTING, TOUCH } from './config.js';
+import { setupTouchLayout } from './touchlayout.js';
 
 const $ = id => document.getElementById(id);
 const touch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
 document.body.classList.toggle('touch', touch);
+const touchLayout = setupTouchLayout({enabled: touch}); // own button/stick layout from the help dialog (#30, upstream 1af9b39)
 let renderer, camera, scene, world, navigation, core, garage;
 let active = false, ready = false, focus = null, measuring = false, firstPoint = null;
 const ray = new THREE.Raycaster(), centre = new THREE.Vector2();
@@ -179,13 +181,13 @@ async function init() {
   ready = true;
   $('place-toggle').disabled = false;
   // Keep model access local for diagnostics, without a service connection.
-  window.lundenViewer = {world, navigation, camera, renderer, scene, moveTo, locations, easeLook};
+  window.lundenViewer = {world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
   $('start').disabled = false; $('start').textContent = 'Börja utforska →';
   status('Dator och mobil · Ingen inloggning');
   renderer.setAnimationLoop(frame);
   watchUpdates({
     snapshot: () => ({position:navigation.pos.toArray(), yaw:camera.rotation.y, pitch:camera.rotation.x, active, place:document.querySelector('[data-place].selected')?.dataset.place}),
-    busy: () => measuring || $('help-dialog').open || document.querySelector('.locations').classList.contains('open') || navigation.keys.size > 0 || Math.abs(navigation.analog.x) + Math.abs(navigation.analog.y) > 0 || lookPointer !== null,
+    busy: () => measuring || $('help-dialog').open || touchLayout.editing || document.querySelector('.locations').classList.contains('open') || navigation.keys.size > 0 || Math.abs(navigation.analog.x) + Math.abs(navigation.analog.y) > 0 || lookPointer !== null,
     notice: text => { $('update-status').hidden = false; $('update-status').textContent = text; },
   });
 }
@@ -308,9 +310,10 @@ $('viewer').addEventListener('pointercancel', () => {lookPointer=null;previous=n
 let joystickPointer = null;
 const stick=$('joystick'), knob=stick.querySelector('span');
 // Knob travel follows the stick's rendered size, which scales with the screen's short side (style.css; upstream e3d2873, #1087).
-// Dead zone + response curve on the deflection, direction kept (upstream 211e0e9, #1088).
+// Dead zone + response curve on the deflection, direction kept (upstream 211e0e9, #1088). The knob moves in the
+// stick's own units, so an own layout's `scale` (#30) keeps it on the rim.
 function stickResponse(r){const {deadZone,full,curve}=TOUCH.stick;return r<=deadZone?0:Math.min(1,(r-deadZone)/(full-deadZone))**curve;}
-function steer(e){const r=stick.getBoundingClientRect(),t=r.width*.32,dx=e.clientX-r.left-r.width/2,dy=e.clientY-r.top-r.height/2,d=Math.hypot(dx,dy),n=Math.max(1,d/t),out=stickResponse(Math.min(d,t)/t),k=d>0?out/Math.min(d,t):0;navigation.analog.x=dx/n*k;navigation.analog.y=-dy/n*k;knob.style.transform=`translate(${dx/n}px,${dy/n}px)`;stick.style.setProperty('--joy-a',`${Math.atan2(dx,-dy)*180/Math.PI}deg`);stick.style.setProperty('--joy-m',(out*.75).toFixed(2));}
+function steer(e){const r=stick.getBoundingClientRect(),sc=r.width/(stick.offsetWidth||r.width)||1,t=r.width*.32,dx=e.clientX-r.left-r.width/2,dy=e.clientY-r.top-r.height/2,d=Math.hypot(dx,dy),n=Math.max(1,d/t),out=stickResponse(Math.min(d,t)/t),k=d>0?out/Math.min(d,t):0;navigation.analog.x=dx/n*k;navigation.analog.y=-dy/n*k;knob.style.transform=`translate(${dx/n/sc}px,${dy/n/sc}px)`;stick.style.setProperty('--joy-a',`${Math.atan2(dx,-dy)*180/Math.PI}deg`);stick.style.setProperty('--joy-m',(out*.75).toFixed(2));}
 stick.addEventListener('pointerdown',e=>{if(!active)return;joystickPointer=e.pointerId;stick.setPointerCapture(e.pointerId);steer(e);});
 stick.addEventListener('pointermove',e=>{if(e.pointerId===joystickPointer)steer(e);});
 for(const type of ['pointerup','pointercancel','lostpointercapture'])stick.addEventListener(type,()=>{joystickPointer=null;if(navigation)navigation.analog.x=navigation.analog.y=0;knob.style.transform='';stick.style.setProperty('--joy-m','0');});

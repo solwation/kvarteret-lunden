@@ -1975,3 +1975,9 @@ export const VENTS = {
   offsets: [0.8, 0.6, 1.0, 0.45, 1.2, 0.35],
   wall: 0.25, cabinet: 0.12, lamp: [0.4, 0.25], hole: 0.3, soffit: 0.05,
 };
+
+// Own touch layout (#30, from upstream 1af9b39 / original #1090; src/touchlayout.js; *guess* ranges chosen by eye):
+// size factors for the buttons (0.8 keeps the 56 px action row at about 45 px) and the walking stick, opacity so a
+// control never vanishes, the largest offset from its slot (× the screen's short side), and px kept clear of the
+// safe edges and the top controls.
+export const TOUCH_LAYOUT = { buttonScale: [0.8, 1.6], stickScale: [0.7, 1.5], opacity: [0.3, 1], maxOffset: 3, margin: 4 };

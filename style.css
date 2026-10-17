@@ -14,3 +14,30 @@
 .touch #measure{position:fixed;right:calc(16px + var(--sr) + var(--c0));bottom:calc(16px + var(--sb) + var(--touch-row) + var(--tg));height:var(--touch-size);min-height:var(--touch-size);border-radius:calc(var(--touch-size) / 2);padding:0 16px;font-size:13px;white-space:nowrap;box-shadow:0 2px 10px #0000002e;touch-action:manipulation}
 .touch #measurement{right:calc(16px + var(--sr));bottom:calc(16px + var(--sb) + var(--touch-row) + var(--touch-size) + 2 * var(--tg));max-width:min(260px,calc(100vw - 32px - var(--sr)))}
 @media(max-height:375px){.touch{--touch-size:48px}.touch #action{right:calc(12px + var(--sr));bottom:calc(12px + var(--sb))}.touch #measure{right:calc(12px + var(--sr) + var(--c0));bottom:calc(12px + var(--sb) + var(--touch-row) + var(--tg))}.touch #measurement{right:calc(12px + var(--sr));bottom:calc(12px + var(--sb) + var(--touch-row) + var(--touch-size) + 2 * var(--tg))}}
+/* #30, from upstream 1af9b39 (original #1090): own touch layout editor (src/touchlayout.js), opened from the help
+   dialog on touch devices. Every control shows with a dashed outline (the selected one solid), the rest of the view's
+   chrome hides but keeps its boxes for the top clamp, and a compact bar at the top holds the selected control's
+   size/opacity, the mirror toggle, reset, cancel and save. */
+#touch-layout-open{display:block;margin:4px 0 8px;background:#314c40;color:#f8f7ef;border-color:#314c40}
+body:not(.touch) #touch-layout-open{display:none!important}
+#touch-safe-probe{position:fixed;left:env(safe-area-inset-left,0px);right:env(safe-area-inset-right,0px);top:env(safe-area-inset-top,0px);bottom:env(safe-area-inset-bottom,0px);visibility:hidden;pointer-events:none}
+body.touch-editing .topbar,body.touch-editing .locations,body.touch-editing #intro,body.touch-editing #measurement,body.touch-editing #prompt,body.touch-editing #crosshair,body.touch-editing #update-status{visibility:hidden!important}
+body.touch-editing #action[hidden]{display:block!important}
+body.touch-editing #action,body.touch-editing #measure,body.touch-editing #joystick{outline:2px dashed #ffffffc0;outline-offset:3px}
+body.touch-editing .te-sel{outline:3px solid #ffd76a!important}
+body.touch-editing #action{color:transparent}
+body.touch-editing #action::after{content:'Öppna/Stäng';position:absolute;inset:0;display:grid;place-items:center;color:#fff;font:600 15px/1.1 system-ui,sans-serif}
+#touch-edit{position:fixed;inset:0;z-index:60;touch-action:none;background:#0a101626}
+#touch-edit[hidden]{display:none}
+#touch-edit .te-bar{position:absolute;top:calc(6px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);width:max-content;max-width:calc(100vw - 16px - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px));display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 10px;padding:6px 8px;color:#fff;background:#141e26dc;border:1px solid #ffffff4d;border-radius:12px;font:13px/1.2 system-ui,sans-serif;box-shadow:0 4px 16px #0000004d;transition:opacity .15s}
+#touch-edit.te-dragging .te-bar{opacity:.3;pointer-events:none}
+#touch-edit .te-bar button{min-height:40px;padding:0 12px;border-radius:10px;border:1px solid #ffffff66;background:#ffffff1f;color:#fff;font:600 13px/1 system-ui,sans-serif;touch-action:manipulation}
+#touch-edit .te-bar .te-save{background:#fff;color:#18232b;border-color:#fff}
+#touch-edit .te-name{min-width:7em;text-align:center;color:#ffd76a}
+#touch-edit .te-slider,#touch-edit .te-mirror{display:flex;align-items:center;gap:6px;min-height:40px}
+#touch-edit .te-slider input{width:96px;accent-color:#ffd76a}
+#touch-edit .te-mirror input{width:20px;height:20px;accent-color:#ffd76a}
+#touch-edit .te-help{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);margin:0;max-width:min(420px,70vw);padding:8px 12px;border-radius:10px;background:#141e26b3;color:#fff;font:14px/1.35 system-ui,sans-serif;text-align:center;pointer-events:none}
+#touch-edit .te-help[hidden]{display:none}
+@media(max-height:420px) and (orientation:landscape){#touch-edit .te-bar{gap:4px 6px;padding:4px 6px}#touch-edit .te-bar button{min-height:36px;padding:0 9px}#touch-edit .te-slider,#touch-edit .te-mirror{min-height:36px}#touch-edit .te-slider input{width:78px}#touch-edit .te-name{min-width:0}}
+body:not(.touch) #touch-layout-desc{display:none}

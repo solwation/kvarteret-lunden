@@ -42,7 +42,13 @@ for(const file of files.filter(f=>f.endsWith('.js'))){
     assert(source.includes("const RESUME_KEY = 'kvarteret-lunden.update-resume'"));
     for(const call of source.matchAll(/sessionStorage\.(?:getItem|setItem|removeItem)\(([^,)]+)/g))assert.equal(call[1],'RESUME_KEY');
   }
-  assert(!/workers\.dev|cloudflare|new\s+WebSocket|localStorage|indexedDB/i.test(source),`Disallowed service reference in ${file}`);
+  if (/localStorage/.test(source)) {
+    // #30: only the own touch layout keeps a per-device preference, under this project's own key.
+    assert.equal(file,'touchlayout.js','Only the own touch layout may use local storage');
+    assert(source.includes("const KEY = 'kvarteret-lunden.touch-layout'"));
+    for(const call of source.matchAll(/localStorage\.(?:getItem|setItem|removeItem)\(([^,)]+)/g))assert.equal(call[1],'KEY');
+  }
+  assert(!/workers\.dev|cloudflare|new\s+WebSocket|indexedDB/i.test(source),`Disallowed service reference in ${file}`);
   assert(!hasDeniedWord(source),`Disallowed personal reference in ${file}`);
   assert(!/\bplate:\s*['"`]/.test(source),`Personal name plate text in ${file}`);
 }
