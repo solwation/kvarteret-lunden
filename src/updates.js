@@ -3,6 +3,24 @@ export const VERSION = typeof __BUILD_VERSION__ === 'undefined' ? '' : __BUILD_V
 const BUILT_AT = typeof __BUILD_TIME__ === 'undefined' ? 0 : __BUILD_TIME__;
 const RESUME_KEY = 'kvarteret-lunden.update-resume';
 const RESUME_AGE = 5 * 60_000;
+// #38, from the original's reloadOnContextRestore (lowmemory.js at 903818f): at most one automatic reload per 60 s after a
+// restored WebGL context, so a flapping context can never loop.
+const GL_RELOAD_KEY = 'kvarteret-lunden.gl-reload-at';
+const GL_RELOAD_GAP = 60_000;
+
+/** Store the visitor's place and view for the next start of this same build (one use, at most RESUME_AGE old). */
+export function saveResume(snapshot, version = VERSION) {
+  try { sessionStorage.setItem(RESUME_KEY, JSON.stringify({...snapshot, version, at:Date.now()})); } catch { /* Storage may be disabled; a fresh start still works. */ }
+}
+
+/** True (and remembered) when an automatic reload after a restored WebGL context is allowed now; false within 60 s of the last. */
+export function claimContextReload() {
+  let last = 0;
+  try { last = Number(sessionStorage.getItem(GL_RELOAD_KEY)) || 0; } catch { /* blocked */ }
+  if (Date.now() - last >= 0 && Date.now() - last < GL_RELOAD_GAP) return false;
+  try { sessionStorage.setItem(GL_RELOAD_KEY, String(Date.now())); } catch { /* blocked: no guard, but a reload still beats a broken scene */ }
+  return true;
+}
 
 export function takeResume() {
   try {
@@ -49,8 +67,7 @@ export function watchUpdates({snapshot, busy, notice, reload = url => location.r
       if (document.hidden || busy() || performance.now() - lastInput < 10_000) {
         reloading = false; countdown = 0; return;
       }
-      const saved = {...snapshot(), version:pending.version, at:Date.now()};
-      try { sessionStorage.setItem(RESUME_KEY, JSON.stringify(saved)); } catch { /* Storage may be disabled; a normal fresh start still updates the app. */ }
+      saveResume(snapshot(), pending.version);
       reload(url.href);
     } catch {
       reloading = false; countdown = 0; retryAt = performance.now() + 60_000;

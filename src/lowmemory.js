@@ -48,6 +48,24 @@ export function freeGeometryAfterUpload(geo, names = GEO_FREE) {
   return geo;
 }
 
+/**
+ * Phone only (#38, from the original's reloadOnContextRestore at 903818f): the normals/uv freed after upload (#628) and the
+ * 1×1 canvases of `freeCanvasAfterUpload` re-upload empty once a lost WebGL context is restored, so meshes stop drawing and
+ * walls look like see-through edges. Reload the page instead (`reload` keeps the place and view). `allow()` is the loop
+ * guard: when it refuses (a second restore within 60 s), `onSkip` offers a tap-to-reload notice. Desktop is untouched.
+ */
+export function reloadOnContextRestore(canvas, {allow, reload, onSkip}) {
+  if (!lowMemory) return;
+  let lost = false;
+  canvas.addEventListener('webglcontextlost', (e) => { lost = true; e.preventDefault(); }); // lets the browser restore it
+  canvas.addEventListener('webglcontextrestored', () => {
+    if (!lost) return;
+    if (allow()) { reload(); return; }
+    console.warn('WebGL context restored again within 60 s: no second automatic reload (#38)');
+    onSkip();
+  });
+}
+
 const handled = new WeakSet();
 /**
  * Phone only (#628 step 4): hook `freeGeometryAfterUpload` on every mesh geometry under `root`, so each one gives its

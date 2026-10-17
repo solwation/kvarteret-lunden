@@ -40,7 +40,8 @@ for(const file of files.filter(f=>f.endsWith('.js'))){
   if (/sessionStorage/.test(source)) {
     assert.equal(file,'updates.js','Only the independent update resume may use session storage');
     assert(source.includes("const RESUME_KEY = 'kvarteret-lunden.update-resume'"));
-    for(const call of source.matchAll(/sessionStorage\.(?:getItem|setItem|removeItem)\(([^,)]+)/g))assert.equal(call[1],'RESUME_KEY');
+    assert(source.includes("const GL_RELOAD_KEY = 'kvarteret-lunden.gl-reload-at'"));
+    for(const call of source.matchAll(/sessionStorage\.(?:getItem|setItem|removeItem)\(([^,)]+)/g))assert(['RESUME_KEY','GL_RELOAD_KEY'].includes(call[1]));
   }
   if (/localStorage/.test(source)) {
     // #30: only the own touch layout keeps a per-device preference, under this project's own key.

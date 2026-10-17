@@ -2,7 +2,8 @@ import * as THREE from 'three';
 import { buildWorld } from './world.js';
 import { Navigation } from './navigation.js';
 import { fetchStartupJSON } from './startup.js';
-import { VERSION, takeResume, watchUpdates } from './updates.js';
+import { VERSION, takeResume, watchUpdates, saveResume, claimContextReload } from './updates.js';
+import { reloadOnContextRestore } from './lowmemory.js';
 import { installPlaceShortcuts } from './place-shortcuts.js';
 import { Garage } from './garage.js';
 import { Core } from './core.js';
@@ -133,6 +134,11 @@ async function init() {
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.NeutralToneMapping;
   $('viewer').append(renderer.domElement);
+  // Phone (#38): a restored WebGL context re-uploads the geometry and canvases freed after upload as empty buffers, so the
+  // page reloads instead, back at the same place and view. A second restore within 60 s asks for one tap instead (no loop).
+  const glReload = () => { if (ready) saveResume(viewSnapshot()); location.reload(); };
+  $('gl-lost-reload').addEventListener('click', glReload);
+  reloadOnContextRestore(renderer.domElement, {allow: claimContextReload, reload: glReload, onSkip: () => { $('gl-lost').hidden = false; }});
   camera = new THREE.PerspectiveCamera(65, 1, .06, 700); camera.rotation.order = 'YXZ';
   scene = new THREE.Scene(); scene.background = new THREE.Color(0xcbd9dd); scene.fog = new THREE.Fog(0xcbd9dd, 200, 650);
   const S = LIGHTING.sky;
@@ -191,10 +197,13 @@ async function init() {
   status('Dator och mobil · Ingen inloggning');
   renderer.setAnimationLoop(frame);
   watchUpdates({
-    snapshot: () => ({position:navigation.pos.toArray(), yaw:camera.rotation.y, pitch:camera.rotation.x, active, place:document.querySelector('[data-place].selected')?.dataset.place}),
+    snapshot: viewSnapshot,
     busy: () => measuring || $('help-dialog').open || touchLayout.editing || document.querySelector('.locations').classList.contains('open') || navigation.keys.size > 0 || Math.abs(navigation.analog.x) + Math.abs(navigation.analog.y) > 0 || lookPointer !== null,
     notice: text => { $('update-status').hidden = false; $('update-status').textContent = text; },
   });
+}
+function viewSnapshot() {
+  return {position:navigation.pos.toArray(), yaw:camera.rotation.y, pitch:camera.rotation.x, active, place:document.querySelector('[data-place].selected')?.dataset.place};
 }
 function frame() {
   const dt = Math.min(clock.getDelta(), .05);

@@ -46,7 +46,7 @@ Klocktornets fyra urtavlor visar besökarens lokala tid med tydliga visare och t
 
 På pekskärmar går man genom att sätta tummen var som helst på bildens vänstra del (under hjälpknappen och platsmenyn): spaken hamnar under tummen, följer med om tummen dras förbi kanten och återgår till sin vilande plats i hörnet när tummen lyfts. Höger del av bilden är för att titta. I hjälpdialogen finns **Anpassa touchknappar**: dra Öppna/Stäng och Mät avstånd dit du vill, ändra storlek på dem och spaken (nyp eller reglage) och genomskinlighet eller spegla allt för vänsterhänta. Spara, Avbryt och Återställ standard finns i redigerarens list. Layouten sparas bara på enheten i `localStorage` med nyckeln `kvarteret-lunden.touch-layout`; om lagringen är blockerad gäller den under besöket. Standardlayouten är tumbågen.
 
-Vid automatisk uppdatering sparas plats och blickriktning tillfälligt i flikens egen `sessionStorage` med nyckeln `kvarteret-lunden.update-resume`. Uppgifterna läses och tas bort vid nästa start, godtas i högst fem minuter och berör aldrig originalets lagring. Visningen har inga externa nätverksanrop. Three.js ingår i publiceringspaketet.
+Vid automatisk uppdatering sparas plats och blickriktning tillfälligt i flikens egen `sessionStorage` med nyckeln `kvarteret-lunden.update-resume`. Uppgifterna läses och tas bort vid nästa start, godtas i högst fem minuter och berör aldrig originalets lagring. På mobil laddas sidan om automatiskt, med samma plats och vy, när grafiken (WebGL-kontexten) har tappats och återställts; nyckeln `kvarteret-lunden.gl-reload-at` begränsar det till en gång per minut, därefter visas en ruta med Ladda om. Visningen har inga externa nätverksanrop. Three.js ingår i publiceringspaketet.
 
 ## Lägg till på hemskärmen
 
