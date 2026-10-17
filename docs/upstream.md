@@ -132,7 +132,7 @@ Verifiering: `npm test`, `npm run build` och Chrome på riktig GPU: lövkort inn
 
 ## Mobilspakens dödzon och responskurva, #23
 
-Avgränsad överföring från `211e0e9` (originalets #1088): `steer()` i `src/main.js` ger ingen rörelse inom 10 % av knoppens väg (en vilande tumme driver inte), därefter `t^1,5` upp till 90 % och full fart därifrån; riktningen behålls och kantens glöd följer utfallet. Värdena ligger i `TOUCH.stick` i `src/config.js` (*guess*). Originalets följ-läge förutsätter en flytande spak och är inte tillämpligt på den fasta spaken här; spaksprint finns inte i visningen, och originalets utjämnade titta-dragning ingick inte i denna överföring.
+Avgränsad överföring från `211e0e9` (originalets #1088): `steer()` i `src/main.js` ger ingen rörelse inom 10 % av knoppens väg (en vilande tumme driver inte), därefter `t^1,5` upp till 90 % och full fart därifrån; riktningen behålls och kantens glöd följer utfallet. Värdena ligger i `TOUCH.stick` i `src/config.js` (*guess*). Originalets följ-läge förutsätter en flytande spak och är inte tillämpligt på den fasta spaken här; spaksprint finns inte i visningen. Originalets utjämnade titta-dragning fördes över separat i #28 (nedan).
 
 Verifiering: `npm test`, `npm run build` och `tools/browser-check.mjs` med ny kontroll i mobil 390×844 (2 px från mitten → 0, halv väg → 0,35, förbi kanten → 1).
 
@@ -164,3 +164,10 @@ Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` och Chromium
 Överförd från `38d2196` (original #1089): enbart tumbågens placering, anpassad till publicsidans två knappar i `style.css` för `body.touch`. `#action` (Öppna/Stäng) är ett högerförankrat piller i nedre högra hörnet under den vilande tummen, 16 px (12 px vid låg höjd) från kanten och säkra området. `#measure` (Mät avstånd) sitter på bågen rakt ovanför pillrets rundade högra ände och mätstatusen ovanför den, med minst 8 px mellanrum. Hjälpknappen och platsmenyn ligger kvar uppe; datorvyn är oförändrad. Originalets hopp-, huk-, stå-, jetpack-, spindelnäts- och övriga spelknappar, valrutor och `touchlayouttest` är inte tillämpliga och har inte förts över.
 
 Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` (som nu kontrollerar hörnbandet, bågläget och ≥8 px avstånd mellan pillret, mätknappen, mätstatusen, styrspaken, hjälpknappen och platsmenyn på 390×844 och 844×390 med touch) och `tools/click-browser-check.mjs` i Chromium samt granskade skärmbilder i stående och liggande läge och oförändrad datorvy.
+
+
+## Utjämnad titta-dragning på mobil, #28
+
+Avgränsad överföring från `211e0e9` (originalets #1088), delen ”eased drag-to-look”: titta-dragningen (`$('viewer')` pointermove i `src/main.js`) samlas i stället för att vrida vyn direkt i eventet, och `easeLook` matar in den mjukt i `frame()` med tidskonstanten `TOUCH.look.smooth` (30 ms som i originalet, *guess*). Känsligheten ligger i `TOUCH.look.sens` (`src/config.js`), samma 1,3 som tidigare fasta värde, så den totala vridningen för en dragning är oförändrad. Väntande rörelse nollställs när visningen inte är aktiv eller hjälpen är öppen. Mus och pointer lock på dator är oförändrade. Originalets spaksprint och flytande spak/följ-läge är inte tillämpliga på den fasta spaken här; ändringslogg och test har inte förts över.
+
+Verifiering: `npm test`, `npm run build` och `tools/browser-check.mjs` med ny kontroll i mobil 390×844 via CDP-touch (120 × 30 px dragning: ingen vridning i eventet, första bildrutan ≈ 43 %, totalt exakt −0,4056/−0,1014 rad som förut), samt en körning med animationsloopen igång i 844×390 (150 px → 0,507 rad, som förut) och dator där musens vridning fortfarande sker direkt (100 px → −0,26 rad).

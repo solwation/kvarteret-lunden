@@ -1587,7 +1587,10 @@ export const CAMPUS_LOD = { curve: 3, roofGrid: 2, maxTris: 36000 };
 // Touch stick feel (upstream 211e0e9, original #1088; *guess* values tuned by eye): deflection r = distance / knob travel.
 // Below `deadZone` nothing moves (a resting thumb never drifts); up to `full` the output rises along t^`curve`
 // (fine walking near the centre), beyond it is 1 (full walking speed at the rim).
-export const TOUCH = { stick: { deadZone: 0.1, full: 0.9, curve: 1.5 } };
+// Drag-to-look (upstream 211e0e9, original #1088): `sens` look units per CSS px (the previous fixed 1.3 in main.js, with
+// look() turning .0026 rad per unit); `smooth` s is the time constant over which each finger movement is eased into the
+// view per frame, evening out uneven touch-event timing (0 = raw, original 30 ms, *guess*). The total turn is unchanged.
+export const TOUCH = { stick: { deadZone: 0.1, full: 0.9, curve: 1.5 }, look: { sens: 1.3, smooth: 0.03 } };
 
 export const PLAYER = {
 eye: 1.62,

@@ -92,6 +92,17 @@ try{
  await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
  assert(rest===0&&half>.2&&half<.45&&rim>.999,`stick feel rest=${rest} half=${half} rim=${rim}`);
  results.push({stickFeel:{rest,half,rim}});
+ // Eased drag-to-look (upstream 211e0e9): a drag is not applied in the event but eased in per frame; the total turn
+ // equals the old direct 1.3 × .0026 rad per px (animation loop stopped, so easeLook is stepped by hand).
+ const yaw0=await m.evaluate(()=>{const c=window.lundenViewer.camera;c.rotation.x=0;return c.rotation.y;});
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:200,y:300,id:3}]});
+ for(let i=1;i<=6;i++)await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:200+i*20,y:300+i*5,id:3}]});
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+ const eased=await m.evaluate(()=>{const v=window.lundenViewer,c=v.camera,r={immediate:c.rotation.y};v.easeLook(1/60);r.first=c.rotation.y;for(let i=0;i<120;i++)v.easeLook(1/60);r.yaw=c.rotation.y;r.pitch=c.rotation.x;return r;});
+ const turn={yaw:eased.yaw-yaw0,pitch:eased.pitch,expectYaw:-120*1.3*.0026,expectPitch:-30*1.3*.0026};
+ assert(eased.immediate===yaw0&&eased.first!==yaw0&&Math.abs(eased.first-yaw0)<Math.abs(turn.expectYaw)*.6,`look must ease in: ${JSON.stringify(eased)}`);
+ assert(Math.abs(turn.yaw-turn.expectYaw)<1e-9&&Math.abs(turn.pitch-turn.expectPitch)<1e-9,`eased total turn ${JSON.stringify(turn)}`);
+ results.push({easedLook:{...turn,firstFrame:eased.first-yaw0}});
  results.push({mobile:layout});
  // #29 (upstream 38d2196): the action pill sits under the right thumb with Mät avstånd on the arc above its right
  // end, inside the corner band, at least 8 px from every neighbour, in portrait and landscape; help stays at the top.

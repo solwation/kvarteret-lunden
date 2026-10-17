@@ -29,6 +29,15 @@ const locations = {
 const LEGACY_PLACES = {l1202: 'l1201'};
 
 function status(text) { $('load-status').textContent = text; }
+/** Ease the pending touch drag (CSS px) into the view over TOUCH.look.smooth s; the handed-out deltas add up to the finger's travel. */
+function easeLook(dt) {
+  if (!pendingLook.x && !pendingLook.y) return;
+  const tau = TOUCH.look.smooth, f = tau > 0 ? 1 - Math.exp(-dt / tau) : 1;
+  let x = pendingLook.x * f, y = pendingLook.y * f;
+  if (Math.abs(pendingLook.x - x) < .01 && Math.abs(pendingLook.y - y) < .01) { x = pendingLook.x; y = pendingLook.y; } // the last sliver at once
+  pendingLook.x -= x; pendingLook.y -= y;
+  if (x || y) look(x * TOUCH.look.sens, y * TOUCH.look.sens);
+}
 function look(dx, dy) {
   camera.rotation.y -= dx * .0026;
   camera.rotation.x = THREE.MathUtils.clamp(camera.rotation.x - dy * .0026, -1.35, 1.35);
@@ -170,7 +179,7 @@ async function init() {
   ready = true;
   $('place-toggle').disabled = false;
   // Keep model access local for diagnostics, without a service connection.
-  window.lundenViewer = {world, navigation, camera, renderer, scene, moveTo, locations};
+  window.lundenViewer = {world, navigation, camera, renderer, scene, moveTo, locations, easeLook};
   $('start').disabled = false; $('start').textContent = 'Börja utforska →';
   status('Dator och mobil · Ingen inloggning');
   renderer.setAnimationLoop(frame);
@@ -183,6 +192,7 @@ async function init() {
 function frame() {
   const dt = Math.min(clock.getDelta(), .05);
   if (active && !$('help-dialog').open) navigation.update(dt);
+  if (touch) { if (active && !$('help-dialog').open) easeLook(dt); else pendingLook.x = pendingLook.y = 0; } // eased drag-to-look (#1088)
   // The public walkthrough has no time controls; the tower follows the visitor's local clock.
   const now = new Date(), hour = now.getHours() + now.getMinutes() / 60 + now.getSeconds() / 3600;
   for (const clock of world.clocks) clock.update(hour);
@@ -290,7 +300,9 @@ $('viewer').addEventListener('pointerdown', e => {
   }
   lookPointer=e.pointerId; previous={x:e.clientX,y:e.clientY}; e.target.setPointerCapture(e.pointerId);
 });
-$('viewer').addEventListener('pointermove', e => { if(e.pointerId===lookPointer && previous){look((e.clientX-previous.x)*1.3,(e.clientY-previous.y)*1.3);previous={x:e.clientX,y:e.clientY};} });
+// Drag-to-look is accumulated here and eased into the view per frame (easeLook; upstream 211e0e9, #1088).
+const pendingLook = {x: 0, y: 0};
+$('viewer').addEventListener('pointermove', e => { if(e.pointerId===lookPointer && previous){pendingLook.x+=e.clientX-previous.x;pendingLook.y+=e.clientY-previous.y;previous={x:e.clientX,y:e.clientY};if(!(TOUCH.look.smooth>0))easeLook(0);} });
 $('viewer').addEventListener('pointerup', e => { if(measuring && down && Math.hypot(e.clientX-down.x,e.clientY-down.y)<10) measureAt(e); down=null; if(e.pointerId===lookPointer){lookPointer=null;previous=null;} });
 $('viewer').addEventListener('pointercancel', () => {lookPointer=null;previous=null;down=null;});
 let joystickPointer = null;
