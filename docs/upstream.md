@@ -355,3 +355,9 @@ före ändringen) fastnar östra halvan vid trappkanten. Skärmbilder från park
 norrut mot trappan och från gården söderut ner mot parken granskades: trappan,
 fotplattan och räckesöppningen är lika breda och gångvägen på gården möter
 hela trappan.
+## Ingen loggiaplatta vid hela källarhörn, #47
+
+Överföring från uppströms `ea65674d00a44cb743702e208e8f816e5daf9ee7` (original #1203):
+i `loggias()` i `src/surroundings.js` läggs ingen platta (`slabs.push(BoxGeometry(lx, 0.22, lz)…)`) vid eller under det solida begravda hörnets topp (`st > st0` i stället för `st > 0`). Plattans sidor låg i plan med hörnets tegel och z-fightade till en vit list vid Hus A:s nordöstra källarhörn vid östra utetrappan (och motsvarande hörn i Hus B). Originalets changelogpost hör till originalet; det finns ingen changelog här.
+
+Verifiering: `npm test`, `npm run build`, skärmdump före/efter med google-chrome `--use-angle=gl` (riktig GPU) vid Hus A:s NE-hörn: före syns en bred vit list i tegelväggen, efter bara en tunn kvarvarande ljus linje, som originalets #1212 jobbar på (ej landat vid importen, därför ej med här). Pages och live kontrollerade efter push.
