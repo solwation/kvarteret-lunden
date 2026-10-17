@@ -93,6 +93,32 @@ try{
  assert(rest===0&&half>.2&&half<.45&&rim>.999,`stick feel rest=${rest} half=${half} rim=${rim}`);
  results.push({stickFeel:{rest,half,rim}});
  results.push({mobile:layout});
+ // #29 (upstream 38d2196): the action pill sits under the right thumb with Mät avstånd on the arc above its right
+ // end, inside the corner band, at least 8 px from every neighbour, in portrait and landscape; help stays at the top.
+ const thumb=[];
+ for(const [w,h] of [[390,844],[844,390]]){
+  await m.setViewportSize({width:w,height:h});
+  const r=await m.evaluate(()=>{const a=document.getElementById('action');a.hidden=false;a.textContent='Öppna';
+   const box=id=>{const b=document.getElementById(id).getBoundingClientRect();return{id,l:b.left,t:b.top,r:b.right,b:b.bottom};};
+   return['action','measure','joystick','help','place-toggle'].map(box);});
+  await m.evaluate(()=>{dispatchEvent(new Event('resize'));const v=window.lundenViewer;v.renderer.render(v.scene,v.camera);});
+  await m.screenshot({path:`${out}/mobile-thumb-${w}x${h}.png`});
+  const by=Object.fromEntries(r.map(b=>[b.id,b])),sep=(a,b)=>Math.max(b.l-a.r,a.l-b.r,b.t-a.b,a.t-b.b);
+  assert(w-by.action.r<=16.5&&h-by.action.b<=16.5,`action pill not in the corner at ${w}x${h}`);
+  assert(by.action.r-by.action.l>=148,'action pill too narrow');
+  assert(Math.abs(by.measure.r-(by.action.r-4))<1.5&&by.action.t-by.measure.b>=7.5,`measure not on the arc at ${w}x${h}`);
+  for(let i=0;i<r.length;i++)for(let j=i+1;j<r.length;j++)if(r[i].r>r[i].l&&r[j].r>r[j].l)assert(sep(r[i],r[j])>=7.5,`touch controls too close ${r[i].id}/${r[j].id} at ${w}x${h}`);
+  assert(by.help.b<h/3,'help left the top');
+  await m.locator('#measure').tap();
+  const status=await m.evaluate(()=>{const b=document.getElementById('measurement').getBoundingClientRect();return{id:'measurement',l:b.left,t:b.top,r:b.right,b:b.bottom};});
+  assert(status.l>=0&&status.r<=w&&sep(status,by.measure)>=7.5&&sep(status,by.help)>=7.5,`measurement status collides at ${w}x${h}`);
+  await m.screenshot({path:`${out}/mobile-thumb-measuring-${w}x${h}.png`});
+  await m.locator('#measure').tap();
+  await m.evaluate(()=>{const a=document.getElementById('action');a.hidden=false;});
+  thumb.push({w,h,rects:[...r,status]});
+ }
+ await m.evaluate(()=>{document.getElementById('action').hidden=true;});
+ results.push({thumbArc:thumb});
  assert.deepEqual(errors,[]);assert.deepEqual(external,[]);
  await writeFile(out+'/browser-results.json',JSON.stringify({results,errors,external},null,2));
  console.log(JSON.stringify({passed:true,results,errors,external},null,2));

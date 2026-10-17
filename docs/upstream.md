@@ -157,3 +157,10 @@ Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` utan fel ell
 Importerad från `23d5242` (original #1080): `ceilingVents`, `tint`, `ourCeilingThings` och anropen i `buildVisitFlat`/`buildWorld` (`src/world.js`) samt enbart `VENTS` i `src/config.js`. Vita runda FTX-don: tilluft i sovrum, allrum och vardagsrum, frånluft i badrum, WC/dusch, tvätt och kök, i L1007, L1004 och L1201. De placeras från rummets mitt bort från väggar (takets AO-band), skåp/köksfläkt, våtrummens spotlights och tvättens taklampa, trapphålet och sofittkanter. Originalets pendlar och brandvarnare finns inte här och är borttagna ur undvikandelistan. Ett vertexfärgat mesh per plan, ingen skugga, kollision eller klickyta. Alla mått och lägen är antaganden; originalets ändringslogg har inte importerats.
 
 Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` och Chromium-bilder före/efter av L1007 (vardagsrum, sovrum, badrum, kök), L1004 och L1201 utan z-fighting; ritanrop +2 per vy (ett per plan i bild).
+
+
+## Handlingsknapparna vid högra tummen, #29
+
+Överförd från `38d2196` (original #1089): enbart tumbågens placering, anpassad till publicsidans två knappar i `style.css` för `body.touch`. `#action` (Öppna/Stäng) är ett högerförankrat piller i nedre högra hörnet under den vilande tummen, 16 px (12 px vid låg höjd) från kanten och säkra området. `#measure` (Mät avstånd) sitter på bågen rakt ovanför pillrets rundade högra ände och mätstatusen ovanför den, med minst 8 px mellanrum. Hjälpknappen och platsmenyn ligger kvar uppe; datorvyn är oförändrad. Originalets hopp-, huk-, stå-, jetpack-, spindelnäts- och övriga spelknappar, valrutor och `touchlayouttest` är inte tillämpliga och har inte förts över.
+
+Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` (som nu kontrollerar hörnbandet, bågläget och ≥8 px avstånd mellan pillret, mätknappen, mätstatusen, styrspaken, hjälpknappen och platsmenyn på 390×844 och 844×390 med touch) och `tools/click-browser-check.mjs` i Chromium samt granskade skärmbilder i stående och liggande läge och oförändrad datorvy.
