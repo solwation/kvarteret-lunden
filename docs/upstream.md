@@ -241,3 +241,34 @@ Verifiering: `npm test` (lagringskontrollen godtar enbart de två egna nycklarna
 CSP-hashen för det ändrade inline-skriptet är uppdaterad i `index.html` (bygget räknar om den).
 
 Verifiering: `npm test`, `npm run build`, `tools/startup-error-check.mjs` (utökad: stegordning, rörlig stapel inne i husbygget, livstecken som rör sig och fryser under en verklig 3 s blockering, stoppmeddelandet med fungerande Försök igen) mot källkoden och `dist/` på dator och 390×844, samt `tools/browser-check.mjs`. Skärmbilder granskade.
+
+## Buckliga häckar med mörkare fot, #41
+
+Granskad överföring från `71473503e88bd0183abb306032637d76976ab150`
+(originalets #1143). `src/hedgeform.js`, `src/patiohedge.js` och
+`src/boxwood.js` är exakt dessa källfiler. I `src/config.js` har bara `HEDGE`
+och häckarnas `cell`/`dent` samt entrébyggarens `footScale` förts över.
+Brus ger små bucklor, en smalare/mörkare fot och tonvariation. En shader visar
+stamskymtar i lövatlasens mörka luckor, bara när kartan används. Mått, brus och
+färger är visuella antaganden; höjd och kollisionsrektanglar är oförändrade.
+Inga nya resurser, beroenden, ljus, nätanrop, lagringsnycklar eller tjänster.
+
+Den faktiska offentliga scenens åtta uteplatshäckar i Hus L, inklusive L1004
+och L1007, förblir en sammanslagen mesh: 2 400 → 12 448 trianglar utan fler
+ritanrop. Hus A/B/C:s prydnadsbuskar använder andra byggare och ändras inte;
+L1201 har takterrass utan denna häck. Entréhäckens `boxwood`-byggare finns
+sedan tidigare men anropas inte av den mindre offentliga scenen. Originalets
+StreetLife har därför inte importerats. Visningen är också fast dagsljus och
+saknar automatiska årstider/väder; inga sådana funktioner läggs till här.
+
+`CHROME_PATH=… node tools/hedge-check.mjs BASE OUT` bygger den riktiga
+källappens World och tar nära/långväga uteplatsbilder. Befintlig `applySeason`
+anropas diagnostiskt för sommar, vinter/snö och återgång (ingen ny väderkontroll
+för besökaren). Den faktiska `boxwood`-byggaren kontrolleras separat i en liten
+scen: öppning, fotavtryck, ändliga koordinater och en sommarbatch/två vinterbatcher
+med befintligt snötäcke. Entrébilderna är komponentbevis, inte en entréhäck i
+den publicerade områdesvisningen. Ursprunglig lagring och endast samma origin
+kontrolleras. Det faktiska paketerade `dist/` laddas dessutom och kontrolleras
+nära/på avstånd. Slutkörningen klarade 24/24, utan browser-/shaderfel eller
+externa anrop; `npm test` och `npm run build` godkända. Chromium/SwiftShader
+är inte fysisk Surface-/mobilprestanda.
