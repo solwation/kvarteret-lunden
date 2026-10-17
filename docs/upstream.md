@@ -188,3 +188,10 @@ Spaken har originalets lugna glasfamilj i `style.css`: mörk genomskinlig bas me
 
 Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` (ny tvåfingerkontroll i båda ordningarna), `tools/click-browser-check.mjs`, `tools/touchcustom-check.mjs`, `tools/places-browser-check.mjs`, `tools/place-picker-check.mjs` och `tools/icons-browser-check.mjs` i Chromium, samt skärmbilder av båda apparnas spak i vila och framåtdragen vid 844×390 med touch.
 
+
+
+## Trapphålets bjälklag ut till väggarna, #33 (och dubbletten #34)
+
+Överförd från `8f1562f86e91dfa543405361bd05a160fd0d34b8` (original #1119), enbart `src/world.js`. Övre planets trappkontur `STAIR.hole` ligger ~6 cm innanför trapphålets väggytor, så bjälklaget, övre planets golvplatta och nedre planets takplatta lämnade en kant runt hålet i bjälklagsnivå. `slabOpening(hole, floors)` vidgar öppningen till väggytan på varje sida där en vägg täcker hela kanten på båda planen (för L1007: x1 5,49 → 5,551, z0 5,77 → 5,704, z1 7,54 → 7,604; x0 oförändrat). Bara bjälklaget i `buildStructure`, golv-/takplattorna i `buildLevel` och deras AO använder den; trappa, räcke, kollisioner och lamputplacering behåller `STAIR.hole`. Den generiska `buildStructure` för besöksbara L1004 (samma ritning) får samma öppning; L1201 har eget hål som redan möter väggarna och är oförändrat. Inga mått i lägenheterna ändras. Originalets changelog-post har inte förts över.
+
+Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` och skärmbilder före/efter i Chromium av trapphålet i L1007 (uppifrån och nedifrån) samt i L1004 och L1201, med oförändrat antal ljus och skuggkastare.
