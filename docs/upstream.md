@@ -329,3 +329,29 @@ Verifiering: `npm test` (67 moduler), `npm run build`, `tools/browser-check.mjs`
 +Verifiering: `npm test` (67 moduler), `npm run build`, samt automatiserad kontroll
 +i `tools/loggiabasement-check.mjs`. Kontrollen verifierar att inga vitputsade innerväggar
 +genereras under markytan i källarhörnen och sparar en granskad skärmbild av Hus A:s nordöstra hörn.
+
+## Full bredd på parktrappan mellan Hus C och Hus B, #46
+
+Överföring från uppströms `81992225dcbd0c9ca12e2c108dde6b16de6d1b41`
+(original #1204): Våning −1 och våning 1 ritar TRAPPA mellan Hus C och Hus B,
+från nivålinjen vid z 52,5 ner till parken, som x −47,4…−44,4 (≈ 3,0 m, grafisk
+avläsning ±0,15 m). Modellen hade 1,5 m (x1 −45,9).
+
+Ändringar endast i `src/config.js`: trappan i `SITE.terrain.stairs` får x1 −44,4
+med källkommentar, och trappfotens platta i `SITE.basementPaving` blir
+`{ x0: -47.4, x1: -44.4, z0: 58.6, z1: 59.0 }`. Steghöjd, vilplan och räcken
+är oförändrade *guess* (inte måttsatta). Räckesöppningen i gårdsboxens kant,
+kollisionsavbrottet och de gångbara trappstegen följer automatiskt av
+trappans x-intervall i `src/surroundings.js`. Originalets changelog-rad
+överförs inte. Hus A:s östra trappa och Hus C:s NV-trappa stämmer redan med
+våning 1; Hus L saknar parktrappa.
+
+Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` mot `dist/`,
+`tools/park-windows-check.mjs` och nya `tools/parkstair-check.mjs`. Den senare
+går i den riktiga World ner och upp på västra (x −46,9) och östra (x −44,7)
+halvan: båda når parknivån −3 resp. gården 0 på 5,25 s utan sidoförskjutning
+eller fall (största fall per bildruta 0,028 m). Med `--before` (källkonfigurationen
+före ändringen) fastnar östra halvan vid trappkanten. Skärmbilder från parken
+norrut mot trappan och från gården söderut ner mot parken granskades: trappan,
+fotplattan och räckesöppningen är lika breda och gångvägen på gården möter
+hela trappan.
