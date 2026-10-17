@@ -112,11 +112,11 @@ try{
  await showAction(m);await frame(m);
  const after=await rects(m);inside(after,390,844,'saved');
  await render(m);await m.screenshot({path:`${out}/4-saved-play.png`});
- // The scaled, moved stick still walks with its own touch, and its knob travels the same share of the ring as by default.
- await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:after.joystick.cx,y:after.joystick.cy-after.joystick.w*.4,id:5}]});
- const walk=await m.evaluate(()=>{const s=document.getElementById('joystick'),k=s.querySelector('span').getBoundingClientRect(),b=s.getBoundingClientRect();return{y:window.lundenViewer.navigation.analog.y,knob:((b.top+b.bottom)/2-(k.top+k.bottom)/2)/b.height};});
+ // The scaled, moved stick still walks with its own touch, and its knob reaches the rim as by default (travel = (size − 12 px) / 2 in the stick's own units, #31).
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:after.joystick.cx,y:after.joystick.cy-after.joystick.w*.48,id:5}]});
+ const walk=await m.evaluate(()=>{const s=document.getElementById('joystick'),k=s.querySelector('span').getBoundingClientRect(),b=s.getBoundingClientRect();return{y:window.lundenViewer.navigation.analog.y,knob:((b.top+b.bottom)/2-(k.top+k.bottom)/2)/b.height,expect:(1-12*(b.width/s.offsetWidth)/b.height)/2};});
  await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
- assert(walk.y>.9&&Math.abs(walk.knob-.32)<.01,`scaled stick walk ${JSON.stringify(walk)}`);
+ assert(walk.y>.9&&Math.abs(walk.knob-walk.expect)<.01,`scaled stick walk ${JSON.stringify(walk)}`);
 
  // Persistence after reload.
  await m.reload();

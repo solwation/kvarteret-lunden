@@ -40,7 +40,7 @@ Automatisk publicering till GitHub Pages är aktiverad vid varje push till detta
 
 ## Register
 
-- Senast granskade originalversion: `1e6b988` (för #20; övriga områden enligt respektive avsnitt).
+- Senast granskade originalversion: `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -178,3 +178,13 @@ Verifiering: `npm test`, `npm run build` och `tools/browser-check.mjs` med ny ko
 Anpassad från `1af9b39` (original #1090/#1082): `src/touchlayout.js` (normalisering, lagring, mätning mot säkra området och redigeraren), redigerarens stil i `style.css` och enbart gränserna som `TOUCH_LAYOUT` i `src/config.js`. Bara publicsidans tre reglage ingår: styrspaken `#joystick`, `#action` och `#measure`; mätstatusen följer Mät avstånds förflyttning. Ingången är knappen Anpassa touchknappar i hjälpdialogen, som bara visas på pekskärmar. Standardlayouten är tumbågen från #29 och skriver inga inlinestilar. Layouten sparas per enhet under den egna nyckeln `kvarteret-lunden.touch-layout` (originalets `lunden.touchLayout` läses aldrig) och gäller under besöket om lagringen är blockerad. Den fasta spaken skalas med `scale`; `steer` i `src/main.js` flyttar knoppen i spakens egna enheter så att den följer kanten. En pågående redigering räknas som upptagen för automatisk uppdatering. Originalets spelknappar, flytande spak, pausmeny och `touchcustomtest.cjs` har inte förts över; `tools/verify.mjs` tillåter `localStorage` enbart i `touchlayout.js` med den nyckeln.
 
 Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs`, `tools/click-browser-check.mjs` och nya `tools/touchcustom-check.mjs` i Chromium med CDP-touch på 390×844/844×390: flytt, storlek med reglage och nyp, opacitet, spegling, Spara, ✕ Avbryt, Esc, Återställ standard, kvar efter omladdning, omplacering vid rotation inom säkra området, skalad spak som går, blockerad lagring, ingen ingång på dator och orörd originalnyckel. Skärmbilder granskade.
+
+
+## Gå och svänga samtidigt, och originalets spak, #31
+
+Anpassad från originalets `src/touch.js` och `src/hudicons.css` vid `82fde3f` (spakens utseende från #1087, `e3d2873`; flerfingerstyrningen med separata `stickId`/`lookId`). Tittdragningen på `#viewer` i `src/main.js` avvisade alla icke-primära pekare, så ett tittfinger som landade medan tummen redan höll spaken ignorerades. Nu följs ett beröringsfinger per id även som andra pekare (mus och penna håller sig till den primära), mätningens tryck följs per id, och avbrott nollställer bara sin egen pekare. Spaken tas inte över av ett andra finger och nollställs bara när dess eget finger släpper.
+
+Spaken har originalets lugna glasfamilj i `style.css`: mörk genomskinlig bas med vit kant, fyra diskreta pilar, ljus knopp med inre ring och vit kantglöd åt det håll man drar (tidigare grön). Storleken är originalets 2 × väg + 12 px med vägen `clamp(48px, 15vmin, 84px)` och knoppen 0,9 × vägen; `steer` låter knoppen nå kanten som i originalet. Spaken ligger fast i nedre vänstra hörnet, 20 px från kanten och säkra området, där originalets vilande spak visas. Originalets flytande spak/följ-läge, sprint, vilo-hint och spelknappar är inte tillämpliga och har inte förts över. Egen layout (#30), tumbågen (#29) och den utjämnade tittdragningen (#28) är oförändrade.
+
+Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` (ny tvåfingerkontroll i båda ordningarna), `tools/click-browser-check.mjs`, `tools/touchcustom-check.mjs`, `tools/places-browser-check.mjs`, `tools/place-picker-check.mjs` och `tools/icons-browser-check.mjs` i Chromium, samt skärmbilder av båda apparnas spak i vila och framåtdragen vid 844×390 med touch.
+

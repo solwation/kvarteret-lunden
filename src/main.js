@@ -292,8 +292,11 @@ document.addEventListener('keydown', e => {
 document.addEventListener('keyup', e => navigation?.keys.delete(e.code));
 let lookPointer = null, previous = null, down = null;
 $('viewer').addEventListener('pointerdown', e => {
-  if (!active || $('help-dialog').open || e.button !== 0 || e.isPrimary === false) return;
-  if (measuring) { down = {x:e.clientX,y:e.clientY}; return; }
+  // A mouse/pen keeps to its primary pointer. A touch finger may be a second one: the stick thumb is often already down,
+  // so the look (or measuring) finger is tracked by id alongside it (#31; the original's stickId/lookId, src/touch.js).
+  if (!active || $('help-dialog').open || e.button !== 0) return;
+  if (e.isPrimary === false && (e.pointerType !== 'touch' || lookPointer !== null || down)) return;
+  if (measuring) { down = {x:e.clientX,y:e.clientY,id:e.pointerId}; return; }
   if (!touch) {
     // Capturing the mouse never activates an object; subsequent primary clicks use the crosshair.
     if (document.pointerLockElement === renderer.domElement) use();
@@ -305,16 +308,18 @@ $('viewer').addEventListener('pointerdown', e => {
 // Drag-to-look is accumulated here and eased into the view per frame (easeLook; upstream 211e0e9, #1088).
 const pendingLook = {x: 0, y: 0};
 $('viewer').addEventListener('pointermove', e => { if(e.pointerId===lookPointer && previous){pendingLook.x+=e.clientX-previous.x;pendingLook.y+=e.clientY-previous.y;previous={x:e.clientX,y:e.clientY};if(!(TOUCH.look.smooth>0))easeLook(0);} });
-$('viewer').addEventListener('pointerup', e => { if(measuring && down && Math.hypot(e.clientX-down.x,e.clientY-down.y)<10) measureAt(e); down=null; if(e.pointerId===lookPointer){lookPointer=null;previous=null;} });
-$('viewer').addEventListener('pointercancel', () => {lookPointer=null;previous=null;down=null;});
+$('viewer').addEventListener('pointerup', e => { if(down && e.pointerId===down.id){if(measuring && Math.hypot(e.clientX-down.x,e.clientY-down.y)<10) measureAt(e); down=null;} if(e.pointerId===lookPointer){lookPointer=null;previous=null;} });
+$('viewer').addEventListener('pointercancel', e => { if(e.pointerId===lookPointer){lookPointer=null;previous=null;} if(down && e.pointerId===down.id) down=null; });
 let joystickPointer = null;
 const stick=$('joystick'), knob=stick.querySelector('span');
-// Knob travel follows the stick's rendered size, which scales with the screen's short side (style.css; upstream e3d2873, #1087).
+// Knob travel follows the stick's rendered size, which scales with the screen's short side (style.css; upstream e3d2873, #1087):
+// as in the original, the base is 2 × travel + 12 px, so the knob reaches the rim (#31, upstream 82fde3f).
 // Dead zone + response curve on the deflection, direction kept (upstream 211e0e9, #1088). The knob moves in the
 // stick's own units, so an own layout's `scale` (#30) keeps it on the rim.
 function stickResponse(r){const {deadZone,full,curve}=TOUCH.stick;return r<=deadZone?0:Math.min(1,(r-deadZone)/(full-deadZone))**curve;}
-function steer(e){const r=stick.getBoundingClientRect(),sc=r.width/(stick.offsetWidth||r.width)||1,t=r.width*.32,dx=e.clientX-r.left-r.width/2,dy=e.clientY-r.top-r.height/2,d=Math.hypot(dx,dy),n=Math.max(1,d/t),out=stickResponse(Math.min(d,t)/t),k=d>0?out/Math.min(d,t):0;navigation.analog.x=dx/n*k;navigation.analog.y=-dy/n*k;knob.style.transform=`translate(${dx/n/sc}px,${dy/n/sc}px)`;stick.style.setProperty('--joy-a',`${Math.atan2(dx,-dy)*180/Math.PI}deg`);stick.style.setProperty('--joy-m',(out*.75).toFixed(2));}
-stick.addEventListener('pointerdown',e=>{if(!active)return;joystickPointer=e.pointerId;stick.setPointerCapture(e.pointerId);steer(e);});
+function steer(e){const r=stick.getBoundingClientRect(),sc=r.width/(stick.offsetWidth||r.width)||1,t=(r.width-12*sc)/2,dx=e.clientX-r.left-r.width/2,dy=e.clientY-r.top-r.height/2,d=Math.hypot(dx,dy),n=Math.max(1,d/t),out=stickResponse(Math.min(d,t)/t),k=d>0?out/Math.min(d,t):0;navigation.analog.x=dx/n*k;navigation.analog.y=-dy/n*k;knob.style.transform=`translate(${dx/n/sc}px,${dy/n/sc}px)`;stick.style.setProperty('--joy-a',`${Math.atan2(dx,-dy)*180/Math.PI}deg`);stick.style.setProperty('--joy-m',(out*.75).toFixed(2));}
+// One thumb owns the stick; a second finger landing on it does not take it over, and only the owner's release resets it (#31).
+stick.addEventListener('pointerdown',e=>{if(!active||joystickPointer!==null)return;joystickPointer=e.pointerId;stick.setPointerCapture(e.pointerId);steer(e);});
 stick.addEventListener('pointermove',e=>{if(e.pointerId===joystickPointer)steer(e);});
-for(const type of ['pointerup','pointercancel','lostpointercapture'])stick.addEventListener(type,()=>{joystickPointer=null;if(navigation)navigation.analog.x=navigation.analog.y=0;knob.style.transform='';stick.style.setProperty('--joy-m','0');});
+for(const type of ['pointerup','pointercancel','lostpointercapture'])stick.addEventListener(type,e=>{if(e.pointerId!==joystickPointer)return;joystickPointer=null;if(navigation)navigation.analog.x=navigation.analog.y=0;knob.style.transform='';stick.style.setProperty('--joy-m','0');});
 init().catch(error=>{console.error(error);status(`Visningen kunde inte startas: ${error.message}`);$('start').disabled=false;$('start').textContent='Försök igen';$('start').addEventListener('click',()=>location.reload(),{once:true});});

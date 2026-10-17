@@ -82,7 +82,7 @@ try{
  await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
  assert.equal(await m.evaluate(()=>window.lundenViewer.navigation.analog.y),0);
  // Dead zone and response curve (upstream 211e0e9): a resting thumb's few px do not walk; half travel walks gently.
- const cx=stick.x+stick.width/2,cy=stick.y+stick.height/2,travel=stick.width*.32,frame=()=>m.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+ const cx=stick.x+stick.width/2,cy=stick.y+stick.height/2,travel=(stick.width-12)/2,frame=()=>m.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:cx+2,y:cy-2,id:2}]});await frame();
  const rest=await m.evaluate(()=>Math.hypot(window.lundenViewer.navigation.analog.x,window.lundenViewer.navigation.analog.y));
  await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:cx,y:cy-travel*.5,id:2}]});await frame();
@@ -103,6 +103,33 @@ try{
  assert(eased.immediate===yaw0&&eased.first!==yaw0&&Math.abs(eased.first-yaw0)<Math.abs(turn.expectYaw)*.6,`look must ease in: ${JSON.stringify(eased)}`);
  assert(Math.abs(turn.yaw-turn.expectYaw)<1e-9&&Math.abs(turn.pitch-turn.expectPitch)<1e-9,`eased total turn ${JSON.stringify(turn)}`);
  results.push({easedLook:{...turn,firstFrame:eased.first-yaw0}});
+ // #31 (the original's stickId/lookId, src/touch.js): the stick and a look finger work at once in either order, and
+ // lifting one keeps the other. CDP touchEnd lists the points that lift.
+ const settle=()=>m.evaluate(()=>{const v=window.lundenViewer;for(let i=0;i<120;i++)v.easeLook(1/60);return{walk:v.navigation.analog.y,yaw:v.camera.rotation.y};});
+ const T=(type,touchPoints)=>cdp.send('Input.dispatchTouchEvent',{type,touchPoints});
+ const fwd={x:cx,y:cy-travel,id:11},lookAt=i=>({x:250+i*20,y:300,id:12});
+ const multi={};
+ let y=(await settle()).yaw;
+ await T('touchStart',[fwd]);await T('touchStart',[fwd,lookAt(0)]);
+ for(let i=1;i<=5;i++)await T('touchMove',[fwd,lookAt(i)]);
+ let q=await settle();multi.stickFirst={walk:q.walk,turn:q.yaw-y};
+ await T('touchEnd',[lookAt(5)]);await T('touchMove',[{...fwd,x:cx+1}]);y=q.yaw;q=await settle();multi.lookLifted={walk:q.walk,turn:q.yaw-y};
+ await T('touchEnd',[fwd]);
+ y=(await settle()).yaw;
+ await T('touchStart',[lookAt(0)]);await T('touchStart',[lookAt(0),fwd]);
+ for(let i=1;i<=5;i++)await T('touchMove',[lookAt(i),fwd]);
+ q=await settle();multi.lookFirst={walk:q.walk,turn:q.yaw-y};
+ await T('touchEnd',[fwd]);y=q.yaw;
+ for(let i=6;i<=8;i++)await T('touchMove',[lookAt(i)]);
+ q=await settle();multi.stickLifted={walk:q.walk,turn:q.yaw-y};
+ await T('touchEnd',[lookAt(8)]);
+ const perStep=-20*1.3*.0026,near=(a,b)=>Math.abs(a-b)<1e-9;
+ assert(multi.stickFirst.walk>.99&&near(multi.stickFirst.turn,5*perStep),`stick then look ${JSON.stringify(multi)}`);
+ assert(multi.lookLifted.walk>.99&&multi.lookLifted.turn===0,`look lifted ${JSON.stringify(multi)}`);
+ assert(multi.lookFirst.walk>.99&&near(multi.lookFirst.turn,5*perStep),`look then stick ${JSON.stringify(multi)}`);
+ assert(multi.stickLifted.walk===0&&near(multi.stickLifted.turn,3*perStep),`stick lifted ${JSON.stringify(multi)}`);
+ assert.equal(await m.evaluate(()=>window.lundenViewer.navigation.analog.y),0);
+ results.push({multiTouch:multi});
  results.push({mobile:layout});
  // #29 (upstream 38d2196): the action pill sits under the right thumb with Mät avstånd on the arc above its right
  // end, inside the corner band, at least 8 px from every neighbour, in portrait and landscape; help stays at the top.
