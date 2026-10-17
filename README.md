@@ -38,7 +38,7 @@ npm ci
 npm run dev
 ```
 
-Öppna http://localhost:8157. Bygg för publicering med `npm run build`; de statiska filerna hamnar i `dist/`. Ingen backend, Cloudflare-konfiguration eller driftcredential behövs. Tillfälliga fel vid hämtning av planritningen får ett automatiskt återförsök; permanent fel ger Försök igen.
+Öppna http://localhost:8157. Bygg för publicering med `npm run build`; de statiska filerna hamnar i `dist/`. Ingen backend, Cloudflare-konfiguration eller driftcredential behövs. Tillfälliga fel vid hämtning av planritningen får ett automatiskt återförsök; permanent fel ger Försök igen. Välkomstkortet visar laddningssteget, sekunder och en förloppsstapel; står ett steg still länge visas ”Det här tar ovanligt lång tid” med Försök igen.
 
 På dator används W A S D/piltangenter för att gå. Rikta mittpunkten mot en dörr eller lucka och klicka för att öppna/stänga; E fungerar också. Första klicket när musen är fri fångar bara musen. I mätläget väljer klick mätpunkter i stället för att öppna objekt. På mobil används styrreglaget och dragning i vyn, även samtidigt med två fingrar. På mobil och skärmar upp till 960 px visas en liten knapp med vald plats. Knappen öppnar en meny som stängs efter val, vid tryck utanför eller med Escape. Större skärmar har numrerade platsknappar. Platsmenyn och tangenterna 1–7 flyttar besökaren till området, L1007, L1004, L1201, innergården, trapphuset eller garaget, i den ordningen. L1004 och L1201 har modellerade interiörer. L1201:s val tar besökaren till lägenhetens entréhall på våning 3, innanför dörren från loftgången. Sifferraden och det numeriska tangentbordet fungerar under en aktiv visning; genvägar ignoreras i hjälpdialoger och textfält. Mät avstånd väljer två punkter på ytor. Alla mått är ungefärliga modellmått.
 
@@ -61,7 +61,7 @@ En öppen visning kontrollerar nya versioner varje minut och när fliken blir sy
 
 ## Verifiering
 
-`npm test` granskar importkedjan, planunderlaget och frånvaro av privata referenser och originalets tjänster. `npm run build` skapar det statiska publiceringspaketet. Kör `CHROME_PATH=/sökväg/till/chrome node tools/browser-check.mjs http://localhost:8157` mot en server för `dist/` för integrationstest i Chromium, inklusive mobil layout, gång, dörranimation, ursprunglig lagring och nätverksanrop. `tools/touchcustom-check.mjs` kontrollerar på samma sätt den egna touchlayouten. `tools/startup-error-check.mjs` kontrollerar felkortet med steg och Försök igen när starten misslyckas.
+`npm test` granskar importkedjan, planunderlaget och frånvaro av privata referenser och originalets tjänster. `npm run build` skapar det statiska publiceringspaketet. Kör `CHROME_PATH=/sökväg/till/chrome node tools/browser-check.mjs http://localhost:8157` mot en server för `dist/` för integrationstest i Chromium, inklusive mobil layout, gång, dörranimation, ursprunglig lagring och nätverksanrop. `tools/touchcustom-check.mjs` kontrollerar på samma sätt den egna touchlayouten. `tools/startup-error-check.mjs` kontrollerar laddningsstegen, stoppmeddelandet och felkortet med steg och Försök igen när starten misslyckas.
 
 För arbete med issues, `in-progress`, stängning och `/orkester`, läs [CLAUDE.md](CLAUDE.md) och [orkesterkommandot](.claude/commands/orkester.md). Ärenden för detta projekt skapas här i [kvarteret-lunden](https://github.com/solwation/kvarteret-lunden/issues).
 

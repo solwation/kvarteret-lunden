@@ -1,5 +1,6 @@
 import * as THREE from 'three';
-import { buildWorld } from './world.js';
+import { buildWorldSliced } from './world.js';
+import { loadingStep, loadingYield } from './loadingstep.js';
 import { Navigation } from './navigation.js';
 import { fetchStartupJSON } from './startup.js';
 import { VERSION, takeResume, watchUpdates, saveResume, claimContextReload } from './updates.js';
@@ -8,7 +9,7 @@ import { installPlaceShortcuts } from './place-shortcuts.js';
 import { Garage } from './garage.js';
 import { Core } from './core.js';
 import { CoreHouse } from './corehouse.js';
-import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, LIGHTING, TOUCH } from './config.js';
+import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, LIGHTING, STARTUP, TOUCH } from './config.js';
 import { region, stickMirrored, setupTouchLayout } from './touchlayout.js';
 
 const $ = id => document.getElementById(id);
@@ -128,7 +129,7 @@ function fit() {
 }
 
 async function init() {
-  window.kvarteretStartup?.setStep('Startar 3D-grafiken'); // named steps for the startup guard in index.html (#37)
+  await loadingStep('Startar 3D-grafiken', 0.1); // named steps on the card and for the startup guard in index.html (#37, #39)
   renderer = new THREE.WebGLRenderer({antialias: true, powerPreference: 'low-power'});
   renderer.setPixelRatio(Math.min(devicePixelRatio, touch ? 1.25 : 1.5));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -146,18 +147,15 @@ async function init() {
   const sunlight = new THREE.DirectionalLight(S.sun.color, S.sun.intensity); sunlight.position.set(...S.sun.pos); scene.add(sunlight);
   const fill = new THREE.DirectionalLight(S.fill.color, S.fill.intensity); fill.position.set(...S.fill.pos); scene.add(fill);
   fit();
-  await new Promise(requestAnimationFrame);
-  window.kvarteretStartup?.setStep('Hämtar planritningen');
-  const plan = await fetchStartupJSON(`./data/plan.json${VERSION ? '?v=' + VERSION : ''}`, { timeout: 15000 });
-  status('Förbereder byggnader och rum…');
-  await new Promise(requestAnimationFrame);
-  window.kvarteretStartup?.setStep('Bygger huset');
-  world = buildWorld(plan); scene.add(world.object);
-  status('Förbereder trapphus och garage…');
-  await new Promise(requestAnimationFrame);
-  window.kvarteretStartup?.setStep('Bygger trapphus och garage');
+  loadingStep('Hämtar planritningen', 0.15);
+  const plan = await fetchStartupJSON(`./data/plan.json${VERSION ? '?v=' + VERSION : ''}`, { timeout: STARTUP.planTimeout });
+  await loadingStep('Bygger huset', 0.2);
+  // In parts, with the card's heartbeat painted between them (#39, from the original's 673b78d #1133).
+  world = await buildWorldSliced(plan, (share) => loadingYield(0.2 + 0.6 * share)); scene.add(world.object);
+  await loadingStep('Bygger trapphus och garage', 0.82);
   garage = world.garage = new Garage();
   for (const o of [garage.object, garage.blackout, garage.door?.object, garage.parkObject]) if (o) scene.add(o);
+  await loadingYield(0.9);
   core = world.core = new Core();
   world.coreHouses = [CORE_A, CORE_B, CORE_C].map(c => core.attach(new CoreHouse(c)));
   scene.add(core.object, points);

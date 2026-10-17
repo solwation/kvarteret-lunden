@@ -1915,7 +1915,10 @@ export const SHOWER_FITTINGS = {
 export const FLOOR_DRAIN = { size: 0.2, grate: 0.15, bars: 8, h: 0.005, shower: { u: 0.5, v: 0.5 }, laundryGap: 0.35 };
 
 // Bounded startup data recovery, adapted from original issue #1065; safeguards, not device measurements.
-export const STARTUP = { dataTimeout: 5000, planTimeout: 15000, dataAttempts: 2, retryDelay: 250 };
+// stepYield (#39, from the original's d9d9abb, *guess*): longest wait for a frame after a loading step, so a throttled tab
+// is not held up. stallSeconds (#39, from 397d1cd, *guess*): one step lasting this long shows "Det här tar ovanligt lång
+// tid" with Försök igen (literal stallMs in index.html); well above a normal phone "Bygger huset".
+export const STARTUP = { dataTimeout: 5000, planTimeout: 15000, dataAttempts: 2, retryDelay: 250, stepYield: 50, stallSeconds: 40 };
 
 // Clock readability proportions are visual assumptions; original tower dimensions remain unchanged.
 export const TOWER_CLOCK = {

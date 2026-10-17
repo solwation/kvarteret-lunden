@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#ecebe5">
   <meta name="description" content="Utforska Kvarteret Lunden i 3D. Byggnader, gård och fast inredning i en fristående visualisering.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Bufz0ylsvH5VX0RelLTkdCzDLj+JPhHmKTdEC0GXlzs=' 'sha256-5x+ar8947Xhi/Xh3VoJRp+KtqNm5ieHH3Cm79p+8rDc='; style-src 'self'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Bufz0ylsvH5VX0RelLTkdCzDLj+JPhHmKTdEC0GXlzs=' 'sha256-JrHK1HJhvMZLBzdVFLo6dFr32Bm3qL647LEcE1YBqCA='; style-src 'self'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'">
   <title>Kvarteret Lunden · Utforska i 3D</title>
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
@@ -15,8 +15,11 @@
   <link rel="stylesheet" href="./style.css">
   <script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
   <script>
-// Startup guard (#37), adapted from lunden-3d-apartment 87abb571 (#1132) and d9d9abb (#1130): dependency-free, so it
-// still works when the program files fail. main.js names its steps; a failure shows the step, the cause and Försök igen.
+// Startup guard (#37, #39), adapted from lunden-3d-apartment 87abb571 (#1132), d9d9abb (#1130) and 397d1cd (#1131):
+// dependency-free, so it still works when the program files fail. main.js names its steps (src/loadingstep.js); the
+// card shows the step, the elapsed seconds and a progress bar. The pulse and the seconds run on requestAnimationFrame,
+// so they freeze when the main thread hangs. A step lasting stallMs shows "Det här tar ovanligt lång tid" with Försök
+// igen while loading continues; a failure shows the step, the cause and Försök igen.
 (()=>{
 const REASONS={import:'en programfil kunde inte hämtas',network:'nätverket svarade inte',webgl:'webbläsaren kunde inte starta 3D-grafiken (WebGL)',scene:'ett oväntat fel uppstod'};
 const causeOf=error=>{const text=`${error?.name||''} ${error?.message||''}`;
@@ -24,16 +27,38 @@ if(/dynamically imported module|Importing a module script failed/i.test(text))re
 if(/WebGL/i.test(text))return 'webgl';
 if(/Startup data|Failed to fetch|NetworkError|Load failed/i.test(text))return 'network';
 return 'scene';};
-const startup=window.kvarteretStartup={step:'Hämtar programfilerna',cause:'',done:false,
-setStep(name){if(!startup.cause&&!startup.done)startup.step=name;},
-finish(){startup.done=true;},
+const $=id=>document.getElementById(id);
+const ready=fn=>{if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn,{once:true});else fn();};
+const now=()=>performance.now();
+// stallMs: keep in sync with STARTUP.stallSeconds in src/config.js. last = when the current step began, beat = the
+// last heartbeat frame (both performance.now()), so "working" and "stuck" can be told apart.
+const startup=window.kvarteretStartup={step:'Hämtar programfilerna',cause:'',done:false,fraction:.05,last:now(),beat:now(),steps:[],stallMs:40000,stalled:null,
+render(){const name=$('load-step-name'),bar=$('load-bar');if(name)name.textContent=startup.step;if(bar)bar.style.width=`${Math.round(startup.fraction*100)}%`;},
+progress(fraction){if(Number.isFinite(fraction))startup.fraction=Math.max(startup.fraction,Math.min(1,fraction));startup.render();},
+setStep(name,fraction){if(startup.cause||startup.done)return;startup.step=name;startup.last=now();startup.steps.push({name,at:Math.round(startup.last)});startup.progress(fraction);},
+stop(){for(const id of ['load-step','load-progress','load-slow']){const el=$(id);if(el)el.hidden=true;}},
+finish(){startup.done=true;startup.stop();},
 fail(error){if(startup.cause||startup.done)return;startup.cause=causeOf(error);
-const show=()=>{const start=document.getElementById('start');if(!start)return;
+ready(()=>{startup.stop();const start=$('start');if(!start)return;
 const line=document.createElement('p');line.id='load-error';line.className='load-error';line.setAttribute('role','alert');line.dataset.cause=startup.cause;
 line.textContent=`Fel i steget ”${startup.step}”: ${REASONS[startup.cause]}.`;start.before(line);
-const status=document.getElementById('load-status');if(status)status.textContent='Visningen kunde inte startas.';
-start.disabled=false;start.textContent='Försök igen';start.addEventListener('click',()=>location.reload(),{once:true});};
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',show,{once:true});else show();}};
+const status=$('load-status');if(status)status.textContent='Visningen kunde inte startas.';
+start.disabled=false;start.textContent='Försök igen';start.addEventListener('click',()=>location.reload(),{once:true});});}};
+startup.steps.push({name:startup.step,at:Math.round(startup.last)});
+ready(()=>{startup.render();
+const pulse=$('load-pulse'),time=$('load-elapsed'),slow=$('load-slow');
+const tick=t=>{if(startup.done||startup.cause)return;startup.beat=t;
+if(pulse)pulse.style.opacity=(.35+.65*(.5+.5*Math.sin(t/160))).toFixed(2);
+if(time)time.textContent=`${Math.floor(t/1000)} s`;requestAnimationFrame(tick);};
+requestAnimationFrame(tick);
+if(!slow)return;
+slow.querySelector('button').addEventListener('click',()=>location.reload());
+// A hung main thread freezes this check too, so the notice appears as soon as the blocking step releases. Time in a
+// hidden tab does not count (frames and timers are throttled there).
+let visibleAt=now();document.addEventListener('visibilitychange',()=>{if(!document.hidden)visibleAt=now();});
+const watch=setInterval(()=>{if(startup.done||startup.cause)return clearInterval(watch);
+if(document.hidden||!slow.hidden||now()-Math.max(startup.last,visibleAt)<startup.stallMs)return;
+startup.stalled={name:startup.step,at:Math.round(now())};slow.hidden=false;},500);});
 import('./src/main.js').catch(startup.fail);
 })();
 </script>
@@ -66,7 +91,7 @@ import('./src/main.js').catch(startup.fail);
   <button id="action" hidden>Öppna</button>
   <button id="resume" hidden>Fortsätt utforska</button>
   <section id="intro" class="cover" aria-label="Välkommen">
-    <div class="intro-card"><span class="eyebrow">EN PLATS ATT LÄRA KÄNNA</span><h1>Välkommen till<br>Kvarteret Lunden.</h1><p>Ta en promenad genom kvarteret, upptäck innergården och kliv in i L1007. Här visas rummen och den fasta inredningen.</p><button id="start" disabled>Förbereder kvarteret…</button><p id="load-status" role="status">Bygger 3D-modellen</p><div class="intro-footer">Fristående visualisering. Detaljer och material kan avvika från verkligheten. L1007 visar ett exempel på val av fast inredning. Ingen officiell tjänst från Peab.</div></div>
+    <div class="intro-card"><span class="eyebrow">EN PLATS ATT LÄRA KÄNNA</span><h1>Välkommen till<br>Kvarteret Lunden.</h1><p>Ta en promenad genom kvarteret, upptäck innergården och kliv in i L1007. Här visas rummen och den fasta inredningen.</p><button id="start" disabled>Förbereder kvarteret…</button><p id="load-status" role="status">Bygger 3D-modellen</p><p id="load-step" class="load-step"><span id="load-pulse" class="load-pulse" aria-hidden="true"></span><span id="load-step-name">Hämtar programfilerna</span><span id="load-elapsed" class="load-elapsed" aria-hidden="true">0 s</span></p><div id="load-progress" class="load-progress" aria-hidden="true"><i id="load-bar"></i></div><div id="load-slow" class="load-slow" role="alert" hidden><p>Det här tar ovanligt lång tid.</p><button type="button">Försök igen</button></div><div class="intro-footer">Fristående visualisering. Detaljer och material kan avvika från verkligheten. L1007 visar ett exempel på val av fast inredning. Ingen officiell tjänst från Peab.</div></div>
   </section>
   <dialog id="help-dialog"><button id="close-help" aria-label="Stäng hjälp">×</button><span class="eyebrow">SÅ HITTAR DU RUNT</span><h2>Utforska i din egen takt.</h2><p>På dator: klicka i vyn för att titta med musen. Gå med W A S D eller piltangenterna. Rikta mittpunkten mot en dörr eller lucka och klicka för att öppna eller stänga. E fungerar också. Första klicket efter att musen släppts fångar bara musen igen. Tryck Esc för att släppa musen.</p><p>På mobil: sätt tummen var som helst på vänstra delen av bilden och dra för att gå. Dra i bilden till höger för att titta. Använd knappen som visas för dörrar.</p><button id="touch-layout-open" type="button" hidden>Anpassa touchknappar</button><p class="muted" id="touch-layout-desc">Flytta knapparna, ändra storlek och genomskinlighet eller spegla för vänsterhänta. Sparas bara på den här enheten.</p><p>Välj en plats i menyn för att hoppa dit, eller tryck 1–7 på datorns sifferrad eller numeriska tangentbord. Siffrorna följer menyordningen. L1004 och L1201 har modellerade interiörer; L1201 nås från loftgången. Med Mät avstånd väljer du två punkter på ytor i bilden. Måtten är ungefärliga modellmått.</p><p class="muted">Visualiseringen är fristående och kan avvika från verkligheten. Den visar inte alla lägenhetstyper eller verifierade standardval för alla bostäder.</p></dialog>
 </body>
