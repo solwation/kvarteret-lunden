@@ -308,3 +308,24 @@ L saknar motsvarande parkdörr och har redan glas i portikporten.
 Även kommentarerna om "steel finish" vid A:s parkdörr ändras som i källan, eftersom bladet inte längre är helt i stål.
 
 Verifiering: `npm test` (67 moduler), `npm run build`, `tools/browser-check.mjs` mot `dist/` och `tools/parkdoor-glass-check.mjs` före/efter. Föreläget (oförändrad `garage.js`) har opakt blad i öppningen; efter importen träffar en stråle genom bladmitten glaset men ingen metall, glasets instansmatris är identisk med bladets stängt/öppet, dörrvinkeln når 1,55 rad, kollisionssegmentet följer bladet från oförändrat gångjärn och pickmål/nivågrindar och originalets lagringsmarkörer är orörda. Glaset kostar ett ritanrop och 24 trianglar för båda dörrarna; de 30 interna stålbladen har kvar 252 trianglar. Kontrollen körs även mot publiceringsbyggets riktiga World för A och B, utifrån/inifrån, öppen/stängd, utan shaderfel, browserundantag eller externa anrop. Skärmbilderna togs med google-chrome `--use-angle=gl` på riktig GPU (Iris Plus 640, `ANGLE=gl`) och granskades: glas med synlig garagekorridor respektive park genom bladet, och det öppnade bladet visar ram, glas och handtag. Ingen fysisk mobil eller uppmätt prestanda påstås.
+ 
+ 
++## Hela källarhörn där loggior ligger under marken, #44
++
++Överföring från uppströms `67abfa1ce29a8a631c19551c6c5a0ec7b9499849`
++(original #1153): I Å-husens källarplan (våning −1 i Hus A och B) ligger
++hörnloggior under marknivån (`y < g - 1.2`). Där ska ytterhörnen vara hela
++tegelväggar i stället för indragna balkonghål med räcken/innerväggar under marken.
++
++Ändringar i `src/surroundings.js`:
++• `outline(b, st)` genererar hela rätvinkliga hörn `[0, 0]` för våningar där
++hörnloggian är nedgrävd (`buriedLoggia`).
++• `aHouse(b)` inkluderar `buriedLoggia` i sin extruderingsnyckel så att källarvåningens
++hela hörn extruderas separat från ovanliggande våningars loggiahål.
++• `loggias(blocks)` startar pelare och vitputsade innerväggar från första våningen
++ovan mark (`y0 = b.base + st0 * S.storey`), så att inga onödiga pelare eller
++innerväggar skapas under marknivå.
++
++Verifiering: `npm test` (67 moduler), `npm run build`, samt automatiserad kontroll
++i `tools/loggiabasement-check.mjs`. Kontrollen verifierar att inga vitputsade innerväggar
++genereras under markytan i källarhörnen och sparar en granskad skärmbild av Hus A:s nordöstra hörn.
