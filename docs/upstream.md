@@ -272,3 +272,9 @@ kontrolleras. Det faktiska paketerade `dist/` laddas dessutom och kontrolleras
 nära/på avstånd. Slutkörningen klarade 24/24, utan browser-/shaderfel eller
 externa anrop; `npm test` och `npm run build` godkända. Chromium/SwiftShader
 är inte fysisk Surface-/mobilprestanda.
+
+## Streck i skuggningen ovanför dörrarna, #40
+
+Överförd från `24d00b7d187f89daa5242e55accbf74bf4b667a0` (original #1129): `buildWallAO` i `src/ao.js`, som före ändringen var identisk med originalets `24d00b7^`. Dörrsmygarna fick väggskuggans takband ända upp till taket, inne i överstycket, och överläggets polygon offset drog fram det genom överstyckets yta som smala mörka streck ovanför dörrarna på övervåningen. Där ett överstycke går över ett litet väggblock (mellan Sovrum 2 och Allrum) lades bandet dessutom två gånger. Delvägghöga bitar (överstycken, fönsterfyllningar) blockerar nu bara över sin egen höjd, ytan delas i höjdband där en sådan bit börjar eller slutar, och en delbits yta hoppas över där den ligger an mot en hel vägg. Originalets `tools/wallaotest.cjs`, dokumentation och ändringslogg har inte förts över (testkitet saknas här).
+
+Verifiering: `npm test`, `npm run build` och google-chrome `--use-angle=gl` på riktig GPU (Iris Plus 640) mot källkoden. Före/efter-bilder från övervåningens hall mot Sovrum 2/Allrum i L1007 och L1004 (originalets `?at=3.5,5.3,175,22,3.25`): strecken ovanför dörrarna är borta. En portning av originalets kontroll i `tools/wallaotest.cjs` (kördes ad hoc, inte incheckad) gav per plan i L1007/L1004/L1201 före 20/22/20/20/4/9 trianglar inne i en solid och 0/2/0/2/0/0 dubbla, efter 0/0/0/0/0/1 respektive 0. Ingen triangel vänd in i väggen, ritanrop oförändrade (194), inga sidfel. Den kvarvarande triangeln i L1201:s övre plan spåras i #45.
