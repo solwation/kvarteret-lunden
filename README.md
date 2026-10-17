@@ -44,7 +44,7 @@ På dator används W A S D/piltangenter för att gå. Rikta mittpunkten mot en d
 
 Klocktornets fyra urtavlor visar besökarens lokala tid med tydliga visare och timmarkeringar.
 
-På pekskärmar finns **Anpassa touchknappar** i hjälpdialogen: dra spaken, Öppna/Stäng och Mät avstånd dit du vill, ändra storlek (nyp eller reglage) och genomskinlighet eller spegla allt för vänsterhänta. Spara, Avbryt och Återställ standard finns i redigerarens list. Layouten sparas bara på enheten i `localStorage` med nyckeln `kvarteret-lunden.touch-layout`; om lagringen är blockerad gäller den under besöket. Standardlayouten är tumbågen.
+På pekskärmar går man genom att sätta tummen var som helst på bildens vänstra del (under hjälpknappen och platsmenyn): spaken hamnar under tummen, följer med om tummen dras förbi kanten och återgår till sin vilande plats i hörnet när tummen lyfts. Höger del av bilden är för att titta. I hjälpdialogen finns **Anpassa touchknappar**: dra Öppna/Stäng och Mät avstånd dit du vill, ändra storlek på dem och spaken (nyp eller reglage) och genomskinlighet eller spegla allt för vänsterhänta. Spara, Avbryt och Återställ standard finns i redigerarens list. Layouten sparas bara på enheten i `localStorage` med nyckeln `kvarteret-lunden.touch-layout`; om lagringen är blockerad gäller den under besöket. Standardlayouten är tumbågen.
 
 Vid automatisk uppdatering sparas plats och blickriktning tillfälligt i flikens egen `sessionStorage` med nyckeln `kvarteret-lunden.update-resume`. Uppgifterna läses och tas bort vid nästa start, godtas i högst fem minuter och berör aldrig originalets lagring. Visningen har inga externa nätverksanrop. Three.js ingår i publiceringspaketet.
 

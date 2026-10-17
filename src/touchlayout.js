@@ -8,6 +8,10 @@
 // screen's short side, so it scales with the screen), `scale` and `opacity` as inline CSSOM styles. The offset is
 // re-measured against the slot on every resize/rotation and whenever a control appears, and the final position is
 // clamped inside the safe area, below the help button and place menu.
+//
+// The walking stick floats under the thumb (#32, as the original's 'stick' in 1af9b39): it has no own position, only
+// size, opacity and the mirrored side. Its resting place in the corner follows the mirroring; a stored stick offset
+// from before #32 is ignored.
 
 import { TOUCH_LAYOUT } from './config.js';
 
@@ -30,7 +34,8 @@ export function normalizeLayout(raw) {
     if (!e || typeof e !== 'object') continue;
     const num = (v, d) => (Number.isFinite(v) ? v : d);
     const [s0, s1] = scaleRange(id), [o0, o1] = TOUCH_LAYOUT.opacity, m = TOUCH_LAYOUT.maxOffset;
-    const n = { x: clamp(num(e.x, 0), -m, m), y: clamp(num(e.y, 0), -m, m), s: clamp(num(e.s, 1), s0, s1), o: clamp(num(e.o, 1), o0, o1) };
+    const fixed = id !== STICK; // the floating stick has no position of its own (#32)
+    const n = { x: fixed ? clamp(num(e.x, 0), -m, m) : 0, y: fixed ? clamp(num(e.y, 0), -m, m) : 0, s: clamp(num(e.s, 1), s0, s1), o: clamp(num(e.o, 1), o0, o1) };
     if (Math.abs(n.x) > 1e-4 || Math.abs(n.y) > 1e-4 || n.s !== 1 || n.o !== 1) out.c[id] = n;
   }
   return out;
@@ -52,9 +57,11 @@ const shown = () => draft || saved;
 const entry = (l, id) => l.c[id] || { x: 0, y: 0, s: 1, o: 1 };
 const applied = new WeakMap(); // element → the translate (px) written last, so the slot centre can be recovered
 const effective = {};          // id → the clamped offset actually shown, in stored (unmirrored, short-side) units
+/** Whether the stick side is mirrored to the right (main.js's floating stick, #32). */
+export const stickMirrored = () => shown().mirror;
 
 /** The safe area minus the top controls (help button, place menu), in CSS px. */
-function region() {
+export function region() {
   let probe = document.getElementById('touch-safe-probe');
   if (!probe) { // positioned by style.css: the viewport inset by env(safe-area-inset-*)
     probe = Object.assign(document.createElement('div'), { id: 'touch-safe-probe' });
@@ -85,6 +92,7 @@ function applyTouchLayout() {
   for (const [id, el] of els) {
     // the measurement status follows Mät avstånd's offset (not its size or opacity)
     const e = id === 'measurement' ? { ...entry(l, 'measure'), s: 1, o: 1 } : entry(l, id);
+    if (el.classList.contains('floating')) continue; // under the thumb right now (#32): placed again when it rests
     if (!el.offsetWidth) { writes.push([el, null, 1, e.o]); continue; } // hidden controls are placed when they appear
     const prev = applied.get(el) || { x: 0, y: 0 }, b = el.getBoundingClientRect();
     const cx = (b.left + b.right) / 2 - prev.x, cy = (b.top + b.bottom) / 2 - prev.y; // the slot centre (scale keeps the centre)
@@ -149,7 +157,7 @@ export function setupTouchLayout({ enabled }) {
         <button type="button" class="te-reset">Återställ standard</button>
         <button type="button" class="te-save">Spara</button>
       </div>
-      <p class="te-help">Dra en knapp eller spaken för att flytta den · nyp med två fingrar eller använd reglaget för storlek</p>`;
+      <p class="te-help">Dra en knapp för att flytta den · spaken hamnar där du sätter tummen · nyp med två fingrar eller använd reglaget för storlek</p>`;
     document.body.append(root);
     const q = (c) => root.querySelector(c);
     ui = { root, name: q('.te-name'), size: q('.te-size'), opacity: q('.te-opacity'), mirror: q('.te-mirror-box'), help: q('.te-help') };
@@ -215,7 +223,7 @@ export function setupTouchLayout({ enabled }) {
     if (pointers.size >= 2 && drag.dist0) {
       const [p, q] = [...pointers.values()], [a, b] = scaleRange(drag.id);
       setEntry(drag.id, { s: clamp(drag.s0 * Math.hypot(p.x - q.x, p.y - q.y) / drag.dist0, a, b) });
-    } else if (e.pointerId === drag.pointerId) {
+    } else if (e.pointerId === drag.pointerId && drag.id !== STICK) { // the stick floats: size and opacity only (#32)
       const side = region().side, sign = draft.mirror ? -1 : 1;
       setEntry(drag.id, { x: drag.ex + sign * (e.clientX - drag.x0) / side, y: drag.ey + (e.clientY - drag.y0) / side });
     }

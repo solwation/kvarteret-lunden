@@ -8,7 +8,7 @@ import { Garage } from './garage.js';
 import { Core } from './core.js';
 import { CoreHouse } from './corehouse.js';
 import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, LIGHTING, TOUCH } from './config.js';
-import { setupTouchLayout } from './touchlayout.js';
+import { region, stickMirrored, setupTouchLayout } from './touchlayout.js';
 
 const $ = id => document.getElementById(id);
 const touch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
@@ -295,7 +295,8 @@ $('viewer').addEventListener('pointerdown', e => {
   // A mouse/pen keeps to its primary pointer. A touch finger may be a second one: the stick thumb is often already down,
   // so the look (or measuring) finger is tracked by id alongside it (#31; the original's stickId/lookId, src/touch.js).
   if (!active || $('help-dialog').open || e.button !== 0) return;
-  if (e.isPrimary === false && (e.pointerType !== 'touch' || lookPointer !== null || down)) return;
+  if (e.isPrimary === false && (e.pointerType !== 'touch' || lookPointer !== null || down) && !inStickZone(e)) return;
+  if (grabStick(e)) return; // a thumb on the stick side places the floating stick under it (#32)
   if (measuring) { down = {x:e.clientX,y:e.clientY,id:e.pointerId}; return; }
   if (!touch) {
     // Capturing the mouse never activates an object; subsequent primary clicks use the crosshair.
@@ -318,8 +319,44 @@ const stick=$('joystick'), knob=stick.querySelector('span');
 // stick's own units, so an own layout's `scale` (#30) keeps it on the rim.
 function stickResponse(r){const {deadZone,full,curve}=TOUCH.stick;return r<=deadZone?0:Math.min(1,(r-deadZone)/(full-deadZone))**curve;}
 function steer(e){const r=stick.getBoundingClientRect(),sc=r.width/(stick.offsetWidth||r.width)||1,t=(r.width-12*sc)/2,dx=e.clientX-r.left-r.width/2,dy=e.clientY-r.top-r.height/2,d=Math.hypot(dx,dy),n=Math.max(1,d/t),out=stickResponse(Math.min(d,t)/t),k=d>0?out/Math.min(d,t):0;navigation.analog.x=dx/n*k;navigation.analog.y=-dy/n*k;knob.style.transform=`translate(${dx/n/sc}px,${dy/n/sc}px)`;stick.style.setProperty('--joy-a',`${Math.atan2(dx,-dy)*180/Math.PI}deg`);stick.style.setProperty('--joy-m',(out*.75).toFixed(2));}
-// One thumb owns the stick; a second finger landing on it does not take it over, and only the owner's release resets it (#31).
-stick.addEventListener('pointerdown',e=>{if(!active||joystickPointer!==null)return;joystickPointer=e.pointerId;stick.setPointerCapture(e.pointerId);steer(e);});
-stick.addEventListener('pointermove',e=>{if(e.pointerId===joystickPointer)steer(e);});
-for(const type of ['pointerup','pointercancel','lostpointercapture'])stick.addEventListener(type,e=>{if(e.pointerId!==joystickPointer)return;joystickPointer=null;if(navigation)navigation.analog.x=navigation.analog.y=0;knob.style.transform='';stick.style.setProperty('--joy-m','0');});
+// Floating stick (#32, from the original's src/touch.js at 1af9b39/211e0e9): a touch on the stick side of the view,
+// below the help button and place menu, places the base under the thumb (kept inside the safe area); with
+// TOUCH.stick.follow the base glides after a thumb dragged past the rim. On release it returns to its resting place in
+// the corner, which shows where to touch. One thumb owns the stick; a second finger on that side looks instead, and
+// only the owner's release resets it (#31). While measuring, a short tap there still measures.
+let stickStart = null;
+function inStickZone(e) {
+  if (!touch || e.pointerType !== 'touch' || joystickPointer !== null) return false;
+  const R = region(), z = TOUCH.stick.zone, w = innerWidth;
+  return e.clientY >= R.t && (stickMirrored() ? e.clientX > w * (1 - z) : e.clientX < w * z);
+}
+function placeStick(x, y) {
+  const R = region(), h = stick.getBoundingClientRect().width / 2, fit = (v, a, b) => b - a < 2 * h ? (a + b) / 2 : Math.min(b - h, Math.max(a + h, v));
+  stick.style.setProperty('--joy-x', `${fit(x, R.l, R.r)}px`);
+  stick.style.setProperty('--joy-y', `${fit(y, R.t, R.b)}px`);
+}
+function grabStick(e) {
+  if (!active || $('help-dialog').open || !inStickZone(e)) return false;
+  joystickPointer = e.pointerId; stickStart = {x: e.clientX, y: e.clientY};
+  placeStick(e.clientX, e.clientY); stick.classList.add('floating');
+  try { stick.setPointerCapture(e.pointerId); } catch { /* synthetic pointer */ }
+  steer(e); e.preventDefault();
+  return true;
+}
+function followStick(e) {
+  if (!TOUCH.stick.follow) return;
+  const r = stick.getBoundingClientRect(), sc = r.width / (stick.offsetWidth || r.width) || 1, t = (r.width - 12 * sc) / 2;
+  const cx = r.left + r.width / 2, cy = r.top + r.height / 2, dx = e.clientX - cx, dy = e.clientY - cy, d = Math.hypot(dx, dy);
+  if (d > t) placeStick(cx + dx * (1 - t / d), cy + dy * (1 - t / d));
+}
+function releaseStick(e) {
+  if (e.pointerId !== joystickPointer) return;
+  joystickPointer = null; if (navigation) navigation.analog.x = navigation.analog.y = 0;
+  knob.style.transform = ''; stick.style.setProperty('--joy-m', '0'); stick.classList.remove('floating');
+  if (e.type === 'pointerup' && measuring && stickStart && Math.hypot(e.clientX - stickStart.x, e.clientY - stickStart.y) < 10) measureAt(e);
+  stickStart = null;
+}
+stick.addEventListener('pointerdown', e => { if (!grabStick(e) && joystickPointer === null && e.pointerType !== 'touch' && active) { joystickPointer = e.pointerId; stick.setPointerCapture(e.pointerId); steer(e); } });
+stick.addEventListener('pointermove', e => { if (e.pointerId === joystickPointer) { followStick(e); steer(e); } });
+for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) stick.addEventListener(type, releaseStick);
 init().catch(error=>{console.error(error);status(`Visningen kunde inte startas: ${error.message}`);$('start').disabled=false;$('start').textContent='Försök igen';$('start').addEventListener('click',()=>location.reload(),{once:true});});

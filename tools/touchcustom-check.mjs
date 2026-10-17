@@ -1,5 +1,5 @@
 // #30 (adapted from the original's tools/touchcustomtest.cjs, upstream 1af9b39): the own touch layout in the real
-// built app. Mobile Chromium with CDP touch: open the editor from the help dialog, drag the stick, resize with the
+// built app. Mobile Chromium with CDP touch: open the editor from the help dialog, select the floating stick (no position, #32), resize with the
 // slider and a pinch, set opacity, mirror, save, cancel, reset, persistence after reload, rotation clamping, a scaled
 // stick that still walks, blocked storage, the desktop without the entry and the original app's keys untouched.
 // Usage: CHROME_PATH=... node tools/touchcustom-check.mjs BASE OUT
@@ -65,10 +65,10 @@ try{
  await m.screenshot({path:`${out}/1-editor-default.png`});
  assert.equal(await m.locator('#touch-edit .te-name').textContent(),'Öppna/Stäng');
 
- // Move: drag the stick up and right.
+ // The stick floats under the thumb (#32, as the original's 1af9b39): dragging it selects it but does not move it.
  await touchDrag(cdp,m,{x:def.joystick.cx,y:def.joystick.cy},{x:def.joystick.cx+60,y:def.joystick.cy-150});
  let r=await rects(m);
- assert(Math.abs(r.joystick.cx-def.joystick.cx-60)<2&&Math.abs(r.joystick.cy-def.joystick.cy+150)<2,`stick moved ${r.joystick.cx-def.joystick.cx},${r.joystick.cy-def.joystick.cy}`);
+ assert(Math.abs(r.joystick.cx-def.joystick.cx)<.5&&Math.abs(r.joystick.cy-def.joystick.cy)<.5,`stick has no position ${r.joystick.cx-def.joystick.cx},${r.joystick.cy-def.joystick.cy}`);
  assert.equal(await m.locator('#touch-edit .te-name').textContent(),'Spaken');
  // Size with the slider (stick to 1.5×) and opacity (stick to 0.3).
  await slider(m,'te-size',100);await slider(m,'te-opacity',0);await frame(m);
@@ -108,15 +108,17 @@ try{
  await m.locator('#touch-edit .te-save').tap();await frame(m);
  assert.equal(await m.evaluate(()=>window.lundenViewer.touchLayout.editing),false);
  const saved=JSON.parse(await stored(m));
- assert(saved.mirror===true&&saved.c.joystick.s===1.5&&Math.abs(saved.c.joystick.o-.65)<1e-9,`saved ${JSON.stringify(saved)}`);
+ assert(saved.mirror===true&&saved.c.joystick.s===1.5&&saved.c.joystick.x===0&&saved.c.joystick.y===0&&Math.abs(saved.c.joystick.o-.65)<1e-9,`saved ${JSON.stringify(saved)}`);
  await showAction(m);await frame(m);
  const after=await rects(m);inside(after,390,844,'saved');
  await render(m);await m.screenshot({path:`${out}/4-saved-play.png`});
- // The scaled, moved stick still walks with its own touch, and its knob reaches the rim as by default (travel = (size − 12 px) / 2 in the stick's own units, #31).
- await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:after.joystick.cx,y:after.joystick.cy-after.joystick.w*.48,id:5}]});
- const walk=await m.evaluate(()=>{const s=document.getElementById('joystick'),k=s.querySelector('span').getBoundingClientRect(),b=s.getBoundingClientRect();return{y:window.lundenViewer.navigation.analog.y,knob:((b.top+b.bottom)/2-(k.top+k.bottom)/2)/b.height,expect:(1-12*(b.width/s.offsetWidth)/b.height)/2};});
+ // The scaled, mirrored stick floats under a thumb on the right side and walks, and its knob reaches the rim as by
+ // default (travel = (size − 12 px) / 2 in the stick's own units, #31).
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:260,y:500,id:5}]});
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:260,y:500-after.joystick.w*.48,id:5}]});await frame(m);
+ const walk=await m.evaluate(()=>{const s=document.getElementById('joystick'),k=s.querySelector('span').getBoundingClientRect(),b=s.getBoundingClientRect();return{floating:s.classList.contains('floating'),w:b.width,cx:(b.left+b.right)/2,y:window.lundenViewer.navigation.analog.y,knob:((b.top+b.bottom)/2-(k.top+k.bottom)/2)/b.height,expect:(1-12*(b.width/s.offsetWidth)/b.height)/2};});
  await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
- assert(walk.y>.9&&Math.abs(walk.knob-walk.expect)<.01,`scaled stick walk ${JSON.stringify(walk)}`);
+ assert(walk.floating&&Math.abs(walk.cx-260)<1&&Math.abs(walk.w-after.joystick.w)<1&&walk.y>.9&&Math.abs(walk.knob-walk.expect)<.01,`scaled stick walk ${JSON.stringify(walk)}`);
 
  // Persistence after reload.
  await m.reload();
@@ -163,11 +165,19 @@ try{
  const b=await openApp(blocked);await b.locator('#start').tap();await showAction(b);
  const bdef=await rects(b),bcdp=await blocked.newCDPSession(b);
  await openEditor(b);
- await touchDrag(bcdp,b,{x:bdef.joystick.cx,y:bdef.joystick.cy},{x:bdef.joystick.cx+50,y:bdef.joystick.cy-80});
+ await touchDrag(bcdp,b,{x:bdef.action.cx,y:bdef.action.cy},{x:bdef.action.cx-50,y:bdef.action.cy-80});
  await b.locator('#touch-edit .te-save').tap();await frame(b);
  const bafter=await rects(b);
- assert(Math.abs(bafter.joystick.cx-bdef.joystick.cx-50)<2,'blocked storage: layout holds for the visit');
- results.blocked={moved:bafter.joystick.cx-bdef.joystick.cx};
+ assert(Math.abs(bafter.action.cx-bdef.action.cx+50)<2,'blocked storage: layout holds for the visit');
+ results.blocked={moved:bafter.action.cx-bdef.action.cx};
+
+ // A stick position stored before #32 is ignored without errors; its size and opacity still apply.
+ const old=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true,deviceScaleFactor:1});
+ await old.addInitScript(k=>localStorage.setItem(k,JSON.stringify({mirror:false,c:{joystick:{x:1,y:-1,s:1.2,o:.8}}})),KEY);
+ const o=await openApp(old);await o.locator('#start').tap();await frame(o);
+ const orect=await rects(o);
+ assert(Math.abs(orect.joystick.cx-def.joystick.cx)<.5&&Math.abs(orect.joystick.cy-def.joystick.cy)<.5&&Math.abs(orect.joystick.w/def.joystick.w-1.2)<.02&&Math.abs(orect.joystick.opacity-.8)<.01,`old stick position ignored ${JSON.stringify(orect.joystick)}`);
+ results.oldStickPosition={cx:orect.joystick.cx-def.joystick.cx,cy:orect.joystick.cy-def.joystick.cy,scale:orect.joystick.w/def.joystick.w};
 
  // Desktop: no entry, no inline styles.
  const desk=await browser.newContext({viewport:{width:1000,height:700},deviceScaleFactor:1});

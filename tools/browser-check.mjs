@@ -77,13 +77,56 @@ try{
  for(const r of layout)assert(r.visible&&r.x>=0&&r.y>=0&&r.x+r.w<=391&&r.y+r.h<=845,`off-screen mobile control ${r.id}`);
  const stick=await m.locator('#joystick').boundingBox();
  const cdp=await mobile.newCDPSession(m);
+ const frame=()=>m.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+ const S=()=>m.evaluate(()=>{const s=document.getElementById('joystick'),b=s.getBoundingClientRect(),a=window.lundenViewer.navigation.analog;return{cx:(b.left+b.right)/2,cy:(b.top+b.bottom)/2,l:b.left,t:b.top,r:b.right,b:b.bottom,floating:s.classList.contains('floating'),x:a.x,y:a.y};});
+ // A touch on the resting stick and a cancel: the base comes under the thumb, nothing walks, and it rests again.
  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:stick.x+stick.width/2,y:stick.y+15,id:1}]});
- assert(await m.evaluate(()=>window.lundenViewer.navigation.analog.y>0));
+ let st=await S();assert(st.floating&&Math.abs(st.cy-stick.y-15)<1&&st.y===0,`stick under the thumb ${JSON.stringify(st)}`);
  await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
- assert.equal(await m.evaluate(()=>window.lundenViewer.navigation.analog.y),0);
+ st=await S();assert(!st.floating&&st.y===0&&Math.abs(st.l-stick.x)<.5&&Math.abs(st.t-stick.y)<.5,`stick back at rest ${JSON.stringify(st)}`);
+ // #32 floating stick (original src/touch.js at 1af9b39/211e0e9), portrait and landscape: touches at different places on
+ // the left side place the base under the thumb (kept inside the safe area), walk in the pushed direction, follow a thumb
+ // pulled past the rim, and return to rest on release. A touch on the right side looks and leaves the stick at rest.
+ const floating=[];
+ for(const [w,h] of [[390,844],[844,390]]){
+  await m.setViewportSize({width:w,height:h});await m.evaluate(()=>dispatchEvent(new Event('resize')));await frame();
+  const restBox=await S(),travel=(restBox.r-restBox.l-12)/2,top=await m.evaluate(()=>{const b=document.getElementById('place-toggle').getBoundingClientRect(),c=document.getElementById('help').getBoundingClientRect();return Math.max(b.bottom,c.bottom);});
+  for(const p of [{x:w*.25,y:h*.6},{x:w*.4,y:top+travel+20},{x:8,y:h-8}]){
+   await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{...p,id:20}]});await frame();
+   const at=await S();
+   const inside=at.l>=-.5&&at.r<=w+.5&&at.t>=top&&at.b<=h+.5;
+   const under=Math.hypot(at.cx-p.x,at.cy-p.y)<1;
+   assert(at.floating&&inside&&(under||p.x<20),`base under the thumb at ${w}x${h} ${JSON.stringify({p,at})}`);
+   const c={x:at.cx,y:at.cy};
+   await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:c.x,y:c.y-travel,id:20}]});await frame();const up=await S();
+   await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:c.x+travel,y:c.y,id:20}]});await frame();const right=await S();
+   await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:c.x,y:c.y+travel,id:20}]});await frame();const back=await S();
+   assert(up.y>.99&&Math.abs(up.x)<1e-9&&right.x>.99&&Math.abs(right.y)<1e-9&&back.y<-.99,`walk direction at ${w}x${h} ${JSON.stringify({up,right,back})}`);
+   await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[{x:c.x,y:c.y+travel,id:20}]});await frame();
+   const rel=await S();assert(!rel.floating&&rel.x===0&&rel.y===0&&Math.abs(rel.l-restBox.l)<.5&&Math.abs(rel.t-restBox.t)<.5,`stick rests after release ${JSON.stringify(rel)}`);
+   floating.push({w,h,p,base:{x:c.x,y:c.y},up:up.y,right:right.x,back:back.y});
+  }
+  // Follow: pulled 2 × travel past the rim the base trails one travel behind; easing back 1.5 travel walks backward at once.
+  const p={x:w*.25,y:h*.85};
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{...p,id:21}]});
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:p.x,y:p.y-3*travel,id:21}]});await frame();const pulled=await S();
+  await m.screenshot({path:`${out}/mobile-stick-follow-${w}x${h}.png`});
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:p.x,y:p.y-3*travel+travel*1.5,id:21}]});await frame();const eased=await S();
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[{x:p.x,y:p.y,id:21}]});
+  assert(Math.abs(pulled.cy-(p.y-2*travel))<1&&pulled.y>.99&&eased.y<0,`follow at ${w}x${h} ${JSON.stringify({pulled,eased})}`);
+  // The look side leaves the stick at rest.
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:w*.7,y:h*.6,id:22}]});await frame();const look=await S();
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[{x:w*.7,y:h*.6,id:22}]});
+  assert(!look.floating&&look.y===0,`look side took the stick at ${w}x${h}`);
+  floating.push({w,h,follow:{base:pulled.cy-p.y,back:eased.y}});
+  await m.evaluate(()=>window.lundenViewer.easeLook(10));
+ }
+ await m.setViewportSize({width:390,height:844});await m.evaluate(()=>dispatchEvent(new Event('resize')));await frame();
+ results.push({floatingStick:floating});
  // Dead zone and response curve (upstream 211e0e9): a resting thumb's few px do not walk; half travel walks gently.
- const cx=stick.x+stick.width/2,cy=stick.y+stick.height/2,travel=(stick.width-12)/2,frame=()=>m.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
- await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:cx+2,y:cy-2,id:2}]});await frame();
+ const cx=stick.x+stick.width/2,cy=stick.y+stick.height/2,travel=(stick.width-12)/2;
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:cx,y:cy,id:2}]});
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:cx+2,y:cy-2,id:2}]});await frame();
  const rest=await m.evaluate(()=>Math.hypot(window.lundenViewer.navigation.analog.x,window.lundenViewer.navigation.analog.y));
  await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:cx,y:cy-travel*.5,id:2}]});await frame();
  const half=await m.evaluate(()=>window.lundenViewer.navigation.analog.y);
@@ -105,18 +148,18 @@ try{
  results.push({easedLook:{...turn,firstFrame:eased.first-yaw0}});
  // #31 (the original's stickId/lookId, src/touch.js): the stick and a look finger work at once in either order, and
  // lifting one keeps the other. CDP touchEnd lists the points that lift.
- const settle=()=>m.evaluate(()=>{const v=window.lundenViewer;for(let i=0;i<120;i++)v.easeLook(1/60);return{walk:v.navigation.analog.y,yaw:v.camera.rotation.y};});
+ const settle=async()=>{await frame();return m.evaluate(()=>{const v=window.lundenViewer;for(let i=0;i<120;i++)v.easeLook(1/60);return{walk:v.navigation.analog.y,yaw:v.camera.rotation.y};});};
  const T=(type,touchPoints)=>cdp.send('Input.dispatchTouchEvent',{type,touchPoints});
- const fwd={x:cx,y:cy-travel,id:11},lookAt=i=>({x:250+i*20,y:300,id:12});
+ const s0={x:cx,y:cy,id:11},fwd={x:cx,y:cy-travel,id:11},lookAt=i=>({x:250+i*20,y:300,id:12});
  const multi={};
  let y=(await settle()).yaw;
- await T('touchStart',[fwd]);await T('touchStart',[fwd,lookAt(0)]);
+ await T('touchStart',[s0]);await T('touchMove',[fwd]);await T('touchStart',[fwd,lookAt(0)]);
  for(let i=1;i<=5;i++)await T('touchMove',[fwd,lookAt(i)]);
  let q=await settle();multi.stickFirst={walk:q.walk,turn:q.yaw-y};
  await T('touchEnd',[lookAt(5)]);await T('touchMove',[{...fwd,x:cx+1}]);y=q.yaw;q=await settle();multi.lookLifted={walk:q.walk,turn:q.yaw-y};
  await T('touchEnd',[fwd]);
  y=(await settle()).yaw;
- await T('touchStart',[lookAt(0)]);await T('touchStart',[lookAt(0),fwd]);
+ await T('touchStart',[lookAt(0)]);await T('touchStart',[lookAt(0),s0]);
  for(let i=1;i<=5;i++)await T('touchMove',[lookAt(i),fwd]);
  q=await settle();multi.lookFirst={walk:q.walk,turn:q.yaw-y};
  await T('touchEnd',[fwd]);y=q.yaw;
