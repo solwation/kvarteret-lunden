@@ -69,3 +69,5 @@ Originalets mörkgrå IKEA HAVBÄCK-högskåp i entréplanets badrum/toalett (`h
 
 
 `CHROME_PATH=/sökväg/till/chrome node tools/patio-decor-check.mjs http://localhost:8157 /tmp/kvarteret-patio` körs mot källkoden på lokal server (#35). Den kontrollerar grannarnas möblerade uteplatser på Hus L:s gårdssida: alla utom L1007 möblerade med olika stilar, deterministiska layouter, fri dörr, passage och häck, växtkronor innanför skärmväggarna, stolar vända mot bordet, två sammanslagna meshar inom triangelbudgeten och att grinden döljer dem från gatan och på långt avstånd. Skärmbilder ovanifrån och från gården sparas och granskas.
+
+`CHROME_PATH=/sökväg/till/chrome node tools/startup-error-check.mjs http://localhost:8157 /tmp/kvarteret-startfel` körs mot både `dist/` och källkoden (#37). I dator och 390×844 avbryts programfilen, avbryts `data/plan.json`, saknas WebGL och är planritningen trasig JSON; varje fall ska visa ”Fel i steget ”…”: …” med rätt steg och orsak över en fungerande Försök igen (avbruten plan startar den riktiga scenen efter omladdningen), utan CSP-fel. En vanlig start visar inget felmeddelande. Skärmbilderna granskas.

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#ecebe5">
   <meta name="description" content="Utforska Kvarteret Lunden i 3D. Byggnader, gård och fast inredning i en fristående visualisering.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Bufz0ylsvH5VX0RelLTkdCzDLj+JPhHmKTdEC0GXlzs='; style-src 'self'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Bufz0ylsvH5VX0RelLTkdCzDLj+JPhHmKTdEC0GXlzs=' 'sha256-5x+ar8947Xhi/Xh3VoJRp+KtqNm5ieHH3Cm79p+8rDc='; style-src 'self'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'">
   <title>Kvarteret Lunden · Utforska i 3D</title>
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
@@ -14,7 +14,29 @@
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./style.css">
   <script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
-  <script type="module" src="./src/main.js"></script>
+  <script>
+// Startup guard (#37), adapted from lunden-3d-apartment 87abb571 (#1132) and d9d9abb (#1130): dependency-free, so it
+// still works when the program files fail. main.js names its steps; a failure shows the step, the cause and Försök igen.
+(()=>{
+const REASONS={import:'en programfil kunde inte hämtas',network:'nätverket svarade inte',webgl:'webbläsaren kunde inte starta 3D-grafiken (WebGL)',scene:'ett oväntat fel uppstod'};
+const causeOf=error=>{const text=`${error?.name||''} ${error?.message||''}`;
+if(/dynamically imported module|Importing a module script failed/i.test(text))return 'import';
+if(/WebGL/i.test(text))return 'webgl';
+if(/Startup data|Failed to fetch|NetworkError|Load failed/i.test(text))return 'network';
+return 'scene';};
+const startup=window.kvarteretStartup={step:'Hämtar programfilerna',cause:'',done:false,
+setStep(name){if(!startup.cause&&!startup.done)startup.step=name;},
+finish(){startup.done=true;},
+fail(error){if(startup.cause||startup.done)return;startup.cause=causeOf(error);
+const show=()=>{const start=document.getElementById('start');if(!start)return;
+const line=document.createElement('p');line.id='load-error';line.className='load-error';line.setAttribute('role','alert');line.dataset.cause=startup.cause;
+line.textContent=`Fel i steget ”${startup.step}”: ${REASONS[startup.cause]}.`;start.before(line);
+const status=document.getElementById('load-status');if(status)status.textContent='Visningen kunde inte startas.';
+start.disabled=false;start.textContent='Försök igen';start.addEventListener('click',()=>location.reload(),{once:true});};
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',show,{once:true});else show();}};
+import('./src/main.js').catch(startup.fail);
+})();
+</script>
 </head>
 <body>
   <main id="viewer" aria-label="Interaktiv 3D-visning av Kvarteret Lunden"></main>

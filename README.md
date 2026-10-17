@@ -61,7 +61,7 @@ En öppen visning kontrollerar nya versioner varje minut och när fliken blir sy
 
 ## Verifiering
 
-`npm test` granskar importkedjan, planunderlaget och frånvaro av privata referenser och originalets tjänster. `npm run build` skapar det statiska publiceringspaketet. Kör `CHROME_PATH=/sökväg/till/chrome node tools/browser-check.mjs http://localhost:8157` mot en server för `dist/` för integrationstest i Chromium, inklusive mobil layout, gång, dörranimation, ursprunglig lagring och nätverksanrop. `tools/touchcustom-check.mjs` kontrollerar på samma sätt den egna touchlayouten.
+`npm test` granskar importkedjan, planunderlaget och frånvaro av privata referenser och originalets tjänster. `npm run build` skapar det statiska publiceringspaketet. Kör `CHROME_PATH=/sökväg/till/chrome node tools/browser-check.mjs http://localhost:8157` mot en server för `dist/` för integrationstest i Chromium, inklusive mobil layout, gång, dörranimation, ursprunglig lagring och nätverksanrop. `tools/touchcustom-check.mjs` kontrollerar på samma sätt den egna touchlayouten. `tools/startup-error-check.mjs` kontrollerar felkortet med steg och Försök igen när starten misslyckas.
 
 För arbete med issues, `in-progress`, stängning och `/orkester`, läs [CLAUDE.md](CLAUDE.md) och [orkesterkommandot](.claude/commands/orkester.md). Ärenden för detta projekt skapas här i [kvarteret-lunden](https://github.com/solwation/kvarteret-lunden/issues).
 

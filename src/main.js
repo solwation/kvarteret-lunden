@@ -127,6 +127,7 @@ function fit() {
 }
 
 async function init() {
+  window.kvarteretStartup?.setStep('Startar 3D-grafiken'); // named steps for the startup guard in index.html (#37)
   renderer = new THREE.WebGLRenderer({antialias: true, powerPreference: 'low-power'});
   renderer.setPixelRatio(Math.min(devicePixelRatio, touch ? 1.25 : 1.5));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -140,12 +141,15 @@ async function init() {
   const fill = new THREE.DirectionalLight(S.fill.color, S.fill.intensity); fill.position.set(...S.fill.pos); scene.add(fill);
   fit();
   await new Promise(requestAnimationFrame);
+  window.kvarteretStartup?.setStep('Hämtar planritningen');
   const plan = await fetchStartupJSON(`./data/plan.json${VERSION ? '?v=' + VERSION : ''}`, { timeout: 15000 });
   status('Förbereder byggnader och rum…');
   await new Promise(requestAnimationFrame);
+  window.kvarteretStartup?.setStep('Bygger huset');
   world = buildWorld(plan); scene.add(world.object);
   status('Förbereder trapphus och garage…');
   await new Promise(requestAnimationFrame);
+  window.kvarteretStartup?.setStep('Bygger trapphus och garage');
   garage = world.garage = new Garage();
   for (const o of [garage.object, garage.blackout, garage.door?.object, garage.parkObject]) if (o) scene.add(o);
   core = world.core = new Core();
@@ -182,6 +186,7 @@ async function init() {
   $('place-toggle').disabled = false;
   // Keep model access local for diagnostics, without a service connection.
   window.lundenViewer = {world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
+  window.kvarteretStartup?.finish();
   $('start').disabled = false; $('start').textContent = 'Börja utforska →';
   status('Dator och mobil · Ingen inloggning');
   renderer.setAnimationLoop(frame);
@@ -359,4 +364,5 @@ function releaseStick(e) {
 stick.addEventListener('pointerdown', e => { if (!grabStick(e) && joystickPointer === null && e.pointerType !== 'touch' && active) { joystickPointer = e.pointerId; stick.setPointerCapture(e.pointerId); steer(e); } });
 stick.addEventListener('pointermove', e => { if (e.pointerId === joystickPointer) { followStick(e); steer(e); } });
 for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) stick.addEventListener(type, releaseStick);
-init().catch(error=>{console.error(error);status(`Visningen kunde inte startas: ${error.message}`);$('start').disabled=false;$('start').textContent='Försök igen';$('start').addEventListener('click',()=>location.reload(),{once:true});});
+// The guard in index.html shows the failed step, its cause and Försök igen (#37).
+init().catch(error => { console.error(error); window.kvarteretStartup?.fail(error); });

@@ -41,3 +41,5 @@ body.touch-editing #action::after{content:'Öppna/Stäng';position:absolute;inse
 #touch-edit .te-help[hidden]{display:none}
 @media(max-height:420px) and (orientation:landscape){#touch-edit .te-bar{gap:4px 6px;padding:4px 6px}#touch-edit .te-bar button{min-height:36px;padding:0 9px}#touch-edit .te-slider,#touch-edit .te-mirror{min-height:36px}#touch-edit .te-slider input{width:78px}#touch-edit .te-name{min-width:0}}
 body:not(.touch) #touch-layout-desc{display:none}
+/* #37: startup error naming the failed step, above Försök igen (index.html guard). */
+.load-error{margin:14px 0 0;padding:10px 12px;border-radius:8px;background:#d64c3c1f;border:1px solid #d64c3c73;color:#5b2a22;font-size:14px;line-height:1.45}
