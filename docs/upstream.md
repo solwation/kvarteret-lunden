@@ -288,3 +288,23 @@ Fem fönster ligger på den södra muren mellan C och B (z 52,5), tre mellan B o
 Verifiering: `npm test`, `npm run build` samt `tools/park-windows-check.mjs` mot den riktiga källappen före/efter. Kontrollen räknar tre glasrutor per fönster i produktionsgeometrin, stråltestar alla åtta fönster från parken och motsvarande väggar från garaget, kontrollerar opakt glas och sparar kollisionssegment för jämförelse. Skärmbilder av båda mursträckorna utifrån och inifrån sparas. Föreläget laddar tidigare `6b3af42:src/surroundings.js`; efterläget använder ändrade produktionsmodulen.
 
 Slutkontroll även mot publiceringsbyggets riktiga bundle efter rebase på `6d9a353`: åtta fönster med sex glastrianglar vardera, glas först från parksidan, ogenomskinlig vägg först från garageinsidan och 131 identiska kollisionssegment före/efter. Fem granskade vyer täcker fyra västra fönster, det smalare vid trappan, de tre mellan B och A samt båda invändiga mursträckorna. `npm test` granskade 67 moduler; bygget och Chromium/SwiftShader-kontrollen passerade utan browserundantag. Ingen fysisk mobil- eller GPU-prestanda påstås.
+
+
+## Glas i Hus A/B:s parkdörrar, #43
+
+Avgränsad överföring från `d14123544924eed61869e31634ca3a32bf09d696`
+(original #1152): endast `leafGeo` för parkbladen, gemensam genomskinlig
+`parkGlass`-instansbatch och dess matrisuppdatering i `src/garage.js`, samt
+`GARAGE.parkDoorGlass` i `src/config.js`. Övriga delar av originalets stora
+Garage/config har inte importerats. Befintliga karmar/beslag, dörrmått,
+gångjärn, utåtgående rörelse, pickmål, nivågrindar och kollisionssegment
+behålls. Glasets ton och profiler är visuella antaganden, inte inmätta
+konstruktionsdetaljer. Inga nya ljus, texturer, beroenden eller nät-/lagringsanrop.
+
+Endast de två parkbladen i A/B berörs. De 30 interna stålbladen behåller sin
+solida geometri (252 trianglar per instans); C:s källarkoppling är intern och
+L saknar motsvarande parkdörr och har redan glas i portikporten.
+
+Även kommentarerna om "steel finish" vid A:s parkdörr ändras som i källan, eftersom bladet inte längre är helt i stål.
+
+Verifiering: `npm test` (67 moduler), `npm run build`, `tools/browser-check.mjs` mot `dist/` och `tools/parkdoor-glass-check.mjs` före/efter. Föreläget (oförändrad `garage.js`) har opakt blad i öppningen; efter importen träffar en stråle genom bladmitten glaset men ingen metall, glasets instansmatris är identisk med bladets stängt/öppet, dörrvinkeln når 1,55 rad, kollisionssegmentet följer bladet från oförändrat gångjärn och pickmål/nivågrindar och originalets lagringsmarkörer är orörda. Glaset kostar ett ritanrop och 24 trianglar för båda dörrarna; de 30 interna stålbladen har kvar 252 trianglar. Kontrollen körs även mot publiceringsbyggets riktiga World för A och B, utifrån/inifrån, öppen/stängd, utan shaderfel, browserundantag eller externa anrop. Skärmbilderna togs med google-chrome `--use-angle=gl` på riktig GPU (Iris Plus 640, `ANGLE=gl`) och granskades: glas med synlig garagekorridor respektive park genom bladet, och det öppnade bladet visar ram, glas och handtag. Ingen fysisk mobil eller uppmätt prestanda påstås.
