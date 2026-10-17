@@ -9,6 +9,7 @@ import { groundY } from './surroundings.js';
 import { glowMaterial, poolGeometry, washGeometry, fadeGlow } from './groundglow.js';
 import { pavingTexture } from './patio.js';
 import { patioHedgeGeometry } from './patiohedge.js';
+import { buildPatioDecor } from './patiodecor.js';
 import { portikPlan } from './portik.js';
 
 // Brick: 250 × 65 mm + 10 mm joints → 0.26 m per brick, 0.075 m per course.
@@ -689,6 +690,7 @@ export function buildExterior({ W, D, roofTop, north, south, frame, wall, site, 
   add(hedges, mats.hedge);
   add(fences, mats.fence);
   group.userData.segments = segments;
+  group.add(group.userData.patioDecor = buildPatioDecor({ units, xw, xe, D, roofTop })); // #35: the neighbours' furnished patios (src/patiodecor.js)
   return group;
 }
 

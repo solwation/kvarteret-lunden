@@ -1984,3 +1984,30 @@ export const VENTS = {
 // control never vanishes, the largest offset from its slot (× the screen's short side), and px kept clear of the
 // safe edges and the top controls.
 export const TOUCH_LAYOUT = { buttonScale: [0.8, 1.6], stickScale: [0.7, 1.5], opacity: [0.3, 1], maxOffset: 3, margin: 4 };
+
+// #35 (from the original's PATIO_DECOR at 2190e17, original #888/#1120): generic furniture on the neighbours'
+// ground-floor patios on Hus L's back (src/patiodecor.js, models in src/outdoordecor.js; decoration only). EVERY style,
+// colour and position is a *guess* — no neighbour's patio is documented. The `styles` are dealt out over the patios in a
+// seeded shuffle (`seed`; all different while there are enough); each layout picks its colours from `palette`, may be
+// mirrored across the free zone and shifts up to `jitter` m. L1007 is skipped: the shown flat stays unfurnished.
+// Local frame: u m east of the unit origin ox, v m south of the south façade D. The patio door (u 0.95–1.87, `door.depth`
+// out) and the passage to the hedge opening (`passage` u 0–1.9) keep clear: furniture stands in `zone` (in front of the
+// patio hedge at v ≈ 4.05). Chairs face their table, sofas have their backs to the façade. `hue`: the pot plants' leaf
+// colour varies ± this much (the original's TERRACE_DECOR.hue). `far`: hidden beyond this many metres.
+export const PATIO_DECOR = {
+  skip: ['L1007'], far: 140, seed: 1120, jitter: 0.15, hue: 0.025,
+  door: { x0: 0.95, x1: 1.87, depth: 1.1 },
+  passage: { x0: 0.0, x1: 1.9 },
+  zone: { u0: 2.1, u1: 5.55, v0: 0.2, v1: 3.75 },
+  fence: { u0: 0.08, u1: 5.67 }, // the screen walls either side (plan.json site.fences) — plant crowns stay inside
+  styles: ['bistro', 'matgrupp', 'lounge', 'solstolar', 'grill', 'odling', 'grönska'],
+  palette: {
+    frame: [0x2a2c2e, 0xf1efe9, 0x3c5a45, 0x2f5d9e, 0x9a9da0, 0xb04a32],
+    wood: [0xa77b4f, 0x8a6a48, 0xc19a6b, 0x6e5440],
+    cushion: [0xe2b33c, 0xc9472f, 0x5d7f4f, 0xe9e4d8, 0x2f5d9e, 0x9a9da0, 0xd98aa0],
+    pot: [0xb5643c, 0x2e3133, 0x6b6f6a, 0xf3f0e8, 0x7a5a44],
+    parasol: [[0xf6f4ee, 0x2f5d9e], [0xe9e4d8], [0xc9472f, 0xf6f4ee], [0x5d7f4f, 0xe9e4d8], [0xe2b33c, 0xf6f4ee], [0x2a2c2e]],
+    rug: [[0xf2efe6, 0x2f5d9e], [0x4f6b43], [0x9a9da0, 0xe9e4d8], [0xc9472f, 0xf2efe6], [0xd8cdb5]],
+    flowers: [[0xd8262f, 0xe8484f], [0xf5f2ee, 0xf2c522], [0xd98aa0, 0xf5f2ee], [0x8a5fb8, 0xb59ad8], [0xe08a2c, 0xf2c522]],
+  },
+};
