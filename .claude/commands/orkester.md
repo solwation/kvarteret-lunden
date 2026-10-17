@@ -44,6 +44,10 @@ Varje arbetsagent arbetar i en egen isolerad ext4-checkout/worktree för rätt r
   Önskemål bedöms efter värde: `high` om det blockerar eller tydligt försämrar besöket, `medium` för rejäla förbättringar,
   `low` för trevligt-att-ha eller "någon gång". Sätt inte allt till medel. Befintliga prioriteter ändras bara på användarens uppdrag.
 
+## Modellval
+
+- **Modellval (användaren 2026-10-17):** arbetsagenterna kör en **billigare modell** (i Claude Code `model: "sonnet"` i Agent-anropet; i andra verktyg motsvarande mellanklassmodell), medan dirigenten som väljer ärenden, bryter ner, samordnar och **granskar agenternas arbete** (skärmdumpar, tester, diff, issue-kommentarer) kör en rimligt kompetent modell. Dirigenten ska därför alltid själv titta på skärmdumparna och kontrollera rapporterna innan ett ärende räknas som klart; uppgradera en enskild agent till en starkare modell bara när ärendet uttryckligen kräver det (t.ex. svår felsökning eller arkitektur) och skriv varför i statusen.
+
 ## Bevakning efter sista lösta ärendet (användaren 2026-10-16)
 
 En aktiv `/orkester` får inte avslutas direkt när kön blir tom. Fortsätt kontrollera hela den öppna kön i båda reporna **var femte minut (300 sekunder) i 60 minuter efter det senast lösta implementationsärendet**.
