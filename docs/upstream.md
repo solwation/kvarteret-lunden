@@ -384,3 +384,9 @@ Importerad från `82423761f6a10d84bdde6bfd05a70422aeeb8b16` (original #1230): ö
 Importerad från `622b0268` (original #1233, del 1): `SITE.river.bankScale` (0,55, *guess*) i `src/config.js` multiplicerar varje strandspann i `riverAt` (`src/riverbridge.js`), så marken faller mot vattnet på ungefär 6-8 m i stället för 11-15 m. `SITE.riverPark.treeDensity` (1,45), `treeSpacing` 6, `shrubCount` 190 och `shoreCount` 380 (alla *guess*) ger tätare skog, buskar och strandtuvor; `parkTreeSpots` i `src/riverpark.js` skalar varje fläcks `n` med `treeDensity`. Inga nya meshar eller material. Originalets ändringslogg, miljödokument och `riverparktest.html` är inte importerade (provet finns inte här). Originalets övriga delar av #1233 (cykelväg, gångytor) ingår inte.
 
 Verifiering: `npm test`, `npm run build` och Chromium-bilder före/efter av åstranden och bron. Ritanrop oförändrade (40/96/37), trianglar +ca 30 000 per vy (cirka +10 %), inga sidfel.
+
+## Å-parkens stigar: asfalt och grus, #53
+
+Importerad från `c7d1796f` (original #1235, del 2 av #1233): 13 fler OSM-kartlagda stigar i `SITE.riverPark.paths` (`src/config.js`), ett `surface`-fält per stig (`asphalt` för asfalt/belagd, annars `gravel`, från OSM-taggen) och `SITE.riverPark.surfaces` med färgerna (*guess*, liksom bredderna för de tillagda stigarna). `buildRiverPark` i `src/riverpark.js` bygger två sammanslagna meshar, asfalt 3 mm över grus mot z-fighting, med `renderedTerrainY`; remsor utanför terrängen eller på vägar hoppas över. OSM har ingen `highway=cycleway` längs ån i området, så asfaltsstigarna är den delade gång-/cykelvägen. Originalets ändringslogg, miljödokument och `riverparktest.html` är inte importerade. Större gångyta (#1236) ingår inte.
+
+Verifiering: `npm test`, `npm run build` och Chromium-bilder före/efter. Ritanrop +1 (t.ex. 73 till 74 i översiktsvyn), trianglar +718 (stigmeshen 1646 till 2364), inga sidfel.
