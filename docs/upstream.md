@@ -40,7 +40,7 @@ Automatisk publicering till GitHub Pages är aktiverad vid varje push till detta
 
 ## Register
 
-- Senast granskade originalversion: `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
+- Senast granskade originalversion: `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -436,3 +436,10 @@ Originalets ändringslogg, provfiler och personliga filer ingår inte här. Inga
 
 Verifikation: `npm test` och `npm run build` gröna.
 
+
+
+## Längre promenad ner till ån och till klocktornet, #60
+
+Anpassad från `5a3d3cd`, `e30ec5e` och `49e897d` (original #1236). `WALK` i `src/config.js` (x −260…320, z −200…250, *guess*) ersätter `OUTDOOR` som ytterkant i `src/world.js` (ytterväggen, även på taken); `OUTDOOR` är kvar som kvarterets område. Nya `src/farwalk.js` ger kollision för de kartlagda bakgrundsbyggnaderna (inklusive Klockhusets framskjutande mitt och innergårdshål), de två broarnas och träbrons räcken samt trädstammar utanför kvarteret (romb, `WALK.trunk`, *guess*), ån som hinder (`WALK.wade`) och branthetsgränsen `WALK.maxSlope`; en besökare som hamnar i ån eller inne i en byggnad/innergård flyttas till stranden/ut på gatan (`WALK.rescue`). Anpassningen ligger i `src/navigation.js` (`segments()`, glidning mot vatten/branter och `rescue()`), eftersom publicsidan saknar originalets `player.js`. Originalets tre HUD-meddelanden (ur ån, ut på gatan, ytterkanten) och ändringslogg är inte importerade; publicsidan har ingen motsvarande yta. Inga nya meshar, material eller nätverksanrop, så renderbudgeten är oförändrad. Hus A/B/C:s entréer berörs inte (enbart `SITE.blocks` med `style` får fjärrkollision: HepCat Store och Villan).
+
+Verifiering: `npm test`, `npm run build`, `tools/farwalk-check.mjs` (ersätter originalets `farwalktest`; ned till ån, bägge broarna, räcke, HepCat, skolområdet till Klockhusets fasad, mellan skolbyggnaderna, tillbaka, de fyra ytterkanterna, räddning ur ån), `tools/browser-check.mjs` och `tools/places-browser-check.mjs` samt skärmbilder av ån och klocktornet i Chromium.

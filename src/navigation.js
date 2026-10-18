@@ -2,6 +2,7 @@ import { Vector3 } from 'three';
 import * as config from './config.js';
 import { stairHeight, stairUnderside } from './stairs.js';
 import { groundY } from './surroundings.js';
+import { farWalls, waterBlocked, tooSteep, waterRescue, buildingRescue } from './farwalk.js'; // upstream #1236: walking beyond the block
 
 // Walking geometry adapted from src/player.js in solwation/lunden-3d-apartment,
 // reviewed source c079371f6782225e29e9dac51518c509ed8c37e6.
@@ -160,7 +161,17 @@ export class Navigation {
     if (lv === 0) dynamic.push(...(this.world.units ?? []).filter(unit => unit.ground).flatMap(unit => unit.doorSegments(0)));
     if (lv === 0 && y > (config.GARAGE?.floor ?? -3) + 1.5) dynamic.push(...(this.world.upperSegments ?? []));
     dynamic.push(...(this.world.movingSegments?.(lv) ?? []));
+    if (!this.inFootprint()) dynamic.push(...farWalls(this.pos.x, this.pos.z)); // the mapped buildings, bridge rails
     return [level?.segments ?? [], dynamic];
+  }
+
+  /** Ended up in the river or inside a far building/closed courtyard (a fall): back on the dry bank / out on the street. */
+  rescue() {
+    if (this.aloft || this.inFootprint() || this.unit || this.inCore || this.below) return;
+    const g = groundY(this.pos.x, this.pos.z);
+    if (this.pos.y > g + 0.05) return;
+    const back = (this.pos.z > 60 && waterRescue(this.pos.x, this.pos.z)) || buildingRescue(this.pos.x, this.pos.z);
+    if (back) { this.pos.set(back.x, groundY(back.x, back.z), back.z); this.vy = 0; }
   }
 
   advanceOpenables(dt) {
@@ -212,6 +223,13 @@ export class Navigation {
         for (const wall of walls) pushOut(this.pos, wall);
         if (this.blockedByStair(this.pos.x, this.pos.z, previous.y)) this.pos.copy(previous);
       }
+      if (this.pos.z > 60 && !this.aloft && (waterBlocked(this.pos.x, this.pos.z) || tooSteep(this.pos.x, this.pos.z))) {
+        // the river and ground too steep to climb are obstacles: slide along one axis or stay put
+        const bad = (x, z) => waterBlocked(x, z) || tooSteep(x, z);
+        if (!bad(this.pos.x, previous.z)) this.pos.z = previous.z;
+        else if (!bad(previous.x, this.pos.z)) this.pos.x = previous.x;
+        else { this.pos.x = previous.x; this.pos.z = previous.z; }
+      }
       const ground = this.groundAt(this.pos.x, this.pos.z, this.pos.y);
       if (ground >= this.pos.y) { this.pos.y = ground; this.vy = 0; }
       else {
@@ -220,6 +238,7 @@ export class Navigation {
         if (this.pos.y <= ground) this.vy = 0;
       }
       for (const c of this.cores) if (c.snap?.(this)) break;
+      this.rescue();
     }
     this.eyeY += (this.pos.y + (this.crouched ? BODY.crouchEye : BODY.eye) - this.eyeY) * (1 - Math.exp(-14 * dt));
     this.camera.position.set(this.pos.x, this.eyeY, this.pos.z);

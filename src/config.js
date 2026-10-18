@@ -1247,6 +1247,16 @@ rail: { x: 5.551, z0: 5.80, z1: 6.32, y: 1.30 }
 
 export const OUTDOOR = { x0: -78.5, x1: 27.5, z0: -14, z1: 64 };
 
+// Upstream #1236, downstream #60: the visitor may walk well beyond the block, down to Höje å (over the two bridges), among the
+// school buildings to the clock tower and out to the mapped edge of the surroundings. `WALK` is the outer edge of that area
+// (world.js: the perimeter wall, also at every height for the roofs); OUTDOOR stays the home block. Bounds are a choice (*guess*).
+// `cell` m: bucket edge for the far collision (src/farwalk.js). `wade` m: how far from the water's edge the shallow bank already
+// stops the visitor (the bed is at SITE.bridges.bedY). `rescue` m: where a visitor who still ends up in the river is put back,
+// from the water's edge (*guess*). `maxSlope` rise/run: steeper ground holds the visitor back (the banks stay under it).
+// `trunk`: half-width of a tree trunk's collision diamond by kind (*guess*, the drawn trunks are thinner than a body).
+export const WALK = { x0: -260, x1: 320, z0: -200, z1: 250, cell: 40, wade: 2, rescue: 3, maxSlope: 1.2,
+  trunk: { big: 0.45, tree: 0.3, birch: 0.2, young: 0.15 } };
+
 export const GARAGE = {
   floor: -3,          // = SITE.terrain.park: the drive is level with the door (#346)
   parkDoorMaterial: { color: 0x7d858b, roughness: .7 }, // *guess*: existing steel colour, daylight-lit park leaves (#729)
