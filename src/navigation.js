@@ -148,7 +148,7 @@ export class Navigation {
     dynamic.push(...(this.world.garage?.parkDoorSegments?.(y) ?? []));
     if (this.aloft) {
       dynamic.push(...(this.world.units ?? []).flatMap(unit => unit.doorSegmentsAt?.(y) ?? []));
-      return [this.world.roofs?.walls(y + BODY.stepUp, y + BODY.headroom) ?? [], dynamic];
+      return [this.world.roofs?.walls(y + BODY.stepUp, y + BODY.headroom, this.pos.x, this.pos.z) ?? [], dynamic];
     }
     const lv = this.level, level = this.world.levels?.[lv];
     const leaves = new Set([...(this.world.doors ?? []), ...(this.world.openables ?? []), ...(level?.doors ?? []), ...(level?.openables ?? [])]);

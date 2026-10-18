@@ -40,7 +40,7 @@ Automatisk publicering till GitHub Pages är aktiverad vid varje push till detta
 
 ## Register
 
-- Senast granskade originalversion: `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
+- Senast granskade originalversion: `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -477,3 +477,10 @@ Importerad från `fd6c9f74` + konflikträttelsen `f76c7cc9` (original #1278): `s
 Inte importerat: parkerade bilar (`eastlot.js`, kollision i `farwalk.js`), eftersom bilmodellen (`streetlife.js`) saknas nedströms; då behövs inga bilkollisioner. Inga personliga resurser, spelinslag eller nätverksanrop. Övriga #1262-ändringar av gårdar och vägar är inte importerade här.
 
 Verifiering: `npm test`, bygg och Chromium-bilder (dagsljus) före/efter av båda parkeringarna utan sidfel.
+
+
+## Gångbara tak för alla kartlagda byggnader, #68
+
+Importerad från `bfa0bc75` (original #1294): `src/buildingroofs.js`, polygonytor med hål och 20 m-rutnät för uppslag samt `Roofs.walls(y0, y1, x, z)` i `src/roofs.js`, `roofY(x, z)` på varje bakgrundsbyggnads post (`sitebackdrop.js`, `southbackdrop.js`, `campusfacades.js`, `schoolfacade.js`, `karpfacade.js`), `BUILDING_ROOFS` i `src/config.js` (*gissning*) och anropet i `surroundings.js`. Nedströms skickar `src/navigation.js` besökarens position till `Roofs.walls` (originalet: `player.js`). Endast kollision: inga meshar, inga ritanrop. Originalets `tools/roofaudittest.html` bygger på spelarmodulen och jetpacken och är inte importerad; `tools/roofaudit-check.mjs` är den nedströms motsvarigheten (54 tak: man landar på varje tak, ringväggarna serveras). Inga poäng- eller första-besök-räkningar, ingen jetpack. Takväggarna är bara 5 cm över taklinjen: de stoppar en kropp som överlappar takets sida, medan den som står på taket kliver över dem (som i originalet).
+
+Verifiering: `npm test`, bygg, `tools/roofaudit-check.mjs` (54 av 54), Chromium-bilder före/efter av landning på Klockhusets, ett västligt kvarters och Östra paviljongens tak.

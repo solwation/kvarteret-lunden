@@ -1265,6 +1265,10 @@ export const PARKING_LOT = {
   mesh: 1.0,               // m: the asphalt is cut into triangles no longer than this so it follows the sloping ground
   lift: { asphalt: 0.02, kerb: 0.035, line: 0.045 }, // m over the terrain: under the roads' own 0.025 so the aisles stay on top, lines/edge over both
 };
+// #68 (original #1294): every mapped building inside WALK has a walkable roof (src/buildingroofs.js), made from the backdrop's own records: the drawn roof's
+// height where the builder gives it (`roofY`), else flat at the eave + `flatLift` (*guess*). `wallStep` m: spacing of the samples that set a wall's
+// height along a gable end (*guess*); `wallLift` m: the wall's top over the roof line; `depth` m: the walls reach this far under y 0.
+export const BUILDING_ROOFS = { flatLift: 0.05, wallStep: 4, wallLift: 0.05, depth: 10 };
 export const WALK = { x0: -260, x1: 320, z0: -200, z1: 250, cell: 40, wade: 2, rescue: 3, maxSlope: 1.2,
   trunk: { big: 0.45, tree: 0.3, birch: 0.2, young: 0.15 } };
 

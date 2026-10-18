@@ -83,3 +83,5 @@ För publiceringsbygget serveras reporoten och samma kontroll får URL `/dist/`;
 `CHROME_PATH=/sökväg/till/chrome node tools/loggiabasement-check.mjs BASE OUT` (#44) kontrollerar Hus A/B:s källarhörn där loggiorna ligger under marknivå. Den säkerställer att inga innerväggar eller loggiapelare genereras under markytan och tar granskad skärmbild av hörnet.
 
 `CHROME_PATH=… node tools/farwalk-check.mjs http://localhost:8777 /tmp/farwalk` (mot `python3 -m http.server 8777` i repots rot) går i den riktiga världen ner till ån, över bägge broarna, runt skolbyggnaderna till Klockhusets fasad och tillbaka, och kontrollerar att byggnader, broräcke, ån och de fyra ytterkanterna (`WALK`) stoppar samt att den som hamnar i ån flyttas upp på stranden (#60). Inga webbläsarfel tillåts; skärmbilder av ån, klocktornet och skolbyggnaderna sparas för granskning.
+
+`CHROME_PATH=… node tools/roofaudit-check.mjs http://localhost:8777` släpper en besökare över varje kartlagt byggnadstak (`bld-*`, #68) och kontrollerar att hen landar på taket och att takets ringväggar serveras av `Roofs.walls`. Inga webbläsarfel tillåts.
