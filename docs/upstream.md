@@ -447,3 +447,9 @@ Verifiering: `npm test`, `npm run build`, `tools/farwalk-check.mjs` (ersätter o
 ## Solpanelernas lutning, #63
 
 Importerad från `fa837a45140355baee60b9f70b4da9061838847f` (original #1277): `tiltedPanelGeo` i `src/exterior.js` roterade fel håll (norra kanten sänktes, ytan vände mot norr, panelerna dök ner i taket). Nu `rotateX(+a)`: norra kanten höjs, ytnormalen pekar mot söder och lägsta kanten är den södra vid `HUS_L.solar.lift`. Funktionen exporteras för kontroll. Verifiering: geometrikontroll (alla hörn ovanför takkanten, söderlutning), `npm test`, `npm run build` och webbläsarkontroll.
+
+## Oavbruten hörn-AO i trapphus mellan våningsplan, #66
+
+Importerad från `3136c423` (original #1273): `buildWallAO` i `src/ao.js`, dess anrop i `src/world.js` och `tools/stairwallaotest.mjs`. Tidigare avbröts de vertikala innerhörnskuggorna över trapphål (`floorHole`/`ceilHole`), eftersom hörnen endast genererades i mittenbandet mellan golv- och takhöjdsavskärningarna (`fTop`/`cBot`), och bjälklaget mellan våningarna saknade hörnskugga. Nu sträcker sig hörnkolumnerna genom hela hålet med `FAR` golv/tak-avstånd (ingen felaktig golv- eller takskugga i luften), och plan 1 sträcker sig ner till `slabBottom` (2,5 m) så att hörnskuggan möter plan 0 sömlöst.
+
+Verifiering: `tools/stairwallaotest.mjs` (verifierar kontinuerlig hörn-AO från plan 0 genom bjälklaget upp till plan 1:s innertak), `npm test` och `npm run build`.
