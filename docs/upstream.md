@@ -40,7 +40,7 @@ Automatisk publicering till GitHub Pages är aktiverad vid varje push till detta
 
 ## Register
 
-- Senast granskade originalversion: `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
+- Senast granskade originalversion: `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -498,3 +498,12 @@ Importerad från `5790fc4d` (original #1301): `src/busstop.js` (plattform, kants
 Anpassning: nedströms är vägarna 36918923 och 189432572 uppdelade annorlunda än i originalet (långa vägar längre söderut), så bussfickans korta delar (36918923-stumpen, tillfarten 95035967 och 189432572 vid korsningen) lades till i `SITE.south.access`; testet kräver därför "minst fyra" vägar och att 95035967 finns. Originalets ändringslogg, `perfcount`-läget och dokumentationsrader ingår inte (ingen ändringslogg/perfcount nedströms). Inga personliga resurser, spelinslag eller nätverksanrop.
 
 Verifiering: `node --test tools/busstopgeotest.mjs`, `npm test`, bygg och Chromium-bilder i dagsljus före/efter av hållplatsen och cykelvägen.
+
+
+## Höjdrutnät och terräng, #69
+
+Importerad från originalet: `73a4aeb5` (`data/elevation.json`, `tools/elevation_grid.py`, `tools/elevationcompare.cjs`, `tools/elevationtable.py`), `6d4870fb` (`src/elevation.js`, genererade `src/elevationgrid.js` via `tools/elevation_js.py`, `ELEVATION` i `config.js`, `terrainY`-blandningen och nordliga terrängrader i `surroundings.js`, adaptiv `pathStrip` i `roads.js`, nordplattan i `world.js`, hårdbelagda ytor i `sitebackdrop.js`), `4e54125d` (`TERRAIN_FAR`, glesare terräng långt från kvarteret) samt `75da731b` + `778e174b` (byggnadsplattor `makeBuildingPads`, fält och parkeringar i `southbackdrop.js` skurna längs terrängen).
+
+Källa och licens: Copernicus DEM GLO-30, "Contains modified Copernicus data"; texten finns i `THIRD_PARTY_LICENSES.txt`. Rutnätet är 10 m och rent ytmodell-baserat (marknivå uppskattad ur ytmodellen), registreringsnoggrannhet ca 3-5 m. L1007:s kvartersnivå (y 0 = innergården), garagelådan, Karpvägens/Sankt Lars vägs egna profiler och ådalen behålls (`ELEVATION.protect`/`river`); utanför följer marken rutnätet. Tunables är *guess*.
+
+Anpassningar: originalets gångområde, jetpack och egna backdrop-delar (`paddock.js`) finns inte här; fält/parkeringar med hål behåller de gamla hörnhöjderna. Inte överfört: `156bfd34` och `c313adf9` (parkeringens asfalt skuren längs terrängmeshens egna rutnät, `cutAtTerrain`) - parkeringen bakom HepCat har redan egen lösning från #67/#70 (1 m trianglar och djupförskjutning, samma teknik som originalet senare tog över); #1309/#1310 kan bli ett uppföljande ärende om gröna glipor syns. Originalets prestandamätning (`perfcount`) finns inte i denna repo.

@@ -5,7 +5,8 @@ import { buildRiverPark, parkDeckAt, parkTreeSpots, parkShrubSpots } from './riv
 import * as THREE from 'three';
 import { grassUV } from './grass.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { SITE as S, COLORS, SEASON, COURTYARD, GARAGE, CORE_A, CORE_B, CORE_C, NEIGHBOR_OPENINGS as O, HUS_L, FOLIAGE } from './config.js';
+import { SITE as S, COLORS, SEASON, COURTYARD, GARAGE, CORE_A, CORE_B, CORE_C, NEIGHBOR_OPENINGS as O, HUS_L, FOLIAGE, ELEVATION, TERRAIN_FAR } from './config.js';
+import { gridGround } from './elevation.js';
 import { glowMaterial, poolGeometry, washGeometry, fadeGlow } from './groundglow.js';
 import { neighborGlass } from './neighborglass.js';
 import { registerTrees, registerSnow } from './seasons.js';
@@ -94,7 +95,64 @@ export function groundY(x, z) {
 export const groundBelowDeckY = (x, z) => terrainY(x, z);
 /** The terrain itself (the grass / asphalt surface; groundY without the stairs' treads and the recesses' floors). */
 function terrainY(x,z) {
-  const base=terrainBase(x,z);return z<60?base:riverGround(x,z,base);
+  const y=terrainRawY(x,z);
+  if(!buildingPads)buildingPads=makeBuildingPads();
+  let out=y;const flat=[];
+  for(const pad of buildingPads){
+    if(x<pad.x0||x>pad.x1||z<pad.z0||z>pad.z1)continue;
+    const d=pad.dist(x,z);if(d>=ELEVATION.pad)continue;
+    const w=padWeight(x,z);if(w<=0)continue;
+    if(d===0)flat.push(pad,w);else out+=smooth(1-d/ELEVATION.pad)*w*(pad.level-out); // #1306: the ground levels out under a far building, grading back over ELEVATION.pad m
+  }
+  for(let i=0;i<flat.length;i+=2)out+=flat[i+1]*(flat[i].level-out); // (a neighbour's slope never tilts a footprint)
+  return out;
+}
+function terrainRawY(x,z) {
+  let base=terrainBase(x,z);
+  const w=elevationWeight(x,z);if(w>0)base+=w*(gridGround(x,z)-base); // #1305: the real ground levels outside the block
+  return z<60?base:riverGround(x,z,base);
+}
+/** #1306: 0 inside the protected block rectangle and within ELEVATION.river[0] m of Höje å (the designed levels stay), 1 a few metres beyond. */
+function padWeight(x,z){
+  const P=ELEVATION.protect,dx=Math.max(P.x0-x,0,x-P.x1),dz=Math.max(P.z0-z,0,z-P.z1);
+  let w=smooth(Math.min(1,Math.hypot(dx,dz)/ELEVATION.padRamp));
+  if(w>0&&z>10)w*=smooth(Math.max(0,Math.min(1,(riverDistance(x,z)-ELEVATION.river[0])/ELEVATION.padRamp)));
+  return w;
+}
+let buildingPads=null;const skipped=[];
+/** #1306 (tests): the level pads [{ name, level, x0, x1, z0, z1 }]. */
+export const buildingPadSkipped=()=>{buildingPads??=makeBuildingPads();return skipped;};
+export const buildingPadList=()=>(buildingPads??=makeBuildingPads()).map(({name,level,x0,x1,z0,z1})=>({name,level,x0,x1,z0,z1}));
+/** #1306: one level platform per mapped far building on the elevation grid's sloping ground (outside the protected block and the river valley), so its base meets the ground instead of a plinth up to 5 m tall:
+ *  the level is the mean raw ground under the footprint, the footprint is flat, the ground grades back over ELEVATION.pad m (all samplers - roads, trees, cars, backdrop bases - follow `terrainY`). */
+function makeBuildingPads(){
+  const pads=[];pads.skipped=skipped;
+  for(const k of ['west','east','north','south'])for(const b of S[k].buildings){
+    const ring=b.polygon.slice(0,-1),xs=ring.map(q=>q[0]),zs=ring.map(q=>q[1]);
+    const x0=Math.min(...xs),x1=Math.max(...xs),z0=Math.min(...zs),z1=Math.max(...zs);
+    if(z1>260||x0<S.backgroundGround.x0||x1>S.backgroundGround.x1||z0<S.backgroundGround.z0){skipped.push([b.name,'edge']);continue;}
+    const inside=(x,z)=>{let yes=false;for(let i=0,j=ring.length-1;i<ring.length;j=i++)if((ring[i][1]>z)!==(ring[j][1]>z)&&x<(ring[j][0]-ring[i][0])*(z-ring[i][1])/(ring[j][1]-ring[i][1])+ring[i][0])yes=!yes;return yes;};
+    const pts=[];for(const q of ring)pts.push(q);
+    for(let x=Math.ceil(x0/4)*4;x<=x1;x+=4)for(let z=Math.ceil(z0/4)*4;z<=z1;z+=4)if(inside(x,z))pts.push([x,z]);
+    // outside the grid's ground (the block, its ramp zone, the river valley): keep the old plinth
+    if(pts.some(([x,z])=>padWeight(x,z)<=0)){skipped.push([b.name,'weight']);continue;}
+    const ys=pts.map(([x,z])=>terrainRawY(x,z)),lo=Math.min(...ys),hi=Math.max(...ys);
+    if(hi-lo<ELEVATION.padMin){skipped.push([b.name,'flat']);continue;}
+    const level=ys.reduce((a,c)=>a+c,0)/ys.length,R=ELEVATION.pad;
+    const dist=(x,z)=>{if(inside(x,z))return 0;let d=Infinity;for(let i=0,j=ring.length-1;i<ring.length;j=i++){const a=ring[j],c=ring[i],dx=c[0]-a[0],dz=c[1]-a[1],t=Math.max(0,Math.min(1,((x-a[0])*dx+(z-a[1])*dz)/(dx*dx+dz*dz||1)));d=Math.min(d,Math.hypot(x-a[0]-dx*t,z-a[1]-dz*t));}return d;};
+    pads.push({x0:x0-R,x1:x1+R,z0:z0-R,z1:z1+R,level,dist,name:b.name});
+  }
+  return pads;
+}
+const smooth=t=>t*t*(3-2*t);
+/** #1305: 0 near the block, the river valley and the mesh's outer edges (today's levels), 1 in between (the grid's ground). */
+function elevationWeight(x,z){
+  const P=ELEVATION.protect,dx=Math.max(P.x0-x,0,x-P.x1),dz=Math.max(P.z0-z,0,z-P.z1);
+  let w=smooth(Math.min(1,Math.hypot(dx,dz)/ELEVATION.ramp));
+  if(w===0)return 0;
+  const B=S.backgroundGround;w*=smooth(Math.max(0,Math.min(1,Math.min(x-B.x0,B.x1-x,B.z1-z)/ELEVATION.edge)));
+  if(w>0&&z>10)w*=smooth(Math.max(0,Math.min(1,(riverDistance(x,z)-ELEVATION.river[0])/ELEVATION.river[1])));
+  return w;
 }
 function terrainBase(x, z) {
   if (onRamp(x, z)) return rampY(z);
@@ -120,12 +178,14 @@ export const renderedTerrainY = (x,z) => terrainSurface(x,z);
 /** Holes in the terrain mesh [x0, x1, z0, z1]: Hus C stands at the courtyard's level (y 0), so its stair well (CORE_C.pit) would be covered by the grass (#639). */
 const TERRAIN_PITS = [CORE_C.pit];
 function terrainGeometry() {
-  const St = Wst.stair, z0 = terrainNorth;
+  const St = Wst.stair, z0 = S.backgroundGround.z0; // #1305: from the world's north edge (the flat plate there is gone)
   const xs = new Set([S.backgroundGround.x0, -200, 200, S.backgroundGround.x1, E.x0 - 0.01, E.x0 + 0.01, E.x1, E.x1 + E.blend, E.gable, E.level, E.walk, R.x0 + 0.01, R.x1 - 0.01, R.x1 + 0.01,
       Wst.x - 0.01, Wst.x + 0.01, St.x1 - 0.01, St.x1 + 0.01]),
-    zs = new Set([z0, 0, T.north, 260, T.north + T.slope, ...E.profile.map((p) => p[0]), ...Wst.profile.map((p) => p[0]), R.z0, R.z1, St.z1 - 0.01, St.z1 + 0.01, T.garageDoor.z0, T.garageDoor.z1]);
-  for (let x = S.backgroundGround.x0; x <= S.backgroundGround.x1; x += 4) xs.add(x);
-  for (let z = z0; z <= 260; z += 4) zs.add(z);
+    zs = new Set([z0, terrainNorth, 0, T.north, 260, T.north + T.slope, ...E.profile.map((p) => p[0]), ...Wst.profile.map((p) => p[0]), R.z0, R.z1, St.z1 - 0.01, St.z1 + 0.01, T.garageDoor.z0, T.garageDoor.z1]);
+  // #1311: the far west / east columns are 12 m and the far north rows 10 m apart (the ground there is the smooth DEM, no river or block)
+  for (let x = S.backgroundGround.x0; x <= S.backgroundGround.x1; x += 4) if ((x >= TERRAIN_FAR.colWest && x <= TERRAIN_FAR.colEast) || (x - S.backgroundGround.x0) % 12 === 0) xs.add(x);
+  for (let z = z0; z < terrainNorth; z += 5) if (z >= terrainNorth - TERRAIN_FAR.rowNear || (z - z0) % 10 === 0) zs.add(z); // the north: 5 m rows near the block (#1305; the grid is smooth, Catmull-Rom)
+  for (let z = terrainNorth; z <= 260; z += 4) zs.add(z);
   for (const b of T.box) { for (const x of [b.x0, b.x1]) { xs.add(x - 0.01); xs.add(x + 0.01); } for (const z of [b.z0, b.z1]) { zs.add(z - 0.01); zs.add(z + 0.01); } }
   // #647, #975: no ground under Hus A / Hus B (base −3, the garage's basement floors lie at the park level):
   // the north face sits on the garage box edge (z0 = b.z0 − 0.01), so the pit starts there to avoid a 3 m steep
@@ -144,7 +204,7 @@ function terrainGeometry() {
   for (let j = 0; j < Z.length - 1; j++) for (let i = 0; i < nx - 1; i++) {
     const a = j * nx + i, b = a + 1, c = a + nx, d = c + 1;
     const mx = (X[i] + X[i + 1]) / 2, mz = (Z[j] + Z[j + 1]) / 2;
-    if (mz < T.north && mx > westEdge(mz) && mx < E.gable) continue; // world.js's flat plate
+    if (mz >= terrainNorth && mz < T.north && mx > westEdge(mz) && mx < E.gable) continue; // world.js's flat plate
     if (inPit(mx, mz)) continue; // under Hus A / B (see above)
     if (TERRAIN_PITS.some((p) => mx > p[0] && mx < p[1] && mz > p[2] && mz < p[3])) continue; // a stair well's footprint (#639)
     if (Math.abs(mx - T.garageDoor.x) < 0.02 && mz > T.garageDoor.z0 && mz < T.garageDoor.z1) continue; // the box edge's face: the garage door's opening (#357)

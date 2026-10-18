@@ -20,3 +20,15 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+
+================================================================
+Copernicus DEM GLO-30 (data/elevation.json, src/elevationgrid.js)
+================================================================
+
+Contains modified Copernicus data. The ground-height grid is derived from
+the Copernicus DEM GLO-30 (30 m, tile N55 E013, AWS Open Data
+`copernicus-dem-30m`), (c) DLR e.V. 2010-2014 and (c) Airbus Defence and
+Space GmbH 2014-2018, provided under the Copernicus DEM licence with funding
+by the European Union under contract COP-DEM-2018. It is resampled to a 10 m
+grid (bare-earth estimate) and is used as a height reference only.

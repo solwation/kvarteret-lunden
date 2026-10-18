@@ -16,10 +16,11 @@ try{
  await page.locator('#start').click({timeout:120000});await page.evaluate(()=>document.exitPointerLock?.());
  const res=await page.evaluate(async()=>{
   const {WALK,SITE}=await import(new URL('/src/config.js',location.origin));
+  const {groundY}=await import(new URL('/src/surroundings.js',location.origin)); // #69: the north and the far west/east now lie above y 0, so a start point is lifted onto the ground (never below 0: lower ground is fallen onto)
   const {riverAt}=await import(new URL('/src/riverbridge.js',location.origin));
   const {navigation:n,camera}=window.lundenViewer, dt=1/60;
   const walk=(start,pts)=>{
-   n.teleport(start[0],0,start[1]);for(let i=0;i<30;i++)n.update(dt);
+   n.teleport(start[0],Math.max(0,groundY(start[0],start[1])),start[1]);for(let i=0;i<30;i++)n.update(dt);
    for(let i=0;i<pts.length;i++){const[x,z]=pts[i];let t=0;const lim=8+Math.hypot(n.pos.x-x,n.pos.z-z)/1.6;
     while(Math.hypot(n.pos.x-x,n.pos.z-z)>0.2){camera.rotation.y=Math.atan2(-(x-n.pos.x),-(z-n.pos.z));n.keys=new Set(['KeyW','ShiftLeft']);n.update(dt);t+=dt;if(t>lim){n.keys=new Set();return i;}}}
    n.keys=new Set();for(let i=0;i<30;i++)n.update(dt);return -1;};
