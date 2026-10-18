@@ -88,6 +88,8 @@ export function groundY(x, z) {
   if (z <= Wst.stair.z1) return Math.max(terrainY(x, z), nwTread(x)); // the NW stair's treads over the verge
   return terrainY(x, z);
 }
+/** #62: the ground UNDER a bridge deck; `groundY` returns the deck there. */
+export const groundBelowDeckY = (x, z) => terrainY(x, z);
 /** The terrain itself (the grass / asphalt surface; groundY without the stairs' treads and the recesses' floors). */
 function terrainY(x,z) {
   const base=terrainBase(x,z);return z<60?base:riverGround(x,z,base);

@@ -1,7 +1,8 @@
 import { Vector3 } from 'three';
 import * as config from './config.js';
 import { stairHeight, stairUnderside } from './stairs.js';
-import { groundY } from './surroundings.js';
+import { groundY, groundBelowDeckY } from './surroundings.js';
+import { deckAt } from './riverbridge.js';
 import { farWalls, waterBlocked, tooSteep, waterRescue, buildingRescue } from './farwalk.js'; // upstream #1236: walking beyond the block
 
 // Walking geometry adapted from src/player.js in solwation/lunden-3d-apartment,
@@ -108,6 +109,9 @@ export class Navigation {
     const unit = !inside && !cores.length ? this.unitAt(x, z, feet) : null;
     const heights = unit ? [...unit.floors(x, z)]
       : [inside ? config.LEVELS[0].floor : cores.length ? -Infinity : groundY(x, z)];
+    if (!inside && !cores.length && !unit && deckAt(x, z) !== null) {
+      heights.push(groundBelowDeckY(x, z));
+    }
     for (const c of cores) heights.push(...c.heights(x, z));
     if (inside && !inRect(config.STAIR?.hole, x, z) && config.LEVELS[1]) heights.push(config.LEVELS[1].floor);
     const stair = unit ? null : stairHeight(x, z);
@@ -161,7 +165,7 @@ export class Navigation {
     if (lv === 0) dynamic.push(...(this.world.units ?? []).filter(unit => unit.ground).flatMap(unit => unit.doorSegments(0)));
     if (lv === 0 && y > (config.GARAGE?.floor ?? -3) + 1.5) dynamic.push(...(this.world.upperSegments ?? []));
     dynamic.push(...(this.world.movingSegments?.(lv) ?? []));
-    if (!this.inFootprint()) dynamic.push(...farWalls(this.pos.x, this.pos.z)); // the mapped buildings, bridge rails
+    if (!this.inFootprint()) dynamic.push(...farWalls(this.pos.x, this.pos.z, this.pos.y)); // the mapped buildings, bridge rails
     return [level?.segments ?? [], dynamic];
   }
 
@@ -170,8 +174,12 @@ export class Navigation {
     if (this.aloft || this.inFootprint() || this.unit || this.inCore || this.below) return;
     const g = groundY(this.pos.x, this.pos.z);
     if (this.pos.y > g + 0.05) return;
-    const back = (this.pos.z > 60 && waterRescue(this.pos.x, this.pos.z)) || buildingRescue(this.pos.x, this.pos.z);
-    if (back) { this.pos.set(back.x, groundY(back.x, back.z), back.z); this.vy = 0; }
+    const back = (this.pos.z > 60 && waterRescue(this.pos.x, this.pos.z, this.pos.y)) || buildingRescue(this.pos.x, this.pos.z);
+    if (back) {
+      const gy = deckAt(back.x, back.z) !== null && this.pos.y < -3.5 ? groundBelowDeckY(back.x, back.z) : groundY(back.x, back.z);
+      this.pos.set(back.x, gy, back.z);
+      this.vy = 0;
+    }
   }
 
   advanceOpenables(dt) {
@@ -223,9 +231,9 @@ export class Navigation {
         for (const wall of walls) pushOut(this.pos, wall);
         if (this.blockedByStair(this.pos.x, this.pos.z, previous.y)) this.pos.copy(previous);
       }
-      if (this.pos.z > 60 && !this.aloft && (waterBlocked(this.pos.x, this.pos.z) || tooSteep(this.pos.x, this.pos.z))) {
+      if (this.pos.z > 60 && !this.aloft && (waterBlocked(this.pos.x, this.pos.z, undefined, previous.y) || tooSteep(this.pos.x, this.pos.z, undefined, previous.y))) {
         // the river and ground too steep to climb are obstacles: slide along one axis or stay put
-        const bad = (x, z) => waterBlocked(x, z) || tooSteep(x, z);
+        const bad = (x, z) => waterBlocked(x, z, undefined, previous.y) || tooSteep(x, z, undefined, previous.y);
         if (!bad(this.pos.x, previous.z)) this.pos.z = previous.z;
         else if (!bad(previous.x, this.pos.z)) this.pos.x = previous.x;
         else { this.pos.x = previous.x; this.pos.z = previous.z; }

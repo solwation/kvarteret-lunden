@@ -5,10 +5,12 @@ import {pathStrip} from './roads.js';
 const B=SITE.bridges,R=SITE.river;
 export const bridgeRecords=['road','gc'].map(kind=>{
  const s=B[kind],[a,b]=s.ends,full=Math.hypot(b[0]-a[0],b[1]-a[1]),len=s.length??full;
- return {kind,...s,x:(a[0]+b[0])/2,z:(a[1]+b[1])/2,dx:(b[0]-a[0])/full,dz:(b[1]-a[1])/full,len};
+ return {kind,...s,x:(a[0]+b[0])/2,z:(a[1]+b[1])/2,dx:(b[0]-a[0])/full,dz:(b[1]-a[1])/full,len,full};
 });
 const local=(r,x,z)=>[(x-r.x)*r.dx+(z-r.z)*r.dz,-(x-r.x)*r.dz+(z-r.z)*r.dx];
-export function deckAt(x,z){return bridgeRecords.some(r=>{const[a,b]=local(r,x,z);return Math.abs(a)<=r.len/2&&Math.abs(b)<=r.width/2})?B.deckY:null;}
+export function deckAt(x,z){return bridgeRecords.some(r=>{const[a,b]=local(r,x,z);return Math.abs(a)<=(r.full??r.len)/2&&Math.abs(b)<=r.width/2})?B.deckY:null;}
+/** The underside of the deck over (x, z) (each bridge has its own slab thickness: road .45, GC .18), else null. */
+export function deckUnderAt(x,z){const r=bridgeRecords.find(r=>{const[a,b]=local(r,x,z);return Math.abs(a)<=r.len/2&&Math.abs(b)<=r.width/2});return r?B.deckY-r.slab:null;}
 export function roadBridgeSpan(x,z){const r=bridgeRecords[0];return Math.abs(local(r,x,z)[0])<=r.len/2;}
 /** Nearest sourced river segment, with interpolated visual width/bank estimates. */
 export function riverAt(x,z){let best={distance:Infinity};for(let i=1;i<R.path.length;i++){
@@ -18,7 +20,23 @@ export function riverAt(x,z){let best={distance:Infinity};for(let i=1;i<R.path.l
  best={distance,x:a+t*dx,z:b+t*dz,nx:-dz/len,nz:dx/len,width:interp(R.widths,R.width),bank:interp(R.banks,R.bank)*(R.bankScale??1),segment:i,t};}}
  return best;}
 export function riverDistance(x,z){return riverAt(x,z).distance;}
-export function riverGround(x,z,base){const r=riverAt(x,z),u=Math.max(0,Math.min(1,(r.distance-r.width/2)/r.bank));return B.bedY+(base-B.bedY)*(u*u*(3-2*u));}
+/** Retained for interface compatibility (#62, upstream #1285). */
+export function underpassCut(x,z){return 0;}
+export const underpassAt=(x,z)=>deckAt(x,z)!==null;
+/** Rectangles [cx, cz, hx, hz, dx, dz] of the road bridge's piers, for collision under the deck. */
+export function pierBoxes(){const out=[];for(const r of bridgeRecords)if(r.kind==='road')for(const z of [-r.len/3,0,r.len/3])for(const side of [-1,1]){
+ const lx=side*r.width*.29,wx=r.x+lx*r.dz+z*r.dx,wz=r.z-lx*r.dx+z*r.dz;out.push({x:wx,z:wz,half:r.pier/2+(B.underpass?.pier??B.pierMargin??.2),dx:r.dx,dz:r.dz});}return out;}
+/** #62: Höje å valley profile: bed in the river, bank slope up to shoreY (-5.5, footpath level),
+ * flat shore span, then a gentle valley slope up to the surrounding base terrain (-3), meeting the bridge abutments from bank to bank. */
+export function riverGround(x,z,base){
+ const r=riverAt(x,z),w2=r.width/2,d=r.distance,shoreY=B.shoreY??-5.5,bankSlope=Math.min(r.bank*.4,2.5),shoreSpan=B.shoreSpan??7.5,valleySpan=B.valleySpan??8.5;
+ const sm=t=>t*t*(3-2*t);
+ if(d<=w2)return B.bedY;
+ if(d<w2+bankSlope){const u=sm((d-w2)/bankSlope);return B.bedY+(shoreY-B.bedY)*u;}
+ const shoreEnd=w2+bankSlope+shoreSpan;
+ if(d<shoreEnd)return shoreY;
+ if(d<shoreEnd+valleySpan){const u=sm((d-shoreEnd)/valleySpan);return shoreY+(base-shoreY)*u;}
+ return base;}
 
 /** Two background bridges, merged by material, independent of the walking boundary. No new lights or render passes. */
 export function buildRiverBridges(){

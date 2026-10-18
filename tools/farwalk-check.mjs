@@ -29,6 +29,8 @@ try{
    ['road bridge crossing',[23.5,90],[[23.7,100],[23.5,125],[23.3,143],[23.3,155]],()=>n.pos.z>150],
    ['cycle bridge crossing',[18,92],[[18.1,101],[17.9,125],[17.8,146],[17.8,155]],()=>n.pos.z>150],
    ['bridge rail blocks',[23.5,125],[[30,125]],()=>n.pos.x<27.8],
+   ['under the bridges east',[10,111],[[18,111],[24,111],[32,111]],()=>n.pos.x>30&&n.pos.y<=-5.0],
+   ['under the bridges west',[32,111],[[24,111],[18,111],[10,111]],()=>n.pos.x<12&&n.pos.y<=-5.0],
    ['HepCat building blocks',[24,0],[[34,0]],()=>n.pos.x<28],
    ['to the school and clock tower',[20,-10],[[20,-40],[20,-80],[24,-108],[45,-109]],()=>n.pos.z<-108&&n.pos.x>40],
    ['clock tower facade blocks',[45,-109],[[45,-125]],()=>n.pos.z>-113.5],
@@ -46,7 +48,7 @@ try{
   return results;
  });
  for(const r of res)console.log(r.ok?'PASS':'FAIL',r.name,JSON.stringify(r.end));
- const views=[['river',[-41,-1,112],[-41,-3,135]],['clocktower',[45,1.7,-100],[45,6,-113]],['school',[100,1.7,-100],[100,4,-120]]];
+ const views=[['river',[-41,-1,112],[-41,-3,135]],['bridge-underpass',[14,-4,111],[25,-4.5,111]],['clocktower',[45,1.7,-100],[45,6,-113]],['school',[100,1.7,-100],[100,4,-120]]];
  for(const [name,pos,look] of views){
   await page.evaluate(([pos,look])=>{const {renderer,scene,camera,navigation:n}=window.lundenViewer;n.teleport(pos[0],0,pos[2]+ (pos[2]>0?-6:0));camera.position.set(...pos);camera.lookAt(...look);camera.updateMatrixWorld(true);renderer.render(scene,camera);},[pos,look]);
   await page.screenshot({path:`${out}/${name}.png`});
