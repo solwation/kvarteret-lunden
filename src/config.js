@@ -444,7 +444,8 @@ export const SITE = {
     deckY:-3,waterY:-6.2,bedY:-6.8,rail:1.1,post:.07,railStep:1.9,approach:8},
   // #532 foundation: sourced horizontal river centreline near the two bridges; #533 owns detailed banks/paths/vegetation.
   // Width and uniform depth remain assumptions; do not describe these as measured water levels or surveyed banks.
-  river: {width:8,bank:10,
+  // `bankScale` (guess, from original #1233) shortens every bank span below so the slope to the water is steeper; not surveyed.
+  river: {width:8,bank:10,bankScale:.55,
     // #533 widths/bank spans are visual estimates from the aerial/2016 photos, not surveyed dimensions.
     widths:[6,6,7,8,8,9,9,8,8,8,7,7,6,6,6,7,7,6,6],
     banks:[13,14,15,12,11,12,13,11,10,10,12,14,13,7,3,3,13,12,10],
@@ -485,10 +486,11 @@ export const SITE = {
       {"name":"central-lawn","polygon":[[-93,89],[-76,83],[-46,86],[-46,111],[-65,121],[-86,124]]},
     ],
     treeScale: [1.35,2.35],
-    treeSpacing: 7,
+    treeSpacing: 6,
+    treeDensity: 1.45, // guess (original #1233): multiplies each patch's `n`
     shrubScale: [0.8,1.9],
-    shrubCount: 95,
-    shoreCount: 190,
+    shrubCount: 190,
+    shoreCount: 380,
     shoreHeight: [0.25,0.7],
     shoreOffset: [0.5,2.2],
     pathClearance: 0.6,

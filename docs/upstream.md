@@ -377,3 +377,10 @@ Verifiering: `npm test`, `npm run build`, skärmdump före/efter med google-chro
 ## Överljus över grannentréer, #51
 
 Importerad från `82423761f6a10d84bdde6bfd05a70422aeeb8b16` (original #1230): överljuset ovanför hus L:s grannentréer på markplan följer dörrens ytterkarmar i stället för bara öppningen. En rads ändring i `src/exterior.js`, ingen ny geometri. Verifiering: `npm test`, `npm run build` och Chromium-vy av norrfasaden (överljuset lika brett som dörren).
+
+
+## Brantare å-slänt och tätare växtlighet, #52
+
+Importerad från `622b0268` (original #1233, del 1): `SITE.river.bankScale` (0,55, *guess*) i `src/config.js` multiplicerar varje strandspann i `riverAt` (`src/riverbridge.js`), så marken faller mot vattnet på ungefär 6-8 m i stället för 11-15 m. `SITE.riverPark.treeDensity` (1,45), `treeSpacing` 6, `shrubCount` 190 och `shoreCount` 380 (alla *guess*) ger tätare skog, buskar och strandtuvor; `parkTreeSpots` i `src/riverpark.js` skalar varje fläcks `n` med `treeDensity`. Inga nya meshar eller material. Originalets ändringslogg, miljödokument och `riverparktest.html` är inte importerade (provet finns inte här). Originalets övriga delar av #1233 (cykelväg, gångytor) ingår inte.
+
+Verifiering: `npm test`, `npm run build` och Chromium-bilder före/efter av åstranden och bron. Ritanrop oförändrade (40/96/37), trianglar +ca 30 000 per vy (cirka +10 %), inga sidfel.
