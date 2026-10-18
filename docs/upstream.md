@@ -40,7 +40,7 @@ Automatisk publicering till GitHub Pages är aktiverad vid varje push till detta
 
 ## Register
 
-- Senast granskade originalversion: `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
+- Senast granskade originalversion: `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -414,3 +414,25 @@ Verifikation: `npm test` och `npm run build` gröna, samt visuell verifikation.
 Överförd från `df3ad2c` (original #1232): `tiltedPanelGeo()` och `solarRise()` i `src/exterior.js` (panelerna är 10° uppvinklade mot söder, nordkanten höjd; stegöveryta på panelens högsta kant) samt enbart `HUS_L.solar.tilt/thickness/lift` i `src/config.js`, alla tre *guess*. Originalets `tools/rooftest.html`, dokumentation och ändringslogg finns inte här och har inte förts över.
 
 Verifiering: `npm test`, `npm run build` och Chromium (headless, SwiftShader): panelerna syns uppvinklade på Hus L:s tak; gång över en panelrad på x = 3 går upp på 13,01 m (takets nivå 12,75 m + 0,26 m, inom `stepUp` 0,45 m); inga sidfel. Antalet meshar är oförändrat (ett box per panel i samma sammanslagna mesh).
+ 
+## Karterade innergårdar, parkeringar och vägar i skolområdet och söder om ån, #59
+
+Importerad från `e749b076` (original #1262): karterade innergårdar, parkeringar, kantstenar, parkeringsrutor och servicevägar i skolområdet och söder om Höje å från OpenStreetMap.
+- `src/config.js`:
+  - `SITE.east.access`: tillagda skolgårdar och parkeringar (OSM-vägar 145221623, 44447969, 145221566, 145221567, 145221572, 145221740, 94054863, 145221570) med markmaterial (asfalt/grus/plattor).
+  - `SITE.south.access`: 8 karterade servicevägar söder om ån (OSM-vägar 850235114, 850235115, 36918923, 189432572, 30633544, 30633545, 145221590, 145221588).
+  - `SITE.south.parking`: karterade parkeringsytor (145221619, 850235113, 145221624, 145221626, 145221628, 145221629) och 6 vinkelräta gatuparkeringsfickor längs Sankt Lars väg (1379042014, 1379042106, 1379042188, 1379042235, 1379043164, 1379043165).
+- `src/sitebackdrop.js`:
+  - Sluten/öppen ringhantering i `shape()` via `ring()`.
+  - `onEastAccess()` hanterar både polygoner och linjestigar.
+  - Per-objekt markmaterial (`asphalt` -> `0x5f6164`, `gravel` -> `0xb5ac90`, `paved` -> `0xa7a397`) sammanslaget med vertexfärger i befintlig mesh `east-access`.
+- `src/southbackdrop.js`:
+  - Sluten ringhantering i `shape()` via `ring()`.
+  - `onParking()` och `onAccess` uppdaterade; träd exkluderar parkeringsytor.
+  - Parkeringsrutor med vita skiljelinjer (`0xeeeeea`) och betongkantsten (`0xb0aba2`) via `lineQuad()`.
+  - Sammanslaget i befintlig mesh `south-land` med vertexfärger; inga nya draw calls eller texturer.
+
+Originalets ändringslogg, provfiler och personliga filer ingår inte här. Inga nya nätverksanrop eller spelmoment.
+
+Verifikation: `npm test` och `npm run build` gröna.
+
