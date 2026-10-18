@@ -40,7 +40,7 @@ Automatisk publicering till GitHub Pages är aktiverad vid varje push till detta
 
 ## Register
 
-- Senast granskade originalversion: `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
+- Senast granskade originalversion: `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -462,3 +462,9 @@ Verifiering: `tools/stairwallaotest.mjs` (verifierar kontinuerlig hörn-AO från
 Anpassning: nära planet är 0,06 m inomhus, i trapphus, garage, besökta lägenheter och uppe på tak, och 0,12 m på öppen mark, men begränsat så att nära planets hörn ligger innanför kroppsradien 0,22 m (`BODY.radius` i `navigation.js`), så ingen vägg klipps även på bred skärm. Djupsteget på 300 m går från 8,9 cm till 4,5 cm. Inte importerat: höjdberoende nära plan och jetpack (ingen flygning här), `&near=`-parametern, originalets Playwright-test (ersatt av `tools/depthprecision-check.mjs`, ett rent nodprov), ändringslogg och dokumentation. Västra fasadens fönsterkarmar (1,5 cm, `facade`-batchen) är liksom i originalet inte förskjutna.
 
 Verifiering: `npm test`, `npm run build`, `node tools/depthprecision-check.mjs` och Chromium (SwiftShader) före/efter av gata, innergård, L1007, garage och flygvy: inga sidfel, oförändrade ritanrop. SwiftShader har flytande djup och z-fightar aldrig, så själva flimret kan inte visas där; ingen GPU-bekräftelse.
+
+## Takytor och takkollision för omgivande byggnader, #64
+
+Importerad från `af78fcf2` (original #1274): `addSurroundingRoofWalk` i `src/surroundings.js` registrerar takytor och fasadväggar i `userData.walk` för alla omgivande byggnader i `SITE.blocks` (Villan, HepCat Store etc.) samt skolans växthus och skolmuren. `buildingRescue` i `src/farwalk.js` inkluderar även omgivande kvartersblock med stil.
+
+Verifiering: `npm test`, `npm run build` och webbläsarkontroll i Chromium.
