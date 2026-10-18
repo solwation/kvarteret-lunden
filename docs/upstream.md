@@ -40,7 +40,7 @@ Automatisk publicering till GitHub Pages är aktiverad vid varje push till detta
 
 ## Register
 
-- Senast granskade originalversion: `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
+- Senast granskade originalversion: `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -453,3 +453,12 @@ Importerad från `fa837a45140355baee60b9f70b4da9061838847f` (original #1277): `t
 Importerad från `3136c423` (original #1273): `buildWallAO` i `src/ao.js`, dess anrop i `src/world.js` och `tools/stairwallaotest.mjs`. Tidigare avbröts de vertikala innerhörnskuggorna över trapphål (`floorHole`/`ceilHole`), eftersom hörnen endast genererades i mittenbandet mellan golv- och takhöjdsavskärningarna (`fTop`/`cBot`), och bjälklaget mellan våningarna saknade hörnskugga. Nu sträcker sig hörnkolumnerna genom hela hålet med `FAR` golv/tak-avstånd (ingen felaktig golv- eller takskugga i luften), och plan 1 sträcker sig ner till `slabBottom` (2,5 m) så att hörnskuggan möter plan 0 sömlöst.
 
 Verifiering: `tools/stairwallaotest.mjs` (verifierar kontinuerlig hörn-AO från plan 0 genom bjälklaget upp till plan 1:s innertak), `npm test` och `npm run build`.
+
+
+## Mindre flimmer på avstånd, #65
+
+Överförd från `dd9927ef` (original #1276), avgränsad. Importerat: `DECAL_OFFSET` (polygonOffset, faktor −1, enheter −2) på fönsterglaset i `src/neighborglass.js` (gemensamt för grannhus, campusfasader, skolan och Kärp-fasaden), `src/sitebackdrop.js` och `src/southbackdrop.js`, samt ett dynamiskt nära plan, `updateCameraNear()` i `src/main.js` med `VIEW_NEAR` i `src/config.js`. Glaset låg 1–7 cm framför fasaden utan förskjutning, medan ett 24-bitars djupsteg är ca 9 cm på 300 m (nära 0,06 m, bortre 700 m).
+
+Anpassning: nära planet är 0,06 m inomhus, i trapphus, garage, besökta lägenheter och uppe på tak, och 0,12 m på öppen mark, men begränsat så att nära planets hörn ligger innanför kroppsradien 0,22 m (`BODY.radius` i `navigation.js`), så ingen vägg klipps även på bred skärm. Djupsteget på 300 m går från 8,9 cm till 4,5 cm. Inte importerat: höjdberoende nära plan och jetpack (ingen flygning här), `&near=`-parametern, originalets Playwright-test (ersatt av `tools/depthprecision-check.mjs`, ett rent nodprov), ändringslogg och dokumentation. Västra fasadens fönsterkarmar (1,5 cm, `facade`-batchen) är liksom i originalet inte förskjutna.
+
+Verifiering: `npm test`, `npm run build`, `node tools/depthprecision-check.mjs` och Chromium (SwiftShader) före/efter av gata, innergård, L1007, garage och flygvy: inga sidfel, oförändrade ritanrop. SwiftShader har flytande djup och z-fightar aldrig, så själva flimret kan inte visas där; ingen GPU-bekräftelse.

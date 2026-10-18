@@ -2113,3 +2113,15 @@ export const PATIO_DECOR = {
     flowers: [[0xd8262f, 0xe8484f], [0xf5f2ee, 0xf2c522], [0xd98aa0, 0xf5f2ee], [0x8a5fb8, 0xb59ad8], [0xe08a2c, 0xf2c522]],
   },
 };
+
+// Camera near plane (src/main.js `updateCameraNear`, from the original's #1276, dd9927ef): the 24-bit depth buffer resolves about
+// d²/(near·2²⁴) m at distance d, so with near 0.06 m coplanar layers (window panes 1–7 cm in front of a façade, roofs, ground
+// overlays) shimmer at 300 m. Indoors (flat, stairwell, garage, roofs and aloft) the near plane stays `min` (the camera's
+// construction value); on the open ground it is `outdoor` m, capped so the near plane's far corner stays inside the body radius
+// (`BODY.radius` 0.22 m in src/navigation.js: the player stops that far from a wall, so no wall is ever cut). No flying here.
+export const VIEW_NEAR = { min: 0.06, outdoor: 0.12, bodyRadius: 0.22 };
+
+// Depth bias for window glass drawn a few cm in front of a façade (#1276, src/neighborglass.js, sitebackdrop.js, southbackdrop.js):
+// polygonOffset counts depth-buffer steps, so unlike the 1–7 cm geometry inset it keeps winning at 300 m (one step ~10 cm). *guess*:
+// 2 steps pull a pane ~20 cm at 400 m, less than any reveal or neighbour wall.
+export const DECAL_OFFSET = { factor: -1, units: -2 };

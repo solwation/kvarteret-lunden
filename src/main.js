@@ -9,7 +9,7 @@ import { installPlaceShortcuts } from './place-shortcuts.js';
 import { Garage } from './garage.js';
 import { Core } from './core.js';
 import { CoreHouse } from './corehouse.js';
-import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, LIGHTING, STARTUP, TOUCH } from './config.js';
+import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, LIGHTING, STARTUP, TOUCH, VIEW_NEAR } from './config.js';
 import { region, stickMirrored, setupTouchLayout } from './touchlayout.js';
 
 const $ = id => document.getElementById(id);
@@ -203,6 +203,15 @@ async function init() {
 function viewSnapshot() {
   return {position:navigation.pos.toArray(), yaw:camera.rotation.y, pitch:camera.rotation.x, active, place:document.querySelector('[data-place].selected')?.dataset.place};
 }
+/** Near plane (VIEW_NEAR, from the original's #1276): finer depth on open ground, never more than the body radius allows. */
+function updateCameraNear() {
+  let near = VIEW_NEAR.min;
+  if (navigation.outdoors && !navigation.aloft && !navigation.inCore && !navigation.below && !navigation.unit) {
+    const t = Math.tan(camera.fov * Math.PI / 360), corner = Math.sqrt(1 + t * t * (1 + camera.aspect * camera.aspect));
+    near = Math.max(VIEW_NEAR.min, Math.min(VIEW_NEAR.outdoor, VIEW_NEAR.bodyRadius / corner));
+  }
+  if (Math.abs(camera.near - near) > 1e-4) { camera.near = near; camera.updateProjectionMatrix(); }
+}
 function frame() {
   const dt = Math.min(clock.getDelta(), .05);
   if (active && !$('help-dialog').open) navigation.update(dt);
@@ -212,6 +221,7 @@ function frame() {
   for (const clock of world.clocks) clock.update(hour);
   core.update(dt, navigation, camera);
   garage.update(dt, navigation, camera);
+  updateCameraNear();
   scene.updateMatrixWorld();
   if (active) {
     focus = aimed();
