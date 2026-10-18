@@ -40,7 +40,7 @@ Automatisk publicering till GitHub Pages är aktiverad vid varje push till detta
 
 ## Register
 
-- Senast granskade originalversion: `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
+- Senast granskade originalversion: `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -407,3 +407,10 @@ Importerad från `bf96c9ec` (original #1258): källarentréerna på plan −1 fr
 Originalets ändringslogg (post 981) hör till originalet och ingår inte här. Inga personliga resurser eller nätverksanrop.
 
 Verifikation: `npm test` och `npm run build` gröna, samt visuell verifikation.
+
+
+## Vinklade solpaneler på Hus L, #58
+
+Överförd från `df3ad2c` (original #1232): `tiltedPanelGeo()` och `solarRise()` i `src/exterior.js` (panelerna är 10° uppvinklade mot söder, nordkanten höjd; stegöveryta på panelens högsta kant) samt enbart `HUS_L.solar.tilt/thickness/lift` i `src/config.js`, alla tre *guess*. Originalets `tools/rooftest.html`, dokumentation och ändringslogg finns inte här och har inte förts över.
+
+Verifiering: `npm test`, `npm run build` och Chromium (headless, SwiftShader): panelerna syns uppvinklade på Hus L:s tak; gång över en panelrad på x = 3 går upp på 13,01 m (takets nivå 12,75 m + 0,26 m, inom `stepUp` 0,45 m); inga sidfel. Antalet meshar är oförändrat (ett box per panel i samma sammanslagna mesh).
