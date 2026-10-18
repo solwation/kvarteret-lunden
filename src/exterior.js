@@ -233,7 +233,8 @@ export function buildExterior({ W, D, roofTop, north, south, frame, wall, site, 
     if(northSide && o.y0 < .05 && o.y1 > 2) {
       const height=DOOR_HEIGHT-DOOR_TRIM.gap;
       staticEntry(o.x0+.01,o.x1-.01,o.y0,height,zFace);
-      fakeWindow({...o,y0:o.y0+height,flush:true},zFace,northSide,glassOut,skin);return;
+      // the light over the door spans the door's outer jambs (upstream 82423761, #51)
+      fakeWindow({...o,x0:o.x0+.01-O.frame,x1:o.x1-.01+O.frame,y0:o.y0+height,flush:true},zFace,northSide,glassOut,skin);return;
     }
     const sign=northSide?-1:1,f=O.frame,d=O.depth/2;
     const floor=[1,2,3,4].map(storeyFloor).find(y=>Math.abs(o.y0-y)<O.floorTolerance);

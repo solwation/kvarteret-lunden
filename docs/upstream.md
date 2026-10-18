@@ -373,3 +373,7 @@ Verifiering i Chromium (iPhone 14 Pro-profil, `?lowmem`, och dator 1000×700) mo
 Överföring från uppströms `37b3768db19b7ebf6cf374d438b317317a8dd658` (original #1212, uppföljning till #47): plattan ”över sockeln” (0,06 m, `else if (kind === 'ground' …)`) i `loggias()` i `src/surroundings.js` byggs bara när `st0 === 0`. På ett solitt begravt hörn (`st0 > 0`) stod dess sidor i plan med teglet och gav en tunn ljus linje vid Hus A:s nordöstra källarhörn. Originalets changelogpost hör till originalet; det finns ingen changelog här.
 
 Verifiering: `npm test`, `npm run build`, skärmdump före/efter med google-chrome `--use-angle=gl` (`tools/loggiabasement-check.mjs`) vid Hus A:s NE-hörn: före syns en tunn ljus diagonal linje i tegelväggen, efter är den borta. Pages och live kontrollerade efter push.
+
+## Överljus över grannentréer, #51
+
+Importerad från `82423761f6a10d84bdde6bfd05a70422aeeb8b16` (original #1230): överljuset ovanför hus L:s grannentréer på markplan följer dörrens ytterkarmar i stället för bara öppningen. En rads ändring i `src/exterior.js`, ingen ny geometri. Verifiering: `npm test`, `npm run build` och Chromium-vy av norrfasaden (överljuset lika brett som dörren).
