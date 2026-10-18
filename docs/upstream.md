@@ -396,3 +396,14 @@ Verifiering: `npm test`, `npm run build` och Chromium-bilder före/efter. Ritanr
 Importerad från `446a7afc` (original #1228): `CORNER_TRIM` (1 mm) och ändringen i `quad()` i `src/ao.js`, så väggarnas AO-överlägg stannar 1 mm före innerhörnet och hörnet inte mörknas två gånger. Dessutom från `bd4c4f16` (original #1247, enbart `src/architectureedges.js`): kantlinjernas djupförskjutning är 1 mm plus 0,4 % av avståndet, så en hörnlinje sedd snett på några meters håll inte bryts upp i prickar. Originalets changelogposter är inte importerade (ingen changelog här).
 
 Verifiering: `npm test` och `npm run build` gröna; Chromium (SwiftShader) före/efter från trappans topp i L1007 (kamera 3,3 / 4,85 / 6,2 mot öster och nedåt): hörnlinjen är hel. Hårlinjen utan AO syns inte längre dubbelmörk. Ingen sidfel.
+
+## Källarentréer A och B med glasat sidoljus, #57
+
+Importerad från `bf96c9ec` (original #1258): källarentréerna på plan −1 från parken till Hus A och Hus B har nu ett glasat sidoljus bredvid dörrbladet, med samma mörkgrå profilfärg (`0x3b4247`) på karm och dörrblad som entréerna i markplan.
+- `src/config.js`: `side`-intervall på källarnischerna i Hus A (`[41.46, 42.25]`) och Hus B (`[46.10, 46.80]`), samt rektanglarna `parkASide` och `parkBSide` i `GARAGE.rects`.
+- `src/surroundings.js`: `walkIn()` beräknar nischväggens öppning (`cut`) över både dörr och sidoljus.
+- `src/garage.js`: karmprofiler för sidoljuset i `parkFrameBoxes`, kollisionssegment, mörkgrå profilkulör på glasade dörrblad/karmar samt `parkSideGlass`-mesh med parkdörrglasets material.
+
+Originalets ändringslogg (post 981) hör till originalet och ingår inte här. Inga personliga resurser eller nätverksanrop.
+
+Verifikation: `npm test` och `npm run build` gröna, samt visuell verifikation.
