@@ -484,3 +484,9 @@ Verifiering: `npm test`, bygg och Chromium-bilder (dagsljus) före/efter av båd
 Importerad från `bfa0bc75` (original #1294): `src/buildingroofs.js`, polygonytor med hål och 20 m-rutnät för uppslag samt `Roofs.walls(y0, y1, x, z)` i `src/roofs.js`, `roofY(x, z)` på varje bakgrundsbyggnads post (`sitebackdrop.js`, `southbackdrop.js`, `campusfacades.js`, `schoolfacade.js`, `karpfacade.js`), `BUILDING_ROOFS` i `src/config.js` (*gissning*) och anropet i `surroundings.js`. Nedströms skickar `src/navigation.js` besökarens position till `Roofs.walls` (originalet: `player.js`). Endast kollision: inga meshar, inga ritanrop. Originalets `tools/roofaudittest.html` bygger på spelarmodulen och jetpacken och är inte importerad; `tools/roofaudit-check.mjs` är den nedströms motsvarigheten (54 tak: man landar på varje tak, ringväggarna serveras). Inga poäng- eller första-besök-räkningar, ingen jetpack. Takväggarna är bara 5 cm över taklinjen: de stoppar en kropp som överlappar takets sida, medan den som står på taket kliver över dem (som i originalet).
 
 Verifiering: `npm test`, bygg, `tools/roofaudit-check.mjs` (54 av 54), Chromium-bilder före/efter av landning på Klockhusets, ett västligt kvarters och Östra paviljongens tak.
+
+## Gröna glipor genom asfalten, #70
+
+Egen rättning (ingen uppströmsändring): asfalten bakom HepCat samplar marken i 1,0 m-trianglar och kunde hamna någon centimeter under terrängmeshens veck (mätt: upp till 1 cm under markytan längs z 14, x 49 och x 74). Backdropens `access`-material (`src/sitebackdrop.js`) har nu samma djupförskjutning som övriga dekaler (`DECAL_OFFSET`), alla lyft behåller sin inbördes ordning, inga nya draw calls.
+
+Verifiering: Chromium-bilder i dagsljus före/efter från flera vinklar (grön strimma före, borta efter), `npm test`, bygg, inga sidfel.
