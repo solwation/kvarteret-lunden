@@ -1149,6 +1149,11 @@ export const FOLIAGE = {
   // upstream #1083: a crown standing near an Å-hus (SITE.blocks) is narrowed so its leaf cards stay `wallClearance` m outside
   // the façade instead of poking through the brick and windows (a pruned crown; *guess*, by eye — no measurement)
   wallClearance: 0.2,
+  // #56 (upstream #1246): the site's tree batches (trunks, birches, crowns) are split into square cells of this side (m, *guess*: ~5 cells
+  // across the site, so a view drops the cells behind it while a cell stays big enough to keep draw calls modest), each its
+  // own InstancedMesh with its own bounding sphere, so frustum culling skips whole groups of trees instead of drawing all ~1500
+  // crowns and ~1200 trunks from every spot.
+  cell: 130,
 };
 
 export const FENCE_HEIGHT = 1.8;
