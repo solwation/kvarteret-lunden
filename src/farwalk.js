@@ -5,6 +5,7 @@
 import { SITE, WALK, PLAYER, OUTDOOR } from './config.js';
 import { riverAt, deckAt, bridgeRecords, pierBoxes } from './riverbridge.js';
 import { parkDeckAt } from './riverpark.js';
+import { busStopSegments } from './busstopgeo.js';
 import { groundY, groundBelowDeckY, treeFeet } from './surroundings.js';
 
 const ringSegs = (p) => {
@@ -41,6 +42,7 @@ export function farSegments() {
     const [[ax, az], [bx, bz]] = P.woodBridge.ends, len = Math.hypot(bx - ax, bz - az);
     out.push(...railSegs((ax + bx) / 2, (az + bz) / 2, (bx - ax) / len, (bz - az) / len, len, P.woodBridge.width / 2 - 0.03));
   }
+  out.push(...busStopSegments()); // #71 (original #1301): the bus shelter's glass back and ends
   for (const p of pierBoxes()) {
     const h = p.half;
     piers.push([p.x - h, p.z - h, p.x + h, p.z - h], [p.x + h, p.z - h, p.x + h, p.z + h], [p.x + h, p.z + h, p.x - h, p.z + h], [p.x - h, p.z + h, p.x - h, p.z - h]);

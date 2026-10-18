@@ -490,3 +490,11 @@ Verifiering: `npm test`, bygg, `tools/roofaudit-check.mjs` (54 av 54), Chromium-
 Egen rättning (ingen uppströmsändring): asfalten bakom HepCat samplar marken i 1,0 m-trianglar och kunde hamna någon centimeter under terrängmeshens veck (mätt: upp till 1 cm under markytan längs z 14, x 49 och x 74). Backdropens `access`-material (`src/sitebackdrop.js`) har nu samma djupförskjutning som övriga dekaler (`DECAL_OFFSET`), alla lyft behåller sin inbördes ordning, inga nya draw calls.
 
 Verifiering: Chromium-bilder i dagsljus före/efter från flera vinklar (grön strimma före, borta efter), `npm test`, bygg, inga sidfel.
+
+## Busshållplats Sankt Lars och cykelväg mot Circle K, #71
+
+Importerad från `5790fc4d` (original #1301): `src/busstop.js` (plattform, kantsten, taktil list, glasväderskydd, bänk, papperskorg, hållplatsskylt utan logotyp och riktningsskylten "Circle K", fyra sammanslagna meshar), `src/busstopgeo.js` (ren geometri), `SITE.busStop` i `src/config.js` (OSM-plattform 189432570, skärmtak-nod 2000527685; alla mått *gissningar*), skärmtakets tre glassegment som kollision (`farwalk.js`), träd och buskar hålls borta från plattformen (`clear` i `riverpark.js`), cykelvägen mot Circle K (OSM 61112061) ritas nu ända till `backgroundGround.x1 - 10` (tidigare klipptes den vid x 220), `tools/busstopgeotest.mjs` och OSM-underlaget `docs/references/surrounding-views/bus-stop-sankt-lars-2026-10-18.json`.
+
+Anpassning: nedströms är vägarna 36918923 och 189432572 uppdelade annorlunda än i originalet (långa vägar längre söderut), så bussfickans korta delar (36918923-stumpen, tillfarten 95035967 och 189432572 vid korsningen) lades till i `SITE.south.access`; testet kräver därför "minst fyra" vägar och att 95035967 finns. Originalets ändringslogg, `perfcount`-läget och dokumentationsrader ingår inte (ingen ändringslogg/perfcount nedströms). Inga personliga resurser, spelinslag eller nätverksanrop.
+
+Verifiering: `node --test tools/busstopgeotest.mjs`, `npm test`, bygg och Chromium-bilder i dagsljus före/efter av hållplatsen och cykelvägen.
