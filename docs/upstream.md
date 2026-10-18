@@ -40,7 +40,7 @@ Automatisk publicering till GitHub Pages är aktiverad vid varje push till detta
 
 ## Register
 
-- Senast granskade originalversion: `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
+- Senast granskade originalversion: `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -468,3 +468,12 @@ Verifiering: `npm test`, `npm run build`, `node tools/depthprecision-check.mjs` 
 Importerad från `af78fcf2` (original #1274): `addSurroundingRoofWalk` i `src/surroundings.js` registrerar takytor och fasadväggar i `userData.walk` för alla omgivande byggnader i `SITE.blocks` (Villan, HepCat Store etc.) samt skolans växthus och skolmuren. `buildingRescue` i `src/farwalk.js` inkluderar även omgivande kvartersblock med stil.
 
 Verifiering: `npm test`, `npm run build` och webbläsarkontroll i Chromium.
+
+
+## Parkering bakom HepCat, #67
+
+Importerad från `fd6c9f74` + konflikträttelsen `f76c7cc9` (original #1278): `src/parkinglayout.js` (ren layout av p-rutor längs servicevägar), `PARKING_LOT` i `src/config.js`, terrängföljande asfalt, rutlinjer och kantstråk i `src/sitebackdrop.js` (ingår i befintlig `access`-mesh, inga nya ritanrop). Polygonerna `145221623` (Sankt Thomas/Klockhuset) och `44447969` (Östra campusparkeringen) ersätter de tidigare små platshållarpolygonerna med originalets OSM-underlag från #1262 (`capacity` är en *gissning*). Alla mått är gissningar. Asfalten delas upp i högst 1,0 m långa trianglar (originalet 3,0 m) så att den följer terrängens rutnät; några smala gröna streck återstår vid en terrängkant.
+
+Inte importerat: parkerade bilar (`eastlot.js`, kollision i `farwalk.js`), eftersom bilmodellen (`streetlife.js`) saknas nedströms; då behövs inga bilkollisioner. Inga personliga resurser, spelinslag eller nätverksanrop. Övriga #1262-ändringar av gårdar och vägar är inte importerade här.
+
+Verifiering: `npm test`, bygg och Chromium-bilder (dagsljus) före/efter av båda parkeringarna utan sidfel.

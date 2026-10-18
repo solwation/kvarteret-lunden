@@ -835,8 +835,8 @@ export const SITE = {
       {"source":"145221608","surface":"asphalt","path":[[42.02,-22.6],[41.59,9.63],[62.44,9.9],[62.84,-12.92],[64.6,-23.58]],"w":4.5},
       {"source":"159284495","surface":"asphalt","path":[[103.93,63.38],[111.66,62.1],[124.13,56.78],[132.13,55.42],[151.46,51.2],[175.16,45.0],[190.09,38.61],[193.02,34.82]],"w":4.5},
       {"source":"159284525","surface":"asphalt","path":[[193.02,34.82],[195.65,30.96],[197.66,13.19],[197.5,-9.96],[194.66,-29.07],[188.29,-38.62]],"w":4.5},
-      {"source":"145221623","surface":"asphalt","polygon":[[76.01,-67.2],[84.73,-67.02],[84.66,-63.95],[75.94,-64.13],[76.01,-67.2]]},
-      {"source":"44447969","surface":"asphalt","polygon":[[127.31,-126.24],[135.2,-126.08],[135.03,-117.25],[127.14,-117.41],[127.31,-126.24]]},
+      {"source":"145221623","name":"Parkering vid Sankt Thomas/Klockhuset","surface":"asphalt","capacity":35,"capacitySource":"guess","polygon":[[38.68,15.41],[40.14,-19.07],[85.54,-17.08],[84.09,17.41]]},
+      {"source":"44447969","name":"Östra campusparkeringen","surface":"asphalt","capacity":20,"capacitySource":"guess","polygon":[[196.06,-37.72],[189.82,-21.9],[192.2,7.75],[206.2,7.66],[204.71,-19.6]]},
       {"source":"145221566","surface":"paved","polygon":[[24.46,-113.16],[39.88,-113.47],[39.92,-111.45],[44.97,-111.35],[44.93,-113.37],[64.9,-113.43],[64.84,-110.82],[71.23,-110.69],[70.85,-128.27],[64.45,-128.4],[64.39,-131.0],[50.79,-130.68],[50.71,-133.78],[39.82,-133.52],[39.88,-131.33],[26.39,-131.02],[26.33,-128.42],[24.46,-128.42],[24.46,-113.16]]},
       {"source":"145221567","surface":"asphalt","polygon":[[68.21,-88.35],[128.32,-87.15],[128.15,-66.1],[105.93,-66.55],[105.74,-57.72],[92.49,-57.98],[92.39,-52.39],[71.71,-52.8],[71.23,-70.14],[68.21,-70.2],[68.21,-88.35]]},
       {"source":"145221572","surface":"paved","polygon":[[76.99,-48.5],[86.3,-48.31],[86.13,-39.9],[76.82,-40.09],[76.99,-48.5]]},
@@ -1254,6 +1254,17 @@ export const OUTDOOR = { x0: -78.5, x1: 27.5, z0: -14, z1: 64 };
 // stops the visitor (the bed is at SITE.bridges.bedY). `rescue` m: where a visitor who still ends up in the river is put back,
 // from the water's edge (*guess*). `maxSlope` rise/run: steeper ground holds the visitor back (the banks stay under it).
 // `trunk`: half-width of a tree trunk's collision diamond by kind (*guess*, the drawn trunks are thinner than a body).
+// #1278 (original; #67 here): the east campus' OSM parking polygons (SITE.east.access entries with a `capacity`) get marked stalls and an edge strip,
+// laid out by src/parkinglayout.js along the OSM service ways that run inside a polygon, on both sides, square to the aisle. Every number is a *guess*
+// (a typical Swedish car park: stalls 2.5 x 5.0 m); the stall count is whatever fits, not the polygon's guessed `capacity`. No parked cars downstream.
+export const PARKING_LOT = {
+  bayW: 2.5, bayD: 5.0,    // m: a stall along the aisle x across it (*guess*)
+  edgeClear: 0.3,          // m: stalls keep this far inside the polygon's edge and out of any other road (*guess*)
+  lineW: 0.1, lineColor: 0xeeeeea,  // marked stall lines (*guess*)
+  kerbW: 0.3, kerbColor: 0xb0aba2,  // flat concrete edge strip along the polygon, left out across road mouths and at buildings (*guess*)
+  mesh: 1.0,               // m: the asphalt is cut into triangles no longer than this so it follows the sloping ground
+  lift: { asphalt: 0.02, kerb: 0.035, line: 0.045 }, // m over the terrain: under the roads' own 0.025 so the aisles stay on top, lines/edge over both
+};
 export const WALK = { x0: -260, x1: 320, z0: -200, z1: 250, cell: 40, wade: 2, rescue: 3, maxSlope: 1.2,
   trunk: { big: 0.45, tree: 0.3, birch: 0.2, young: 0.15 } };
 
