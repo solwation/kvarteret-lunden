@@ -390,3 +390,9 @@ Verifiering: `npm test`, `npm run build` och Chromium-bilder före/efter av åst
 Importerad från `c7d1796f` (original #1235, del 2 av #1233): 13 fler OSM-kartlagda stigar i `SITE.riverPark.paths` (`src/config.js`), ett `surface`-fält per stig (`asphalt` för asfalt/belagd, annars `gravel`, från OSM-taggen) och `SITE.riverPark.surfaces` med färgerna (*guess*, liksom bredderna för de tillagda stigarna). `buildRiverPark` i `src/riverpark.js` bygger två sammanslagna meshar, asfalt 3 mm över grus mot z-fighting, med `renderedTerrainY`; remsor utanför terrängen eller på vägar hoppas över. OSM har ingen `highway=cycleway` längs ån i området, så asfaltsstigarna är den delade gång-/cykelvägen. Originalets ändringslogg, miljödokument och `riverparktest.html` är inte importerade. Större gångyta (#1236) ingår inte.
 
 Verifiering: `npm test`, `npm run build` och Chromium-bilder före/efter. Ritanrop +1 (t.ex. 73 till 74 i översiktsvyn), trianglar +718 (stigmeshen 1646 till 2364), inga sidfel.
+
+## AO-hörn och kantlinjer i trapphuset, #54
+
+Importerad från `446a7afc` (original #1228): `CORNER_TRIM` (1 mm) och ändringen i `quad()` i `src/ao.js`, så väggarnas AO-överlägg stannar 1 mm före innerhörnet och hörnet inte mörknas två gånger. Dessutom från `bd4c4f16` (original #1247, enbart `src/architectureedges.js`): kantlinjernas djupförskjutning är 1 mm plus 0,4 % av avståndet, så en hörnlinje sedd snett på några meters håll inte bryts upp i prickar. Originalets changelogposter är inte importerade (ingen changelog här).
+
+Verifiering: `npm test` och `npm run build` gröna; Chromium (SwiftShader) före/efter från trappans topp i L1007 (kamera 3,3 / 4,85 / 6,2 mot öster och nedåt): hörnlinjen är hel. Hårlinjen utan AO syns inte längre dubbelmörk. Ingen sidfel.
