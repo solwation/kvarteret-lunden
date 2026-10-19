@@ -17,6 +17,10 @@ const inRect = (r, x, z) => !!r && x > r.x0 && x < r.x1 && z > r.z0 && z < r.z1;
 
 function pushOut(p, s) {
   if (!s || (s.length > 4 && p.y >= s[4] - BODY.hurdle)) return false;
+  // #94 (upstream #1358): most mapped wall segments are far away. Keep the original exact push for nearby ones.
+  const [ax, az, bx, bz] = s, r = BODY.radius;
+  if (ax < bx ? (p.x < ax-r || p.x > bx+r) : (p.x < bx-r || p.x > ax+r)) return false;
+  if (az < bz ? (p.z < az-r || p.z > bz+r) : (p.z < bz-r || p.z > az+r)) return false;
   const dx = s[2] - s[0], dz = s[3] - s[1];
   const t = Math.max(0, Math.min(1, ((p.x - s[0]) * dx + (p.z - s[1]) * dz) / (dx * dx + dz * dz || 1)));
   const x = s[0] + t * dx, z = s[1] + t * dz;
@@ -218,10 +222,10 @@ export class Navigation {
       this.pos.x += dx * h;
       this.pos.z += dz * h;
       const [fixed, moving] = this.segments();
-      const walls = [...fixed, ...moving];
       for (let pass = 0; pass < 4; pass++) {
         let hit = false;
-        for (const wall of walls) hit = pushOut(this.pos, wall) || hit;
+        for (const wall of fixed) hit = pushOut(this.pos, wall) || hit;
+        for (const wall of moving) hit = pushOut(this.pos, wall) || hit;
         if (!hit) break;
       }
       if (this.blockedByStair(this.pos.x, this.pos.z, previous.y)) {
@@ -229,7 +233,8 @@ export class Navigation {
         else if (!this.blockedByStair(previous.x, this.pos.z, previous.y)) this.pos.x = previous.x;
         else this.pos.copy(previous);
         // Sliding along the stair must not put the body through an adjacent wall.
-        for (const wall of walls) pushOut(this.pos, wall);
+        for (const wall of fixed) pushOut(this.pos, wall);
+        for (const wall of moving) pushOut(this.pos, wall);
         if (this.blockedByStair(this.pos.x, this.pos.z, previous.y)) this.pos.copy(previous);
       }
       if (this.pos.z > 60 && !this.aloft && (waterBlocked(this.pos.x, this.pos.z, undefined, previous.y) || tooSteep(this.pos.x, this.pos.z, undefined, previous.y))) {

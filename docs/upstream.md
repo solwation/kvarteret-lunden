@@ -40,7 +40,7 @@ Automatisk publicering till GitHub Pages är aktiverad vid varje push till detta
 
 ## Register
 
-- Senast granskade originalversion: `24e72f89` + `8cd6788` (för #92); tidigare `f2330dde`, `53c46cd8`, `350c5196`, `0a934ac2` (för #81); tidigare `937ac17e` (för #80); tidigare `d884dbb9` + `b61bf377` (för #79); tidigare `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
+- Senast granskade originalversion: `ba5db2f9ad167ee69c68a5be85b209e5c6c5a648` (enbart de rena prestandadelarna för#94); tidigare `24e72f89` + `8cd6788` (för #92); tidigare `f2330dde`, `53c46cd8`, `350c5196`, `0a934ac2` (för #81); tidigare `937ac17e` (för #80); tidigare `d884dbb9` + `b61bf377` (för #79); tidigare `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -645,3 +645,22 @@ De fyra faktiska atlaserna är1024×384(L),1024×776(A),1024×584(B),1024×1352(
 Den faktiska källvisningens rutt område→trapphus→L1007→L1004→L1201→hage visade bara uppladdad L-atlas: före59015184byte CPU-canvas, efter57442324 (1,5MiB mindre). Ingen minskning vid start innan atlasen syns. Matchande GPU-texturallokering vid L1201 är34306116byte både före/efter; datorns CPU-canvas67609628byte är oförändrad. Enstaka automatiska bildrutor i den långsamma SwiftShader-rutten samplas asynkront och används inte som exakt ritanrops- eller FPS-jämförelse. Komponentprovet isolerar bild- och atlasbeteendet.
 
 Verifiering: `tools/staticcanvas-check.cjs`10/10PASS, CLI0, före/efterbilder öppnade; dynamiska labels kan ändras efter upload. Den verkliga mobilvisningen testades med native WEBGL_lose_context: exakt en omladdning, samma position[2.8,0,1.4], aktiv visning återupptagen; andra återställningen inom60s visar den befintliga manuella omladdningsrutan utan loop. Inga JavaScriptfel eller externa anrop; originalets lagringsmarkörer oförändrade. Den byggda visningen (`ec2ad3ea8453d4a91d096337`) har samma telefonbesparing och atlaspolicy, utan JavaScriptfel/externa anrop och med ursprungliga lagringsmarkörer kvar; byggbilder öppnade. `npm test` granskar80moduler och bygget passerar. Detta är Chromium-emulering, ingen fysisk iPhone- eller kraschfrihetsgaranti.
+
+
+## Flodsökning och kollisionsnärhet, #94
+
+Granskad källa: `ba5db2f9ad167ee69c68a5be85b209e5c6c5a648` (original#1358), jämförd med publik baslinje `0afb8bd05853e4bda079717d3d527a238bf82a3d`. Den publika appen hade samma upprepade `riverAt`-skanning efter fallprofilen#90. Scanningen bygger nu inte nya mellanposter för varje närmare segment; efteråt beräknas den vinnande posten och senaste identiska punkt återanvänder sitt svar. De granskade anroparna läser posterna utan att ändra dem; flodkoordinaterna är statiska. Alla numeriska resultat och första vinnaren vid lika avstånd bevaras.
+
+Originalets Player, cykel, isFree, spel och Cloudflare kopieras inte. Den publika Navigation har en motsvarande kostnad i `pushOut`: avlägsna segment avvisas med samma konservativa radieomslutande rektangelprincip. För närliggande segment körs originalets exakta avstånd och förflyttning. Fasta/rörliga segment itereras i samma ordning utan att kopieras till en stor kombinerad lista för varje delsteg, även i trappans extra väggpass. Inga kollisionsmått eller modeller ändras.
+
+Differentialprov:20 000 flodposter inklusive ankare/mittpunkter/upprepade punkter och20 000 exakta kollisionsbeslut/slutpositioner passerar (131 verkliga kontakter). Antalet Math.hypot i kollisionsmängden minskar15 587→715. Sju uppvärmda par på denna Node-värd gav medianer:
+
+| Kontroll | Före | Efter |
+| --- | ---: | ---: |
+|20 000 olika flodpunkter |34,47ms |24,74ms |
+|Samma punkt tre gånger per flodpunkt |101,71ms |25,36ms |
+|20 000 kollisionsfall |1,28ms |0,75ms |
+
+Det är avgränsade CPU-mätningar, ingen fysisk mobil-FPS. Fulla Chromium-gångprovet passerar24/24 både före/efter, med byteidentisk textutdata inklusive samtliga slutpositioner, underfarter, broar, vattenåterkomst, kanter och skolområdet. Total process22,35→19,92s inklusive webbläsarstart, värld och bilder; detta är inte en isolerad bildrutetid.
+
+`npm test` (80moduler), bygge och den byggda appens `browser-check.mjs` passerar. Dator/mobil, gång/dörrar/mätning och faktisk touchinmatning fungerar, inga JavaScriptfel eller externa anrop, originalets lagringsmarkörer kvar. Före/efterbilder vid å/underfart och byggbilder hemma/på mobil har öppnats. Byggversion `600987ebc190ba95670396cb`; ingen ny resurs, tjänst, lagring, personlig kod eller spelkod.

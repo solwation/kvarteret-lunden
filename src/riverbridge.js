@@ -14,12 +14,21 @@ export function deckAt(x,z){return bridgeRecords.some(r=>{const[a,b]=local(r,x,z
 export function deckUnderAt(x,z){const r=bridgeRecords.find(r=>{const[a,b]=local(r,x,z);return Math.abs(a)<=r.len/2&&Math.abs(b)<=r.width/2});return r?B.deckY-r.slab:null;}
 export function roadBridgeSpan(x,z){const r=bridgeRecords[0];return Math.abs(local(r,x,z)[0])<=r.len/2;}
 /** Nearest sourced river segment, with interpolated visual width/bank estimates. */
-export function riverAt(x,z){let best={distance:Infinity};for(let i=1;i<R.path.length;i++){
- const[a,b]=R.path[i-1],[c,d]=R.path[i],dx=c-a,dz=d-b,len=Math.hypot(dx,dz),t=Math.max(0,Math.min(1,((x-a)*dx+(z-b)*dz)/(len*len)));
- const distance=Math.hypot(x-a-t*dx,z-b-t*dz);if(distance<best.distance){
- const interp=(values,fallback)=>values?values[i-1]+(values[i]-values[i-1])*t:fallback;
- best={distance,x:a+t*dx,z:b+t*dz,nx:-dz/len,nz:dx/len,width:interp(R.widths,R.width),bank:interp(R.banks,R.bank)*(R.bankScale??1),segment:i,t,along:along[i-1]+len*t};}}
- return best;}
+// Public #94, reviewed upstream ba5db2f9: no intermediate scan records; memoize a repeated ground/water query.
+// Callers treat the returned record as read-only. River coordinates are static.
+let lastX=NaN,lastZ=NaN,lastR=null;
+export function riverAt(x,z){
+ if(x===lastX&&z===lastZ)return lastR;
+ const P=R.path;let bi=-1,bd=Infinity;
+ for(let i=1;i<P.length;i++){
+  const a=P[i-1][0],b=P[i-1][1],dx=P[i][0]-a,dz=P[i][1]-b,len=Math.hypot(dx,dz),t=Math.max(0,Math.min(1,((x-a)*dx+(z-b)*dz)/(len*len))),
+   distance=Math.hypot(x-a-t*dx,z-b-t*dz);
+  if(distance<bd){bd=distance;bi=i;}}
+ let best={distance:Infinity};
+ if(bi>0){const i=bi,[a,b]=P[i-1],[c,d]=P[i],dx=c-a,dz=d-b,len=Math.hypot(dx,dz),t=Math.max(0,Math.min(1,((x-a)*dx+(z-b)*dz)/(len*len)));
+  const interp=(values,fallback)=>values?values[i-1]+(values[i]-values[i-1])*t:fallback;
+  best={distance:bd,x:a+t*dx,z:b+t*dz,nx:-dz/len,nz:dx/len,width:interp(R.widths,R.width),bank:interp(R.banks,R.bank)*(R.bankScale??1),segment:i,t,along:along[i-1]+len*t};}
+ lastX=x;lastZ=z;lastR=best;return best;}
 export function riverDistance(x,z){return riverAt(x,z).distance;}
 // #90 (original #1350): a relative interpretation of ground data; preserve the road crossing's existing vertical datum.
 const fallAnchor=riverAt(bridgeRecords[0].x,bridgeRecords[0].z).along;

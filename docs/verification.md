@@ -116,3 +116,10 @@ Kör `node --test tools/riverfalltest.mjs`, reproducera tolkningsrapporten med `
 ## Statiska dörratlaser på telefon, #93
 
 `PLAYWRIGHT_MODULE=/sökväg/till/playwright CHROME_PATH=/sökväg/till/chrome SHOTS=/tmp/kvarteret-static node tools/staticcanvas-check.cjs http://localhost:8157` körs mot källservern, som behöver importmap. Tio riktiga WebGL-kontroller jämför pixlar före/efter frigjord CPU-kopia, alla A/B/C/L-atlaser och omritning av en dynamisk hisslabel. Full upplösning behålls fram till första upload; endast telefonernas statiska källcanvas blir1×1 efteråt. Datorn behåller sin canvas. Granska bilder och den byggda visningen; kontextåterställning ska fortfarande använda den befintliga egna omladdningen med sparad plats och loopskydd. Mätning och begränsningar finns i [överföringsregistret](upstream.md#statiska-dörrskyltars-telefonminne-93).
+
+
+## Flodsökning och väggnärhet, #94
+
+`node tools/riverat-check.mjs` laddar den frysta produktionskällan från `0afb8bd05853e4bda079717d3d527a238bf82a3d` via lokal git och kräver att den finns i klonens historik. Verktyget kör helt offline:20 000 flodpunkter (ankare, mittpunkter, deterministiska slumpvärden och upprepade uppslag) ska ge exakt samma alla numeriska fält. Ytterligare20 000 kollisionsfall kör verkliga gamla/nya `pushOut`, med exakta slutpositioner och beslut, även vid radiegränsen, ändpunkter, nollängd och höjdgränser. Sju uppvärmda timingpar rapporterar medianer och lika checksummor, utan en flakig hastighetsgräns.
+
+Kör också `tools/farwalk-check.mjs` mot källservern före/efter och jämför alla24 slutresultat. Den byggda appen kontrolleras med `tools/browser-check.mjs`, inklusive riktig mus-/touchinmatning, gång, dörrar, mätning, same-origin och originalets lagringsmarkörer. Granska före/efterbilder. Mätning och anpassning är registrerade i [upstream](upstream.md#flodsökning-och-kollisionsnärhet-94).
