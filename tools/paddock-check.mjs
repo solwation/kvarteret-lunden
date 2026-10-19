@@ -69,16 +69,21 @@ try{
    for(let i=0;i<(PADDOCK.rain.dry-5)*10;i++)p.update(0.1,false,0);const early=p.ponies.filter(q=>q.spot).length;
    for(let i=0;i<1800;i++)p.update(0.1,false,0);
    R.push(['after the rain and the dry delay the ponies go back out',early>=1&&p.ponies.every(q=>!q.spot)&&p.ponies.every(q=>geo.insideFence(q.x,q.z,1)),`early ${early}`]);
-   // winter: a pony in view walks to the shelter first, then is gone and not drawn; back in July
+   // #87: visible occupants, a walk in without vanishing, thaw and offscreen start.
    for(const q of p.ponies){q.state='idle';q.left=0;}for(let i=0;i<50;i++)p.update(0.1,false,0);
-   const before=p.ponies.filter(q=>!q.gone).length;applySeason(1);let first=-1;// (a pony may be 100 m from the shelter: ~2 minutes at walking speed)
-   for(let i=0;i<3000;i++){p.update(0.1,false,0);if(first<0&&p.ponies.some(q=>q.gone))first=i/10;for(const q of p.ponies)if(!q.gone&&!geo.insideFence(q.x,q.z,1.0))outside++;}
-   R.push(['snow months: ponies walk to the shelter, then are gone and not drawn',before===2&&p.winter&&p.ponies.every(q=>q.gone)&&!p.mesh.visible&&first>1&&outside===0,JSON.stringify({before,first,visible:p.mesh.visible})]);
-   applySeason(7);for(let i=0;i<200;i++)p.update(0.1,false,0);
-   R.push(['when the snow is gone they are back and walking',!p.winter&&p.ponies.every(q=>!q.gone)&&p.mesh.visible&&p.ponies.every(q=>geo.insideFence(q.x,q.z,1)),'']);
-   // hidden (nobody can see the paddock): the change is immediate, no walk
-   p.update(0.1,true,0);applySeason(2);p.update(0.1,true,0);const hiddenGone=p.ponies.every(q=>q.gone);applySeason(7);p.update(0.1,true,0);
-   R.push(['unseen paddock: snow takes the ponies at once, thaw returns them',hiddenGone&&p.ponies.every(q=>!q.gone),'']);
+   const start=p.ponies.map(q=>[q.x,q.z]),winterUnder=()=>p.ponies.every((q,i)=>{const sp=p.stable(i);return sp&&Math.hypot(q.x-sp.x,q.z-sp.z)<0.1&&!q.gone;});
+   applySeason(1);let gone=0,maxJump=0;
+   for(let i=0;i<3000;i++){const before=p.ponies.map(q=>[q.x,q.z]);p.update(0.1,false,0);p.ponies.forEach((q,j)=>{gone+=q.gone?1:0;maxJump=Math.max(maxJump,Math.hypot(q.x-before[j][0],q.z-before[j][1]));if(!geo.insideFence(q.x,q.z,1.0))outside++;});}
+   const matrix=new T.Matrix4(),scale=new T.Vector3(),pos3=new T.Vector3(),rot=new T.Quaternion();
+   const scales=p.ponies.map((q,i)=>{p.mesh.getMatrixAt(i,matrix);matrix.decompose(pos3,rot,scale);return scale.x;});
+   R.push(['snow months: two full-size ponies walk into the visible shed without disappearing',p.winter&&winterUnder()&&p.mesh.visible&&scales.every(s=>s>0.9)&&gone===0&&maxJump<0.6&&outside===0&&p.ponies.some((q,i)=>Math.hypot(q.x-start[i][0],q.z-start[i][1])>3),JSON.stringify({gone,maxJump,scales,under:winterUnder()})]);
+   applySeason(7);for(let i=0;i<1800;i++)p.update(0.1,false,0);
+   R.push(['summer releases both ponies back into the paddock',!p.winter&&p.ponies.every(q=>!q.gone&&!q.spot)&&p.mesh.visible&&p.ponies.every(q=>geo.insideFence(q.x,q.z,1))&&p.ponies.some((q,i)=>Math.hypot(q.x-p.stable(i).x,q.z-p.stable(i).z)>3),'']);
+   // Hidden paddock: winter occupants move into their stalls immediately; draw stays culled.
+   applySeason(2);p.update(0.1,true,0);const hiddenIn=winterUnder()&&!p.mesh.visible;
+   p.update(0.1,false,0);const returned=winterUnder()&&p.mesh.visible;
+   applySeason(7);p.update(0.1,true,0);
+   R.push(['unseen winter occupants stay in the shed and draw again on return',hiddenIn&&returned&&p.ponies.every(q=>!q.gone),'']);
    for(const q of p.ponies){q.state='idle';q.left=0;}}
   // scenery only: no raycast, no interaction members
   const q=p.ponies[0],rc=new T.Raycaster(new T.Vector3(q.x+3,q.y+1,q.z),new T.Vector3(-1,0,0),0,10);
@@ -102,14 +107,15 @@ try{
   return R;
  });
  for(const [name,ok,info] of res)console.log(ok?'PASS':'FAIL',name,info);
- const shots=[['gate',[-110.5,224,90,-4]],['grass',[-105,232,90,-5]],['above',[-100,235,90,-35,40]],['stile',null]];
+ const shots=[['gate',[-110.5,224,90,-4]],['grass',[-105,232,90,-5]],['above',[-100,235,90,-35,40]],['stile',null],['winter',null]];
  for(const [name,v] of shots){
-  await page.evaluate(async([v])=>{const geo=await import(new URL('/src/paddockgeo.js',location.origin)),{groundY}=await import(new URL('/src/surroundings.js',location.origin));
+  await page.evaluate(async([v,name])=>{const geo=await import(new URL('/src/paddockgeo.js',location.origin)),{groundY}=await import(new URL('/src/surroundings.js',location.origin));
    const {paddock:p,navigation:n,camera,renderer,scene}=window.lundenViewer,s=geo.stile;
+   if(name==='winter'){const {applySeason}=await import(new URL('/src/seasons.js',location.origin));applySeason(1);p.update(0.1,true,0);const sh=p.spots.shelter;v=[sh.x+Math.sin(sh.yaw)*9,sh.z+Math.cos(sh.yaw)*9,sh.yaw*180/Math.PI,-4];}
    const [x,z,yaw,pitch,y]=v??[s.x-s.nx*4,s.z-s.nz*4,Math.atan2(s.nx,s.nz)*180/Math.PI+180,-8];
    n.teleport(x,groundY(x,z),z);for(let i=0;i<10;i++)n.update(1/60);for(let i=0;i<800;i++)p.update(0.1);
    camera.position.set(x,y??groundY(x,z)+1.62,z);camera.rotation.set(pitch*Math.PI/180,yaw*Math.PI/180,0,'YXZ');camera.updateMatrixWorld(true);
-   scene.updateMatrixWorld();renderer.render(scene,camera);},[v]);
+   scene.updateMatrixWorld();renderer.render(scene,camera);},[v,name]);
   await page.screenshot({path:`${out}/${name}.png`});
  }
  assert.deepEqual(errors,[],'no browser errors');
