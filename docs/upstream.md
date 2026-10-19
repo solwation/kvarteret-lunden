@@ -40,7 +40,7 @@ Automatisk publicering till GitHub Pages är aktiverad vid varje push till detta
 
 ## Register
 
-- Senast granskade originalversion: `d884dbb9` + `b61bf377` (för #79); tidigare `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
+- Senast granskade originalversion: `937ac17e` (för #80); tidigare `d884dbb9` + `b61bf377` (för #79); tidigare `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -553,3 +553,9 @@ Importerad från originalet: `d884dbb9` (tre stora skuggträd), `b61bf377` (skyd
 Anpassningar: projektet har **inget väder och ingen aktiv årstidsklocka** (`applySeason` anropades inte). Regninmatningen är därför tredje argumentet till `Paddock.update(dt, hidden, rain)` och drivs i appen bara av felsökningsparametern `?paddockrain=0..1`; ny felsökningsparameter `?month=1..12` anropar `applySeason` (vit mark, kala träd, ponnyerna borta i månad 12, 1, 2). Utan parametrar ändras inget för besökaren. Ingen klappning/poäng/ljud (originalets `targets()` och pick-filtret ingår inte).
 
 Verifiering: `npm test`, bygg, `node --test tools/paddockgeotest.mjs` (träden och skyddsplatserna) och `tools/paddock-check.mjs` (nya kontroller: träden i `treeFeet`, stammen stoppar en gång, torrt väder, regn, slut på regn, snö med promenad till skjulet, tillbaka, osynlig hage), samt bilder av träden, en ponny under skjulet i regn och den tomma vinterhagen.
+
+### Hästskjulet på jämn mark (original #1335/#1336, `937ac17e`; här #80)
+
+Importerad från originalet: `937ac17e`. Skjulet står inte längre på en fast skyddspunkt (marken föll ca 0,7 m under fotavtrycket, så ena sidan hängde över sluttningen). `shelterSite` (`src/paddockshelter.js`, ren funktion) söker i ett 1,5 m rutnät inom 45 m från grinden efter punkten närmast den gamla platsen vars fotavtryck (`footprintGround`, 5x5 prover över skjulet + `PADDOCK.shelter.pad`) varierar högst `maxRelief` (0,2 m), ligger minst `edge` (8 m) innanför staketet med alla hörn inne, fritt från stammar och å, 9 m från tråget och med öppna sidan mot grinden. `fenceGeometry` lägger golvet vid högsta marken och drar stolpar och syllar ner till lägsta marken (+ `sink`). Alla värden är gissningar (*guess*) i `PADDOCK.shelter`. Skyddspunkterna (#79) och betesmaskens zon (#78) läser `spots.shelter` och följer det nya läget automatiskt.
+
+Verifiering: `npm test`, bygg, `node --test tools/paddockgeotest.mjs` (syntetisk slänt och verklig terräng: gamla platsen förkastas, ny plats ryms) och `tools/paddock-check.mjs` (nya kontroller: jämn mark, innanför staketet, i sikte från grinden, jämnt under tråget).

@@ -21,6 +21,10 @@ try{
   R.push(['one fence mesh and one instanced pony mesh (two ponies)',!!p&&p.mesh.count===2&&p.fence.isMesh,`fence ${tris(p.fence)} tris, pony ${tris(p.mesh)/2}`]);
   R.push(['triangle budgets',tris(p.fence)<12000&&tris(p.mesh)/2<700,'']);
   R.push(['trough, shelter and waypoints',!!p.spots.trough&&!!p.spots.shelter&&p.waypoints.length>50,String(p.waypoints.length)]);
+  {const sh=await import(new URL('/src/paddockshelter.js',location.origin)),{PADDOCK:PD}=await import(new URL('/src/config.js',location.origin)),sp=p.spots.shelter,T=p.spots.trough;
+   const f=sh.footprintGround(p.ground,sp.x,sp.z,sp.yaw),tg=[-1,0,1].flatMap(i=>[-1,0,1].map(j=>p.ground(T.x+i*0.9,T.z+j*0.3))),gd=Math.hypot(sp.x-p.gate.x,sp.z-p.gate.z);
+   R.push(['#80 (original #1335/#1336): the shelter stands on flat ground well inside the fence and in view of the gate',f.relief<=PD.shelter.maxRelief&&geo.insideFence(sp.x,sp.z,PD.shelter.edge)&&gd>8&&gd<45,JSON.stringify({relief:f.relief,gd})]);
+   R.push(['the trough stands on flat ground',Math.max(...tg)-Math.min(...tg)<0.3,(Math.max(...tg)-Math.min(...tg)).toFixed(2)]);}
   n.teleport(-108,groundY(-108,238),238);for(let i=0;i<10;i++)n.update(dt);
   let outside=0,minTree=99;
   for(let i=0;i<6000;i++){p.update(0.1);for(const q of p.ponies){if(!geo.insideFence(q.x,q.z,1.0))outside++;for(const t of treeFeet)minTree=Math.min(minTree,Math.hypot(t.x-q.x,t.z-q.z));}}
