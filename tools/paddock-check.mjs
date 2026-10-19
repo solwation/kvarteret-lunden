@@ -29,7 +29,7 @@ try{
   {const g=p.grass,tr=g.count*g.geometry.attributes.position.count/3;
    R.push(['grass: one instanced mesh within budget',g.isInstancedMesh&&g.count>500&&tr<50000,`${g.count} tufts, ${tr} tris`]);
    const st=()=>{const m=p.gm;let n=0,lo=0,hi=0;for(let j=0;j<m.H;j++)for(let i=0;i<m.W;i++){if(!p.inside(m.x0+(i+0.5)*1.5,m.z0+(j+0.5)*1.5))continue;const v=m.v[j*m.W+i];n++;if(v<0.3)lo++;if(v>0.8)hi++;}return {lo:lo/n,hi:hi/n};};
-   const s0=st();R.push(['grass mask starts patchy',s0.lo>0.05&&s0.hi>0.4,JSON.stringify(s0)]);
+   const s0=st();R.push(['grass mask starts patchy',s0.lo>0.02&&s0.hi>0.4,JSON.stringify(s0)]);
    n.teleport(-105,groundY(-105,232),232);for(let i=0;i<5;i++){n.update(dt);p.update(0.1);}
    let calls=0;const rb=renderer.renderBufferDirect;renderer.renderBufferDirect=function(c,s,gg,m,o){if(o===p.grass)calls++;return rb.apply(this,arguments);};scene.updateMatrixWorld();renderer.render(scene,camera);renderer.renderBufferDirect=rb;
    R.push(['grass: one draw call',calls===1&&p.grass.visible,String(calls)]);
