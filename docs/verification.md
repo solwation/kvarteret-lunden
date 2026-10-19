@@ -99,3 +99,8 @@ För publiceringsbygget serveras reporoten och samma kontroll får URL `/dist/`;
 ## Gångbaneanslutningar, #82
 
 Kör `node --test tools/polygoncuttest.mjs` och öppna `tools/roadjunctiontest.html` mot källkoden efter `npm ci`. Komponenten använder samma lokala Three.js-version som visningen, kontrollerar alla ritade gångbanor/trottoarer mot körbanetrianglarna, sneda vägkanter, höjdplanet, bro-undantaget och den mjuka kartkopplingens matchande bredder. Den ritar en översikt som ska granskas. Komplettera med den byggda riktiga visningen vid Karpvägen/Sankt Lars väg, en promenad över korsningen, egna lagringsnycklar och inga externa anrop. Källor och aktuellt resultat finns i [importregistret](upstream.md#exakta-gångbaneanslutningar-82).
+
+
+## Separata höjdreferenser, #85
+
+Kopiera `docs/references/elevation-hoje-a/point-api-2026-10-19.json` till en privat temporär fil och kör `node tools/riverheight-api.mjs KOPIAN`. Befintliga koordinater, käll-URL, punktmängdens hash, latitud/longitud, höjdsvar och attribution ska valideras utan nytt nätanrop; 60 punkter och 0 NODATA. Blockera `globalThis.fetch` i ett Node-startskript för att kontrollera att återläsningen faktiskt är offline. Kör aldrig återläsningen direkt över originalreferensen: den sparar en ny avslutningstid. Kontrollera att JSON-källorna är byteidentiska med 9040a306 och att `npm test`/bygget fortfarande har samma 79-modulers appgraf. Referenser och Node-verktyg ska inte hamna i `dist/` eller lägga höjd-API:t i besökarens nätverksanrop. Runtimeprofilens kontroll hör till #90.

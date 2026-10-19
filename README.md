@@ -78,3 +78,6 @@ Promenadytan sträcker sig ner till ån, över broarna och bland skolbyggnaderna
 För arbete med issues, `in-progress`, stängning och `/orkester`, läs [CLAUDE.md](CLAUDE.md) och [orkesterkommandot](.claude/commands/orkester.md). Ärenden för detta projekt skapas här i [kvarteret-lunden](https://github.com/solwation/kvarteret-lunden/issues).
 
 Orkesterarbete samordnas i [#4](https://github.com/solwation/kvarteret-lunden/issues/4). Den första importens historik finns i [originalets #1064](https://github.com/solwation/lunden-3d-apartment/issues/1064).
+
+
+Finare öppna höjdreferenser för Höje å och ett separat verktyg för att hämta eller återläsa punkterna finns i [importregistret](docs/upstream.md#finare-höjdreferenser-för-höje-å-85). Markdata visar varken uppmätt undervattensbotten eller lägenhetens absoluta golvnivå.
