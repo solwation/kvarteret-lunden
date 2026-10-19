@@ -2,6 +2,7 @@
 // Adapted for the independent, impersonal Kvarteret Lunden walkthrough.
 import { architectureEdges } from './architectural-edges.js';
 import * as THREE from 'three';
+import { freeCanvasAfterUpload } from './lowmemory.js';
 import { EMERGENCY_LIGHT } from './architectural-settings.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { CORE as K, PORTIK, GARAGE, HUS_L, PLAYER, storeyFloor } from './config.js';
@@ -329,7 +330,9 @@ export function buildFlatDoors(geo, o = {}) {
     if (fixed) tags.push(quad(D.plate[0], D.plate[1], zc, y + D.plate[2], plate).translate(...off(D.leaf + 0.0045)));
     tags.push(quad(D.sign, D.sign, signSouth ? z1 + D.frame + 0.03 + D.sign / 2 : z0 - D.frame - 0.03 - D.sign / 2, y + 1.55, sign).translate(...off(0.004)));
   });
-  const tex = new THREE.CanvasTexture(cv); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 4;
+  // Public #93, original 2ab388fc: immutable A/B/C/L atlas; preserve full upload resolution here.
+  const tex = freeCanvasAfterUpload(new THREE.CanvasTexture(cv));
+  tex.name = 'flat-door-atlas'; tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 4;
   return { geos: tags, tex, cells };
 }
 
