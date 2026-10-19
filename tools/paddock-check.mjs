@@ -69,7 +69,7 @@ try{
    n.teleport(-108,groundY(-108,238),238);for(let i=0;i<10;i++)n.update(dt);
    applySeason(7);p.update(0.1,false,0);
    const near=q=>p.shelterPlaces.some(s=>Math.hypot(s.x-q.x,s.z-q.z)<1.2);
-   for(let i=0;i<200;i++)p.update(0.1,false,0);const dryUnder=p.ponies.filter(near).length;
+   for(let i=0;i<200;i++)p.update(0.1,false,0);const dryUnder=p.ponies.filter(q=>q.spot||q.seek).length;/* #89: measure the shelter state (spot/seek), not distance: a pony may graze next to the shed by chance */
    let outside=0;for(let i=0;i<1500;i++){p.update(0.1,false,0.8);for(const q of p.ponies)if(!geo.insideFence(q.x,q.z,1.0))outside++;}
    const under=p.ponies.filter(near).length,seekers=p.ponies.filter(q=>q.seek).length,kinds=p.ponies.map(q=>p.shelterPlaces.find(s=>Math.hypot(s.x-q.x,s.z-q.z)<1.2)?.kind??null);
    const apart=Math.hypot(p.ponies[0].x-p.ponies[1].x,p.ponies[0].z-p.ponies[1].z),pos=p.ponies.map(q=>[q.x,q.z]);
