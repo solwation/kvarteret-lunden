@@ -40,7 +40,7 @@ Automatisk publicering till GitHub Pages är aktiverad vid varje push till detta
 
 ## Register
 
-- Senast granskade originalversion: `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
+- Senast granskade originalversion: `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -525,3 +525,12 @@ Verifiering: `npm test`, bygg, Chromium-bilder i dagsljus före/efter vid Sävsl
 Importerad från originalet: `8801ca3b` (#1314): i `pathStrip` (`src/roads.js`) överlappar varje skuren bit sina grannar med 1,5 cm över skärlinjerna (kanterna flyttas utåt och höjden samplas om), så de hårfina springorna där grannen skärs annorlunda täcks. Inga extra trianglar.
 
 Verifiering: `npm test`, bygg, Chromium-bilder i dagsljus före/efter vid Sävsländegatan.
+
+
+## Hästhage med två ponnyer, #76
+
+Importerad från originalet: `2fa7e79c` (#1280, hagen) och `90a1f669` (#1295, stättan vid grinden). Den kartlagda njurformade ängen söder om träfotgängarbron (OSM-fältet `237019759`, `SITE.south.fields`) är en inhägnad hage: stolpe-och-regel-staket med stängd grind, vattenho och tresidigt vindskydd i ett enda hörnfärgat nät (`src/paddock.js` `fenceGeometry`), ett slitet spår längs staketet i södra bakgrundens landnät (`paddockLandParts`, anropas från `src/southbackdrop.js`) och två ponnyer som ett instansierat nät med animation i vertexskuggaren (en ritanrop, 540 trianglar per ponny). Planen (`src/paddockgeo.js`) delas av kollision (`src/farwalk.js`: `fenceSegments`, `stileWalls`, `stileSurface`/`stileBase`), `src/navigation.js` (stättans ytor i `groundAt`) och djuren. `PADDOCK` i `src/config.js` (allt *gissning*) och hagens markfärg (`8362575` i fältlistan). Ponnyerna betar, står och vandrar lugnt mellan platser fria från träd, ån och staketet, och går fram mot staketet när ögat är inom 40 m; inget simuleras eller ritas längre bort än 280 m.
+
+Medvetet inte importerat: all interaktion (originalets klappning från #1293 med pick-lådor, `targets()`, `pet()`, ljudet `nicker`), ponnyernas namn (personliga), `noDetail`/`warmDraw`-krokar och originalets `audio.js`-beroende. Ponnyerna är enbart miljö: nätet har ingen raycast och inget i `main.js` frågar efter dem. `?nopaddock` stänger av hagen. Uppföljarna original-#1315 (betning) och #1316 (skydd i regn) är inte överförda.
+
+Verifiering: `npm test`, bygg, `node --test tools/paddockgeotest.mjs` och `CHROME_PATH=… node tools/paddock-check.mjs http://localhost:8238 /tmp/paddock` (ett staketnät och ett ponnynät, trianglar inom budget, ponnyerna håller sig inom staketet i 10 simulerade minuter, ritas/simuleras inte långt bort, strålar går igenom, grinden och staketet stoppar en riktig gång, stättan går att gå över), samt bilder från grinden, ovanifrån och vid stättan.

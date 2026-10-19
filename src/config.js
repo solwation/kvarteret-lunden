@@ -681,7 +681,7 @@ export const SITE = {
     fields: [
       {"source":"91913055","polygon":[[280.76,518.29],[295.47,522.72],[403.87,429.29],[493.05,344.52],[498.52,336.7],[505.43,325.23],[508.3,314.41],[509.24,301.09],[508.12,271.34],[517.04,199.9],[512.82,145.66],[506.63,108.61],[491.9,69.86],[484.62,47.98],[475.48,45.31],[446.45,57.01],[322.89,110.33],[261.11,136.12],[240.16,141.69],[217.63,149.14],[254.5,200.75],[268.88,234.4],[327.54,372.46],[209.73,404.43],[280.76,518.29]],"color":9016921},
       {"source":"165719101","polygon":[[-157.8,537.74],[-125.78,520.12],[-105.66,503.8],[-85.28,489.4],[-61.28,481.35],[-47.56,490.21],[-24.69,520.84],[-19.4,532.9],[-31.53,547.2],[-126.76,605.27],[-140.21,605.33],[-156.32,594.68],[-169.83,576.61],[-173.9,557.44],[-165.9,544.64],[-157.8,537.74]],"color":9083762},
-      {"source":"237019759","polygon":[[-125.6,213.43],[-121.69,216.75],[-116.22,223.52],[-112.59,229.85],[-111.67,235.71],[-112.42,241.42],[-113.94,248.93],[-115.77,258.36],[-119.21,266.97],[-123.51,274.69],[-132.67,284.83],[-137.41,288.75],[-145.78,283.52],[-156.55,275.38],[-165.13,271.61],[-170.08,272.74],[-174.73,275.66],[-182.39,281.45],[-197.97,293.4],[-207.88,302.2],[-212.67,308.73],[-219.42,313.33],[-226.19,315.97],[-238.71,320.5],[-247.63,323.2],[-265.62,330.83],[-274.25,316.98],[-275.61,310.13],[-258.76,282.05],[-230.7,250.38],[-189.9,219.8],[-173.79,213.37],[-158.58,211.16],[-140.66,212.13],[-125.6,213.43]],"color":9083762},
+      {"source":"237019759","polygon":[[-125.6,213.43],[-121.69,216.75],[-116.22,223.52],[-112.59,229.85],[-111.67,235.71],[-112.42,241.42],[-113.94,248.93],[-115.77,258.36],[-119.21,266.97],[-123.51,274.69],[-132.67,284.83],[-137.41,288.75],[-145.78,283.52],[-156.55,275.38],[-165.13,271.61],[-170.08,272.74],[-174.73,275.66],[-182.39,281.45],[-197.97,293.4],[-207.88,302.2],[-212.67,308.73],[-219.42,313.33],[-226.19,315.97],[-238.71,320.5],[-247.63,323.2],[-265.62,330.83],[-274.25,316.98],[-275.61,310.13],[-258.76,282.05],[-230.7,250.38],[-189.9,219.8],[-173.79,213.37],[-158.58,211.16],[-140.66,212.13],[-125.6,213.43]],"color":8362575},
     ],
     paths: [
       {"source":"30633546","surface":"asphalt","path":[[27.71,213.61],[24.37,219.25],[16.9,227.36],[8.31,233.97],[3.68,236.83],[-2.35,240.57],[-21.89,254.04],[-39.24,267.33],[-72.05,291.41],[-134.7,334.97],[-180.81,367.04],[-190.9,374.57],[-194.2,377.03]],"w":6},
@@ -2170,3 +2170,24 @@ export const VIEW_NEAR = { min: 0.06, outdoor: 0.12, bodyRadius: 0.22 };
 // polygonOffset counts depth-buffer steps, so unlike the 1–7 cm geometry inset it keeps winning at 300 m (one step ~10 cm). *guess*:
 // 2 steps pull a pane ~20 cm at 400 m, less than any reveal or neighbour wall.
 export const DECAL_OFFSET = { factor: -1, units: -2 };
+
+// The pony paddock (original #1280/#1295, src/paddock.js, src/paddockgeo.js): the kidney-shaped meadow south of the timber footbridge (OSM landuse
+// way `field` below, SITE.south.fields) is fenced in and holds two C ponies. Everything here is a *guess* (no survey): `inset` m from the mapped outline to the fence line; post-and-rail fence `post`/`rails`/`rail` sizes (m, rail
+// heights above the ground), `postStep` m between posts; the closed `gate` (m wide, never walkable, collision like the rest of the
+// fence) sits at the span nearest `gateNear` (the footpath along the north-east edge). C pony withers 1.27-1.37 m: `pony.withers`
+// 1.32; `speed` walk m/s, `turn` rad/s, `graze`/`idle` [min, max] s per pose; ponies come to the fence when the eye is within
+// `curious` m (never nearer than `keep` m to the fence line); `viewDist` m from the paddock centre beyond which the ponies are
+// neither simulated nor drawn; `waypoint` m grid of places they walk between (flat, clear of trees, the river and the fence).
+// `track` m wide worn ribbon inside the fence. Two anonymous ponies: one light grey, one bay with a star.
+export const PADDOCK = {
+  field: '237019759', inset: 1.2, postStep: 3, post: { w: 0.13, h: 1.3 }, rails: [0.55, 0.95, 1.25], rail: { w: 0.06, h: 0.12 },
+  gate: { w: 3.2, near: [-116.2, 219.98] }, track: { w: 0.9, inset: 3.2, color: 0x80724c }, color: 0x7f9a4f,
+  wood: [0x8a6a45, 0x7d5f3d, 0x94754d], waypoint: 5, treeClear: 2.6, riverClear: 7, maxSlope: 0.3, viewDist: 280, curious: 40, keep: 2.5,
+  pony: { withers: 1.32, neck: [0, 1.12, 0.55], speed: 0.85, turn: 1.4, graze: [6, 16], idle: [3, 8], gap: 2.2,
+    animals: [{ coat: 0xdddbd5, accent: 0x93918c, seed: 7 }, { coat: 0x7a4426, accent: 0x1b1410, seed: 19, star: true }], // grey/white with a lighter-grey mane, tail and legs; bay with black points and a white star
+  },
+  trough: { w: 1.7, d: 0.5, h: 0.42 }, shelter: { w: 4.2, d: 2.6, h: 2.3 },
+  // the stile beside the gate (#1295, *guess*): `w` m wide, `minSpan` m the fence span it needs, three risers of `rise` m (under PLAYER.stepUp 0.45, so the ordinary
+  // stepping walks it) over two treads of `tread` m either side of a platform that is 2 × `platform` m long; `reach` m from the fence line to the walls' ends
+  stile: { w: 1.0, minSpan: 1.9, rise: 0.38, tread: 0.3, platform: 0.25, reach: 0.95, post: 0.95 },
+};

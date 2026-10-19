@@ -90,3 +90,7 @@ För publiceringsbygget serveras reporoten och samma kontroll får URL `/dist/`;
 ## Höjdrutnät och terräng, #69
 
 Ändringen är verifierad med `npm test`, `npm run build` och en riktig WebGL-visning i Chromium: samma kamerapositioner före/efter över campus i norr, Sankt Lars väg, ådalen, väst, söder och en översikt (dagsljus, ingen webbläsarexception). Trianglar per bild är lägre än före ändringen (glesare terräng långt bort), anrop oförändrade. Byggnader och vägar följer terrängen via samma `terrainY`. `tools/elevationcompare.cjs` kräver en testingång (`window.__app`) som denna repo saknar och är bara en referens för att regenerera jämförelsetabellen i originalet.
+
+## Hästhagen, #76
+
+`node --test tools/paddockgeotest.mjs` kontrollerar staketlinje, stolpar, grind och stätta mot den kartlagda ängen. `CHROME_PATH=… node tools/paddock-check.mjs http://localhost:8238 /tmp/paddock` (mot `python3 -m http.server 8238`) kör hagen i den riktiga världen: ett staketnät och ett ponnynät, trianglar inom budget, ponnyerna håller sig inom staketet i 10 simulerade minuter, inget ritas eller simuleras från innergården, strålar går igenom ponnyer och staket (ingen klappning eller interaktion), grind och staket stoppar en riktig gång och stättan går att gå över. Bilder: grinden, ovanifrån och stättan.

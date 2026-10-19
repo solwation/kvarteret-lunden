@@ -7,6 +7,8 @@ import { VERSION, takeResume, watchUpdates, saveResume, claimContextReload } fro
 import { reloadOnContextRestore } from './lowmemory.js';
 import { installPlaceShortcuts } from './place-shortcuts.js';
 import { Garage } from './garage.js';
+import { Paddock } from './paddock.js';
+import { groundY, renderedTerrainY, treeFeet } from './surroundings.js';
 import { Core } from './core.js';
 import { CoreHouse } from './corehouse.js';
 import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, LIGHTING, STARTUP, TOUCH, VIEW_NEAR } from './config.js';
@@ -16,7 +18,7 @@ const $ = id => document.getElementById(id);
 const touch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
 document.body.classList.toggle('touch', touch);
 const touchLayout = setupTouchLayout({enabled: touch}); // own button/stick layout from the help dialog (#30, upstream 1af9b39)
-let renderer, camera, scene, world, navigation, core, garage;
+let renderer, camera, scene, world, navigation, core, garage, paddock;
 let active = false, ready = false, focus = null, measuring = false, firstPoint = null;
 const ray = new THREE.Raycaster(), centre = new THREE.Vector2();
 const points = new THREE.Group();
@@ -152,6 +154,7 @@ async function init() {
   await loadingStep('Bygger huset', 0.2);
   // In parts, with the card's heartbeat painted between them (#39, from the original's 673b78d #1133).
   world = await buildWorldSliced(plan, (share) => loadingYield(0.2 + 0.6 * share)); scene.add(world.object);
+  paddock = new URLSearchParams(location.search).has('nopaddock') ? null : new Paddock({ scene, camera, ground: (x, z) => (z > 260 ? -3.01 : Math.max(groundY(x, z), renderedTerrainY(x, z))), trees: treeFeet }); // original #1280: the fenced pony paddock, scenery only
   await loadingStep('Bygger trapphus och garage', 0.82);
   garage = world.garage = new Garage();
   for (const o of [garage.object, garage.blackout, garage.door?.object, garage.parkObject]) if (o) scene.add(o);
@@ -189,7 +192,7 @@ async function init() {
   ready = true;
   $('place-toggle').disabled = false;
   // Keep model access local for diagnostics, without a service connection.
-  window.lundenViewer = {world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
+  window.lundenViewer = {paddock, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
   window.kvarteretStartup?.finish();
   $('start').disabled = false; $('start').textContent = 'Börja utforska →';
   status('Dator och mobil · Ingen inloggning');
@@ -221,6 +224,7 @@ function frame() {
   for (const clock of world.clocks) clock.update(hour);
   core.update(dt, navigation, camera);
   garage.update(dt, navigation, camera);
+  paddock?.update(dt, navigation.below);
   updateCameraNear();
   scene.updateMatrixWorld();
   if (active) {

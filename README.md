@@ -10,6 +10,8 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 Behåll byggnader, omgivning, fast inredning, förflyttning, dörrar och mätverktyg. Ta bort personlig möblering, teckningar, foton, familjereferenser, karaktärer, poäng, leksaker och andra spelinslag.
 
+Söder om träfotgängarbron ligger en inhägnad hage med två ponnyer (importerad från originalet, #76). Ponnyerna är enbart miljö och går inte att klappa eller interagera med. Lägg till `?nopaddock` i adressen för att stänga av hagen.
+
 Visningen ska vara statisk och fungera **utan Cloudflare-integration**. Originalets Workers, WebSockets, delade lagring och speltjänster ska inte användas. Eventuell lokal lagring ska ha egna namn och aldrig läsa eller ändra originalets data.
 
 Modellen är en fristående visualisering och kan innehålla avvikelser. Fast inredning och material i L1007 är ett exempel och utgör inte verifierad standard för samtliga bostäder. Projektet är inte Peabs officiella tjänst.

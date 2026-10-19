@@ -3,7 +3,7 @@ import * as config from './config.js';
 import { stairHeight, stairUnderside } from './stairs.js';
 import { groundY, groundBelowDeckY } from './surroundings.js';
 import { deckAt } from './riverbridge.js';
-import { farWalls, waterBlocked, tooSteep, waterRescue, buildingRescue } from './farwalk.js'; // upstream #1236: walking beyond the block
+import { stileSurface, farWalls, waterBlocked, tooSteep, waterRescue, buildingRescue } from './farwalk.js'; // upstream #1236: walking beyond the block
 
 // Walking geometry adapted from src/player.js in solwation/lunden-3d-apartment,
 // reviewed source c079371f6782225e29e9dac51518c509ed8c37e6.
@@ -116,6 +116,7 @@ export class Navigation {
     if (inside && !inRect(config.STAIR?.hole, x, z) && config.LEVELS[1]) heights.push(config.LEVELS[1].floor);
     const stair = unit ? null : stairHeight(x, z);
     if (stair != null) heights.push(stair);
+    if (!inside && !cores.length && !unit && z > 200) { const st = stileSurface(x, z); if (st !== null) heights.push(st); } // the pony paddock's stile (original #1295)
     const garage = this.world.garage;
     if (garage?.inside(x, z)) heights.push(config.GARAGE?.floor ?? garage.floor ?? -3);
     const roof = this.world.roofs?.under(x, z, feet, BODY.stepUp);

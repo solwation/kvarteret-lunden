@@ -2,11 +2,12 @@
 // the timber footbridge's rails, and the river itself as an obstacle. Everything is derived from the data the backdrops are
 // built from (SITE.west/east/north/south polygons, SITE.bridges, SITE.river), so what is drawn is what blocks. Segments are
 // [x0, z0, x1, z1]; `farWalls(x, z)` returns the ones in the buckets round a point (a stable array per bucket, no per-frame work).
-import { SITE, WALK, PLAYER, OUTDOOR } from './config.js';
+import { SITE, WALK, PLAYER, OUTDOOR, PADDOCK } from './config.js';
 import { riverAt, deckAt, bridgeRecords, pierBoxes } from './riverbridge.js';
 import { parkDeckAt } from './riverpark.js';
 import { busStopSegments } from './busstopgeo.js';
 import { groundY, groundBelowDeckY, treeFeet } from './surroundings.js';
+import { fenceSegments, stile, stileWalls } from './paddockgeo.js';
 
 const ringSegs = (p) => {
   const out = [], n = p.length, closed = p[0][0] === p[n - 1][0] && p[0][1] === p[n - 1][1], m = closed ? n - 1 : n;
@@ -42,6 +43,7 @@ export function farSegments() {
     const [[ax, az], [bx, bz]] = P.woodBridge.ends, len = Math.hypot(bx - ax, bz - az);
     out.push(...railSegs((ax + bx) / 2, (az + bz) / 2, (bx - ax) / len, (bz - az) / len, len, P.woodBridge.width / 2 - 0.03));
   }
+  out.push(...fenceSegments(), ...stileWalls()); // original #1280/#1295: the pony paddock's fence, closed gate included (nothing is walkable through it); the stile's opening has side walls
   out.push(...busStopSegments()); // #71 (original #1301): the bus shelter's glass back and ends
   for (const p of pierBoxes()) {
     const h = p.half;
@@ -70,6 +72,24 @@ export function farWalls(x, z, y) {
     buckets.set(key, list);
   }
   return list;
+}
+
+let stileY0 = null;
+/** #1295: the ground level the stile's steps are counted from: the lowest terrain along its run (so the first riser is never above `rise`). */
+export function stileBase() {
+  if (!stile) return 0;
+  const r = PADDOCK.stile.reach;
+  return stileY0 ??= Math.min(groundY(stile.x, stile.z), groundY(stile.x + stile.nx * r, stile.z + stile.nz * r), groundY(stile.x - stile.nx * r, stile.z - stile.nz * r));
+}
+/** #1295: the walkable height of the stile's steps at (x, z) (risers of PADDOCK.stile.rise up to a platform over the fence line), else null. */
+export function stileSurface(x, z) {
+  if (!stile) return null;
+  const dx = x - stile.x, dz = z - stile.z;
+  if (dx > 1.3 || dx < -1.3 || dz > 1.3 || dz < -1.3) return null;
+  const S = PADDOCK.stile, u = dx * stile.tx + dz * stile.tz, a = Math.abs(dx * stile.nx + dz * stile.nz);
+  if (Math.abs(u) > stile.half - 0.02) return null;
+  const k = a <= S.platform ? 3 : a <= S.platform + S.tread ? 2 : a <= S.platform + 2 * S.tread ? 1 : 0;
+  return k ? stileBase() + k * S.rise : null;
 }
 
 const onDeck = (x, z, y) => (deckAt(x, z) !== null && !underDeck(y)) || parkDeckAt(x, z) !== null; // (feet `y` under a road/GC deck: not on it, #62)
