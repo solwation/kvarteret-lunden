@@ -44,10 +44,11 @@ for(const file of files.filter(f=>f.endsWith('.js'))){
     for(const call of source.matchAll(/sessionStorage\.(?:getItem|setItem|removeItem)\(([^,)]+)/g))assert(['RESUME_KEY','GL_RELOAD_KEY'].includes(call[1]));
   }
   if (/localStorage/.test(source)) {
-    // #30: only the own touch layout keeps a per-device preference, under this project's own key.
-    assert.equal(file,'touchlayout.js','Only the own touch layout may use local storage');
-    assert(source.includes("const KEY = 'kvarteret-lunden.touch-layout'"));
-    for(const call of source.matchAll(/localStorage\.(?:getItem|setItem|removeItem)\(([^,)]+)/g))assert.equal(call[1],'KEY');
+    // #30, #84: only the own touch layout and the paddock's grass mask keep local data, each under this project's own key.
+    const own={'touchlayout.js':[`const KEY = 'kvarteret-lunden.touch-layout'`,'KEY'],'paddock.js':[`const GRASS_KEY = 'kvarteret-lunden.paddockGrass'`,'GRASS_KEY']}[file];
+    assert(own,'Only the own touch layout and the paddock grass mask may use local storage');
+    assert(source.includes(own[0]));
+    for(const call of source.matchAll(/localStorage\.(?:getItem|setItem|removeItem)\(([^,)]+)/g))assert.equal(call[1],own[1]);
   }
   assert(!/workers\.dev|cloudflare|new\s+WebSocket|indexedDB/i.test(source),`Disallowed service reference in ${file}`);
   assert(!hasDeniedWord(source),`Disallowed personal reference in ${file}`);

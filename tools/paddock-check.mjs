@@ -45,6 +45,18 @@ try{
    const s1=st();R.push(['after ten minutes still patchy; ponies graze and walk',s1.lo>0.003&&s1.hi>0.3&&states.has('graze')&&states.has('walk'),JSON.stringify({s1,states:[...states]})]);
    const m=()=>{let t=0;for(const v of p.gm.v)t+=v;return t/p.gm.v.length;},m0=m();for(const q of p.ponies){q.state='idle';q.left=1e9;}for(let i=0;i<3000;i++)p.update(0.1);
    R.push(['the grass regrows slowly',m()>m0,`${m0.toFixed(3)} -> ${m().toFixed(3)}`]);
+   {// #84 (original #1342): 72 h of real time regrow a fully grazed meadow (simulated clock), the saved mask is caught up on load, storage failures are harmless
+    const mean=()=>{let t=0;for(const v of p.gm.v)t+=v;return t/p.gm.v.length;},keep=p.gm.v.slice(),real=p.gm.real,now=Date.now,LS=Object.getOwnPropertyDescriptor(window,'localStorage');
+    p.gm.v.fill(0.05);const b=mean();p.gm.real-=72*3600e3;for(let i=0;i<15;i++)p.update(0.1);const a72=mean();
+    R.push(['a fully grazed meadow is long again after 72 h of real time',b<0.06&&a72>0.99,`${b.toFixed(3)} -> ${a72.toFixed(3)}`]);
+    p.gm.v.fill(0.05);p.gm.real=Date.now();p.gm.saved=0;p.saveGrass();p.gm.v.fill(1);
+    const t0=Date.now();Date.now=()=>t0+36*3600e3;const ok=p.loadGrass(),half=mean();Date.now=now;
+    R.push(['the saved mask is caught up by the time away (36 h = half regrown)',ok&&half>0.5&&half<0.56,half.toFixed(3)]);
+    Object.defineProperty(window,'localStorage',{configurable:true,get(){throw new Error('blocked');}});
+    let thrown=false;try{p.saveGrass();thrown=p.loadGrass();}catch{thrown=true;}
+    if(LS)Object.defineProperty(window,'localStorage',LS);else delete window.localStorage;
+    R.push(['blocked localStorage neither throws nor loads a mask',thrown===false,String(thrown)]);
+    localStorage.removeItem('kvarteret-lunden.paddockGrass');p.gm.v.set(keep);p.gm.real=real;}
    p.snowy=true;p.update(0.1);const hid=!p.grass.visible;p.snowy=false;p.update(0.1);
    R.push(['snow months hide the tufts',hid&&p.grass.visible,'']);
    for(const q of p.ponies){q.state='idle';q.left=0;}}
