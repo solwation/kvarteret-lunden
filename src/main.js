@@ -8,6 +8,7 @@ import { reloadOnContextRestore } from './lowmemory.js';
 import { installPlaceShortcuts } from './place-shortcuts.js';
 import { Garage } from './garage.js';
 import { Paddock } from './paddock.js';
+import { visitSpot } from './paddockgeo.js';
 import { applySeason } from './seasons.js';
 import { groundY, renderedTerrainY, treeFeet } from './surroundings.js';
 import { Core } from './core.js';
@@ -175,6 +176,7 @@ async function init() {
   // looking south-east past the hall towards the kitchen.
   const l1201 = world.units.find(unit => unit.id === 'L1201');
   if (l1201) locations.l1201 = {name:'L1201 · Entréplan', x:l1201.ox + 1.5, y:l1201.bottom, z:l1201.oz + 1.0, yaw:Math.PI + .6};
+  locations.paddock = {name:'Hästhagen', x:visitSpot.x, y:Math.max(groundY(visitSpot.x, visitSpot.z), renderedTerrainY(visitSpot.x, visitSpot.z)), z:visitSpot.z, yaw:visitSpot.yaw}; // outside the gate, looking in (#83)
   navigation = new Navigation(world, camera);
   moveTo('area');
   const resumed = takeResume();

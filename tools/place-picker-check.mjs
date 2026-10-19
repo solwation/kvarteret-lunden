@@ -6,7 +6,7 @@ import {chromium} from 'playwright';
 // CHROME_PATH=/path/to/chrome node tools/place-picker-check.mjs http://localhost:8170 /tmp/kvarteret-picker-8-button
 const base = (process.argv[2] ?? 'http://localhost:8170').replace(/\/$/, '') + '/';
 const out = process.argv[3] ?? '/tmp/kvarteret-picker-8-button';
-const ids = ['area', 'home', 'l1004', 'l1201', 'courtyard', 'core', 'garage'];
+const ids = ['area', 'home', 'l1004', 'l1201', 'courtyard', 'core', 'garage', 'paddock'];
 // A fresh isolated browser context seeds only this app's own one-use resume key.
 const resumeKey = 'kvarteret-lunden.update-resume';
 const report = {base, checks: [], errors: [], external: []};
@@ -43,10 +43,10 @@ async function openApp(options, resume) {
   assert.equal(await toggle.getAttribute('aria-controls'), 'place-menu');
   assert.equal(await toggle.isEnabled(), true);
   assert.equal(await page.locator('nav.locations div#place-menu.place-buttons').count(), 1);
-  assert.equal(await page.locator('#place-menu [data-place]').count(), 7);
+  assert.equal(await page.locator('#place-menu [data-place]').count(), 8);
   assert.equal(await page.locator('[role="menu"], [role="menuitem"]').count(), 0, 'ordinary disclosure buttons');
   assert.deepEqual(await page.locator('[data-place]').evaluateAll(bs => bs.map(b => b.textContent.trim()[0])),
-    ['1', '2', '3', '4', '5', '6', '7']);
+    ['1', '2', '3', '4', '5', '6', '7', '8']);
   await disclosure(page, false, 'startup');
   return {context, page, toggle};
 }
@@ -64,7 +64,7 @@ async function destination(page, id, label) {
   const actual = await state(page);
   const expected = await page.evaluate(id => {
     const p = window.lundenViewer.locations[id];
-    const label = document.querySelector(`[data-place="${id}"]`).textContent.trim().replace(/^[1-7]\s*·\s*/, '');
+    const label = document.querySelector(`[data-place="${id}"]`).textContent.trim().replace(/^[1-8]\s*·\s*/, '');
     return {position: [p.x, p.y, p.z], name: p.name, label};
   }, id);
   assert.deepEqual(actual.position, expected.position, `${label}: actual navigation.pos for ${id}`);
@@ -185,8 +185,8 @@ try {
   await openMenu(m, true);
   await popup(m, 'landscape scroll');
   await screenshot(m, 'touch-landscape-open');
-  await m.locator('#place-menu [data-place="garage"]').tap();
-  await destination(m, 'garage', 'landscape last item');
+  await m.locator('#place-menu [data-place="paddock"]').tap();
+  await destination(m, 'paddock', 'landscape last item');
   const saved = await m.evaluate(() => {
     const v = window.lundenViewer;
     return {position: v.navigation.pos.toArray(), yaw: v.camera.rotation.y, pitch: v.camera.rotation.x,
@@ -203,7 +203,7 @@ try {
   const desktop = await openApp({viewport: {width: 1280, height: 800}, isMobile: false, hasTouch: false},
     {...saved, version});
   const d = desktop.page;
-  await destination(d, 'garage', 'takeResume startup');
+  await destination(d, 'paddock', 'takeResume startup');
   assert.deepEqual(await d.evaluate(key => ({key: sessionStorage.getItem(key), intro: document.getElementById('intro').hidden,
     yaw: window.lundenViewer.camera.rotation.y, pitch: window.lundenViewer.camera.rotation.x}), resumeKey),
   {key: null, intro: true, yaw: saved.yaw, pitch: saved.pitch}, 'resume consumed once, pose and active state restored');
@@ -241,7 +241,7 @@ try {
   await d.keyboard.press('Space');
   await destination(d, 'home', 'keyboard Space chooses');
   await desktop.toggle.focus();
-  for (const [key, id] of [['ArrowUp', 'garage'], ['Home', 'area'], ['End', 'garage'], ['ArrowDown', 'area']]) {
+  for (const [key, id] of [['ArrowUp', 'paddock'], ['Home', 'area'], ['End', 'paddock'], ['ArrowDown', 'area']]) {
     await d.keyboard.press(key);
     await disclosure(d, true, `${key} opens or keeps menu`);
     assert.equal(await d.evaluate(() => document.activeElement.dataset.place), id, `${key}: button focus`);
@@ -283,14 +283,14 @@ try {
     }
   }
   await layout(d, 1280, 800, 'resize back to desktop');
-  await destination(d, 'garage', 'resize back preserves selection');
+  await destination(d, 'paddock', 'resize back preserves selection');
   await screenshot(d, 'desktop-resized-after');
   await desktop.context.close();
   assert.deepEqual(report.errors, [], 'no app exceptions');
   assert.deepEqual(report.external, [], 'no external requests');
   assert.equal((await (await fetch(new URL('version.json', base))).json()).version, report.version, 'build unchanged throughout check');
   report.pass = true;
-  console.log(`PASS: button disclosure, seven actual destinations, touch 390/320/landscape, 650/960/961/1280, Tab/Enter/Space/Escape/outside, resize, Digit/Numpad and takeResume; ${out}`);
+  console.log(`PASS: button disclosure, eight actual destinations, touch 390/320/landscape, 650/960/961/1280, Tab/Enter/Space/Escape/outside, resize, Digit/Numpad and takeResume; ${out}`);
 } catch (error) {
   report.pass = false;
   report.failure = error.stack;

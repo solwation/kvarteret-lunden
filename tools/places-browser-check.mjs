@@ -12,8 +12,8 @@ try{
  await page.evaluate(()=>window.lundenViewer.renderer.setAnimationLoop(null));
  const position=()=>page.evaluate(()=>window.lundenViewer.navigation.pos.toArray());
  const initial=await position();await page.keyboard.press('Digit3');assert.deepEqual(await position(),initial,'welcome must ignore shortcuts');
- const ids=await page.locator('[data-place]').evaluateAll(bs=>bs.map(b=>b.dataset.place));assert.deepEqual(ids,['area','home','l1004','l1201','courtyard','core','garage']);
- assert.deepEqual(await page.locator('[data-place]').evaluateAll(bs=>bs.map(b=>b.textContent.trim()[0])),['1','2','3','4','5','6','7']);
+ const ids=await page.locator('[data-place]').evaluateAll(bs=>bs.map(b=>b.dataset.place));assert.deepEqual(ids,['area','home','l1004','l1201','courtyard','core','garage','paddock']);
+ assert.deepEqual(await page.locator('[data-place]').evaluateAll(bs=>bs.map(b=>b.textContent.trim()[0])),['1','2','3','4','5','6','7','8']);
  await page.locator('#start').click();await page.evaluate(()=>document.exitPointerLock?.());
  for(let i=0;i<ids.length;i++){
   await page.keyboard.press(`Digit${i+1}`);
@@ -24,7 +24,7 @@ try{
   if(['l1004','l1201'].includes(ids[i])){await page.evaluate(()=>{const v=window.lundenViewer;v.world.core.update(0,v.navigation,v.camera);v.world.garage.update(0,v.navigation,v.camera);v.scene.updateMatrixWorld();v.renderer.render(v.scene,v.camera);});await page.screenshot({path:`${out}/${ids[i]}.png`});}
  }
  await page.keyboard.press('Numpad3');assert.equal(await page.locator('[data-place].selected').getAttribute('data-place'),'l1004');
- await page.locator('#help').click();const helpPosition=await position();await page.keyboard.press('Digit1');assert.deepEqual(await position(),helpPosition);assert.match(await page.locator('#help-dialog').textContent(),/1–7/);await page.locator('#close-help').click();
+ await page.locator('#help').click();const helpPosition=await position();await page.keyboard.press('Digit1');assert.deepEqual(await position(),helpPosition);assert.match(await page.locator('#help-dialog').textContent(),/1–8/);await page.locator('#close-help').click();
  await page.setViewportSize({width:390,height:844});
  for(const id of ids){await page.locator('#place-toggle').click();await page.locator(`#place-menu [data-place="${id}"]`).click();assert.equal(await page.locator('[data-place].selected').getAttribute('data-place'),id);assert.equal(await page.locator('#place-toggle').getAttribute('aria-expanded'),'false');}
  await page.locator('#place-toggle').click();await page.locator('#place-menu [data-place="l1201"]').click();await page.evaluate(()=>{const v=window.lundenViewer;v.world.core.update(0,v.navigation,v.camera);v.world.garage.update(0,v.navigation,v.camera);v.scene.updateMatrixWorld();v.renderer.render(v.scene,v.camera);});
@@ -36,5 +36,5 @@ try{
  await page.reload();await page.waitForFunction(()=>window.lundenViewer?.renderer.info.render.frame>0,null,{timeout:120000});
  const legacy=await page.evaluate(()=>{const v=window.lundenViewer,n=v.navigation,e=v.locations.l1201;return {selected:document.querySelector('[data-place].selected').dataset.place,pos:n.pos.toArray(),expected:[e.x,e.y,e.z],intro:document.getElementById('intro').hidden};});
  assert.equal(legacy.selected,'l1201');assert.deepEqual(legacy.pos,legacy.expected);assert.equal(legacy.intro,true,'the resumed view stays active');results.push({legacyResume:legacy});
- assert.deepEqual(errors,[]);assert.deepEqual(external,[]);await writeFile(out+'/results.json',JSON.stringify({results,errors,external,narrowBounds:bounds},null,2));console.log(`PASS: seven real-world destinations, stable floors/collision, L1004/L1201 identity, legacy l1202 resume, Digit/Numpad, welcome/help guards, narrow menu; ${out}`);
+ assert.deepEqual(errors,[]);assert.deepEqual(external,[]);await writeFile(out+'/results.json',JSON.stringify({results,errors,external,narrowBounds:bounds},null,2));console.log(`PASS: eight real-world destinations, stable floors/collision, L1004/L1201 identity, legacy l1202 resume, Digit/Numpad, welcome/help guards, narrow menu; ${out}`);
 }finally{await browser.close();}

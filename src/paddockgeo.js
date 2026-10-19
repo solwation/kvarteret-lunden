@@ -58,6 +58,15 @@ export const gateSpan = (() => {
   return best;
 })();
 
+/** The menu destination (#83): a spot `PADDOCK.visit.out` m outside the closed gate, looking in at the paddock; {x, z, yaw} (camera yaw: 0 looks north = -z). */
+export const visitSpot = (() => {
+  const n = posts.length, a = posts[gateSpan], b = posts[(gateSpan + 1) % n], gx = (a[0] + b[0]) / 2, gz = (a[1] + b[1]) / 2, l = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1;
+  let nx = (b[1] - a[1]) / l, nz = -(b[0] - a[0]) / l; // the gate's normal, pointing into the paddock
+  if (!inPoly(fenceLine, gx + nx, gz + nz)) { nx = -nx; nz = -nz; }
+  const x = gx - nx * P.visit.out, z = gz - nz * P.visit.out, tx = gx + nx * P.visit.aim, tz = gz + nz * P.visit.aim;
+  return { x, z, yaw: Math.atan2(-(tx - x), -(tz - z)) };
+})();
+
 /** Is (x, z) inside the fence line, at least `margin` m from it? */
 export const insideFence = (x, z, margin = 0) => inPoly(fenceLine, x, z) && (margin <= 0 || ringDist(fenceLine, x, z) >= margin);
 /** The stile (#1295): a step-over beside the gate in the neighbouring span (the next one after the gate, else the one before) that is long enough:
