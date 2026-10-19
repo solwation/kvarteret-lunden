@@ -25,6 +25,9 @@ try{
    const f=sh.footprintGround(p.ground,sp.x,sp.z,sp.yaw),tg=[-1,0,1].flatMap(i=>[-1,0,1].map(j=>p.ground(T.x+i*0.9,T.z+j*0.3))),gd=Math.hypot(sp.x-p.gate.x,sp.z-p.gate.z);
    R.push(['#80 (original #1335/#1336): the shelter stands on flat ground well inside the fence and in view of the gate',f.relief<=PD.shelter.maxRelief&&geo.insideFence(sp.x,sp.z,PD.shelter.edge)&&gd>8&&gd<45,JSON.stringify({relief:f.relief,gd})]);
    R.push(['the trough stands on flat ground',Math.max(...tg)-Math.min(...tg)<0.3,(Math.max(...tg)-Math.min(...tg)).toFixed(2)]);}
+  {const {applySeason}=await import(new URL('/src/seasons.js',location.origin)),q=p.winterDecor,c=camera.position.clone(),tr=q.children.reduce((a,m)=>a+(m.geometry.index?m.geometry.index.count:m.geometry.attributes.position.count)/3,0);
+   camera.position.set(geo.centre.x,camera.position.y,geo.centre.z);const probe=m=>{applySeason(m);p.update(0.1);return q.visible;};const w=probe(1),su=probe(7);applySeason(1);camera.position.x+=3000;p.update(0.1);const far=q.visible;camera.position.x-=3000;p.update(0.1);const back=q.visible;camera.position.copy(c);
+   R.push(['#92 (original #1345): winter shelter decoration: two merged meshes, shown only in the snow months and near, no lights',q.children.length===2&&tr<3500&&w&&!su&&!far&&back&&!q.children.some(m=>m.isLight),JSON.stringify({tr,w,su,far,back})]);applySeason(Number(new URLSearchParams(location.search).get('month'))||6);}
   n.teleport(-108,groundY(-108,238),238);for(let i=0;i<10;i++)n.update(dt);
   let outside=0,minTree=99;
   for(let i=0;i<6000;i++){p.update(0.1);for(const q of p.ponies){if(!geo.insideFence(q.x,q.z,1.0))outside++;for(const t of treeFeet)minTree=Math.min(minTree,Math.hypot(t.x-q.x,t.z-q.z));}}

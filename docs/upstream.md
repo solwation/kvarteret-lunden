@@ -40,7 +40,7 @@ Automatisk publicering till GitHub Pages är aktiverad vid varje push till detta
 
 ## Register
 
-- Senast granskade originalversion: `f2330dde`, `53c46cd8`, `350c5196`, `0a934ac2` (för #81); tidigare `937ac17e` (för #80); tidigare `d884dbb9` + `b61bf377` (för #79); tidigare `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
+- Senast granskade originalversion: `24e72f89` + `8cd6788` (för #92); tidigare `f2330dde`, `53c46cd8`, `350c5196`, `0a934ac2` (för #81); tidigare `937ac17e` (för #80); tidigare `d884dbb9` + `b61bf377` (för #79); tidigare `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -625,3 +625,10 @@ Medianen av 171 parvisa lutningar från de 19 mittlinjepunkterna är −0,000917
 Verifierat: `npm test` (79 moduler) och bygge, Native-profilprov 5/5 och byteidentisk offline-reproduktion av rapporten; `tools/farwalk-check.mjs` 23 PASS/CLI0, inklusive båda småbroriktningarna och tre lokala vattenåterkomster. I den byggda riktiga visningen följer faktiska vattenmeshtrianglar de lokala nivåerna vid tre ankare (största avvikelse under 0,3 mm), total nivåskillnad 0,48207 m; en faktisk 32 m promenad går under båda broarna och tre verkliga Navigation.rescue-återkomster är torra. Inga sidfel eller externa anrop och oförändrade originalmarkörer i localStorage/sessionStorage. Före- och byggbilder vid vägunderfarten, träbrons ramp, västra stranden och översikt granskade. Den första privata promenaden var för kort vid befintlig gånghastighet; provtiden förlängdes, utan produktändring.
 
 Det tidigare geografiska återkomstfelet vid ankare 14 (punkten cirka 7,8 cm innanför gångspärren) rättades i #91: `waterRescue` stegar nu ut längs åns normal tills punkten ligger minst 0,15 m utanför gångspärren (bredd/2 + `WALK.wade`) för närmaste åsegment, och profilprovet har inget undantag längre.
+
+
+## Vinterskjul i hagen, #92
+
+Importerad från `24e72f89` och `8cd6788` (original #1345): `src/shelterwinter.js` (halm på marken inne i skjulet, girlang längs frontbalken och 16 varma lampor i två sammanfogade nät, 3 362 trianglar), enbart `PADDOCK.shelter.winter` i `src/config.js` och två små krokar i `src/paddock.js` (bygg efter skjulet, synlig bara i snömånaderna och inom hagens ritavstånd, samma culling som ponnyerna). Inga extra ljuskällor, texturer, skuggor eller kollision; skjulets placering och ponnyernas vinterplats är oförändrade. Originalets heldagscykel/nattläge, tester (`shelterwintertest.cjs`), ändringslogg och dokumentation har inte importerats; den här visningen har ingen dygnscykel, så natt kan inte testas.
+
+Verifiering: `npm test`, `npm run build`, Chromium (`?month=1` och `?month=7`): vinter 2 nät/+2 ritanrop, sommar dolt, dolt på långt avstånd; bilder nära/långt bort; ny kontroll i `tools/paddock-check.mjs`.
