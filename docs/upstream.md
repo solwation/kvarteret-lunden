@@ -519,3 +519,9 @@ Mätning före: asfalten bakom HepCat var 8 192 trianglar (1 m); synliga gröna 
 Importerad från originalet: `2aad0296` (#1313): `pathStrip` i `src/roads.js` skär lutande kvadrer långt från kvarteret längs terrängmeshens rutnät och diagonaler (`terrainCuts`, `cutAtTerrain` flyttad hit från `sitebackdrop.js`, knäck inom 1 cm släpps), och `farGround.grid()` i `src/southbackdrop.js` ger de södra gångvägarna samma rutnät. Originalets ändringslogg och `perfcount` finns inte nedströms.
 
 Verifiering: `npm test`, bygg, Chromium-bilder i dagsljus före/efter vid Sävsländegatan (grönt hål före, borta efter; svaga hårfina skarvar kvarstår). Originalets perfcount-topp var 988 466 trianglar (budget 1 000 000).
+
+## Gröna hårlinjer i gångvägarna, #75
+
+Importerad från originalet: `8801ca3b` (#1314): i `pathStrip` (`src/roads.js`) överlappar varje skuren bit sina grannar med 1,5 cm över skärlinjerna (kanterna flyttas utåt och höjden samplas om), så de hårfina springorna där grannen skärs annorlunda täcks. Inga extra trianglar.
+
+Verifiering: `npm test`, bygg, Chromium-bilder i dagsljus före/efter vid Sävsländegatan.
