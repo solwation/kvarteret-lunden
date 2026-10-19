@@ -534,3 +534,9 @@ Importerad från originalet: `2fa7e79c` (#1280, hagen) och `90a1f669` (#1295, st
 Medvetet inte importerat: all interaktion (originalets klappning från #1293 med pick-lådor, `targets()`, `pet()`, ljudet `nicker`), ponnyernas namn (personliga), `noDetail`/`warmDraw`-krokar och originalets `audio.js`-beroende. Ponnyerna är enbart miljö: nätet har ingen raycast och inget i `main.js` frågar efter dem. `?nopaddock` stänger av hagen. Uppföljarna original-#1315 (betning) och #1316 (skydd i regn) är inte överförda.
 
 Verifiering: `npm test`, bygg, `node --test tools/paddockgeotest.mjs` och `CHROME_PATH=… node tools/paddock-check.mjs http://localhost:8238 /tmp/paddock` (ett staketnät och ett ponnynät, trianglar inom budget, ponnyerna håller sig inom staketet i 10 simulerade minuter, ritas/simuleras inte långt bort, strålar går igenom, grinden och staketet stoppar en riktig gång, stättan går att gå över), samt bilder från grinden, ovanifrån och vid stättan.
+
+## Gångvägen under bron, #77
+
+Importerad från originalet: `0fc23831` (#1317): i `buildRiverPark` (`src/riverpark.js`) klipps en gångvägsremsa inte längre bort när alla hörn ligger på en väg i plan om något hörn ligger under en brodäcksyta (`deckAt`). Sankt Lars väg korsar bron, så grusgången vid z 111 under vägbron fick tidigare ett glapp.
+
+Verifiering: `npm test`, bygg, Chromium-bilder underifrån före/efter (glapp under bron före, sammanhängande grusgång efter; grusnätet 2032 -> 2040 trianglar).
