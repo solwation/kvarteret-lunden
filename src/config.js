@@ -2228,3 +2228,9 @@ export const PADDOCK = {
   // stepping walks it) over two treads of `tread` m either side of a platform that is 2 × `platform` m long; `reach` m from the fence line to the walls' ends
   stile: { w: 1.0, minSpan: 1.9, rise: 0.38, tread: 0.3, platform: 0.25, reach: 0.95, post: 0.95 },
 };
+
+// #1363: walking-route lamp placements and dimensions are visual guesses, not surveyed fittings.
+// Paths themselves retain their sourced OSM coordinates. Existing street head/glow/material batches are reused.
+export const PATH_LIGHTS = { height: 4.6, step: 18, edge: 0.65, pathClear: 0.25, treeClear: 1.2, fenceClear: 0.8,
+  waterClear: 4, duplicateClear: 10, pool: { along: 7, across: 3.5, rings: 5, segs: 20 },
+  sources: ['44447963', '123898762', '123898761', '130537426', '44447981', '1432565775', '44447962', '1228396153', '185706718', '51890086', '1432565773'] };
