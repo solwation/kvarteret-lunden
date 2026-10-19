@@ -448,6 +448,10 @@ export const SITE = {
   // Width and uniform depth remain assumptions; do not describe these as measured water levels or surveyed banks.
   // `bankScale` (guess, from original #1233) shortens every bank span below so the slope to the water is steeper; not surveyed.
   river: {width:8,bank:10,bankScale:.55,
+    // #90, original #1350: relative grade from19 ground-reference points (#85), median of171 pairwise slopes.
+    // About0.482m over525.646m; visual interpretation, NOT measured water/bathymetry. Existing vertical datum at road-bridge centre.
+    // Lantmäteriet via kart-api, CC BY4.0; reproduced by tools/riverfall.mjs.
+    fall: { perM: 0.0009170995546035121 },
     // #533 widths/bank spans are visual estimates from the aerial/2016 photos, not surveyed dimensions.
     widths:[6,6,7,8,8,9,9,8,8,8,7,7,6,6,6,7,7,6,6],
     banks:[13,14,15,12,11,12,13,11,10,10,12,14,13,7,3,3,13,12,10],

@@ -16,9 +16,9 @@ try{
  await page.locator('#start').click({timeout:120000});await page.evaluate(()=>document.exitPointerLock?.());
  const res=await page.evaluate(async()=>{
   const {WALK,SITE}=await import(new URL('/src/config.js',location.origin));
-  const {groundY}=await import(new URL('/src/surroundings.js',location.origin)); // #69: the north and the far west/east now lie above y 0, so a start point is lifted onto the ground (never below 0: lower ground is fallen onto)
+  const {groundY,groundBelowDeckY}=await import(new URL('/src/surroundings.js',location.origin)); // #69: the north and the far west/east now lie above y 0, so a start point is lifted onto the ground (never below 0: lower ground is fallen onto)
   const {parkRampEnds}=await import(new URL('/src/riverpark.js',location.origin));
-  const {riverAt}=await import(new URL('/src/riverbridge.js',location.origin));
+  const {riverAt,waterYAt}=await import(new URL('/src/riverbridge.js',location.origin));
   const {navigation:n,camera}=window.lundenViewer, dt=1/60;
   let pk=-9;
   const walk=(start,pts)=>{pk=-9;
@@ -52,8 +52,10 @@ try{
   }
   const results=R.map(([name,s,p,ok])=>{const stuck=walk(s,p);return {name,ok:ok(),end:n.pos.toArray().map(v=>+v.toFixed(2)),stuck};});
   // dropped into the river: back on the bank
-  const r0=riverAt(-41,143);n.teleport(r0.x+r0.nx*0.2,SITE.bridges.bedY,r0.z+r0.nz*0.2);n.update(dt);
+  const r0=riverAt(-41,143);n.teleport(r0.x+r0.nx*0.2,groundBelowDeckY(r0.x,r0.z),r0.z+r0.nz*0.2);n.update(dt);
   const r=riverAt(n.pos.x,n.pos.z);results.push({name:'river rescue',ok:r.distance>=r.width/2+1,end:n.pos.toArray()});
+  // #90: the public navigation keeps its geographical water barrier and lands on the locally graded dry shore.
+  for(const i of[1,8,16]){const[x,z]=SITE.river.path[i];n.teleport(x,groundBelowDeckY(x,z),z);n.rescue();const end=n.pos.toArray(),r=riverAt(end[0],end[2]);results.push({name:`local river recovery at station ${i}`,ok:r.distance>=r.width/2+1&&end[1]>waterYAt(end[0],end[2])+.3,end});}
   return results;
  });
  for(const r of res)console.log(r.ok?'PASS':'FAIL',r.name,JSON.stringify(r.end));
