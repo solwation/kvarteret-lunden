@@ -2195,6 +2195,14 @@ export const PADDOCK = {
   grass: { cell: 1.5, spacing: 1.3, w: 0.8, long: 0.5, short: 0.03, colors: [0x35601c, 0x8ba94a], reach: 1.15, bite: 1.3, rate: 0.6, regrow: 1 / 4000,
     patches: 10, radius: [4, 9], level: 0.05, around: 4, tries: 4, hungry: 0.35, period: 0.15, margin: 1.6 },
   trough: { w: 1.7, d: 0.5, h: 0.42 }, shelter: { w: 4.2, d: 2.6, h: 2.3 },
+  // Shade trees (original #1316, all *guess*): big trees in the meadow, [x, z, scale] like `SITE.bigTrees` (surroundings.js builds them as kind 'big': the shared crown/trunk batches,
+  // so no extra draw calls; their trunks block through `treeFeet` like every other tree); at least 10 m inside the fence and 25 m from the gate (paddockgeotest checks).
+  trees: [[-170, 247, 1.2], [-215, 270, 1.3], [-235, 293, 1.15]],
+  // Weather (original #1316, src/paddockshelter.js; all *guess*): rain (0..1, fed to `Paddock.update`; this project has no weather of its own, so only `?paddockrain=` and tests drive it) of at least `on`
+  // sends ponies to a sheltered spot, until it has been under `off` for `dry` s; each rain a pony goes with probability `chance` (at least one does, the others may stand out in it). A sheltered spot
+  // is under the shelter's roof (two, at +-`shedX` m across it) or on a ring of `ring` x tree scale m round a tree (under the crown, clear of the trunk; `treeSpots` of them each). In the snow months
+  // (SEASON.snowMonths: the ground is white) the ponies are not in the paddock: they walk to the shelter and are gone ("in the stable"), and come out of it again when the snow is gone.
+  rain: { on: 0.12, off: 0.03, dry: 20, chance: 0.8, ring: 2.3, treeSpots: 4, shedX: 0.9 },
   // the stile beside the gate (#1295, *guess*): `w` m wide, `minSpan` m the fence span it needs, three risers of `rise` m (under PLAYER.stepUp 0.45, so the ordinary
   // stepping walks it) over two treads of `tread` m either side of a platform that is 2 × `platform` m long; `reach` m from the fence line to the walls' ends
   stile: { w: 1.0, minSpan: 1.9, rise: 0.38, tread: 0.3, platform: 0.25, reach: 0.95, post: 0.95 },

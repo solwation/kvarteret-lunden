@@ -8,6 +8,7 @@ import { reloadOnContextRestore } from './lowmemory.js';
 import { installPlaceShortcuts } from './place-shortcuts.js';
 import { Garage } from './garage.js';
 import { Paddock } from './paddock.js';
+import { applySeason } from './seasons.js';
 import { groundY, renderedTerrainY, treeFeet } from './surroundings.js';
 import { Core } from './core.js';
 import { CoreHouse } from './corehouse.js';
@@ -19,6 +20,7 @@ const touch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoint
 document.body.classList.toggle('touch', touch);
 const touchLayout = setupTouchLayout({enabled: touch}); // own button/stick layout from the help dialog (#30, upstream 1af9b39)
 let renderer, camera, scene, world, navigation, core, garage, paddock;
+const debugParams = new URLSearchParams(location.search), paddockRain = Math.max(0, Math.min(1, Number(debugParams.get('paddockrain')) || 0));
 let active = false, ready = false, focus = null, measuring = false, firstPoint = null;
 const ray = new THREE.Raycaster(), centre = new THREE.Vector2();
 const points = new THREE.Group();
@@ -155,6 +157,7 @@ async function init() {
   // In parts, with the card's heartbeat painted between them (#39, from the original's 673b78d #1133).
   world = await buildWorldSliced(plan, (share) => loadingYield(0.2 + 0.6 * share)); scene.add(world.object);
   paddock = new URLSearchParams(location.search).has('nopaddock') ? null : new Paddock({ scene, camera, ground: (x, z) => (z > 260 ? -3.01 : Math.max(groundY(x, z), renderedTerrainY(x, z))), trees: treeFeet }); // original #1280: the fenced pony paddock, scenery only
+  const debugMonth = Number(debugParams.get('month')); if (debugMonth >= 1 && debugMonth <= 12) applySeason(Math.round(debugMonth)); // debug: show a month's season (snow months: white ground, ponies in the stable)
   await loadingStep('Bygger trapphus och garage', 0.82);
   garage = world.garage = new Garage();
   for (const o of [garage.object, garage.blackout, garage.door?.object, garage.parkObject]) if (o) scene.add(o);
@@ -224,7 +227,7 @@ function frame() {
   for (const clock of world.clocks) clock.update(hour);
   core.update(dt, navigation, camera);
   garage.update(dt, navigation, camera);
-  paddock?.update(dt, navigation.below);
+  paddock?.update(dt, navigation.below, paddockRain); // no weather here: only the debug parameter ?paddockrain=0..1 (original #1316's rain input)
   updateCameraNear();
   scene.updateMatrixWorld();
   if (active) {

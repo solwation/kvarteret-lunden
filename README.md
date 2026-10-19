@@ -10,7 +10,7 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 Behåll byggnader, omgivning, fast inredning, förflyttning, dörrar och mätverktyg. Ta bort personlig möblering, teckningar, foton, familjereferenser, karaktärer, poäng, leksaker och andra spelinslag.
 
-Söder om träfotgängarbron ligger en inhägnad hage med två ponnyer (importerad från originalet, #76). Ponnyerna är enbart miljö och går inte att klappa eller interagera med; de betar gräset i hagen (#78). Lägg till `?nopaddock` i adressen för att stänga av hagen.
+Söder om träfotgängarbron ligger en inhägnad hage med två ponnyer (importerad från originalet, #76). Ponnyerna är enbart miljö och går inte att klappa eller interagera med; de betar gräset i hagen (#78), tre skuggträd står i hagen och ponnyerna söker skydd i regn och är borta när det är snö (#79; saknar väder här, testa med `?paddockrain=0.8` och `?month=1`). Lägg till `?nopaddock` i adressen för att stänga av hagen.
 
 Visningen ska vara statisk och fungera **utan Cloudflare-integration**. Originalets Workers, WebSockets, delade lagring och speltjänster ska inte användas. Eventuell lokal lagring ska ha egna namn och aldrig läsa eller ändra originalets data.
 

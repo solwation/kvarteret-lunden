@@ -44,6 +44,38 @@ try{
    p.snowy=true;p.update(0.1);const hid=!p.grass.visible;p.snowy=false;p.update(0.1);
    R.push(['snow months hide the tufts',hid&&p.grass.visible,'']);
    for(const q of p.ponies){q.state='idle';q.left=0;}}
+  // shade trees, shelter in rain and the snow months (#79, original #1316)
+  {const {PADDOCK}=await import(new URL('/src/config.js',location.origin)),{riverAt}=await import(new URL('/src/riverbridge.js',location.origin)),{applySeason}=await import(new URL('/src/seasons.js',location.origin));
+   const tr=PADDOCK.trees.map(([x,z])=>({n:treeFeet.filter(t=>Math.hypot(t.x-x,t.z-z)<0.01&&t.kind==='big').length,river:riverAt(x,z).distance-riverAt(x,z).width/2}));
+   R.push(['shade trees are big trees in treeFeet, well away from the river',tr.length>=2&&tr.every(t=>t.n===1&&t.river>15),JSON.stringify(tr.map(t=>t.river.toFixed(0)))]);
+   {const [tx,tz]=PADDOCK.trees[0],sz=tz+6;n.teleport(tx,groundY(tx,sz),sz);for(let i=0;i<20;i++)n.update(dt);n.keys=new Set(['KeyW']);for(let i=0;i<600;i++){camera.rotation.set(0,0,0,'YXZ');n.update(dt);}n.keys=new Set();
+    const d=Math.hypot(n.pos.x-tx,n.pos.z-tz);R.push(['walking into a shade trunk is stopped by it',d>0.5&&d<4,d.toFixed(2)]);}
+   n.teleport(-108,groundY(-108,238),238);for(let i=0;i<10;i++)n.update(dt);
+   applySeason(7);p.update(0.1,false,0);
+   const near=q=>p.shelterPlaces.some(s=>Math.hypot(s.x-q.x,s.z-q.z)<1.2);
+   for(let i=0;i<200;i++)p.update(0.1,false,0);const dryUnder=p.ponies.filter(near).length;
+   let outside=0;for(let i=0;i<1500;i++){p.update(0.1,false,0.8);for(const q of p.ponies)if(!geo.insideFence(q.x,q.z,1.0))outside++;}
+   const under=p.ponies.filter(near).length,seekers=p.ponies.filter(q=>q.seek).length,kinds=p.ponies.map(q=>p.shelterPlaces.find(s=>Math.hypot(s.x-q.x,s.z-q.z)<1.2)?.kind??null);
+   const apart=Math.hypot(p.ponies[0].x-p.ponies[1].x,p.ponies[0].z-p.ponies[1].z),pos=p.ponies.map(q=>[q.x,q.z]);
+   for(let i=0;i<100;i++)p.update(0.1,false,0.8);
+   const stay=p.ponies.every((q,i)=>Math.hypot(q.x-pos[i][0],q.z-pos[i][1])<1.5||!q.seek);
+   R.push(['dry weather: nobody is under cover',dryUnder===0,'']);
+   R.push(['rain: seeking ponies stand under the shed or a tree, apart, inside the fence, and stay',under>=1&&under>=seekers&&apart>1.5&&outside===0&&stay,JSON.stringify({under,seekers,kinds,apart:+apart.toFixed(1),outside})]);
+   window.__rainPonies=p.ponies.map(q=>q.spot?{k:q.spot.kind,x:q.x,z:q.z}:null);
+   for(let i=0;i<(PADDOCK.rain.dry-5)*10;i++)p.update(0.1,false,0);const early=p.ponies.filter(q=>q.spot).length;
+   for(let i=0;i<1800;i++)p.update(0.1,false,0);
+   R.push(['after the rain and the dry delay the ponies go back out',early>=1&&p.ponies.every(q=>!q.spot)&&p.ponies.every(q=>geo.insideFence(q.x,q.z,1)),`early ${early}`]);
+   // winter: a pony in view walks to the shelter first, then is gone and not drawn; back in July
+   for(const q of p.ponies){q.state='idle';q.left=0;}for(let i=0;i<50;i++)p.update(0.1,false,0);
+   const before=p.ponies.filter(q=>!q.gone).length;applySeason(1);let first=-1;// (a pony may be 100 m from the shelter: ~2 minutes at walking speed)
+   for(let i=0;i<3000;i++){p.update(0.1,false,0);if(first<0&&p.ponies.some(q=>q.gone))first=i/10;for(const q of p.ponies)if(!q.gone&&!geo.insideFence(q.x,q.z,1.0))outside++;}
+   R.push(['snow months: ponies walk to the shelter, then are gone and not drawn',before===2&&p.winter&&p.ponies.every(q=>q.gone)&&!p.mesh.visible&&first>1&&outside===0,JSON.stringify({before,first,visible:p.mesh.visible})]);
+   applySeason(7);for(let i=0;i<200;i++)p.update(0.1,false,0);
+   R.push(['when the snow is gone they are back and walking',!p.winter&&p.ponies.every(q=>!q.gone)&&p.mesh.visible&&p.ponies.every(q=>geo.insideFence(q.x,q.z,1)),'']);
+   // hidden (nobody can see the paddock): the change is immediate, no walk
+   p.update(0.1,true,0);applySeason(2);p.update(0.1,true,0);const hiddenGone=p.ponies.every(q=>q.gone);applySeason(7);p.update(0.1,true,0);
+   R.push(['unseen paddock: snow takes the ponies at once, thaw returns them',hiddenGone&&p.ponies.every(q=>!q.gone),'']);
+   for(const q of p.ponies){q.state='idle';q.left=0;}}
   // scenery only: no raycast, no interaction members
   const q=p.ponies[0],rc=new T.Raycaster(new T.Vector3(q.x+3,q.y+1,q.z),new T.Vector3(-1,0,0),0,10);
   R.push(['rays pass through ponies and fence; no pat/pick members',rc.intersectObject(p.mesh).length===0&&rc.intersectObject(p.fence).length===0&&!('picks' in p)&&!('pet' in p)&&!('targets' in p),'']);
