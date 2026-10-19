@@ -25,6 +25,25 @@ try{
   let outside=0,minTree=99;
   for(let i=0;i<6000;i++){p.update(0.1);for(const q of p.ponies){if(!geo.insideFence(q.x,q.z,1.0))outside++;for(const t of treeFeet)minTree=Math.min(minTree,Math.hypot(t.x-q.x,t.z-q.z));}}
   R.push(['ponies stay inside the fence for 10 simulated minutes and clear of trunks',outside===0&&minTree>0.9,`outside ${outside}, nearest trunk ${minTree.toFixed(2)}`]);
+ // grazing (#78, original #1315): one instanced grass mesh, one draw call, a patchy mask, a grazing pony crops the grass at its muzzle, regrowth, snow hides it
+  {const g=p.grass,tr=g.count*g.geometry.attributes.position.count/3;
+   R.push(['grass: one instanced mesh within budget',g.isInstancedMesh&&g.count>500&&tr<50000,`${g.count} tufts, ${tr} tris`]);
+   const st=()=>{const m=p.gm;let n=0,lo=0,hi=0;for(let j=0;j<m.H;j++)for(let i=0;i<m.W;i++){if(!p.inside(m.x0+(i+0.5)*1.5,m.z0+(j+0.5)*1.5))continue;const v=m.v[j*m.W+i];n++;if(v<0.3)lo++;if(v>0.8)hi++;}return {lo:lo/n,hi:hi/n};};
+   const s0=st();R.push(['grass mask starts patchy',s0.lo>0.05&&s0.hi>0.4,JSON.stringify(s0)]);
+   n.teleport(-105,groundY(-105,232),232);for(let i=0;i<5;i++){n.update(dt);p.update(0.1);}
+   let calls=0;const rb=renderer.renderBufferDirect;renderer.renderBufferDirect=function(c,s,gg,m,o){if(o===p.grass)calls++;return rb.apply(this,arguments);};scene.updateMatrixWorld();renderer.render(scene,camera);renderer.renderBufferDirect=rb;
+   R.push(['grass: one draw call',calls===1&&p.grass.visible,String(calls)]);
+   const z=p.ponies[0];let best=null;for(const w of p.waypoints)if(p.grassAt(w[0],w[1])>0.95&&(!best||Math.hypot(w[0]+105,w[1]-232)<Math.hypot(best[0]+105,best[1]-232)))best=w;
+   z.x=best[0];z.z=best[1];z.yaw=1.57;z.state='graze';z.left=1e6;z.target=null;z.goal=null;
+   const mz=()=>p.grassAt(z.x+Math.sin(z.yaw)*1.15,z.z+Math.cos(z.yaw)*1.15),b4=mz();for(let i=0;i<200;i++)p.update(0.1);
+   R.push(['grazing pony crops the grass at its muzzle',b4>0.9&&mz()<0.4&&z.neck>1.1,`${b4.toFixed(2)} -> ${mz().toFixed(2)}`]);
+   n.teleport(-40,groundY(-40,232),232);n.update(dt);for(const q of p.ponies){q.state='idle';q.left=0;}const states=new Set();for(let i=0;i<6000;i++){p.update(0.1);if(i%50===0)p.ponies.forEach(q=>states.add(q.state));}
+   const s1=st();R.push(['after ten minutes still patchy; ponies graze and walk',s1.lo>0.003&&s1.hi>0.3&&states.has('graze')&&states.has('walk'),JSON.stringify({s1,states:[...states]})]);
+   const m=()=>{let t=0;for(const v of p.gm.v)t+=v;return t/p.gm.v.length;},m0=m();for(const q of p.ponies){q.state='idle';q.left=1e9;}for(let i=0;i<3000;i++)p.update(0.1);
+   R.push(['the grass regrows slowly',m()>m0,`${m0.toFixed(3)} -> ${m().toFixed(3)}`]);
+   p.snowy=true;p.update(0.1);const hid=!p.grass.visible;p.snowy=false;p.update(0.1);
+   R.push(['snow months hide the tufts',hid&&p.grass.visible,'']);
+   for(const q of p.ponies){q.state='idle';q.left=0;}}
   // scenery only: no raycast, no interaction members
   const q=p.ponies[0],rc=new T.Raycaster(new T.Vector3(q.x+3,q.y+1,q.z),new T.Vector3(-1,0,0),0,10);
   R.push(['rays pass through ponies and fence; no pat/pick members',rc.intersectObject(p.mesh).length===0&&rc.intersectObject(p.fence).length===0&&!('picks' in p)&&!('pet' in p)&&!('targets' in p),'']);
@@ -47,7 +66,7 @@ try{
   return R;
  });
  for(const [name,ok,info] of res)console.log(ok?'PASS':'FAIL',name,info);
- const shots=[['gate',[-110.5,224,90,-4]],['above',[-100,235,90,-35,40]],['stile',null]];
+ const shots=[['gate',[-110.5,224,90,-4]],['grass',[-105,232,90,-5]],['above',[-100,235,90,-35,40]],['stile',null]];
  for(const [name,v] of shots){
   await page.evaluate(async([v])=>{const geo=await import(new URL('/src/paddockgeo.js',location.origin)),{groundY}=await import(new URL('/src/surroundings.js',location.origin));
    const {paddock:p,navigation:n,camera,renderer,scene}=window.lundenViewer,s=geo.stile;
