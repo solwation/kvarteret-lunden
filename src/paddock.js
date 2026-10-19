@@ -447,6 +447,29 @@ export class Paddock {
     if (sp) { p.x = sp.x; p.z = sp.z; p.y = this.ground(p.x, p.z); p.yaw = this.spots.shelter.yaw; }
     p.gone = false; p.state = 'idle'; p.left = 1 + i * 4; p.goal = null; p.target = null; p.spot = sp; p.eat = false;
   }
+  /** #88: a visitor has just been put at (x, z) looking along `yaw` (the 'Hästhagen' destination): the ponies are already at the fence, in front of the visitor
+   *  (waypoints PADDOCK.visit.near [min, max, preferred] m away, within `cone` rad of the view axis, `gap` x 2 apart), facing the visitor, as they would be after walking
+   *  over (they do that within `curious` m anyway). Not in the snow months or in rain (then they stand under the roof). Returns the number of ponies placed. */
+  greet(x, z, yaw) {
+    if (this.winter || this.rainy) return 0;
+    const V = P.visit, dx = -Math.sin(yaw), dz = -Math.cos(yaw), taken = [];
+    let placed = 0;
+    this.ponies.forEach((p) => {
+      if (p.gone || p.spot) return;
+      let best = null, bs = Infinity;
+      for (const w of this.waypoints) {
+        const vx = w[0] - x, vz = w[1] - z, d = Math.hypot(vx, vz), ang = Math.acos(Math.max(-1, Math.min(1, (vx * dx + vz * dz) / d)));
+        if (d < V.near[0] || d > V.near[1] || ang > V.cone) continue;
+        if (taken.some((t) => Math.hypot(t[0] - w[0], t[1] - w[1]) < P.pony.gap * 2)) continue;
+        const sc = Math.abs(d - V.near[2]) + ang * 10; // near the preferred distance and the view axis
+        if (sc < bs) { bs = sc; best = w; }
+      }
+      if (!best) return;
+      taken.push(best); placed++;
+      Object.assign(p, { x: best[0], z: best[1], y: this.ground(best[0], best[1]), yaw: Math.atan2(x - best[0], z - best[1]), state: 'watch', goal: best, target: null, left: 8 + p.rnd() * 6, eat: false });
+    });
+    return placed;
+  }
   /** Send a pony to decide again in `after` s. */
   nudge(p, after) { p.state = 'idle'; p.left = after; p.goal = null; p.eat = false; }
   /** Per frame: the rain watch and the snow months. `show` false = nobody can see the paddock, so things change at once. */

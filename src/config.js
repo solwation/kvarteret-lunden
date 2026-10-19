@@ -2186,7 +2186,8 @@ export const DECAL_OFFSET = { factor: -1, units: -2 };
 // `track` m wide worn ribbon inside the fence. Two anonymous ponies: one light grey, one bay with a star.
 export const PADDOCK = {
   field: '237019759', inset: 1.2, postStep: 3, post: { w: 0.13, h: 1.3 }, rails: [0.55, 0.95, 1.25], rail: { w: 0.06, h: 0.12 },
-  gate: { w: 3.2, near: [-116.2, 219.98] }, visit: { out: 5, aim: 14 }, // the 'Hästhagen' menu destination (#83, *guess*): `out` m outside the gate along its normal, looking at the point `aim` m inside it
+  gate: { w: 3.2, near: [-116.2, 219.98] }, visit: { out: 5, aim: 14, near: [7, 14, 9], cone: 0.3 }, // the 'Hästhagen' menu destination (#83, *guess*): `out` m outside the gate along its normal, looking at the point `aim` m inside it; #88: the ponies are placed
+  // (Paddock.greet) on waypoints `near` [min, max, preferred] m from the visitor within `cone` rad of the view axis so that they are in view and large on arrival
   track: { w: 0.9, inset: 3.2, color: 0x80724c }, color: 0x7f9a4f,
   wood: [0x8a6a45, 0x7d5f3d, 0x94754d], waypoint: 5, treeClear: 2.6, riverClear: 7, maxSlope: 0.3, viewDist: 280, curious: 40, keep: 2.5,
   pony: { withers: 1.32, neck: [0, 1.12, 0.55], speed: 0.85, turn: 1.4, graze: [6, 16], idle: [3, 8], gap: 2.2,

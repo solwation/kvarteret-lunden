@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {chromium} from 'playwright';
+// #88: at least one pony stands in front of the visitor, in frame and >= 40 px tall (both viewports), still there after a few seconds.
 // #83: the "Hästhagen" destination: outside the fence, clear of trees, on the ground, facing the paddock, walkable on; screenshots (desktop + 390x844).
 // CHROME_PATH=... node tools/paddock-visit-check.mjs [base-url] [screenshot-dir]
 const base=process.argv[2]??'http://localhost:8165',out=process.argv[3]??'/tmp/kvarteret-paddock-visit';
@@ -24,9 +25,12 @@ try{
    for(let i=0;i<120;i++)n.update(1/60);const settled=n.pos.toArray();
    // walk on: forward 0.5 s towards the fence, then sideways along it
    n.keys.add('KeyW');for(let i=0;i<60;i++)n.update(1/60);n.keys.clear();const fwd=n.pos.toArray();
-   return {place:document.getElementById('place').textContent,current:document.getElementById('place-current').textContent,selected:document.querySelector('[data-place].selected').dataset.place,before,settled,fwd,p:[p.x,p.y,p.z],nearTree,inside:geo.insideFence(p.x,p.z),aheadInside:geo.insideFence(...ahead),ground,paddockDist:Math.hypot(geo.centre.x-p.x,geo.centre.z-p.z)};
+   const seen=()=>{const T=c.position.constructor,out=[];for(const q of v.paddock.ponies){const a=new T(q.x,q.y+0.7,q.z).project(c),t=new T(q.x,q.y+1.5,q.z).project(c),b=new T(q.x,q.y,q.z).project(c);if(a.z<1&&Math.abs(a.x)<1&&Math.abs(a.y)<1)out.push((t.y-b.y)/2*innerHeight);}return out;};
+   const ponies=seen();
+   return {ponies,place:document.getElementById('place').textContent,current:document.getElementById('place-current').textContent,selected:document.querySelector('[data-place].selected').dataset.place,before,settled,fwd,p:[p.x,p.y,p.z],nearTree,inside:geo.insideFence(p.x,p.z),aheadInside:geo.insideFence(...ahead),ground,paddockDist:Math.hypot(geo.centre.x-p.x,geo.centre.z-p.z)};
   });
   console.log(name,JSON.stringify(r));
+  assert(r.ponies.some(h=>h>=40),'a pony is in frame and at least 40 px tall: '+r.ponies);
   assert.equal(r.place,'Hästhagen');assert.equal(r.selected,'paddock');assert(!r.inside,'outside the fence');assert(r.nearTree>3,'clear of trees');assert(r.aheadInside,'looks at the paddock');
   assert(Math.abs(r.settled[1]-r.p[1])<.2,'on the ground');assert(Math.hypot(r.settled[0]-r.p[0],r.settled[2]-r.p[2])<.1,'not pushed away');
   assert(Math.hypot(r.fwd[0]-r.settled[0],r.fwd[2]-r.settled[2])>.3,'can walk on');

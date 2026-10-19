@@ -57,6 +57,7 @@ function moveTo(name) {
   navigation.keys.clear(); navigation.analog.x = navigation.analog.y = 0;
   navigation.teleport(p.x, p.y, p.z);
   camera.rotation.set(0, p.yaw, 0, 'YXZ');
+  if (name === 'paddock') paddock?.greet(p.x, p.z, p.yaw); // #88: the ponies come to the fence in front of the visitor
   $('place').textContent = p.name;
   const label = placeLabels.get(name) ?? p.name;
   $('place-current').textContent = label;
