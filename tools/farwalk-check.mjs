@@ -17,12 +17,14 @@ try{
  const res=await page.evaluate(async()=>{
   const {WALK,SITE}=await import(new URL('/src/config.js',location.origin));
   const {groundY}=await import(new URL('/src/surroundings.js',location.origin)); // #69: the north and the far west/east now lie above y 0, so a start point is lifted onto the ground (never below 0: lower ground is fallen onto)
+  const {parkRampEnds}=await import(new URL('/src/riverpark.js',location.origin));
   const {riverAt}=await import(new URL('/src/riverbridge.js',location.origin));
   const {navigation:n,camera}=window.lundenViewer, dt=1/60;
-  const walk=(start,pts)=>{
+  let pk=-9;
+  const walk=(start,pts)=>{pk=-9;
    n.teleport(start[0],Math.max(0,groundY(start[0],start[1])),start[1]);for(let i=0;i<30;i++)n.update(dt);
    for(let i=0;i<pts.length;i++){const[x,z]=pts[i];let t=0;const lim=8+Math.hypot(n.pos.x-x,n.pos.z-z)/1.6;
-    while(Math.hypot(n.pos.x-x,n.pos.z-z)>0.2){camera.rotation.y=Math.atan2(-(x-n.pos.x),-(z-n.pos.z));n.keys=new Set(['KeyW','ShiftLeft']);n.update(dt);t+=dt;if(t>lim){n.keys=new Set();return i;}}}
+    while(Math.hypot(n.pos.x-x,n.pos.z-z)>0.2){camera.rotation.y=Math.atan2(-(x-n.pos.x),-(z-n.pos.z));n.keys=new Set(['KeyW','ShiftLeft']);n.update(dt);pk=Math.max(pk,n.pos.y);t+=dt;if(t>lim){n.keys=new Set();return i;}}}
    n.keys=new Set();for(let i=0;i<30;i++)n.update(dt);return -1;};
   const R=[
    ['down to the river',[-35,61],[[-30,66],[-28,70],[-30,80],[-39,95],[-40,110],[-41,118]],()=>n.pos.z>117&&n.pos.y<=-2.9],
@@ -42,6 +44,12 @@ try{
    ['edge north',[60,-180],[[60,-230]],()=>n.pos.z>=WALK.z0],
    ['edge south',[60,230],[[60,280]],()=>n.pos.z<=WALK.z1],
   ];
+  { // #86 (upstream #1337/#1338): the little timber footbridge by the paddock stands on earth ramps - walk over it both ways, W held
+   const E=parkRampEnds(),W0=SITE.riverPark.woodBridge,along=(e,d)=>[e.x+e.dx*d,e.z+e.dz*d];
+   for(const [name,a,z] of [['timber footbridge NW to SE',0,1],['timber footbridge SE to NW',1,0]]){const g=along(E[z],8);
+    R.push([name,along(E[a],9),[[E[a].x,E[a].z],[E[z].x,E[z].z],g],()=>Math.hypot(n.pos.x-g[0],n.pos.z-g[1])<1&&pk>W0.deckY-0.1]);}
+   R.push(['timber footbridge ramps are smooth',along(E[0],9),[],()=>{let steep=0,step=0;for(const e of E){let prev=null;for(let d=0.2;d<=W0.ramp.length;d+=0.1){const [x,zz]=along(e,d),y=groundY(x,zz);if(prev!==null)step=Math.max(step,Math.abs(y-prev));prev=y;steep=Math.max(steep,Math.abs(groundY(...along(e,d+0.1))-y)/0.1);}}return step<0.1&&steep<WALK.maxSlope*0.8;}]);
+  }
   const results=R.map(([name,s,p,ok])=>{const stuck=walk(s,p);return {name,ok:ok(),end:n.pos.toArray().map(v=>+v.toFixed(2)),stuck};});
   // dropped into the river: back on the bank
   const r0=riverAt(-41,143);n.teleport(r0.x+r0.nx*0.2,SITE.bridges.bedY,r0.z+r0.nz*0.2);n.update(dt);
