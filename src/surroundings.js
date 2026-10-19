@@ -175,6 +175,10 @@ export const terrainNorth = Math.min(E.profile[0][0], Wst.profile[0][0]);
 let terrainSurface = (x,z) => terrainY(x,z)-.01;
 /** Rendered triangle surface for background planting/paths; no change to the player's ground queries. */
 export const renderedTerrainY = (x,z) => terrainSurface(x,z);
+/** #73 (original #1309): the terrain mesh's grid lines ({X, Z}, sorted; set by terrainGeometry) so a surface laid on it can be cut along the same
+ * cells: each cell is two triangles split along the (X[i+1],Z[j])-(X[i],Z[j+1]) diagonal, and `renderedTerrainY` is exactly linear in each. */
+let terrainGrid = null;
+renderedTerrainY.grid = () => terrainGrid;
 /** Holes in the terrain mesh [x0, x1, z0, z1]: Hus C stands at the courtyard's level (y 0), so its stair well (CORE_C.pit) would be covered by the grass (#639). */
 const TERRAIN_PITS = [CORE_C.pit];
 function terrainGeometry() {
@@ -198,6 +202,7 @@ function terrainGeometry() {
   const inPit = (x, z) => pits.some((f) => x > f.x0 && x < f.x1 && z > f.z0 && z < f.z1);
   for (const p of TERRAIN_PITS) { xs.add(p[0]); xs.add(p[1]); zs.add(p[2]); zs.add(p[3]); }
   const X = [...xs].sort((a, b) => a - b), Z = [...zs].filter((z) => z >= z0).sort((a, b) => a - b);
+  terrainGrid = { X, Z };
   const pos = [], idx = [], cells=new Map();
   for (const z of Z) for (const x of X) pos.push(x, terrainY(x, z) - 0.01, z);
   const nx = X.length;

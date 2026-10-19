@@ -10,6 +10,7 @@ import { parkingLots, onEastRoad, onEastBuildingAt } from './parkinglayout.js';
 import { buildKarpFacade, karpBrickTexture } from './karpfacade.js';
 const W=SITE.west;
 const PAVE_MESH=4, PAVE_LIFT=.03; // m: #1305, paved/gravel polygons (school yards, squares) are cut into triangles no longer than PAVE_MESH and lie PAVE_LIFT higher, so they stay on the sloping terrain whose own triangles differ (*guess*)
+const PAVE_CUT=100; // m: #1310, with the terrain's grid the paving is cut along the terrain's own lines (cutAtTerrain) instead of into PAVE_MESH triangles: it lies on the ground exactly and needs far fewer triangles
 const ring=p=>(p[0][0]===p[p.length-1][0]&&p[0][1]===p[p.length-1][1]?p.slice(0,-1):p);
 const shape=poly=>new THREE.Shape(ring(poly).map(([x,z])=>new THREE.Vector2(x,-z)));
 const strip=(a,b,low,top)=>{const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute([a[0],low,a[1],b[0],low,b[1],b[0],top[1],b[1],a[0],low,a[1],b[0],top[1],b[1],a[0],top[0],a[1]],3));g.computeVertexNormals();return g;};
@@ -46,20 +47,60 @@ function refinedTriangles(ring,max){
 }
 const flatGeometry=pos=>{pos=pos.slice();for(let i=0;i<pos.length;i+=9){const ux=pos[i+3]-pos[i],uz=pos[i+5]-pos[i+2],vx=pos[i+6]-pos[i],vz=pos[i+8]-pos[i+2];if(uz*vx-ux*vz<0)for(let k=0;k<3;k++){const t=pos[i+3+k];pos[i+3+k]=pos[i+6+k];pos[i+6+k]=t;}} // front faces up (a double-sided material would flip the normal and darken a back face)
  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));g.setAttribute('normal',new THREE.Float32BufferAttribute(Array.from({length:pos.length/3},()=>[0,1,0]).flat(),3));return g;};
-/** #1278: marked lines / edge strips along [a, b] pairs, `w` m wide, cut every 2.5 m so each follows the sloping ground. */
+/** #1278: marked lines / edge strips along [a, b] pairs, `w` m wide. With the terrain's grid (#1310, `ground.grid()`) each strip is cut only where the
+ * terrain bends (cutAtTerrain, like the asphalt) and sampled at the exact rendered height, so it never sags or rises against it; without a grid it is cut every 2.5 m. */
 function ribbon(pairs,w,lift,ground){
- const pos=[];
- for(const[a,b]of pairs){const len=Math.hypot(b[0]-a[0],b[1]-a[1]);if(len<1e-6)continue;const n=Math.max(1,Math.ceil(len/2.5)),px=-(b[1]-a[1])/len*w/2,pz=(b[0]-a[0])/len*w/2;
-  const v=(t,s)=>{const x=a[0]+(b[0]-a[0])*t+px*s,z=a[1]+(b[1]-a[1])*t+pz*s;return[x,ground(x,z)+lift,z];};
+ const tol=Math.min(.02,lift-PARKING_LOT.lift.asphalt-.003); // m: #1310, how far a strip may leave the exact terrain between its cuts: less than its lift over the asphalt beneath, so it stays on top (lines .02, edge .012)
+ const pos=[],grid=ground.grid?.();
+ for(const[a,b]of pairs){const len=Math.hypot(b[0]-a[0],b[1]-a[1]);if(len<1e-6)continue;const px=-(b[1]-a[1])/len*w/2,pz=(b[0]-a[0])/len*w/2;
+  if(grid){const q=(t,s)=>[a[0]+(b[0]-a[0])*t+px*s,a[1]+(b[1]-a[1])*t+pz*s],ts=new Set([0,1]),ux=(b[0]-a[0])/len,uz=(b[1]-a[1])/len;
+   // the cuts of the strip's two triangles along the terrain's grid and diagonals give every t where either long edge changes slope
+   for(const tri of[[q(0,-1),q(0,1),q(1,1)],[q(0,-1),q(1,1),q(1,-1)]])for(const c of cutAtTerrain(tri,grid))for(const[x,z]of c)ts.add(Math.min(1,Math.max(0,Math.round(((x-a[0])*ux+(z-a[1])*uz)/len*1e5)/1e5)));
+   const K=[...ts].sort((m,n)=>m-n),y=(t,s)=>{const[x,z]=q(t,s);return ground(x,z)+lift;},T=[0]; // keep a kink only where dropping it would move an edge more than tol (lines over a flat stretch stay one quad)
+   for(let i=0;i<K.length-1;){ // from K[i], reach as far as every kink in between stays within the tolerance of the straight piece
+    let end=i+1;
+    for(let e=i+2;e<K.length;e++){let ok=true;for(const sd of[-1,0,1]){const y0=y(K[i],sd),y1=y(K[e],sd);for(let m=i+1;m<e&&ok;m++)if(Math.abs(y0+(y1-y0)*(K[m]-K[i])/(K[e]-K[i])-y(K[m],sd))>tol)ok=false;}if(!ok)break;end=e;}
+    T.push(K[end]);i=end;}
+   for(let i=0;i+1<T.length;i++){if((T[i+1]-T[i])*len<1e-3)continue;const at=(t,s)=>{const[x,z]=q(t,s);return[x,ground(x,z)+lift,z];},p0=at(T[i],-1),p1=at(T[i],1),p2=at(T[i+1],1),p3=at(T[i+1],-1);pos.push(...p0,...p1,...p2,...p0,...p2,...p3);}
+   continue;}
+  const n=Math.max(1,Math.ceil(len/2.5)),v=(t,s)=>{const x=a[0]+(b[0]-a[0])*t+px*s,z=a[1]+(b[1]-a[1])*t+pz*s;return[x,ground(x,z)+lift,z];};
   for(let i=0;i<n;i++){const t0=i/n,t1=(i+1)/n,p0=v(t0,-1),p1=v(t0,1),p2=v(t1,1),p3=v(t1,-1);pos.push(...p0,...p1,...p2,...p0,...p2,...p3);}}
  return pos.length?flatGeometry(pos):null;
+}
+/** #1309: clip a convex polygon `poly` ([[x,z],…]) to the half-plane a*x+b*z <= c (Sutherland-Hodgman). */
+function clipHalf(poly,a,b,c){
+ const out=[];
+ for(let i=0;i<poly.length;i++){const p=poly[i],q=poly[(i+1)%poly.length],dp=a*p[0]+b*p[1]-c,dq=a*q[0]+b*q[1]-c;
+  if(dp<=0)out.push(p);
+  if((dp<0&&dq>0)||(dp>0&&dq<0)){const t=dp/(dp-dq);out.push([p[0]+(q[0]-p[0])*t,p[1]+(q[1]-p[1])*t]);}}
+ return out;
+}
+/** #1309: cut one triangle along the terrain mesh's own grid lines and cell diagonals (surroundings.js `terrainGrid`), so every piece lies in
+ * a single terrain triangle. Sampled at its corners with the exact rendered height, the asphalt is then parallel to the ground it covers
+ * and never dips under a fold of the terrain (that showed as green slivers, thickest along the south edge). Returns triangles [[x,z]×3]. */
+function cutAtTerrain(tri,grid){
+ let{X,Z}=grid;
+ const xs=tri.map(p=>p[0]),zs=tri.map(p=>p[1]),span=(L,lo,hi)=>{let a=0;while(a<L.length-2&&L[a+1]<=lo)a++;let b=a;while(b<L.length-2&&L[b+1]<hi)b++;return[a,b];};
+ X=[X[0]-1e3,...X,X[X.length-1]+1e3];Z=[Z[0]-1e3,...Z,Z[Z.length-1]+1e3]; // beyond the mesh `renderedTerrainY` holds the edge row/column, which stays planar between the same lines
+ const[i0,i1]=span(X,Math.min(...xs),Math.max(...xs)),[j0,j1]=span(Z,Math.min(...zs),Math.max(...zs)),out=[];
+ for(let j=j0;j<=j1;j++)for(let i=i0;i<=i1;i++){
+  const c=clipHalf(clipHalf(clipHalf(clipHalf(tri,-1,0,-X[i]),1,0,X[i+1]),0,-1,-Z[j]),0,1,Z[j+1]);
+  if(c.length<3)continue;
+  // the cell's diagonal runs through (X[i+1],Z[j]) and (X[i],Z[j+1]); lower-left side first
+  const dx=X[i+1]-X[i],dz=Z[j+1]-Z[j],a=1/dx,b=1/dz,k=1+X[i]/dx+Z[j]/dz;
+  for(const h of[clipHalf(c,a,b,k),clipHalf(c,-a,-b,-k)])
+   if(h.length>=3)for(let m=1;m<h.length-1;m++){const t=[h[0],h[m],h[m+1]];if(Math.abs((t[1][0]-t[0][0])*(t[2][1]-t[0][1])-(t[1][1]-t[0][1])*(t[2][0]-t[0][0]))>1e-9)out.push(t);}
+ }
+ return out;
 }
 /** #1278: the east car parks' extras, merged into the `access` batch (vertex colours): terrain-following asphalt, white stall lines, a flat concrete edge. */
 function eastLotParts(ground,access,surfColor){
  const P=PARKING_LOT,lines=[],kerbs=[];
  for(const lot of parkingLots().lots){
   const src=SITE.east.access.find(p=>p.source===lot.source),pos=[];
-  for(const[x,z]of refinedTriangles(lot.polygon,P.mesh))pos.push(x,ground(x,z)+P.lift.asphalt,z);
+  const tris=refinedTriangles(lot.polygon,P.mesh),grid=ground.grid?.();
+  if(grid)for(let t=0;t<tris.length;t+=3)for(const q of cutAtTerrain(tris.slice(t,t+3),grid)){if(q.every(([x,z])=>onEastBuildingAt(x,z)))continue;for(const[x,z]of q)pos.push(x,ground(x,z)+P.lift.asphalt,z);} // (#1310: pieces wholly under a building are never seen)
+  else for(const[x,z]of tris)pos.push(x,ground(x,z)+P.lift.asphalt,z);
   const asphalt=flatGeometry(pos);asphalt.userData.tint=surfColor(src);access.push(asphalt);
   for(const run of lot.runs){ // the stalls' side lines (one between every two stalls and at both ends) and one back line
    const off=run.road.w/2+PARKING_LOT.bayD/2,mid=j=>[run.a[0]+run.u[0]*j*P.bayW+run.n[0]*off,run.a[1]+run.u[1]*j*P.bayW+run.n[1]*off],hd=P.bayD/2;
@@ -69,7 +110,7 @@ function eastLotParts(ground,access,surfColor){
   const r=lot.polygon;for(let i=0;i<r.length;i++){ // the edge strip, inside the outline, in 2 m pieces; none across a road mouth or by a building
    const a=r[i],b=r[(i+1)%r.length],len=Math.hypot(b[0]-a[0],b[1]-a[1]),n=Math.max(1,Math.ceil(len/2)),sgn=(r.reduce((s,q,j)=>{const w=r[(j+1)%r.length];return s+q[0]*w[1]-w[0]*q[1];},0)>0?1:-1);
    const nx=-(b[1]-a[1])/len*sgn,nz=(b[0]-a[0])/len*sgn,at=t=>[a[0]+(b[0]-a[0])*t+nx*P.kerbW/2,a[1]+(b[1]-a[1])*t+nz*P.kerbW/2];
-   for(let k=0;k<n;k++){const m=at((k+.5)/n);if(!onEastRoad(m[0],m[1],P.kerbW)&&!onEastBuildingAt(m[0],m[1]))kerbs.push([at(k/n),at((k+1)/n)]);}
+   let run=null;for(let k=0;k<n;k++){const m=at((k+.5)/n);if(!onEastRoad(m[0],m[1],P.kerbW)&&!onEastBuildingAt(m[0],m[1])){if(run)run[1]=at((k+1)/n);else kerbs.push(run=[at(k/n),at((k+1)/n)]);}else run=null;} // (#1310: consecutive kept pieces join into one strip; the terrain cuts decide where it bends)
   }
  }
  const l=ribbon(lines,P.lineW,P.lift.line,ground),k=ribbon(kerbs,P.kerbW,P.lift.kerb,ground);
@@ -108,10 +149,10 @@ function buildBackdrop(W,key,ground,brick=null,reflectiveGlass=null,karp=null){
   const surfColor=p.color??(p.surface==='asphalt'?0x5f6164:p.surface==='gravel'?0xb5ac90:0xa7a397);
   if(p.path){const s=plain(pathStrip(p,w=>-w/2,w=>w/2,W.pathLift,ground));s.userData.tint=surfColor;parts.access.push(s);}
   else if(key==='east'&&p.capacity&&parkingLots().lots.some(l=>l.source===p.source))continue; // a car park: drawn below (#1278)
-  else{const pos=[];for(const[x,z]of refinedTriangles(ring(p.polygon),PAVE_MESH))pos.push(x,ground(x,z)+W.pathLift+PAVE_LIFT,z);const pl=flatGeometry(pos);pl.userData.tint=surfColor;parts.access.push(pl);} // #1305: cut into small triangles so the paving follows the real ground
+  else{const pos=[],grid=ground.grid?.();if(grid){const tris=refinedTriangles(ring(p.polygon),PAVE_CUT);for(let t=0;t<tris.length;t+=3)for(const q of cutAtTerrain(tris.slice(t,t+3),grid)){if(key==='east'&&q.every(([x,z])=>onEastBuildingAt(x,z)))continue;for(const[x,z]of q)pos.push(x,ground(x,z)+W.pathLift+PAVE_LIFT,z);}}else for(const[x,z]of refinedTriangles(ring(p.polygon),PAVE_MESH))pos.push(x,ground(x,z)+W.pathLift+PAVE_LIFT,z);const pl=flatGeometry(pos);pl.userData.tint=surfColor;parts.access.push(pl);} // #1305: cut into small triangles so the paving follows the real ground
  }
  if(key==='east')eastLotParts(ground,parts.access,p=>p.color??(p.surface==='asphalt'?0x5f6164:p.surface==='gravel'?0xb5ac90:0xa7a397));
- const mats={facade:new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,roughness:.95,side:THREE.DoubleSide}),roof:new THREE.MeshStandardMaterial({color:W.roof,roughness:.85,side:THREE.DoubleSide}),glass:new THREE.MeshStandardMaterial({color:brick?0xffffff:W.glass,vertexColors:!!brick,roughness:.3,metalness:.25,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:DECAL_OFFSET.factor,polygonOffsetUnits:DECAL_OFFSET.units}),access:new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,roughness:1,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:DECAL_OFFSET.factor,polygonOffsetUnits:DECAL_OFFSET.units})}; // #70: access wears the decal depth bias, so the 1 m-sampled asphalt cannot sink under a crease of the terrain mesh as green slivers
+ const mats={facade:new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,roughness:.95,side:THREE.DoubleSide}),roof:new THREE.MeshStandardMaterial({color:W.roof,roughness:.85,side:THREE.DoubleSide}),glass:new THREE.MeshStandardMaterial({color:brick?0xffffff:W.glass,vertexColors:!!brick,roughness:.3,metalness:.25,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:DECAL_OFFSET.factor,polygonOffsetUnits:DECAL_OFFSET.units}),access:new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,roughness:1,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:DECAL_OFFSET.factor,polygonOffsetUnits:DECAL_OFFSET.units})}; // #1309: paths/asphalt wear the decal depth bias too, so a coarse sample cannot sink under a terrain crease as green slivers (same as kvarteret-lunden#70)
  if(brick)mats.facade.map=brick;
  if(parts.modern){mats.modern=new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,roughness:.95,side:THREE.DoubleSide});}
  if(parts.schoolGlass)mats.schoolGlass=reflectiveGlass;

@@ -1282,7 +1282,7 @@ export const PARKING_LOT = {
   edgeClear: 0.3,          // m: stalls keep this far inside the polygon's edge and out of any other road (*guess*)
   lineW: 0.1, lineColor: 0xeeeeea,  // marked stall lines (*guess*)
   kerbW: 0.3, kerbColor: 0xb0aba2,  // flat concrete edge strip along the polygon, left out across road mouths and at buildings (*guess*)
-  mesh: 1.0,               // m: the asphalt is cut into triangles no longer than this so it follows the sloping ground
+  mesh: 100,               // m: longest triangle edge of the asphalt before it is cut along the terrain mesh's own grid lines and diagonals (#1309, sitebackdrop.js cutAtTerrain), which is what makes it follow the sloping ground behind HepCat (z -19 to 17 falls 1.7 m) without gaps; the cuts keep the triangle count low (was 3.0 m sampled only at corners)
   lift: { asphalt: 0.02, kerb: 0.035, line: 0.045 }, // m over the terrain: under the roads' own 0.025 so the aisles stay on top, lines/edge over both
 };
 // #68 (original #1294): every mapped building inside WALK has a walkable roof (src/buildingroofs.js), made from the backdrop's own records: the drawn roof's
