@@ -513,3 +513,9 @@ Anpassningar: originalets gångområde, jetpack och egna backdrop-delar (`paddoc
 Importerad från originalet: `156bfd34` (#1309, `cutAtTerrain`/`clipHalf`), `c313adf9` (#1310, hårdbelagda ytor, kantstrimma och linjer skärs längs terrängens rutnät; delar helt under byggnader släpps) i `src/sitebackdrop.js` (filen är densamma som originalets `778e174b`), `terrainGrid`/`renderedTerrainY.grid()` i `src/surroundings.js` och `PARKING_LOT.mesh` i `config.js`. Brolinjen från #1271 ingår inte. #70:s djupförskjutning på `access`-materialet behålls (originalet har den också).
 
 Mätning före: asfalten bakom HepCat var 8 192 trianglar (1 m); synliga gröna glipor i asfalten och sågtandade kanter på skolgårdens hårdbeläggning i dagsljus (vyer mot parkeringens östkant och Kunskapsskolans nordöstra hörn). Efter: ingen glipa i samma vyer, kantstrimman sammanhängande, ca 11 000 färre trianglar i parkeringsvyn (385 742 -> 374 020), oförändrat antal anrop. Verifiering: `npm test`, bygg, Chromium-bilder före/efter, inga sidfel.
+
+## Gröna hål i gångvägarna, #74
+
+Importerad från originalet: `2aad0296` (#1313): `pathStrip` i `src/roads.js` skär lutande kvadrer långt från kvarteret längs terrängmeshens rutnät och diagonaler (`terrainCuts`, `cutAtTerrain` flyttad hit från `sitebackdrop.js`, knäck inom 1 cm släpps), och `farGround.grid()` i `src/southbackdrop.js` ger de södra gångvägarna samma rutnät. Originalets ändringslogg och `perfcount` finns inte nedströms.
+
+Verifiering: `npm test`, bygg, Chromium-bilder i dagsljus före/efter vid Sävsländegatan (grönt hål före, borta efter; svaga hårfina skarvar kvarstår). Originalets perfcount-topp var 988 466 trianglar (budget 1 000 000).
