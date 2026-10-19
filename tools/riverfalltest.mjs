@@ -34,11 +34,11 @@ test('the existing bridge meshes and mapped park paths are byte-for-byte unchang
  assert.equal(hash(JSON.stringify(SITE.riverPark.paths)),'2e682c6a3361bbdab008dafb210f8b24b8b5566f784932735b1aafb153173150');
 });
 
-test('public recovery heights stay dry (known horizontal #91 at anchor14); outer terrain joins without a step',()=>{
+test('public recovery stays outside the wade barrier at every anchor (#91) and dry; outer terrain joins without a step',()=>{
  let outer=0;
  for(const[x,z]of R.path.filter(([x,z])=>x>WALK.x0+5&&z<WALK.z1-5)){
-  const bed=groundBelowDeckY(x,z),bank=waterRescue(x,z,bed);assert(bank,`bank at ${x},${z}`);// Known pre-existing horizontal edge case at anchor14: public #91; the fall does not change its XY/barrier.
-  assert(!waterBlocked(bank.x,bank.z,undefined,bed)||R.path.findIndex(q=>q[0]===x&&q[1]===z)===14, 'no new blocked bank recoveries');assert(surfaceY(bank.x,bank.z,bed)>=waterYAt(bank.x,bank.z)+.3);
+  const bed=groundBelowDeckY(x,z),bank=waterRescue(x,z,bed);assert(bank,`bank at ${x},${z}`);
+  assert(!waterBlocked(bank.x,bank.z,undefined,bed),`bank at ${x},${z} outside the barrier`);{const q=riverAt(bank.x,bank.z);assert(q.distance>=q.width/2+WALK.wade+.1);}assert(surfaceY(bank.x,bank.z,bed)>=waterYAt(bank.x,bank.z)+.3);
   const r=riverAt(x,z);for(const side of[-1,1]){const at=d=>riverGround(x+side*r.nx*d,z+side*r.nz*d,-3),distance=riverAt(x+side*r.nx*32,z+side*r.nz*32).distance;if(distance>=32-1e-6){near(at(32),-3,1e-5);outer++;}assert(Math.abs(at(32.001)-at(31.999))<.001);}
  }
  assert(outer>=10,'outer joins checked beyond the nearest river segment');
@@ -51,4 +51,9 @@ test('the timber deck and its ramp tops stay fixed while the front toes remain b
   const front=(b.deckY-shoreYAt(e.x,e.z)+.1)/b.ramp.front,x=e.x-e.dx*front,z=e.z-e.dz*front;
   assert(parkFillAt(x,z)<groundBelowDeckY(x,z)-.07);
  }
+});
+
+test('#91: the recovery from the bend at anchor14 (and every nearby start) lands outside the wade barrier',()=>{
+ const p=waterRescue(-110.41,205.34,-6.8);assert(p&&!waterBlocked(p.x,p.z,undefined,-6.8));
+ for(const[x,z]of R.path)for(const[dx,dz]of[[0,0],[1.5,0],[-1.5,0],[0,1.5],[0,-1.5],[.8,.8],[-.8,-.8]]){const bed=groundBelowDeckY(x+dx,z+dz),b=waterRescue(x+dx,z+dz,bed);if(b)assert(!waterBlocked(b.x,b.z,undefined,bed),`${x+dx},${z+dz}`);}
 });

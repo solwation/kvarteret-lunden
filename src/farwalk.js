@@ -110,13 +110,22 @@ export function tooSteep(x, z, maxSlope = WALK.maxSlope, y) {
   return Math.hypot(gx, gz) > maxSlope;
 }
 
+const WATER_RESCUE_MARGIN = 0.15; // m beyond the wade barrier, so a recovery never lands on its edge (#91)
 /** Someone who ended up in the water (a fall, a jump, the jetpack): the dry bank point to put them back on, or null. */
 export function waterRescue(x, z, y) {
   if (z < 60 || onDeck(x, z, y)) return null;
   const r = riverAt(x, z);
   if (r.distance >= r.width / 2) return null;
-  const side = (x - r.x) * r.nx + (z - r.z) * r.nz >= 0 ? 1 : -1, d = r.width / 2 + WALK.rescue;
-  return { x: r.x + r.nx * side * d, z: r.z + r.nz * side * d, r: PLAYER.radius };
+  // #91: one normal offset can still land inside the wade barrier at a bend (the barrier is measured to the nearest segment), so step out until clear.
+  let side = (x - r.x) * r.nx + (z - r.z) * r.nz >= 0 ? 1 : -1, px = r.x + r.nx * side * (r.width / 2 + WALK.rescue), pz = r.z + r.nz * side * (r.width / 2 + WALK.rescue);
+  for (let i = 0; i < 24; i++) {
+    const q = riverAt(px, pz);
+    if (q.distance >= q.width / 2 + WALK.wade + WATER_RESCUE_MARGIN) break;
+    side = (px - q.x) * q.nx + (pz - q.z) * q.nz >= 0 ? 1 : -1;
+    const step = q.width / 2 + WALK.wade + WATER_RESCUE_MARGIN - q.distance + 0.05;
+    px += q.nx * side * step; pz += q.nz * side * step;
+  }
+  return { x: px, z: pz, r: PLAYER.radius };
 }
 
 const inPoly = (p, x, z) => { let yes = false; for (let i = 0, j = p.length - 1; i < p.length; j = i++) if ((p[i][1] > z) !== (p[j][1] > z) && x < (p[j][0] - p[i][0]) * (z - p[i][1]) / (p[j][1] - p[i][1]) + p[i][0]) yes = !yes; return yes; };

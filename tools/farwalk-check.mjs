@@ -56,6 +56,12 @@ try{
   const r=riverAt(n.pos.x,n.pos.z);results.push({name:'river rescue',ok:r.distance>=r.width/2+1,end:n.pos.toArray()});
   // #90: the public navigation keeps its geographical water barrier and lands on the locally graded dry shore.
   for(const i of[1,8,16]){const[x,z]=SITE.river.path[i];n.teleport(x,groundBelowDeckY(x,z),z);n.rescue();const end=n.pos.toArray(),r=riverAt(end[0],end[2]);results.push({name:`local river recovery at station ${i}`,ok:r.distance>=r.width/2+1&&end[1]>waterYAt(end[0],end[2])+.3,end});}
+  // #91: from every river anchor the recovery point is outside the barrier and a W-held walk away from the water is not stopped
+  {const bad=[];SITE.river.path.forEach(([x,z],i)=>{if(!(x>WALK.x0+5&&z<WALK.z1-5))return;n.teleport(x,groundBelowDeckY(x,z),z);n.rescue();const a=n.pos.clone(),q=riverAt(a.x,a.z);
+    const sx=Math.sign((a.x-q.x)*q.nx+(a.z-q.z)*q.nz)||1,tx=a.x+q.nx*sx*4,tz=a.z+q.nz*sx*4;let t=0;
+    while(Math.hypot(n.pos.x-tx,n.pos.z-tz)>0.2&&t<8){camera.rotation.y=Math.atan2(-(tx-n.pos.x),-(tz-n.pos.z));n.keys=new Set(['KeyW']);n.update(dt);t+=dt;}
+    n.keys=new Set();if(Math.hypot(n.pos.x-tx,n.pos.z-tz)>0.5)bad.push(i);});
+   results.push({name:'recovery from every river anchor walks on',ok:bad.length===0,end:bad});}
   return results;
  });
  for(const r of res)console.log(r.ok?'PASS':'FAIL',r.name,JSON.stringify(r.end));
