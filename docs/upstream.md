@@ -40,7 +40,7 @@ Automatisk publicering till GitHub Pages är aktiverad vid varje push till detta
 
 ## Register
 
-- Senast granskade originalversion: `e6f5ce4e20b319e864e42be487820ffb09319171` (enbart parkbelysning#95); tidigare `ba5db2f9ad167ee69c68a5be85b209e5c6c5a648` (enbart de rena prestandadelarna för#94); tidigare `24e72f89` + `8cd6788` (för #92); tidigare `f2330dde`, `53c46cd8`, `350c5196`, `0a934ac2` (för #81); tidigare `937ac17e` (för #80); tidigare `d884dbb9` + `b61bf377` (för #79); tidigare `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
+- Senast granskade originalversion: `bcd8c24655cf87244df9b8d405db678c8e94b6c2` (enbart placering av vindskydd/vattenho#102); tidigare `e6f5ce4e20b319e864e42be487820ffb09319171` (enbart parkbelysning#95); tidigare `ba5db2f9ad167ee69c68a5be85b209e5c6c5a648` (enbart de rena prestandadelarna för#94); tidigare `24e72f89` + `8cd6788` (för #92); tidigare `f2330dde`, `53c46cd8`, `350c5196`, `0a934ac2` (för #81); tidigare `937ac17e` (för #80); tidigare `d884dbb9` + `b61bf377` (för #79); tidigare `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -691,3 +691,45 @@ kommentarer. Tio öppna delärenden med dokumenterat föräldraskap hittades; in
 Överföringslänkar, beroenden och överlappande önskemål behandlas inte automatiskt som föräldraskap.
 Ingen appkod, resurs, lagring, personlig information, spelkod eller tjänsteintegration har importerats.
 Verifiering: `git diff --check`, `npm test` och `npm run build`; ändringen påverkar enbart arbetsinstruktioner.
+
+
+## Vindskydd närmare staketet, #102
+
+Granskad källa: `bcd8c24655cf87244df9b8d405db678c8e94b6c2` (original#1395).
+Selektiv import av den rena `relocateShelter`-funktionen och dess geometriimport i
+`src/paddockshelter.js`, `PADDOCK.shelter.cornerClear/move` i config samt det lilla
+placeringsblocket i `src/paddock.js`. Inga hela originalfiler har ersatt publika filer.
+Två riktade nativeprov har anpassats till denna visnings markfunktioner. Ingen terräng,
+modellstorlek, stödbyggare, vinterdekor, väderregel eller offentlig navigationspolicy ändras.
+Personliga interaktioner, namn, hjärtan, poäng, ljud, bilder och tjänster har inte importerats.
+
+Förskjutningen11,5m österut/1m norrut och rotationen−30° om skjulets mitt är antaganden.
+Skjul och ho behåller inbördes avstånd och orientering. Befintligt0,2m-relieftak,
+8m-centrummarginal och2,5m-hörnmarginal bevaras. Hela hon ska ha1,5m passage till
+staketet och ligga inom befintlig0,3m-relieftolerans. Förslaget används bara när den
+faktiska marken och befintlig träd-/åfrigång godkänner båda; annars behålls gamla platsen.
+
+Den riktiga publika solverns föreframe är skjul(-137,603305;229,098505; yaw1,869295)
+och ho(-125;230; yaw3,927339). Efter: skjul(-126,103305;228,098505; yaw1,345696)
+och ho(-115,639270;235,180875; yaw3,403740). Närmaste staketavstånd minskar
+15,442756→9,365019m; publicsidans faktiska relief är0,098983→0,142796m.
+Grind och stätta är oförändrade. Nuvarande publicmark accepterar alltså förslaget
+utan den separata höjdimporten#98; gemensamma filer innebär inget hårt beroende.
+
+Verifierat: `npm test` granskar81moduler, `npm run build` passerar och nativeprovet
+är10/10. Hela `tools/paddock-check.mjs` passerar, inklusive regn/torrfördröjning,
+synliga fullstora vinterponnyer utan försvinnande, sommar, culling/återkomst, fysisk
+staket-/grindstopp och hållen W över stättan (1,12m). Befintliga budgetar behålls:
+staket8330tri<12000, ponny540tri<700, vinterdekor3362tri<3500 i två nät och
+8509grästuvor/34036tri<50000 med ett gräsritanrop. Före/efterbilder från grind,
+front och ovanifrån har öppnats och granskats av dirigenten. Grindvyn är36ritanrop/
+230154tri både före/efter; front-/ovanifrånvyer följer det flyttade objektet och får
+andra bildfält, så de är inte ett isolerat prestandamått. Inga JavaScriptfel/externa
+anrop; originalets lagringsmarkörer kvar. Första privata bildförsöket fick timeout
+vid startklickets navigationsväntan; loopen pausades efter verklig World-init före
+omtaget som passerade. Chromium-emulering, ingen fysisk telefonmätning.
+
+Den färdiga byggnaden `472a42eed594b78b53319fb2` har också kontrollerats i riktig
+Chromium: samma nya placeringsram, två fullstora modeller på rätt vinterplatser,
+3362dekortrianglar/två nät, inga interaktionsmedlemmar, inga JavaScriptfel eller
+externa anrop och oförändrade markörer i originalets lagring. Byggbilden öppnad.

@@ -130,3 +130,16 @@ Park route fittings (#95): `node --test tools/pathlampstest.mjs` (3/3) and nativ
 The first built full-world triangle test caught a post2.215m below the timber bridge's earth ramp, despite the synthetic sloping-callback check passing. The public import now excludes `parkFillFootprint` with its existing path clearance; Node coverage includes both ramps. The corrected actual built world has40new/49total fixtures and all pole feet match its drawn `site-terrain` triangles within0.4µm in the desktop pass. This is an actual mesh sample, not a comparison back to the supplied callback. Source counterpart tracked as original#1378.
 
 Corrected built app23b4575086f004bdddba7c09: both1000×700 desktop and390×844 touch profile pass real triangle support for all40new fixtures (max0.371µm),1.20m actual Navigation walk, finite positions, daylight lights off, no JavaScript exceptions/external requests and original storage sentinels untouched. Park/paddock and bounded night images opened. The component night is only a generic update exercise; no night UI or original service is imported.
+
+
+## Vindskyddets placering, #102
+
+`node --test tools/paddockgeotest.mjs` har två nya kontroller för gemensam rigid
+flytt och oförändrad relativ ram på riktig publik mark, full trågmarginal, samt
+fallback vid för brant mark, hinder eller saknade delar. Den frysta referensramen
+är ett delprov; komplettera alltid med den riktiga publika solverns `paddock.spots`
+och `paddock.ground` i webbläsaren. Kör hela befintliga `tools/paddock-check.mjs`
+för regn, vinter/sommar, dekor/culling, staket/grind och faktisk gång över stättan.
+Granska före/efter från grinden, framför skjulet och ovanifrån. Flytten får inte
+sänka marginaler, platta till terrängen eller ändra budgetgränser. Källa och aktuella
+mark-/budgetresultat finns i [importregistret](upstream.md#vindskydd-närmare-staketet-102).
