@@ -40,7 +40,7 @@ Automatisk publicering till GitHub Pages är aktiverad vid varje push till detta
 
 ## Register
 
-- Senast granskade originalversion: `bcd8c24655cf87244df9b8d405db678c8e94b6c2` (enbart placering av vindskydd/vattenho#102); tidigare `e6f5ce4e20b319e864e42be487820ffb09319171` (enbart parkbelysning#95); tidigare `ba5db2f9ad167ee69c68a5be85b209e5c6c5a648` (enbart de rena prestandadelarna för#94); tidigare `24e72f89` + `8cd6788` (för #92); tidigare `f2330dde`, `53c46cd8`, `350c5196`, `0a934ac2` (för #81); tidigare `937ac17e` (för #80); tidigare `d884dbb9` + `b61bf377` (för #79); tidigare `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
+- Senast granskade originalversion: `90d1632c17fa66ceb0e29e99c65c145fac2fa0aa` (enbart neutral täckgeometri/säsong#103); tidigare `bcd8c24655cf87244df9b8d405db678c8e94b6c2` (enbart placering av vindskydd/vattenho#102); tidigare `e6f5ce4e20b319e864e42be487820ffb09319171` (enbart parkbelysning#95); tidigare `ba5db2f9ad167ee69c68a5be85b209e5c6c5a648` (enbart de rena prestandadelarna för#94); tidigare `24e72f89` + `8cd6788` (för #92); tidigare `f2330dde`, `53c46cd8`, `350c5196`, `0a934ac2` (för #81); tidigare `937ac17e` (för #80); tidigare `d884dbb9` + `b61bf377` (för #79); tidigare `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -733,3 +733,46 @@ Den färdiga byggnaden `472a42eed594b78b53319fb2` har också kontrollerats i rik
 Chromium: samma nya placeringsram, två fullstora modeller på rätt vinterplatser,
 3362dekortrianglar/två nät, inga interaktionsmedlemmar, inga JavaScriptfel eller
 externa anrop och oförändrade markörer i originalets lagring. Byggbilden öppnad.
+
+
+## Vintertäcken till miljöponnyerna, #103
+
+Granskad källa: `90d1632c17fa66ceb0e29e99c65c145fac2fa0aa` (original#1397).
+Importerat enbart den nya neutrala modulen `src/ponyblanket.js`, det avgränsade
+`PADDOCK.blanket`-blocket och en import/ctorkrok i publicsidans `src/paddock.js`.
+Befintlig publik ponnymodell, mark, skjulram och navigations-/väderbeteenden bevaras.
+Originalets personliga ponnyer, klappning, hjärtan, poäng, ljud och matning har inte
+importerats; inga bilder, nya resurser, lagringsnycklar eller tjänster tillkommer.
+
+Täcket är en enkel öppen drapering över den befintliga stela bålen,70trianglar per
+täcke i ett enda tvåinstansnät. Blå/burgundyfärg, sex tvärsnitt,2,5cm frigång och
+70cm fållhöjd i modellens befintliga1,32m-lokalram är antaganden. Det är inget
+klädsystem eller tygsimulering. Huvud, hals, ben och svans är fria att animeras.
+Nätet delar kroppens faktiska `instanceMatrix`-buffer och är dess barn med samma
+bounds; flytt/rotation/skala behöver ingen duplicerad uppdateringslogik. Samma
+snömånader styr synlighet, och parent-/distans-/frustumculling bevaras. Inga nya
+ljuskällor, texturer, skuggkastare eller raycast. Ingen höjdimport#98 behövs för
+att följa den redan byggda kroppen.
+
+Anpassning: källhänvisning i kommentarer, neutralt nativeprov och ett eget publikt
+`tools/ponyblanket-check.mjs`. Originalets klapp-/poäng-/matningsprov har inte
+kopierats. Den publika browserkontrollen använder verkliga vinterbeslut/gång från
+giltiga befintliga waypoints, granskar båda färgerna från fria vinklar och i stallet,
+sommar/culling/återkomst samt saknade personliga interaktions-/matningsmedlemmar.
+Originalets separata vinterstartbudgetavvikelse#1404 överförs inte som en tillåten
+budgetavvikelse här; den publika visningen mäts för sig med oförändrade gränser.
+
+Verifierat: native3/3, `npm test` granskar82moduler och bygget passerar
+(`017b54c83c8396d5c9a5df37`). Riktigt publikt browserprov6/6ALLPASS/CLI0:
+fryst vintervy47→48anrop och258622→258762trianglar, alltså exakt+1/+140.
+Sommaren, dold parent och långt avstånd ger0täckanrop; återkomst ger1 med samma
+buffer/material. Faktisk vintergång0,68m/benamplitud0,492; inga personliga
+interaktions-/matningsmedlemmar, inga JavaScriptfel/externa anrop och originalets
+lagringsmarkörer kvar. Båda sidofärgerna, bebott vinterstall och sommarbild är
+öppnade och granskade av dirigenten. Chromium-emulering, ingen fysisk telefon-FPS.
+
+Den färdiga publika byggnaden har dessutom kontrollerats på390×844touchprofil:
+båda vinterponnyerna står i rätt stall med faktisk instansskala0,99999997 och
+exakt delad täckmatris. Täcke av/på ger31→32anrop/203522→203662tri, fortsatt
+exakt+1/+140. Inga personliga interaktions-/matningsmedlemmar, JavaScriptfel,
+externa anrop eller ändrade originalmarkörer; byggd mobilbild öppnad.

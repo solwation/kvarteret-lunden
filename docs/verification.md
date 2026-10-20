@@ -143,3 +143,17 @@ för regn, vinter/sommar, dekor/culling, staket/grind och faktisk gång över st
 Granska före/efter från grinden, framför skjulet och ovanifrån. Flytten får inte
 sänka marginaler, platta till terrängen eller ändra budgetgränser. Källa och aktuella
 mark-/budgetresultat finns i [importregistret](upstream.md#vindskydd-närmare-staketet-102).
+
+
+## Miljöponnyernas vintertäcken, #103
+
+`node --test tools/ponyblankettest.mjs` kontrollerar täckets öppna hals/undersida,
+ändliga normaler,70trianglar per täcke, faktisk delad matris/skala och återanvändning
+över säsonger. `CHROME_PATH=… node tools/ponyblanket-check.mjs BASE OUT` kör den
+riktiga publika världen och mäter täcke av/på i samma frysta vintervy: endast ett
+anrop/140trianglar tillkommer. Båda färgerna visas med normal kroppsstorlek och
+fria huvud/ben, faktisk vintergång (vänta första0,6m, max10s), sommar och dold/långt
+bort/återkomst. Originalets lagringsmarkörer ska vara kvar och inga externa anrop
+eller JavaScriptfel får förekomma. Granska de båda sidobilderna, bebott vinterstall
+och sommarbild före publicering, samt den byggda och publicerade visningen.
+Se [selektiv import och antaganden](upstream.md#vintertäcken-till-miljöponnyerna-103).
