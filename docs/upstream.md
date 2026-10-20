@@ -856,3 +856,24 @@ båda landfästena och under bron togs med kamera på faktisk gångmark +1,62 m:
 öppna kanter täcks, utan sidfel eller externa anrop. Terrängmeshen har 71 474→
 71 690 trianglar och +22 032 bufferbyte med fortsatt en mesh, ett material och
 samma ritanrop per parad vy. Inga budgetgränser höjs.
+
+## Tomma vinterkronor, #104
+
+Selektiv överföring från originalcommit `b1568524d899704da443d18d1e8eae81490c6a72`
+(original #1404). Public-baslinjen är `c4bae878:src/seasons.js`; originalets
+före-hash används inte i detta repos rena historik. I `applySeason` döljs enbart
+de redan registrerade lövkronorna när deras befintliga lövfaktor är noll, och de
+visas igen vid positiv faktor. Registreringen omfattar 18 trädceller, en sydlig
+kronbatch och gårdens klängväxt. Instansmatriser, färger, buffertar, geometri,
+objekt och säsongens övriga material räknas som förut. Ingen terräng, modellform,
+budget, personlig resurs, spelmekanik eller tjänsteintegration har importerats.
+
+Det anpassade nativeprovet jämför alla månader mot den faktiska frysta
+public-modulen, inklusive redan beräknade bounds, raycast och vårens/sommarens
+återkomst. World-provet börjar också i verklig vinter. Three.js beräknar bounds
+för klängväxten och den sydliga batchen först när de faktiskt syns; de är därför
+`null` på den nya vinterstarten och beräknas vid första vår-/sommarrenderingen.
+Det är renderarens befintliga lata beräkning, ingen ändring av bounds i
+`applySeason`. Trädcellerna har förberäknade bounds och är exakt lika. I tre
+matchade vyer är ritdeltat exakt antalet tidigare ritade säsongsbatcher; mars och
+juli är identiska med baslinjen. Se [verifieringen](verification.md#tomma-vinterkronor-104).

@@ -12,6 +12,8 @@ Behåll byggnader, omgivning, fast inredning, förflyttning, dörrar och mätver
 
 Söder om träfotgängarbron ligger en inhägnad hage med två ponnyer (importerad från originalet, #76; skjulet står på jämn mark, #80, och har flyttats tillsammans med vattenhon närmare staketet med bibehållen passage, #102; placeringen är ett antagande). Ponnyerna är enbart miljö och går inte att klappa eller interagera med; de betar gräset i hagen (#78), som är en tät låg matta som växer tillbaka på 72 timmar verklig tid och sparas lokalt i webbläsaren (#84), tre skuggträd står i hagen och ponnyerna söker skydd i regn och står synliga inne i skjulet när det är snö (#79/#87; i snömånaderna har ponnyerna varsitt vintertäcke (#103), halm ligger i skjulet och en girlang med varma lampor hänger på framkanten, #92; saknar väder här, testa med `?paddockrain=0.8` och `?month=1`). Lägg till `?nopaddock` i adressen för att stänga av hagen.
 
+När träden och gårdens klängväxt saknar löv vintertid ritas deras tomma lövbatcher inte (#104). Mars och sommar visar dem igen; stammar, vintergröna växter och snö är kvar.
+
 Visningen ska vara statisk och fungera **utan Cloudflare-integration**. Originalets Workers, WebSockets, delade lagring och speltjänster ska inte användas. Eventuell lokal lagring ska ha egna namn och aldrig läsa eller ändra originalets data.
 
 På telefoner frigörs CPU-kopian av trapphusens färdigritade dörrskyltar när bilden har laddats upp till grafiken. Skyltarnas upplösning och de uppdaterbara hissdisplayerna behålls.
@@ -82,6 +84,8 @@ En öppen visning kontrollerar nya versioner varje minut och när fliken blir sy
 Promenadytan sträcker sig ner till ån, över broarna och bland skolbyggnaderna till klocktornet (`WALK`, `src/farwalk.js`); `tools/farwalk-check.mjs` kontrollerar den. `node tools/riverat-check.mjs` jämför flod- och kollisionsresultat mot baslinjen och mäter kontrollernas kostnad.
 
 `npm test` granskar importkedjan, planunderlaget och frånvaro av privata referenser och originalets tjänster. `npm run build` skapar det statiska publiceringspaketet. Kör `CHROME_PATH=/sökväg/till/chrome node tools/browser-check.mjs http://localhost:8157` mot en server för `dist/` för integrationstest i Chromium, inklusive mobil layout, gång, dörranimation, ursprunglig lagring och nätverksanrop. `tools/touchcustom-check.mjs` kontrollerar på samma sätt den egna touchlayouten. `tools/startup-error-check.mjs` kontrollerar laddningsstegen, stoppmeddelandet och felkortet med steg och Försök igen när starten misslyckas.
+
+`node --test tools/seasoncrowntest.mjs` jämför samtliga månader med den frysta public-versionen före #104: exakt samma instansmatriser, färger, objekt och befintliga bounds, med synlighet bara när lövfaktorn är positiv. Se [verifieringen](docs/verification.md#tomma-vinterkronor-104) för World-mätningar.
 
 `CHROME_PATH=… node tools/bridge-ramp-check.mjs http://localhost:8157` mot källservern kontrollerar träbrons sidoytor mot faktisk terrängtriangulering och vatten under bron; `tools/farwalk-check.mjs` går över den åt båda hållen.
 

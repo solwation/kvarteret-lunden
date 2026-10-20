@@ -226,3 +226,42 @@ kontrolleras med `tools/browser-check.mjs` inklusive mobil, dörrar, lokal lagri
 och inga externa anrop. Slutresultat: 8/8 sidorayträffar, högsta nederkantsfel
 0,0000071 m, +216 trianglar/+22 032 byte i samma batch och identiskt antal
 ritanrop i matchade vyer. Lampplaceringarna passerar `pathlampstest.mjs` 3/3.
+
+## Tomma vinterkronor, #104
+
+Källa: original `b1568524d899704da443d18d1e8eae81490c6a72` (#1404).
+Föreprovet använder verkliga public-modulen från `c4bae878:src/seasons.js`.
+Native `node --test tools/seasoncrowntest.mjs`: 2/2 PASS för samtliga månader,
+exakta matriser/färger, samma buffert-/geometri-/material-/bounds-/raycastobjekt,
+första lövmånaden och återkomst efter vinter. `npm test`: 83 moduler PASS;
+`npm run build`: PASS. Browserkontrollen mot byggt `dist/` passerar med gång,
+dörr, mobil layout, lagringsmarkörer och same-origin-nätverk.
+Riktad byggd kallstart med `?month=1`/`?month=7` har 20/20 registrerade batcher
+osynliga/synliga: innergården på dator 821/664 296 → 830/712 260
+ritanrop/trianglar, på 390×844 touch 297/524 412 → 303/559 812.
+Inga sidfel, externa anrop eller ändringar i originalets lagringsmarkörer.
+
+I verklig public-World registreras 20 säsongsbatcher: 18 trädceller,
+`south-crowns` och innergårdens klängväxt. Den identiska kameran och sekvensen
+vinterstart → mars → juli → december ger följande ritanrop/trianglar i vinter
+(före → efter): område 528/647 285 → 517/577 541, gård 830/712 260 →
+821/664 296, hage 33/250 848 → 29/221 628. Dessa differenser är exakt de
+11/69 744, 9/47 964 och 4/29 220 säsongsbatcher/trianglar som faktiskt
+ritades i respektive förebild. Inga säsongsbatcher skickas i de nya vintervyerna,
+även efter upprepade bildrutor. Mars och juli återger exakt förelägets
+ritanrop/trianglar och samma registrerade batcher. Ett dolt parentobjekt
+förblir dolt under sommaren och visas åter genom dess egen culling; en fysisk
+stam ger rayträff och en dörr växlar normalt. Buffertarnas SHA-256 för matriser
+och färger matchar före/efter för varje batch och månad; geometri och objekt
+behåller identitet inom respektive körning. Matchade vinter-/sommarbilder från
+området och gården samt fulla pose-/render-/bufferloggar finns under
+`/tmp/orkester-katt-20261020/public-winter104/{baseline,final}`.
+
+Trädcellerna har exakt samma förberäknade bounds i båda körningarna.
+Klängväxten och `south-crowns` får sina instans-bounds först vid första
+renderingen i Three.js: de är `null` efter ny vinterstart och beräknas vid
+lövens återkomst. Därför jämförs deras befintliga boundsobjekt i nativeprovet
+och verkliga matriser/renderutfall i World-provet, inte numerisk likhet mellan
+två olika tidpunkter för renderarens lata initiering. Inga JavaScriptfel eller
+externa anrop förekom och originalets local-/sessionStorage-markörer låg kvar.
+Detta är Chromium/SwiftShader, ingen uppmätt fysisk telefonprestanda.
