@@ -203,7 +203,7 @@ function terrainGeometry() {
   const inPit = (x, z) => pits.some((f) => x > f.x0 && x < f.x1 && z > f.z0 && z < f.z1);
   for (const p of TERRAIN_PITS) { xs.add(p[0]); xs.add(p[1]); zs.add(p[2]); zs.add(p[3]); }
   const X = [...xs].sort((a, b) => a - b), Z = [...zs].filter((z) => z >= z0).sort((a, b) => a - b);
-  terrainGrid = { X, Z };
+  terrainGrid = { X, Z, subdivisions:S.river.terrainSubdivisions };
   const pos = [], idx = [], cells=new Map();
   for (const z of Z) for (const x of X) pos.push(x, terrainY(x, z) - 0.01, z);
   const nx = X.length;
@@ -1592,7 +1592,7 @@ export function* surroundingsParts({ grass, husL = null }) {
   };
   // the ground south of Hus L: the raised courtyard on the garage box and the park level around it (the
   // street side north of Hus L is world.js's ground); retaining walls, railings and the garage door
-  flat([grassUV(terrainGeometry()), grassUV(parkRampFill())], grass, SEASON.snow.ground).name='site-terrain';
+  flat([grassUV(terrainGeometry()), parkRampFill(renderedTerrainY)], grass, SEASON.snow.ground).name='site-terrain';
   yield 0.05;
   const bw = boxWalls();
   const concrete = new THREE.MeshStandardMaterial({ color: 0xb9b4ab, roughness: 0.95, side: THREE.DoubleSide });

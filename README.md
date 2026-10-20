@@ -18,6 +18,8 @@ På telefoner frigörs CPU-kopian av trapphusens färdigritade dörrskyltar när
 
 Höje ås vatten, stränder och dalbotten följer ett svagt fall nedströms, tolkat från markreferenser. Vattenstånd och djup är fortsatt uppskattningar.
 
+Träbrons jordramper har sammanhängande grässidor ner till den ritade återrängen vid båda landfästena (#107). Gånghöjder och vattenpassagen under bron är oförändrade.
+
 Parkens gångstråk, vägarna längs Höje å och de kartlagda kvartersvägarna i väster, norr, öster och söder har fasta lampstolpar som följer terrängen (#95/#96). Placeringar och mått är visuella antaganden; visningen behåller sitt fasta dagsljus.
 
 Modellen är en fristående visualisering och kan innehålla avvikelser. Fast inredning och material i L1007 är ett exempel och utgör inte verifierad standard för samtliga bostäder. Projektet är inte Peabs officiella tjänst.
@@ -80,6 +82,8 @@ En öppen visning kontrollerar nya versioner varje minut och när fliken blir sy
 Promenadytan sträcker sig ner till ån, över broarna och bland skolbyggnaderna till klocktornet (`WALK`, `src/farwalk.js`); `tools/farwalk-check.mjs` kontrollerar den. `node tools/riverat-check.mjs` jämför flod- och kollisionsresultat mot baslinjen och mäter kontrollernas kostnad.
 
 `npm test` granskar importkedjan, planunderlaget och frånvaro av privata referenser och originalets tjänster. `npm run build` skapar det statiska publiceringspaketet. Kör `CHROME_PATH=/sökväg/till/chrome node tools/browser-check.mjs http://localhost:8157` mot en server för `dist/` för integrationstest i Chromium, inklusive mobil layout, gång, dörranimation, ursprunglig lagring och nätverksanrop. `tools/touchcustom-check.mjs` kontrollerar på samma sätt den egna touchlayouten. `tools/startup-error-check.mjs` kontrollerar laddningsstegen, stoppmeddelandet och felkortet med steg och Försök igen när starten misslyckas.
+
+`CHROME_PATH=… node tools/bridge-ramp-check.mjs http://localhost:8157` mot källservern kontrollerar träbrons sidoytor mot faktisk terrängtriangulering och vatten under bron; `tools/farwalk-check.mjs` går över den åt båda hållen.
 
 För arbete med issues, `in-progress`, stängning och `/orkester`, läs [CLAUDE.md](CLAUDE.md) och [orkesterkommandot](.claude/commands/orkester.md). Ärenden för detta projekt skapas här i [kvarteret-lunden](https://github.com/solwation/kvarteret-lunden/issues).
 

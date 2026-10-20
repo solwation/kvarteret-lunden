@@ -824,3 +824,35 @@ Byggd faktisk mobilvisning390×844 PASS med179instanser/130nya, samma22barn,
 fast dagsljus, alla34sydfötter på−3,01m, inga JS-fel/externa anrop och orörd
 originallagring. Fri östbild visar vägkantens stolpe/fot.0nya batcher; yttervyer
 kan få+2anrop från den befintliga batchens utvidgade bounds.
+
+## Täta sidokanter vid träbrons jordramper, #107
+
+Selektiv överföring från originalcommit `b76f6ee1e38932e12d121b5fd3b532f13f1b1a82`
+(original #1389), ovanpå denna repos befintliga ramp #86 (original #1337/#1338).
+`parkRampFill` i `src/riverpark.js` lägger bara till de exponerade, utåtvända
+sidoytorna. Deras överkant följer den gamla rampen exakt och nederkanten följer
+`renderedTerrainY`, som avläser de faktiskt emitterade terrängtrianglarna.
+Skärningar vid rampknäck, terrängrutornas linjer, åkorridorens finrutor och
+triangeldiagonaler håller nederkanten tät även där terrängen byter plan. De nya
+sidornas texturkoordinater använder meter längs kanten och verklig höjd i stället
+för horisontell planprojektion. `surroundings.js` lämnar rutnätets befintliga
+`terrainSubdivisions` till rampen och slår ihop den i samma `site-terrain`.
+
+Publicsidans egna rampmått, `−0,01 m` gräslyft, höjddata och terrängstöd är
+bevarade. Samtidiga #105 ändrar sydligare terrängstöd men är ingen
+funktionsförutsättning för detta broarbete; dess nya block måste bevaras vid
+rebase. Hus A/B/C/L delar inte denna specifika rampgeometri. Brodäck, gångmark,
+lampornas stöd, åfåra och fri vattenpassage under bron ändras inte. Inga
+personliga resurser, spelinslag, ändringsloggar eller Cloudflare-delar har
+importerats; marknivåerna är fortfarande visuella antaganden.
+
+Verifiering: `npm test` (83 moduler), `npm run build`, `tools/browser-check.mjs`
+mot `dist/` på dator och mobil (gång/dörrar/lagring/nätverk),
+`tools/bridge-ramp-check.mjs` mot källservern (oförändrade toppositioner och
+normaler, 8/8 verkliga sidorayträffar, största nederkantssöm 0,0000071 m,
+vattenmesh kvar under bron), `tools/farwalk-check.mjs` (båda gångriktningarna)
+och `node --test tools/pathlampstest.mjs` (3/3). Fem parade Chromiumvyer från
+båda landfästena och under bron togs med kamera på faktisk gångmark +1,62 m:
+öppna kanter täcks, utan sidfel eller externa anrop. Terrängmeshen har 71 474→
+71 690 trianglar och +22 032 bufferbyte med fortsatt en mesh, ett material och
+samma ritanrop per parad vy. Inga budgetgränser höjs.

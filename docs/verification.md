@@ -208,3 +208,21 @@ samtliga34sydfötter exakt vid befintligt parkplan inom Float32-precision. En fr
 originallagringen orörd. Kontrollskript och `built.log`/`built-mobile.png` ligger
 med övriga artefakter.0nya batcher; verkliga yttervyer kan ge+2anrop när de redan
 befintliga större instansbatcherna når kamerans frustum.
+
+## Täta träbrons rampkanter, #107
+
+Källa och selektiv import står i [upstream.md](upstream.md#täta-sidokanter-vid-träbrons-jordramper-107).
+Starta källservern och kör `CHROME_PATH=… node tools/bridge-ramp-check.mjs BASE`.
+Provet granskar den faktiska `site-terrain`-meshen och `renderedTerrainY`: samma
+positioner/normaler för varje gammal toppvertex, nederkant på ritade trianglar,
+åtta horisontella strålar från båda bankernas båda sidor mot synliga sidoytor,
+vatten under brodäck samt en enda terrängmesh/material. Gång över bron åt båda
+håll, utan steg i ramperna, ligger i `tools/farwalk-check.mjs`.
+
+Före/efterbilder från fem identiska gånghöga kameror (NV, SÖ och under bron),
+kamerapositioner, budgetvärden och browserloggar finns utanför repot under
+`/tmp/orkester-katt-20261020/public-bridge107/`. Den byggda `dist/`-appen
+kontrolleras med `tools/browser-check.mjs` inklusive mobil, dörrar, lokal lagring
+och inga externa anrop. Slutresultat: 8/8 sidorayträffar, högsta nederkantsfel
+0,0000071 m, +216 trianglar/+22 032 byte i samma batch och identiskt antal
+ritanrop i matchade vyer. Lampplaceringarna passerar `pathlampstest.mjs` 3/3.
