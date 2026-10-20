@@ -40,9 +40,22 @@ Varje arbetsagent arbetar i en egen isolerad ext4-checkout/worktree för rätt r
   (skapa ett ärende vid behov), med konkreta alternativ. Ärendet får etiketten **`user-question`** och tappar
   `in-progress`/orkesteretiketten. Ärendet räknas som blockerat tills användaren svarat i ärendet. Läs svaret vid varje
   kökontroll, ta då bort `user-question` och fortsätt i vanlig ordning. Svarar användaren i chatten: för in svaret i ärendet.
-- **Prioritet avgörs av den som skapar ärendet** (orkestern/agenten), aldrig av rapportören. Buggar får `priority: high`.
+- **Prioritet avgörs av den som skapar ärendet** (orkestern/agenten), aldrig av rapportören. Fristående buggar får `priority: high`; delärenden följer föräldrataket nedan.
   Önskemål bedöms efter värde: `high` om det blockerar eller tydligt försämrar besöket, `medium` för rejäla förbättringar,
-  `low` för trevligt-att-ha eller "någon gång". Sätt inte allt till medel. Befintliga prioriteter ändras bara på användarens uppdrag.
+  `low` för trevligt-att-ha eller "någon gång". Sätt inte allt till medel. Befintliga prioriteter ändras bara på användarens uppdrag, utom automatisk sänkning enligt föräldrataket nedan.
+
+- **Föräldratak för alla delärenden (användaren 2026-10-20):** nya barn får normalt förälderns prioritet;
+  lägre är tillåten och ska bevaras. Ett barn får aldrig ha högre prioritet än någon förälder i hela kedjan,
+  även stängda föräldrar och uttryckliga relationer mellan reporna. Regeln gäller även buggar, regressioner,
+  test-/stödärenden och vidare uppdelning och går före buggar-high-regeln ovan. Saknad prioritet räknas som medel.
+  Läs GitHubs föräldra-/delärenderelationer och uttryckligt föräldraskap i titel, body och kommentarer (`Del av #N`).
+  Vanliga referenser, beroenden, överföringslänkar eller fynd under annat arbete skapar inte i sig föräldraskap.
+  Gör inte om ett faktiskt barn till fristående för att kringgå taket och höj inte föräldern för att behålla barnets nivå.
+  Vid skapande, länkning/byte av förälder, ändrad föräldraprioritet och före varje köval/bevakningskontroll:
+  hämta föräldrarna och sänk automatiskt för höga prioritetslabels genom alla öppna undernivåer utan ny användarfråga.
+  Behåll exakt en prioritetslabel, redan lägre nivåer, ägarskap, aktivetiketter och beroenden. Kommentera relationen
+  och skälet på ändrade ärenden och uppdatera köstatus i #420/#4. En höjd föräldraprioritet höjer inte barn automatiskt.
+  Hämta saknade föräldrar innan beslut; gissa inte vid olösta relationer.
 
 ## Modellval
 

@@ -5,7 +5,20 @@ Read [AGENTS.md](AGENTS.md) for public-content, storage and service boundaries. 
 ## Issues are required
 
 - Every implementation task for this project has an issue in **solwation/kvarteret-lunden**, as explicitly requested by the user on 2026-10-16. This replaces the previous central original-repository queue. Name affected files and acceptance criteria. Original-only work belongs in the original repository. Search before creating to avoid duplicates.
-- Add `Lapp: <2–6 everyday Swedish words>` and exactly one priority label, judged by whoever creates the issue (user, 2026-10-17): bugs `priority: high`; requests `high`/`medium`/`low` by value (blocking → high, solid improvement → medium, nice-to-have/some day → low). Do not default to medium. Do not change existing priorities without the user's direction.
+- Add `Lapp: <2–6 everyday Swedish words>` and exactly one priority label, judged by whoever creates the issue (user, 2026-10-17): bugs `priority: high` subject to the child-priority ceiling below; requests `high`/`medium`/`low` by value (blocking → high, solid improvement → medium, nice-to-have/some day → low). Do not default to medium. Do not change existing priorities without the user's direction, except for automatic child-priority corrections below.
+- **Child priorities never exceed their parents (user, 2026-10-20).** New child stories default to the parent's
+  priority; a lower priority is allowed and must be preserved. This applies to every child, including bugs,
+  regressions, test/support stories and further subdivisions, and overrides the default high priority for bugs.
+  Use the lowest priority in the complete ancestor chain as the ceiling, including closed parents and explicit
+  cross-repository parentage; a missing priority counts as medium. Read GitHub parent/sub-issue links and explicit
+  parentage in titles, bodies and comments (`Del av #N`); an ordinary reference, dependency, transfer link or a bug
+  discovered while working on another issue does not by itself establish parentage. Do not reclassify a genuine
+  child as independent to bypass the ceiling, or raise a parent to preserve a child's higher priority.
+  At creation, when linking/reparenting, after a parent's priority changes and before each queue selection/idle check,
+  automatically lower any child label that exceeds the ceiling, recursively through all open descendants. No further
+  user approval is required for these corrections; keep exactly one priority label, record the parent and reason,
+  and preserve ownership, active labels, dependencies and already lower priorities. Raising a parent does not
+  automatically raise existing children. Fetch missing parents before deciding; do not guess at unresolved links.
 - Questions for the user go on the issue as a comment with the `user-question` label, never in chat; the issue is blocked until answered (user, 2026-10-17).
 - Read the current issue, all comments and labels before claiming it. Never take another agent's `in-progress` issue or active reservation.
 - Set `in-progress` **in this repository** when work actually starts. Keep it only while actively working. Remove it when finished, paused, released or reopened.

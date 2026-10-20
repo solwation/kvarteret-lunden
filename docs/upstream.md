@@ -675,3 +675,19 @@ Elva redan kartlagda OSM-stråk ger40 stolpar före trädinput efter rampundanta
 Publicsidan förblir i dagsljus: stolparna syns som fasta miljöobjekt med släckta huvuden/markljus. Befintlig generisk street.update(night) bevaras utan nytt användarnattläge. Node3/3 och WebGL-komponent8/8 passerar: samma22dag/24natt-ritanrop som baslinjen när batcherna redan är synliga, +8000dag/+22400natt-trianglar, markavvikelse under1µm i lutande komponent och byteidentiska gamla väglampor. Nattkontrollen tvingar komponentens befintliga update, inte appens dygnscykel. `npm test` granskar81moduler och bygget passerar (`23b4575086f004bdddba7c09`).
 
 Den byggda riktiga visningen kontrollerades i Chromium vid1000×700 och390×844. Alla40 nya stolpfötter stämmer med faktiskt ritade site-terrain-trianglar (max0,000000371m); en1,20m promenad längs parkstråket har ändliga positioner. Släckta huvuden och dolt markljus i appens dagsljus, inga JavaScriptfel/externa anrop och originalets lagringsmarkörer kvar i båda profilerna. Park-/hagebilder för dator/mobil och komponentbilder öppnade. Ingen fysisk telefonprestanda påstås.
+
+
+## Föräldratak för delärendens prioritet, #101
+
+Granskad källa: original `d6455555394e870aab1b464513d3816475f7871b`
+([originalärende #1394](https://github.com/solwation/lunden-3d-apartment/issues/1394)).
+Enbart den neutrala workflowregeln i `CLAUDE.md` och `.claude/commands/orkester.md` har anpassats.
+Delärenden ärver normalt förälderns prioritet, får ligga lägre och får aldrig överstiga någon förälder i kedjan,
+även när de är buggar. Agenter rättar för höga barnprioriteter vid skapande, ändrat föräldraskap/omprioritering
+och före köval. Redan lägre prioritet och aktivt ägarskap bevaras.
+
+Backloggranskningen omfattade båda repornas hela öppna köer, GitHubs föräldrafält samt titlar, body och
+kommentarer. Tio öppna delärenden med dokumenterat föräldraskap hittades; inget låg över sitt föräldratak.
+Överföringslänkar, beroenden och överlappande önskemål behandlas inte automatiskt som föräldraskap.
+Ingen appkod, resurs, lagring, personlig information, spelkod eller tjänsteintegration har importerats.
+Verifiering: `git diff --check`, `npm test` och `npm run build`; ändringen påverkar enbart arbetsinstruktioner.
