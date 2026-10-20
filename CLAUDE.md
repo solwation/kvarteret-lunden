@@ -4,6 +4,14 @@ Read [AGENTS.md](AGENTS.md) for public-content, storage and service boundaries. 
 
 ## Issues are required
 
+- **Ports have the lowest priority (user, 2026-10-20).** Work that transfers improvements from
+  `lunden-3d-apartment` to `kvarteret-lunden` always has `priority: low`, unless the user explicitly
+  specifies otherwise. This includes bug-fix ports and their implementation, test and support children;
+  the original issue's priority does not raise the port's priority. Apply this rule when creating work
+  and before every queue selection: lower existing higher-priority ports unless an explicit user exception
+  applies, then enforce the full ancestor ceiling. Preserve ownership, dependencies and the original
+  issue's own priority. Continue to review both queues and transfer applicable improvements; independent
+  public-project work that is not a port keeps its ordinary triage.
 - Every implementation task for this project has an issue in **solwation/kvarteret-lunden**, as explicitly requested by the user on 2026-10-16. This replaces the previous central original-repository queue. Name affected files and acceptance criteria. Original-only work belongs in the original repository. Search before creating to avoid duplicates.
 - Add `Lapp: <2–6 everyday Swedish words>` and exactly one priority label, judged by whoever creates the issue (user, 2026-10-17): bugs `priority: high` subject to the child-priority ceiling below; requests `high`/`medium`/`low` by value (blocking → high, solid improvement → medium, nice-to-have/some day → low). Do not default to medium. Do not change existing priorities without the user's direction, except for automatic child-priority corrections below.
 - **Child priorities never exceed their parents (user, 2026-10-20).** New child stories default to the parent's

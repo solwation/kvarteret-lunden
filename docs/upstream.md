@@ -38,9 +38,22 @@ git show <original-SHA> -- <relevanta-filer>
 
 Automatisk publicering till GitHub Pages är aktiverad vid varje push till detta repos `main`, efter godkända tester och bygge. Automatisk import från originalet är inte konfigurerad. Om uppdateringarna blir frekventa kan gemensam arkitektur och navigation brytas ut till en delad komponent, med en separat ändring och verifiering i båda projekten.
 
+## Lägsta prioritet för portningar, #109
+
+Granskad källa: original `9a2dac315d328ca47dedbebe521bf5415ce0ffa4`
+([originalärende #1422](https://github.com/solwation/lunden-3d-apartment/issues/1422)).
+Enbart användarens arbetsflödesregel i `CLAUDE.md` och `.claude/commands/orkester.md`
+har anpassats. Överföringar hit, även buggfixar och deras implementations-, test- och
+stödärenden, ska alltid ha `priority: low` om användaren inte uttryckligen anger annat.
+Originalets prioritet höjer inte portningen. Regeln tillämpas vid skapande och köval,
+med bevarat ägarskap, beroenden och föräldratak. Självständigt publicarbete som inte
+är en portning behåller vanlig prioritering. Befintliga öppna portningar har granskats
+och sänkts; ingen appkod, resurs, lagring, spelmekanik eller tjänst har importerats.
+Verifiering: granskad dokumentdiff, `git diff --check`, `npm test` och `npm run build`.
+
 ## Register
 
-- Senast granskade originalversion: `03d4c5201004540769c51cf62b7272f0a2c3caaf` + `662f1030389006d785a633352f5856f06e11fd21` (enbart GLO/markstöd #105); tidigare `15f9b00569e194bfcc4382fa66955b974dbcc134` (enbart neutral vägbelysning#96); tidigare `90d1632c17fa66ceb0e29e99c65c145fac2fa0aa` (enbart neutral täckgeometri/säsong#103); tidigare `bcd8c24655cf87244df9b8d405db678c8e94b6c2` (enbart placering av vindskydd/vattenho#102); tidigare `e6f5ce4e20b319e864e42be487820ffb09319171` (enbart parkbelysning#95); tidigare `ba5db2f9ad167ee69c68a5be85b209e5c6c5a648` (enbart de rena prestandadelarna för#94); tidigare `24e72f89` + `8cd6788` (för #92); tidigare `f2330dde`, `53c46cd8`, `350c5196`, `0a934ac2` (för #81); tidigare `937ac17e` (för #80); tidigare `d884dbb9` + `b61bf377` (för #79); tidigare `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
+- Senast granskade originalversion: `9a2dac315d328ca47dedbebe521bf5415ce0ffa4` (enbart prioriteringsregeln #109); tidigare `03d4c5201004540769c51cf62b7272f0a2c3caaf` + `662f1030389006d785a633352f5856f06e11fd21` (enbart GLO/markstöd #105); tidigare `15f9b00569e194bfcc4382fa66955b974dbcc134` (enbart neutral vägbelysning#96); tidigare `90d1632c17fa66ceb0e29e99c65c145fac2fa0aa` (enbart neutral täckgeometri/säsong#103); tidigare `bcd8c24655cf87244df9b8d405db678c8e94b6c2` (enbart placering av vindskydd/vattenho#102); tidigare `e6f5ce4e20b319e864e42be487820ffb09319171` (enbart parkbelysning#95); tidigare `ba5db2f9ad167ee69c68a5be85b209e5c6c5a648` (enbart de rena prestandadelarna för#94); tidigare `24e72f89` + `8cd6788` (för #92); tidigare `f2330dde`, `53c46cd8`, `350c5196`, `0a934ac2` (för #81); tidigare `937ac17e` (för #80); tidigare `d884dbb9` + `b61bf377` (för #79); tidigare `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 

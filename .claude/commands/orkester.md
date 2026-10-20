@@ -26,6 +26,18 @@ Issues, claims, `in-progress`, `orkester: <id>`, verifiering och stängning hör
 
 Varje arbetsagent arbetar i en egen isolerad ext4-checkout/worktree för rätt repo. Bevara andras ändringar och hämta/rebasa aktuell `origin/main` före leverans. Följ rätt repos verifierings- och publiceringsregler. Överför endast granskade relevanta förbättringar till publicsidan: inga privata data, personliga möbler/bilder, spelinslag eller Cloudflare-tjänster. Originalets rapportimport gäller för originalarbete enligt originalkommandot; den är ingen tjänst i publicsidan.
 
+### Portningar har alltid lägsta prioritet (användaren, 2026-10-20)
+
+Alla uppgifter som överför förbättringar från `lunden-3d-apartment` till `kvarteret-lunden`
+ska ha `priority: low`, om användaren inte uttryckligen anger annat. Det gäller även
+portningar av buggfixar och deras implementations-, test- och stödärenden. Originalets
+prioritet är inget undantag. Vid skapande och före varje köval granskas portningarna:
+sänk befintliga högre prioriteter utan uttryckligt användarundantag och tillämpa därefter
+hela föräldrataket. Bevara ägarskap, beroenden och originalärendets egen prioritet.
+Den vanliga globala ordningen gäller inom varje prioritetsnivå; båda köerna ska fortfarande
+läsas och relevanta förbättringar föras över. Självständigt publicarbete som inte är en
+portning behåller sin vanliga prioritering.
+
 ## Publicsidans kö och ägarskap
 
 1. Alla implementationsärenden för detta projekt finns i `solwation/kvarteret-lunden` enligt användarens uttryckliga instruktion 2026-10-16; detta ersätter den tidigare centrala kön. Originalets ärenden finns kvar i originalrepot. Hämta alltid båda köerna enligt ovan; publicsidans kö hämtas med `gh api --paginate 'repos/solwation/kvarteret-lunden/issues?state=open&per_page=100'`. Filtrera bort PR:er och samordningsärenden samt sådant utanför området.
