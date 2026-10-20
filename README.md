@@ -97,3 +97,7 @@ Orkesterarbete samordnas i [#4](https://github.com/solwation/kvarteret-lunden/is
 Finare öppna höjdreferenser för Höje å och ett separat verktyg för att hämta eller återläsa punkterna finns i [importregistret](docs/upstream.md#finare-höjdreferenser-för-höje-å-85). Markdata visar varken uppmätt undervattensbotten eller lägenhetens absoluta golvnivå.
 
 Vägbelysningen kontrolleras med `node --test tools/roadlampstest.mjs`, `node tools/roadlampstest.cjs BASE` och `node tools/roadlamps-check.mjs BASE OUT` (riktig dator-/mobilvisning). Parkbelysningens placering och rendering kontrolleras med `node --test tools/pathlampstest.mjs` och `node tools/pathlampstest.cjs BASE` (PLAYWRIGHT_MODULE, CHROME_PATH och SHOTS kan anges).
+
+Den södra bakgrundsmarken fortsätter nu över GLO-höjdplatån till modellens z460 (#105).
+Byggnadsfötter, hage och befintlig beläggning följer samma mark. Höjder och mellanliggande
+mark är relativa modellantaganden; den lokala LM-förfiningen (#106) och parkeringsplanen (#100) återstår.

@@ -13,7 +13,7 @@ import { applySeason } from './seasons.js';
 import { groundY, renderedTerrainY, treeFeet } from './surroundings.js';
 import { Core } from './core.js';
 import { CoreHouse } from './corehouse.js';
-import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, LIGHTING, STARTUP, TOUCH, VIEW_NEAR } from './config.js';
+import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, LIGHTING, STARTUP, TOUCH, VIEW_NEAR, SITE } from './config.js';
 import { region, stickMirrored, setupTouchLayout } from './touchlayout.js';
 
 const $ = id => document.getElementById(id);
@@ -158,7 +158,7 @@ async function init() {
   await loadingStep('Bygger huset', 0.2);
   // In parts, with the card's heartbeat painted between them (#39, from the original's 673b78d #1133).
   world = await buildWorldSliced(plan, (share) => loadingYield(0.2 + 0.6 * share)); scene.add(world.object);
-  paddock = new URLSearchParams(location.search).has('nopaddock') ? null : new Paddock({ scene, camera, ground: (x, z) => (z > 260 ? -3.01 : Math.max(groundY(x, z), renderedTerrainY(x, z))), trees: treeFeet }); // original #1280: the fenced pony paddock, scenery only
+  paddock = new URLSearchParams(location.search).has('nopaddock') ? null : new Paddock({ scene, camera, ground: (x, z) => (z > SITE.backgroundGround.z1 ? -3.01 : Math.max(groundY(x, z), renderedTerrainY(x, z))), trees: treeFeet }); // original #1280: the fenced pony paddock, scenery only
   const debugMonth = Number(debugParams.get('month')); if (debugMonth >= 1 && debugMonth <= 12) applySeason(Math.round(debugMonth)); // debug: show a month's season (snow months: white ground, ponies in the stable)
   await loadingStep('Bygger trapphus och garage', 0.82);
   garage = world.garage = new Garage();

@@ -265,3 +265,57 @@ och verkliga matriser/renderutfall i World-provet, inte numerisk likhet mellan
 två olika tidpunkter för renderarens lata initiering. Inga JavaScriptfel eller
 externa anrop förekom och originalets local-/sessionStorage-markörer låg kvar.
 Detta är Chromium/SwiftShader, ingen uppmätt fysisk telefonprestanda.
+
+## Södra GLO-platåns mark, #105
+
+`node --test tools/southplateautest.mjs tools/paddockgeotest.mjs` kontrollerar alla
+46 gamla rå-/markrader, refAbsM14.75, den nya67-raderstäckningen, exakt gammal
+Catmull-Rom-klamp samt areabevarande projektion mot faktiskt använda undertrianglar.
+Samtliga16 prov är gröna efter återbasering till a0b07c4.
+
+`CHROME_PATH=… node tools/southplateau-check.mjs BASE OUT` bygger den riktiga publika
+världen i1280×800 och390×844. Den kontrollerar faktiskt ritad mark, stolpfötter,
+ljuspoolernas extremhörn, byggnadsplattformar, hageunderstöd och alla triangelmittpunkter
+för hagefält/slitspår mot deras ursprungliga48/70mm-lyft. Nordens50 232 Float32-positioner
+måste ge exakt hash71634f582304fb881e362d15869ac3ee4eac718d9df46423e302d37c9259f02e
+från a0b07c4. Denna nya bas innehåller #107:s648 ytterligare rampbankspositioner.
+Den gamla49 584-positionershashen gäller därför enbart den historiska basen.
+Bilder sparas från hagen, ovanifrån, norrut och två parkeringsvyer. Parkeringskonturer
+och ursprungligt24mm-linjelift behålls; en korrekt parkeringsplan hör till #100.
+
+Före sessionskraschen registrerades native16/16, faktisk desktop+mobil10/10,
+hage29/29 och gång24/24 samt byggd browserkontroll. Den då granskade parade världen
+38b47817→efter behöll51/928/107ritanrop med +37770/+37770/+37734trianglar.
+Dessa är historiskt dokumenterade observationer: de temporära före-/efterbilderna och
+råloggarna för både godkända och underkända kandidater försvann vid omstarten.
+Grov-grid-kandidaten underkändes för sjunkna mittpunkter; den slutliga opt-in
+surfaceGrid() använder terrängens riktiga undertrianglar. Andra grid-konsumenter bevaras.
+
+Efter återställningen sparas nya råloggar och bilder beständigt under
+`/home/olw/.local/state/lunden-orkester/codex-surface-20261020/public105-recovery`.
+`native16.log`, `npm-test.log`, `build.log` och `final/desktop.json`/`mobile.json`
+är återkörda slutbevis. Ett första serverförsök gav endast connection-refused;
+`world-retry.log` innehåller den riktiga körning som upptäckte #107:s ändrade nordbas.
+`final-world.log` är grön totalt12/12 för båda profilerna. `final/` innehåller aktuella
+bilder och JSON. `baseline.mjs` fryser endast /src-modulerna till a0b07c4 via
+Playwright-routing; `before-a0b/` och `baseline-retry.log` innehåller nya parade
+förebilder och samma50 232-positionershash. Baslinjen testar bara nordbevarande;
+sydstöd är avsiktligt inte ett acceptanskrav för den äldre världen. Ett första
+baslinjeförsök missade kompatibilitetsfallback för surfaceGrid; dess fel finns kvar.
+
+Återkörd faktisk desktop+mobil:681spår-/4049fältmittpunkter håller70/48mm-lyft
+inom4,40/4,00µm;56sydstolpar/224poolhörn inom2,14/3,48µm,21plattformar matchar exakt.
+Alla fem parade desktopvyer behåller51/928/107/67/228ritanrop. Triangeldeltan är
++37702/+37702/+37734/+37734/+37702. Bygget efter återställningen är ff2310b2dfa3cc2dc56dc1b0.
+Parade mobilvyer behåller28/708/85/27/188ritanrop, med
++37730/+37730/+37734/+37734/+37734trianglar. Inga JS-fel eller externa anrop i slutprofilerna.
+Den återkörda hagekontrollen passerar29/29 med exit0 (`paddock.log`), inklusive
+befintliga triangelbudgetar, regn/säsong/culling, staket/grind och verklig gång över stättan.
+
+Återkörd `tools/farwalk-check.mjs` passerar24/24 med exit0 (`farwalk.log`), inklusive
+broar, fria vägar, gång och lokal återhämtning längs hela ån.
+`tools/browser-check.mjs` passerar med exit0 mot den byggda visningen
+(`built.log`, `built/browser-results.json`): dator/mobil, gång/dörrar, touch,
+originallagring och inga externa anrop. Hagens befintliga komponenttak
+höjs inte, och inga nya globala budgettak införs. Navigation/kollision och Hus A/B/C/L:s
+byggnadsdata är oförändrade. LM-förfiningen #106 och planparkeringen #100 återstår.

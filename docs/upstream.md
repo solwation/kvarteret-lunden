@@ -40,7 +40,7 @@ Automatisk publicering till GitHub Pages är aktiverad vid varje push till detta
 
 ## Register
 
-- Senast granskade originalversion: `15f9b00569e194bfcc4382fa66955b974dbcc134` (enbart neutral vägbelysning#96); tidigare `90d1632c17fa66ceb0e29e99c65c145fac2fa0aa` (enbart neutral täckgeometri/säsong#103); tidigare `bcd8c24655cf87244df9b8d405db678c8e94b6c2` (enbart placering av vindskydd/vattenho#102); tidigare `e6f5ce4e20b319e864e42be487820ffb09319171` (enbart parkbelysning#95); tidigare `ba5db2f9ad167ee69c68a5be85b209e5c6c5a648` (enbart de rena prestandadelarna för#94); tidigare `24e72f89` + `8cd6788` (för #92); tidigare `f2330dde`, `53c46cd8`, `350c5196`, `0a934ac2` (för #81); tidigare `937ac17e` (för #80); tidigare `d884dbb9` + `b61bf377` (för #79); tidigare `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
+- Senast granskade originalversion: `03d4c5201004540769c51cf62b7272f0a2c3caaf` + `662f1030389006d785a633352f5856f06e11fd21` (enbart GLO/markstöd #105); tidigare `15f9b00569e194bfcc4382fa66955b974dbcc134` (enbart neutral vägbelysning#96); tidigare `90d1632c17fa66ceb0e29e99c65c145fac2fa0aa` (enbart neutral täckgeometri/säsong#103); tidigare `bcd8c24655cf87244df9b8d405db678c8e94b6c2` (enbart placering av vindskydd/vattenho#102); tidigare `e6f5ce4e20b319e864e42be487820ffb09319171` (enbart parkbelysning#95); tidigare `ba5db2f9ad167ee69c68a5be85b209e5c6c5a648` (enbart de rena prestandadelarna för#94); tidigare `24e72f89` + `8cd6788` (för #92); tidigare `f2330dde`, `53c46cd8`, `350c5196`, `0a934ac2` (för #81); tidigare `937ac17e` (för #80); tidigare `d884dbb9` + `b61bf377` (för #79); tidigare `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -877,3 +877,56 @@ Det är renderarens befintliga lata beräkning, ingen ändring av bounds i
 `applySeason`. Trädcellerna har förberäknade bounds och är exakt lika. I tre
 matchade vyer är ritdeltat exakt antalet tidigare ritade säsongsbatcher; mars och
 juli är identiska med baslinjen. Se [verifieringen](verification.md#tomma-vinterkronor-104).
+
+## Södra GLO-platåns ritade mark, #105 (del av #98)
+
+Selektivt importerad från `03d4c5201004540769c51cf62b7272f0a2c3caaf`:
+`data/elevation.json` och genererad `src/elevationgrid.js` (46→67 rader,59 kolumner).
+Alla befintliga46 rader i både ytmodell `h` och bearbetad mark `g` är exakt bevarade.
+Från `662f1030389006d785a633352f5856f06e11fd21` är endast mark-/plattformstrukturen,
+den utökade ritgränsen och nödvändig projektion av befintlig beläggning tillämpade i
+små block i config/elevation/surroundings/southbackdrop/main. Ingen hel main/config-import.
+
+Terrängen ritas till z460 med8m rader efter gamla260; tidigare nordliga rader kvarstår.
+Byggnadsplattformarna följer den nya marken. Den gamla46-raders samplern, dess kantklamp
+vid z250 och dess plattformsmedelvärden används separat norr om övergången225..240;
+utan separat klamp kan utökade grannvärden indirekt ändra gamla plattformar.
+Hage, träd och markskuggor använder samma dynamiska ritgräns. Navigation/farwalk behöver
+ingen ändring eftersom de redan läser groundY; befintliga gånggränser, broprofiler och
+stätta bevaras. Hårdytornas befintliga konturer är oförändrade; asfalt/linjer skärs längs
+samma marktrianglar för att undvika sjunkna mittpunkter och falska uppstickande kanter.
+Detta ändrar inte parkeringsplanen eller levererar #100.
+
+Källa: Copernicus DEM GLO-30, bearbetad ytmodell, attribution "Contains modified
+Copernicus data" enligt THIRD_PARTY_LICENSES.txt. Exportens befintliga refAbsM14.75
+bevaras som relativ modellreferens, inte inmätt lägenhetsgolv. Horisontell registrering
+är cirka3–5m; interpolation, mark under vegetation och plattformar är antaganden.
+Den separata LM-exportens77 punkter och dess14.36RH2000-origin importeras först i #106;
+de är inte ådjup. Ingen ny höjd-API-användning, originalets lagring, personligt innehåll,
+spel eller Cloudflare har införts. Public#96:s roadlamps/street-block är bevarade.
+
+Verifiering och verkliga före/efterbilder: se docs/verification.md, #105. Föräldern #98
+förblir öppen för LM-förfiningen #106 och den avskilda parkeringsdelen #100.
+
+Den riktiga ovanifrånbilden avslöjade dessutom att de gamla långa spårkvadrerna
+bara samplade hörn och fältet använde6m-trianglar oberoende av terrängveck.
+Bortom gamla z260 sjönk43 spårmittpunkter upp till0,143190m och1215 fältmittpunkter
+upp till0,128943m under den nya ritade marken. Dessa värden dokumenterades före sessionskraschen; de gamla temporära råfilerna finns inte kvar. Därför klipps exakt samma hagespår
+(lift70mm) och hagefält (lift48mm) mot terrängens diagonaler. Övriga fält behåller
+sina gamla trianglar norr om225; bara trianglar som berör den södra övergången
+projiceras där. Inga andra nordliga fält förfinas och ingen batch tillkommer.
+Äldre globala maxfel0,748277m/0,189239m fanns redan i före-världen och behålls i
+den tidigare dokumentationen; de ska inte beskrivas som helt nytillkomna sydfel. Originalets nuvarande
+hörn-/fältalgoritm är likadan, men dess egen mark har inte separat körts i denna import.
+Hus A/B/C/L:s data och byggblock är oförändrade; bevarad nordmark och npm:s
+arkitektur-/planprov täcker den tillämpliga kontrollen av motsvarande hus.
+
+En första grov-grid-kandidat var otillräcklig: åkorridorens terräng har lokala
+undertrianglar som inte ingår i den äldre grid()-beskrivningen. Faktiska mittpunkter
+avslöjade kvarvarande10,13/30,29cm sydinträngning (historiskt registrerad exit1). Den slutliga
+lokala surfaceGrid()-kroken beskriver befintliga utsända cellunderindelningar;
+cutAtTerrain använder dem bara när just detta detaljgrid uttryckligen skickas in.
+Hagespår/berörda fält använder det. Befintliga road-/parkerings-/nordkonsumenter
+fortsätter med sitt gamla grid, och själva markens trianglar ändras inte av denna krok.
+
+Parkeringslinjer och kantens ursprungliga24mm-lyft bevaras, även där de döljs av asfaltens52mm-lyft. Den felaktiga kapacitetsindelningen görs inte synlig inför separat #100.

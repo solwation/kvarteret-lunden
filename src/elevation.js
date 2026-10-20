@@ -4,9 +4,9 @@
 // bilinear: the terrain mesh samples it on a 4-5 m lattice, so a smooth surface keeps the mesh within a few cm of `terrainY`.
 import { ELEVATION_GRID as G } from './elevationgrid.js';
 const cr = (a, b, c, d, t) => b + 0.5 * t * (c - a + t * (2 * a - 5 * b + 4 * c - d + t * (3 * (b - c) + d - a)));
-const at = (i, j) => G.g[Math.min(G.rows - 1, Math.max(0, j))][Math.min(G.cols - 1, Math.max(0, i))];
-export function gridGround(x, z) {
-  const fx = Math.min(G.cols - 1, Math.max(0, (x - G.x0) / G.step)), fz = Math.min(G.rows - 1, Math.max(0, (z - G.z0) / G.step));
+export function gridGround(x, z, rows = G.rows) {
+  const at = (i, j) => G.g[Math.min(rows - 1, Math.max(0, j))][Math.min(G.cols - 1, Math.max(0, i))];
+  const fx = Math.min(G.cols - 1, Math.max(0, (x - G.x0) / G.step)), fz = Math.min(rows - 1, Math.max(0, (z - G.z0) / G.step));
   const i = Math.floor(fx), j = Math.floor(fz), u = fx - i, v = fz - j, col = (jj) => cr(at(i - 1, jj), at(i, jj), at(i + 1, jj), at(i + 2, jj), u);
   return cr(col(j - 1), col(j), col(j + 1), col(j + 2), v) / 10;
 }
