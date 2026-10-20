@@ -2241,3 +2241,8 @@ export const PADDOCK = {
 export const PATH_LIGHTS = { height: 4.6, step: 18, edge: 0.65, pathClear: 0.25, treeClear: 1.2, fenceClear: 0.8,
   waterClear: 4, duplicateClear: 10, pool: { along: 7, across: 3.5, rings: 5, segs: 20 },
   sources: ['44447963', '123898762', '123898761', '130537426', '44447981', '1432565775', '44447962', '1228396153', '185706718', '51890086', '1432565773'] };
+
+// #1371: supplementary road fittings follow mapped road centre lines, not surveyed lamp locations.
+// Spacing, verge setbacks and low-poly glow footprint are visual guesses; reuse the existing 6.2 m street fitting.
+export const ROAD_LIGHTS = { step: 32, edge: 0.65, minRoadWidth: 3.5, clear: 0.3, buildingClear: 1,
+  treeClear: 1.2, waterClear: 4, duplicateClear: 14, pool: { along: 8, across: 6.5, rings: 3, segs: 12 } };

@@ -40,7 +40,7 @@ Automatisk publicering till GitHub Pages är aktiverad vid varje push till detta
 
 ## Register
 
-- Senast granskade originalversion: `90d1632c17fa66ceb0e29e99c65c145fac2fa0aa` (enbart neutral täckgeometri/säsong#103); tidigare `bcd8c24655cf87244df9b8d405db678c8e94b6c2` (enbart placering av vindskydd/vattenho#102); tidigare `e6f5ce4e20b319e864e42be487820ffb09319171` (enbart parkbelysning#95); tidigare `ba5db2f9ad167ee69c68a5be85b209e5c6c5a648` (enbart de rena prestandadelarna för#94); tidigare `24e72f89` + `8cd6788` (för #92); tidigare `f2330dde`, `53c46cd8`, `350c5196`, `0a934ac2` (för #81); tidigare `937ac17e` (för #80); tidigare `d884dbb9` + `b61bf377` (för #79); tidigare `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
+- Senast granskade originalversion: `15f9b00569e194bfcc4382fa66955b974dbcc134` (enbart neutral vägbelysning#96); tidigare `90d1632c17fa66ceb0e29e99c65c145fac2fa0aa` (enbart neutral täckgeometri/säsong#103); tidigare `bcd8c24655cf87244df9b8d405db678c8e94b6c2` (enbart placering av vindskydd/vattenho#102); tidigare `e6f5ce4e20b319e864e42be487820ffb09319171` (enbart parkbelysning#95); tidigare `ba5db2f9ad167ee69c68a5be85b209e5c6c5a648` (enbart de rena prestandadelarna för#94); tidigare `24e72f89` + `8cd6788` (för #92); tidigare `f2330dde`, `53c46cd8`, `350c5196`, `0a934ac2` (för #81); tidigare `937ac17e` (för #80); tidigare `d884dbb9` + `b61bf377` (för #79); tidigare `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -776,3 +776,51 @@ båda vinterponnyerna står i rätt stall med faktisk instansskala0,99999997 och
 exakt delad täckmatris. Täcke av/på ger31→32anrop/203522→203662tri, fortsatt
 exakt+1/+140. Inga personliga interaktions-/matningsmedlemmar, JavaScriptfel,
 externa anrop eller ändrade originalmarkörer; byggd mobilbild öppnad.
+
+
+## Lampor längs fler kartlagda vägar, #96
+
+Granskad källa: `15f9b00569e194bfcc4382fa66955b974dbcc134` (original#1371).
+Selektivt överfört `src/roadlamps.js`, enbart `ROAD_LIGHTS` i config och de små
+instans-/poolkrokarna i `street.js`. Publicsidans #95, inklusive brojordrampens
+placeringsskydd och callback till faktiskt ritad terräng, är bevarad. Inga hela
+blandade källfiler, main, personliga resurser, spel, dygnscykel eller tjänster
+importeras. Ingen terrängändring eller konkret höjdimport#98 krävs.
+
+Kartlagda vägmittlinjer ger antagna kompletterande stolpplatser i fem regioner:
+lokalvägarna Sankt Lars väg/Karpvägen samt väster/norr/öster/söder. Höjd6,2m,
+32m steg,0,65m kantavstånd, frigångar och skenets form är visuella antaganden,
+inte inmätta armaturer eller byggfakta. Algoritmen undviker kör-/gångbanor,
+hållplats, byggnader, träd, vatten, brodäck, hagstaket och parkeringspolygoner
+och provar motsatt sida. Den befintliga publika jordrampen innehåller inga
+vägstolpkandidater; inget nytt terräng- eller rampingrepp har behövts.
+
+Stolpar, huvuden och ljusfläckar delar de tre befintliga batcherna. Tidigare väg-
+och parkstolpars matriser och ljusfläckarnas vertexprefix är byteidentiska.
+Visningen är fortsatt dagsljus med släckta huvuden/dolda markfläckar; bara den
+befintliga komponentens generiska nattstyrning testas, inget nytt nattläge.
+
+Publik importanpassning: två nya kandidater söder om terrängnätet skulle med
+källans klampade terrängcallback sväva0,47044m respektive0,13605m över befintlig
+`south-land`. Endast nya väginstanser och deras poolhörn använder därför
+`roadLampGround`: utanför `SITE.backgroundGround.z1` samplas samma befintliga
+parkplan (`SITE.terrain.park - .01`, exakt−3,01m) som southbackdrop. Inga gamla
+instanser/prefix eller markmeshar ändras. Gränsen följer config även vid framtida
+höjdimport. Det första markprovet och de båda felkandidaterna är bevarade i
+`browser-before-ground-adaptation.log`; den första loggen använde också ett
+felaktigt lånat originaltak och enbart huvudterrängen. Public har inget generellt
+dokumenterat370-anropstak; relevanta kontroller är oförändrade batcher,
+komponentens22dag/24natt-anrop och <50000extra natttrianglar från källkravet.
+
+Verifiering: native8/8, komponent8/8, npm83moduler och byggPASS. Full publik
+World11/11 per desktop/mobilprofil, inga JS-fel/externa anrop och orörd
+originallagring.130nya/179totala stolpar i befintliga22barn, fördelat21/3/22/28/56
+på lokal/väst/nord/öst/syd. Gamla matriser/poolprefix byteidentiska. Samtliga130
+fötter följer ritad mark inom2,45µm;520pool-extremahörn inom3,48µm. Komponentens
+anrop22dag/24natt är oförändrade, +26000dag/+41600natt-trianglar. Se fulla
+kamerdeltan och bevarade misslyckade försök i `docs/verification.md`.
+
+Byggd faktisk mobilvisning390×844 PASS med179instanser/130nya, samma22barn,
+fast dagsljus, alla34sydfötter på−3,01m, inga JS-fel/externa anrop och orörd
+originallagring. Fri östbild visar vägkantens stolpe/fot.0nya batcher; yttervyer
+kan få+2anrop från den befintliga batchens utvidgade bounds.

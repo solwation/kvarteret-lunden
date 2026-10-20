@@ -18,7 +18,7 @@ På telefoner frigörs CPU-kopian av trapphusens färdigritade dörrskyltar när
 
 Höje ås vatten, stränder och dalbotten följer ett svagt fall nedströms, tolkat från markreferenser. Vattenstånd och djup är fortsatt uppskattningar.
 
-Parkens gångstråk och vägarna längs Höje å har fasta lampstolpar som följer terrängen. Placeringar och mått är visuella antaganden; visningen behåller sitt fasta dagsljus.
+Parkens gångstråk, vägarna längs Höje å och de kartlagda kvartersvägarna i väster, norr, öster och söder har fasta lampstolpar som följer terrängen (#95/#96). Placeringar och mått är visuella antaganden; visningen behåller sitt fasta dagsljus.
 
 Modellen är en fristående visualisering och kan innehålla avvikelser. Fast inredning och material i L1007 är ett exempel och utgör inte verifierad standard för samtliga bostäder. Projektet är inte Peabs officiella tjänst.
 
@@ -88,4 +88,4 @@ Orkesterarbete samordnas i [#4](https://github.com/solwation/kvarteret-lunden/is
 
 Finare öppna höjdreferenser för Höje å och ett separat verktyg för att hämta eller återläsa punkterna finns i [importregistret](docs/upstream.md#finare-höjdreferenser-för-höje-å-85). Markdata visar varken uppmätt undervattensbotten eller lägenhetens absoluta golvnivå.
 
-Parkbelysningens placering och rendering kontrolleras med `node --test tools/pathlampstest.mjs` och `node tools/pathlampstest.cjs BASE` (PLAYWRIGHT_MODULE, CHROME_PATH och SHOTS kan anges).
+Vägbelysningen kontrolleras med `node --test tools/roadlampstest.mjs`, `node tools/roadlampstest.cjs BASE` och `node tools/roadlamps-check.mjs BASE OUT` (riktig dator-/mobilvisning). Parkbelysningens placering och rendering kontrolleras med `node --test tools/pathlampstest.mjs` och `node tools/pathlampstest.cjs BASE` (PLAYWRIGHT_MODULE, CHROME_PATH och SHOTS kan anges).

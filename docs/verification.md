@@ -157,3 +157,54 @@ bort/återkomst. Originalets lagringsmarkörer ska vara kvar och inga externa an
 eller JavaScriptfel får förekomma. Granska de båda sidobilderna, bebott vinterstall
 och sommarbild före publicering, samt den byggda och publicerade visningen.
 Se [selektiv import och antaganden](upstream.md#vintertäcken-till-miljöponnyerna-103).
+
+## Kompletterande vägstolpar, #96
+
+Källa `15f9b00569e194bfcc4382fa66955b974dbcc134` (original#1371), selektivt
+`roadlamps.js`, `ROAD_LIGHTS` och små street-krokar. Public#95 bevaras. Kör
+`node --test tools/roadlampstest.mjs tools/pathlampstest.mjs` (8/8),
+`CHROME_PATH=… SHOTS=… node tools/roadlampstest.cjs BASE` (8/8) och
+`CHROME_PATH=… node tools/roadlamps-check.mjs BASE OUT` (riktig World, seriellt
+1100×700 och390×844). `npm test` granskar83moduler; `npm run build` passerar.
+
+Komponenten tillför130stolpar till befintliga49, i samma22barn/batcher utan nya
+ljuskällor. Alla gamla väg-/parkmatriser och ljusvertexprefix är byteidentiska.
+Full komponent22dag/24natt-anrop både före/efter; +26000dag/+41600natt-trianglar,
+under källans oförändrade50000-extra-natttriangelgräns. Nattprovet testar bara
+komponentens gamla update; appen förblir dagsljus med släckta huvuden/markfläckar.
+Native kontrollerar determinism, samtliga regioner, vägar/gångbanor/hållplats,
+byggnader/träd, vatten/bro/ramp/hage/parkering, gamla stolpars frigång och det
+befintliga plana sydmarkstödet.
+
+Verklig World:11/11kontroller i vardera profil, inga JS-fel/externa anrop och
+originalets lagringsmarkörer orörda. Samtliga130fötter jämförs mot faktiskt ritade
+trianglar:96i `site-terrain`,34i `south-land`, maxavvikelse2,45µm. Fyra extrema
+poolhörn för varje ny stolpe (520prov) följer samma verkliga mark med högst3,48µm
+avvikelse; komponenten kontrollerar även varje ny poolvertex mot lutande mark.
+Antal nya stolpar per region lokal/väst/nord/öst/syd:21/3/22/28/56.
+
+Samma frysta kamerapar ger datoranrop13→15,103→103,13→15,53→53,532→532;
+mobil13→15,75→75,13→15,40→40,51→51. De två tillkomna anropen i yttervyer är
+samma gamla instansbatcher som tidigare låg utanför kamerans frustum, inte nya
+batcher. Triangeldelta är35800 i dessa yttervyer och26000 i övriga. Publicdocs har
+inte originalets generella370-anropstak. Inga befintliga gränser höjs. Före/efter-
+bilder sparas för alla fem regioner och båda profilerna; kameran döljer första
+öststolpen bakom ett hus, så en friare östvinkel tas i byggkontrollen.
+
+Första Worldförsöket mätte bara huvudterrängen och använde felaktigt ett lånat
+originaltak; loggen bevaras. Den utökade kontrollen fann två verkligt svävande
+nytillkommande sydkandidater0,47044/0,13605m över befintligt plan. Importanpassningen
+`roadLampGround` återanvänder därför endast för nya väginstanser/poolhörn
+southbackdrops befintliga−3,01m efter configgränsen. Gamla prefix och terräng
+ändras inte. Misslyckade försök finns i `browser-attempt1.log` och
+`browser-before-ground-adaptation.log`, slutresultat i `browser.log` och
+`desktop.json`/`mobile.json`, under `/tmp/public-roadlamps96-codex20/`.
+Chromium-emulering, inget påstående om fysisk telefon-FPS.
+
+Den byggda visningen (`25ce3870d1e50f399439c6ea`) har också kontrollerats vid
+390×844touch:179instanser/130nya, samma22barn, släckta huvuden/dolda markfläckar,
+samtliga34sydfötter exakt vid befintligt parkplan inom Float32-precision. En fri
+östbild visar stolpen och dess fot vid vägens kant. Inga JS-fel/externa anrop,
+originallagringen orörd. Kontrollskript och `built.log`/`built-mobile.png` ligger
+med övriga artefakter.0nya batcher; verkliga yttervyer kan ge+2anrop när de redan
+befintliga större instansbatcherna når kamerans frustum.
