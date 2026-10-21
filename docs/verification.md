@@ -1338,3 +1338,36 @@ skydd/terräng inte ändrats av de sista layout-/asfaltjusteringarna. Terrängen
 positionbuffer ökar lokalt 787356→1279620 byte; inga nya renderobjekt/material
 eller budgethöjningar. `npm test` (92 moduler), native 6/6 och slutbygge
 `918a18f1905e2463a75a8e21` passerar. Ingen fortsatt profilering krävs.
+
+## Konkav parkering vid hus 46 (#129)
+
+2026-10-21, bas `8b66148379d7ec3e03069d0ec0c7b9957af7e58f`. Avgränsad plan:
+komponentprov för layout/källanslutning/gradering, en datorbatch med faktisk
+terräng/asfalt/målning, huskant och infart samt snabba npm-kontroller. Oförändrad
+telefon-/terränggrupperingsgren återanvänder #127/#128:s bevis.
+
+Tre hela 2,5×5 m-rutor ryms inom den konkava fjortonhörningen och lämnar minst
+2,27088 m från närmaste hörn till den verkliga 4,5 m-körgångens centrumlinje.
+Rutornas gemensamma plan har 6,0688 % lutning, beräknad från tre tidigare faktiskt
+emitterade stödpunkter innan browserstart. Detta är en modellgissning utan inmätning,
+inte en uppmätt eller normgodkänd anläggning. Ett plan genom hela parkeringen
+skulle strida mot befintlig huskant/infart; därför graderas endast den användbara
+raden, med kontinuerlig övergång på övrig omarkerad yta och bevarad källgräns.
+
+Sju nativefall passerar, inklusive tre hela bilrektanglar, fri serviceväg,
+exakt fjortonhörnig asfalt, noll höjdvikt på källgränsen och verklig väganslutning.
+En riktig World-batch gav 22 oberoende lodräta prov: query/terräng högst
+1,03e−14 m från varandra, rutplanet högst 1,40 µm från faktisk Float32-mark;
+asfalt/målning 25/28 mm över terrängen. Vid den exakta gamla36918924/nya114-noden
+ligger två överlappande vägytor 26,363/24,756 mm över terrängen; det är en
+befintlig vägs approximativa anslutning, ingen ny marknivå eller exakt 25 mm-garanti
+i just den skarven. Det första alltför strikta lift-assertet sparas i råloggen.
+Alla andra fyra infartsprov ligger vid 25 mm inom mikrometerprecision.
+
+Alla fjorton källhörn bevarar marken inom 0,733 µm, hus46:s faktiska hörnstöd
+inom 0,390 µm. Verklig Navigation når infarten åt båda håll inom WALK-gränsen;
+#135:s kontrollpunkt stannar −0,9306880812492491 m. Nära-/översiktsbilder visar
+hela rutor, fria körvägar och bevarade indrag utan gräsinträngning. Inga nya
+triangeltak eller prestandapåståenden. `npm test` (92 moduler), native7 och
+`npm run build` passerar. Rådata/bilder: orkesterartefakter `artifacts-129/world/`;
+källor och licens finns i [referensmappen](references/parking-129/README.md).

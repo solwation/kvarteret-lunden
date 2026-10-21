@@ -152,3 +152,8 @@ Parkeringen norr om hus 45 (#128) har två rader med hela bilrutor, sex meters
 körgång och fri passage för den befintliga lokala infartskurvan. Höjdplanet knyts
 till LM-referensen och infarten; bankkrön samt hus 41/45:s apron skyddas.
 [Källor och antaganden](docs/references/parking-128/README.md).
+
+Den konkava parkeringen vid hus 46 (#129) behåller alla fjorton källhörn. Tre
+hela bilrutor får ett gemensamt lokalt plan; den omarkerade kör- och övergångsytan
+behåller nivåerna vid huset och den karterade infarten. Antalet är en layoutgissning,
+inte en OSM-kapacitet. [Källor och antaganden](docs/references/parking-129/README.md).

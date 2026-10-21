@@ -297,7 +297,7 @@ function terrainGeometry(southeastCells = null) {
   const top=(x,z)=>{for(let i=patches.length-1;i>=0;i--){const y=patches[i].top(x,z);if(y!==null)return y}return null};
   for(const stage of [...new Set(plans.map(p=>p.civilStage))].sort()){
     const group=plans.filter(p=>p.civilStage===stage);
-    for(const p of group){if(p.rearSupport)constrainPocketPlane(p,S.south.buildings.find(b=>b.source===p.rearSupport),(x,z)=>(top(x,z)??nativeSurface(x,z))+.01);p.guards.push(...earlier.map(q=>q.footprint))}
+    for(const p of group){if(p.gradeRow)setParkingPlane(p,p.gradeRing.slice(0,3).map(q=>[...q,(top(...q)??nativeSurface(...q))+.01]));if(p.rearSupport)constrainPocketPlane(p,S.south.buildings.find(b=>b.source===p.rearSupport),(x,z)=>(top(x,z)??nativeSurface(x,z))+.01);p.guards.push(...earlier.map(q=>q.footprint))}
     for(const p of group){
       for(const id of [p.protectApron,...(p.otherAprons??[])].filter(Boolean)){const b=S.south.buildings.find(b=>b.source===id),apron=parkingHull(b.polygon.flatMap(([x,z])=>[[-1,-1],[-1,1],[1,-1],[1,1]].map(([dx,dz])=>[x+dx*ELEVATION.southApron,z+dz*ELEVATION.southApron])));p.guards.push(apron);if(id===p.protectApron&&p.civilAnchors){const c=p.civilAnchors,a=c.baselineEntry?p.entry:p.polygon[c.baselineVertex],r=p.polygon[c.apronVertex],pad=buildingPadList().find(pad=>pad.name===b.name);setParkingPlane(p,[c.reference,[...a,(top(...a)??nativeSurface(...a))+.01],[...r,pad.level]])}}
 

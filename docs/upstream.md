@@ -1417,3 +1417,24 @@ samt konservativa fyrametersapronhöljen runt hus 41/45 skyddas. Plan/övergång
 är uttryckliga civilmodellantaganden; råhöjder, hus och globala rutnätsaxlar ändras
 inte. Den större lokala patchen kräver ett faceindex på befintliga terrängcellaxlar
 för höjd-/klippfrågor; ordnade geometriytor bevaras, inga nya budgetar eller LOD-nivåer införs.
+
+## Konkav parkering vid hus 46 (#129, 2026-10-21)
+
+Kontur/infarter granskade mot `03d4c5201004540769c51cf62b7272f0a2c3caaf` och
+[officiella rådata](references/parking-129/README.md). Originalets #1440
+`3d9618f9ec9716a630e51ccf402988c57beef542` och hjälpare
+`02e3fa8d86540e6b7406f3b0415c0cbb3aadbef5` granskades; deras inre kantfade
+och annan fyrhörnig layout importerades inte. Publicens befintliga lokala
+terränggradering återanvänds: tre hela 2,5×5 m-rutor, 0,10 m indrag, ett plan
+för just den användbara raden och 4 m yttre övergång inom den exakta fjortonhörningen.
+Hela källkonturen har asfalt; övrig yta är sammanhängande omarkerad kör-/övergångsyta,
+inte ett påstått gemensamt civilplan. Husets delade kant och samtliga källhörn
+behåller tidigare nivåer. Plan/indrag/beläggning/antal/4,5 m vägbredd är *guess*.
+
+Verkliga servicevägar 850235114/115 förbinder den befintliga 36918924-noden
+(61,04;242,66) med gården, utan omklassad gångväg. Den tidigare felidentifierade
+850235114-slingan behåller exakt sin geometri under `public-legacy-distant-parking-loop`.
+Alla befintliga vägarnas svepta bredder granskades först: ingen annan skär den nya
+parkeringskonturen. Den gamla felplacerade parkeringsytan ligger utanför skogens
+sådomäner; ingen extra clearing behövs. Inga råhöjder, hus, bankar, gånggränser
+eller tidigare parkeringsplan ändras. [Verifiering](verification.md#konkav-parkering-vid-hus-46-129).
