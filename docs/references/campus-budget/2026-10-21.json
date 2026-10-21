@@ -1,0 +1,451 @@
+{
+  "issue": 136,
+  "date": "2026-10-21",
+  "kind": "full east-backdrop asset regression guard; not validated physical-device frame-time/FPS budget",
+  "scope": "entire east-backdrop subtree including access and count-weighted clock instances",
+  "originalCapSource": "fb629ce99b6ff9ec78d5f2eb22ad902e8fb8c2b2",
+  "initialMeasuredTriangles": 33676,
+  "initialGuessedCap": 36000,
+  "retainedAbsoluteHeadroom": 2324,
+  "acceptedAccessGrowth": 4763,
+  "acceptedClockNetGrowth": 80,
+  "currentMeasuredTriangles": 38519,
+  "reviewedCap": 40843,
+  "history": [
+    {
+      "ref": "8c54ef1f0c0dbee3d7930fa8e2ac3e24fc51bfb8",
+      "lowMemory": true,
+      "cap": 36000,
+      "counts": {
+        "east-facade": 168,
+        "east-roof": 32,
+        "east-glass": 588,
+        "east-access": 6304,
+        "east-modern": 16219,
+        "east-schoolGlass": 2823,
+        "east-schoolBrick": 2996,
+        "east-schoolRoof": 4546
+      },
+      "direct": {
+        "east-facade": 168,
+        "east-roof": 32,
+        "east-glass": 588,
+        "east-access": 6304,
+        "east-modern": 16219,
+        "east-schoolGlass": 2823,
+        "east-schoolBrick": 2996,
+        "east-schoolRoof": 4546
+      },
+      "total": 33676
+    },
+    {
+      "ref": "fb34e481f870e71a13700ff6e5e45d7b9b85caa3",
+      "lowMemory": true,
+      "cap": 36000,
+      "counts": {
+        "east-facade": 168,
+        "east-roof": 32,
+        "east-glass": 588,
+        "east-access": 6304,
+        "east-modern": 16155,
+        "east-schoolGlass": 2823,
+        "east-schoolBrick": 2996,
+        "east-schoolRoof": 4546,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 168,
+        "east-roof": 32,
+        "east-glass": 588,
+        "east-access": 6304,
+        "east-modern": 16155,
+        "east-schoolGlass": 2823,
+        "east-schoolBrick": 2996,
+        "east-schoolRoof": 4546
+      },
+      "total": 33756
+    },
+    {
+      "ref": "7f6c358cddf0cfdfd5c7bb8b1819ae6b70bfef70",
+      "lowMemory": true,
+      "cap": 36000,
+      "counts": {
+        "east-facade": 168,
+        "east-roof": 32,
+        "east-glass": 588,
+        "east-access": 17781,
+        "east-modern": 16155,
+        "east-schoolGlass": 2823,
+        "east-schoolBrick": 2996,
+        "east-schoolRoof": 4546,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 168,
+        "east-roof": 32,
+        "east-glass": 588,
+        "east-access": 17781,
+        "east-modern": 16155,
+        "east-schoolGlass": 2823,
+        "east-schoolBrick": 2996,
+        "east-schoolRoof": 4546
+      },
+      "total": 45233
+    },
+    {
+      "ref": "de291993c779a5d9da60d2e38a511576d95f21ea",
+      "lowMemory": true,
+      "cap": 36000,
+      "counts": {
+        "east-facade": 168,
+        "east-roof": 32,
+        "east-glass": 588,
+        "east-access": 6059,
+        "east-modern": 16155,
+        "east-schoolGlass": 2823,
+        "east-schoolBrick": 2996,
+        "east-schoolRoof": 4546,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 168,
+        "east-roof": 32,
+        "east-glass": 588,
+        "east-access": 6059,
+        "east-modern": 16155,
+        "east-schoolGlass": 2823,
+        "east-schoolBrick": 2996,
+        "east-schoolRoof": 4546
+      },
+      "total": 33511
+    },
+    {
+      "ref": "4b6648a4e9f6b4c5781566cab80172bf767104e9",
+      "lowMemory": true,
+      "cap": 36000,
+      "counts": {
+        "east-facade": 168,
+        "east-roof": 32,
+        "east-glass": 588,
+        "east-access": 11007,
+        "east-modern": 16155,
+        "east-schoolGlass": 2823,
+        "east-schoolBrick": 2996,
+        "east-schoolRoof": 4546,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 168,
+        "east-roof": 32,
+        "east-glass": 588,
+        "east-access": 11007,
+        "east-modern": 16155,
+        "east-schoolGlass": 2823,
+        "east-schoolBrick": 2996,
+        "east-schoolRoof": 4546
+      },
+      "total": 38459
+    },
+    {
+      "ref": "9b260efeca775a7bdb6b334e56859a415e1968fd",
+      "lowMemory": true,
+      "cap": 36000,
+      "counts": {
+        "east-facade": 168,
+        "east-roof": 32,
+        "east-glass": 588,
+        "east-access": 11053,
+        "east-modern": 16155,
+        "east-schoolGlass": 2823,
+        "east-schoolBrick": 2996,
+        "east-schoolRoof": 4546,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 168,
+        "east-roof": 32,
+        "east-glass": 588,
+        "east-access": 11053,
+        "east-modern": 16155,
+        "east-schoolGlass": 2823,
+        "east-schoolBrick": 2996,
+        "east-schoolRoof": 4546
+      },
+      "total": 38505
+    },
+    {
+      "ref": "5eea435d8ce13b5fb3647e4d80a4502974cb3e02",
+      "lowMemory": true,
+      "cap": 36000,
+      "counts": {
+        "east-facade": 168,
+        "east-roof": 32,
+        "east-glass": 588,
+        "east-access": 11067,
+        "east-modern": 16155,
+        "east-schoolGlass": 2823,
+        "east-schoolBrick": 2996,
+        "east-schoolRoof": 4546,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 168,
+        "east-roof": 32,
+        "east-glass": 588,
+        "east-access": 11067,
+        "east-modern": 16155,
+        "east-schoolGlass": 2823,
+        "east-schoolBrick": 2996,
+        "east-schoolRoof": 4546
+      },
+      "total": 38519
+    }
+  ],
+  "currentBuildings": [
+    {
+      "source": "88457546",
+      "materials": {
+        "modern": 1477,
+        "schoolGlass": 191,
+        "schoolBrick": 92,
+        "schoolRoof": 328
+      }
+    },
+    {
+      "source": "88457547",
+      "materials": {
+        "modern": 1926,
+        "schoolGlass": 360,
+        "schoolBrick": 144,
+        "schoolRoof": 592
+      }
+    },
+    {
+      "source": "88457552",
+      "materials": {
+        "modern": 1670,
+        "schoolGlass": 222,
+        "schoolBrick": 236,
+        "schoolRoof": 462
+      }
+    },
+    {
+      "source": "88457558",
+      "materials": {
+        "facade": 20,
+        "roof": 4,
+        "glass": 80
+      }
+    },
+    {
+      "source": "88457565",
+      "materials": {
+        "facade": 44,
+        "roof": 8,
+        "glass": 120
+      }
+    },
+    {
+      "source": "88457581",
+      "materials": {
+        "modern": 1482,
+        "schoolGlass": 444,
+        "schoolBrick": 532,
+        "schoolRoof": 321
+      }
+    },
+    {
+      "source": "88457600",
+      "materials": {
+        "facade": 32,
+        "roof": 6,
+        "glass": 84
+      }
+    },
+    {
+      "source": "88457601",
+      "materials": {
+        "modern": 928,
+        "schoolGlass": 256,
+        "schoolBrick": 296,
+        "schoolRoof": 229
+      }
+    },
+    {
+      "source": "88457606",
+      "materials": {
+        "modern": 1674,
+        "schoolGlass": 222,
+        "schoolBrick": 236,
+        "schoolRoof": 467
+      }
+    },
+    {
+      "source": "88457612",
+      "materials": {
+        "modern": 1692,
+        "schoolGlass": 252,
+        "schoolBrick": 112,
+        "schoolRoof": 674
+      }
+    },
+    {
+      "source": "130578352",
+      "materials": {
+        "facade": 20,
+        "roof": 4,
+        "glass": 40
+      }
+    },
+    {
+      "source": "130678797",
+      "materials": {
+        "modern": 1836,
+        "schoolGlass": 240,
+        "schoolBrick": 212,
+        "schoolRoof": 469
+      }
+    },
+    {
+      "source": "130681301",
+      "materials": {
+        "facade": 32,
+        "roof": 6,
+        "glass": 224
+      }
+    },
+    {
+      "source": "145221568",
+      "materials": {
+        "facade": 20,
+        "roof": 4,
+        "glass": 40
+      }
+    },
+    {
+      "source": "88457613",
+      "materials": {
+        "modern": 2190,
+        "schoolGlass": 356,
+        "schoolBrick": 192,
+        "schoolRoof": 682
+      }
+    },
+    {
+      "source": "relation/1309427",
+      "materials": {
+        "modern": 1280,
+        "schoolGlass": 280,
+        "schoolBrick": 944,
+        "schoolRoof": 322
+      }
+    }
+  ],
+  "currentMaterials": [
+    {
+      "name": "east-facade",
+      "triangles": 168,
+      "instances": 1
+    },
+    {
+      "name": "east-roof",
+      "triangles": 32,
+      "instances": 1
+    },
+    {
+      "name": "east-glass",
+      "triangles": 588,
+      "instances": 1
+    },
+    {
+      "name": "east-access",
+      "triangles": 11067,
+      "instances": 1
+    },
+    {
+      "name": "east-modern",
+      "triangles": 16155,
+      "instances": 1
+    },
+    {
+      "name": "east-schoolGlass",
+      "triangles": 2823,
+      "instances": 1
+    },
+    {
+      "name": "east-schoolBrick",
+      "triangles": 2996,
+      "instances": 1
+    },
+    {
+      "name": "east-schoolRoof",
+      "triangles": 4546,
+      "instances": 1
+    },
+    {
+      "name": "tower-clock-dials",
+      "triangles": 128,
+      "instances": 4
+    },
+    {
+      "name": "tower-clock-hands",
+      "triangles": 16,
+      "instances": 8
+    }
+  ],
+  "currentResources": {
+    "geometryObjects": 10,
+    "materials": 10,
+    "textures": [
+      {
+        "slot": "map",
+        "width": 256,
+        "height": 256,
+        "type": 1009,
+        "format": 1023,
+        "mipmaps": true
+      },
+      {
+        "slot": "envMap",
+        "width": null,
+        "height": null,
+        "type": 1009,
+        "format": 1023,
+        "mipmaps": true
+      },
+      {
+        "slot": "map",
+        "width": 256,
+        "height": 256,
+        "type": 1009,
+        "format": 1023,
+        "mipmaps": true
+      },
+      {
+        "slot": "map",
+        "width": 64,
+        "height": 64,
+        "type": 1009,
+        "format": 1023,
+        "mipmaps": true
+      },
+      {
+        "slot": "map",
+        "width": 1,
+        "height": 1,
+        "type": 1009,
+        "format": 1023,
+        "mipmaps": true
+      }
+    ],
+    "attributeBytes": 4065292,
+    "observedUploadBytes": 4065292
+  },
+  "resourceLimitations": "observed native bufferData payload; not total VRAM. Texture dimensions describe current CPU source images, not GPU texture allocations. Chromium SwiftShader with actual Android UA is not physical-phone performance."
+}

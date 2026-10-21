@@ -118,3 +118,8 @@ mark är relativa modellantaganden. Den lokala LM-förfiningen (#106) är levere
 parkeringsplanen (#100) återstår.
 
 Östcampusets befintliga puts- och listmaterial grupperas efter hela byggnadsbidrag i tre fasta renderingsbatcher på datorn; telefoner behåller den ursprungliga gemensamma batchen (#120). Byggnadernas former och material ändras inte.
+
+Östcampusets mobilgräns gäller hela gruppen, inklusive mark/access och klockinstanser
+(#136): 38519 uppmätta trianglar mot en granskad asset-regressionsgräns 40843.
+Den bevarar tidigare terrängprecision och ursprunglig absolut marginal; gränsen
+är ingen validerad fysisk FPS-budget. Se [verifieringen](docs/verification.md).

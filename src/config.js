@@ -1746,7 +1746,10 @@ drum: { radius: .16, depth: .30, shell: .012, centerY: .42, slots: 3 },
 panel: { w: .26, h: .065, lift: .36, offset: .008, pickDepth: .02 }
 };
 
-export const CAMPUS_LOD = { curve: 3, roofGrid: 2, maxTris: 36000 };
+// Full east-backdrop asset regression guard, including access and clock instances (#136).
+// Historical 33676 + guessed 2324 headroom; accepted precision/clock growth +4843.
+// Not a measured physical-phone frame-time budget; future growth requires a new audit.
+export const CAMPUS_LOD = { curve: 3, roofGrid: 2, maxTris: 40843 };
 
 // Touch stick feel (upstream 211e0e9, original #1088; *guess* values tuned by eye): deflection r = distance / knob travel.
 // Below `deadZone` nothing moves (a resting thumb never drifts); up to `full` the output rises along t^`curve`

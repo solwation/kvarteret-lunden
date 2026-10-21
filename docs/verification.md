@@ -970,3 +970,64 @@ och samma kommando utan BASELINE_REF för efter. `POSE=edge` tar bara hörnet.
 För de sparade separata hörnproven körs jämförelsen med
 `EDGE_BEFORE=<före-hörn> EDGE_AFTER=<efter-hörn> node tools/east-campus-compare.mjs <före-livscykel> <efter-livscykel> <sammanfattning.json>`.
 Chromium/SwiftShader är inte fysisk telefonprestanda.
+
+## Fullständigt mobilbudgetkontrakt för östcampus (#136)
+
+Kontrollen gäller hela `east-backdrop`, inklusive mark/access och alla klockinstanser,
+precis som originalets `tools/eastbackdroptest.html`. `CAMPUS_LOD.maxTris` är en
+asset-regressionsgräns, inte en validerad fysisk telefon- eller FPS-budget.
+Original `fb629ce99b6ff9ec78d5f2eb22ad902e8fb8c2b2` (#589) angav uttryckligen
+36000 som *gissning* efter minskningen 75351→33676. Publicimporten
+`8c54ef1f0c0dbee3d7930fa8e2ac3e24fc51bfb8` behöll denna fullgruppsgräns.
+Den äldre budgetavvikelsen noterad i #120 är nu utredd; dess geometri ändras inte.
+
+| Publikt steg | Hela gruppen | Access | Förklaring |
+|---|---:|---:|---|
+| 8c54ef1f | 33676 | 6304 | ursprunglig mobilversion |
+| fb34e48 | 33756 | 6304 | fungerande klocka, netto +80 |
+| 7f6c358 | 45233 | 17781 | GLO-terräng |
+| de29199 | 33511 | 6059 | exakta terrängceller för polygoner |
+| 4b6648a, 2026-10-19 | 38459 | 11007 | #74: terrängriktiga gångvägar, gröna hål bort |
+| 9b260ef | 38505 | 11053 | väganslutningar |
+| 5eea435 | 38519 | 11067 | nuvarande, före #136 |
+
+Den accepterade ökningen är 4843: access +4763 och klocka netto +80.
+Gränsen blir därför 40843 = 38519 + samma ursprungliga absoluta marginal 2324.
+Det är en granskad engångsjustering; framtida tillväxt får inte automatiskt höja
+gränsen. `curve:3`, `roofGrid:2`, samtliga geometrier och markprecision bevaras.
+Ingen arkitektur-only avgränsning eller privat desktopbudget används.
+
+Reproducerbar full-SHA-/byggnads-/material-/resursledger finns i
+[referensen](references/campus-budget/2026-10-21.json). Kör från reporoten:
+
+```sh
+node tools/campus-budget-counter-test.mjs
+CHROME_PATH=/path/to/chrome node tools/campus-budget-history.mjs /tmp/campus-history 8c54ef1f fb34e48 7f6c358 de29199 4b6648a 9b260ef 5eea435
+CHROME_PATH=/path/to/chrome node tools/campus-budget-check.mjs http://localhost:8257 /tmp/campus-budget
+```
+
+Historieprovet bygger enbart publika gitreferenser. World-provet kör vanlig
+Android-UA i 390×844 och 844×390, utan `keepgeo`, med fast testdatum/bildsteg
+och endast haggräsets domänseed fixerad i testsvar. Produktionsslump ändras inte.
+De 16 hela byggnadsbidragen, access och klockans 4 urtavlor/8 visare summeras
+oberoende. Räknaren använder index när det finns och multiplicerar instansantal,
+även noll; nativeprovet täcker dessa fall. Både detta prov och #120:s befintliga
+campusprov upprätthåller nu fullgruppsgränsen i mobil-läge.
+
+Båda Android-formaten mäter 38519: arkitekturbatcher 27308, access 11067,
+klocka 144. Tio geometriobjekt, tio material och fem unika texturer används.
+Alla 4065292 byte vertex-/index-/instansdata korreleras med observerade inhemska
+WebGL `bufferData`-uppladdningar. Detta är inte total VRAM; texturernas redovisade
+mått är CPU-källbilder efter uppladdning, inte GPU-allokeringar. Nära campus
+ritas 8 egna anrop/38375 trianglar; i fjärrvyn 10/38519 inklusive klockan.
+Publika skuggor är avstängda. SwiftShader-mätningar ger ingen fysisk FPS-slutsats.
+
+Före/efter i båda faktiska Android-formaten har identiska 16 byggnadsledgers,
+fullgruppsräkning, direkta batchers positionshashar, resursinventering och
+namngivna/totala ritanrop/trianglar. Alla fyra när-/fjärrbildpar är byteidentiska.
+Nära helvärld: porträtt 202 anrop/578843 trianglar, landskap 922/798293;
+fjärrvärld: 204/586095 respektive 926/805301. Ingen renderkostnad ändras.
+Tidigare #120:s fullständiga ordnade attribut-/material-/boundsbevis återanvänds;
+#136 ändrar endast budgetfältet, inte byggarna. `npm test` godkänner 88 moduler,
+nativeräknaren passerar och bygget är `91c2a64a918d66cdfd27828a`.
+Slutbevis sparas i `/tmp/lunden-orchestra-20261021/artifacts-136/`.

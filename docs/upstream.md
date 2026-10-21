@@ -1265,3 +1265,17 @@ maskmutation eller kvalitetsnivå införs. Publikappens skuggkartor är fortsatt
 avstängda. Riktiga lowMemory-telefoner går genom den ursprungliga enda
 mastergruppen, med samma ordnade buffertar och bounds. Ingen privat dekor,
 spel-, väder-/vindstyrning eller Cloudflare överförs.
+
+## Publikt fullgruppskontrakt för mobilcampus (#136)
+
+Nedströms egen budgeträttelse, ingen ny geometriimport. Historisk källa är
+`fb629ce99b6ff9ec78d5f2eb22ad902e8fb8c2b2` (original #589): 33676 trianglar
+i hela östgruppen och ett uttryckligen gissat tak 36000. Publicimporten
+`8c54ef1f0c0dbee3d7930fa8e2ac3e24fc51bfb8` behöll taket. Den publika
+terrängprecisionsutvecklingen, särskilt #74 (`4b6648a`), och fungerande klocka
+förklarar dagens 38519. Accepterad ökning 4843 läggs till det historiska taket:
+40843 behåller den ursprungliga absoluta marginalen 2324. Detta är en
+asset-regressionskontroll för hela gruppen inklusive access/instanser, inte
+validerad fysisk telefonprestanda. Inga framtida automatiska höjningar, inga
+LOD-/geometriändringar och ingen import av original #1468:s separata
+desktopbudget. Full mätledger och reproduktion finns i verifieringen.
