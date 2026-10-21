@@ -1371,3 +1371,39 @@ hela rutor, fria körvägar och bevarade indrag utan gräsinträngning. Inga nya
 triangeltak eller prestandapåståenden. `npm test` (92 moduler), native7 och
 `npm run build` passerar. Rådata/bilder: orkesterartefakter `artifacts-129/world/`;
 källor och licens finns i [referensmappen](references/parking-129/README.md).
+
+## Nattsländegatan och hus 47 (#130)
+
+2026-10-21, bas `4fbb141ff81a2e74a22bd4d78d4c49de96ec0b58`. Minsta plan:
+komponent/layout/källanslutning, en samlad datorbatch för de två nya ytorna och
+berörda hus/infarter samt npm test/build. Oförändrad telefon-/terränggrupperingsgren
+återanvänder #127–129:s bevis; inga nya fullprofiler eller triangelbudgetar.
+
+Före browserstart kontrollerades alla aktuella vägbredder mot källkonturerna:
+ingen tidigare väg skar dem. Officiell lokal OSM-karta belägger de nödvändiga
+servicevägarna; deras kompletta nya vägbredder skär inget hus. Nodgrafen ansluter
+607 till befintlig 36918924 och 604 via581/nordliga95036048 till befintlig
+1147690112. Ingen gångväg görs om till bilväg. Gamla felplacerade ytor tas bort;
+de ligger utanför skogens sådomäner och behöver ingen extra legacy-clearing.
+
+Åtta nativefall passerar: tio levererade parkeringsytor behåller hela rutor,
+624 har sex 2,5×5 m-rutor kring fri 6 m mittgång, 626 har tre hela enkelradsrutor.
+Minsta rutavstånd till karterad körgångs centrumlinje är 2,433/2,402 m, alltså
+utanför dess antagna halva bredd 2,25 m. Civilplanen beräknades billigt före
+browserstart: lutning 0,260681/0,407452 %, hörnnivåer 4,371–4,441 respektive
+4,248–4,441 m. Nivåer och utformning är modellantaganden utan inmätning.
+
+En riktig World-batch gav 59 oberoende lodräta prov. Query och faktisk terräng
+skiljer högst 0,082 µm; uppmätt avvikelse från respektive civilplan högst
+0,192/0,134 µm. Asfalt/målning ligger 25/28 mm över samma faktiska terräng,
+inklusive rutkanter. Alla tio nya vägprov innehåller den nya vägytan vid
+25 mm inom 0,5 µm. Befintliga överlappande vägytor vid den gamla anslutningsnoden
+167,1;334,61 ligger även vid 28,617 mm; dessa gamla ytor ändras inte.
+
+Hus46/47:s samtliga faktiska hörnstöd bevaras inom 0,337 µm. Båda yttre
+anslutningsnoderna behåller tidigare terräng inom 0,03 µm. #135:s kritiska punkt
+stannar −0,9306880812492491 m. Nära bilder per yta och gemensam översikt visar
+hela rutor och fria körgångar utan gräsintrång. Båda nya ytorna ligger utanför
+WALK, så inga falska gångprov utfördes. Browserfel: inga. `npm test` (92 moduler),
+native8, build och diffkontroll passerar. Rådata/bilder: orkesterartefakter
+`artifacts-130/world/`; [primärkällor/ODbL](references/parking-130/README.md).

@@ -1438,3 +1438,27 @@ Alla befintliga vägarnas svepta bredder granskades först: ingen annan skär de
 parkeringskonturen. Den gamla felplacerade parkeringsytan ligger utanför skogens
 sådomäner; ingen extra clearing behövs. Inga råhöjder, hus, bankar, gånggränser
 eller tidigare parkeringsplan ändras. [Verifiering](verification.md#konkav-parkering-vid-hus-46-129).
+
+## Nattsländegatan och hus 47 (#130, 2026-10-21)
+
+Exakta konturer 145221624/626 från kandidat
+`03d4c5201004540769c51cf62b7272f0a2c3caaf` jämförda med
+[officiella OSM-svar och åtkomstkarta](references/parking-130/README.md).
+`02e3fa8d86540e6b7406f3b0415c0cbb3aadbef5` (#1442) är tidigare granskad:
+publicens befintliga hela civilplan/yttre övergång återanvänds, inte dess
+kapacitetsstyrda femton klippta rutor eller privata config.
+
+624 får två rader med tre hela 2,5×5 m-rutor och fri 6 m mittgång. 626 får en
+enda rad med tre hela rutor i änden där den verkliga körgången lämnar tillräckligt
+djup. Inget försök görs att maximera de gissade 15/20. Hela respektive källkontur
+har ett gemensamt civilplan från tidigare källsamplade vägkontakter, 0,261/0,407 %
+modellutning. Antal, beläggning, 4,5 m vägbredd, rader och gradering är *guess*.
+
+Den primära åtkomstkartan kräver verkliga 145221607 samt 145221604/581 och endast
+95036048:s nodsammanhängande nordliga kedja fram till befintliga 167,1;334,61.
+Dessa tillförs med exakt käll-XY och lokal terrängtriangelklippning; ingen hel
+vägslinga eller gångvägsomklassning importeras. Billig kontroll av samtliga nya
+svepta vägbredder visar ingen överlappning med hus. Befintliga husfötter och
+tidigare parkeringsplan skyddas av samma graderingsmotor. Båda ytorna ligger
+utanför WALK:s z-gräns; inga påhittade gångprov eller utvidgade gånggränser.
+[Verifiering](verification.md#nattsländegatan-och-hus-47-130).

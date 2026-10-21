@@ -157,3 +157,7 @@ Den konkava parkeringen vid hus 46 (#129) behåller alla fjorton källhörn. Tre
 hela bilrutor får ett gemensamt lokalt plan; den omarkerade kör- och övergångsytan
 behåller nivåerna vid huset och den karterade infarten. Antalet är en layoutgissning,
 inte en OSM-kapacitet. [Källor och antaganden](docs/references/parking-129/README.md).
+
+Ytorna vid Nattsländegatan och hus 47 (#130) har sex respektive tre hela rutor
+med fria karterade körgångar. Höjdplan och layout är uttryckliga antaganden,
+inte OSM-kapaciteter. [Rådata och antaganden](docs/references/parking-130/README.md).

@@ -20,7 +20,7 @@ export function roadsidePockets(lots,road,ground,buildings=[],access=[]){return 
  const edgeDistance=(x,z)=>nearest([x,z],[...footprint,footprint[0]]).d;
  const bayDepth=lot.bayDepth??P.bayD,paintRings=lot.layout==='concave-row'?THREE.ShapeUtils.triangulateShape(polygon.map(([x,z])=>new THREE.Vector2(x,z)),[]).map(t=>t.map(i=>polygon[i])):[polygon],clipPaint=poly=>paintRings.map(r=>intersect(poly.map(([x,z])=>[x,0,z]),r).map(p=>[p[0],p[2]])).filter(p=>p.length>=3);
  const bayCount=lot.bayCount??Math.floor((lot.layoutEdge?front.length:Math.min(...long.map(e=>e.length)))/P.bayW),halfRun=bayCount*P.bayW/2;
- const rowCenter=lot.layoutEdge?[(front.a[0]+front.b[0])/2+n[0]*(bayDepth/2+(lot.layoutInset??0)),(front.a[1]+front.b[1])/2+n[1]*(bayDepth/2+(lot.layoutInset??0))]:center,at=(along,across)=>[rowCenter[0]+u[0]*along+n[0]*across,rowCenter[1]+u[1]*along+n[1]*across],bays=Array.from({length:bayCount},(_,i)=>({width:P.bayW,depth:bayDepth,corners:[at(i*P.bayW-halfRun,-bayDepth/2),at((i+1)*P.bayW-halfRun,-bayDepth/2),at((i+1)*P.bayW-halfRun,bayDepth/2),at(i*P.bayW-halfRun,bayDepth/2)]})),paint=[];
+ const rowCenter=lot.layoutEdge?[front.a[0]+u[0]*(lot.rowAlong??front.length/2)+n[0]*(bayDepth/2+(lot.layoutInset??0)),front.a[1]+u[1]*(lot.rowAlong??front.length/2)+n[1]*(bayDepth/2+(lot.layoutInset??0))]:center,at=(along,across)=>[rowCenter[0]+u[0]*along+n[0]*across,rowCenter[1]+u[1]*along+n[1]*across],bays=Array.from({length:bayCount},(_,i)=>({width:P.bayW,depth:bayDepth,corners:[at(i*P.bayW-halfRun,-bayDepth/2),at((i+1)*P.bayW-halfRun,-bayDepth/2),at((i+1)*P.bayW-halfRun,bayDepth/2),at(i*P.bayW-halfRun,bayDepth/2)]})),paint=[];
  for(let i=0;i<=bayCount;i++){const t=i*P.bayW-halfRun,poly=[at(t-P.lineW/2,-bayDepth/2),at(t+P.lineW/2,-bayDepth/2),at(t+P.lineW/2,bayDepth/2),at(t-P.lineW/2,bayDepth/2)];paint.push(...clipPaint(poly))}
  // Rear boundary only: the road-facing front remains open, with no invented internal aisle.
  const rear=lot.layoutEdge?-bayDepth/2:bayDepth/2-P.lineW;
@@ -28,10 +28,10 @@ export function roadsidePockets(lots,road,ground,buildings=[],access=[]){return 
  let finalBays=bays,finalPaint=paint,reserved=null,reservedIntervals=null,aisle=null,entry=null;
  if(lot.layout==='double-row'){
   const origin=front.a,across=q=>(q[0]-origin[0])*n[0]+(q[1]-origin[1])*n[1],along=q=>(q[0]-origin[0])*u[0]+(q[1]-origin[1])*u[1],D=Math.max(...polygon.map(across)),W=lot.aisleW;
-  reservedIntervals=[lot.reservedRoad,...(lot.otherReservedRoads??[])].map((id,pathIndex)=>{const path=access.find(p=>p.source===id).path,points=[];
+  reservedIntervals=[lot.reservedRoad,...(lot.otherReservedRoads??[])].filter(Boolean).map((id,pathIndex)=>{const path=access.find(p=>p.source===id).path,points=[];
   for(let i=1;i<path.length;i++){const a=path[i-1],b=path[i],na=across(a),nb=across(b);if(pathIndex===0&&na<0&&nb>=0){const t=na/(na-nb);entry=a.map((v,k)=>v+(b[k]-v)*t)}let lo=0,hi=1;for(const [edge,sign]of[[-W/2,1],[D+W/2,-1]]){const da=sign*(na-edge),db=sign*(nb-edge);if(da<0&&db<0){hi=-1;break}if((da<0)!==(db<0)){const t=da/(da-db);if(da<0)lo=Math.max(lo,t);else hi=Math.min(hi,t)}}if(hi>=lo)for(const t of[lo,hi])points.push(along([a[0]+t*(b[0]-a[0]),a[1]+t*(b[1]-a[1])]))}
   return[Math.min(...points)-W/2,Math.max(...points)+W/2]});reserved=reservedIntervals[0];aisle=[(D-W)/2,(D+W)/2];finalBays=[];finalPaint=[];
-  const xy=(s,t)=>[origin[0]+u[0]*s+n[0]*t,origin[1]+u[1]*s+n[1]*t],count=Math.floor(front.length/P.bayW),offset=(front.length-count*P.bayW)/2;
+  const xy=(s,t)=>[origin[0]+u[0]*s+n[0]*t,origin[1]+u[1]*s+n[1]*t],count=lot.bayCount??Math.floor(front.length/P.bayW),offset=(front.length-count*P.bayW)/2;
   for(const [t0,t1,rear]of[[aisle[0]-P.bayD,aisle[0],aisle[0]-P.bayD],[aisle[1],aisle[1]+P.bayD,aisle[1]+P.bayD-P.lineW]])for(let i=0;i<count;i++){const s0=offset+i*P.bayW,s1=s0+P.bayW;if(reservedIntervals.some(r=>s1>r[0]&&s0<r[1]))continue;const corners=[xy(s0,t0),xy(s1,t0),xy(s1,t1),xy(s0,t1)];finalBays.push({width:P.bayW,depth:P.bayD,corners});for(const s of[s0,s1])finalPaint.push(...clipPaint([xy(s-P.lineW/2,t0),xy(s+P.lineW/2,t0),xy(s+P.lineW/2,t1),xy(s-P.lineW/2,t1)]));finalPaint.push(...clipPaint([xy(s0,rear),xy(s1,rear),xy(s1,rear+P.lineW),xy(s0,rear+P.lineW)]));}
  }
  const gradeRing=lot.gradeRow?[bays[0].corners[0],bays.at(-1).corners[1],bays.at(-1).corners[2],bays[0].corners[3]]:footprint;
