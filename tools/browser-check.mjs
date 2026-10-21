@@ -65,7 +65,7 @@ try{
  await page.locator('#help').click();assert(await page.locator('#help-dialog').evaluate(d=>d.open));await page.locator('#close-help').click();
  await page.locator('#measure').click();assert.equal(await page.locator('#measure').getAttribute('aria-pressed'),'true');
  await page.locator('#measure').click();
- const mobile=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true,deviceScaleFactor:1});
+ const mobile=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true,deviceScaleFactor:1,...(process.env.MOBILE_UA?{userAgent:process.env.MOBILE_UA}:{})});
  const m=await mobile.newPage();m.on('pageerror',e=>{errors.push(e.message);console.error('Mobile page error:',e.message)});m.on('console',event=>{if(event.type()==='error')console.error('Mobile console:',event.text())});m.on('request',r=>{if(new URL(r.url()).origin!==new URL(base).origin)external.push(r.url());});
  await m.goto(base);
  await m.waitForFunction(()=>window.lundenViewer?.renderer.info.render.frame>0,null,{timeout:120000});

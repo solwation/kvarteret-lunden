@@ -607,3 +607,70 @@ isolerad lagring och nätverk på dator och båda telefonlayouter. Artefakter:
 `npm-test.log`, `build.log`, `built-final-browser.log`, `built-final/`,
 `before-matched/`, `final-matched/` och deras råloggar. Chromium/SwiftShader,
 ingen fysisk telefonprestandamätning.
+
+## Hela fasta takterrassräcken (#118)
+
+Källa `41447a8f7f3397f3e2553e6794fe578aef7a71bf`, publik före-bas
+`2b2b6b51753c3fb40ef1f2f2a0829bbd71100be4`. `tools/terrace-rails-check.mjs`
+kör faktisk World på dator 1280×800 och Android Mobile UA i både 390×844 och
+844×390. Den uttryckliga UA:n behövs: enbart Playwrights `isMobile`/touch väljer
+inte automatiskt publicappens `lowMemory`-gren. Grenen kontrolleras som false på
+dator och true på båda telefonprofilerna.
+
+18/18 kontroller passerar. Datorns tidigare enda räckesmesh blir nio hela
+källterrasser och två hela gavlar (11 meshar), med ett delat material.
+Telefonen behåller exakt en mesh. Verkliga ordnade arrayer jämförs sammanlagda:
+54 216 Float32-värden för position, 54 216 för normaler och 36 144 UV-värden, totalt 578 304
+byte och 6 024 trianglar. Attributen är fulla, inte tömda CPU-arrayer; dessa
+räcken använder exteriors direkta merge och kräver ingen `keepgeo`-override.
+Index är fortsatt null. Unionen av boundingboxarna är exakt identisk:
+x −41,724998..11,550000, y 9,750000..10,560000, z 10,799000..12,629000 m.
+Materialtyp, färg, roughness 0,45, metalness 0,2, sida, opacity, transparent,
+depthWrite och avsaknad av textur är identiska. Telefonens hela ordnade
+buffert-/bounds-/flaggsnapshot är dessutom exakt identisk med dess egen före-bas.
+
+33 oberoende positiva fysiska strålar (tre på varje terrass och tre per gavel)
+träffar samma faktiska ytor före/efter. Två vanliga perspektivkameror och två
+vanliga ortografiska skuggkameror granskar frustumsfärerna vid båda gavlarna:
+exponerad hel terrass/gavel behålls, övriga grupper kan väljas bort utan
+lagermutation. `frustumCulled`, `castShadow`, `receiveShadow` och layer 0 är
+bevarade på samtliga meshar. Public renderer har skuggkartor avstängda;
+ingen visuell skuggjämförelse påstås.
+
+Riktiga publika Navigation och befintlig frame/Core/Garage-uppdatering används
+med samma fasta 1/60 s-steg och Date som i #115. Endast hagens gräsdomänfrö
+hålls till 11521021 i båda testresponserna; inga produktkällor får determinism.
+Kamerorna på takterrasserna har fötter på befintligt 9,46 m-däck, ögon 11,08 m;
+källar-/hallvyerna har −3/−1,38 m och den exponerade markvyn 0/1,62 m.
+Samtliga 18 parade PNG-bilder (sex vyer per profil) är byteidentiska och
+visar väst-/östterrass, gavel/takkant, exponerad räckesvy, källare och hall.
+
+Faktiska huvudpassritningar i ordningen västterrass/östterrass/gavel/exponerad/
+källare/hall ger på dator:
+
+| Vy | Ändrade ritanrop | Ändrade trianglar |
+| --- | ---: | ---: |
+| Västterrass | 0 | −5 364 |
+| Östterrass | 0 | −5 364 |
+| Gavel | +1 | −5 160 |
+| Exponerad | +6 | −2 112 |
+| Källare | −1 | −6 024 |
+| Hall | +7 | −1 488 |
+
+Båda telefonprofilerna har exakt 0 ändrade anrop och 0 ändrade trianglar i
+samtliga sex vyer. Datorns uppdelning byter mindre triangelytor mot fler anrop
+i vissa vyer; båda kostnaderna redovisas. Samma totala attributbytes, ett
+material och inga nya texturer; datorn får tio extra mesh-/geometryobjekt.
+Ingen ny gate, avståndsregel, kvalitetsändring eller höjd budgetgräns införs.
+Originalets helspelsbudget är separat och används inte som publik mätning.
+
+`npm test` granskar 87 moduler; `npm run build` ger `87ee407bc7eb7a70e2de9bed`.
+Ordinarie opatchad byggd browserkontroll passerar riktig E-dörr, gång, hissar,
+mätreglage, touch, isolerad lagring och nätverk. Samma kontroll passerar också
+med `MOBILE_UA` för verklig Android/lowMemory, utan JavaScriptfel eller externa
+anrop. Ingen separat testhelper i produkten behövs; geometri/frustum/rays provas
+mot riktiga Three-objekt. Artefakter:
+`/tmp/lunden-orchestra-20261021/artifacts-118/`, särskilt `before/`, `final/`,
+`before.log`, `final-world.log`, `matched-summary.json`, `npm-test.log`,
+`build.log`, `built-browser.log`, `built/`, `built-phone-browser.log` och
+`built-phone/`. Chromium/SwiftShader, ingen fysisk telefonprestandamätning.

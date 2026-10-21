@@ -1105,3 +1105,27 @@ dess befintliga `world.windowLights.update` kontrolleras också med natt och
 strömavbrott, utan att lägga till något nytt dygns-/strömsystem. Fysiska0|7-
 komponentstrålar skiljs från publicappens visuella layer0-strålar för mått och
 interaktion; deras riktiga UI-väg provas separat. Ingen ray-policy ändras.
+
+## Hela arkitektoniska terrassräcken (#118)
+
+Selektiv källa `41447a8f7f3397f3e2553e6794fe578aef7a71bf` (original #1454),
+publik bas `2b2b6b51753c3fb40ef1f2f2a0829bbd71100be4`: endast `src/exterior.js`
+befintliga fasta `balc`-räcken. Gränser fångas i samma ursprungliga byggordning
+per hel källterrass och de två hela gavlarna. Datorn får separata meshar med
+ett delat ursprungligt material; `lowMemory`-telefoner använder exakt samma
+`[balc]`-sammanslagning som tidigare. Inga nya portar/gates, avstånd, kvaliteter,
+privata terrassdekorationer, möbler, vinddata eller spelberoenden importerades.
+
+Vanliga Three-frustumsfärer gäller för varje kamera, inklusive skuggkameror.
+Publicappen aktiverar inte skuggkartor; komponentprovet använder en vanlig
+ortografisk kamera för att granska samma frustumregel och påstår ingen visuell
+skuggjämförelse. A/B/C:s loggior byggs separat av `railSegment`/loggiabyggaren
+i `src/surroundings.js`, med egna blockhörn, baser och våningar. Den koden och
+dess faktiska geometri berörs inte; Hus L:s mått har inte kopierats dit.
+
+`tools/terrace-rails-check.mjs` jämför riktiga före/efterbuffertar, fullständiga
+telefonarrayer, material/bounds och positiva fysiska strålar. Testresponsen
+exponerar enbart befintlig publik frame/klocka med fast steg och håller hagens
+gräsdomänfrö konstant, enligt #115; ingen determinism tillkommer i produkten.
+`tools/browser-check.mjs` får en valfri `MOBILE_UA` för att även prova den
+ordinarie byggda appens verkliga Android/lowMemory-gren utan modulpatchar.
