@@ -1584,3 +1584,37 @@ query/ritad terräng skiljer högst 0,018 µm. Kontextbilden visar obruten anslu
 #135-punkten är oförändrad −0,9306880812492491 m, browserfel saknas. Native10,
 `npm test` (92 moduler), bygge och diffkontroll passerar. Rådata/bild finns i
 orkesterartefakter `artifacts-138/world/`, lampdelta i `lamps-delta.json`.
+
+## Parkering söder om hus 44 (#132)
+
+Minsta plan enligt aktuell policy: billig CPU-layout/plan och nativekontroll,
+EN berörd desktopWorld med faktisk terräng/asfalt/målning och hus-/gränsstöd,
+snabba npmtest/build. Oförändrad mobilgren och äldre civilplanbevis återanvänds;
+hela objektet ligger utanför WALK. Ingen full scen-/triangel-/plattformsmatris.
+
+Första enkla läget på kant 0→1 (`rowAlong=14`) ger tre hela 2,5×5 m-rutor.
+Tre oberoende befintliga emitterade höjdankare ger 3,7908 % radplan före browser;
+hela source-ringens åtta hörn och indrag bevaras. Tio nativefall passerar, inklusive
+faktiska pathStrip-trianglar från ALLA aktuella vägar mot hela nya rutor, full
+radkärna+4 m räckvidd mot ALLA husens konservativa 4 m apronhöljen, source-ringens
+nollvikt vid gränsen samt riktig infart614→950:s delade nod. Inga väg-/husflyttar.
+Antagna höjder/layout/material och [officiell primärkälla/ODbL](references/parking-132/README.md)
+är åtskilda. Rå CPU-ankare/clearance finns i `artifacts-132/candidates.json`,
+`native.log`; inga nya kartanrop utfördes.
+
+Den enda World-batchen sparar 17 asfalt-/målningsprov på centrum/hörn/linjer samt
+fyra väganslutningar. 20 faktiska positiva rays visar 25/28 mm lyft inom 0,306 µm;
+query/terräng skiljer högst 8,9e−15 m. Det fjärde vägprovet, isolerade 614-capens
+exakta Float64-källpunkt `(-10,57;376,93)`, missar Float32-meshkanten. Råassertionen
+behålls; billig CPU-kontroll av samma emitterade väg en/två koordinat-ULP (30,52 µm)
+inåt ger 24,999859 mm. Ingen geometriändring eller Worldomkörning görs.
+
+62 faktiska husrays skiljer högst 0,727 µm från baseline före stage7; åtta
+källgränspunkter högst 1,601 µm, tre anslutningspunkter högst 0,129 µm.
+En extra punkt från den breda huslistan `(84,5;467,19)` ligger utanför terrainmesh:
+endast query/baseline redovisas där, exakt oförändrad −3,0099999866229763 m,
+inte ett positivt terrängraybevis. Närbild/översikt visar hela rutor och fria
+passager utan gräsintrång. #135-punkten är oförändrad −0,9306880812492491 m,
+browserfel saknas. Sparade data valideras efter dessa uttryckliga klassificeringar
+utan ny browserstart (`summary.json`, `cap.json`, ursprunglig `world.log`). Native10,
+`npm test` (92 moduler), bygge och diffkontroll passerar. Föräldrar #100/#98 hålls öppna.

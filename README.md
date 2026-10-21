@@ -187,3 +187,8 @@ redan importerade vägnätet återstår i #138.
 Den inre serviceslingan är nu källnodsansluten till den befintliga yttre vägen (#138):
 95036048 förlängs endast med nästa 34,83 m till 145221614. Bredd/asfalt är antaganden;
 [fryst officiell v6 och attribution](docs/references/parking-130/README.md) återanvänds.
+
+Parkeringen söder om hus 44 (#132) behåller sin exakta konkava åttahörning och får
+bara tre hela bilrutor på en lokalt graderad radkärna. Resten är omarkerad kör-/övergångsyta;
+alla verkliga servicevägar och den äldre lokala genomfarten lämnas fria.
+[Primärkälla och antaganden](docs/references/parking-132/README.md).

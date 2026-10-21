@@ -1587,3 +1587,24 @@ förblir uttryckliga *guess*. Samma terrängtriangelklippning och vanlig lampfun
 används; tomträdsfixturen ger en tillkommen kandidat, ingen borttagen, inget
 World-budgettal. Ingen hel ytterring, 612, gångväg eller parkering tillförs.
 [Verifiering](verification.md#anslutning-till-inre-serviceslingan-138).
+
+## Parkering söder om hus 44 (#132)
+
+Exakt åttahörning 145221629 från granskade
+`03d4c5201004540769c51cf62b7272f0a2c3caaf`, kontrollerad mot
+[fryst officiell way v1/ODbL](references/parking-132/README.md).
+Raw innehåller endast `amenity=parking`, inte kapacitet, material eller höjder.
+Den tidigare felplacerade förenklade konturen ersätts; gamla 22 och kandidatens 40
+är inte källbelagda mål. Tre hela 2,5×5 m-rutor är en uttrycklig layoutgissning.
+
+Befintlig `concave-row`/`gradeRow` används vid kant 0→1, `rowAlong=14`, inset 0,1 m.
+Första billiga användbara läget valdes, ingen maximering. Tre faktiska befintliga
+terränghöjder ger en antagen radkärna med 3,791 % lutning; befintlig begränsad 4 m
+övergång och pinnad källgräns behålls. Hela källkonturen får asfalt, men resten är
+omarkerad passage/övergång, inte ett påstått gemensamt helplan. Samtliga servicevägar
+614/588/585/592/599 och ärlig äldre modellloop lämnas fria. Infarten är nu ansluten
+via #134/#138. Ingen ny väg, motor, mobilregel eller gånggräns tillförs.
+Radkärnans hela 4 m räckvidd ligger utanför alla byggnaders 4 m apronhöljen;
+tidigare civilplan skyddas av befintlig stagekedja. Gammal felplacerad kontur låg
+utanför skogarnas seedområden, så inget falskt skogshål behöver bevaras.
+[Verifiering](verification.md#parkering-söder-om-hus-44-132).
