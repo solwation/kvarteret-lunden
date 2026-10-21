@@ -1130,3 +1130,31 @@ Båda bildparen är granskade; inga browser-/shaderkonsolfel. Inga fullprofiler,
 triangelinventeringar eller mobilmatriser behövdes för denna materialändring.
 `npm test` (89 moduler) och bygge `7f1cd95514f84ff11067e074` är gröna.
 Rådata/bilder: `/tmp/lunden-orchestra-20261021/artifacts-122/world/`.
+
+## Mobilens konservativa frustum och plana glas (#123)
+
+Källor `43f6701ccd576f73edda46663f394a08b4d90fea` och
+`38be175ccfddd97bc3179ac3ff0d6dee4e50c32f`. Avgränsad plan:
+`node --test tools/tightfrustumtest.mjs` (12/12), en faktisk Android-World
+390×844 med områdesvy och A-rutans fram-/baksida, sedan snabba npm-test/bygge.
+Nativefallen täcker fulla aktuella bounds/instanser, okända shader-/deformationsveto,
+maskåterställning, render targets, nästlade kameror, shadow-reentry och undantag.
+Publicens LOD-ägargräns har ett extra fall: adapterändrade masker får inte återställas
+av frustumhooken. Publicskuggor är avstängda; ingen visuell skuggjämförelse hävdas.
+
+Kör `CHROME_PATH=/path/to/chrome node tools/phone-frustum-check.mjs http://localhost:8257 /tmp/phone-frustum`.
+En och samma World jämför originalregler (hook av/två glaspass) med ny mobilhook/
+enplansflagga. Område: 468→461 anrop; A-ruta fram: 473→466; bak: 106→81.
+Det är kombinerade lokala resultat, ingen FPS-vinst eller heltäckande budgetprofil.
+Alla tre bildpar har 0 ändrade kanaler och alla masker återställs.
+A/B/C:s faktiska glasspann har varsin konstant axel; L:s separata batch behåller två
+pass. Okänd glödshader avvisas. Positiva terrängrays är exakt oförändrade och
+#135:s verkliga gångpunkt är fortsatt −0.9306880812492491 m.
+
+Extra frustumkontroll körs bara på mobil; enplansglasets gemensamma materialflagga
+gäller båda plattformar. #121:s geometri/querymaster ändras inte. Native-/Worldbeviset
+återanvänds efter en ren kommentarplacering och exponering av samma kontroll i det
+befintliga lokala diagnostikhandtaget, utan nytt Worldsvep. `npm test` (91 moduler)
+och slutbygge `290b29795fe72e6a45327e76` är gröna. Inga triangelinventeringar,
+19-vyprofiler, orienteringsmatriser eller privata budgetmål användes.
+Rådata/bilder: `/tmp/lunden-orchestra-20261021/artifacts-123/world/`.

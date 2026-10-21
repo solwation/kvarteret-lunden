@@ -130,3 +130,8 @@ exponerade flodvyn kostar ett extra ritanrop; se [verifieringen](docs/verificati
 
 Gatulampornas befintliga markglöd tonas nu med scenens dimma (#122), så avlägsna
 pooler inte lyser igenom fullt. Närglöd och dag/nattstyrning bevaras; se [verifieringen](docs/verification.md#gatulampornas-markglöd-i-dimma-122).
+
+Mobilen kan konservativt avvisa extra frustumträffar med hela befintliga geometri-
+bounds (#123); A/B/C:s enstaka plana entrérutor ritas i ett pass. Tre kontrollerade
+mobilvyer behåller pixelparitet med färre anrop, utan nya kvalitets- eller budgetgränser.
+Se [verifieringen](docs/verification.md#mobilens-konservativa-frustum-och-plana-glas-123).

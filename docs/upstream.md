@@ -1317,3 +1317,19 @@ omslaget runt gatulampornas befintliga poolmaterial i `street.js`. Föregående
 shaderhook bevaras; efter Three:s dimfragment multipliceras additiv alfa med
 `1-fogFactor`. Inga pooler, lampbatcher, andra glödmaterial, fogvärden eller
 dag/nattregler ändras. Inga privata funktioner eller originalbudgetar importeras.
+
+## Konservativ mobilfrustum och plana entrérutor (#123)
+
+Selektivt från `43f6701ccd576f73edda46663f394a08b4d90fea`: `tightfrustum.js`,
+`vertexcompile.js`, exakt registrering av foliage-materialets befintliga
+fragmentpatch och installation endast vid `lowMemory`. Publicens enda nya tal
+är källans 1 cm Float32-marginal (`PHONE_FRUSTUM.pad`), ingen LOD-/avståndsregel.
+Okända shaders/deformationer/callbacks avvisas, även #122:s glödmaterial.
+Källans privata entréadapterundantag ersätts med konservativt veto för alla
+LOD-förfäder, så publicens `CeilingBatchGate` behåller sitt maskägarskap.
+Inga PERF-/Detail-/lampwash-/shadowtile-/privata moduler importeras.
+
+Från `38be175ccfddd97bc3179ac3ff0d6dee4e50c32f`: endast
+`CoreHouse`-glasets `forceSinglePass:geo.glass.length===1`. Public A/B/C har
+varsin plan ruta; L:s separata icke-koplanära `Core`-batch ändras inte.
+Geometri, querymaster/rays, gångstöd, kvalitet och budgetar bevaras.

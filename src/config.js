@@ -2195,6 +2195,9 @@ export const PATIO_DECOR = {
   },
 };
 
+// Conservative Float32 transform guard, upstream43f6701c/original#1453; no distance/quality cutoff (#123).
+export const PHONE_FRUSTUM = { pad: 0.01 };
+
 // Camera near plane (src/main.js `updateCameraNear`, from the original's #1276, dd9927ef): the 24-bit depth buffer resolves about
 // d²/(near·2²⁴) m at distance d, so with near 0.06 m coplanar layers (window panes 1–7 cm in front of a façade, roofs, ground
 // overlays) shimmer at 300 m. Indoors (flat, stairwell, garage, roofs and aloft) the near plane stays `min` (the camera's

@@ -4,7 +4,8 @@ import { loadingStep, loadingYield } from './loadingstep.js';
 import { Navigation } from './navigation.js';
 import { fetchStartupJSON } from './startup.js';
 import { VERSION, takeResume, watchUpdates, saveResume, claimContextReload } from './updates.js';
-import { reloadOnContextRestore } from './lowmemory.js';
+import { reloadOnContextRestore, lowMemory } from './lowmemory.js';
+import { installTightFrustum } from './tightfrustum.js';
 import { installPlaceShortcuts } from './place-shortcuts.js';
 import { Garage } from './garage.js';
 import { Paddock } from './paddock.js';
@@ -144,6 +145,7 @@ async function init() {
   renderer.setPixelRatio(Math.min(devicePixelRatio, touch ? 1.25 : 1.5));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.NeutralToneMapping;
+  const phoneFrustum = lowMemory ? installTightFrustum(renderer) : null;
   $('viewer').append(renderer.domElement);
   // Phone (#38): a restored WebGL context re-uploads the geometry and canvases freed after upload as empty buffers, so the
   // page reloads instead, back at the same place and view. A second restore within 60 s asks for one tap instead (no loop).
@@ -202,7 +204,7 @@ async function init() {
   ready = true;
   $('place-toggle').disabled = false;
   // Keep model access local for diagnostics, without a service connection.
-  window.lundenViewer = {paddock, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
+  window.lundenViewer = {phoneFrustum, paddock, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
   window.kvarteretStartup?.finish();
   $('start').disabled = false; $('start').textContent = 'Börja utforska →';
   status('Dator och mobil · Ingen inloggning');
