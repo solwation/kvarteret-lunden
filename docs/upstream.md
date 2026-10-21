@@ -1352,3 +1352,23 @@ rutnätsaxlar. Sex 2,5×5 m-rutor följer geometriskt tillgänglig bredd, utan i
 körgång eller kapacitetsstyrd linjespridning. Höjdplan, tvärfall noll, vägbredd
 4,5 m, asfalt och linjelyft är uttryckliga gissningar; inga inmätta höjder påstås.
 Övriga parkeringsobjekt och originalets privata parkeringsbyggare importeras inte.
+
+## Husnära gatufickor och överlappande övergångar (#126)
+
+Ytterligare två neutrala konturer ur `03d4c5201004540769c51cf62b7272f0a2c3caaf`:
+1379042106/1379043164. [Officiella frysta OSM-svar](references/parking-126/README.md)
+belägger råkapacitet 8/3 och vinkelrät gatuficka; befintlig korrekt 30633545 och
+#125:s vägrådata återanvänds. Kapaciteten styr inte linjeavståndet: geometrin rymmer
+åtta 2,5×5 m-rutor respektive tre hela 2,5×4,7 m-rutor. Det grundare måttet är en
+uttrycklig bilstorleksgissning, inte en källbelagd femmeterskontur.
+
+Publichjälparen skär alla aktiva lokala gränser och använder ett sammanhängande
+viktfält: `r=w/(1-w)`, bakgrundsvikt 1, full yta äger sitt plan. Befintlig #125
+byggs först; nya ytor arbetar mot dess faktiska Float32-trianglar och skyddar dess
+hela fickor. Nya övergångar avtar även vid närliggande byggnadsfot, så husens faktiska
+bärande nivå bevaras. Berörda hus har vanliga medelhöjdspad, inte #106:s LM-förankrade
+fyrametersaproner. För 3164 används en uttrycklig annexanknytning:
+planet går genom den faktiska närmaste huskantens två nivåer och vägkontaktens
+medelnivå, med antaget tvärfall i stället för en smal höjdgrav vid väggen.
+Ingen källkontur skär ett hus; inga höjdkällor, globala rutnätsaxlar,
+övriga parkeringsobjekt eller gånggränser ändras.

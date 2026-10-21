@@ -735,10 +735,10 @@ export const SITE = {
       {"source":"145221628","surface":"asphalt","capacity":14,"polygon":[[127.35,395.74],[136.29,398.63],[140.1,386.87],[131.16,383.98],[127.35,395.74]]},
       {"source":"145221629","surface":"asphalt","capacity":22,"polygon":[[138.86,360.38],[147.8,363.27],[153.51,345.64],[144.57,342.75],[138.86,360.38]]},
       {"source":"1379042014","surface":"asphalt","surfaceSource":"guess","capacity":6,"capacitySource":"OSM","orientation":"perpendicular","parking":"street_side","civilRoad":"30633545","polygon":[[223.09,383.62],[237.66,379.24],[236.23,374.21],[221.72,378.62]]},
-      {"source":"1379042106","surface":"asphalt","capacity":12,"polygon":[[21.82,217.4],[26.8,217.4],[23.82,222.4],[18.84,222.4],[21.82,217.4]]},
+      {"source":"1379042106","surface":"asphalt","surfaceSource":"guess","capacity":8,"orientation":"perpendicular","parking":"street_side","civilRoad":"30633545","bayDepth":5,"bayDepthSource":"guess: car-sized rectangle within actual mapped depth","protectBuildings":true,"polygon":[[242.06,313.41],[261.49,307.78],[262.95,312.82],[243.52,318.44]]},
       {"source":"1379042188","surface":"asphalt","capacity":6,"polygon":[[13.88,229.4],[18.86,229.4],[16.88,233.4],[11.9,233.4],[13.88,229.4]]},
       {"source":"1379042235","surface":"asphalt","capacity":8,"polygon":[[6.29,235.8],[11.27,235.8],[8.29,239.8],[3.31,239.8],[6.29,235.8]]},
-      {"source":"1379043164","surface":"asphalt","capacity":14,"polygon":[[-5.33,243.2],[-0.35,243.2],[-12.31,251.2],[-17.29,251.2],[-5.33,243.2]]},
+      {"source":"1379043164","rearSupport":"145221625","surface":"asphalt","surfaceSource":"guess","capacity":3,"orientation":"perpendicular","parking":"street_side","civilRoad":"30633545","bayDepth":4.7,"bayDepthSource":"guess: car-sized rectangle within actual mapped depth","protectBuildings":true,"polygon":[[254.09,369.16],[262.83,366.87],[264.05,371.54],[255.32,373.83]]},
       {"source":"1379043165","surface":"asphalt","surfaceSource":"guess","capacity":6,"capacitySource":"OSM","orientation":"perpendicular","parking":"street_side","civilRoad":"30633545","polygon":[[268.36,365.42],[283,360.95],[284.54,365.98],[269.9,370.46]]},
     ],
     legacyClearings: [{source:"public-legacy-clearing",polygon:[[-24.87,256.3],[-19.89,256.3],[-34.83,266.3],[-39.81,266.3]]}], // #125: keep existing tree placement; not an OSM parking claim

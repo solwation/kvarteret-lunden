@@ -1,4 +1,4 @@
-import { roadsidePockets, gradeParkingTerrain } from './roadsideparking.js';
+import { roadsidePockets, gradeParkingTerrain, constrainPocketPlane } from './roadsideparking.js';
 import { terrainCellGroups } from './terraincells.js';
 import { lowMemory } from './lowmemory.js';
 import { WalkSupport } from './walksupport.js';
@@ -292,10 +292,14 @@ function terrainGeometry(southeastCells = null) {
   geo.setAttribute('uv', new THREE.Float32BufferAttribute(new Array((pos.length / 3) * 2).fill(0), 2));
   geo.setIndex(idx);
   const pockets=S.south.parking.filter(p=>p.civilRoad),road=S.south.access.find(p=>p.source==='30633545');
-  parkingPatch=gradeParkingTerrain(geo,roadsidePockets(pockets,road,terrainY),southeastCells);
-  const nativeSurface=terrainSurface,nativeGrid=terrainDetailGrid;
+  const plans=roadsidePockets(pockets,road,terrainY,S.south.buildings),prior=plans.filter(p=>!p.protectBuildings),added=plans.filter(p=>p.protectBuildings);
+  const baseline=gradeParkingTerrain(geo,prior,southeastCells),nativeSurface=terrainSurface,nativeGrid=terrainDetailGrid;
+  for(const p of added)if(p.rearSupport)constrainPocketPlane(p,S.south.buildings.find(b=>b.source===p.rearSupport),(x,z)=>(baseline.top(x,z)??nativeSurface(x,z))+.01);
+  for(const p of added)p.guards.push(...prior.map(q=>q.footprint));
+  const next=gradeParkingTerrain(geo,added,southeastCells);
+  parkingPatch={plans,top:(x,z)=>next.top(x,z)??baseline.top(x,z),cut:poly=>next.cut(poly,p=>baseline.cut(p,q=>cutAtTerrain(q,nativeGrid)))};
   terrainSurface=(x,z)=>parkingPatch.top(x,z)??nativeSurface(x,z);
-  terrainDetailGrid={...nativeGrid,cut:poly=>parkingPatch.cut(poly,p=>cutAtTerrain(p,nativeGrid))};
+  terrainDetailGrid={...nativeGrid,cut:parkingPatch.cut};
   geo.computeVertexNormals();
   return geo;
 }

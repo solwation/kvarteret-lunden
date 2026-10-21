@@ -139,3 +139,7 @@ Se [verifieringen](docs/verification.md#mobilens-konservativa-frustum-och-plana-
 Två källbelagda gatufickor vid servicevägen 30633545 har civilplan och sex
 geometriskt inpassade rutor vardera (#125), utan påhittad intern körgång.
 De ligger utanför gånggränsen; [källor och antaganden](docs/references/parking-125/README.md).
+
+De två husnära fickorna i #126 har åtta respektive tre hela bilrutor. Den grundare
+fickan använder ett uttryckligt antaget djup 4,7 m; husfötter och #125:s civilplan
+bevaras. Se [rådata och antaganden](docs/references/parking-126/README.md).

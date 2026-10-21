@@ -1191,3 +1191,47 @@ slutkörningen. Diagnostiken avbryter nu direkt vid pageerror. Slutbatchen har i
 page-/konsolfel. `npm test` (92 moduler) och bygge
 `248a33cce7214f0a28dd96fc` passerar. Inga fullprofiler eller budgetändringar.
 Rådata/bilder: `/tmp/lunden-orchestra-20261021/artifacts-125/world/`.
+
+## Husnära fickor och skyddade överlapp (#126)
+
+Planen återanvänder #125:s native-/Worldverktyg: fyra avgränsade nativefall, en
+samlad lokal desktop-/Android-kontroll, snabba npm-test/bygge. Nya officiella rådata
+belägger kapacitet 8/3, men hela rektanglarnas faktiska passning styr layouten:
+åtta 2,5×5 m respektive tre 2,5×4,7 m. Det senare djupet är en uttrycklig gissning;
+konturen är cirka 4,8 m djup och blir inte godtyckligt utdragen till fem meter.
+Ingen polygon överlappar en byggnadsfot. Ingen intern körgång läggs i fickorna.
+
+Övergångsboxen för 3164 överlappar #125:s 3165. Därför används inte längre första
+träffande bbox som ensam ägare: alla aktiva gränser skärs och viktfältet har en
+sammanhängande gräns mot hela plan. #125:s faktiska Float32-patch byggs först;
+nya vikter skyddar både dess hela fickor och närliggande byggnadsfötter.
+Hus 59/61/62 och 145221625 saknar #106:s lokala LM-ankare/fyrametersaproner.
+Deras generiska yttre markgradering påverkas lokalt. Den första varianten behöll
+husnivåerna men skapade en verklig 0,75 m-stigning på cirka 8 cm bakom 3164.
+Därför förankras endast denna fickas plan i två faktiska annexkantpunkter och
+vägkontaktens faktiska medelnivå. Slutplanets gradient är cirka 10,1 % (*guess*,
+inte inmätning, normmått eller tillgänglighetsbelägg). Samma tvärsnitt stiger nu
+6,22636→6,25548 m över 8 cm, med högst cirka 0,474 lokal rise/run i provpunkterna,
+och fortsätter över fickans fulla djup. Ingen hårfin 75 cm-grav lämnas vid väggen.
+Alla fyra skyddade husens hörn bevaras inom 0,48 µm i slutprovet.
+En tidigare 0,129 mm-hörnrest och överstrikt 5 µm-assertion finns kvar i råloggen;
+ingen geometrioptimering gjordes för att jaga den numeriska detaljen.
+
+Native 4/4 passerar inklusive hela bilrektanglar, överlappande plan och skyddade
+byggnadsgränser och det nya trepunktsplanet. Den faktiska Worldkontrollen provar 28 nya ytpunkter och återanvänder
+30 #125-punkter per plattform: markquery/ray skiljer högst 2,35e−8 m, avsett
+asfalt-/målningslyft högst 0,00066 mm. #125-punkternas höjder ändras högst 2,35e−8 m.
+Terränggruppspartition och #135:s kritiska gångpunkt −0.9306880812492491 m bevaras.
+Diagnostiken fångar den emitterade #125-baslinjen före andra passet i testsvaret;
+ingen produkthook införs. Två skymda närkameror togs om med fria ovanmarksvyer,
+utan nya vyer eller helscenssvep. Slutbilderna visar öppna vägfronter och hela rutor.
+
+Positionbuffer 703188→738864 byte; inga nya renderobjekt/material eller budgethöjningar.
+`npm test` (92 moduler) och slutbygge `66506544ba3facd7aee0de0d` passerar.
+Desktop och verklig Android-UA har inga page-/konsolfel. Ytorna ligger utanför WALK;
+#125:s oförändrade telefon-/master-, bro-, LM- och navigationsbevis återanvänds.
+Efter planrättelsen återanvänds övriga gröna desktop-/Android-prov; bara 3164,
+annexsektionen, husfötterna och närmaste skyddade #125-kontakt kontrolleras igen
+på desktop med samma verktygs `annex`-läge. Inga nya plattformsgrenar ändras.
+Rådata: `/tmp/lunden-orchestra-20261021/artifacts-126/final/` och `annex/`;
+första strikta assertionsutfallet finns kvar i `world.log`/`world/`.
