@@ -252,7 +252,7 @@ export function pathStrip(road, a, b, lift, groundY, clip = false, grid = ground
    * TRIM_STEP m pieces and the pieces whose centre is on the asphalt are left out, so the strip ends at the road's edge instead of overlapping it. */
   const emit = (c, plen) => {
     // Reviewed upstream9eb4ccf (#1432); public #99 opts in only the affected mapped GC paths.
-    if (road.terrain === 'triangles' && grid) {
+    if (grid && (road.terrain === 'triangles' || typeof road.terrain === 'function' && road.terrain(c))) {
       for (const tri of cutAtTerrain([c[0], c[2], c[3], c[1]], grid))
         for (const [x, z] of tri) pos.push(x, groundY(x, z) + lift, z);
       return;

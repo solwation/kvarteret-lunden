@@ -1,3 +1,4 @@
+import { polygonCutter, subtractConvex } from './polygoncut.js';
 import { cutSegmentOpenings } from './segmentopenings.js';
 import { southBankGround, southBankCentre } from './southbank.js';
 import { buildBusStop } from './busstop.js';
@@ -16,7 +17,7 @@ import { lobeGeometry, leafMaterial, trunkGeometry, barkMaterial } from './folia
 import { buildStreet } from './street.js';
 import { buildStreetSigns } from './streetsigns.js';
 import { buildGroundAO } from './groundao.js';
-import { onRoad, onWalk, pathStrip, filletGeometry, vehicleTrim } from './roads.js';
+import { onRoad, onWalk, pathStrip, filletGeometry, vehicleTrim, finish as surfaceGeometry } from './roads.js';
 import { wallRect } from './roofs.js';
 import { buildingRoofWalk } from './buildingroofs.js';
 import {buildRiverBridges,deckAt,riverGround,riverDistance,roadBridgeSpan} from './riverbridge.js';
@@ -1677,13 +1678,122 @@ export function* surroundingsParts({ grass, husL = null }) {
   flat(asphalt, new THREE.MeshStandardMaterial({ color: COLORS.asphalt, roughness: 0.7 }), 0xd9dfe4); // ploughed, a little grey; damp (#128)
   // pavements along the roads (left out where they would lie on another road's asphalt: a junction's mouth)
   const pavementClip=(road)=>road.name==='Sankt Lars väg'?c=>roadBridgeSpan(c.reduce((s,p)=>s+p[0],0)/4,c.reduce((s,p)=>s+p[1],0)/4)||c.every(([x,z])=>onRoad(x,z,-.05,road)):true;
-  const walks = S.roads.flatMap((r) => (r.walks || []).map((k) => k.side > 0
-    ? pathStrip(r, (w) => w / 2, (w) => w / 2 + k.w, 0.008, roadGround, pavementClip(r), undefined, vehicleTrim()) : pathStrip(r, (w) => -w / 2 - k.w, (w) => -w / 2, 0.008, roadGround, pavementClip(r), undefined, vehicleTrim())));
+  const southernRoad = S.roads.find(r => r.name === 'Sankt Lars väg');
+  const southernJoin = c => c.some(([, z]) => z >= S.bridges.road.ends[1][1] && z <= southernRoad.path.at(-1)[1]);
+  const southernWalks = [];
+  const walks = S.roads.flatMap((r) => {
+    const walk = r === southernRoad ? { ...r, terrain: southernJoin } : r;
+    const strips = (r.walks || []).map((k) => k.side > 0
+      ? pathStrip(walk, (w) => w / 2, (w) => w / 2 + k.w, 0.008, roadGround, pavementClip(r), undefined, vehicleTrim()) : pathStrip(walk, (w) => -w / 2 - k.w, (w) => -w / 2, 0.008, roadGround, pavementClip(r), undefined, vehicleTrim()));
+    if (r === southernRoad) southernWalks.push(...strips);
+    return strips;
+  });
+  // Public #124: the continuous sidewalk owns its footprint at the southern
+  // park/GC junction. Cut actual emitted triangles and tie the local transition
+  // to the shared edge; preserve the other surfaces outside the join.
+  const pavementPiecesFrom = geometries => {
+    const pieces = [];
+    for (const g of geometries) {
+      const p = g.attributes.position;
+      for (let i = 0; i < p.count; i += 3) {
+        const points = [0,1,2].map(k=>[p.getX(i+k),p.getY(i+k),p.getZ(i+k)]), poly=points.map(p=>[p[0],p[2]]);
+        if (southernJoin(poly)) pieces.push({ owner:g, poly, points });
+      }
+    }
+    return pieces;
+  };
+  let pavementPieces = pavementPiecesFrom(southernWalks);
+  let cutPavement = polygonCutter(pavementPieces, 8);
+  const pavementBounds = { x0: Math.min(...pavementPieces.map(p=>p.bounds.x0)), x1: Math.max(...pavementPieces.map(p=>p.bounds.x1)), z0: Math.min(...pavementPieces.map(p=>p.bounds.z0)), z1: Math.max(...pavementPieces.map(p=>p.bounds.z1)) };
+  const nearPavement = (x, z, reach) => x >= pavementBounds.x0-reach && x <= pavementBounds.x1+reach && z >= pavementBounds.z0-reach && z <= pavementBounds.z1+reach;
+  const pavementJoinHeight = (x, z, y, width, support = null) => {
+    const reach = width / 2;
+    if (!nearPavement(x, z, reach)) return y;
+    const base = support?.(x,z);
+    let distance = reach, target = y, edgeHeight = -Infinity;
+    for (const { points, bounds } of pavementPieces) {
+      if (x < bounds.x0-reach || x > bounds.x1+reach || z < bounds.z0-reach || z > bounds.z1+reach) continue;
+      for (let i = 0; i < 3; i++) {
+        const a = points[i], b = points[(i+1)%3], dx = b[0]-a[0], dz = b[2]-a[2];
+        const t = Math.max(0, Math.min(1, ((x-a[0])*dx+(z-a[2])*dz)/(dx*dx+dz*dz || 1)));
+        const d = Math.hypot(x-a[0]-t*dx, z-a[2]-t*dz), height = a[1]+t*(b[1]-a[1]);
+        if (d < distance || d === distance && height > edgeHeight) { distance = d; edgeHeight = height; target = support ? base+height-support(a[0]+t*dx,a[2]+t*dz) : height; }
+      }
+    }
+    return y + (target-y)*(1-distance/reach);
+  };
+  const besidePavement = (g, width, grade = p=>[p[0],pavementJoinHeight(p[0],p[2],p[1],width),p[2]], cut = cutPavement) => {
+    const p = g.attributes.position, pos = [], polygons = [];
+    g.computeBoundingBox();
+    const box = g.boundingBox, reach = width/2;
+    if (box.max.x < pavementBounds.x0-reach || box.min.x > pavementBounds.x1+reach || box.max.z < pavementBounds.z0-reach || box.min.z > pavementBounds.z1+reach) return g;
+    const supportBox = [[pavementBounds.x0-reach,pavementBounds.z0-reach],[pavementBounds.x1+reach,pavementBounds.z0-reach],[pavementBounds.x1+reach,pavementBounds.z1+reach],[pavementBounds.x0-reach,pavementBounds.z1+reach]];
+    for (let i = 0; i < p.count; i += 3) {
+      const triangle = [0, 1, 2].map(k => [p.getX(i + k), p.getY(i + k), p.getZ(i + k)]);
+      const xs = triangle.map(p=>p[0]), zs = triangle.map(p=>p[2]);
+      if (Math.max(...xs) < pavementBounds.x0-reach || Math.min(...xs) > pavementBounds.x1+reach || Math.max(...zs) < pavementBounds.z0-reach || Math.min(...zs) > pavementBounds.z1+reach) { pos.push(...triangle.flat()); continue; }
+      // Stop interpolation at the actual support bounds. Exterior fragments
+      // keep the source triangle's affine plane, even when its nodes straddle the join.
+      const exterior = width > 0 ? subtractConvex(triangle,supportBox) : [];
+      for (const poly of exterior) for (let k=1;k+1<poly.length;k++) {
+        const t=[poly[0],poly[k],poly[k+1]].map(p=>p.map(Math.fround));
+        if (Math.abs((t[1][0]-t[0][0])*(t[2][2]-t[0][2])-(t[1][2]-t[0][2])*(t[2][0]-t[0][0]))>1e-9) pos.push(...t.flat());
+      }
+      const interior = exterior.reduce((parts,out)=>parts.flatMap(p=>subtractConvex(p,out.map(p=>[p[0],p[2]]))),[triangle]);
+      for (const poly of interior) polygons.push(...cut(poly));
+    }
+    // A nonlinear grade must sample both sides of every shared edge at the same
+    // existing clipping vertices. Otherwise a T-junction opens a vertical crack.
+    const nodes = [...new Map(polygons.flat().map(p => {
+      const x = Math.fround(p[0]), z = Math.fround(p[2]); return [`${x},${z}`, [p[0],p[2]]];
+    })).values()];
+    const area = (a,b,c) => Math.abs((b[0]-a[0])*(c[2]-a[2])-(b[2]-a[2])*(c[0]-a[0]));
+    for (const poly of polygons) {
+      // Reject zero-area clipping remnants before adding nodes or changing height.
+      const twiceArea = Math.abs(poly.reduce((sum,a,i)=>{const b=poly[(i+1)%poly.length];return sum+a[0]*b[2]-b[0]*a[2];},0));
+      const xs=poly.map(p=>p[0]), zs=poly.map(p=>p[2]), diameter=Math.hypot(Math.max(...xs)-Math.min(...xs),Math.max(...zs)-Math.min(...zs));
+      const spacing=2**(Math.floor(Math.log2(Math.max(1,...xs.map(Math.abs),...zs.map(Math.abs))))-23);
+      // Reject area-to-span remnants below emitted Float32 precision (not an exact minimum-width test).
+      if (twiceArea <= Math.max(1e-9, spacing*diameter)) continue;
+      const boundary = [];
+      for (let i = 0; i < poly.length; i++) {
+        const a = poly[i], b = poly[(i+1)%poly.length], dx = b[0]-a[0], dz = b[2]-a[2], l2 = dx*dx+dz*dz;
+        const edge = [[0, a]];
+        if (l2 > 0) for (const [x,z] of nodes) {
+          if (x < Math.min(a[0],b[0])-1e-5 || x > Math.max(a[0],b[0])+1e-5 || z < Math.min(a[2],b[2])-1e-5 || z > Math.max(a[2],b[2])+1e-5) continue;
+          const t = ((x-a[0])*dx+(z-a[2])*dz)/l2;
+          if (t > 1e-6 && t < 1-1e-6 && Math.hypot(x-a[0]-t*dx,z-a[2]-t*dz) < 1e-5) edge.push([t,[x,a[1]+t*(b[1]-a[1]),z]]);
+        }
+        boundary.push(...edge.sort((a,b)=>a[0]-b[0]).map(([,p])=>p));
+      }
+      const graded = boundary.map(grade);
+      const center = [0,1,2].map(k=>graded.reduce((sum,p)=>sum+p[k],0)/graded.length);
+      // Only polygons with additional boundary nodes need the center fan.
+      const triangles = graded.length === 3 ? [graded] : graded.map((p,i)=>[center,p,graded[(i+1)%graded.length]]);
+      for (const [a,b,c] of triangles) {
+        const rounded = [a,b,c].map(p=>p.map(Math.fround));
+        const span=Math.max(...[[0,1],[1,2],[2,0]].map(([i,j])=>Math.hypot(rounded[i][0]-rounded[j][0],rounded[i][2]-rounded[j][2])));
+        if (area(a,b,c) > 1e-9 && area(...rounded) > Math.max(1e-9,spacing*span)) pos.push(...rounded.flat());
+      }
+    }
+    g.dispose();
+    return surfaceGeometry(pos);
+  };
+  // The sidewalk target must also share its existing cut nodes before the
+  // other surfaces use it: non-affine max-ground sampling otherwise makes T-cracks.
+  const joinedWalks = southernWalks.map(g => {
+    const joined = besidePavement(g, 0, p=>[p[0],roadGround(p[0],p[2])+.008,p[2]], triangle=>[triangle]);
+    walks[walks.indexOf(g)] = joined;
+    return joined;
+  });
+  pavementPieces = pavementPiecesFrom(joinedWalks);
+  cutPavement = polygonCutter(pavementPieces, 8);
+  const connectPavement = (g,width,support) => besidePavement(g,width,p=>[p[0],pavementJoinHeight(p[0],p[2],p[1],width,support),p[2]]);
   flat([...[...S.paving, ...S.basementPaving].map((r) => groundStrip(r.x0, r.x1, r.z0, r.z1, 0.008)), ...walks], COLORS.paving, SEASON.snow.paving);
   yield 0.15;
-  group.add(buildRiverBridges(roadGround));
+  group.add(buildRiverBridges(roadGround, connectPavement));
   yield 0.2;
-  group.add(buildRiverPark(renderedTerrainY,renderedTerrainY));
+  group.add(buildRiverPark(renderedTerrainY,renderedTerrainY, connectPavement));
   group.add(buildBusStop(renderedTerrainY)); // #71 (original #1301)
   yield 0.25;
   const backdrops = [buildWestBackdrop(renderedTerrainY,{glass:glassMaterial})];
@@ -1696,7 +1806,7 @@ export function* surroundingsParts({ grass, husL = null }) {
   group.userData.clocks = backdrops.flatMap(b => b.userData.clocks);
   let south; // in parts too
   const southGround=Object.assign((x,z)=>renderedTerrainY(x,z),{grid:roadGround.grid,surfaceGrid:renderedTerrainY.surfaceGrid});
-  for (const parts = southBackdropParts(southGround);;) { const r = parts.next(); if (r.done) { south = r.value; break; } yield 0.46 + 0.09 * r.value; }
+  for (const parts = southBackdropParts(southGround, connectPavement);;) { const r = parts.next(); if (r.done) { south = r.value; break; } yield 0.46 + 0.09 * r.value; }
   group.add(south);
   yield 0.55;
   backdrops.south = south;

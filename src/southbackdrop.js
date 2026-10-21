@@ -41,7 +41,7 @@ function terrainTriangles(poly,max,grid=null,southOnly=false){
 const upGeometry=(pts,y)=>{const pos=[];for(let i=0;i<pts.length;i+=3){let [a,b,c]=[pts[i],pts[i+1],pts[i+2]];if((b[1]-a[1])*(c[0]-a[0])-(b[0]-a[0])*(c[1]-a[1])<0)[b,c]=[c,b];for(const q of [a,b,c])pos.push(q[0],y(q[0],q[1]),q[1]);}const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));g.setAttribute('normal',new THREE.Float32BufferAttribute(Array.from({length:pos.length/3},()=>[0,1,0]).flat(),3));return g;};
 /** The southern backdrop in one call; southBackdropParts yields a rough share (0–1) between its parts (#1133). */
 export function buildSouthBackdrop(ground){const parts=southBackdropParts(ground);for(;;){const r=parts.next();if(r.done)return r.value;}}
-export function* southBackdropParts(ground){
+export function* southBackdropParts(ground, trimAsphalt=g=>g){
  const group=new THREE.Group();group.name='south-backdrop';const parts={facade:[],roof:[],glass:[],land:[]},records=[];
  const farGround=(x,z)=>z<=SITE.backgroundGround.z1?ground(x,z):-3.01; // sampled-grid coverage; the distant fog boundary retains its old level
  farGround.surfaceGrid=()=>ground.surfaceGrid?.()??ground.grid?.()??null;
@@ -73,14 +73,16 @@ export function* southBackdropParts(ground){
  const surfColor=p=>p.color??(p.surface==='asphalt'?0x5f6164:p.surface==='gravel'?0xb5ac90:0xa7a397);
  const bayPolygons=[];
  for(const p of [...S.paths,...(S.access??[])]){
-  // Public #99: exact existing terrain triangles only for the mapped GC bridge connections.
+  // Public #99: exact terrain triangles for two existing public paths (source identity: #133).
   const exact=['145221590','145221588'].includes(p.source);
-  const drawn=pathStrip(exact?{...p,terrain:'triangles'}:p,w=>-w/2,w=>w/2,.025,farGround,false,exact?farGround.surfaceGrid():undefined);
+  let drawn=pathStrip(exact?{...p,terrain:'triangles'}:p,w=>-w/2,w=>w/2,.025,farGround,false,exact?farGround.surfaceGrid():undefined);
   if(['95035967','189432572','36918923'].includes(p.source)){
    // Reuse the actual float32 footprint, including pathStrip's seam overlaps.
    const a=drawn.attributes.position;
    for(let i=0;i<a.count;i+=3)bayPolygons.push([0,1,2].map(k=>[a.getX(i+k),a.getZ(i+k)]));
   }
+  // The boarding apron retains the canonical source footprint above.
+  if (p.surface === 'asphalt') drawn = trimAsphalt(drawn, p.w, (x,z)=>farGround(x,z)+.025);
   parts.land.push(tint(drawn,surfColor(p)));
  }
  // original #1417: inferred hard boarding apron, bounded by unchanged mapped features.

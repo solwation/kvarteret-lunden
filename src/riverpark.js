@@ -145,11 +145,12 @@ export function parkShrubSpots(ground) {
 }
 export const parkShoreFeet=[];
 /** Four merged background batches: asphalt paths, gravel paths, timber footbridge, low bank tussocks. */
-export function buildRiverPark(ground, terrain=ground) {
+export function buildRiverPark(ground, terrain=ground, trimAsphalt=g=>g) {
   const group=new THREE.Group();group.name='river-park';
   // #1235: asphalt (shared walking/cycling) and gravel paths are two merged meshes, one per surface material; both follow the rendered terrain.
   for(const kind of ['asphalt','gravel']) {
     const strips=P.paths.filter(p=>p.surface===kind).map(p=>pathStrip(p,w=>-w/2,w=>w/2,kind==='asphalt'?.03:.025,terrain,c=>c.some(([x,z])=>z<64||x<-270||x>SITE.backgroundGround.x1-10||z>260)||(c.every(([x,z])=>onRoad(x,z,-.05))&&!c.some(([x,z])=>deckAt(x,z)!==null)),undefined,vehicleTrim(null,(x,z)=>deckAt(x,z)!==null))); // #1351: exact carriageway-edge clipping; retain the paths under bridge decks
+    if (kind === 'asphalt') for (let i = 0; i < strips.length; i++) strips[i] = trimAsphalt(strips[i], P.paths.filter(p=>p.surface===kind)[i].w, (x,z)=>terrain(x,z)+.03);
     const mat=new THREE.MeshStandardMaterial({color:P.surfaces[kind].color,roughness:kind==='asphalt'?.9:1});registerSnow(mat,SEASON.snow.paving);
     if(kind==='gravel')strips.push(surfaceMesh(rampTriangles(true,.03))); // #1337: the ramps' gravel top joins the gravel batch (no extra draw call)
     const mesh=new THREE.Mesh(mergeGeometries(strips),mat);mesh.name=kind==='asphalt'?'park-paths-asphalt':'park-paths';mesh.receiveShadow=true;group.add(mesh);

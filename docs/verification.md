@@ -524,7 +524,7 @@ Byggd dator-/mobilkontroll testar verklig gång, dörrar, hissar, touch, nätver
 isolerad lagring utan fel eller externa anrop. Artefakter:
 `/tmp/lunden-orchestra-20261021/artifacts-114/`, med `native.log`,
 `npm-test.log`, `build.log`, `built-browser.log`, `built/`,
-`before-ready/`, `final-ready/` och deras råloggar. Chromium/SwiftShader används;
+`before-valid/`, `final-valid/` och deras råloggar. Chromium/SwiftShader används;
 fysisk mobilprestanda har inte mätts.
 
 ## Kompletta pergolalampgrupper och publik mätning (#115)
@@ -745,3 +745,81 @@ nätverk utan JavaScriptfel eller externa anrop. Artefakter:
 `final-valid/`, deras råloggar, `matched-summary.json`, `npm-test.log`,
 `build.log`, `built-browser.log` och `built/`. Chromium/SwiftShader,
 ingen fysisk telefonprestandamätning.
+
+## Södra trottoarens korsande ytor (#124, 2026-10-21)
+
+`tools/pavement-check.mjs` jämför verkligt emitterade ytor mot publik bas
+`d0ff7993234463f8de660a65fd9819c2a37dead6`. Profiler: dator 1280×800,
+Android-UA/lowMemory 390×844 och 844×390. Nio parade före/eftervyer visar
+väganslutningen från båda sidor och GC-anslutningen. Testresponsens fasta
+klocka/steg och enbart hagens gräsdomänfrö följer #115; produktionen ändras
+inte. Publikens skuggkartor är avstängda. Vanlig byggd browserkontroll och
+Android-UA-kontroll körs också utan geometri-/slumpinstrumentering.
+
+Rotorsaken är trottoarens gamla quad-veck och park-/GC-/södra asfalt som
+överlappade dess planprojektion på nästan samma höjd. Ursprungliga 3 440
+väg-/trottoarprov hade däremot inga överlapp mellan fordonsasfalt och
+vit trottoar. Ursprungliga trottoarcentroider avvek −15,68..+2,04 cm från
+sin egen analytiska sampler; slutnätet avviker −20,83..+1,50 cm. Exakta
+marktriangelsnitt innebär alltså inte exakt interpolation av den
+icke-linjära analytiska max-samplern; några sådana avvikelser blir större.
+
+Slutresultat: 12 740 fotavtrycksprov utan överlapp mellan vit trottoar och
+alla fyra asfaltfamiljer. 3 499 fullbreddsprov har inga hål eller terräng
+ovanför gångytan. Faktiska triangel-/terrängsnitt och centroider ger
+3 945/3 009/3 340/11 337/2 697 prov för trottoar/väg/GC/park/södra asfalt;
+minsta frigång är 8,00/8,85/8,00/5,83/8,00 mm. Dessa prov omfattar även
+parkasfalten där en tidigare prototyp skapade en grön spricka.
+
+818 direkta gemensamma kantträffar överensstämmer inom −3,58/+3,82 µm.
+Delade noders T-kantsprov ger 0 avvikelse på trottoaren och högst 1,79 µm
+på södra asfalten. Den färdiga synliga övergången saknar prototypernas
+centimeterstora veck. En liten synlig södra restyta vid (29,251;150,850)
+har fortfarande lutning 1,593 över 2,44 mm, höjdskillnad 3,89 mm och area
+2,40 cm²; nästa större provyta har lutning 1,126. Parkens extrema numeriska
+restyta har area 0,0282 cm² och 0,462 mm tvärhöjd. Det är inte ett påstående
+att varje numerisk triangel understiger publikens `WALK.maxSlope=1.2`.
+GC:s högsta synliga provlutning är 0,828 och trottoarens 0,640.
+
+Terrain, betong, stål, vatten, träbro, hela fordonsvägen och övriga ytor
+utanför fasta granskningsrutan x=13..36, z=143..192 har identiska
+positionshashar. Södra asfaltens exteriör får ekvivalent underindelning,
+inte identisk triangelordning. `tools/pavement-exterior-probe.mjs` sparar
+verkliga färgseparerade buffertar; `tools/pavement-exterior-check.mjs`
+jämför båda riktningarnas slutna fotavtryck och källplan. Noll saknade
+slutna prov, högsta planfel 0,230/0,194 µm, kvarvarande numerisk area
+0,151/0,119 mm² över 13,1356 m². Annan södra geometri/färg är byteidentisk.
+Den råa rayavvikelsen 9,08 mm exakt på z=192 är en gammal angränsande
+plankant: topmost-rays på kanten och ±1/2 Float32-koordinatsteg matchar
+före/efter inom 4 nm. Kontrollens toleranser härleds ur koordinatupplösning
+och randlängd; inga hål undantas. Vid ändrad södra primitivhash kräver
+huvudverktygets före-jämförelse detta separata `EXTERIOR_PROOF`.
+
+Riktig publik Navigation klarar sex rutter: båda riktningar över vägbron,
+GC-bron och korsningen vid z=152,17, inom WALK-gränser och med oförändrad
+ordinarie markfunktion. Fotens avstånd till synlig topmost-yta mäts också:
+väg oförändrat 10,01/10,03 cm; GC 13,46/14,31→10,73/11,26 cm;
+korsningen 62,45/63,19→35,57/38,71 cm. Punkt (17;152,17) förbättras
++64,66→+45,57 cm. Det kvarvarande analytiska/synliga höjdkontraktet är
+separat #135, inte löst av denna rättning.
+
+Trianglar före→efter: trottoar 10 338→10 113, park 4 072→5 749,
+GC/broasfalt 178→1 020, södra batch 44 637→45 173, fordonsväg 4 775
+oförändrat. Alla nio matchade vyer: +2 830 trianglar, 0 extra draw calls,
+geometriobjekt eller texturer. Lokal nodinfogning bearbetar som mest 795
+noder/594 polygoner per anrop. Testinstrumenterad hjälptid totalt
+445/310/544 ms; goto→första frame före 15,414/16,046/14,683 s och efter
+15,161/21,898/16,254 s. Detta inkluderar mjukvarurenderare och samtidiga
+browserprov; baslinjen läser dessutom git-moduler. Det är en grov
+startkostnadsredovisning, ingen kontrollerad prestanda- eller FPS-vinst.
+
+`npm test`: 87 moduler; `npm run build`: `1f8fa0182a1ef809e91c763c`.
+Råartefakter: `/tmp/lunden-orchestra-20261021/artifacts-124/`, särskilt
+`before-final/`, `final-canonical/`, `matched-summary.json` (24 kontroller),
+`exterior-equivalence.json`, `npm-final.log`, `build-final.log`,
+`built-canonical.log` och `built-android.log`. Tidigare kataloger är
+utredning/prototyper, inte slutbevis. Återskapa källjämförelsen med
+`BASELINE_REF=d0ff799 CHROME_PATH=<Chromium> node tools/pavement-check.mjs <URL> <före>`
+och samma kommando utan BASELINE_REF för efter. Spara exteriörerna med
+`tools/pavement-exterior-probe.mjs <URL> <katalog>` och jämför deras
+`desktop.json` med `tools/pavement-exterior-check.mjs <före.json> <efter.json> <bevis.json>`.

@@ -1155,3 +1155,47 @@ aktiva skuggkartor; normala perspektiv-/ortografiska frustumprov ersätter inga
 påstådda visuella skuggpar. Riktig Navigation provar samma rektangulära kontakt
 vid egen och grannes häck i båda riktningarna. Testresponsens fasta Date/steg
 samt enbart hagens gräsdomänfrö följer #115/#118; produkten ändras inte för provet.
+
+## Sammanhängande södra trottoaranslutningar (#124)
+
+Egen publik rättning mot bas `d0ff7993234463f8de660a65fd9819c2a37dead6`,
+ingen ny källimport. Den redan granskade `cutAtTerrain` från
+`9eb4ccfadfdf0ffd26ae7a20dfc1e3e50c22d1b8` (#99) får ett lokalt
+quad-predikat. Bara Sankt Lars vägs trottoarer mellan vägbrons södra ände
+z=145,8 och vägens befintliga slut z=188,72 använder dessa triangelsnitt.
+Det gör inte `max(groundY, renderedTerrainY)` analytiskt linjär mellan noder.
+
+Parkens asfalt och GC-brons anslutningsstråk överlappade samma trottoaryta
+med olika markapproximationer; ibland skilde ytorna mindre än 0,1 mm.
+Den faktiskt emitterade trottoaren äger nu sin planprojektion. Befintlig
+`polygonCutter` skär bort dess fotavtryck från parkasfalt, befintliga södra asfaltstråk och GC-anslutningar.
+Både den lokala trottoaren och klippta anslutningar behåller befintliga delade
+snittnoder på båda sidor om varje kant. En centerfan används bara när fler än
+tre randnoder behövs; vanliga trianglar förblir en triangel. Centerhöjden är
+medelvärdet av graderade randhöjder, inte ett nytt icke-linjärt markprov.
+Klipprester avvisas med en precisionshärledd area-till-spännviddskontroll mot
+Float32-koordinaternas faktiska upplösning; det är inte ett exakt test av
+polygonens minsta bredd eller en ny kvalitetsinställning.
+
+Ny kant ansluts till trottoarens faktiska trianglar. Övergången använder
+skillnaden mellan trottoarkanten och respektive byggares befintliga gemensamma
+stödsampler vid kanten: parkens renderedTerrainY +0,03 m, södra stråkens
+renderedTerrainY +0,025 m och GC-anslutningens roadGround +0,025 m.
+Den skillnaden förs över till samplern vid aktuell punkt och blandas med
+den ursprungliga emitterade ytan över stråkets egen halva bredd. Ingen
+triangelvis extrapolerad stödfunktion används. Vid kanten fås exakt
+emitterad trottoarhöjd, utanför räckvidden ursprunglig geometri. Detta är ett visuellt
+anläggningsantagande (*guess*), inte en ny uppmätt markhöjd. Inga källpunkter,
+planbredder, bankhöjder eller Navigation-samplare ändras. Brodäck, betong,
+stål, vatten och träbro behålls; byggarnas separata anslutningar är enda
+brogeometrin som skärs. Vid stödets geometriskt härledda begränsningsruta delas berörda trianglar
+före gradering; exteriören behåller sina ursprungliga affina plan, även när
+underindelningen ändras. Busskurens kanoniska apron-fotavtryck tas före denna
+renderingsanpassning. Klippta polygoners delade vertexarrayer muteras inte;
+kollinearitet prövas både före och efter Float32-avrundning.
+
+Rättningen är beroende av publicens egna väglägen och mark-/bankanpassning.
+Principen kan vara relevant uppströms, men dessa koordinater får inte
+blindkopieras tillbaka; särskilt de publika vägidentifierarna granskas
+separat i #133. Inga privata system, terrassdekorationer, parkeringsändringar
+eller nya cullers/material/texturer tillkommer.
