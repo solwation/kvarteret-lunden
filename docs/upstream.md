@@ -1066,3 +1066,19 @@ World visade6,593cm markintrång före ändringen; originalets6,093cm har inte �
 som publik mätning. Native9/9 och faktiska dator/mobilprov beskrivs i docs/verification.md.
 Käll-/måttosäkerheten är oförändrad; detta är yttessellering av befintlig modell,
 ingen ny inmätning, parkering, grundnivå eller annan källa för offentliga väg-ID:n.
+
+## Loggiaöppningarnas kollisionsintervall (#114)
+
+Selektiv import från `14530bfe11fe8958068ed36f992feffd26c368ea` i originalet
+(#1430): den rena hjälparen `src/segmentopenings.js`, dess nativeintervalltest och
+kollisionsanropet i `src/surroundings.js`. Hjälparen subtraherar unionen av
+kollineära öppningsintervall med exakt befintliga ändpunkter och segmentriktning.
+Anropet kommer efter befintlig entré-/vestibulhantering. Endast A/B/C:s tolv
+`groundWaysIn`-loggior berörs; hus L har kvar sin separata väg.
+
+Publik bas: `ec420445b79f85076667b5aa6527cc373fecf5fd`. Ingen visuell geometri,
+glas, bröstning, vägg, öppningsbredd eller mark-/golvhöjd importeras. #112:s
+fyra norra A/B-golv används precis som levererade; ingen testgolvpatch eller
+syntetisk support har lagts till. `tools/loggia-walk-check.mjs` är en publik
+verifieringsanpassning som använder visningens riktiga `Navigation`, inte
+originalets spelare. Källans måttantaganden ändras inte.

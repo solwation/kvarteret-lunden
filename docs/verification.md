@@ -488,3 +488,41 @@ och nätverk. Artefakter: `/tmp/lunden-orchestra-20261021/artifacts-113/`, särs
 `before/`, `final/`, `native.log`, `final-world.log`, `npm-test.log`, `build.log` och
 `built/`. Bilder visar båda ändar och översikt på båda profilerna och har granskats;
 Chromium/SwiftShader, inte fysisk telefonprestanda.
+
+## Loggiaöppningarnas verkliga passager (#114)
+
+Källa `14530bfe11fe8958068ed36f992feffd26c368ea`, publik före-bas
+`ec420445b79f85076667b5aa6527cc373fecf5fd`. Native:
+`node --test tools/segmentopeningstest.mjs` —4/4: exakta kvarsegment och
+riktning, vertikal/horizontal öppning, överlappande/reverserad intervallunion,
+klippning vid segmentänden, icke-kollineära orörda väggar och samtliga tolv
+befintliga A/B/C-intervall på exakt0,85m.
+
+`tools/loggia-walk-check.mjs` kör den publika visningens riktiga `Navigation` i
+Chromium, dator1280×800 och mobil390×844 med touch. Varje öppning provas in och
+ut genom72riktiga uppdateringar à1/60s, från0,8m utanför/innanför fasaden. Före
+stoppar alla24rutter0,22m före fasadlinjen. Efter går alla24rutter1,12m förbi
+linjen (1,92m gång); även C:s östra vertikala öppning. Ingen rutt hamnar under
+marken. Slutpositionens golv är exakt den befintliga `groundY`:0m eller−3m.
+De fyra norra A/B-loggiornas åtta riktningar startar och slutar vid levererat0m-golv.
+Ingen support eller golvpatch har tillförts. Tolv angränsande solida väggpartier
+stoppar fortfarande0,22m före linjen. Hus L:s båda separata rutter går1,92m vid0m.
+
+Före/efterkontrollen väntar första riktiga renderframe och fryser sedan
+animationen. Klockan fryses till samma datum/tid, så tornklockans
+rörliga instansmatris inte förväxlas med en byggändring. Alla502positions-/normal-/
+UV-/index-/instansarrayer i omgivningsgruppen (27 292 216byte) jämförs med SHA256,
+liksom samtliga öppningsändpunkter. Parade vyer visar A:s norra öppning och C:s
+östra öppning från vanliga kameror ovan mark. Alla fyra parade PNG-filer är
+byteidentiska. I ordningen A-norr/C-öst behålls dator104/85anrop och
+543257/499650trianglar; mobil93/78anrop och522385/472232trianglar.
+Delta är0trianglar och0anrop; inga material, texturer eller budgettak tillkommer.
+Ingen visuell kod ändras.
+
+`npm test` granskar87moduler; `npm run build` ger `0302497310cd80fe414b8b9b`.
+Byggd dator-/mobilkontroll testar verklig gång, dörrar, hissar, touch, nätverk och
+isolerad lagring utan fel eller externa anrop. Artefakter:
+`/tmp/lunden-orchestra-20261021/artifacts-114/`, med `native.log`,
+`npm-test.log`, `build.log`, `built-browser.log`, `built/`,
+`before-ready/`, `final-ready/` och deras råloggar. Chromium/SwiftShader används;
+fysisk mobilprestanda har inte mätts.
