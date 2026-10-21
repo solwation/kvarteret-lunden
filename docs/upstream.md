@@ -1302,3 +1302,9 @@ behåller full geometri och positiva rays; rendergruppernas rays är avstängda 
 att undvika dubbla träffar. Public #135 läser fortfarande exakt samma master vid
 sin gångstödsuppbyggnad. Telefonens ursprungliga enda mesh är oförändrad.
 Ingen privat kod, nya avståndsregler, kvalitet eller originalbudget importeras.
+
+Publik integrationsanpassning: originalets generiska master-ray räckte inte för
+publicens mät-/skymningsfilter som kräver `object.visible`. Endast terrängens
+renderbackade querymaster markeras uttryckligen; en gemensam synlighetspredikat i
+`main.js` behåller dess mätning och skymning utan att acceptera andra dolda meshar.
+Detta ändrar inte originalets kod eller publicens geometri.

@@ -1083,8 +1083,24 @@ Datorns före/efter-bilder är byteidentiska. Den granskade exponerade flodvyn r
 79318→79318 trianglar. Detta är en uttrycklig lokal kostnad, ingen uppmätt FPS-vinst;
 andra kameravinklar har inte profilerats. Publicens skuggor är avstängda.
 
-`npm test`: 89 moduler gröna. Bygge `134c4c460dbcef69f3bb3011`.
+`npm test`: 89 moduler gröna. Slutbygge `0fab2954f6d39b34cb349e88` efter integrationsanpassningen nedan.
 Rådata och de tre granskade bilderna finns i
 `/tmp/lunden-orchestra-20261021/artifacts-121/world/`; ingen ny fullvärldsprofil
 eller fysisk telefonprestanda hävdas. Befintliga #124/#135-bevis återanvänds för
 oförändrad väg-/gånggeometri; den berörda mastern och gångpunkten kontrolleras ovan.
+
+Den generiska Raycaster-kontrollen ovan täckte inte publicappens eget filter
+`object.visible`. Vid slutgranskningen hittades därför en orsakad integrationslucka:
+osynlig querymaster måste fortfarande få väljas av mätning och skymma dörrmål.
+Endast den renderbackade terrängmastern markeras uttryckligen; båda anropen i
+`main.js` använder samma `surfaceVisible`, med oförändrade föräldra- och materialfilter.
+Andra dolda meshar blir inte valbara och mobilgrenen saknar markeringen.
+En riktad vanlig byggd desktopapp fick en verklig Q-mätmarkör på terrängen vid
+(80,110), y −5.458000182962418 mot masterhöjd −5.458000183105469. Första rena
+terrängprovet hade bara ett felaktigt exakt-XZ-test: vertikal `lookAt` ger z
+109.99998 (0.02 mm avvikelse); sparad diagnostik visar att det var ett testfel.
+Den redan startade riktade körningen hann avslutas före stoppförsöket och passerade
+med markören exakt lika med masterns verkliga rayträff (ingen utökad tolerans).
+Gångpunkten från #135, två rendergrupper och attributdelning passerade samtidigt.
+Tidigare buffert-/bildbevis återanvänds eftersom denna lilla urvalsfix inte ändrar
+geometrin; npm-test/bygge kontrollerades på den nya relevanta koden.

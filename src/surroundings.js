@@ -1646,6 +1646,7 @@ export function* surroundingsParts({ grass, husL = null }) {
   const walkingTerrain=flat([grassUV(terrainGeometry(southeastCells)), parkRampFill(renderedTerrainY)], grass, SEASON.snow.ground);walkingTerrain.name='site-terrain';
   if(southeastCells){
     group.add(...terrainCellGroups(walkingTerrain,southeastCells));
+    walkingTerrain.userData.renderQueryMaster=true; // the two visible render groups represent this exact surface
     walkingTerrain.visible=false; // same shared-buffer query master, including #135 support capture below
   }
   yield 0.05;

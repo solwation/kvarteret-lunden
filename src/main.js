@@ -80,6 +80,10 @@ function visible(object) {
   for (let p = object.parent; p; p = p.parent) if (!p.visible) return false;
   return true;
 }
+// Render-backed query masters retain the same public measurement/obstruction surface.
+function surfaceVisible(object) {
+  return visible(object) && (object.visible || object.userData.renderQueryMaster === true);
+}
 function aimed() {
   ray.setFromCamera(centre, camera);
   ray.far = 3;
@@ -87,7 +91,7 @@ function aimed() {
   const hit = ray.intersectObjects(targets.map(t => t.pickable).filter(Boolean), true).find(h => visible(h.object));
   if (!hit) return null;
   // Reject a target hidden behind the first architectural surface.
-  const obstruction = ray.intersectObject(world.object, true).find(h => visible(h.object) && h.object.visible && !h.object.isLineSegments && h.object.material?.opacity !== 0);
+  const obstruction = ray.intersectObject(world.object, true).find(h => surfaceVisible(h.object) && !h.object.isLineSegments && h.object.material?.opacity !== 0);
   if (obstruction && obstruction.distance < hit.distance - .15) return null;
   let p = hit.object;
   while (p) { if (p.userData.door) return p.userData.door; p = p.parent; }
@@ -109,7 +113,7 @@ function measureAt(event) {
     centre.set(event.clientX / innerWidth * 2 - 1, 1 - event.clientY / innerHeight * 2);
   } else centre.set(0, 0);
   ray.setFromCamera(centre, camera); ray.far = 100;
-  const hit = ray.intersectObjects([world.object, core.object, garage.object], true).find(h => h.object.isMesh && h.object.visible && visible(h.object) && h.object.material?.opacity !== 0);
+  const hit = ray.intersectObjects([world.object, core.object, garage.object], true).find(h => h.object.isMesh && surfaceVisible(h.object) && h.object.material?.opacity !== 0);
   centre.set(0, 0);
   if (!hit) return;
   if (points.children.length > 2) clearMeasurement();
