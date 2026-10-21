@@ -722,7 +722,8 @@ export const SITE = {
       {"source":"36918923","surface":"asphalt","path":[[147.12,323.27],[142.34,342.28],[139.11,353.48],[134.42,367.87],[127.35,389.58],[121.23,407.9],[117.81,417.86],[114.73,426.31],[111.45,434.62],[108.6,441.51],[103.54,451.94],[98.05,463.31],[93.73,472.06],[90.0,479.25],[84.7,489.17],[79.52,498.44],[72.58,510.14]],"w":5.0},
       {"source":"189432572","surface":"asphalt","path":[[84.9,276.19],[75.95,279.79],[67.12,284.14],[58.11,288.75],[50.29,292.83],[40.93,298.06],[34.25,302.26],[26.96,307.72],[22.02,312.39],[15.35,319.46],[10.74,324.91],[5.74,332.19],[2.66,337.28],[0.37,342.06],[-2.95,350.56],[-5.67,361.35],[-8.72,370.38]],"w":4.5},
       {"source":"30633544","surface":"asphalt","path":[[8.31,233.97],[11.66,236.42],[14.9,240.59],[16.89,245.24],[18.3,251.27],[18.35,257.65],[16.81,265.41],[13.88,272.76],[9.98,279.91],[5.23,286.99],[-0.99,294.01],[-5.06,298.71],[-9.66,303.4],[-15.39,308.77],[-21.84,313.79],[-28.32,317.91]],"w":4.0},
-      {"source":"30633545","surface":"asphalt","path":[[3.68,236.83],[5.43,243.68],[6.01,249.77],[5.56,256.03],[3.91,262.59],[1.0,269.21],[-2.99,275.69],[-8.04,281.82],[-14.07,287.41],[-21.05,292.65],[-28.84,297.23]],"w":4.0},
+      {"source":"30633545","surface":"asphalt","surfaceSource":"guess","path":[[194.62,384.62],[205.62,380.22],[279.48,359.11],[273.25,340.22],[265.3,314.56],[213.05,330.44],[173.12,342.21]],"w":4.5,"widthSource":"guess","terrain":"triangles"},
+      {"source":"public-legacy-service-curve","provenance":"Legacy local model, not mapped OSM 30633545","surface":"asphalt","path":[[3.68,236.83],[5.43,243.68],[6.01,249.77],[5.56,256.03],[3.91,262.59],[1.0,269.21],[-2.99,275.69],[-8.04,281.82],[-14.07,287.41],[-21.05,292.65],[-28.84,297.23]],"w":4.0},
       {"source":"145221590","surface":"asphalt","path":[[62.73,207.66],[64.08,203.4],[65.17,199.14],[65.71,194.88],[65.65,190.62],[64.83,186.37],[63.47,182.16],[61.4,178.01],[58.74,173.95],[55.38,170.02],[51.52,166.25],[47.05,162.66],[42.17,159.29],[36.78,156.16],[31.06,153.31],[25.04,150.77],[18.91,148.55]],"w":3.5},
       {"source":"145221588","surface":"asphalt","path":[[72.56,208.06],[74.77,204.09],[76.43,200.03],[77.51,195.9],[77.96,191.73],[77.78,187.53],[76.99,183.33],[75.58,179.16],[73.57,175.05],[70.98,171.02],[67.84,167.1],[64.19,163.32],[60.05,159.7],[55.44,156.27],[50.41,153.05],[45.0,150.06],[39.26,147.33],[33.22,144.89],[26.92,142.75],[20.4,140.94],[13.7,139.47],[6.86,138.38],[-0.07,137.69],[-7.04,137.4],[-14.01,137.54]],"w":3.5},
     ],
@@ -733,13 +734,14 @@ export const SITE = {
       {"source":"145221626","surface":"asphalt","capacity":16,"polygon":[[119.86,419.05],[128.8,421.94],[133.56,407.2],[124.62,404.31],[119.86,419.05]]},
       {"source":"145221628","surface":"asphalt","capacity":14,"polygon":[[127.35,395.74],[136.29,398.63],[140.1,386.87],[131.16,383.98],[127.35,395.74]]},
       {"source":"145221629","surface":"asphalt","capacity":22,"polygon":[[138.86,360.38],[147.8,363.27],[153.51,345.64],[144.57,342.75],[138.86,360.38]]},
-      {"source":"1379042014","surface":"asphalt","capacity":8,"polygon":[[24.47,192.36],[27.8,193.47],[28.48,203.89],[23.51,203.89],[24.47,192.36]]},
+      {"source":"1379042014","surface":"asphalt","surfaceSource":"guess","capacity":6,"capacitySource":"OSM","orientation":"perpendicular","parking":"street_side","civilRoad":"30633545","polygon":[[223.09,383.62],[237.66,379.24],[236.23,374.21],[221.72,378.62]]},
       {"source":"1379042106","surface":"asphalt","capacity":12,"polygon":[[21.82,217.4],[26.8,217.4],[23.82,222.4],[18.84,222.4],[21.82,217.4]]},
       {"source":"1379042188","surface":"asphalt","capacity":6,"polygon":[[13.88,229.4],[18.86,229.4],[16.88,233.4],[11.9,233.4],[13.88,229.4]]},
       {"source":"1379042235","surface":"asphalt","capacity":8,"polygon":[[6.29,235.8],[11.27,235.8],[8.29,239.8],[3.31,239.8],[6.29,235.8]]},
       {"source":"1379043164","surface":"asphalt","capacity":14,"polygon":[[-5.33,243.2],[-0.35,243.2],[-12.31,251.2],[-17.29,251.2],[-5.33,243.2]]},
-      {"source":"1379043165","surface":"asphalt","capacity":16,"polygon":[[-24.87,256.3],[-19.89,256.3],[-34.83,266.3],[-39.81,266.3],[-24.87,256.3]]},
+      {"source":"1379043165","surface":"asphalt","surfaceSource":"guess","capacity":6,"capacitySource":"OSM","orientation":"perpendicular","parking":"street_side","civilRoad":"30633545","polygon":[[268.36,365.42],[283,360.95],[284.54,365.98],[269.9,370.46]]},
     ],
+    legacyClearings: [{source:"public-legacy-clearing",polygon:[[-24.87,256.3],[-19.89,256.3],[-34.83,266.3],[-39.81,266.3]]}], // #125: keep existing tree placement; not an OSM parking claim
     storey: 3,
     window: [
       1.1,
@@ -1291,6 +1293,8 @@ export const OUTDOOR = { x0: -78.5, x1: 27.5, z0: -14, z1: 64 };
 // stops the visitor (the bed is at SITE.bridges.bedY). `rescue` m: where a visitor who still ends up in the river is put back,
 // from the water's edge (*guess*). `maxSlope` rise/run: steeper ground holds the visitor back (the banks stay under it).
 // `trunk`: half-width of a tree trunk's collision diamond by kind (*guess*, the drawn trunks are thinner than a body).
+// #125: render separation above the civil terrain, visual guesses; no fabricated surveyed height.
+export const ROADSIDE_PARKING = { asphaltLift: .025, paintAbove: .003 };
 // #1278 (original; #67 here): the east campus' OSM parking polygons (SITE.east.access entries with a `capacity`) get marked stalls and an edge strip,
 // laid out by src/parkinglayout.js along the OSM service ways that run inside a polygon, on both sides, square to the aisle. Every number is a *guess*
 // (a typical Swedish car park: stalls 2.5 x 5.0 m); the stall count is whatever fits, not the polygon's guessed `capacity`. No parked cars downstream.

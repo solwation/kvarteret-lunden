@@ -135,3 +135,7 @@ Mobilen kan konservativt avvisa extra frustumträffar med hela befintliga geomet
 bounds (#123); A/B/C:s enstaka plana entrérutor ritas i ett pass. Tre kontrollerade
 mobilvyer behåller pixelparitet med färre anrop, utan nya kvalitets- eller budgetgränser.
 Se [verifieringen](docs/verification.md#mobilens-konservativa-frustum-och-plana-glas-123).
+
+Två källbelagda gatufickor vid servicevägen 30633545 har civilplan och sex
+geometriskt inpassade rutor vardera (#125), utan påhittad intern körgång.
+De ligger utanför gånggränsen; [källor och antaganden](docs/references/parking-125/README.md).

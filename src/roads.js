@@ -204,6 +204,7 @@ function clipHalf(poly,a,b,c){
  * a single terrain triangle. Sampled at its corners with the exact rendered height, the asphalt is then parallel to the ground it covers
  * and never dips under a fold of the terrain (that showed as green slivers, thickest along the south edge). Returns triangles [[x,z]×3]. */
 export function cutAtTerrain(tri,grid){
+ if(grid.cut)return grid.cut(tri); // opt-in exact local civil patches; original grids keep the native path
  let{X,Z}=grid;
  const xs=tri.map(p=>p[0]),zs=tri.map(p=>p[1]),span=(L,lo,hi)=>{let a=0;while(a<L.length-2&&L[a+1]<=lo)a++;let b=a;while(b<L.length-2&&L[b+1]<hi)b++;return[a,b];};
  X=[X[0]-1e3,...X,X[X.length-1]+1e3];Z=[Z[0]-1e3,...Z,Z[Z.length-1]+1e3]; // beyond the mesh `renderedTerrainY` holds the edge row/column, which stays planar between the same lines

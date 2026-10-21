@@ -1158,3 +1158,36 @@ befintliga lokala diagnostikhandtaget, utan nytt Worldsvep. `npm test` (91 modul
 och slutbygge `290b29795fe72e6a45327e76` är gröna. Inga triangelinventeringar,
 19-vyprofiler, orienteringsmatriser eller privata budgetmål användes.
 Rådata/bilder: `/tmp/lunden-orchestra-20261021/artifacts-123/world/`.
+
+## Två gatufickor med lokala civilplan (#125)
+
+Plan: två nativefall för källkoppling/layout/lokal terrängpatch; en gemensam
+World-batch på desktop och faktisk Android-UA; snabba npm-test/bygge.
+`node --test tools/roadsideparkingtest.mjs` passerar 2/2: båda fickorna rymmer sex
+hela 2,5×5 m-rektanglar, målningskanterna ligger i kartkonturen och vägens båda
+ändar är nuvarande 1147690112-noder. Ingen påhittad intern körgång.
+
+Höjdplanen följer befintlig marks höjder vid vägprojektionerna: ungefär 8,2 %
+respektive 0,25 % längslutning, tvärfall noll (*guess*, inte inmätning).
+Kontakthöljet når cirka 1,7 m till vägmittlinjen; övergången ligger utanför hela
+fickan/kontakten och använder fickans eget cirka 5,2 m-djup som längd.
+Råa LM/DEM-data och globala rutnätsaxlar ändras inte. Gamla lokala vägkurvan och
+skogsluckan behålls med uttryckliga lokala identiteter; de är inte korrekt OSM.
+Den gamla p-ytan vid 24,6/193 överlappar fortfarande bevarad vägasfalt, vilket
+inte är en kvarvarande felplacerad parkeringspolygon.
+
+`CHROME_PATH=/path/to/chrome node tools/roadside-parking-check.mjs http://localhost:8257 /tmp/parking-125`
+kontrollerar faktisk terrängmaster och sammanslagen sydasfalt/linjer: 30 positiva
+punkter per plattform (rutor, linjer, vägkontakter). Query mot faktisk terrängray
+skiljer högst 8e−15 m; avsett asfalt-/målningslyft 25/28 mm skiljer högst
+0,00066 mm efter Float32. Båda markytorna är synliga i när-/översiktsbilder utan
+markgenomslag. Desktop behåller två kompletta rendergrupper med full indexpartition;
+Android behåller en mesh. Positionbuffer ökar lokalt 687420→703188 byte; inga nya
+material eller renderobjekt införs. #135:s verkliga kritiska gångpunkt är fortsatt
+−0.9306880812492491 m. De nya fickorna ligger utanför WALK; ingen gångtur dit hävdas.
+
+Första World-försöket stoppades av en saknad `cutAtTerrain`-import, rättad före
+slutkörningen. Diagnostiken avbryter nu direkt vid pageerror. Slutbatchen har inga
+page-/konsolfel. `npm test` (92 moduler) och bygge
+`248a33cce7214f0a28dd96fc` passerar. Inga fullprofiler eller budgetändringar.
+Rådata/bilder: `/tmp/lunden-orchestra-20261021/artifacts-125/world/`.

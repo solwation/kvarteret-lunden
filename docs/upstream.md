@@ -1333,3 +1333,22 @@ Från `38be175ccfddd97bc3179ac3ff0d6dee4e50c32f`: endast
 `CoreHouse`-glasets `forceSinglePass:geo.glass.length===1`. Public A/B/C har
 varsin plan ruta; L:s separata icke-koplanära `Core`-batch ändras inte.
 Geometri, querymaster/rays, gångstöd, kvalitet och budgetar bevaras.
+
+## Två verkliga gatufickor (#125)
+
+Selektivt kartunderlag från `03d4c5201004540769c51cf62b7272f0a2c3caaf`:
+`SITE.south`-konturerna 1379042014/1379043165 och servicevägen 30633545.
+[Frysta officiella OSM-svar](references/parking-125/README.md) belägger båda
+fickornas `capacity=6`, `orientation=perpendicular`, `parking=street_side`;
+vägen har endast `highway=service`. Den tidigare felplacerade vägkurvan bevaras
+som `public-legacy-service-curve`, utan falsk OSM-identitet. Den gamla skogsluckan
+bevaras separat så att flytten inte omplacerar övriga träd.
+
+Publicspecifik `roadsideparking.js` ger hela fickan och dess korta vägkontakt ett
+höjdplan, med övergång utanför ytan över fickans egen djupbredd. Endast berörda
+befintliga terrängtrianglar skärs; samma Float32-trianglar används för markfrågor
+och lokala ytskikt. #121:s kompletta cellintervall räknas om utan nya globala
+rutnätsaxlar. Sex 2,5×5 m-rutor följer geometriskt tillgänglig bredd, utan intern
+körgång eller kapacitetsstyrd linjespridning. Höjdplan, tvärfall noll, vägbredd
+4,5 m, asfalt och linjelyft är uttryckliga gissningar; inga inmätta höjder påstås.
+Övriga parkeringsobjekt och originalets privata parkeringsbyggare importeras inte.

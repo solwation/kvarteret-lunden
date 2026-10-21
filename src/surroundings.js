@@ -1,3 +1,4 @@
+import { roadsidePockets, gradeParkingTerrain } from './roadsideparking.js';
 import { terrainCellGroups } from './terraincells.js';
 import { lowMemory } from './lowmemory.js';
 import { WalkSupport } from './walksupport.js';
@@ -20,7 +21,7 @@ import { lobeGeometry, leafMaterial, trunkGeometry, barkMaterial } from './folia
 import { buildStreet } from './street.js';
 import { buildStreetSigns } from './streetsigns.js';
 import { buildGroundAO } from './groundao.js';
-import { onRoad, onWalk, pathStrip, filletGeometry, vehicleTrim, finish as surfaceGeometry } from './roads.js';
+import { cutAtTerrain, onRoad, onWalk, pathStrip, filletGeometry, vehicleTrim, finish as surfaceGeometry } from './roads.js';
 import { wallRect } from './roofs.js';
 import { buildingRoofWalk } from './buildingroofs.js';
 import {buildRiverBridges,deckAt,riverGround,riverDistance,roadBridgeSpan} from './riverbridge.js';
@@ -103,7 +104,7 @@ export function groundY(x, z) {
   return fill===null?terrainY(x, z):Math.max(terrainY(x, z),fill);
 }
 // #135 changes walking only; geometry builders keep the surveyed/analytic samplers.
-let walkingSupport = null;
+let walkingSupport = null, parkingPatch = null;
 export function walkingSupportHeight(x,z) {
   // Preserve separate deck/underpass and timber-deck contracts.
   if(!walkingSupport||!walkingSupport.weight(x,z)||deckAt(x,z)!==null||parkDeckAt(x,z)!==null)return null;
@@ -118,6 +119,7 @@ export function walkingGroundSlope(x,z) {
 export const groundBelowDeckY = (x, z) => terrainY(x, z);
 /** The terrain itself (the grass / asphalt surface; groundY without the stairs' treads and the recesses' floors). */
 function terrainY(x,z) {
+  const parking=parkingPatch?.top(x,z);if(parking!==null&&parking!==undefined)return parking+.01;
   if(!legacyBuildingPads)legacyBuildingPads=makeBuildingPads(terrainRawLegacyY,260,false,[]);
   if(z<=ELEVATION.southFade[0])return paddedTerrainY(x,z,bankLegacyY,legacyBuildingPads);
   if(!buildingPads)buildingPads=makeBuildingPads();
@@ -220,6 +222,7 @@ renderedTerrainY.surfaceGrid = () => terrainDetailGrid;
 /** Holes in the terrain mesh [x0, x1, z0, z1]: Hus C stands at the courtyard's level (y 0), so its stair well (CORE_C.pit) would be covered by the grass (#639). */
 const TERRAIN_PITS = [CORE_C.pit];
 function terrainGeometry(southeastCells = null) {
+  parkingPatch=null;
   const St = Wst.stair, z0 = S.backgroundGround.z0; // #1305: from the world's north edge (the flat plate there is gone)
   const xs = new Set([S.backgroundGround.x0, -200, 200, S.backgroundGround.x1, E.x0 - 0.01, E.x0 + 0.01, E.x1, E.x1 + E.blend, E.gable, E.level, E.walk, R.x0 + 0.01, R.x1 - 0.01, R.x1 + 0.01,
       Wst.x - 0.01, Wst.x + 0.01, St.x1 - 0.01, St.x1 + 0.01]),
@@ -288,6 +291,11 @@ function terrainGeometry(southeastCells = null) {
   geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
   geo.setAttribute('uv', new THREE.Float32BufferAttribute(new Array((pos.length / 3) * 2).fill(0), 2));
   geo.setIndex(idx);
+  const pockets=S.south.parking.filter(p=>p.civilRoad),road=S.south.access.find(p=>p.source==='30633545');
+  parkingPatch=gradeParkingTerrain(geo,roadsidePockets(pockets,road,terrainY),southeastCells);
+  const nativeSurface=terrainSurface,nativeGrid=terrainDetailGrid;
+  terrainSurface=(x,z)=>parkingPatch.top(x,z)??nativeSurface(x,z);
+  terrainDetailGrid={...nativeGrid,cut:poly=>parkingPatch.cut(poly,p=>cutAtTerrain(p,nativeGrid))};
   geo.computeVertexNormals();
   return geo;
 }
@@ -1830,7 +1838,7 @@ export function* surroundingsParts({ grass, husL = null }) {
   group.userData.clocks = backdrops.flatMap(b => b.userData.clocks);
   let south; // in parts too
   const southGround=Object.assign((x,z)=>renderedTerrainY(x,z),{grid:roadGround.grid,surfaceGrid:renderedTerrainY.surfaceGrid});
-  for (const parts = southBackdropParts(southGround, connectPavement);;) { const r = parts.next(); if (r.done) { south = r.value; break; } yield 0.46 + 0.09 * r.value; }
+  for (const parts = southBackdropParts(southGround, connectPavement, parkingPatch);;) { const r = parts.next(); if (r.done) { south = r.value; break; } yield 0.46 + 0.09 * r.value; }
   group.add(south);
   // The #124 audit core contains the southern shared-edge/graded footprints.
   // Handoff occupies only its next existing emitted-terrain grid cell on each side.

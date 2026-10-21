@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { SITE, SEASON, COLORS, DECAL_OFFSET, PADDOCK, ELEVATION } from './config.js';
+import { SITE, SEASON, COLORS, DECAL_OFFSET, PADDOCK, ELEVATION, PARKING_LOT, ROADSIDE_PARKING } from './config.js';
 import { pathStrip, cutAtTerrain } from './roads.js';
 import { registerTrees, registerSnow, registerSeasonal } from './seasons.js';
 import { lobeGeometry, leafMaterial, leafAtlasParts } from './foliage.js';
@@ -19,7 +19,7 @@ const geo=points=>{const g=new THREE.BufferGeometry();g.setAttribute('position',
 // Clip each original footprint triangle, so concave wings/courtyard holes never acquire a bridging roof.
 const clip=(poly,f)=>{const out=[];for(let i=0;i<poly.length;i++){const a=poly[i],b=poly[(i+1)%poly.length],fa=f(a),fb=f(b);if(fa>=-1e-8)out.push(a);if((fa>=0)!==(fb>=0)){const t=fa/(fa-fb);out.push([a[0]+t*(b[0]-a[0]),a[1]+t*(b[1]-a[1])]);}}return out;};
 const onAccess=(x,z)=>[...S.paths,...(S.access??[])].some(p=>p.path.slice(1).some(([c,d],i)=>{const[a,b]=p.path[i],dx=c-a,dz=d-b,t=Math.max(0,Math.min(1,((x-a)*dx+(z-b)*dz)/(dx*dx+dz*dz)));return Math.hypot(x-a-t*dx,z-b-t*dz)<p.w/2+.5;}));
-const onParking=(x,z)=>(S.parking??[]).some(p=>p.polygon&&inside(x,z,p.polygon));
+const onParking=(x,z)=>[...(S.parking??[]),...(S.legacyClearings??[])].some(p=>p.polygon&&inside(x,z,p.polygon));
 const lineQuad=(p0,p1,w,yLift,col,ground)=>{
  const dx=p1[0]-p0[0],dz=p1[1]-p0[1],len=Math.hypot(dx,dz);if(len<1e-8)return null;
  const nx=-dz/len*w/2,nz=dx/len*w/2;
@@ -41,7 +41,7 @@ function terrainTriangles(poly,max,grid=null,southOnly=false){
 const upGeometry=(pts,y)=>{const pos=[];for(let i=0;i<pts.length;i+=3){let [a,b,c]=[pts[i],pts[i+1],pts[i+2]];if((b[1]-a[1])*(c[0]-a[0])-(b[0]-a[0])*(c[1]-a[1])<0)[b,c]=[c,b];for(const q of [a,b,c])pos.push(q[0],y(q[0],q[1]),q[1]);}const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));g.setAttribute('normal',new THREE.Float32BufferAttribute(Array.from({length:pos.length/3},()=>[0,1,0]).flat(),3));return g;};
 /** The southern backdrop in one call; southBackdropParts yields a rough share (0–1) between its parts (#1133). */
 export function buildSouthBackdrop(ground){const parts=southBackdropParts(ground);for(;;){const r=parts.next();if(r.done)return r.value;}}
-export function* southBackdropParts(ground, trimAsphalt=g=>g){
+export function* southBackdropParts(ground, trimAsphalt=g=>g, parkingPatch=null){
  const group=new THREE.Group();group.name='south-backdrop';const parts={facade:[],roof:[],glass:[],land:[]},records=[];
  const farGround=(x,z)=>z<=SITE.backgroundGround.z1?ground(x,z):-3.01; // sampled-grid coverage; the distant fog boundary retains its old level
  farGround.surfaceGrid=()=>ground.surfaceGrid?.()??ground.grid?.()??null;
@@ -74,7 +74,7 @@ export function* southBackdropParts(ground, trimAsphalt=g=>g){
  const bayPolygons=[];
  for(const p of [...S.paths,...(S.access??[])]){
   // Public #99: exact terrain triangles for two existing public paths (source identity: #133).
-  const exact=['145221590','145221588'].includes(p.source);
+  const exact=p.terrain==='triangles'||['145221590','145221588'].includes(p.source);
   let drawn=pathStrip(exact?{...p,terrain:'triangles'}:p,w=>-w/2,w=>w/2,.025,farGround,false,exact?farGround.surfaceGrid():undefined);
   if(['95035967','189432572','36918923'].includes(p.source)){
    // Reuse the actual float32 footprint, including pathStrip's seam overlaps.
@@ -88,6 +88,12 @@ export function* southBackdropParts(ground, trimAsphalt=g=>g){
  // original #1417: inferred hard boarding apron, bounded by unchanged mapped features.
  for(const p of busStopApron(bayPolygons))parts.land.push(tint(upGeometry(terrainTriangles(p,LAND_MESH,farGround.surfaceGrid()),(x,z)=>farGround(x,z)+.025),0x5f6164));
  for(const p of (S.parking??[])){
+  const civil=parkingPatch?.plans.find(l=>l.source===p.source);
+  if(civil){
+   parts.land.push(tint(upGeometry(terrainTriangles(civil.footprint,LAND_MESH,farGround.surfaceGrid()),(x,z)=>farGround(x,z)+ROADSIDE_PARKING.asphaltLift),surfColor(p)));
+   for(const line of civil.paint)if(line.length>=3)parts.land.push(tint(upGeometry(terrainTriangles(line,LAND_MESH,farGround.surfaceGrid()),(x,z)=>farGround(x,z)+ROADSIDE_PARKING.asphaltLift+ROADSIDE_PARKING.paintAbove),PARKING_LOT.lineColor));
+   continue;
+  }
   if(p.polygon){
    if(!(p.holes??[]).length)parts.land.push(tint(upGeometry(terrainTriangles(p.polygon,LAND_MESH,farGround.grid()),(x,z)=>farGround(x,z)+.022+LAND_LIFT),surfColor(p)));
    else{const g=new THREE.ShapeGeometry(shape(p)).rotateX(-Math.PI/2),a=g.attributes.position;
