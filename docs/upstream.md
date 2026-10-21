@@ -1199,3 +1199,46 @@ Principen kan vara relevant uppströms, men dessa koordinater får inte
 blindkopieras tillbaka; särskilt de publika vägidentifierarna granskas
 separat i #133. Inga privata system, terrassdekorationer, parkeringsändringar
 eller nya cullers/material/texturer tillkommer.
+
+## Lokalt gångstöd från emitterade ytor (#135)
+
+Egen publik rättning mot `4b22570ef661996b9ffac850609a4998b871a8d7`,
+ingen källimport. Geometribyggarnas `groundY`/`renderedTerrainY`, råa LM-data,
+bankkontroller, aproner och samtliga renderingsbuffertar lämnas oförändrade.
+Problemet var att Navigation gick på analytisk mark medan park, GC,
+trottoar och asfalt ritades med olika faktiskt triangulerade stöd.
+
+`WalkSupport` läser en gång de emitterade Float32-positionerna för terräng,
+fordonsväg, trottoar, parkasfalt, GC/broasfalt och enbart södra batchens
+asfaltfärg. Bara uppåtvända ytor ingår; inga väggar, vatten, ljusdekaler,
+träd eller andra scenobjekt kan bli gångstöd. Högsta faktiska planträff
+väljs i kärnan x=13..36, z=143..192, samma granskningsruta som omsluter
+#124:s delade kanter och graderade anslutningar. Detta är en avgränsning
+för felet, inte nya uppmätta markdata. Binärsökta bucketgränser hämtas från
+befintliga emitterade terrängceller och deras verkliga delningar, inte
+väggarnas mycket grövre 40 m-rutor. Inga scen-raycasts körs per gångsteg.
+
+En ring till nästa befintliga terränggridlinje, x=11,61..38 och z=142..194,
+blandar höjdskillnaden kontinuerligt tillbaka till den gamla markfunktionen.
+Inom kärnan gäller faktiskt topmost-stöd; i ringen är stödet en uttrycklig
+övergång, utanför gäller exakt tidigare Navigation-mark. Därmed ändras inte
+hela områdets eller norra delens gång-/lutningskontrakt. Äldre analytiska
+approximationer utanför kärnan påstås inte generellt lösta.
+
+Navigation och farwalk använder samma lokala query för fotstöd, lutning,
+räddning och aloft-bedömning. I kärnan prövas det valda verkliga planets
+lutning mot befintliga `WALK.maxSlope=1.2`; ringen använder fortfarande
+0,3 m-sampling av den gemensamma blandade funktionen. Det skiljer ramp
+från befintliga diskreta kanter: park-/GC-lagren har cirka 20/34 cm steg.
+Samma befintliga `BODY.stepUp=0.45` avgör om ett steg kan nås. Högre lokalt
+stöd spärrar/slidar horisontellt innan `groundAt` annars skulle sakna en
+nåbar golvyta. Ingen ny tröskel eller ändrad nedåtgravitation införs.
+
+Vanlig arkitektur behåller golv-, trapp-, core-, garage- och takprecedens.
+Väg-/GC-däck och marken under dem samt träbron behåller sina uttryckliga
+befintliga höjdkontrakt; indexet ersätter inte dessa med översta broytan.
+Låg mark utan däck använder fortfarande den gemensamma lokala funktionen,
+även under −3,5 m; äldre globalt lågmarkbeteende utanför regionen ändras inte.
+Det befintliga cirka 2,25 cm datumavståndet till broasfaltens ovansida kan
+därför finnas kvar. Ingen parkerings-, geografi-, material-, culling-,
+skugg-, privat- eller tjänsteändring ingår.

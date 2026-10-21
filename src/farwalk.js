@@ -6,7 +6,7 @@ import { SITE, WALK, PLAYER, OUTDOOR, PADDOCK } from './config.js';
 import { riverAt, deckAt, bridgeRecords, pierBoxes } from './riverbridge.js';
 import { parkDeckAt } from './riverpark.js';
 import { busStopSegments } from './busstopgeo.js';
-import { groundY, groundBelowDeckY, treeFeet } from './surroundings.js';
+import { walkingGroundY as groundY, walkingGroundSlope, walkingSupportHeight, groundBelowDeckY, treeFeet } from './surroundings.js';
 import { fenceSegments, stile, stileWalls } from './paddockgeo.js';
 
 const ringSegs = (p) => {
@@ -103,10 +103,12 @@ export function waterBlocked(x, z, wade = WALK.wade, y) {
   return r.distance < r.width / 2 + wade;
 }
 
-/** Ground too steep to climb at (x, z): a gradient over `WALK.maxSlope`, sampled 0.3 m round. */
+/** Ground too steep to climb: actual local face gradient, otherwise the shared field sampled 0.3 m round. */
 export function tooSteep(x, z, maxSlope = WALK.maxSlope, y) {
   if (z < 60 || onDeck(x, z, y)) return false;
-  const h = 0.3, g = underDeck(y) ? groundBelowDeckY : groundY, gx = (g(x + h, z) - g(x - h, z)) / (2 * h), gz = (g(x, z + h) - g(x, z - h)) / (2 * h);
+  const local=walkingGroundSlope(x,z);
+  if(local!==null)return local>maxSlope; // actual ramp gradient; discrete steps use Navigation's existing stepUp
+  const h = 0.3, g = underDeck(y) && walkingSupportHeight(x,z)===null ? groundBelowDeckY : groundY, gx = (g(x + h, z) - g(x - h, z)) / (2 * h), gz = (g(x, z + h) - g(x, z - h)) / (2 * h);
   return Math.hypot(gx, gz) > maxSlope;
 }
 

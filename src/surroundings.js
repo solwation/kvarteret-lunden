@@ -1,3 +1,4 @@
+import { WalkSupport } from './walksupport.js';
 import { polygonCutter, subtractConvex } from './polygoncut.js';
 import { cutSegmentOpenings } from './segmentopenings.js';
 import { southBankGround, southBankCentre } from './southbank.js';
@@ -99,6 +100,18 @@ export function groundY(x, z) {
   const fill=parkFillAt(x,z); // #86 (upstream #1337): the footbridge's earth ramps
   return fill===null?terrainY(x, z):Math.max(terrainY(x, z),fill);
 }
+// #135 changes walking only; geometry builders keep the surveyed/analytic samplers.
+let walkingSupport = null;
+export function walkingSupportHeight(x,z) {
+  // Preserve separate deck/underpass and timber-deck contracts.
+  if(!walkingSupport||!walkingSupport.weight(x,z)||deckAt(x,z)!==null||parkDeckAt(x,z)!==null)return null;
+  return walkingSupport.height(x,z,groundY(x,z));
+}
+export const walkingGroundY=(x,z)=>walkingSupportHeight(x,z)??groundY(x,z);
+export function walkingGroundSlope(x,z) {
+  const c=walkingSupport?.core;
+  return c&&x>=c.x0&&x<=c.x1&&z>=c.z0&&z<=c.z1&&deckAt(x,z)===null&&parkDeckAt(x,z)===null?walkingSupport.top(x,z,true):null;
+}
 /** #62: the ground UNDER a bridge deck; `groundY` returns the deck there. */
 export const groundBelowDeckY = (x, z) => terrainY(x, z);
 /** The terrain itself (the grass / asphalt surface; groundY without the stairs' treads and the recesses' floors). */
@@ -194,7 +207,7 @@ export const terrainNorth = Math.min(E.profile[0][0], Wst.profile[0][0]);
 /** Terrain south of Hus L and along the sloping streets: a grid with lines on every box edge, so the step at the edges
  * is vertical. */
 let terrainSurface = (x,z) => terrainY(x,z)-.01;
-/** Rendered triangle surface for background planting/paths; no change to the player's ground queries. */
+/** Rendered triangle surface for background planting/paths; walking support is queried separately below. */
 export const renderedTerrainY = (x,z) => terrainSurface(x,z);
 /** #73 (original #1309): the terrain mesh's grid lines ({X, Z}, sorted; set by terrainGeometry) so a surface laid on it can be cut along the same
  * cells: each cell is two triangles split along the (X[i+1],Z[j])-(X[i],Z[j+1]) diagonal, and `renderedTerrainY` is exactly linear in each. */
@@ -1624,7 +1637,7 @@ export function* surroundingsParts({ grass, husL = null }) {
   };
   // the ground south of Hus L: the raised courtyard on the garage box and the park level around it (the
   // street side north of Hus L is world.js's ground); retaining walls, railings and the garage door
-  flat([grassUV(terrainGeometry()), parkRampFill(renderedTerrainY)], grass, SEASON.snow.ground).name='site-terrain';
+  const walkingTerrain=flat([grassUV(terrainGeometry()), parkRampFill(renderedTerrainY)], grass, SEASON.snow.ground);walkingTerrain.name='site-terrain';
   yield 0.05;
   const bw = boxWalls();
   const concrete = new THREE.MeshStandardMaterial({ color: 0xb9b4ab, roughness: 0.95, side: THREE.DoubleSide });
@@ -1675,7 +1688,7 @@ export function* surroundingsParts({ grass, husL = null }) {
   };
   const asphalt = [...S.roads, { x0: gd.drive, x1: gd.x + 0.05, z0: gd.z0 - 0.5, z1: gd.z1 + 0.5 }].flatMap((r) => r.path ? [pathStrip(r, (w) => -w / 2, (w) => w / 2, 0.012, roadGround)]
     : r.fillets ? r.fillets.map((f) => filletGeometry(f, 0.012, groundY)) : [groundStrip(r.x0, r.x1, r.z0, r.z1, 0.012)]);
-  flat(asphalt, new THREE.MeshStandardMaterial({ color: COLORS.asphalt, roughness: 0.7 }), 0xd9dfe4); // ploughed, a little grey; damp (#128)
+  const walkingRoad=flat(asphalt, new THREE.MeshStandardMaterial({ color: COLORS.asphalt, roughness: 0.7 }), 0xd9dfe4); // ploughed, a little grey; damp (#128)
   // pavements along the roads (left out where they would lie on another road's asphalt: a junction's mouth)
   const pavementClip=(road)=>road.name==='Sankt Lars väg'?c=>roadBridgeSpan(c.reduce((s,p)=>s+p[0],0)/4,c.reduce((s,p)=>s+p[1],0)/4)||c.every(([x,z])=>onRoad(x,z,-.05,road)):true;
   const southernRoad = S.roads.find(r => r.name === 'Sankt Lars väg');
@@ -1789,7 +1802,7 @@ export function* surroundingsParts({ grass, husL = null }) {
   pavementPieces = pavementPiecesFrom(joinedWalks);
   cutPavement = polygonCutter(pavementPieces, 8);
   const connectPavement = (g,width,support) => besidePavement(g,width,p=>[p[0],pavementJoinHeight(p[0],p[2],p[1],width,support),p[2]]);
-  flat([...[...S.paving, ...S.basementPaving].map((r) => groundStrip(r.x0, r.x1, r.z0, r.z1, 0.008)), ...walks], COLORS.paving, SEASON.snow.paving);
+  const walkingPaving=flat([...[...S.paving, ...S.basementPaving].map((r) => groundStrip(r.x0, r.x1, r.z0, r.z1, 0.008)), ...walks], COLORS.paving, SEASON.snow.paving);
   yield 0.15;
   group.add(buildRiverBridges(roadGround, connectPavement));
   yield 0.2;
@@ -1808,6 +1821,13 @@ export function* surroundingsParts({ grass, husL = null }) {
   const southGround=Object.assign((x,z)=>renderedTerrainY(x,z),{grid:roadGround.grid,surfaceGrid:renderedTerrainY.surfaceGrid});
   for (const parts = southBackdropParts(southGround, connectPavement);;) { const r = parts.next(); if (r.done) { south = r.value; break; } yield 0.46 + 0.09 * r.value; }
   group.add(south);
+  // The #124 audit core contains the southern shared-edge/graded footprints.
+  // Handoff occupies only its next existing emitted-terrain grid cell on each side.
+  walkingSupport=new WalkSupport({x0:13,x1:36,z0:143,z1:192},terrainDetailGrid);
+  for(const m of [walkingTerrain,walkingRoad,walkingPaving,group.getObjectByName('park-paths-asphalt'),group.getObjectByName('bridges-asphalt')])walkingSupport.add(m.geometry);
+  const land=south.getObjectByName('south-land'),color=new THREE.Color(0x5f6164),colors=land.geometry.attributes.color;
+  walkingSupport.add(land.geometry,i=>Math.abs(colors.getX(i)-color.r)<1e-6&&Math.abs(colors.getY(i)-color.g)<1e-6&&Math.abs(colors.getZ(i)-color.b)<1e-6);
+  group.userData.walkingSupport=walkingSupport;
   yield 0.55;
   backdrops.south = south;
   // Kv. Lunden's own blocks and the old S:t Lars buildings: own façade texture and roof colour each,

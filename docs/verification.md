@@ -823,3 +823,72 @@ utredning/prototyper, inte slutbevis. Återskapa källjämförelsen med
 och samma kommando utan BASELINE_REF för efter. Spara exteriörerna med
 `tools/pavement-exterior-probe.mjs <URL> <katalog>` och jämför deras
 `desktop.json` med `tools/pavement-exterior-check.mjs <före.json> <efter.json> <bevis.json>`.
+
+## Faktiskt lokalt gångstöd (#135, 2026-10-21)
+
+Bas `4b22570ef661996b9ffac850609a4998b871a8d7`; dator 1280×800 och riktig
+Android Mobile UA/lowMemory i 390×844 och 844×390. Testresponser håller
+Date, befintlig frame och enbart hagens gräsdomänfrö fasta enligt #115.
+Produktionens klocka/slump ändras inte. Skuggkartor är avstängda.
+
+`tools/walking-support-check.mjs` kör faktisk World/Navigation, topmost-rays,
+sex rutter och parade vyer. `tools/walking-support-compare.mjs` ger 21
+kontroller PASS. Alla nio statiska anslutningsbilder är byteidentiska;
+parade `walking-eye` visar däremot den riktiga kamerans nya, nedsänkta
+fot-/ögonhöjd efter vanlig gravitationssättning. Terräng, brokonstruktioner,
+vatten, träbro, hela väg-/trottoar-/park-/GC-/södra positionsbuffertar och
+skyddad exteriör har exakt samma hash. Alla nio vyer har 0 ändrade draw
+calls, trianglar, geometriobjekt eller texturer. #124:s samtliga fem
+markfrigångsprov och överlappskontroller är fortsatt identiska/gröna.
+
+Punkt (17;152,17) går från foten 45,57 cm över synlig parkasfalt till
+avvikelse under 0,000001 mm (numerisk avrundning). De 504 kärnprov som
+ligger söder om den uttryckligt bevarade däckkanten överensstämmer med
+faktiska topmost-rays inom 0,000001 mm. Däckkantsproven redovisas separat:
+Navigation behåller gammalt däckdatum; avståndet till broasfaltens ovansida
+är som tidigare upp till cirka 2,25 cm.
+
+Alla sex verkliga rutter når sina mål: vägbron båda riktningar, GC-bron
+båda riktningar och park-/trottoarkorsningen båda riktningar. Korsningens
+satta waypoint-fötter, inklusive gräsytan, förbättras från 82,77/78,16 cm
+avvikelse till numeriskt noll. De tidigare rörliga asfaltproven var
+35,57/38,76 cm; detta är olika provmängder och ska inte blandas ihop. Uppförgående rörelse följer ytan; nedförgående rörelse kan
+fortfarande tillfälligt ligga 38,50 cm över ytan medan oförändrad gravitation
+följer de befintliga 20/34 cm nivåkanterna. Detta är uttryckligen skilt från
+satt fotstöd. Väg-/GC-rörelseprovens största lokala transienter är
+0,29/4,15/4,47/3,81 cm. Ingen global gravitations-/steghöjdsändring döljer
+skillnaden. Bro-/ruttpartier utanför kärnan behåller tidigare kontrakt.
+
+`tools/walksupport-test.mjs` prövar verkliga Float32-plan, överlappande
+stödlager, upp-/nedvänd orientering, bucket-/triangelkanter och alla fyra
+rand-/hörnövergångar. `tools/walking-support-component.mjs` kör riktiga
+Navigation mot kontrollerade emitterade plan via enbart testresponsens
+fixture: 44 cm steg passerar uppåt, 46 cm spärras, nedåt och diagonalt
+prövas i båda riktningarna, faktisk lutning 1,3 spärras av befintliga 1,2.
+Åtta vanliga publika rutter genom övergångsringen når målet i båda
+riktningar med satt markfel 0. Norrut används vägbron för att inte påstå
+en gångrutt genom vattnet. Täta 21-punktsprofiler vid alla fyra ytterkanter
+och fyra hörn jämför gamla/nya 0,3 m-lutningar: noll nya spärrar, exakt
+oförändrad höjd på randen och högst 44,7 nm korrektion 1 mm innanför.
+De två broarnas däck-/underpassquery är exakt oförändrade. Separata
+låga offdeck-prov i kärna och ring använder samma stöd även när fötterna
+är under −3,5 m; den gamla underpassgränsen får inte felaktigt byta till
+rå mark utanför ett faktiskt däck. Utanför stödregionen bevaras äldre beteende.
+
+Indexet behåller 5 669 uppåtvända lokala plan i 800 buckets; representativa
+sökningar prövar i medel 20,37, som mest 262 kandidater. 10 000 kompletta
+markqueries tar 35/62/45 ms i dessa tre mjukvarurenderade browserprofiler.
+Det redovisar extra CPU/indexarbete utan FPS- eller fysisk telefonprestanda-
+påstående; inga nya kvalitets- eller budgetgränser införs.
+
+`npm test`: 88 moduler; `npm run build`: `3f40963b734f066566bbdf67`.
+Ordinarie opatchad byggd browserkontroll med Android-UA provar dörr, gång,
+hissar, mätreglage och båda touchlayouter, utan JavaScriptfel/externa anrop.
+Råartefakter: `/tmp/lunden-orchestra-20261021/artifacts-135/`, särskilt
+`before-matched/`, `final/`, `summary.json`, `component-final/results.json`, `component-lowbank-final/results.json`,
+`native.log`, `npm-test.log`, `build.log` och `built-final.log`.
+Återskapa med `BASELINE_REF=4b22570 CHROME_PATH=<Chromium> node tools/walking-support-check.mjs <URL> <före>`,
+samma kommando utan BASELINE_REF för efter, och
+`node tools/walking-support-compare.mjs <före> <efter> <sammanfattning.json>`.
+Den äldre markapproximationen utanför kärnan och den kontinuerliga ringens
+avsiktliga blandning ska inte förväxlas med exakt topmost-stöd överallt.

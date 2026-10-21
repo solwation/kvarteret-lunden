@@ -1,7 +1,7 @@
 import { Vector3 } from 'three';
 import * as config from './config.js';
 import { stairHeight, stairUnderside } from './stairs.js';
-import { groundY, groundBelowDeckY } from './surroundings.js';
+import { walkingGroundY as groundY, walkingSupportHeight, groundBelowDeckY } from './surroundings.js';
 import { deckAt } from './riverbridge.js';
 import { stileSurface, farWalls, waterBlocked, tooSteep, waterRescue, buildingRescue } from './farwalk.js'; // upstream #1236: walking beyond the block
 
@@ -237,9 +237,14 @@ export class Navigation {
         for (const wall of moving) pushOut(this.pos, wall);
         if (this.blockedByStair(this.pos.x, this.pos.z, previous.y)) this.pos.copy(previous);
       }
-      if (this.pos.z > 60 && !this.aloft && (waterBlocked(this.pos.x, this.pos.z, undefined, previous.y) || tooSteep(this.pos.x, this.pos.z, undefined, previous.y))) {
-        // the river and ground too steep to climb are obstacles: slide along one axis or stay put
-        const bad = (x, z) => waterBlocked(x, z, undefined, previous.y) || tooSteep(x, z, undefined, previous.y);
+      const localStep = (x,z) => {
+        const support=walkingSupportHeight(x,z);
+        return support!==null&&support>previous.y+BODY.stepUp+1e-6;
+      };
+      if (this.pos.z > 60 && !this.aloft && (waterBlocked(this.pos.x, this.pos.z, undefined, previous.y) || tooSteep(this.pos.x, this.pos.z, undefined, previous.y) || localStep(this.pos.x,this.pos.z))) {
+        // The same local support owns ramp slope and reachable steps. A higher
+        // support must block horizontally, rather than becoming a -Infinity floor.
+        const bad = (x, z) => waterBlocked(x, z, undefined, previous.y) || tooSteep(x, z, undefined, previous.y) || localStep(x,z);
         if (!bad(this.pos.x, previous.z)) this.pos.z = previous.z;
         else if (!bad(previous.x, this.pos.z)) this.pos.x = previous.x;
         else { this.pos.x = previous.x; this.pos.z = previous.z; }
