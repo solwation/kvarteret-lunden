@@ -1,3 +1,5 @@
+import { terrainCellGroups } from './terraincells.js';
+import { lowMemory } from './lowmemory.js';
 import { WalkSupport } from './walksupport.js';
 import { polygonCutter, subtractConvex } from './polygoncut.js';
 import { cutSegmentOpenings } from './segmentopenings.js';
@@ -217,7 +219,7 @@ renderedTerrainY.grid = () => terrainGrid;
 renderedTerrainY.surfaceGrid = () => terrainDetailGrid;
 /** Holes in the terrain mesh [x0, x1, z0, z1]: Hus C stands at the courtyard's level (y 0), so its stair well (CORE_C.pit) would be covered by the grass (#639). */
 const TERRAIN_PITS = [CORE_C.pit];
-function terrainGeometry() {
+function terrainGeometry(southeastCells = null) {
   const St = Wst.stair, z0 = S.backgroundGround.z0; // #1305: from the world's north edge (the flat plate there is gone)
   const xs = new Set([S.backgroundGround.x0, -200, 200, S.backgroundGround.x1, E.x0 - 0.01, E.x0 + 0.01, E.x1, E.x1 + E.blend, E.gable, E.level, E.walk, R.x0 + 0.01, R.x1 - 0.01, R.x1 + 0.01,
       Wst.x - 0.01, Wst.x + 0.01, St.x1 - 0.01, St.x1 + 0.01]),
@@ -254,6 +256,7 @@ function terrainGeometry() {
     // Boundary samples interpolate any adjacent coarse edge, so mixed cells remain watertight.
     const fine=(i,j)=>i>=0&&j>=0&&i<X.length-1&&j<Z.length-1&&
       (Z[j]+Z[j+1])/2>60&&riverDistance((X[i]+X[i+1])/2,(Z[j]+Z[j+1])/2)<S.river.terrainRefineRadius;
+    const start = idx.length;
     if(fine(i,j)){
       const n=S.river.terrainSubdivisions,at=(u,v)=>{
         const x=X[i]+(X[i+1]-X[i])*u/n,z=Z[j]+(Z[j+1]-Z[j])*v/n;
@@ -269,6 +272,8 @@ function terrainGeometry() {
       cells.set(j*nx+i,row);
       for(let v=0;v<n;v++)for(let u=0;u<n;u++)idx.push(row[v][u],row[v+1][u],row[v][u+1],row[v][u+1],row[v+1][u],row[v+1][u+1]);
     }else idx.push(a,c,b,b,c,d);
+    // Whole source cells, including every existing river subdivision.
+    if(southeastCells && mx >= TERRAIN_FAR.renderSplit.x && mz >= TERRAIN_FAR.renderSplit.z) southeastCells.push([start,idx.length-start]);
   }
   terrainDetailGrid={X,Z,refined:(i,j)=>i>=0&&i<X.length-1&&j>=0&&j<Z.length-1?(cells.get(j*nx+i)?.length-1||1):1};
   // Same barycentric interpolation as the emitted triangles: bank paths/plants cannot hover over a curved cell.
@@ -1637,7 +1642,12 @@ export function* surroundingsParts({ grass, husL = null }) {
   };
   // the ground south of Hus L: the raised courtyard on the garage box and the park level around it (the
   // street side north of Hus L is world.js's ground); retaining walls, railings and the garage door
-  const walkingTerrain=flat([grassUV(terrainGeometry()), parkRampFill(renderedTerrainY)], grass, SEASON.snow.ground);walkingTerrain.name='site-terrain';
+  const southeastCells = lowMemory ? null : [];
+  const walkingTerrain=flat([grassUV(terrainGeometry(southeastCells)), parkRampFill(renderedTerrainY)], grass, SEASON.snow.ground);walkingTerrain.name='site-terrain';
+  if(southeastCells){
+    group.add(...terrainCellGroups(walkingTerrain,southeastCells));
+    walkingTerrain.visible=false; // same shared-buffer query master, including #135 support capture below
+  }
   yield 0.05;
   const bw = boxWalls();
   const concrete = new THREE.MeshStandardMaterial({ color: 0xb9b4ab, roughness: 0.95, side: THREE.DoubleSide });

@@ -123,3 +123,7 @@ parkeringsplanen (#100) återstår.
 (#136): 38519 uppmätta trianglar mot en granskad asset-regressionsgräns 40843.
 Den bevarar tidigare terrängprecision och ursprunglig absolut marginal; gränsen
 är ingen validerad fysisk FPS-budget. Se [verifieringen](docs/verification.md).
+
+Terrängen använder hela befintliga celler i två desktopgrupper (#121); telefonen
+behåller sin enda mesh. Höjder, rays och gångstöd är oförändrade. Den uppmätta
+exponerade flodvyn kostar ett extra ritanrop; se [verifieringen](docs/verification.md#kompletta-terrängceller-på-dator-121).

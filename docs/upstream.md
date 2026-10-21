@@ -1289,3 +1289,16 @@ rutinmässiga omkörningar, stopp vid grön plan och kostnadsomprövning kring 1
 Dokument kräver inga scen-/triangel-/browserprov. Verkliga hårda kontrakt och
 publicens avskiljning bevaras; inga privata instruktioner, app-/budget-/geometriändringar
 eller nya tjänster överförs. Se verifieringspolicyn och orkesterkommandot.
+
+## Hela terrängceller i desktopgrupper (#121)
+
+Selektiv överföring från `625979e78b413c59e58fb4870b406b44bc68f4e4`
+(original #1462): rena `terrainCellGroups`, dess nativeprov, cellintervall i
+terrängbyggaren och `TERRAIN_FAR.renderSplit={x:0,z:60}`. Kompletta befintliga
+celler inklusive flodens underdelningar fördelas mellan två desktopmeshar.
+Position/normal/UV delas som samma attributobjekt och samma material; inga celler
+klipps eller höjder ändras. Den befintliga namngivna mastern blir osynlig men
+behåller full geometri och positiva rays; rendergruppernas rays är avstängda för
+att undvika dubbla träffar. Public #135 läser fortfarande exakt samma master vid
+sin gångstödsuppbyggnad. Telefonens ursprungliga enda mesh är oförändrad.
+Ingen privat kod, nya avståndsregler, kvalitet eller originalbudget importeras.

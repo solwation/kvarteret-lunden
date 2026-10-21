@@ -1051,3 +1051,40 @@ Tidigare #120:s fullständiga ordnade attribut-/material-/boundsbevis återanvä
 #136 ändrar endast budgetfältet, inte byggarna. `npm test` godkänner 88 moduler,
 nativeräknaren passerar och bygget är `91c2a64a918d66cdfd27828a`.
 Slutbevis sparas i `/tmp/lunden-orchestra-20261021/artifacts-136/`.
+
+## Kompletta terrängceller på dator (#121)
+
+Källa `625979e78b413c59e58fb4870b406b44bc68f4e4`, publik föreversion
+`1914c816e5118610b3ffdad1d8db67d658f9b5de`. Avgränsad plan: två källnära
+nativefall, en gemensam World-körning (före/efter dator + vanlig Android-UA
+390×844), sedan befintligt npm-test/bygge. Inga fullprofiler eller nya budgetar.
+
+`node --test tools/terraincellstest.mjs` passerar 2/2: fullständiga indexintervall,
+exakt attribut-/materialdelning, referensbaserade bounds, bevarad master och
+positiva default-layer-rays utan proxyträffar. Kör World-kontrollen med
+`CHROME_PATH=/path/to/chrome node tools/terrain-cell-check.mjs http://localhost:8257 /tmp/terrain-cell 1914c81`.
+Den återanvänder appens normala navigation/renderare, fast testdatum och endast
+haggräsets domänseed i testsvar; ingen produktionshook eller global slump ändras.
+
+Alla tre World-versioner har exakt samma positions-/normal-/UV- och masterindexhash,
+materialdata och positiva terrängrayhöjder −3.060153663/−3.060153804 m.
+De två grupperna är en exakt partition av alla 79318 befintliga trianglar:
+51046 återstod och 28272 sydost. Alla attributobjekt och material delas.
+Querymasterns 475908 byte index behålls; desktopgruppernas index tillför lika mycket
+CPU-indexdata, medan attributens 1833120 byte inte kopieras. Inga nya materiella
+resurser eller mark-/gånghöjder skapas. Telefonen har fortfarande en synlig master,
+inga rendergrupper och samma fullständiga buffrar.
+
+#135:s verkliga navigationspunkt (17,152.17) landar fortfarande på
+−0.9306880812492491 m, exakt samma gångstöd före/efter och på Android.
+`renderedTerrainY`-samplerns −1.152485578 m är inte en mätning av punktens
+synliga vägyta och är oförändrad.
+Datorns före/efter-bilder är byteidentiska. Den granskade exponerade flodvyn ritar båda grupperna: 1→2 terränganrop och
+79318→79318 trianglar. Detta är en uttrycklig lokal kostnad, ingen uppmätt FPS-vinst;
+andra kameravinklar har inte profilerats. Publicens skuggor är avstängda.
+
+`npm test`: 89 moduler gröna. Bygge `134c4c460dbcef69f3bb3011`.
+Rådata och de tre granskade bilderna finns i
+`/tmp/lunden-orchestra-20261021/artifacts-121/world/`; ingen ny fullvärldsprofil
+eller fysisk telefonprestanda hävdas. Befintliga #124/#135-bevis återanvänds för
+oförändrad väg-/gånggeometri; den berörda mastern och gångpunkten kontrolleras ovan.
