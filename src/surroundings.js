@@ -1,4 +1,4 @@
-import { roadsidePockets, gradeParkingTerrain, constrainPocketPlane } from './roadsideparking.js';
+import { roadsidePockets, gradeParkingTerrain, constrainPocketPlane, setParkingPlane, parkingHull } from './roadsideparking.js';
 import { terrainCellGroups } from './terraincells.js';
 import { lowMemory } from './lowmemory.js';
 import { WalkSupport } from './walksupport.js';
@@ -291,14 +291,19 @@ function terrainGeometry(southeastCells = null) {
   geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
   geo.setAttribute('uv', new THREE.Float32BufferAttribute(new Array((pos.length / 3) * 2).fill(0), 2));
   geo.setIndex(idx);
-  const pockets=S.south.parking.filter(p=>p.civilRoad),plans=pockets.map(p=>roadsidePockets([p],S.south.access.find(r=>r.source===p.civilRoad),terrainY,S.south.buildings)[0]);
+  const pockets=S.south.parking.filter(p=>p.civilRoad),plans=pockets.map(p=>roadsidePockets([p],[...S.south.access,...S.south.paths].find(r=>r.source===p.civilRoad),terrainY,S.south.buildings,S.south.access)[0]);
   const nativeSurface=terrainSurface,nativeGrid=terrainDetailGrid,patches=[],earlier=[];
   let cut=poly=>cutAtTerrain(poly,nativeGrid);
   const top=(x,z)=>{for(let i=patches.length-1;i>=0;i--){const y=patches[i].top(x,z);if(y!==null)return y}return null};
   for(const stage of [...new Set(plans.map(p=>p.civilStage))].sort()){
     const group=plans.filter(p=>p.civilStage===stage);
     for(const p of group){if(p.rearSupport)constrainPocketPlane(p,S.south.buildings.find(b=>b.source===p.rearSupport),(x,z)=>(top(x,z)??nativeSurface(x,z))+.01);p.guards.push(...earlier.map(q=>q.footprint))}
-    const patch=gradeParkingTerrain(geo,group,southeastCells),previousCut=cut;patches.push(patch);cut=poly=>patch.cut(poly,previousCut);earlier.push(...group);
+    for(const p of group){
+      for(const id of [p.protectApron,...(p.otherAprons??[])].filter(Boolean)){const b=S.south.buildings.find(b=>b.source===id),apron=parkingHull(b.polygon.flatMap(([x,z])=>[[-1,-1],[-1,1],[1,-1],[1,1]].map(([dx,dz])=>[x+dx*ELEVATION.southApron,z+dz*ELEVATION.southApron])));p.guards.push(apron);if(id===p.protectApron&&p.civilAnchors){const c=p.civilAnchors,a=c.baselineEntry?p.entry:p.polygon[c.baselineVertex],r=p.polygon[c.apronVertex],pad=buildingPadList().find(pad=>pad.name===b.name);setParkingPlane(p,[c.reference,[...a,(top(...a)??nativeSurface(...a))+.01],[...r,pad.level]])}}
+
+      if(p.protectBank){const z0=p.support.z0,z1=p.support.z1,zs=[...new Set([z0,z1,...SOUTH_BANK.road.map(q=>q[1]),...S.south.paths.find(r=>r.source==='30633546').path.map(q=>q[1])])].filter(z=>z>=z0&&z<=z1).sort((a,b)=>a-b);p.guards.push([...zs.map(z=>[southBankCentre(z)-SOUTH_BANK.flat,z]),...zs.slice().reverse().map(z=>[southBankCentre(z)+SOUTH_BANK.flat,z])])}
+    }
+    const patch=gradeParkingTerrain(geo,group,southeastCells,nativeGrid),previousCut=cut;patches.push(patch);cut=poly=>patch.cut(poly,previousCut);earlier.push(...group);
   }
   parkingPatch={plans,top,cut};
   terrainSurface=(x,z)=>parkingPatch.top(x,z)??nativeSurface(x,z);

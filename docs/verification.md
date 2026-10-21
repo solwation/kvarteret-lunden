@@ -1270,3 +1270,71 @@ material eller budgetgränser. `npm test` (92 moduler), nativeprov och slutbygge
 `941bd1d1eea46b1c2327e269` är gröna. Inga page-/konsolfel. Ytorna ligger utanför
 WALK; ingen påhittad gångtur dit hävdas.
 Rådata/bilder: `/tmp/lunden-orchestra-20261021/artifacts-127/world/` och `row/`.
+
+## Dubbelradig parkering vid hus 45 (#128)
+
+Plan: befintliga komponentprov, en lokal yta/infart med faktiska rays och gång,
+snabba npm-test/bygge. Råkontur 145221619 v1 från 2012 och granskad kandidat
+`03d4c5201004540769c51cf62b7272f0a2c3caaf` matchar. Råkapacitet saknas.
+Slutlayouten på 57×16,9 m har tio hela 2,5×5 m-rutor i två rader, sex meters
+körgång och tre fria tvärkorridorer för samtliga befintliga modellkurvor.
+Antalet följer den konservativa passningen, inte en antagen kapacitet 30.
+Befintlig lokal infart går från 30633546-noden 8,31/233,97; ingen ny apron byggs.
+Alla tre kurvors geometri bevaras. Två felaktiga OSM-identiteter ersätts med ärliga
+lokala identiteter; den tredje var redan lokal från #125. De verkliga objekten
+30633544/850235115 dokumenteras i råarkivet men importeras inte.
+
+Civilplanet ankras i nominell LM-referens 10/248/1,26, faktisk tidigare emitterad
+mark + befintligt 1 cm-sampleroffset vid infarten 11,91360656/236,74640104
+(1,11718396 m), och hus 45:s ankarnivå 1,94 m vid bakhörnet 37,02/239,75.
+Gradienten är 3,54781 %. Hörnnivåerna blir cirka 0,55384/1,39336/1,94/1,10079 m.
+Detta är ett uttryckligt civilmodellantagande med tidigare datum-/RH-osäkerhet,
+inte inmätta parkeringsnivåer eller norm-/tillgänglighetsbelägg. Renderad jord
+ligger fortsatt 1 cm under samplern. Tidigare analysfält vid LM-punkten ersätts
+lokalt av civilplanet som hedrar råreferensen; själva källdata ändras inte.
+
+Hela bankens ±4 m-krön och konservativa fyrametersapronhöljen runt hus 41/45
+skyddas; nativeprovet visar att de inte skär hela parkeringsplanet. I faktisk
+geometri är krön-/apronavvikelse högst 5,7 µm och hushörn högst 0,14 µm mot
+föregående emitterade mark. Oförändrade bevis från #125–127 återanvänds.
+In- och utgång provas på riktigt inom WALK: 8,31/233,97 via den bevarade kurvan
+till 16,89/245,24 och tillbaka. Ingen promenad utanför z=250 hävdas.
+
+Verifieringen fångade en verklig startupkostnad: linjär sökning genom 13404 lokala
+faces tog cirka 53 s för 471000 relevanta höjdfrågor. Nollareapolygoner släpps nu
+även mellan klippstegen med samma befintliga areakriterium. Ett lokalt faceindex
+använder redan befintliga terrängcellaxlar för höjd och klippning, med ordnade,
+avduplicerade kandidater och befintlig 1e−8-kantmarginal. Native 6/6 provar exakt
+samma emitterade buffers, höjdfrågor på/kring cellgränser och klippresultat med
+index respektive linjär referens. Inga nya terrängavstånd eller triangelbudgetar.
+
+Ett första nästan kolinjärt ankarsätt gav 49 % lutning och blockerad infart;
+det ersattes av den faktiska infartsanknytningen ovan. Sista ytkontrollen fångade
+också gräsgenomslag i den gamla ungefärliga vägtesselleringen. Endast befintliga
+30633546-/de tre lokalkurvornas quads som berör graderingsstödet får därför befintlig
+exakt terrängklippning. En vald quad kan sträcka sig utanför boxen över sin
+befintliga källsegmentgräns; övriga quads behåller tidigare kodväg. Bankens
+marknivåer och vägarnas XY ändras inte. Misslyckade råloggar behålls; inga
+fysiktrösklar höjs och inga fel maskeras med godtyckliga lyft.
+
+Telefonens oförändrade gruppgren återanvänds från #127. Gammal platshållaryta
+skär ingen skogsregion ens med bbox; ingen extra skogslucka införs. Riktade
+omkörningar gäller endast de reproducerade felen ovan, inte helscensprofiler.
+Rådata/bilder: `/tmp/lunden-orchestra-20261021/artifacts-128/`.
+
+Den statiska genomgången av samtliga befintliga sydvägars svepta bredder hittar
+exakt tre korsningar genom konturen. Alla tre får konservativa fria sexmetershöljen;
+därför blir slutlayouten tio hela rutor, inte den första variantens 32. Ytterligare
+kapacitets-/detaljoptimering behövs inte. Nativeprovet jämför hela korsningslistan
+med de reserverade vägarna och provar varje hel bilrektangel mot samtliga höljen.
+Samtliga tre gamla kurvors XY och verkliga anslutningsnoder bevaras. De får samma
+begränsade befintliga terrängklippning som huvudvägen där nya graderingen berör dem.
+
+Slutprov `final-ready/`: 14 faktiska ytpunkter, query/ray inom 8,44e−15 m;
+topmost asfalt/målning inom 2,08 µm från avsett 25/28 mm-lyft. Bilden visar hela
+bilrutor, fria korsningar och inga nya markhål i de berörda vägytorna. In- och
+utgång passerar, inga page-/konsolfel. Hus-/krönbevis återanvänds eftersom deras
+skydd/terräng inte ändrats av de sista layout-/asfaltjusteringarna. Terrängens
+positionbuffer ökar lokalt 787356→1279620 byte; inga nya renderobjekt/material
+eller budgethöjningar. `npm test` (92 moduler), native 6/6 och slutbygge
+`918a18f1905e2463a75a8e21` passerar. Ingen fortsatt profilering krävs.

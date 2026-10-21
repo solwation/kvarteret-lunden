@@ -147,3 +147,8 @@ bevaras. Se [rådata och antaganden](docs/references/parking-126/README.md).
 Den indragna parkeringsytan i #127 behåller sin exakta L-kontur: sju hela rutor
 lämnar en fri servicekorridor. Den smala grannfickan rymmer tre rutor, utan att
 tvingas till en antagen kapacitet. [Källor och tolkning](docs/references/parking-127/README.md).
+
+Parkeringen norr om hus 45 (#128) har två rader med hela bilrutor, sex meters
+körgång och fri passage för den befintliga lokala infartskurvan. Höjdplanet knyts
+till LM-referensen och infarten; bankkrön samt hus 41/45:s apron skyddas.
+[Källor och antaganden](docs/references/parking-128/README.md).

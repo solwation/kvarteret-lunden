@@ -74,8 +74,10 @@ export function* southBackdropParts(ground, trimAsphalt=g=>g, parkingPatch=null)
  const bayPolygons=[];
  for(const p of [...S.paths,...(S.access??[])]){
   // Public #99: exact terrain triangles for two existing public paths (source identity: #133).
-  const exact=p.terrain==='triangles'||['145221590','145221588'].includes(p.source);
-  let drawn=pathStrip(exact?{...p,terrain:'triangles'}:p,w=>-w/2,w=>w/2,.025,farGround,false,exact?farGround.surfaceGrid():undefined);
+  const local=parkingPatch?.plans.find(q=>q.source==='145221619'),graded=local&&['30633546','public-legacy-parking-crossing','public-legacy-west-parking-crossing','public-legacy-service-curve'].includes(p.source);
+  const exact=p.terrain==='triangles'||graded||['145221590','145221588'].includes(p.source);
+  const terrain=graded?c=>Math.max(...c.map(q=>q[0]))>=local.support.x0&&Math.min(...c.map(q=>q[0]))<=local.support.x1&&Math.max(...c.map(q=>q[1]))>=local.support.z0&&Math.min(...c.map(q=>q[1]))<=local.support.z1:'triangles';
+  let drawn=pathStrip(exact?{...p,terrain}:p,w=>-w/2,w=>w/2,.025,farGround,false,exact?farGround.surfaceGrid():undefined);
   if(['95035967','189432572','36918923'].includes(p.source)){
    // Reuse the actual float32 footprint, including pathStrip's seam overlaps.
    const a=drawn.attributes.position;

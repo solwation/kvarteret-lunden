@@ -1394,3 +1394,26 @@ Graderingen har nu uttryckliga steg: #125:s emitterade mark, #126:s skyddade
 plan/annexanknytning, sedan dessa två ytor. Varje steg behåller tidigare hela
 fickor och faktiska byggnadsfötter; inga globala rutnätsaxlar eller källhöjder
 ändras. Ingen privat parkeringsbyggare eller ny generell geometriarkitektur införs.
+
+## Dubbelradig parkering norr om hus 45 (#128)
+
+145221619 från `03d4c5201004540769c51cf62b7272f0a2c3caaf` matchar
+[officiell fryst kontur](references/parking-128/README.md), cirka 57×16,9 m.
+Råtaggen är endast amenity=parking; originalets 30 var gissning. Geometrin rymmer
+10 hela 2,5×5 m-rutor i två rader med sex meters körgång, efter att de tre befintliga
+modellkurvornas tvärpassager reserverats. Ingen ny lång apron eller infart hittas på.
+
+De tre modellkurvorna ansluter vid befintliga 30633546-noder. Två felaktiga
+identiteter blir `public-legacy-parking-crossing` och
+`public-legacy-west-parking-crossing`; #125:s redan ärliga lokalkurva behålls.
+De verkliga OSM-objekten 30633544/850235115 visas i råarkivet men deras avlägsna
+geometri importeras inte här. Samtliga modellkurvors XY bevaras. Kurvornas sexmeters fria korridorer och
+asfalttolkning/layout är gissningar, inte en källbelagd detaljerad körplan.
+
+Lokalt steg 3 bygger på redan emitterade #125–127-ytor. Ett plan går genom
+LM-referensen 10/248/1,26, faktisk tidigare mark vid infartens möte med konturen
+samt hus 45:s ankarnivå vid närmaste bakhörn. Bankens hela befintliga ±4 m-krön
+samt konservativa fyrametersapronhöljen runt hus 41/45 skyddas. Plan/övergångar
+är uttryckliga civilmodellantaganden; råhöjder, hus och globala rutnätsaxlar ändras
+inte. Den större lokala patchen kräver ett faceindex på befintliga terrängcellaxlar
+för höjd-/klippfrågor; ordnade geometriytor bevaras, inga nya budgetar eller LOD-nivåer införs.
