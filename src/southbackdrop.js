@@ -73,7 +73,9 @@ export function* southBackdropParts(ground){
  const surfColor=p=>p.color??(p.surface==='asphalt'?0x5f6164:p.surface==='gravel'?0xb5ac90:0xa7a397);
  const bayPolygons=[];
  for(const p of [...S.paths,...(S.access??[])]){
-  const drawn=pathStrip(p,w=>-w/2,w=>w/2,.025,farGround);
+  // Public #99: exact existing terrain triangles only for the mapped GC bridge connections.
+  const exact=['145221590','145221588'].includes(p.source);
+  const drawn=pathStrip(exact?{...p,terrain:'triangles'}:p,w=>-w/2,w=>w/2,.025,farGround,false,exact?farGround.surfaceGrid():undefined);
   if(['95035967','189432572','36918923'].includes(p.source)){
    // Reuse the actual float32 footprint, including pathStrip's seam overlaps.
    const a=drawn.attributes.position;

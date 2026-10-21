@@ -377,3 +377,77 @@ Inga JavaScriptfel eller externa anrop i slutprofilerna. Chromium/SwiftShader-em
 inte fysisk telefonprestanda. Fulla råloggar finns i artefaktmappen ovan.
 
 #100:s parkering och #99:s vägbank ingår inte. Föräldern#98 förblir öppen.
+
+## Södra vägbanken och GC-anslutningar, #99
+
+Källa `a0c66ef68ee78dcae68f5c3dd0aeb1a5d7bd59bc`; publik bas
+`e79f47327eee78cfb71822cf6d7473bd938f1f29`. `node --test tools/southbanktest.mjs
+ tools/southpointtest.mjs tools/southplateautest.mjs tools/paddockgeotest.mjs`
+passerar27/27. Ett prov med vinklad referensterräng kontrollerar även den selektiva exakta
+triangelkrokens höjder och areabevarande8m²-fotavtryck. Elva väg- och50tvärsektionspunkter matchar den bevarade77-punkts-
+exporten. Provet skiljer de fem tvärsektionernas båda sidor, kontrollerar monotont
+krön/platåförbindning, lokala kanter/fade, alla tio platåreferenser och oförändrat
+antaget däckdatum−3m. #106:s befintliga fot-/apronprov är oförändrade och gröna.
+Källans post-pad-overlay underkändes eftersom41:s norra fot sänktes0,211755m;
+den publika pre-pad-anpassningen behåller samma förankrade1,83m-plan.
+
+`tools/southbank-check.mjs BASE OUT [BEFORE]` bygger riktig World på1280×800 och
+390×844touch. `BASELINE_REF=e79f47327eee78cfb71822cf6d7473bd938f1f29` fryser alla
+publika källmoduler med Playwright-routing utan att importera originalhistorik.
+Båda profilerna går verkligt över vägbron och GC-bron i båda riktningar, inom
+publicsidans gamla gånggräns. Slutpunkterna uppnås inom0,2m och landar exakt på
+`groundY`; vägkrönet vid sista kontrollen är0,597610m i stället för tidigare
+−1,774534m. GC-anslutningen landar på−0,300896m mot tidigare−3,046884m.
+
+För z155/165/180 är krönet−0,325/−0,225/−0,020m, västsidan
+−4,355/−4,115/−4,025m och östsidan−3,621667/−3,175/−2,525m. De separata
+lägre slänterna syns i parade väst-/östbilder, med väg/GC-anslutning, ovanifrån
+samt hagen. Höjderna är relativa marktolkningar, inte broinmätning eller ådjup.
+
+Bankens källbundna laterala stöd, fade och kartlagda gren plus angränsande
+coarse-cellskanter används som skyddsmask.54 968 utanförliggande Float32-positioner
+har exakt samma SHA256 före/efter:
+`0e8ee8e620d00e9fedd99c73de8f38131792e44a5dd02a6c74363243484dad0a`.
+Terrängens79 318trianglar och betong-/stål-/vatten-/träbropositionerna är bytebevarade.
+Det gamla hela nordhashkravet inkluderade själva banken och ändras därför avsiktligt.
+Efter99 är det nya hela nordhashvärdet för samma50 232positioner
+`75b9dc296b0450819a10d8f3a5080aaee5b3b5a62b954ee51bb78aef9bfd3fe5`.
+Första körningen av det historiska hashkravet underkändes och är bevarad i
+`plateau.log`; `plateau-final.log` passerar18/18 med det nya referensvärdet.
+
+Väg/GC-prov omfattar faktiska emitterade asfalttrianglar skurna mot befintlig finterräng,
+med riktiga topprays vid styckvis plana extrempunkter. Dessutom samplas hela de avsedda
+väg-/GC-bredderna:4 299/516rays per profil, inga saknade asfaltträffar. Detta verifierar
+både ytinträngning och hål. Hörnprov är separat:288emitterade GC-hörn följer
+max(gångmark,ritad mark)+25mm inom4,42µm. Terrängray och renderedTerrainY stämmer
+inom0,293µm i bankens kontrollnät. De inre exakta LM-referenserna är fortfarande samma.
+
+Pixelprovenans vid(481,553) i road-join-bilden visade site-terrain över south-land
+på kartlagda asfaltvägen145221590 vid(31,297;154,664). En lokal fin-grid-koppling ensam lämnade13,89mm inträngning; exakt klippning mot
+en lokal/coarse grid var också otillräcklig på stråkens andra redan förfinade delar
+(87,95mm). Båda underkända loggar bevaras. Bara de två kopplade GC-stråken väljer nu
+den granskade exakta triangelkroken från9eb4ccfadfdf0ffd26ae7a20dfc1e3e50c22d1b8
+med hela deras befintliga surfaceGrid; bilden med dold terräng är diagnostik, inte slutbevis.
+Befintliga vita trottoarhack/överlapp dokumenteras separat i#124. Inga nya globala
+budgetar eller större gränser har införts. Prestandadeltan avser hela World efter
+separata laddningar med dynamiska miljömodeller, inte isolerade kostnadsmätningar.
+
+Råloggar och parade bilder: `/tmp/lunden-orchestra-20261021/artifacts-99/`,
+`before/`, `final/`, `native.log`, `final-world.log`, `plateau-final.log`,
+`bridge.log`, `farwalk.log`, `built/`; diagnostiken finns i `diagnostic.json`
+och `diagnostic-{before,hidden}.png`. Träbrons prov bevarar exakta toppositioner,
+8/8sidorays och7,08µm nederkantssöm samt vatten under bron. Verklig långgång24/24
+passerar. Ingen kontroll här påstår fysisk telefonprestanda.
+
+Slutlig World passerar18/18 (9per profil).3371väg-,2924GC- och5432kartlagda
+GC-asfaltextrempunkter per profil ger minst8,849/3,533/24,997mm fri höjd till
+faktisk terräng. De två exakta GC-stråken behåller därmed25mm-lyftet inom3,0µm.
+Inga hål i de4299/516avsedda väg-/GC-breddproberna. I ordningen väst/öst/
+väganslutning/GC-anslutning/ovanifrån/hage är de sparade slutmätningarna:
+desktop: oförändrade56/148/50/48/921/51ritanrop, triangeldeltan+2089/2117/2117/2089/2089/2117.
+mobile: oförändrade40/52/36/36/96/28ritanrop, triangeldeltan+2089/2117/2117/2089/2089/1763.
+Ingen mesh/materialbatch tillkommer; samma79 318terrängtrianglar och oförändrade
+komponenttak. `npm test` granskar86moduler och `npm run build` ger
+`4e914d7f27ebd236904c5816`. Byggd faktisk dator/mobil-browserkontroll passerar
+med riktig gång/dörrar/touch, orörd originallagring, inga JavaScriptfel och inga
+externa anrop. Övriga redan gröna bro-/långgångsprov har inte körts om utan orsak.

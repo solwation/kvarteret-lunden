@@ -1,3 +1,4 @@
+import { southBankGround, southBankCentre } from './southbank.js';
 import { buildBusStop } from './busstop.js';
 import {southBackdropParts} from './southbackdrop.js';
 import {buildWestBackdrop,buildEastBackdrop,buildNorthBackdrop,westTreeSpots,eastTreeSpots,northTreeSpots} from './sitebackdrop.js';
@@ -5,7 +6,7 @@ import { buildRiverPark, parkDeckAt, parkFillAt, parkRampFill, parkTreeSpots, pa
 import * as THREE from 'three';
 import { grassUV } from './grass.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { SITE as S, COLORS, SEASON, COURTYARD, GARAGE, CORE_A, CORE_B, CORE_C, NEIGHBOR_OPENINGS as O, HUS_L, FOLIAGE, ELEVATION, TERRAIN_FAR, SOUTH_PLATEAU, PADDOCK } from './config.js';
+import { SITE as S, COLORS, SEASON, COURTYARD, GARAGE, CORE_A, CORE_B, CORE_C, NEIGHBOR_OPENINGS as O, HUS_L, FOLIAGE, ELEVATION, TERRAIN_FAR, SOUTH_PLATEAU, SOUTH_BANK, PADDOCK } from './config.js';
 import { gridGround, southPointGround } from './elevation.js';
 import { glowMaterial, poolGeometry, washGeometry, fadeGlow } from './groundglow.js';
 import { neighborGlass } from './neighborglass.js';
@@ -101,11 +102,11 @@ export const groundBelowDeckY = (x, z) => terrainY(x, z);
 /** The terrain itself (the grass / asphalt surface; groundY without the stairs' treads and the recesses' floors). */
 function terrainY(x,z) {
   if(!legacyBuildingPads)legacyBuildingPads=makeBuildingPads(terrainRawLegacyY,260,false,[]);
-  if(z<=ELEVATION.southFade[0])return paddedTerrainY(x,z,terrainRawLegacyY,legacyBuildingPads);
+  if(z<=ELEVATION.southFade[0])return paddedTerrainY(x,z,bankLegacyY,legacyBuildingPads);
   if(!buildingPads)buildingPads=makeBuildingPads();
-  const next=paddedTerrainY(x,z,terrainRawY,buildingPads);
+  const next=paddedTerrainY(x,z,bankRawY,buildingPads);
   if(z>=ELEVATION.southFade[1])return next;
-  const before=paddedTerrainY(x,z,terrainRawLegacyY,legacyBuildingPads),w=smooth((z-ELEVATION.southFade[0])/(ELEVATION.southFade[1]-ELEVATION.southFade[0]));
+  const before=paddedTerrainY(x,z,bankLegacyY,legacyBuildingPads),w=smooth((z-ELEVATION.southFade[0])/(ELEVATION.southFade[1]-ELEVATION.southFade[0]));
   return before+(next-before)*w;
 }
 function paddedTerrainY(x,z,raw,pads) {
@@ -119,6 +120,8 @@ function paddedTerrainY(x,z,raw,pads) {
   for(let i=0;i<flat.length;i+=2)out+=flat[i+1]*(flat[i].level-out);
   return out;
 }
+// Public #99: apply the bank before existing building pads; retain #106 anchored apron planes.
+const bankRawY=(x,z)=>southBankGround(x,z,terrainRawY),bankLegacyY=(x,z)=>southBankGround(x,z,terrainRawLegacyY);
 const terrainRawLegacyY=(x,z)=>terrainRawBaseY(x,z,260,true);
 function terrainRawY(x,z) { return southPointGround(x,z,terrainRawBaseY); }
 function terrainRawBaseY(x,z,southEdge=S.backgroundGround.z1,legacy=false) {
@@ -1657,7 +1660,17 @@ export function* surroundingsParts({ grass, husL = null }) {
   // #1341: the road asphalt and pavements follow the RENDERED terrain where that lies higher than the exact ground (the mesh interpolates linearly between
   // its grid nodes and rose up to 0.24 m through the asphalt on Sankt Lars väg and 0.09 m on Karpvägen: green holes in the road), and far from the block
   // they are cut along the mesh's grid lines like the park paths (#1313; roads.js pathStrip `grid`)
-  const roadGround = (x, z) => Math.max(groundY(x, z), renderedTerrainY(x, z)); roadGround.grid = () => renderedTerrainY.grid();
+  const roadGround = (x, z) => Math.max(groundY(x, z), renderedTerrainY(x, z)); roadGround.grid = () => {
+    const grid=renderedTerrainY.grid(),surface=renderedTerrainY.surfaceGrid();
+    // Public #99: only bank-affected road cells opt into the existing emitted river subdivisions.
+    // Corner support alone leaves grass inside coarse asphalt triangles on the raised bank.
+    const reach=Math.max(...SOUTH_BANK.cross[0][2].map(p=>Math.abs(p[0])))+SOUTH_BANK.feather;
+    return {...grid,refined:(i,j)=>{
+      if(i<0||j<0||i>=grid.X.length-1||j>=grid.Z.length-1)return 1;
+      const z=(grid.Z[j]+grid.Z[j+1])/2,x=(grid.X[i]+grid.X[i+1])/2;
+      return grid.Z[j]<SOUTH_BANK.fade[1]&&grid.Z[j+1]>SOUTH_BANK.start&&Math.abs(x-southBankCentre(z))<reach+(grid.X[i+1]-grid.X[i])/2?surface.refined(i,j):1;
+    }};
+  };
   const asphalt = [...S.roads, { x0: gd.drive, x1: gd.x + 0.05, z0: gd.z0 - 0.5, z1: gd.z1 + 0.5 }].flatMap((r) => r.path ? [pathStrip(r, (w) => -w / 2, (w) => w / 2, 0.012, roadGround)]
     : r.fillets ? r.fillets.map((f) => filletGeometry(f, 0.012, groundY)) : [groundStrip(r.x0, r.x1, r.z0, r.z1, 0.012)]);
   flat(asphalt, new THREE.MeshStandardMaterial({ color: COLORS.asphalt, roughness: 0.7 }), 0xd9dfe4); // ploughed, a little grey; damp (#128)
@@ -1667,7 +1680,7 @@ export function* surroundingsParts({ grass, husL = null }) {
     ? pathStrip(r, (w) => w / 2, (w) => w / 2 + k.w, 0.008, roadGround, pavementClip(r), undefined, vehicleTrim()) : pathStrip(r, (w) => -w / 2 - k.w, (w) => -w / 2, 0.008, roadGround, pavementClip(r), undefined, vehicleTrim())));
   flat([...[...S.paving, ...S.basementPaving].map((r) => groundStrip(r.x0, r.x1, r.z0, r.z1, 0.008)), ...walks], COLORS.paving, SEASON.snow.paving);
   yield 0.15;
-  group.add(buildRiverBridges());
+  group.add(buildRiverBridges(roadGround));
   yield 0.2;
   group.add(buildRiverPark(renderedTerrainY,renderedTerrainY));
   group.add(buildBusStop(renderedTerrainY)); // #71 (original #1301)
@@ -1681,7 +1694,8 @@ export function* surroundingsParts({ grass, husL = null }) {
   group.add(...backdrops);
   group.userData.clocks = backdrops.flatMap(b => b.userData.clocks);
   let south; // in parts too
-  for (const parts = southBackdropParts(renderedTerrainY);;) { const r = parts.next(); if (r.done) { south = r.value; break; } yield 0.46 + 0.09 * r.value; }
+  const southGround=Object.assign((x,z)=>renderedTerrainY(x,z),{grid:roadGround.grid,surfaceGrid:renderedTerrainY.surfaceGrid});
+  for (const parts = southBackdropParts(southGround);;) { const r = parts.next(); if (r.done) { south = r.value; break; } yield 0.46 + 0.09 * r.value; }
   group.add(south);
   yield 0.55;
   backdrops.south = south;

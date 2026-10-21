@@ -59,7 +59,7 @@ Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` och Chromium
 
 ## Register
 
-- Senast granskade originalversion: `1c03dca9a42567a8cbcb1f749535e789175fb7fb` (enbart hållplatsasfalt #110); tidigare `9a2dac315d328ca47dedbebe521bf5415ce0ffa4` (enbart prioriteringsregeln #109); tidigare `03d4c5201004540769c51cf62b7272f0a2c3caaf` + `662f1030389006d785a633352f5856f06e11fd21` (enbart GLO/markstöd #105); tidigare `15f9b00569e194bfcc4382fa66955b974dbcc134` (enbart neutral vägbelysning#96); tidigare `90d1632c17fa66ceb0e29e99c65c145fac2fa0aa` (enbart neutral täckgeometri/säsong#103); tidigare `bcd8c24655cf87244df9b8d405db678c8e94b6c2` (enbart placering av vindskydd/vattenho#102); tidigare `e6f5ce4e20b319e864e42be487820ffb09319171` (enbart parkbelysning#95); tidigare `ba5db2f9ad167ee69c68a5be85b209e5c6c5a648` (enbart de rena prestandadelarna för#94); tidigare `24e72f89` + `8cd6788` (för #92); tidigare `f2330dde`, `53c46cd8`, `350c5196`, `0a934ac2` (för #81); tidigare `937ac17e` (för #80); tidigare `d884dbb9` + `b61bf377` (för #79); tidigare `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
+- Senast granskade originalversion: `a0c66ef68ee78dcae68f5c3dd0aeb1a5d7bd59bc` + `9eb4ccfadfdf0ffd26ae7a20dfc1e3e50c22d1b8` (enbart bank/GC-anslutning och generisk triangelkrok #99); tidigare `1c03dca9a42567a8cbcb1f749535e789175fb7fb` (enbart hållplatsasfalt #110); tidigare `9a2dac315d328ca47dedbebe521bf5415ce0ffa4` (enbart prioriteringsregeln #109); tidigare `03d4c5201004540769c51cf62b7272f0a2c3caaf` + `662f1030389006d785a633352f5856f06e11fd21` (enbart GLO/markstöd #105); tidigare `15f9b00569e194bfcc4382fa66955b974dbcc134` (enbart neutral vägbelysning#96); tidigare `90d1632c17fa66ceb0e29e99c65c145fac2fa0aa` (enbart neutral täckgeometri/säsong#103); tidigare `bcd8c24655cf87244df9b8d405db678c8e94b6c2` (enbart placering av vindskydd/vattenho#102); tidigare `e6f5ce4e20b319e864e42be487820ffb09319171` (enbart parkbelysning#95); tidigare `ba5db2f9ad167ee69c68a5be85b209e5c6c5a648` (enbart de rena prestandadelarna för#94); tidigare `24e72f89` + `8cd6788` (för #92); tidigare `f2330dde`, `53c46cd8`, `350c5196`, `0a934ac2` (för #81); tidigare `937ac17e` (för #80); tidigare `d884dbb9` + `b61bf377` (för #79); tidigare `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -997,3 +997,51 @@ medan deras plana markunderlag använder den gemensamma mjuka höjdmodellen.
 Nativeprov för export, referenser, lokal fade, skilda samplers och apronkanter samt
 riktig dator/mobil-World dokumenteras i docs/verification.md. Inga privata resurser,
 spel, Cloudflare, lagringsnycklar, API-anrop under körning eller nya beroenden införs.
+
+## Södra vägbanken och gångcykelbrons anslutningar, #99
+
+Källa: original `a0c66ef68ee78dcae68f5c3dd0aeb1a5d7bd59bc` (original#1382).
+Selektiv import av den neutrala `src/southbank.js`, enbart `SOUTH_BANK` i config,
+markkoppling i surroundings och approachGround-callbacken i riverbridge. Inga hela
+config/main, privata filer, historik, personliga resurser, spel eller Cloudflare-delar.
+Elva vägmittlinjepunkter och fem separata tvärsektioner (50sidpunkter) matchar exakt
+den redan importerade77-punktsexportens markhöjder minus14,36RH2000. Den har kvar
+sin Lantmäteriet/CC BY4.0-attribution. Punkterna mäter mark och inte brobanan;
+befintlig däckhöjd−3m är uttryckligen ett antagande, inte en LM-mätning.
+
+Krönets plana halvbredd4m, flanktoning15m, broanslutning147..152m, smalare
+förlängning till platån och fade262..286m är interpolationsantaganden. Horisontell
+registrering cirka3–5m. Samma höjdfunktion används av gång och terräng, medan
+den ritade triangelytan behåller sitt befintliga approximativa rutnät. GC-asfaltens
+anslutningar använder samma max(gångmark, ritad mark) som övrig publik väg.
+Betong, stål, vatten, brodäckens datum och träbron är oförändrade.
+
+Publik anpassning: källans yttre bank-overlay efter plattformssteget skulle sänka
+delar av41:s redan ankrade norra husfot upp till0,211755m. Banken appliceras därför
+före den befintliga plattformsutjämningen, på både legacy- och nya råsamplern;
+plattformarnas nivåer och konstruktion ändras inte. Kartlagda grenens förlängning
+berör41:s apron efter262m; där behålls byggnadsplanet1,83m framför den antagna
+bankförlängningen. Alla källans fullt applicerade vägmittlinjekontroller och tio
+LM-platåreferenser bevaras exakt, liksom #106:s fotkanter och2m-apronprober.
+Det är en redovisad geometrisk modellanpassning, ingen ny inmätning.
+
+Banken ändrar avsiktligt delar av147..286m, inklusive bankmark norr om225m.
+Det äldre hela nordhashkravet från105/106 gäller därför den historiska världen;
+bytebevarande verifieras nu utanför bankens källbundna stöd och de berörda
+terrängcellernas kantinterpolation. Ingen parkeringskontur eller kapacitetsplan
+ändras, och inga gånggränser eller globala budgetar höjs. #100 återstår; #98 hålls öppet.
+Se docs/verification.md för prov, bilder, faktisk gång och kostnadsjämförelser.
+
+Den höjda banken kräver också befintliga fintrianglar för beläggningen. Endast
+vägceller som berör bankens längd och konservativa sidostöd använder samma redan
+emitterade `surfaceGrid`-underindelning via `roadGround.grid`. Ett likvärdigt
+rendered-height-callback för southBackdropParts lämnar samma lokala grid till den
+kartlagda GC-asfaltvägen145221590. Hörnprov ensamma missade att marken stack3,94mm
+över dess inre yta vid(31,297;154,664); faktisk pixelray gav rätt objektursprung.
+Lokal fin-grid-klippning ensam lämnade13,89mm inträngning i GC-stråket. Därför
+importeras även enbart den generiska7-raders `terrain: 'triangles'`-kroken från
+original `9eb4ccfadfdf0ffd26ae7a20dfc1e3e50c22d1b8` (original#1432), selektivt i roads.js.
+Bara de redan kartlagda GC-anslutningsvägarna145221590/145221588 väljer den,
+med hela det befintliga surfaceGrid som exakt klippunderlag för dessa två stråk.
+Övriga stråk behåller det lokala bank-grid-valet. Inga
+nya1432/116-vägar, terrängunderindelningar eller ändrade konturer importeras. Befintliga vita trottoarhack är separata#124 och ingår inte.
