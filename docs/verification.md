@@ -451,3 +451,40 @@ komponenttak. `npm test` granskar86moduler och `npm run build` ger
 `4e914d7f27ebd236904c5816`. Byggd faktisk dator/mobil-browserkontroll passerar
 med riktig gång/dörrar/touch, orörd originallagring, inga JavaScriptfel och inga
 externa anrop. Övriga redan gröna bro-/långgångsprov har inte körts om utan orsak.
+
+## Hållplatsens faktiska plattform och taktila yta, #113
+
+Källa `397ce2652aca30e7a2787dbb48a3b227741ae98e`, publik bas
+`b81cc49a85dbf8b1f1c11994bc7497befd22fa83`. `node --test
+ tools/busstopplatformtest.mjs tools/busstopgeotest.mjs` passerar9/9: faktisk
+uppdelad geometri över vinklad referensterräng, oförändrad yta/gränser/lyft, uppåtvända
+normaler, prioritet för `surfaceGrid`, fungerande grid-fallback och oförändrad1m-fallback
+utan grid. Det gamla hörnprovet korsar bevisligen referensytans veck.
+
+`CHROME_PATH=… node tools/busstop-platform-check.mjs http://localhost:8257 OUT BEFORE`
+passerar8/8 totalt på1280×800 och390×844touch. `BASELINE_REF=b81cc49a85dbf8b1f1c11994bc7497befd22fa83`
+fryser den gamla publika källan för riktiga parade före/eftervärldar.60faktiska
+ytriangelmittpunkter och732fullbreddsprober per profil jämförs med oberoende topprays
+mot verkliga terräng-/plattformmeshar. Före fanns6,593004cm mark över plattformen vid
+fullbreddsproberna (och4,120875cm vid de gamla56triangelmittpunkterna). Efter finns
+inga hål/intrång: min3,999926cm och max4,400014cm frihöjd, med samma gamla lyft.
+
+Båda verkliga gångriktningarna längs den fria delen av plattformen tar714uppdateringar
+(1/60s) och kommer inom0,195172m från målet, helt inom publicsidans befintliga WALK.
+Samtliga tidigare kerbpositioner och hållplatsens övriga möbel-/glas-/skyltgeometri
+samt kollisionssegment har identiska hashar före/efter. Detsamma gäller hela
+site-terrain, south-land (inklusive #110/#99-asfalt), brovatten och träbro.
+Fotavtrycket är samma21,235171×3,6m rektangel inom Float32-noggrannhet.
+
+Plattformsmeshen har152→156trianglar (beläggning44→48, taktilyta12oförändrad,
+kantstenar oförändrade). Hela hållplatsen394→398trianglar; exakt samma4meshar,
+4material och1textur. I ordningen första änden/andra änden/översikt behålls
+desktop33/108/42anrop och mobil33/49/33anrop, med exakt+4trianglar i varje
+parad vy. Inga nya batcher, material, texturer eller höjda budgettak.
+
+`npm test` granskar86moduler, `npm run build` ger `28ba69c341e5cd81e3a57ccb`.
+Byggd dator/mobil-browserkontroll granskar riktig gång/dörrar/touch, originallagring
+och nätverk. Artefakter: `/tmp/lunden-orchestra-20261021/artifacts-113/`, särskilt
+`before/`, `final/`, `native.log`, `final-world.log`, `npm-test.log`, `build.log` och
+`built/`. Bilder visar båda ändar och översikt på båda profilerna och har granskats;
+Chromium/SwiftShader, inte fysisk telefonprestanda.

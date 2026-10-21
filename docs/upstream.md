@@ -59,7 +59,7 @@ Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` och Chromium
 
 ## Register
 
-- Senast granskade originalversion: `a0c66ef68ee78dcae68f5c3dd0aeb1a5d7bd59bc` + `9eb4ccfadfdf0ffd26ae7a20dfc1e3e50c22d1b8` (enbart bank/GC-anslutning och generisk triangelkrok #99); tidigare `1c03dca9a42567a8cbcb1f749535e789175fb7fb` (enbart hållplatsasfalt #110); tidigare `9a2dac315d328ca47dedbebe521bf5415ce0ffa4` (enbart prioriteringsregeln #109); tidigare `03d4c5201004540769c51cf62b7272f0a2c3caaf` + `662f1030389006d785a633352f5856f06e11fd21` (enbart GLO/markstöd #105); tidigare `15f9b00569e194bfcc4382fa66955b974dbcc134` (enbart neutral vägbelysning#96); tidigare `90d1632c17fa66ceb0e29e99c65c145fac2fa0aa` (enbart neutral täckgeometri/säsong#103); tidigare `bcd8c24655cf87244df9b8d405db678c8e94b6c2` (enbart placering av vindskydd/vattenho#102); tidigare `e6f5ce4e20b319e864e42be487820ffb09319171` (enbart parkbelysning#95); tidigare `ba5db2f9ad167ee69c68a5be85b209e5c6c5a648` (enbart de rena prestandadelarna för#94); tidigare `24e72f89` + `8cd6788` (för #92); tidigare `f2330dde`, `53c46cd8`, `350c5196`, `0a934ac2` (för #81); tidigare `937ac17e` (för #80); tidigare `d884dbb9` + `b61bf377` (för #79); tidigare `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
+- Senast granskade originalversion: `397ce2652aca30e7a2787dbb48a3b227741ae98e` (enbart hållplatsens plattform/taktila ytpartition #113); tidigare `a0c66ef68ee78dcae68f5c3dd0aeb1a5d7bd59bc` + `9eb4ccfadfdf0ffd26ae7a20dfc1e3e50c22d1b8` (enbart bank/GC-anslutning och generisk triangelkrok #99); tidigare `1c03dca9a42567a8cbcb1f749535e789175fb7fb` (enbart hållplatsasfalt #110); tidigare `9a2dac315d328ca47dedbebe521bf5415ce0ffa4` (enbart prioriteringsregeln #109); tidigare `03d4c5201004540769c51cf62b7272f0a2c3caaf` + `662f1030389006d785a633352f5856f06e11fd21` (enbart GLO/markstöd #105); tidigare `15f9b00569e194bfcc4382fa66955b974dbcc134` (enbart neutral vägbelysning#96); tidigare `90d1632c17fa66ceb0e29e99c65c145fac2fa0aa` (enbart neutral täckgeometri/säsong#103); tidigare `bcd8c24655cf87244df9b8d405db678c8e94b6c2` (enbart placering av vindskydd/vattenho#102); tidigare `e6f5ce4e20b319e864e42be487820ffb09319171` (enbart parkbelysning#95); tidigare `ba5db2f9ad167ee69c68a5be85b209e5c6c5a648` (enbart de rena prestandadelarna för#94); tidigare `24e72f89` + `8cd6788` (för #92); tidigare `f2330dde`, `53c46cd8`, `350c5196`, `0a934ac2` (för #81); tidigare `937ac17e` (för #80); tidigare `d884dbb9` + `b61bf377` (för #79); tidigare `90a1f669` + `2fa7e79c` (för #76); tidigare `778e174b` (för #69); tidigare `bfa0bc75` (för #68); tidigare `fd6c9f74` + `f76c7cc9` (för #67); tidigare `af78fcf2` (för #64); tidigare `dd9927ef` (för #65); tidigare `49e897d` (för #60); tidigare `e749b076` (för #59); tidigare `df3ad2c` (för #58); tidigare `1e6b988` (för #20; mobilstyrningen `82fde3f` för #31; övriga områden enligt respektive avsnitt).
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
@@ -1045,3 +1045,24 @@ Bara de redan kartlagda GC-anslutningsvägarna145221590/145221588 väljer den,
 med hela det befintliga surfaceGrid som exakt klippunderlag för dessa två stråk.
 Övriga stråk behåller det lokala bank-grid-valet. Inga
 nya1432/116-vägar, terrängunderindelningar eller ändrade konturer importeras. Befintliga vita trottoarhack är separata#124 och ingår inte.
+
+## Hållplatsens plattform på ritad terräng, #113
+
+Selektivt importerad från original `397ce2652aca30e7a2787dbb48a3b227741ae98e`
+(original#1429): endast `busStopStripGeometry`, dess import av befintlig `cutAtTerrain`
+och de två tidigare strip-anropen i `src/busstop.js`. Nativeprovet för riktig vinklad
+referensterräng, fotavtryck/lyft och fallback kommer från samma granskade källa.
+Originalets main/config, privata resurser, gameplay, Cloudflare och changelog ingår inte.
+
+Samma två rektanglar delas mot callbackens `surfaceGrid`, inklusive faktiska finceller.
+`grid` används bara som fallback när `surfaceGrid` saknas; fristående callers utan
+grid behåller den gamla1m-uppdelningen. Publicsidans riktiga World lämnar redan
+`renderedTerrainY`, så ingen omgivnings-/mark-/navigationsändring behövs. Gränser,
+3,6m-bredd,4cm-plattform/4,4cm-taktilyta, kerb, väderskydd/fast möblering, glas,
+skyltar och kollision bevaras. #110:s markasfalt och #99:s bank/GC-ytor är byteoförändrade.
+
+Den publika basen är `b81cc49a85dbf8b1f1c11994bc7497befd22fa83`. Egen faktisk
+World visade6,593cm markintrång före ändringen; originalets6,093cm har inte återanvänts
+som publik mätning. Native9/9 och faktiska dator/mobilprov beskrivs i docs/verification.md.
+Käll-/måttosäkerheten är oförändrad; detta är yttessellering av befintlig modell,
+ingen ny inmätning, parkering, grundnivå eller annan källa för offentliga väg-ID:n.
