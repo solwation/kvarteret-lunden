@@ -1242,3 +1242,26 @@ Låg mark utan däck använder fortfarande den gemensamma lokala funktionen,
 Det befintliga cirka 2,25 cm datumavståndet till broasfaltens ovansida kan
 därför finnas kvar. Ingen parkerings-, geografi-, material-, culling-,
 skugg-, privat- eller tjänsteändring ingår.
+
+## Hela östcampusbidrag i desktopgrupper (#120)
+
+Granskad källa: `35a75c93cefb1fc52ec8aa3fe8ce50fde418f432` (original #1461),
+mot publik bas `0be15abfa6fa0cdd142e1397eff961749446b9ce`. Överfört endast
+`lowMemory`-import, två avslutningsmarkörer efter hela campusbidragen
+`88457552` och `88457606`, samt submission av `east-modern` i tre fasta
+intervall på datorn. Källans redan befintliga parkeringsimport och övrig
+kod är inte nya beroenden. Inga konfigurations-/byggnads-/markdata importeras.
+
+Den publika byggaren har nio campusbyggare och skolans klassiska byggare i källordning: första
+intervallet innehåller 1/9/7, nästa 19/19:s östra del/8, sista NTI-skolan (`88457612`)/2/4/88.
+Grupperna innehåller endast respektive byggnads kompletta befintliga
+`modern`-bidrag; dess tegel, glas och tak behåller sina gemensamma separata
+materialbatcher. Inga fasadceller eller geometriska klipp skapas. Exakta
+former, färger, höjder och övriga campusbyggnader bevaras.
+
+Varje intervall använder samma materialobjekt och ordinarie Three-frustum
+per kamera, även oberoende skuggkameror. Ingen ny culler, gate, avståndsregel,
+maskmutation eller kvalitetsnivå införs. Publikappens skuggkartor är fortsatt
+avstängda. Riktiga lowMemory-telefoner går genom den ursprungliga enda
+mastergruppen, med samma ordnade buffertar och bounds. Ingen privat dekor,
+spel-, väder-/vindstyrning eller Cloudflare överförs.

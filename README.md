@@ -114,4 +114,7 @@ Vägbelysningen kontrolleras med `node --test tools/roadlampstest.mjs`, `node to
 
 Den södra bakgrundsmarken fortsätter nu över GLO-höjdplatån till modellens z460 (#105).
 Byggnadsfötter, hage och befintlig beläggning följer samma mark. Höjder och mellanliggande
-mark är relativa modellantaganden; den lokala LM-förfiningen (#106) och parkeringsplanen (#100) återstår.
+mark är relativa modellantaganden. Den lokala LM-förfiningen (#106) är levererad;
+parkeringsplanen (#100) återstår.
+
+Östcampusets befintliga puts- och listmaterial grupperas efter hela byggnadsbidrag i tre fasta renderingsbatcher på datorn; telefoner behåller den ursprungliga gemensamma batchen (#120). Byggnadernas former och material ändras inte.

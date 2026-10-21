@@ -892,3 +892,81 @@ samma kommando utan BASELINE_REF för efter, och
 `node tools/walking-support-compare.mjs <före> <efter> <sammanfattning.json>`.
 Den äldre markapproximationen utanför kärnan och den kontinuerliga ringens
 avsiktliga blandning ska inte förväxlas med exakt topmost-stöd överallt.
+
+## Östcampusets hela puts-/listbidrag (#120, 2026-10-21)
+
+Publik bas `0be15abfa6fa0cdd142e1397eff961749446b9ce`, selektiv källa
+`35a75c93cefb1fc52ec8aa3fe8ce50fde418f432`. Dator 1280×800 och riktig
+Android Mobile UA/lowMemory 390×844 samt 844×390 kör faktisk publik World.
+`tools/east-campus-check.mjs` bygger oberoende kanoniska bidrag med de
+oförändrade campus-/skolbyggarna, verkliga källpolygoner och World-recordens
+base/bottom/eave. Nio campusbyggnader och klassiska NTI-skolan ingår;
+NTI ligger i sista gruppen före 2/4/88. Ett första test som glömde NTI
+misslyckades även mot baslinjen och sparas enbart som diagnostik.
+
+Datorns tre hela källintervall är geometrier 0..4037, 4037..6841,
+6841..12001: 15 580, 11 784 och 21 674 trianglar. Varje faktiskt intervall
+har exakt samma ordnade positioner, normaler, färger och bounds som sitt
+kanoniska fulla byggnadsbidrag. Unionen har 49 038 trianglar och
+5 296 104 attributbyte. UV saknas i detta material både före och efter;
+inga tomma attribut räknas som bevis. Andra östmaterial samt väst-/nord-
+byggarnas fulla attribut och bounds är identiska före/efter.
+
+Telefonens enda faktiska `east-modern`-batch är exakt oförändrad:
+16 155 trianglar, 1 744 740 attributbyte, null-index, ordning, bounds,
+flaggor och material. `?keepgeo` behåller fulla CPU-attribut enbart för de
+matchade identitetsproven; riktig Android-UA ger fortfarande lowMemory.
+Den ordinarie byggda telefonkontrollen körs utan keepgeo. Samma delade
+materialobjekt, shader/cachekey, färger, roughness, custom depth/distance-
+status, cast/receiveShadow, layer 0 och native frustumCulled bevaras.
+60 positiva fysiska rays och oberoende perspektiv-/ortografiska skuggkamera-
+frustums visar att exponerade bidrag behålls. Publikens skuggkartor är
+avstängda; ingen aktiv skuggpass-/skuggbildsvinst påstås.
+
+Matchade bilder använder fast Date, befintlig main.frame med 1/60-steg
+och enbart hagens gräsdomänfrö enligt #115. Produktens tid/slump ändras inte.
+Vanlig publik frame uppdaterar kamera, Navigation och övrig livscykel före
+kostnadsprovet. Slutliga fem vyer är nordfasad, västfasad, tydlig östlig
+hörn-/takände, hall och garage. Alla 15 bildpar är byteidentiska.
+Den första östkameran blev en nära väggvy efter vanlig Navigation-räddning;
+den gamla hörnkameran låg under en förgrundsyta. Dessa två kameror används
+inte som slutbevis. Hörnet är omtaget separat från (138;15;−82) mot
+(123;7;−64), med faktiskt uppdaterad ögonposition sparad i råloggen.
+
+Egen publik renderkostnad, vyordning nord/väst/hörn/hall/garage:
+
+| Profil | Ändrade anrop | Ändrade trianglar | GPU-geometrier | Texturer |
+|---|---|---|---|---|
+| Dator | +2/+2/+2/+2/−1 | 0/0/0/0/−49 038 | +2 i alla vyer | 0 |
+| Android stående | 0 i alla | 0 i alla | 0 | 0 |
+| Android liggande | 0 i alla | 0 i alla | 0 | 0 |
+
+Fyra datorvyer får alltså två extra anrop utan triangelbesparing; garagevyn
+slipper hela den gamla masterbatchen. Ingen snabbare FPS påstås.
+
+Separat befintlig budgetreferens: den verkliga hela telefoncampusen,
+inklusive klockans meshbarn, har 38 519 trianglar både före och efter mot
+konfigurationens `CAMPUS_LOD.maxTris=36000`. Detta är inte ett godkänt
+budgetprov och inte en införd ökning. Fältet används inte av produktens
+runtime och avsedd omfattning behöver klarläggas i fristående #136; en
+triangelräkning ensam påstår inte fysisk telefonprestandaförlust. Datorns
+hela campus har oförändrat 80 178 trianglar. Inget originalbudgettak eller
+nytt kvalitets-/avståndstak importeras eller höjs här.
+
+`tools/east-campus-compare.mjs` ger 45 geometri-/regressionskontroller PASS
+(17 dator, 14 per telefon); budgetavvikelsen ovan redovisas separat som
+metadata, inte som ett grönt takprov. `npm test`: 88 moduler; build
+`813c44faa8ca5186eb2741fd`. Ordinarie byggd dator-/Android-UA-browserkontroll
+passerar gång, dörrar, hissar, mätreglage och båda touchlayouter utan
+JavaScriptfel eller externa anrop.
+
+Råartefakter: `/tmp/lunden-orchestra-20261021/artifacts-120/`, särskilt
+`before-lifecycle/`, `final-lifecycle/` för nord/väst/hall/garage och
+`before-edge/`, `final-edge/` för det giltiga hörnet, `summary.json`,
+`npm-test.log`, `build.log` och `built-browser.log`. Tidigare kataloger är
+utredning, inte slutbevis. Reproducera källparen med
+`BASELINE_REF=0be15ab CHROME_PATH=<Chromium> node tools/east-campus-check.mjs <URL> <före>`
+och samma kommando utan BASELINE_REF för efter. `POSE=edge` tar bara hörnet.
+För de sparade separata hörnproven körs jämförelsen med
+`EDGE_BEFORE=<före-hörn> EDGE_AFTER=<efter-hörn> node tools/east-campus-compare.mjs <före-livscykel> <efter-livscykel> <sammanfattning.json>`.
+Chromium/SwiftShader är inte fysisk telefonprestanda.
