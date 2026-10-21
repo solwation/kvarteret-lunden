@@ -40,7 +40,7 @@ export function wholeBoxOccluded(eye, box, occluders, margin) {
 // Exactly the ceiling rectangles emitted by Garage: no stair cores or open exterior recesses.
 export const garageCeilings = () => GARAGE.rects.filter(r => r.id !== 'core' && !r.core && !r.outside)
   .map(r => ({ x0:r.x0, x1:r.x1, z0:r.z0, z1:r.z1, y0:GARAGE.ceiling, y1:GARAGE.ceiling }));
-const HIDDEN = 7; // existing render-only layer; physical traces include it
+const HIDDEN = 7; // render-only layer; explicit0|7 physical casters retain it, public visual UI casts layer0
 
 /** Opt-in complete static batches. No geometry, instance buffers, visible flags or raycasts change. */
 export class CeilingBatchGate extends THREE.Object3D {

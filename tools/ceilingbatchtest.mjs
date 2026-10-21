@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as T from 'three';
 import { CeilingBatchGate, garageCeilings } from '../src/ceilingbatchgate.js';
-import { GARAGE } from '../src/config.js';
+import { GARAGE, COURTYARD } from '../src/config.js';
 const roof=garageCeilings().find(r=>r.x0===-51.4&&r.z0===12.62),eye=new T.Vector3(-46,-1.38,21);
 const camera=p=>{const c=new T.PerspectiveCamera();c.position.copy(p);c.updateMatrixWorld(true);return c;};
 function fixture(base=()=>true){const mesh=new T.Mesh(new T.BoxGeometry(1,1,1).translate(-45,3,21),new T.MeshBasicMaterial());mesh.castShadow=true;const gate=new CeilingBatchGate([mesh],base);gate.occluders=[roof];gate.updateMatrixWorld(true);return{mesh,gate};}
@@ -29,4 +29,17 @@ test('per-pass camera restore combines original terrace policy and preserves war
 });
 test('whole instanced envelopes and maximum shader sway protect exposed silhouettes without rewriting matrices',()=>{
  const m=new T.InstancedMesh(new T.BoxGeometry(.1,.1,.1),new T.MeshBasicMaterial(),2),x=new T.Matrix4();m.setMatrixAt(0,x.makeTranslation(-45,3,21));m.setMatrixAt(1,x.makeTranslation(-44,3,22));const buffer=m.instanceMatrix,bytes=buffer.array.slice(),g=new CeilingBatchGate([m]);g.occluders=[roof];g.updateMatrixWorld(true);g.update(camera(eye));assert.equal(m.layers.mask,128);assert.equal(m.instanceMatrix,buffer);assert.deepEqual(buffer.array,bytes);
+});
+
+test('coverage by separate roof rectangles cannot replace one complete opaque rectangle',()=>{
+ const {mesh,gate}=fixture();gate.occluders=[{x0:-50,x1:-45,y0:-.35,y1:-.35,z0:10,z1:30},{x0:-45,x1:-40,y0:-.35,y1:-.35,z0:10,z1:30}];
+ // Each side of the silhouette is covered, but no single solid rectangle covers it all.
+ gate.update(camera(new T.Vector3(-45,-1.38,21)));assert.equal(mesh.layers.mask,1);
+});
+test('each actual pergola envelope stays conservative at deck and roof edges',()=>{
+ for(const p of COURTYARD.pergolas){
+  const mesh=new T.Mesh(new T.BoxGeometry(p.x1-p.x0+.06,.41,p.z1-p.z0+.18).translate((p.x0+p.x1)/2,2.625,(p.z0+p.z1)/2+.06),new T.MeshBasicMaterial()),gate=new CeilingBatchGate([mesh]);gate.updateMatrixWorld(true);
+  for(const y of [GARAGE.ceiling,0,1.62,20]){gate.update(camera(new T.Vector3((p.x0+p.x1)/2,y,(p.z0+p.z1)/2)));assert.equal(mesh.layers.mask,1);}
+  gate.update(camera(new T.Vector3(-500,-1.38,-500)));assert.equal(mesh.layers.mask,1);
+ }
 });

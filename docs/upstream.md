@@ -953,9 +953,9 @@ Parkeringslinjer och kantens ursprungliga24mm-lyft bevaras, även där de döljs
 
 ## Konservativ takocklusion för pergolalampor, #108
 
-Importerad från `f3fb127a97120dd4bb42da0c4e756179b034d5ff` (original #1387): `CeilingBatchGate` i nya `src/ceilingbatchgate.js` och kopplingen `courtyard-pergola-bulbs` i `src/courtyard.js`. Originalets `occlusion.js`/`PERF` finns inte här, så enbart helbox-testet och dess 5 mm marginal ingår lokalt; växtvind-hanteringen utelämnades (inga vindattribut på lamporna). Originalets `terracedecor.js`, privata terrassmodeller och dokumentation har inte importerats. Inga budgetar, geometrier eller avståndsgränser ändras; skuggor, fysiska strålar och per-kamera-återställning bevaras.
+Importerad från `f3fb127a97120dd4bb42da0c4e756179b034d5ff` (original #1387): `CeilingBatchGate` i nya `src/ceilingbatchgate.js` och kopplingen `courtyard-pergola-bulbs` i `src/courtyard.js`. Originalets `occlusion.js`/`PERF` finns inte här, så enbart helbox-testet och dess 5 mm marginal ingår lokalt; växtvind-hanteringen utelämnades (inga vindattribut på lamporna). Originalets `terracedecor.js`, privata terrassmodeller och dokumentation har inte importerats. Inga budgetar, geometrier eller avståndsgränser ändras; skuggor och per-kamera-återställning bevaras. Komponentprov använder strålar med layer0|7; publicappens visuella mätning/interaktion använder layer0, vilket granskas separat i #115.
 
-Begränsning: lampbatchen (272 instanser) spänner cirka 50 × 29 m och täcks inte av en enda garagetaksrektangel i nuvarande geometri. Grinden döljer därför i praktiken ingenting här (mätt: lika många ritanrop under taket, utomhus och på gården) och är en säker, konservativ krok. Provet `tools/ceilingbatchtest.mjs` bevisar dolt läge, öppningar, kantvyer och återställning med ett batch som ryms under en rektangel; A/B/C/L-hålen granskas via den gemensamma `GARAGE.rects`.
+Historisk provbegränsning i #108: lampbatchen (272 instanser) spänner cirka 50 × 29 m; dåvarande prov rapporterade oförändrade ritanrop. Detta bevisar inte att gaten aldrig döljer batchen: testet projicerar boxens hörn från kameran, så världsboxens bredd behöver inte rymmas i takrektangeln. #115:s verkliga före-prov visar layer7 i både källar- och hallvyn redan för hela batchen. Provet `tools/ceilingbatchtest.mjs` bevisar dolt läge, öppningar, kantvyer och återställning med ett batch som ryms under en rektangel; A/B/C/L-hålen granskas via den gemensamma `GARAGE.rects`.
 
 Verifiering: `npm test`, `npm run build`, `node --test tools/ceilingbatchtest.mjs` (5/5) och `tools/ceilingbatch-check.mjs` (dator + mobil, Chromium, inga fel).
 
@@ -1082,3 +1082,26 @@ fyra norra A/B-golv används precis som levererade; ingen testgolvpatch eller
 syntetisk support har lagts till. `tools/loggia-walk-check.mjs` är en publik
 verifieringsanpassning som använder visningens riktiga `Navigation`, inte
 originalets spelare. Källans måttantaganden ändras inte.
+
+## Två kompletta pergolalampgrupper (#115)
+
+Selektiv källa `426f9922f1dbf5e129af568af9cd2e09df352e57` (original #1438),
+publik bas `13e3efe60b4cb6ff2798a4688a136199864e275c`: endast `bulbRanges`
+och två kompletta grupper i `src/courtyard.js`. Samma sfärgeometri och samma
+material delas;152+120instanser behåller samtliga272matriser i exakt tidigare
+sammanlagd ordning. Ingen privat terrass, möblering, vindkod, spelkontroll eller
+budget importeras. Befintlig #108-gate och dess5mm-marginal används oförändrade.
+
+Takrektanglarna är exakt Garages gemensamma A/B/C/L-filter: `id!=='core'`,
+`!core`, `!outside`, vid `GARAGE.ceiling`. Öppna trappkärnor och utvändiga
+recesser fylls inte. En enda faktisk tät rektangel måste täcka alla åtta
+projicerade boxhörn; flera olika rektanglar får inte kombineras. Båda lampgrupper
+behåller sina fullständiga bounds inklusive sfärradie och sista tvärradens0,12m
+z-förskjutning. Bounds är inte klippta eller artificiellt krympta.
+
+`tools/ceilingbatch-check.mjs` granskar nu båda grupper i riktig publik World,
+inte bara sista objektet med samma namn. Publicappen startar lamporna i dagläge;
+dess befintliga `world.windowLights.update` kontrolleras också med natt och
+strömavbrott, utan att lägga till något nytt dygns-/strömsystem. Fysiska0|7-
+komponentstrålar skiljs från publicappens visuella layer0-strålar för mått och
+interaktion; deras riktiga UI-väg provas separat. Ingen ray-policy ändras.

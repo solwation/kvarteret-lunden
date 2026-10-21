@@ -526,3 +526,84 @@ isolerad lagring utan fel eller externa anrop. Artefakter:
 `npm-test.log`, `build.log`, `built-browser.log`, `built/`,
 `before-ready/`, `final-ready/` och deras råloggar. Chromium/SwiftShader används;
 fysisk mobilprestanda har inte mätts.
+
+## Kompletta pergolalampgrupper och publik mätning (#115)
+
+Källa `426f9922f1dbf5e129af568af9cd2e09df352e57`, publik före-bas
+`13e3efe60b4cb6ff2798a4688a136199864e275c`. Native:
+`node --test tools/ceilingbatchtest.mjs` —7/7, inklusive befintliga konservativa
+helbox-/tak-/hål-/kant-/kamera-/skugg-/warmup-prov, explicit förbud mot att
+kombinera olika takrektanglar och kompletta faktiska pergolaenvelopper.
+
+`tools/ceilingbatch-check.mjs` granskar alla lampobjekt, inte sista träffen med
+samma namn. Riktig World körs på1280×800 dator samt390×844 och844×390 touch.
+Den tidigare källmodulen laddas oföränderligt med `BASELINE_REF` för parade
+före/eftervärldar. För att även köra riktig Garage/Core-livscykel exponerar
+verktygets testrespons publicappens befintliga `frame`/klocka i debugobjektet,
+med fast1/60s-steg. Endast hagens slumpade gräsfrö hålls till11521021 i
+båda testresponserna, så skilda sessionsbetningar inte förväxlas med lampkostnad.
+Produktkoden ändras inte för detta. Vanlig opåverkad app provas också med browserkontrollen. Varje vy placerar riktiga Navigation, kör
+samma frame och dess normala uppdateringar; ingen syntetisk garage-synlighet.
+Källare/hall har fötter−3m, ögon−1,38m och `below=true`; takkant/utomhus har
+fötter0m/ögon1,62m, och C:s öppna kärna har befintligt källargolv−3m.
+
+Samtliga272instansmatriser jämförs i sammanlagd ordning;152+120instanser delas
+på två kompletta pergolor. Alla sfärens positioner/normaler/UV/index är identiska,
+och båda grupper delar samma geometri och material i minnet. Bounds inkluderar
+0,03m sfärradie samt sista tvärradens0,12m z-offset; höjd2,420000..2,830000m.
+Publika callbacken `world.windowLights.update` provas med dag, natt och
+strömavbrott: färg0x2a2620→0xffd08a→0x2a2620, båda grupper samtidigt. Appens
+vanliga start är dagläge; inget nytt natt-/strömgränssnitt eller system tillkommer.
+
+Takfilter jämförs exakt med faktisk `GARAGE.rects` för gemensamma A/B/C/L,
+med samtliga `core`/`outside`-öppningar kvar. Samma5mm-marginal och en enda
+hel rektangel krävs, utan kombination av mindre rektanglar. Båda batchers
+layer0/7, ursprunglig geometri, `visible` och fysiska0|7-strålar granskas.
+Per-kamera återställning till0, skuggkamera och all-layer-warmup-mask bevaras.
+
+Publicappens riktiga visuella mått-/interaktionscaster använder layer0. Verktyget
+aktiverar den riktiga mätknappen och Q-händelsen och jämför utsatt punkt med
+första fysisk0|7-yta genom samma faktiska värld/garage/core. Källare, båda
+pergolorna och öppen kärna provas; även legitim ingen träff/ingen punkt räknas.
+Ingen ray-policy ändras. Byggd browserkontroll testar också verkliga E-dörrar,
+gång, hissar och både telefonlayouterna, utan JavaScriptfel eller externa anrop.
+
+Historiska #108:s formulering att en bred världsbox aldrig kan döljas var för
+stark: projektionen från kameran avgör. I dessa prov är redan den gamla gruppen
+dold under källar-/halltaket; där tillskrivs #115 ingen besparing. Frustum- och
+ocklusionsvinster redovisas endast i faktiskt parade vyer nedan.
+
+Kostnadsdiagnos: `renderer.shadowMap.enabled` ärfalse i publicappen. Tidiga
+varierande råtotaler berodde på två `streetLampPools` à18780trianglar som
+fortfarande tonade ut efter provets natt/på/av-anrop, samt sessionens olika
+`paddock-grass`-antal (exempel8499/8497instanser,33996/33988trianglar).
+Lampstyrningsprovet sker därför efter parade bilder/mått; en fast gräsdomänseed
+används för själva jämförelsen. Varken gatulampor eller hage ändras i produkten.
+`diagnostic-before/`, `diagnostic-final/`, `before-real/`, `final-real/` och
+`before-pass/`/`final-pass/` behåller råspår med namngivna huvudpassritningar.
+
+Slutlig matchad jämförelse ligger i `before-matched/` och `final-matched/`:
+24/24kontroller gröna, och samtliga18parade PNG-bilder är byteidentiska.
+I ordningen källare/hall/pergolaA/pergolaB/takkant/kärnöppning är triangeländringen
+0/0/−9600/−12160/−12160/−12160; ritanropsändringen är0 i varje parad vy.
+Huvudpasset mäts genom faktiska `renderBufferDirect`-anrop med objektnamn, inte
+uppskattning från bounds. Under taket ritas inga pergolalampor vare sig före
+eller efter. Ute ritas gamla gruppens21760lamptrianglar mot12160förA eller
+9600förB. I öppningsvyn är nya maskerna128/1; den gamla hela gruppen har1.
+Frustumvinsten för de mindre grupperna hålls åtskild från den konservativa
+takgaten: ingen ny underjordisk besparing utlovas av dessa prov.
+
+De272instanserna kostar samma17 408byte matriser totalt; sfärens geometri och
+material finns fortfarande i en delad kopia. Objektantalet ökar med en
+InstancedMesh och en gate; om båda pergolor samtidigt syns kan båda batcher
+behöva ritas. Inga nya material, texturer, privata prestandaprofiler eller
+höjda budgettak har införts. Originalets återstående helspelsbudget följs separat i original#1439;
+publicsidans befintliga kontrollkrav behålls.
+
+`npm test` granskar87moduler; `npm run build` ger `8b37574c3508913624710afd`.
+Ordinarie opatchad byggd browserkontroll passerar E-dörrar, gång, hissar, touch,
+isolerad lagring och nätverk på dator och båda telefonlayouter. Artefakter:
+`/tmp/lunden-orchestra-20261021/artifacts-115/`, särskilt `native.log`,
+`npm-test.log`, `build.log`, `built-final-browser.log`, `built-final/`,
+`before-matched/`, `final-matched/` och deras råloggar. Chromium/SwiftShader,
+ingen fysisk telefonprestandamätning.
