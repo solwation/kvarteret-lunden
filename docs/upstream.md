@@ -1119,7 +1119,7 @@ privata terrassdekorationer, möbler, vinddata eller spelberoenden importerades.
 Vanliga Three-frustumsfärer gäller för varje kamera, inklusive skuggkameror.
 Publicappen aktiverar inte skuggkartor; komponentprovet använder en vanlig
 ortografisk kamera för att granska samma frustumregel och påstår ingen visuell
-skuggjämförelse. A/B/C:s loggior byggs separat av `railSegment`/loggiabyggaren
+skuggjämförelse. A/B/C:s loggior byggs separat av `railPanel`/loggiabyggaren
 i `src/surroundings.js`, med egna blockhörn, baser och våningar. Den koden och
 dess faktiska geometri berörs inte; Hus L:s mått har inte kopierats dit.
 
