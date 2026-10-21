@@ -966,3 +966,9 @@ Importerad från `b64720138a65f210a6f923044d7f1458931e462f` (original #1418): `s
 Begränsning: enhetstestet `tools/southwindowstest.mjs` kontrollerar inte OSM-adresser, eftersom originalets OSM-snapshot inte finns här.
 
 Verifiering: `npm test`, bygg, `node --test tools/southwindowstest.mjs` (3/3) och Chromium-bilder nära/ovanifrån på dator och mobil (844×390) utan sidfel.
+
+## Golv på A/B:s norra uteplatser, #112
+
+Importerad från `b58d0d7ef57223688de376249aa7442816b55ad0` (original #1428): `raisedLoggiaFloors` i `groundY` och golvplanet vid solida hörn i `src/surroundings.js`. Originalets README, ändringslogg och miljödokument har inte importerats. Södra A/B, Hus C och L berörs inte (samma `kind === 'ground'`-villkor, oförändrad data).
+
+Verifiering: `tools/loggiafloor-check.mjs` (Chromium, dator + mobil) visar `groundY` = 0 i alla fyra A/B-nordloggior (före fixen −3) utan sidfel. Begränsning: skärmdumparna visar inte golvet tydligt; golvet styrs av geometri/`groundY`, ej granskat i riktig `Player`-körning.
