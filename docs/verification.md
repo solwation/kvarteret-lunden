@@ -1618,3 +1618,56 @@ passager utan gräsintrång. #135-punkten är oförändrad −0,9306880812492491
 browserfel saknas. Sparade data valideras efter dessa uttryckliga klassificeringar
 utan ny browserstart (`summary.json`, `cap.json`, ursprunglig `world.log`). Native10,
 `npm test` (92 moduler), bygge och diffkontroll passerar. Föräldrar #100/#98 hålls öppna.
+
+## Slutgranskning av de tolv parkeringsytorna (#100)
+
+Samtliga tolv källkonturer är levererade. Tabellen länkar varje slutförd vertikal
+med dess commit och befintliga native-, bild-, Pages- och vanliga livebevis.
+De granskades vid leveransen och återanvänds här med samma källdata/berörda
+kodgrenar; denna slutgranskning ändrar bara dokument, inte geometri eller provkrav.
+
+| Barn / källkonturer | Hela visuella rutor | Leveranscommit | Befintliga prov och publicering |
+| --- | --- | --- | --- |
+| #125: 1379042014, 1379043165 | 6 + 6 | [61f18ca](https://github.com/solwation/kvarteret-lunden/commit/61f18cafa46880810f6d5ce4711e69bfa893abb9) | [native, desktop/Android-ytor/bilder, Pages/live](https://github.com/solwation/kvarteret-lunden/issues/125#issuecomment-6319366294) |
+| #126: 1379042106, 1379043164 | 8 + 3 | [9dfd22b](https://github.com/solwation/kvarteret-lunden/commit/9dfd22b28ac887875e7c4f9ce6a0cfa60a2e3f11) | [native, hus-/annexsektion, ytor/bilder, Pages/live](https://github.com/solwation/kvarteret-lunden/issues/126#issuecomment-6319791252) |
+| #127: 1379042188, 1379042235 | 7 + 3 | [e9767d1](https://github.com/solwation/kvarteret-lunden/commit/e9767d1dce37eaff0c21dff5ab2eda68b6eed4cb) | [native, desktop/Android-ytor/bilder, Pages/live](https://github.com/solwation/kvarteret-lunden/issues/127#issuecomment-6320157384) |
+| #128: 145221619 | 10 | [8b66148](https://github.com/solwation/kvarteret-lunden/commit/8b66148379d7ec3e03069d0ec0c7b9957af7e58f) | [native, bank/hus/infartsgång, ytor/bild, Pages/live](https://github.com/solwation/kvarteret-lunden/issues/128#issuecomment-6321008586) |
+| #129: 850235113 | 3 | [4fbb141](https://github.com/solwation/kvarteret-lunden/commit/4fbb141ff81a2e74a22bd4d78d4c49de96ec0b58) | [native, hus-/infartsstöd, ytor/bilder, Pages/live](https://github.com/solwation/kvarteret-lunden/issues/129#issuecomment-6321358741) |
+| #130: 145221624, 145221626 | 6 + 3 | [4ccf324](https://github.com/solwation/kvarteret-lunden/commit/4ccf324164a19263972dce7b577b03bc18370f86) | [native, hus/nodgraf, ytor/bilder, Pages/live](https://github.com/solwation/kvarteret-lunden/issues/130#issuecomment-6321609534) |
+| #131: 145221628 | 3 | [162f368](https://github.com/solwation/kvarteret-lunden/commit/162f368a8800d50a2fef2d7bfe6804d20be4db5b) | [native, alla vägkorridorer/aproner, ytor/bilder, Pages/live](https://github.com/solwation/kvarteret-lunden/issues/131#issuecomment-6322791560) |
+| #132: 145221629 | 3 | [d4e0440](https://github.com/solwation/kvarteret-lunden/commit/d4e0440e860fd35f63f19fbd2280bf241c7a62cf) | [native, alla vägkorridorer/aproner, ytor/bilder, Pages/live](https://github.com/solwation/kvarteret-lunden/issues/132#issuecomment-6323340308) |
+
+Rutorna är hela 2,5×5 m, utom den verkligt grundare 1379043164:s uttryckligt
+antagna 2,5×4,7 m. Antalen är visuella tolkningar, inte försök att maximera en
+kapacitetstagg. [125:s rådata](references/parking-125/README.md) har kapacitet 6/6,
+[126:s](references/parking-126/README.md) 8/3; övriga frysta parkeringsobjekt saknar
+råkapacitet. Varje barns källfolder bevarar officiella versioner, ODbL-attribution
+och separationen mellan kartkontur/råtaggar och antagna höjder, layout och ytskikt.
+Neutral konturkandidat är `03d4c5201004540769c51cf62b7272f0a2c3caaf`.
+
+#125–#128 och #130 har sammanhängande antagna civilplan över sina parkeringsytor,
+med skyddade husnivåer och begränsad yttre övergång. #129, #131 och #132 har i stället
+ett gemensamt lokalt plan ENDAST under respektive användbar radkärna; den återstående
+asfalterade källkonturen är omarkerad kontinuerlig kör-/övergångsyta med pinnade
+hus-/gränsnivåer. De senare är alltså inte hela plana parkeringsgårdar. Alla
+asfalt-/målningsytor använder samma faktiskt graderade terrängstöd. Käll-DEM/LM,
+byggnadernas fötter, bankkrön och äldre skyddade civilplan flyttas inte för att
+passa fler rutor. De ursprungliga synliga felmönstren med täta capacity-remsor
+eller begravd målning ersätts utan ett nytt detalj-/triangelbudgetmål.
+
+Nödvändiga kartlagda infarter är levererade i respektive barn samt
+[#133](https://github.com/solwation/kvarteret-lunden/issues/133),
+[#116](https://github.com/solwation/kvarteret-lunden/issues/116),
+[#117](https://github.com/solwation/kvarteret-lunden/issues/117),
+[#134](https://github.com/solwation/kvarteret-lunden/issues/134) och
+[#138](https://github.com/solwation/kvarteret-lunden/issues/138).
+Äldre modellkurvor behåller ärliga lokala identiteter och fria passager.
+#128:s faktiska infart inom WALK är gångproverad; avlägsna ytor har inga påstådda
+promenader eller utvidgade gånggränser. Senare leveranser återanvänder giltiga
+mobilbevis för oförändrad kodgren. Dokumenterade Float32-cap-/kantapproximationer
+är redovisade i barnens råloggar och inte dolda genom godtyckliga geometriändringar.
+
+Slutkontrollen för #100 består av evidenskorsreferens, dokumentdiff/länkar och
+motsägelser samt automatisk Pages-release. Ingen appkod, ny browserbatch,
+triangel-/plattformsmatris eller manuell npm/build-omkörning behövs för denna
+sammanställning. #98 hålls öppet för separat leveransgranskning.

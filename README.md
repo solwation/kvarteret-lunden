@@ -115,7 +115,9 @@ Vägbelysningen kontrolleras med `node --test tools/roadlampstest.mjs`, `node to
 Den södra bakgrundsmarken fortsätter nu över GLO-höjdplatån till modellens z460 (#105).
 Byggnadsfötter, hage och befintlig beläggning följer samma mark. Höjder och mellanliggande
 mark är relativa modellantaganden. Den lokala LM-förfiningen (#106) är levererad;
-parkeringsplanen (#100) återstår.
+samtliga tolv södra parkeringskonturer är levererade i #125–#132.
+Se [samlad leveransgranskning](docs/verification.md#slutgranskning-av-de-tolv-parkeringsytorna-100)
+för källor, civilplan/radkärnor och verifierade begränsningar.
 
 Östcampusets befintliga puts- och listmaterial grupperas efter hela byggnadsbidrag i tre fasta renderingsbatcher på datorn; telefoner behåller den ursprungliga gemensamma batchen (#120). Byggnadernas former och material ändras inte.
 
@@ -149,7 +151,7 @@ lämnar en fri servicekorridor. Den smala grannfickan rymmer tre rutor, utan att
 tvingas till en antagen kapacitet. [Källor och tolkning](docs/references/parking-127/README.md).
 
 Parkeringen norr om hus 45 (#128) har två rader med hela bilrutor, sex meters
-körgång och fri passage för den befintliga lokala infartskurvan. Höjdplanet knyts
+körgång och fria passager för samtliga tre befintliga lokala infartskurvor. Höjdplanet knyts
 till LM-referensen och infarten; bankkrön samt hus 41/45:s apron skyddas.
 [Källor och antaganden](docs/references/parking-128/README.md).
 
@@ -180,8 +182,8 @@ och får tre hela rutor med ett lokalt antaget plan. Faktiska servicekorridorer
 och husens skyddade markstöd lämnas fria. [Källor och antaganden](docs/references/parking-131/README.md).
 
 Fyra källbundna inre servicevägar (#134) delar nu rätt noder med den korta
-servicevägen vid hus 44. En separat, 34,83 m lång källanslutning till det
-redan importerade vägnätet återstår i #138.
+servicevägen vid hus 44. Den separata, 34,83 m långa källanslutningen till det
+redan importerade vägnätet är levererad i #138.
 [Källor och avgränsning](docs/references/roads-134/README.md).
 
 Den inre serviceslingan är nu källnodsansluten till den befintliga yttre vägen (#138):
