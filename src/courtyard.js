@@ -1,5 +1,6 @@
 // Architectural source: solwation/lunden-3d-apartment, c079371f6782225e29e9dac51518c509ed8c37e6.
 // Adapted for the independent, impersonal Kvarteret Lunden walkthrough.
+import { CeilingBatchGate } from './ceilingbatchgate.js';
 import * as THREE from 'three';
 import { standGeometry } from './fixed-racks.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
@@ -401,7 +402,8 @@ export function buildCourtyard() {
   const bulbMat = new THREE.MeshBasicMaterial({ color: 0x2a2620, toneMapped: false });
   const bulb = new THREE.InstancedMesh(new THREE.SphereGeometry(0.03, 8, 6), bulbMat, bulbs.length);
   bulbs.forEach(([x, y, z], i) => bulb.setMatrixAt(i, m.makeTranslation(x, y, z)));
-  group.add(vine, bulb);
+  bulb.name = 'courtyard-pergola-bulbs';
+  group.add(vine, new CeilingBatchGate([bulb]));
   const lit = new THREE.Color(0xffd08a), off = new THREE.Color(0x2a2620); const bollardOff = new THREE.Color(0x8d8b84);
   return { object: group, segments, seats, targets, surfaces,
     /** night 0 … 1 (with the window lights): the pergola's bulbs glow after dusk (no lights, colour only). */

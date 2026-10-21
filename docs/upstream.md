@@ -943,3 +943,12 @@ Hagespår/berörda fält använder det. Befintliga road-/parkerings-/nordkonsume
 fortsätter med sitt gamla grid, och själva markens trianglar ändras inte av denna krok.
 
 Parkeringslinjer och kantens ursprungliga24mm-lyft bevaras, även där de döljs av asfaltens52mm-lyft. Den felaktiga kapacitetsindelningen görs inte synlig inför separat #100.
+
+
+## Konservativ takocklusion för pergolalampor, #108
+
+Importerad från `f3fb127a97120dd4bb42da0c4e756179b034d5ff` (original #1387): `CeilingBatchGate` i nya `src/ceilingbatchgate.js` och kopplingen `courtyard-pergola-bulbs` i `src/courtyard.js`. Originalets `occlusion.js`/`PERF` finns inte här, så enbart helbox-testet och dess 5 mm marginal ingår lokalt; växtvind-hanteringen utelämnades (inga vindattribut på lamporna). Originalets `terracedecor.js`, privata terrassmodeller och dokumentation har inte importerats. Inga budgetar, geometrier eller avståndsgränser ändras; skuggor, fysiska strålar och per-kamera-återställning bevaras.
+
+Begränsning: lampbatchen (272 instanser) spänner cirka 50 × 29 m och täcks inte av en enda garagetaksrektangel i nuvarande geometri. Grinden döljer därför i praktiken ingenting här (mätt: lika många ritanrop under taket, utomhus och på gården) och är en säker, konservativ krok. Provet `tools/ceilingbatchtest.mjs` bevisar dolt läge, öppningar, kantvyer och återställning med ett batch som ryms under en rektangel; A/B/C/L-hålen granskas via den gemensamma `GARAGE.rects`.
+
+Verifiering: `npm test`, `npm run build`, `node --test tools/ceilingbatchtest.mjs` (5/5) och `tools/ceilingbatch-check.mjs` (dator + mobil, Chromium, inga fel).
