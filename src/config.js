@@ -740,6 +740,8 @@ export const SITE = {
       {"source":"145221582","highway":"service","surface":"asphalt","surfaceSource":"guess","widthSource":"guess","path":[[11.51,247.67],[31.81,234.04]],"w":4.4,"widthReason":"public guess: preserve existing whole parking bay; 4.5m overlaps its corner","terrain":"triangles"},
       {"source":"145221583","highway":"service","surface":"asphalt","surfaceSource":"guess","widthSource":"guess","path":[[-99.51,325.04],[-90.69,337.26]],"w":4.5,"terrain":"triangles"},
       {"source":"145221596","highway":"service","surface":"asphalt","surfaceSource":"guess","widthSource":"guess","path":[[-72.11,305.33],[-63.07,317.85]],"w":4.5,"terrain":"triangles"},
+      {"source":"145221576","highway":"service","surface":"asphalt","surfaceSource":"guess","widthSource":"guess","path":[[-97.6,388.93],[16.04,308.22],[17.82,306.95],[76.61,264.96]],"w":4.5,"terrain":"triangles"},
+      {"source":"199056948","highway":"service","surface":"asphalt","surfaceSource":"guess","widthSource":"guess","path":[[-10.07,291.54],[0.8,285.1],[17.82,306.95]],"w":3,"terrain":"triangles"},
     ],
     parking: [
       {"source":"145221619","surface":"asphalt","surfaceSource":"guess","capacitySource":"absent in official OSM; geometry-based layout guess","layout":"double-row","layoutEdge":[0,1],"aisleW":6,"reservedRoad":"public-legacy-parking-crossing","otherReservedRoads":["public-legacy-west-parking-crossing","public-legacy-service-curve"],"civilRoad":"30633546","civilStage":3,"protectBuildings":true,"protectBank":true,"protectApron":"88457592","otherAprons":["145221569"],"civilAnchors":{"reference":[10,248,1.26],"baselineEntry":true,"apronVertex":2},"polygon":[[-19.37,258.81],[27.25,225.93],[37.02,239.75],[-9.59,272.63]]},

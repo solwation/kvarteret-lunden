@@ -73,7 +73,7 @@ På skärmar upp till 960 px visas en liten knapp med vald plats i stället för
 
 Alla mål använder samma moveTo; knapptext, vald destination, siffergenvägar och återupptagning hålls synkroniserade. Kontroller är minst44px och popupen får vertikal scroll vid låg skärm, utan att bli bredare än vyn. Större skärmar behåller den numrerade raden. Userfeedback ersatte den första fullbreda select-designen inom samma återöppnade issue.
 
-`tools/place-picker-check.mjs BASE OUT` verifierar den byggda riktiga appen med orörd bundle/lagringsnyckel i isolerade browserkontexter: liten knapp (Området cirka110px, högst240px), minst44px kontroller, sju val med riktiga touchtryck vid390/320px, popupens gränser/scroll i landskap, breakpoint960/961, Tab/Enter/Space/Arrow/Home/End, Escape/fokus/utanförklick, stängning vid resize, Digit/Numpad och faktisk takeResume. Start-/resume-/slutversion måste vara identisk genom kontrollen. Välkomstskärmen ska täcka knappen innan start. Slutkörningen och det äldre plats-/mark-/kollisionsprovet passerar; mobil är Chromium-emulering. Skärmbilder för liten knapp, öppen meny, smal skärm och välkomstvy granskas före publicering.
+`tools/place-picker-check.mjs BASE OUT` verifierar den byggda riktiga appen med orörd bundle/lagringsnyckel i isolerade browserkontexter: liten knapp (Området cirka110px, högst240px), minst44px kontroller, sju val med riktiga touchtryck vid 390/320px, popupens gränser/scroll i landskap, breakpoint960/961, Tab/Enter/Space/Arrow/Home/End, Escape/fokus/utanförklick, stängning vid resize, Digit/Numpad och faktisk takeResume. Start-/resume-/slutversion måste vara identisk genom kontrollen. Välkomstskärmen ska täcka knappen innan start. Slutkörningen och det äldre plats-/mark-/kollisionsprovet passerar; mobil är Chromium-emulering. Skärmbilder för liten knapp, öppen meny, smal skärm och välkomstvy granskas före publicering.
 
 ## Löst högskåp borttaget ur L1007:s toalett, #12
 
@@ -486,7 +486,7 @@ passerar8/8 totalt på1280×800 och390×844touch. `BASELINE_REF=b81cc49a85dbf8b1
 fryser den gamla publika källan för riktiga parade före/eftervärldar.60faktiska
 ytriangelmittpunkter och732fullbreddsprober per profil jämförs med oberoende topprays
 mot verkliga terräng-/plattformmeshar. Före fanns6,593004cm mark över plattformen vid
-fullbreddsproberna (och4,120875cm vid de gamla56triangelmittpunkterna). Efter finns
+fullbreddsproberna (och 4,120875cm vid de gamla56triangelmittpunkterna). Efter finns
 inga hål/intrång: min3,999926cm och max4,400014cm frihöjd, med samma gamla lyft.
 
 Båda verkliga gångriktningarna längs den fria delen av plattformen tar714uppdateringar
@@ -1470,3 +1470,34 @@ med den riktade slutliga ytkontrollen. Native7, `npm test` (92 moduler), bygge o
 diffkontroll passerar. Råresultat finns i orkesterartefakter `artifacts-116/world/`,
 `targeted-582/`, `cap-emitted.json` och `lamps-delta.json`;
 [primärkällor](references/roads-116/README.md).
+
+## Södra tvärvägen (#117)
+
+2026-10-21, bas `f96b93ea2a048ce8b3ccfc98709b99fe7eaf557b`. Plan: komplett
+primär-/nod-/typkontroll och faktiska fullbreddsytor mot hus med gårdshål/alla
+gamla hela bilrutor, en samlad faktisk datorbatch och npm test/build. Oförändrade
+telefon-/mark-/GC-bevis återanvänds; inga nya fullprofiler eller triangelbudgetar.
+
+Åtta nativefall passerar, utökade med två nya primärlinjer och tre delade
+anslutningar. Faktiska emitterade pathStrip-trianglar skär inga huskroppar eller
+levererade bilrutor. 3 m råtyp service är fordon, medan 3 m gångväg/otypad väg
+förblir icke-fordon och äldre otypade vägars breddregel (≥3,9 m) bevaras. Lampornas breddfilter
+är oförändrat; tomträdsfixturen ger fem nya 576-stolpar och inga borttagna, inga
+stolpar längs 3 m-länken. Detta är en villkorad modellföljd, inget faktiskt FPS-tal.
+
+En riktig World-batch ger 22 faktiska lodräta prov över varje nytt segments
+bredd och källnoderna, inklusive tre anslutningar. Alla har positiv asfalt;
+21 innehåller den nya ytan 25 mm över terrängen inom 1,040 µm. Query/terräng
+skiljer högst 0,085 µm. Vid exakt Float64-cap 576/36918924 `(76,61;264,96)`
+missar den nya Float32-capens ray; gamla anslutningsytor ligger där positivt
+24,534/23,558 mm över marken. Samma faktiskt emitterade terräng/pathStrip ger
+ny 25 mm-yta redan en koordinat-ULP (30,518 µm) inåt och vid två ULP. Första
+strikta assertionsloggen sparas; inga höjder eller geometrier justeras för
+normal capavrundning, ingen World-omkörning behövs. Det isolerade andra
+ytterändprovet använder uttryckligen en koordinat-ULP inåt från början.
+
+Översikt och närbild visar fria sammanhängande stråk. #135-punkten stannar
+−0,9306880812492491 m och browserfel saknas. Alla nya vägar ligger utanför WALK,
+så inga falska promenadprov utförs. Native8, `npm test` (92 moduler), bygge och
+diffkontroll passerar. Rådata/bilder: orkesterartefakter `artifacts-117/world/`,
+`cap-emitted.json`, `lamps-delta.json`; [primärkällor](references/roads-117/README.md).

@@ -169,3 +169,8 @@ inklusive terrängklippningen. [Källor och tolkning](docs/references/roads-133/
 Den norra serviceinfarten och tre korta grenar (#116) följer nu kompletta
 källkoordinater och delade vägnoder. Befintliga hus, hela bilrutor och GC-passager
 bevaras. [Primärdata och breddantaganden](docs/references/roads-116/README.md).
+
+Södra tvärvägen och dess smala servicelänk (#117) följer källnoderna. Den smala
+vägen behåller 3 m antagen bredd för att lämna hus 45 fritt; råtypen service
+skiljs från gångvägar utan att ändra lampornas breddfilter.
+[Källor och antaganden](docs/references/roads-117/README.md).

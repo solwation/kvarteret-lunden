@@ -1503,3 +1503,23 @@ hela bilrutor. Ordinarie lampfunktion återanvänds; tomträdsfixturen visar 4 n
 Gamla GC-kurvor, mark-/LM-källor, höjdsamplare och appstyrning ändras inte.
 #117/#131 och andra väg-/parkeringsärenden genomförs separat.
 [Verifiering](verification.md#norra-serviceinfarten-116).
+
+## Södra tvärvägen och smala servicelänken (#117, 2026-10-21)
+
+Selektivt granskad `80c78366de5d041c073f10872873195920453ff2` (#1433): endast
+145221576 och 199056948, komplett primärgeometri och en minimal `isVehicleWay`-utökning.
+[Fryst underlag/ODbL](references/roads-117/README.md) bevarar fyra respektive tre
+punkter ur OSM-snapshot SHA256
+`4c1734d408d4c23896c3ba672cf4e8ccb71537d2a06f23c00a8347192d22619d`.
+Delade noder binder befintliga 36918924/145221573 och nya tvärvägen.
+
+Asfalt och 4,5/3 m är uttryckliga gissningar. En explicit råtyp service behåller
+fordonssemantik även vid 3 m, medan den gamla breddregeln gäller oförändrat för
+otypade vägar. Ingen 199056947 eller annan gångväg importeras/omklassas.
+Befintligt `terrain:'triangles'` återanvänds; inga höjder, markdata, äldre vägar,
+parkeringsrutor eller gårdshål ändras. Hela de emitterade nya vägbredderna är
+fria från huskroppar och alla tidigare hela bilrutor.
+
+Lampmodulen ändras inte: 3 m-länken kvalificerar inte enligt dess vanliga breddfilter.
+`roadLampSpots([],[])` ger villkorat fem nya 576-stolpar och inga borttagna; detta
+är inte ett faktiskt träd-/World-/mobilbudgettal. [Verifiering](verification.md#södra-tvärvägen-117).
