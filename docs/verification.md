@@ -206,7 +206,7 @@ Antal nya stolpar per region lokal/väst/nord/öst/syd:21/3/22/28/56.
 Samma frysta kamerapar ger datoranrop13→15,103→103,13→15,53→53,532→532;
 mobil13→15,75→75,13→15,40→40,51→51. De två tillkomna anropen i yttervyer är
 samma gamla instansbatcher som tidigare låg utanför kamerans frustum, inte nya
-batcher. Triangeldelta är35800 i dessa yttervyer och26000 i övriga. Publicdocs har
+batcher. Triangeldelta är35800 i dessa yttervyer och 26000 i övriga. Publicdocs har
 inte originalets generella370-anropstak. Inga befintliga gränser höjs. Före/efter-
 bilder sparas för alla fem regioner och båda profilerna; kameran döljer första
 öststolpen bakom ett hus, så en friare östvinkel tas i byggkontrollen.
@@ -347,7 +347,7 @@ Källor och attribution: se docs/upstream.md. `node --test tools/southpointtest.
 är låsta med SHA256 och har full providerattribution. Tio lokala referenser motsvarar
 exakt arkivets RH2000 minus14,36m; både interpolation och `groundY` träffar dem inom
 1e−12m. Nord, oanvända områden, övergång/radiekant, skilda callback-samplers samt
-fotkanter och2m-apronprober för Sankt Lars väg41/45 kontrolleras. Gamla46-raders GLO
+fotkanter och 2m-apronprober för Sankt Lars väg41/45 kontrolleras. Gamla46-raders GLO
 och dess klamp kontrolleras separat, utan att göra exportens refAbsM14,75 till LM-datum.
 
 `CHROME_PATH=… node tools/southplateau-check.mjs http://localhost:8257 OUT` passerar
@@ -376,7 +376,7 @@ slutbilden använder76/7/285, cirka1,84m över verklig mark. Inom den bevarade g
 walkar riktig navigation från(10,248)3,2m och stannar exakt på `groundY` på båda profilerna;
 övriga LM-punkter utanför z250 är geometri-/markprov, inte påstådda gångpassager.
 
-56sydliga stolpfötter och224poolhörn följer ritad mark inom2,18/3,48µm.21plattformar
+56sydliga stolpfötter och 224poolhörn följer ritad mark inom2,18/3,48µm.21plattformar
 träffar sina plan exakt.681spår- och4049fältmittpunkter behåller70/48mm-lyft inom
 4,40/4,00µm. Nordens50 232 Float32-positioner har oförändrad hash
 `71634f582304fb881e362d15869ac3ee4eac718d9df46423e302d37c9259f02e`.
@@ -1426,7 +1426,7 @@ husfotspolygoner utan någon överlappning.
 En riktig World-batch ger 18 oberoende lodräta vägprov (tre längdpositioner ×
 tre positioner över bredden per ny väg) och sex positiva gamla GC-prov.
 Terrängquery/faktisk mesh skiljer högst 0,109 µm, nya vägar ligger 25 mm över
-terrängen inom 1,164 µm. Alla gamla GC-prov har positiv beläggning cirka25 mm
+terrängen inom 1,164 µm. Alla gamla GC-prov har positiv beläggning cirka 25 mm
 över samma terräng. #135:s kritiska fotpunkt är oförändrad
 −0,9306880812492491 m; inga browserfel. Bilder för båda nya vägarnas sammanhang
 sparade. Dessa isolerade serviceändar förbinds av separata #116/#134; ingen
@@ -1436,3 +1436,37 @@ påhittad anslutning eller gång utanför WALK lades till.
 Råresultat/bilder: orkesterartefakter `artifacts-133/world/`;
 [primärutdrag och ODbL](references/roads-133/README.md). Ingen FPS- eller
 budgetvinst påstås; två nödvändiga vägytor och ordinarie antagna lampor tillkommer.
+
+## Norra serviceinfarten (#116)
+
+2026-10-21, bas `4198570f7ee973edcf743a7433b502005a2fc6b7`. Plan: primärdata/
+anslutning/fullbreddshus+gårdshål och befintliga bilrutor, en samlad datorbatch
+med faktiska ytor/infart samt npm test/build. Oförändrade telefon-/terräng-/GC-bevis
+återanvänds; inga fullprofiler eller nya triangelgränser.
+
+Sju nativefall passerar. Fyra kompletta primärlinjer/projektion, anslutande
+grenar och befintliga 30633546/590 är exakta. Faktiska pathStrip-trianglar skär
+inga triangulerade huskroppar; gårdshålen bevaras i provet. Samtliga tidigare
+hela parkeringsrektanglar är fria efter endast 582:s antagna bredd ändrats 4,5→4,4 m.
+Den tidigare överlappningen 0,033595 m² försvinner, närmaste bilhörn får 10,727 mm
+modellmarginal; detta är ingen inmätt eller normgodkänd anläggning. Inga bilrutor
+flyttas. Normal `roadLampSpots([],[])` ger 4 nya 573-stolpar och 2 borttagna gamla
+(30633546/590), utan ny lampadapter; verkliga träd kan filtrera följden annorlunda.
+
+En World-batch sparar 52 punkter: mitt över varje nytt segment i tre breddslägen
+och alla källnoder. 582:s justering följs bara upp med fem riktade prov, ingen
+hel omkörning. De 51 slutliga browserproven har positiv asfalt cirka 25 mm över
+terrängen och query/terräng skiljer högst 0,083 µm. Vid exakt Float64-källcap för 596
+missar rayn Float32-kanten; den ursprungliga assertionen/loggen bevaras. Samma
+faktiskt emitterade pathStrip+terrainSurfaceGrid visar 25 mm positiv asfalt redan
+en koordinat-ULP (30,518 µm) inåt, även två ULP inåt. Ingen geometri eller lyft
+ändras för denna normala capavrundning.
+
+Verklig Navigation når 573:s infart `(3,68;236,83)↔(11,51;247,67)` åt båda håll
+inom WALK. Inga rutter utanför gränsen påstås. #135-punkten är oförändrad
+−0,9306880812492491 m. Översikt/infartsbild visar nya stråk och fria hus-/
+parkeringsytor; inga browserfel. Bilderna före 582:s 10 cm smalare bredd återanvänds
+med den riktade slutliga ytkontrollen. Native7, `npm test` (92 moduler), bygge och
+diffkontroll passerar. Råresultat finns i orkesterartefakter `artifacts-116/world/`,
+`targeted-582/`, `cap-emitted.json` och `lamps-delta.json`;
+[primärkällor](references/roads-116/README.md).

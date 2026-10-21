@@ -672,7 +672,7 @@ Granskad källa: `ba5db2f9ad167ee69c68a5be85b209e5c6c5a648` (original#1358), jä
 
 Originalets Player, cykel, isFree, spel och Cloudflare kopieras inte. Den publika Navigation har en motsvarande kostnad i `pushOut`: avlägsna segment avvisas med samma konservativa radieomslutande rektangelprincip. För närliggande segment körs originalets exakta avstånd och förflyttning. Fasta/rörliga segment itereras i samma ordning utan att kopieras till en stor kombinerad lista för varje delsteg, även i trappans extra väggpass. Inga kollisionsmått eller modeller ändras.
 
-Differentialprov:20 000 flodposter inklusive ankare/mittpunkter/upprepade punkter och20 000 exakta kollisionsbeslut/slutpositioner passerar (131 verkliga kontakter). Antalet Math.hypot i kollisionsmängden minskar15 587→715. Sju uppvärmda par på denna Node-värd gav medianer:
+Differentialprov:20 000 flodposter inklusive ankare/mittpunkter/upprepade punkter och 20 000 exakta kollisionsbeslut/slutpositioner passerar (131 verkliga kontakter). Antalet Math.hypot i kollisionsmängden minskar15 587→715. Sju uppvärmda par på denna Node-värd gav medianer:
 
 | Kontroll | Före | Efter |
 | --- | ---: | ---: |
@@ -689,7 +689,7 @@ Det är avgränsade CPU-mätningar, ingen fysisk mobil-FPS. Fulla Chromium-gång
 
 Granskad källa: `e6f5ce4e20b319e864e42be487820ffb09319171` (original#1363). Överfört enbart den rena placeringsmodulen `src/pathlamps.js`, `PATH_LIGHTS` i config, de avgränsade street.js-instans-/skenändringarna och callbacks till `renderedTerrainY`/`treeFeet` i surroundings.js. De tre befintliga lampbatcherna delas. Originalets Player, main, dygnscykel, tidskontroller, personligt innehåll, spel och Cloudflare har inte importerats. Configblocket är oförändrat. Den publika placeringsmodulen har dessutom en riktad anpassning: befintliga parkFillFootprint håller stolparna utanför träbrons hela jordramp, efter att en verklig marktriangelkontroll hittade en2,215m begravd fot i första importen (originaluppföljning#1378). Inga nya mått behövs; samma befintliga frigång används. beroendena använder publicsidans befintliga flod- och haggeometri. Dess bredare hagstaket skyddas genom det lokala outline-värdet.
 
-Elva redan kartlagda OSM-stråk ger40 stolpar före trädinput efter rampundantaget (källversionen gav41). Placering,4,6m höjd,18m mellanrum och övriga avstånd är antaganden. Algoritmen provar andra sidan när korsning, byggnad, träd, vatten, bro eller hage upptar första sidan; alla gångstråk hålls fria. Stolpar och ljusfläckarnas hörn följer verklig terräng, gamla väglampor behåller exakt sina matriser och ljusmesh-prefix. Inga nya ljuskällor/materialbatcher eller texturer.
+Elva redan kartlagda OSM-stråk ger 40 stolpar före trädinput efter rampundantaget (källversionen gav41). Placering,4,6m höjd,18m mellanrum och övriga avstånd är antaganden. Algoritmen provar andra sidan när korsning, byggnad, träd, vatten, bro eller hage upptar första sidan; alla gångstråk hålls fria. Stolpar och ljusfläckarnas hörn följer verklig terräng, gamla väglampor behåller exakt sina matriser och ljusmesh-prefix. Inga nya ljuskällor/materialbatcher eller texturer.
 
 Publicsidan förblir i dagsljus: stolparna syns som fasta miljöobjekt med släckta huvuden/markljus. Befintlig generisk street.update(night) bevaras utan nytt användarnattläge. Node3/3 och WebGL-komponent8/8 passerar: samma22dag/24natt-ritanrop som baslinjen när batcherna redan är synliga, +8000dag/+22400natt-trianglar, markavvikelse under1µm i lutande komponent och byteidentiska gamla väglampor. Nattkontrollen tvingar komponentens befintliga update, inte appens dygnscykel. `npm test` granskar81moduler och bygget passerar (`23b4575086f004bdddba7c09`).
 
@@ -724,7 +724,7 @@ Personliga interaktioner, namn, hjärtan, poäng, ljud, bilder och tjänster har
 
 Förskjutningen11,5m österut/1m norrut och rotationen−30° om skjulets mitt är antaganden.
 Skjul och ho behåller inbördes avstånd och orientering. Befintligt0,2m-relieftak,
-8m-centrummarginal och2,5m-hörnmarginal bevaras. Hela hon ska ha1,5m passage till
+8m-centrummarginal och 2,5m-hörnmarginal bevaras. Hela hon ska ha1,5m passage till
 staketet och ligga inom befintlig0,3m-relieftolerans. Förslaget används bara när den
 faktiska marken och befintlig träd-/åfrigång godkänner båda; annars behålls gamla platsen.
 
@@ -783,7 +783,7 @@ budgetavvikelse här; den publika visningen mäts för sig med oförändrade gr�
 
 Verifierat: native3/3, `npm test` granskar82moduler och bygget passerar
 (`017b54c83c8396d5c9a5df37`). Riktigt publikt browserprov6/6ALLPASS/CLI0:
-fryst vintervy47→48anrop och258622→258762trianglar, alltså exakt+1/+140.
+fryst vintervy47→48anrop och 258622→258762trianglar, alltså exakt+1/+140.
 Sommaren, dold parent och långt avstånd ger0täckanrop; återkomst ger1 med samma
 buffer/material. Faktisk vintergång0,68m/benamplitud0,492; inga personliga
 interaktions-/matningsmedlemmar, inga JavaScriptfel/externa anrop och originalets
@@ -1022,7 +1022,7 @@ före den befintliga plattformsutjämningen, på både legacy- och nya råsample
 plattformarnas nivåer och konstruktion ändras inte. Kartlagda grenens förlängning
 berör41:s apron efter262m; där behålls byggnadsplanet1,83m framför den antagna
 bankförlängningen. Alla källans fullt applicerade vägmittlinjekontroller och tio
-LM-platåreferenser bevaras exakt, liksom #106:s fotkanter och2m-apronprober.
+LM-platåreferenser bevaras exakt, liksom #106:s fotkanter och 2m-apronprober.
 Det är en redovisad geometrisk modellanpassning, ingen ny inmätning.
 
 Banken ändrar avsiktligt delar av147..286m, inklusive bankmark norr om225m.
@@ -1482,3 +1482,24 @@ servicevägarna utan specialadapter; inga privata system eller nya höjder följ
 Granskade ID-användningar finns bara i config och den gamla klipplistan; övriga
 verktyg har inga hårdkodade ID-beroenden. Inga andra servicevägar/parkeringar
 eller de väntande #116/#134 genomförs här. [Verifiering](verification.md#rätta-servicevägar-och-bevarade-gc-kurvor-133).
+
+## Norra serviceinfarten (#116, 2026-10-21)
+
+Selektivt granskad `9eb4ccfadfdf0ffd26ae7a20dfc1e3e50c22d1b8` (#1432): endast
+kompletta 145221573/582/583/596 tillförs. [Fryst primärutdrag/ODbL](references/roads-116/README.md)
+bevarar exakt underlag ur SHA256
+`4c1734d408d4c23896c3ba672cf4e8ccb71537d2a06f23c00a8347192d22619d`.
+Befintlig `terrain:'triangles'` och surfaceGrid återanvänds utan ny helper/terräng.
+573 delar punkter med korrekt 590, grenarna och 30633546 `(3,68;236,83)`.
+
+Asfalt/4,5 m är källans uttryckliga gissningar. Endast582 anpassas till 4,4 m
+i publicen: 4,5 m skulle överlappa 0,033595 m² av en befintlig hel bilruta i #128.
+Käll-XY, bilrutor och parkeringsplan lämnas oförändrade. Alla faktiskt emitterade
+nya vägbredder är fria från huskroppar (med gårdshål) och alla redan levererade
+hela bilrutor. Ordinarie lampfunktion återanvänds; tomträdsfixturen visar 4 nya
+573-stolpar och 2 borttagna gamla stolpar där nya körvägar kräver frigång. Detta
+är funktionens villkorade modellresultat, inte ett uppmätt World-/mobilbudgettal.
+
+Gamla GC-kurvor, mark-/LM-källor, höjdsamplare och appstyrning ändras inte.
+#117/#131 och andra väg-/parkeringsärenden genomförs separat.
+[Verifiering](verification.md#norra-serviceinfarten-116).

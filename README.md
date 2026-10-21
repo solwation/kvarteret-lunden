@@ -165,3 +165,7 @@ inte OSM-kapaciteter. [Rådata och antaganden](docs/references/parking-130/READM
 Två korta servicevägar har nu sina rätta OSM-identiteter och lägen (#133). De
 tidigare stora GC-kurvorna behålls oförändrade som lokala modellanslutningar,
 inklusive terrängklippningen. [Källor och tolkning](docs/references/roads-133/README.md).
+
+Den norra serviceinfarten och tre korta grenar (#116) följer nu kompletta
+källkoordinater och delade vägnoder. Befintliga hus, hela bilrutor och GC-passager
+bevaras. [Primärdata och breddantaganden](docs/references/roads-116/README.md).
