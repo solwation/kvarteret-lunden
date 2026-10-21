@@ -1235,3 +1235,38 @@ annexsektionen, husfötterna och närmaste skyddade #125-kontakt kontrolleras ig
 på desktop med samma verktygs `annex`-läge. Inga nya plattformsgrenar ändras.
 Rådata: `/tmp/lunden-orchestra-20261021/artifacts-126/final/` och `annex/`;
 första strikta assertionsutfallet finns kvar i `world.log`/`world/`.
+
+## Konkav parkering med verklig servicekorridor (#127)
+
+Avgränsad plan: utöka befintliga komponentprov, en lokal desktop-/Android-batch,
+snabba npm-test/bygge. De fyra officiella OSM-svaren är frysta med versioner/licens
+[i källarkivet](references/parking-127/README.md); båda parkeringarnas råkapacitet
+saknas. Kandidat `03d4c5201004540769c51cf62b7272f0a2c3caaf` matchar projektionen.
+335403605/606 ansluter via gemensam nod och exakt befintlig punkt 167,1/334,61;
+ingen gångväg görs om till bilväg. 4,5 m vägbredd, asfalttolkning, höjdplan och
+layout är gissningar, inte inmätning eller normbedömning.
+
+Native 5/5: sju hela 2,5×5 m-bilar längs 2188:s intakta kant, minst sex meter fri
+servicekorridor, exakt sexhörnig konkav yta med ofyllt indrag; 2235 rymmer tre hela
+2,5×5 m-rutor längs cirka 8,69 m, inte fyra. Baklinjen för den indragna radens
+bakåtvända kant provas separat så att korridorfronten är öppen. Befintlig
+ShapeUtils-triangulering används, utan nytt konvext asfalthölje eller intern
+körväg på en femmetersficka.
+
+Faktisk World desktop och Android-UA: 35 positiva ytpunkter vardera, markquery
+mot emitterad ray inom 9,8e−15 m och asfalt-/målningslyft inom 0,00049 mm.
+Hus 56/58/59:s verkliga hörn/maxhörnsbas bevaras inom 0,802 µm mot föregående
+emitterade gradering. #125:s skyddade kontakt och #135:s kritiska gångpunkt
+−0.9306880812492491 m är oförändrade; #121:s två desktopgrupper och telefonens
+enda mesh behåller full indexpartition. Bilderna visar fria infarter, hela rutor
+och gräs i indraget. Efter en rättelse av endast radens baklinje kontrollerades
+bara den berörda raden på desktop (`row`-läge), medan övriga gröna plattformsprov
+återanvändes. Ingen helscens-/orienterings-/triangelmatris kördes.
+
+Gammal platshållarparkering skär ingen skogsregion ens med bbox, så ingen extra
+legacy-lucka införs. Tidigare höjdkällor och parkeringsplan bevaras genom tre
+explicita emitterade steg. Positionbuffer 738864→787356 byte; inga nya renderobjekt,
+material eller budgetgränser. `npm test` (92 moduler), nativeprov och slutbygge
+`941bd1d1eea46b1c2327e269` är gröna. Inga page-/konsolfel. Ytorna ligger utanför
+WALK; ingen påhittad gångtur dit hävdas.
+Rådata/bilder: `/tmp/lunden-orchestra-20261021/artifacts-127/world/` och `row/`.

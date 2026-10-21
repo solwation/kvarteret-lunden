@@ -291,13 +291,16 @@ function terrainGeometry(southeastCells = null) {
   geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
   geo.setAttribute('uv', new THREE.Float32BufferAttribute(new Array((pos.length / 3) * 2).fill(0), 2));
   geo.setIndex(idx);
-  const pockets=S.south.parking.filter(p=>p.civilRoad),road=S.south.access.find(p=>p.source==='30633545');
-  const plans=roadsidePockets(pockets,road,terrainY,S.south.buildings),prior=plans.filter(p=>!p.protectBuildings),added=plans.filter(p=>p.protectBuildings);
-  const baseline=gradeParkingTerrain(geo,prior,southeastCells),nativeSurface=terrainSurface,nativeGrid=terrainDetailGrid;
-  for(const p of added)if(p.rearSupport)constrainPocketPlane(p,S.south.buildings.find(b=>b.source===p.rearSupport),(x,z)=>(baseline.top(x,z)??nativeSurface(x,z))+.01);
-  for(const p of added)p.guards.push(...prior.map(q=>q.footprint));
-  const next=gradeParkingTerrain(geo,added,southeastCells);
-  parkingPatch={plans,top:(x,z)=>next.top(x,z)??baseline.top(x,z),cut:poly=>next.cut(poly,p=>baseline.cut(p,q=>cutAtTerrain(q,nativeGrid)))};
+  const pockets=S.south.parking.filter(p=>p.civilRoad),plans=pockets.map(p=>roadsidePockets([p],S.south.access.find(r=>r.source===p.civilRoad),terrainY,S.south.buildings)[0]);
+  const nativeSurface=terrainSurface,nativeGrid=terrainDetailGrid,patches=[],earlier=[];
+  let cut=poly=>cutAtTerrain(poly,nativeGrid);
+  const top=(x,z)=>{for(let i=patches.length-1;i>=0;i--){const y=patches[i].top(x,z);if(y!==null)return y}return null};
+  for(const stage of [...new Set(plans.map(p=>p.civilStage))].sort()){
+    const group=plans.filter(p=>p.civilStage===stage);
+    for(const p of group){if(p.rearSupport)constrainPocketPlane(p,S.south.buildings.find(b=>b.source===p.rearSupport),(x,z)=>(top(x,z)??nativeSurface(x,z))+.01);p.guards.push(...earlier.map(q=>q.footprint))}
+    const patch=gradeParkingTerrain(geo,group,southeastCells),previousCut=cut;patches.push(patch);cut=poly=>patch.cut(poly,previousCut);earlier.push(...group);
+  }
+  parkingPatch={plans,top,cut};
   terrainSurface=(x,z)=>parkingPatch.top(x,z)??nativeSurface(x,z);
   terrainDetailGrid={...nativeGrid,cut:parkingPatch.cut};
   geo.computeVertexNormals();

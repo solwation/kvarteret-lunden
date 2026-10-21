@@ -1372,3 +1372,25 @@ planet går genom den faktiska närmaste huskantens två nivåer och vägkontakt
 medelnivå, med antaget tvärfall i stället för en smal höjdgrav vid väggen.
 Ingen källkontur skär ett hus; inga höjdkällor, globala rutnätsaxlar,
 övriga parkeringsobjekt eller gånggränser ändras.
+
+## Konkav parkering och verklig serviceinfart (#127)
+
+Konturer 1379042188/1379042235 från `03d4c5201004540769c51cf62b7272f0a2c3caaf`
+har jämförts med [officiella frysta OSM-svar](references/parking-127/README.md).
+Båda saknar råkapacitet. 2188 har endast amenity=parking; 2235 anger också
+perpendicular/street_side. Verkliga servicevägar 335403605/335403606 ansluter
+via gemensam nod och befintliga 36918924/1147690112. Bredd 4,5 m och asfalt är
+uttryckliga gissningar; paved på 606 belägger inte asfalt specifikt. Ingen gångväg
+omklassas till bilväg.
+
+2188 behåller alla sex konkava hörn. Befintlig ShapeUtils-triangulering klipper
+asfalt/målning; inget konvext hölje fyller indraget. En antagen rad med sju hela
+2,5×5 m-rutor ligger vid den intakta långkanten; minst sex meter fri korridor
+lämnas kring den verkliga serviceinfarten. 2235 får tre hela 2,5×5 m-rutor längs
+sin cirka 8,69 m-kant, inte fyra kapacitetsstyrda remsor. Layouten är en tolkning,
+inte en inmätt parkeringsplan eller normbedömning.
+
+Graderingen har nu uttryckliga steg: #125:s emitterade mark, #126:s skyddade
+plan/annexanknytning, sedan dessa två ytor. Varje steg behåller tidigare hela
+fickor och faktiska byggnadsfötter; inga globala rutnätsaxlar eller källhöjder
+ändras. Ingen privat parkeringsbyggare eller ny generell geometriarkitektur införs.

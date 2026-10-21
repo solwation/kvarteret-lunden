@@ -143,3 +143,7 @@ De ligger utanför gånggränsen; [källor och antaganden](docs/references/parki
 De två husnära fickorna i #126 har åtta respektive tre hela bilrutor. Den grundare
 fickan använder ett uttryckligt antaget djup 4,7 m; husfötter och #125:s civilplan
 bevaras. Se [rådata och antaganden](docs/references/parking-126/README.md).
+
+Den indragna parkeringsytan i #127 behåller sin exakta L-kontur: sju hela rutor
+lämnar en fri servicekorridor. Den smala grannfickan rymmer tre rutor, utan att
+tvingas till en antagen kapacitet. [Källor och tolkning](docs/references/parking-127/README.md).
