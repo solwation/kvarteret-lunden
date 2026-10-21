@@ -1501,3 +1501,34 @@ ytterändprovet använder uttryckligen en koordinat-ULP inåt från början.
 så inga falska promenadprov utförs. Native8, `npm test` (92 moduler), bygge och
 diffkontroll passerar. Rådata/bilder: orkesterartefakter `artifacts-117/world/`,
 `cap-emitted.json`, `lamps-delta.json`; [primärkällor](references/roads-117/README.md).
+
+## Parkering väster om husen (#131)
+
+2026-10-21, bas `8dc09daabce4bd536722fc9a7a015079c8519b2f`. Plan: källkontur/
+hela bilrutor/samtliga verkliga vägfootprints och CPU-plan, en lokal datorbatch
+för faktiska ytor/husstöd samt npm test/build. Oförändrad mobil-/markgruppering
+återanvänder tidigare giltiga bevis; inga fullprofiler eller triangelbudgetprov.
+
+Tre hela 2,5×5 m-rutor ryms i den exakta konkava sexhörningen. Alla aktuella
+vägars faktiska emitterade fullbreddsytor är fria från dem. Radplanet beräknat
+före browser har 5,065812 % lutning, hörn 3,419/3,643/3,439/3,214 m. En första
+mittplacering med 25 % tvärfall förkastades billigt; några få enkla lägen provades
+och inget flerplats-/optimeringsarbete gjordes. Källa, gradering och antal
+skiljs tydligt: OSM har ingen kapacitet/höjd, tre platser och civilplan är *guess*.
+
+Nio nativefall passerar: hela rutor/målning, exakt källindrag/pinnad gräns,
+alla vägclearances och radens hela 4 m räckvidd utanför 4 m-apronomslag för 41/42/43.
+Den äldre #128-testens korsningsinventering uppdateras till de tre gamla lokala
+kurvorna plus levererade 573/582; samtliga bilrutor förblir fria.
+
+En riktig World-batch ger 22 lodräta asfalt/målnings-/vägprov: query/faktisk
+terräng skiljer högst 1,43e−14 m, asfalt/målning 25/28 mm inom 0,331 µm.
+Radplanets största faktiska Float32-kantavvikelse är 0,0245 mm; ingen onödig
+finjustering görs. Hus 41/42/43:s samtliga faktiska hörnstöd bevaras inom 0,767 µm,
+sex källhörn inom 2,976 µm och befintliga infartsnoder inom 0,066 µm. #135-punkten
+stannar −0,9306880812492491 m. Nära-/översiktsbilder visar hela rutor, fria
+servicekorridorer och bevarat indrag; browserfel saknas. All ny parkering ligger
+utanför WALK, inga falska gångprov utförs. Native9, `npm test` (92 moduler),
+bygge och diffkontroll passerar. Råresultat: orkesterartefakter
+`artifacts-131/world/`, `few-candidates.json`, `clearance-final.json`;
+[primärkällor/ODbL](references/parking-131/README.md).

@@ -174,3 +174,7 @@ Södra tvärvägen och dess smala servicelänk (#117) följer källnoderna. Den 
 vägen behåller 3 m antagen bredd för att lämna hus 45 fritt; råtypen service
 skiljs från gångvägar utan att ändra lampornas breddfilter.
 [Källor och antaganden](docs/references/roads-117/README.md).
+
+Den sexhörniga parkeringsytan väster om hus 41–43 (#131) behåller sitt indrag
+och får tre hela rutor med ett lokalt antaget plan. Faktiska servicekorridorer
+och husens skyddade markstöd lämnas fria. [Källor och antaganden](docs/references/parking-131/README.md).

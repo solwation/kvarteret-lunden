@@ -1523,3 +1523,26 @@ fria från huskroppar och alla tidigare hela bilrutor.
 Lampmodulen ändras inte: 3 m-länken kvalificerar inte enligt dess vanliga breddfilter.
 `roadLampSpots([],[])` ger villkorat fem nya 576-stolpar och inga borttagna; detta
 är inte ett faktiskt träd-/World-/mobilbudgettal. [Verifiering](verification.md#södra-tvärvägen-117).
+
+## Parkering väster om hus 41–43 (#131, 2026-10-21)
+
+Exakt sexhörnig kontur 145221628 från granskad
+`03d4c5201004540769c51cf62b7272f0a2c3caaf`, jämförd med
+[fryst officiellt OSM-svar/ODbL](references/parking-131/README.md).
+Den tidigare gissningen 45 är inget layoutmål: tre hela 2,5×5 m-rutor centreras
+vid längdposition 66 på den långa källkanten 0→1, med 0,10 m indrag. Befintlig
+#129-radkärna används oförändrat: ett lokalt 5,066 % plan, 4 m yttre övergång
+och pinnad källgräns. Hela konkava konturen har asfalt; omarkerad rest är
+fri kör-/övergångsyta, inte ett påstått gemensamt civilplan. Allt detta är *guess*.
+
+Först provad mittplacering hade 25 % antaget tvärfall och förkastades före browser.
+Några få billiga lägen längs samma kant gav ett användbart läge; ingen
+kapacitetsmaximering eller ny graderingshjälpare. Samtliga nu emitterade vägbredder
+är fria från de tre hela rutorna. Infarten 573/590 och grenarna 583/596, levererade
+i #116/#133, behålls. Inga nya vägar behöver tillföras.
+
+Graderingens hela 4 m räckvidd ligger utanför konservativa 4 m-apronomslag för
+hus 41/42/43; hus 41 har dessutom explicit befintlig apronguard. LM/GLO-källor,
+husfötter, övriga parkeringsplan och bank/broar ändras inte. Gamla felplacerade
+ytan låg utanför skogens sådomäner; ingen legacy-clearing behövs.
+[Verifiering](verification.md#parkering-väster-om-husen-131).
