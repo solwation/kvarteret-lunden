@@ -183,3 +183,7 @@ Fyra källbundna inre servicevägar (#134) delar nu rätt noder med den korta
 servicevägen vid hus 44. En separat, 34,83 m lång källanslutning till det
 redan importerade vägnätet återstår i #138.
 [Källor och avgränsning](docs/references/roads-134/README.md).
+
+Den inre serviceslingan är nu källnodsansluten till den befintliga yttre vägen (#138):
+95036048 förlängs endast med nästa 34,83 m till 145221614. Bredd/asfalt är antaganden;
+[fryst officiell v6 och attribution](docs/references/parking-130/README.md) återanvänds.

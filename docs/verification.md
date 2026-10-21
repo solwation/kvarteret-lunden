@@ -1564,3 +1564,23 @@ Alla nya stråk ligger utanför WALK, inga falska promenadprov utförs. Native9,
 `npm test` (92 moduler), bygge och diffkontroll passerar. Rådata/bilder:
 orkesterartefakter `artifacts-134/world/`, `graph-risk.json`, `lamps-before.json`,
 `lamps-delta.json`; [källor/ODbL](references/roads-134/README.md).
+
+## Anslutning till inre serviceslingan (#138)
+
+Minsta plan: primärnodgraf/fullbreddsgeometri, en berörd desktopbatch och
+snabba npmtest/build. Oförändrad mobilgren och äldre segmentbevis återanvänds;
+nya vägen ligger utanför WALK. Ingen full scen-/triangel-/plattformsmatris.
+
+Tio nativefall passerar, inklusive exakt fyrnodsprefix ur officiell 95036048 v6,
+bevarade tre äldre noder och samma ändnod som 145221614. Faktiska pathStrip-trianglar
+lämnar alla huskroppar med gårdshål och samtliga tidigare hela bilrutor fria.
+Befintliga material, markkällor, husstöd, parkeringsplan och gånggränser ändras inte.
+En villkorad lampdelta med tom trädlista ger en till/ingen bort, inte en fysisk
+World-budget. [Befintlig primärkälla/ODbL](references/parking-130/README.md).
+
+Den enda faktiska World-batchen provar segmentets tre breddslägen och båda
+skarvnoderna: samtliga har 25 mm positiv asfaltfrigång inom 0,236 µm;
+query/ritad terräng skiljer högst 0,018 µm. Kontextbilden visar obruten anslutning.
+#135-punkten är oförändrad −0,9306880812492491 m, browserfel saknas. Native10,
+`npm test` (92 moduler), bygge och diffkontroll passerar. Rådata/bild finns i
+orkesterartefakter `artifacts-138/world/`, lampdelta i `lamps-delta.json`.

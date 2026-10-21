@@ -1571,3 +1571,19 @@ En äldre global count-fixture för #116 ersätts med klassning/clearance mot ak
 parkering; dess historiska fyra hade redan blivit två före #134 när #131
 levererades. Före/efterloggar bevarar detta utan en ny antagen lampbudget.
 [Verifiering](verification.md#inre-serviceslingan-134).
+
+## Anslutning till inre serviceslingan (#138)
+
+Publik stödändring för #100 → #98, endast nästa konsekutiva nod på redan delvis
+importerade 95036048. [Fryst officiell access-map v6](references/parking-130/access-map.json)
+och [källor/ODbL](references/parking-130/README.md) från #130 återanvänds utan ny APIhämtning.
+Det gamla prefixets tre noder är oförändrade. Fjärde noden 1586522929
+`(68,88;405,62)` följer 1586522906 `(97,32;385,52)`, en sträcka på 34,825904 m,
+och delas med ändnoden på 145221614. Därmed ansluts #134:s komponent inklusive
+145221588 till befintliga 95036048 och dess norra nät.
+
+Raw v6 anger `highway=service`, inte bredd eller ytskikt. Befintliga 4,5 m/asfalt
+förblir uttryckliga *guess*. Samma terrängtriangelklippning och vanlig lampfunktion
+används; tomträdsfixturen ger en tillkommen kandidat, ingen borttagen, inget
+World-budgettal. Ingen hel ytterring, 612, gångväg eller parkering tillförs.
+[Verifiering](verification.md#anslutning-till-inre-serviceslingan-138).
