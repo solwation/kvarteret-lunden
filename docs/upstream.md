@@ -1546,3 +1546,28 @@ hus 41/42/43; hus 41 har dessutom explicit befintlig apronguard. LM/GLO-källor,
 husfötter, övriga parkeringsplan och bank/broar ändras inte. Gamla felplacerade
 ytan låg utanför skogens sådomäner; ingen legacy-clearing behövs.
 [Verifiering](verification.md#parkering-väster-om-husen-131).
+
+## Inre serviceslingan (#134, 2026-10-21)
+
+Selektivt granskad `4b8105adcd63f14b889aa4f99f4f3605966c95c1` (#1435): endast
+kompletta 145221614/585/592/599 med exakta delade punkter.
+[Fryst primärutdrag/ODbL](references/roads-134/README.md) bevarar 7/2/2/3 punkter
+ur OSM-snapshot SHA256
+`4c1734d408d4c23896c3ba672cf4e8ccb71537d2a06f23c00a8347192d22619d`.
+Asfalt/4,5 m är *guess*. Befintlig terrängtriangelklippning återanvänds utan
+nya hjälpare eller ändring av höjdkällor, tidigare vägar eller parkeringsplan.
+
+Komponenten delar rätt noder internt och med 145221588, men ännu ingen källnod
+med övrigt importerat nät. Den saknade nästa konsekutiva 95036048-länken är
+34,825904 m: 1586522906 `(97,32;385,52)`→1586522929 `(68,88;405,62)`, även 614:s
+ändnod. Den levereras separat i #138; ingen hel ytterring, 612 eller gångväg
+importeras för bekvämlighet. Befintliga lokala modellkurvors korsningar är inte
+bevis för en redan levererad OSM-nodanslutning. #132 väntar även på denna länk.
+
+Alla faktiskt emitterade nya vägbredder är fria från huskroppar med gårdshål
+och samtliga tidigare hela bilrutor. Vanlig lampfunktion används: tomträdsfixturen
+ger sex tillkomna och en borttagen 588-stolpe, inte ett faktiskt World-budgettal.
+En äldre global count-fixture för #116 ersätts med klassning/clearance mot aktuell
+parkering; dess historiska fyra hade redan blivit två före #134 när #131
+levererades. Före/efterloggar bevarar detta utan en ny antagen lampbudget.
+[Verifiering](verification.md#inre-serviceslingan-134).

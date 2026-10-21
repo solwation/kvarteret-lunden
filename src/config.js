@@ -742,6 +742,10 @@ export const SITE = {
       {"source":"145221596","highway":"service","surface":"asphalt","surfaceSource":"guess","widthSource":"guess","path":[[-72.11,305.33],[-63.07,317.85]],"w":4.5,"terrain":"triangles"},
       {"source":"145221576","highway":"service","surface":"asphalt","surfaceSource":"guess","widthSource":"guess","path":[[-97.6,388.93],[16.04,308.22],[17.82,306.95],[76.61,264.96]],"w":4.5,"terrain":"triangles"},
       {"source":"199056948","highway":"service","surface":"asphalt","surfaceSource":"guess","widthSource":"guess","path":[[-10.07,291.54],[0.8,285.1],[17.82,306.95]],"w":3,"terrain":"triangles"},
+      {"source":"145221614","highway":"service","surface":"asphalt","surfaceSource":"guess","widthSource":"guess","path":[[-10.57,376.93],[12.47,408.16],[19.61,402.79],[27.71,396.53],[43.5,384.31],[49.03,380.04],[68.88,405.62]],"w":4.5,"terrain":"triangles"},
+      {"source":"145221585","highway":"service","surface":"asphalt","surfaceSource":"guess","widthSource":"guess","path":[[43.5,384.31],[26.85,362.85]],"w":4.5,"terrain":"triangles"},
+      {"source":"145221592","highway":"service","surface":"asphalt","surfaceSource":"guess","widthSource":"guess","path":[[19.61,402.79],[38.47,427.1]],"w":4.5,"terrain":"triangles"},
+      {"source":"145221599","highway":"service","surface":"asphalt","surfaceSource":"guess","widthSource":"guess","path":[[36.11,343.59],[58.24,372.91],[49.03,380.04]],"w":4.5,"terrain":"triangles"},
     ],
     parking: [
       {"source":"145221619","surface":"asphalt","surfaceSource":"guess","capacitySource":"absent in official OSM; geometry-based layout guess","layout":"double-row","layoutEdge":[0,1],"aisleW":6,"reservedRoad":"public-legacy-parking-crossing","otherReservedRoads":["public-legacy-west-parking-crossing","public-legacy-service-curve"],"civilRoad":"30633546","civilStage":3,"protectBuildings":true,"protectBank":true,"protectApron":"88457592","otherAprons":["145221569"],"civilAnchors":{"reference":[10,248,1.26],"baselineEntry":true,"apronVertex":2},"polygon":[[-19.37,258.81],[27.25,225.93],[37.02,239.75],[-9.59,272.63]]},

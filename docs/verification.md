@@ -1532,3 +1532,35 @@ utanför WALK, inga falska gångprov utförs. Native9, `npm test` (92 moduler),
 bygge och diffkontroll passerar. Råresultat: orkesterartefakter
 `artifacts-131/world/`, `few-candidates.json`, `clearance-final.json`;
 [primärkällor/ODbL](references/parking-131/README.md).
+
+## Inre serviceslingan (#134)
+
+2026-10-21, bas `162f368a8800d50a2fef2d7bfe6804d20be4db5b`. Minsta plan:
+primärdata/nodgraf och fullbreddsytor mot hus med gårdshål/alla gamla hela
+bilrutor, en lokal datorbatch samt npm test/build. Äldre issuebodys föreslagna
+plattformsmatris ersätts av den nu gällande riskpolicyn: oförändrad mobilgren
+återanvänder giltiga tidigare bevis, inga fullprofiler eller triangelbudgetprov.
+
+Före appändring identifierades det exakta separata anslutningsbehovet #138:
+34,825904 m mellan två konsekutiva 95036048-noder. De fyra vägarna och 588 är
+internt sammanhängande, inte ännu källnodanslutna till övrigt importerat nät.
+Inga påhittade anslutningar tillförs och ingen annan väg importeras här.
+
+Nio nativefall passerar: kompletta primärlinjer/delade noder, alla faktiskt
+emitterade vägtrianglar mot huskroppar med bevarade gårdshål samt alla 11 tidigare
+civilparcellers hela bilrutor. Lampfunktionen ändras inte. Före #134 var 573-fixturens
+antal redan två efter #131, så det gamla förväntade fyra ersätts med den stabila
+klassnings-/parkeringsclearanceinvarianten; de två blockerade gamla positionernas
+assertions behålls. Villkorad tomträdsdelta för #134 är 6 till/1 bort, separat från
+någon fysisk mobil-/World-budget.
+
+En riktig World-batch ger 44 oberoende lodräta prov: tre breddslägen mitt på
+alla tio nya segment samt alla 14 källnoder. Fem isolerade yttercaps provas
+uttryckligen en Float32-koordinat-ULP inåt; primärkoordinaterna flyttas inte.
+Alla prov har positiv asfalt 25 mm över terrängen inom 1,045 µm, query/terräng
+skiljer högst 0,222 µm. Inga browserfel, #135-punkten är oförändrad
+−0,9306880812492491 m. Översikt/närbild visar fria sammanhängande ytor.
+Alla nya stråk ligger utanför WALK, inga falska promenadprov utförs. Native9,
+`npm test` (92 moduler), bygge och diffkontroll passerar. Rådata/bilder:
+orkesterartefakter `artifacts-134/world/`, `graph-risk.json`, `lamps-before.json`,
+`lamps-delta.json`; [källor/ODbL](references/roads-134/README.md).

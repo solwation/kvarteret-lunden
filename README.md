@@ -178,3 +178,8 @@ skiljs från gångvägar utan att ändra lampornas breddfilter.
 Den sexhörniga parkeringsytan väster om hus 41–43 (#131) behåller sitt indrag
 och får tre hela rutor med ett lokalt antaget plan. Faktiska servicekorridorer
 och husens skyddade markstöd lämnas fria. [Källor och antaganden](docs/references/parking-131/README.md).
+
+Fyra källbundna inre servicevägar (#134) delar nu rätt noder med den korta
+servicevägen vid hus 44. En separat, 34,83 m lång källanslutning till det
+redan importerade vägnätet återstår i #138.
+[Källor och avgränsning](docs/references/roads-134/README.md).
