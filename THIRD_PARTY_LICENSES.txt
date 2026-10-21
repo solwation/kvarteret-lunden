@@ -32,3 +32,11 @@ the Copernicus DEM GLO-30 (30 m, tile N55 E013, AWS Open Data
 Space GmbH 2014-2018, provided under the Copernicus DEM licence with funding
 by the European Union under contract COP-DEM-2018. It is resampled to a 10 m
 grid (bare-earth estimate) and is used as a height reference only.
+
+Lantmäteriet Markhöjdmodell via kart-api (archived point samples, public #106)
+©Lantmäteriet · Markhöjdmodell · CC BY 4.0
+https://creativecommons.org/licenses/by/4.0/
+https://kart-api.se/en/guides/elevation-sweden/
+Source responses and attribution preserved in docs/references/elevation-hoje-a/point-api-south-road-2026-10-19.json.
+Local relative heights, interpolation and building aprons are modified model estimates;
+RH2000 minus14.36m is an assumed model origin, not a surveyed dwelling floor.

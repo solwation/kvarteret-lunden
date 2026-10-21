@@ -1316,8 +1316,12 @@ export const BUILDING_ROOFS = { flatLift: 0.05, wallStep: 4, wallLift: 0.05, dep
 // Public #105: preserve old rows; added8m southern rows sample the10m GLO grid (display guess).
 export const TERRAIN_FAR = { colWest: -150, colEast: 235, rowNear: 60, southRow: 8 };
 // Public #105: blend only beyond225..240; freeze the original46-row sampler/pads north of the fade.
+// Public #106: LM ground points via kart-api (CC BY 4.0), archived77-point export.
+// RH2000 minus14.36m is a model reference, never a surveyed apartment floor or river depth.
+// Radius35m, north fade225..240m and apron/anchor distances are interpolation guesses.
+export const SOUTH_PLATEAU = { radius: 35, fade: [225, 240], points: [[-150,255,-3.52],[-130,240,-3.51],[-170,272,-3.57],[-125,275,-2.54],[-40,286,1.83],[30,272,1.94],[10,248,1.26],[-20,262,1.58],[-90,265,-1.0],[-70,275,1.15]] };
 export const ELEVATION = { protect: { x0: -86, x1: 46, z0: -36, z1: 72 }, ramp: 30, river: [32, 30], edge: 30,
-  pad: 10, padRamp: 8, padMin: 0.4, southFade: [225, 240], legacyGridRows: 46 }; // #1306: far buildings stand on a level pad (the ground's mean under them) that grades back over `pad` m, unless the ground under the footprint varies by less than `padMin` m (*guess*)
+  pad: 10, padRamp: 8, padMin: 0.4, southFade: SOUTH_PLATEAU.fade, legacyGridRows: 46, southAnchor: 3, southApron: 4 }; // #1306: far buildings stand on a level pad (the ground's mean under them) that grades back over `pad` m, unless the ground under the footprint varies by less than `padMin` m (*guess*)
 export const WALK = { x0: -260, x1: 320, z0: -200, z1: 250, cell: 40, wade: 2, rescue: 3, maxSlope: 1.2,
   trunk: { big: 0.45, tree: 0.3, birch: 0.2, young: 0.15 } };
 

@@ -18,6 +18,8 @@ Visningen ska vara statisk och fungera **utan Cloudflare-integration**. Original
 
 På telefoner frigörs CPU-kopian av trapphusens färdigritade dörrskyltar när bilden har laddats upp till grafiken. Skyltarnas upplösning och de uppdaterbara hissdisplayerna behålls.
 
+Sydplatåns mark är lokalt förankrad i tio granskade LM-markpunkter och två byggnadsaproner (#106). Källans 77 markhöjdsvar och attribution är bevarade. RH2000 minus 14,36 m är en relativ modellreferens; horisontell registrering, interpolation och apronmått är antaganden. Punkten mäter mark, inte ådjup eller lägenhetsgolv. Den ritade triangelytan approximerar den mjuka markmodellen.
+
 Höje ås vatten, stränder och dalbotten följer ett svagt fall nedströms, tolkat från markreferenser. Vattenstånd och djup är fortsatt uppskattningar.
 
 Träbrons jordramper har sammanhängande grässidor ner till den ritade återrängen vid båda landfästena (#107). Gånghöjder och vattenpassagen under bron är oförändrade.

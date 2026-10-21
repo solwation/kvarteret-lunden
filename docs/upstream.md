@@ -972,3 +972,28 @@ Verifiering: `npm test`, bygg, `node --test tools/southwindowstest.mjs` (3/3) oc
 Importerad från `b58d0d7ef57223688de376249aa7442816b55ad0` (original #1428): `raisedLoggiaFloors` i `groundY` och golvplanet vid solida hörn i `src/surroundings.js`. Originalets README, ändringslogg och miljödokument har inte importerats. Södra A/B, Hus C och L berörs inte (samma `kind === 'ground'`-villkor, oförändrad data).
 
 Verifiering: `tools/loggiafloor-check.mjs` (Chromium, dator + mobil) visar `groundY` = 0 i alla fyra A/B-nordloggior (före fixen −3) utan sidfel. Begränsning: skärmdumparna visar inte golvet tydligt; golvet styrs av geometri/`groundY`, ej granskat i riktig `Player`-körning.
+
+## Lokala LM-markpunkter och ankrade apronplan, #106 (del av #98)
+
+Selektiv granskning av original `03d4c5201004540769c51cf62b7272f0a2c3caaf` och
+`662f1030389006d785a633352f5856f06e11fd21`: enbart `SOUTH_PLATEAU`,
+`southPointGround` och den ankrade plattformsförfiningen i `surroundings.js`, samt
+byteidentisk `docs/references/elevation-hoje-a/point-api-south-road-2026-10-19.json`
+från den senare committen. Ingen hel config/main eller originalhistorik kopierades.
+77 arkiverade kart-api-svar anger Lantmäteriet Markhöjdmodell, RH2000, CC BY4.0;
+attribution och begränsningar bevaras även i THIRD_PARTY_LICENSES.txt. Tio torra
+markpunkter söder om225m används, relativa till exportens14,36m-origin. GLO-exportens
+refAbsM14,75 och gamla46-radersklamp är oförändrade; datumen blandas inte i exporten.
+
+Radius35m, fade225..240m, ankarsökning3m och plan apron4m är antaganden.
+Sankt Lars väg41/45 får lokalt förankrade plattformar. Höjderna modifierar den kompletta
+befintliga markmodellen inklusive dess åblandning. De är inte inmätt bostadsgolv,
+aktuellt vattenstånd eller bathymetri; registreringen är ungefär3–5m.
+Publicsidans gånggränser, broar, nordens50 232 Float32-positioner, hage och dess
+eget stöd behålls. Ingen rutnäts-/parkeringsplanändring ingår; #100 och #99 är separata,
+och föräldern#98 förblir öppen. Byggnadsbaserna använder fortfarande faktiskt ritad mark,
+medan deras plana markunderlag använder den gemensamma mjuka höjdmodellen.
+
+Nativeprov för export, referenser, lokal fade, skilda samplers och apronkanter samt
+riktig dator/mobil-World dokumenteras i docs/verification.md. Inga privata resurser,
+spel, Cloudflare, lagringsnycklar, API-anrop under körning eller nya beroenden införs.

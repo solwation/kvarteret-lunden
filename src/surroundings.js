@@ -5,8 +5,8 @@ import { buildRiverPark, parkDeckAt, parkFillAt, parkRampFill, parkTreeSpots, pa
 import * as THREE from 'three';
 import { grassUV } from './grass.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { SITE as S, COLORS, SEASON, COURTYARD, GARAGE, CORE_A, CORE_B, CORE_C, NEIGHBOR_OPENINGS as O, HUS_L, FOLIAGE, ELEVATION, TERRAIN_FAR, PADDOCK } from './config.js';
-import { gridGround } from './elevation.js';
+import { SITE as S, COLORS, SEASON, COURTYARD, GARAGE, CORE_A, CORE_B, CORE_C, NEIGHBOR_OPENINGS as O, HUS_L, FOLIAGE, ELEVATION, TERRAIN_FAR, SOUTH_PLATEAU, PADDOCK } from './config.js';
+import { gridGround, southPointGround } from './elevation.js';
 import { glowMaterial, poolGeometry, washGeometry, fadeGlow } from './groundglow.js';
 import { neighborGlass } from './neighborglass.js';
 import { registerTrees, registerSnow } from './seasons.js';
@@ -100,7 +100,7 @@ export function groundY(x, z) {
 export const groundBelowDeckY = (x, z) => terrainY(x, z);
 /** The terrain itself (the grass / asphalt surface; groundY without the stairs' treads and the recesses' floors). */
 function terrainY(x,z) {
-  if(!legacyBuildingPads)legacyBuildingPads=makeBuildingPads(terrainRawLegacyY,260,[]);
+  if(!legacyBuildingPads)legacyBuildingPads=makeBuildingPads(terrainRawLegacyY,260,false,[]);
   if(z<=ELEVATION.southFade[0])return paddedTerrainY(x,z,terrainRawLegacyY,legacyBuildingPads);
   if(!buildingPads)buildingPads=makeBuildingPads();
   const next=paddedTerrainY(x,z,terrainRawY,buildingPads);
@@ -120,7 +120,7 @@ function paddedTerrainY(x,z,raw,pads) {
   return out;
 }
 const terrainRawLegacyY=(x,z)=>terrainRawBaseY(x,z,260,true);
-function terrainRawY(x,z) { return terrainRawBaseY(x,z); }
+function terrainRawY(x,z) { return southPointGround(x,z,terrainRawBaseY); }
 function terrainRawBaseY(x,z,southEdge=S.backgroundGround.z1,legacy=false) {
   let base=terrainBase(x,z);
   const w=elevationWeight(x,z,southEdge);if(w>0)base+=w*(gridGround(x,z,legacy?ELEVATION.legacyGridRows:undefined)-base); // #1305: the real ground levels outside the block
@@ -139,7 +139,7 @@ export const buildingPadSkipped=()=>{buildingPads??=makeBuildingPads();return sk
 export const buildingPadList=()=>(buildingPads??=makeBuildingPads()).map(({name,level,x0,x1,z0,z1})=>({name,level,x0,x1,z0,z1}));
 /** #1306: one level platform per mapped far building on the elevation grid's sloping ground (outside the protected block and the river valley), so its base meets the ground instead of a plinth up to 5 m tall:
  *  the level is the mean raw ground under the footprint, the footprint is flat, the ground grades back over ELEVATION.pad m (all samplers - roads, trees, cars, backdrop bases - follow `terrainY`). */
-function makeBuildingPads(raw=terrainRawY,limit=S.backgroundGround.z1,omitted=skipped){
+function makeBuildingPads(raw=terrainRawY,limit=S.backgroundGround.z1,anchors=true,omitted=skipped){
   const pads=[];pads.skipped=omitted;
   for(const k of ['west','east','north','south'])for(const b of S[k].buildings){
     const ring=b.polygon.slice(0,-1),xs=ring.map(q=>q[0]),zs=ring.map(q=>q[1]);
@@ -153,8 +153,10 @@ function makeBuildingPads(raw=terrainRawY,limit=S.backgroundGround.z1,omitted=sk
     if(pts.some(([x,z])=>padWeight(x,z)<=0)){omitted.push([b.name,'weight']);continue;}
     const ys=pts.map(([x,z])=>raw(x,z)),lo=Math.min(...ys),hi=Math.max(...ys);
     if(hi-lo<ELEVATION.padMin){omitted.push([b.name,'flat']);continue;}
-    const level=ys.reduce((a,c)=>a+c,0)/ys.length,R=ELEVATION.pad;
-    pads.push({x0:x0-R,x1:x1+R,z0:z0-R,z1:z1+R,level,dist,name:b.name});
+    const anchor=anchors&&z0>=SOUTH_PLATEAU.fade[1]?SOUTH_PLATEAU.points.filter(([x,z])=>dist(x,z)<=ELEVATION.southAnchor).sort((a,b)=>dist(a[0],a[1])-dist(b[0],b[1]))[0]:null;
+    const level=anchor?anchor[2]:ys.reduce((a,c)=>a+c,0)/ys.length,apron=anchor?ELEVATION.southApron:0,R=ELEVATION.pad+apron;
+    const gradedDist=(x,z)=>Math.max(0,dist(x,z)-apron);
+    pads.push({x0:x0-R,x1:x1+R,z0:z0-R,z1:z1+R,level,dist:gradedDist,name:b.name});
   }
   return pads;
 }

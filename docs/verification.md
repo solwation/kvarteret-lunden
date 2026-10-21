@@ -319,3 +319,61 @@ broar, fria vägar, gång och lokal återhämtning längs hela ån.
 originallagring och inga externa anrop. Hagens befintliga komponenttak
 höjs inte, och inga nya globala budgettak införs. Navigation/kollision och Hus A/B/C/L:s
 byggnadsdata är oförändrade. LM-förfiningen #106 och planparkeringen #100 återstår.
+
+## Lokala LM-referenser och byggnadsaproner, #106
+
+Källor och attribution: se docs/upstream.md. `node --test tools/southpointtest.mjs
+ tools/southplateautest.mjs tools/paddockgeotest.mjs` passerar21/21. Exportens77svar
+är låsta med SHA256 och har full providerattribution. Tio lokala referenser motsvarar
+exakt arkivets RH2000 minus14,36m; både interpolation och `groundY` träffar dem inom
+1e−12m. Nord, oanvända områden, övergång/radiekant, skilda callback-samplers samt
+fotkanter och2m-apronprober för Sankt Lars väg41/45 kontrolleras. Gamla46-raders GLO
+och dess klamp kontrolleras separat, utan att göra exportens refAbsM14,75 till LM-datum.
+
+`CHROME_PATH=… node tools/southplateau-check.mjs http://localhost:8257 OUT` passerar
+9/9 på1280×800 och390×844touch. Före/efterloggar och sju parade bilder per profil ligger i
+`/tmp/lunden-orchestra-20261021/artifacts-106/{before-feet,final}`. `baseline.mjs` i samma
+artefaktmapp fryser publicsidans `/src/` till den granskade HEAD-versionen före106.
+Referensrayen väljer den översta riktiga terrängtriangeln, utan närmast-förväntad filtrering.
+Emitterade lokala vertices överensstämmer med den sömlösa ritade ytans query inom2,12µm,
+och tio riktiga markrayträffar med samma query inom0,070µm.
+
+Den mjuka modellen och den befintliga grova trianguleringen är skilda approximationer.
+Största avvikelsen vid de tio inre LM-punkterna är0,107013m vid(-170,272), i en12×8m
+västcell. Detta är inget inmätt markfel eller ådjup. Första nya provet antog ett obeställt
+8cm-tak och exakt byggnadsbas=analytisk mark; det underkändes. Slutprovet skiljer därför
+exakta LM-samplers, faktiska sömlösa trianglar och rapporterad inre discretisering.
+Ingen etablerad budget höjdes och inga nya terrängunderindelningar infördes.
+Avsiktliga interpolerade kanter mot grövre grannceller kan avvika från den analytiska
+samplern, så vertexprovet jämför med faktisk `renderedTerrainY`.
+
+41/45 har analytiska apronplan1,83/1,94m. Byggnadens bas följer som tidigare max av
+ritade hörn:1,832834/1,949791m; botten1,711008/1,829855m ligger under samtliga88
+riktiga fotkantrays och väggen omsluter markkanten utan glipa. Största skillnad mellan
+basens−1cm-gräsplan och ritad fotkant är19,89/10,67mm. De nära fotbilderna används för
+att granska kontakten. Första45-kameran låg under en högre förgrundskant och förkastades;
+slutbilden använder76/7/285, cirka1,84m över verklig mark. Inom den bevarade gånggränsen
+walkar riktig navigation från(10,248)3,2m och stannar exakt på `groundY` på båda profilerna;
+övriga LM-punkter utanför z250 är geometri-/markprov, inte påstådda gångpassager.
+
+56sydliga stolpfötter och224poolhörn följer ritad mark inom2,18/3,48µm.21plattformar
+träffar sina plan exakt.681spår- och4049fältmittpunkter behåller70/48mm-lyft inom
+4,40/4,00µm. Nordens50 232 Float32-positioner har oförändrad hash
+`71634f582304fb881e362d15869ac3ee4eac718d9df46423e302d37c9259f02e`.
+Fem översikts-/parkeringsvyer behåller desktop51/928/107/67/228anrop och
+mobil28/708/86/27/188anrop; uppmätta triangeldeltan i de sparade slutloggarna är desktop+1291..1319 och
+mobil+1291..1323. Detta är hela World med dynamiska modeller efter separat laddning,
+inte ett isolerat deterministiskt komponentkostnadsmått. Inga nya meshbatcher eller högre komponentbudgetar införs.
+
+`tools/paddock-check.mjs` passerar29/29 med oförändrade tak:8330stakettri<12000,
+540ponnytri<700,3362vinterdekortri<3500 och8509grästuvor/34036tri<50000 i ett anrop.
+Skjulets verkliga relief är0,091143m, hon0,04m; grind/staket stoppar och stättan walkas.
+`tools/farwalk-check.mjs` passerar24/24, inklusive båda broarna och lokal återhämtning
+längs hela ån. `tools/bridge-ramp-check.mjs` bevarar exakta toppositioner,8/8sidorays,
+7,08µm maximal nederkantssöm och vatten under bron. `npm test` granskar85moduler,
+`npm run build` ger `d9f3e13acdbf44f3fe75e7b9`. Byggd `tools/browser-check.mjs` på8258
+passerar dator/mobil, riktig gång/dörrar/touch, originallagring och nätverkskontroll.
+Inga JavaScriptfel eller externa anrop i slutprofilerna. Chromium/SwiftShader-emulering,
+inte fysisk telefonprestanda. Fulla råloggar finns i artefaktmappen ovan.
+
+#100:s parkering och #99:s vägbank ingår inte. Föräldern#98 förblir öppen.
