@@ -127,3 +127,6 @@ Den bevarar tidigare terrängprecision och ursprunglig absolut marginal; gränse
 Terrängen använder hela befintliga celler i två desktopgrupper (#121); telefonen
 behåller sin enda mesh. Höjder, rays och gångstöd är oförändrade. Den uppmätta
 exponerade flodvyn kostar ett extra ritanrop; se [verifieringen](docs/verification.md#kompletta-terrängceller-på-dator-121).
+
+Gatulampornas befintliga markglöd tonas nu med scenens dimma (#122), så avlägsna
+pooler inte lyser igenom fullt. Närglöd och dag/nattstyrning bevaras; se [verifieringen](docs/verification.md#gatulampornas-markglöd-i-dimma-122).

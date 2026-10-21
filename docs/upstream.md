@@ -1308,3 +1308,12 @@ publicens mät-/skymningsfilter som kräver `object.visible`. Endast terrängens
 renderbackade querymaster markeras uttryckligen; en gemensam synlighetspredikat i
 `main.js` behåller dess mätning och skymning utan att acceptera andra dolda meshar.
 Detta ändrar inte originalets kod eller publicens geometri.
+
+## Markglöd följer befintlig dimma (#122)
+
+Selektiv överföring från `a59dea6d18194ac282382fef1623cf8d3393ea33`
+(original #1466): endast `fadeGlowWithFog(material)` i `groundglow.js` och
+omslaget runt gatulampornas befintliga poolmaterial i `street.js`. Föregående
+shaderhook bevaras; efter Three:s dimfragment multipliceras additiv alfa med
+`1-fogFactor`. Inga pooler, lampbatcher, andra glödmaterial, fogvärden eller
+dag/nattregler ändras. Inga privata funktioner eller originalbudgetar importeras.

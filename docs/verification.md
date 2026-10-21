@@ -1104,3 +1104,29 @@ med markören exakt lika med masterns verkliga rayträff (ingen utökad tolerans
 Gångpunkten från #135, två rendergrupper och attributdelning passerade samtidigt.
 Tidigare buffert-/bildbevis återanvänds eftersom denna lilla urvalsfix inte ändrar
 geometrin; npm-test/bygge kontrollerades på den nya relevanta koden.
+
+## Gatulampornas markglöd i dimma (#122)
+
+Källa `a59dea6d18194ac282382fef1623cf8d3393ea33`. Avgränsat prov:
+`node --test tools/groundglowfogtest.mjs` (2/2: bevarad hook/materialkontext,
+renderer och fail-closed vid saknat dimfragment), sedan en enda vanlig byggd
+World med materialbyte före/efter och två kameror. Kör med
+`CHROME_PATH=/path/to/chrome node tools/street-glow-fog-check.mjs http://localhost:8258 /tmp/glow-fog`.
+
+Publicappen startar vid dag (12,0); provet anropar dess befintliga
+`world.windowLights.update(23,1,true)` för glöd och senare (12,0,true) igen.
+Detta är en kvällscallback-diagnostik i oförändrad dagsljusscen, inte en ny kvälls-UI.
+Samma poolgeometri jämförs i samma World mot en klon med tidigare `fog:false`;
+appens scen, belysning och linjära dimma 200–650 m ändras inte.
+
+GPU-shadern kompilerar med alfahooken, opacity når 0.55 och återgår till dold/0
+vid dag. Närvyn 17.89 m är pixelidentisk (0 ändrade RGB-kanaler); fjärrmålets
+djup 519.71 m ger dimfaktor 0.7971 och de bortre ljusa ovalerna tonas bort.
+36795 RGB-kanaler ändras i fjärrbilden. Summerat poolbidrag mot samma vy med
+poolerna dolda minskar 1448991→1092774; detta är bilddiagnostik, inte fysisk
+luminans eller FPS. Alla lampor i vyn ligger inte på målets djup.
+
+Båda bildparen är granskade; inga browser-/shaderkonsolfel. Inga fullprofiler,
+triangelinventeringar eller mobilmatriser behövdes för denna materialändring.
+`npm test` (89 moduler) och bygge `7f1cd95514f84ff11067e074` är gröna.
+Rådata/bilder: `/tmp/lunden-orchestra-20261021/artifacts-122/world/`.
