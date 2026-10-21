@@ -958,3 +958,11 @@ Importerad från `f3fb127a97120dd4bb42da0c4e756179b034d5ff` (original #1387): `C
 Begränsning: lampbatchen (272 instanser) spänner cirka 50 × 29 m och täcks inte av en enda garagetaksrektangel i nuvarande geometri. Grinden döljer därför i praktiken ingenting här (mätt: lika många ritanrop under taket, utomhus och på gården) och är en säker, konservativ krok. Provet `tools/ceilingbatchtest.mjs` bevisar dolt läge, öppningar, kantvyer och återställning med ett batch som ryms under en rektangel; A/B/C/L-hålen granskas via den gemensamma `GARAGE.rects`.
 
 Verifiering: `npm test`, `npm run build`, `node --test tools/ceilingbatchtest.mjs` (5/5) och `tools/ceilingbatch-check.mjs` (dator + mobil, Chromium, inga fel).
+
+## Fönster på södra lågbyggnader, #111
+
+Importerad från `b64720138a65f210a6f923044d7f1458931e462f` (original #1418): `src/southwindows.js`, `SITE.south.lowRiseWindows` i `config.js` och anslutningen i `southbackdrop.js` (480 rutor/960 trianglar efter befintlig glasgeometri). 39 adresserade huvudbyggnader får enkla fönster längs långsidorna; sju osäkert klassade byggnader, gavlar och specialfasaden förblir blanka. Alla fasaddetaljer är visuella antaganden. Originalets bussasfalt, spelprov och ändringslogg har inte importerats.
+
+Begränsning: enhetstestet `tools/southwindowstest.mjs` kontrollerar inte OSM-adresser, eftersom originalets OSM-snapshot inte finns här.
+
+Verifiering: `npm test`, bygg, `node --test tools/southwindowstest.mjs` (3/3) och Chromium-bilder nära/ovanifrån på dator och mobil (844×390) utan sidfel.
