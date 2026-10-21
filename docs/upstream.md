@@ -583,7 +583,7 @@ Verifiering: `npm test`, bygg, `node --test tools/paddockgeotest.mjs` (syntetisk
 
 Importerad från originalet: `f2330dde` (`pathStrip` fick argumentet `trim` och `roads.js` `onVehicle`/`isVehicleWay`: fotstigar i parken och i väst/öst/nord-bakgrunderna klipps vid körbanans kant i stället för att ligga över asfalten; vägasfalt och trottoarer läggs på den renderade terrängen, `roadGround` i `surroundings.js`, mot gröna hål; en gruspassage vid Hus B ansluts, ny rektangel i `SITE.basementPaving` på (-27,63), *guess*; `tools/pathaudit.mjs`), `53c46cd8` (Karpvägen 6-8, 342815193 sluter vid gaveln, *guess*), `350c5196` (servicevägen 44447980 böjer in mot Östra långan, *guess*), `0a934ac2` (850235116 når Hus 130578354 och pathaudit räknar hopsatta ändar som anslutning, inte överlapp). Alla patchar gällde direkt: väg- och stigdata i väst/nord/park är identiska här.
 
-Hus B-anslutningen är ren platsgeometri (en markbeläggningsrektangel), inget privat, och togs med. Sydbakgrunden har annan data här än i originalet, så `pathaudit` rapporterar två fynd som originalet inte har, båda lämnade utan ändring. (1) Dead-end 145221588 (servicevägen, w 3,5) vid (-14, 137,5): den slutar 6,9 m från Höje ås mittlinje, alltså vid åns strand (OSM-vägen slutar vid vattnet), och `pathaudit` känner inte till ån som anslutning; ej en ofärdig väg. (2) Dubblett 850235114/850235115 vid z ca 384-390: ligger söder om den ritade marken (z > 260) och `WALK` (z 250), varken synlig eller nåbar; ej tillämpligt. Övrigt i spelbart område: inga dead-end/gap/on-road.
+Hus B-anslutningen är ren platsgeometri (en markbeläggningsrektangel), inget privat, och togs med. Sydbakgrunden har annan data här än i originalet, så `pathaudit` rapporterar två fynd som originalet inte har, båda lämnade utan ändring. (1) Den då felidentifierade lokala GC-kurvan145221588 (w3,5) vid(-14;137,5) slutar nära ån. Det belägger en modellerad strandanslutning, inte OSM-vägens ändpunkt; identiteten rättas i #133 nedan. (2) Dubblett 850235114/850235115 vid z ca 384-390: ligger söder om den ritade marken (z > 260) och `WALK` (z 250), varken synlig eller nåbar; ej tillämpligt. Övrigt i spelbart område: inga dead-end/gap/on-road.
 
 Verifiering: `npm test`, bygg, `node tools/pathaudit.mjs` (inga dead-end/gap/on-road i det spelbara området, 20 `on-road (trimmed)` som klipps vid ritning), Chromium-bilder före/efter från markhöjd och uppifrån.
 
@@ -1036,12 +1036,12 @@ Den höjda banken kräver också befintliga fintrianglar för beläggningen. End
 vägceller som berör bankens längd och konservativa sidostöd använder samma redan
 emitterade `surfaceGrid`-underindelning via `roadGround.grid`. Ett likvärdigt
 rendered-height-callback för southBackdropParts lämnar samma lokala grid till den
-kartlagda GC-asfaltvägen145221590. Hörnprov ensamma missade att marken stack3,94mm
+då felidentifierade publika GC-asfaltvägen145221590. Hörnprov ensamma missade att marken stack3,94mm
 över dess inre yta vid(31,297;154,664); faktisk pixelray gav rätt objektursprung.
 Lokal fin-grid-klippning ensam lämnade13,89mm inträngning i GC-stråket. Därför
 importeras även enbart den generiska7-raders `terrain: 'triangles'`-kroken från
 original `9eb4ccfadfdf0ffd26ae7a20dfc1e3e50c22d1b8` (original#1432), selektivt i roads.js.
-Bara de redan kartlagda GC-anslutningsvägarna145221590/145221588 väljer den,
+Bara de då felidentifierade publika GC-anslutningarna145221590/145221588 väljer den (lokala modellidentiteter från #133),
 med hela det befintliga surfaceGrid som exakt klippunderlag för dessa två stråk.
 Övriga stråk behåller det lokala bank-grid-valet. Inga
 nya1432/116-vägar, terrängunderindelningar eller ändrade konturer importeras. Befintliga vita trottoarhack är separata#124 och ingår inte.
@@ -1462,3 +1462,23 @@ svepta vägbredder visar ingen överlappning med hus. Befintliga husfötter och
 tidigare parkeringsplan skyddas av samma graderingsmotor. Båda ytorna ligger
 utanför WALK:s z-gräns; inga påhittade gångprov eller utvidgade gånggränser.
 [Verifiering](verification.md#nattsländegatan-och-hus-47-130).
+
+## Rätta service-ID:n och bevarade lokala GC-kurvor (#133, 2026-10-21)
+
+`03d4c5201004540769c51cf62b7272f0a2c3caaf` och originalets frysta
+OSM-snapshot (SHA256 `4c1734d408d4c23896c3ba672cf4e8ccb71537d2a06f23c00a8347192d22619d`)
+belägger två korta servicevägar: 145221590 (−85,75;315,14)→(−76,77;327,58),
+145221588 (27,71;396,53)→(9,95;373,66). Publicen får endast dessa exakta
+projektionspunkter och råtypen `highway=service`; asfalt/4,5 m är *guess*.
+[Källutdrag, attribution och gemensamma noder](references/roads-133/README.md).
+
+De tidigare stora kurvorna behålls i samma ordning med identiska punkter, bredd
+3,5 m och material under `public-local-gc-connection-east/west`. De är lokala
+modellerade GC-anslutningar, inte dessa OSM-servicevägar. #99/#124:s exakta
+terrängklippning följer nu deras explicita `terrain:'triangles'`-flagga i stället
+för en felaktig OSM-ID-lista. Den vanliga geometriska lampföljden ser de nya
+servicevägarna utan specialadapter; inga privata system eller nya höjder följer med.
+
+Granskade ID-användningar finns bara i config och den gamla klipplistan; övriga
+verktyg har inga hårdkodade ID-beroenden. Inga andra servicevägar/parkeringar
+eller de väntande #116/#134 genomförs här. [Verifiering](verification.md#rätta-servicevägar-och-bevarade-gc-kurvor-133).

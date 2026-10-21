@@ -73,9 +73,9 @@ export function* southBackdropParts(ground, trimAsphalt=g=>g, parkingPatch=null)
  const surfColor=p=>p.color??(p.surface==='asphalt'?0x5f6164:p.surface==='gravel'?0xb5ac90:0xa7a397);
  const bayPolygons=[];
  for(const p of [...S.paths,...(S.access??[])]){
-  // Public #99: exact terrain triangles for two existing public paths (source identity: #133).
+  // Public #133: retained local GC connections keep #99 clipping via their explicit terrain flag.
   const local=parkingPatch?.plans.find(q=>q.source==='145221619'),graded=local&&['30633546','public-legacy-parking-crossing','public-legacy-west-parking-crossing','public-legacy-service-curve'].includes(p.source);
-  const exact=p.terrain==='triangles'||graded||['145221590','145221588'].includes(p.source);
+  const exact=p.terrain==='triangles'||graded;
   const terrain=graded?c=>Math.max(...c.map(q=>q[0]))>=local.support.x0&&Math.min(...c.map(q=>q[0]))<=local.support.x1&&Math.max(...c.map(q=>q[1]))>=local.support.z0&&Math.min(...c.map(q=>q[1]))<=local.support.z1:'triangles';
   let drawn=pathStrip(exact?{...p,terrain}:p,w=>-w/2,w=>w/2,.025,farGround,false,exact?farGround.surfaceGrid():undefined);
   if(['95035967','189432572','36918923'].includes(p.source)){

@@ -161,3 +161,7 @@ inte en OSM-kapacitet. [Källor och antaganden](docs/references/parking-129/READ
 Ytorna vid Nattsländegatan och hus 47 (#130) har sex respektive tre hela rutor
 med fria karterade körgångar. Höjdplan och layout är uttryckliga antaganden,
 inte OSM-kapaciteter. [Rådata och antaganden](docs/references/parking-130/README.md).
+
+Två korta servicevägar har nu sina rätta OSM-identiteter och lägen (#133). De
+tidigare stora GC-kurvorna behålls oförändrade som lokala modellanslutningar,
+inklusive terrängklippningen. [Källor och tolkning](docs/references/roads-133/README.md).

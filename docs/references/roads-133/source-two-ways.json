@@ -1,0 +1,39 @@
+{
+  "source": "https://api.openstreetmap.org/api/0.6/map?bbox=13.172,55.679,13.185,55.685",
+  "retrieved": "2026-10-08",
+  "attribution": "\u00a9 OpenStreetMap contributors (ODbL)",
+  "features": [
+    {
+      "id": "145221588",
+      "tags": {
+        "highway": "service"
+      },
+      "points": [
+        [
+          13.1756131,
+          55.6831105
+        ],
+        [
+          13.1757723,
+          55.6833547
+        ]
+      ]
+    },
+    {
+      "id": "145221590",
+      "tags": {
+        "highway": "service"
+      },
+      "points": [
+        [
+          13.1757549,
+          55.6843623
+        ],
+        [
+          13.1756626,
+          55.6842347
+        ]
+      ]
+    }
+  ]
+}

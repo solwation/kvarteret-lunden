@@ -1407,3 +1407,32 @@ hela rutor och fria körgångar utan gräsintrång. Båda nya ytorna ligger utan
 WALK, så inga falska gångprov utfördes. Browserfel: inga. `npm test` (92 moduler),
 native8, build och diffkontroll passerar. Rådata/bilder: orkesterartefakter
 `artifacts-130/world/`; [primärkällor/ODbL](references/parking-130/README.md).
+
+## Rätta servicevägar och bevarade GC-kurvor (#133)
+
+2026-10-21, bas `4ccf324164a19263972dce7b577b03bc18370f86`. Minsta plan:
+primärkoordinater/ID-användningar och komponentprov, en datorbatch med nya
+vägytor och representativ gammal GC-beläggning samt npm test/build. Giltiga
+#99/#124/#135- och oförändrade telefonbevis återanvänds, inga fullprofiler.
+
+Tre nativefall passerar: oförändrad 58°-projektion av båda kompletta primärvägarna,
+råtyp/gissningar/normal fordons- och lampklassning; båda tidigare kurvornas
+ordnade koordinater/bredd/material samt faktiska pathStrip-attribut/index är
+byteidentiska med fryst basfixture när samma klippning används. Enbart gamla
+ID:n byts till tydliga lokala modellnamn; explicit terrängflagga bevarar #99.
+De två kompletta 4,5 m-vägbredderna kontrolleras även mot samtliga befintliga
+husfotspolygoner utan någon överlappning.
+
+En riktig World-batch ger 18 oberoende lodräta vägprov (tre längdpositioner ×
+tre positioner över bredden per ny väg) och sex positiva gamla GC-prov.
+Terrängquery/faktisk mesh skiljer högst 0,109 µm, nya vägar ligger 25 mm över
+terrängen inom 1,164 µm. Alla gamla GC-prov har positiv beläggning cirka25 mm
+över samma terräng. #135:s kritiska fotpunkt är oförändrad
+−0,9306880812492491 m; inga browserfel. Bilder för båda nya vägarnas sammanhang
+sparade. Dessa isolerade serviceändar förbinds av separata #116/#134; ingen
+påhittad anslutning eller gång utanför WALK lades till.
+
+`npm test` (92 moduler), native3, bygge och diffkontroll passerar.
+Råresultat/bilder: orkesterartefakter `artifacts-133/world/`;
+[primärutdrag och ODbL](references/roads-133/README.md). Ingen FPS- eller
+budgetvinst påstås; två nödvändiga vägytor och ordinarie antagna lampor tillkommer.
