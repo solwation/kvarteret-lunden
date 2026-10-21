@@ -103,7 +103,7 @@ Promenadytan sträcker sig ner till ån, över broarna och bland skolbyggnaderna
 
 `CHROME_PATH=… node tools/bridge-ramp-check.mjs http://localhost:8157` mot källservern kontrollerar träbrons sidoytor mot faktisk terrängtriangulering och vatten under bron; `tools/farwalk-check.mjs` går över den åt båda hållen.
 
-För arbete med issues, `in-progress`, stängning och `/orkester`, läs [CLAUDE.md](CLAUDE.md) och [orkesterkommandot](.claude/commands/orkester.md). Ärenden för detta projekt skapas här i [kvarteret-lunden](https://github.com/solwation/kvarteret-lunden/issues).
+Välj minsta tillräckliga kontroller enligt [verifieringspolicyn](docs/verification.md#verifieringspolicy). För arbete med issues, `in-progress`, stängning och `/orkester`, läs [CLAUDE.md](CLAUDE.md) och [orkesterkommandot](.claude/commands/orkester.md). Ärenden för detta projekt skapas här i [kvarteret-lunden](https://github.com/solwation/kvarteret-lunden/issues).
 
 Orkesterarbete samordnas i [#4](https://github.com/solwation/kvarteret-lunden/issues/4). Den första importens historik finns i [originalets #1064](https://github.com/solwation/lunden-3d-apartment/issues/1064).
 

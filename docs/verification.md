@@ -1,3 +1,23 @@
+# Verifieringspolicy
+
+Välj 2–3 minsta tillräckliga kontroller före arbetet och stoppa när de passerar.
+[Orkesterns riskbaserade policy](../.claude/commands/orkester.md#minsta-tillräckliga-verifiering-användaren-2026-10-21)
+gäller också pågående arbete: dokument behöver diff/länkar/motsägelsegranskning,
+inte WebGL eller triangelräkning. Lokala ändringar behöver berörd komponent och
+verklig rutt/vy; fler plattformar/orienteringar eller fullprofiler kräver ändrad
+gren/UI eller konkret global risk. Återanvänd giltiga käll-SHA-/indata-/kvalitetsbundna
+resultat efter orelaterad rebase; räkna inte oförändrad geometri igen. Dirigenten
+granskar resultaten utan rutinmässiga omkörningar och omprövar kostnaden kring
+10 minuters verifiering. Uttryckliga användarkrav, hårda kontrakt, publicens
+innehålls-/lagrings-/nätverksgränser och reproducerade buggar gäller fortfarande.
+Ett historiskt gissat triangeltak motiverar ensamt ingen optimeringskedja.
+
+Nedan följer daterade resultat och möjlig testtäckning, inte en obligatorisk
+minimilista för varje ändring. Utöka gröna planer bara vid ny kod, fel eller
+konkret materiell risk; ta bara om felaktiga kamerapositioner. Befintliga snabba
+`npm test`/bygge och automatisk Pages-status kvarstår; dokument kräver ingen ny
+livebrowserkontroll av oförändrad app.
+
 # Verifiering av första arkitekturimporten
 
 Källversion: `solwation/lunden-3d-apartment@c079371f6782225e29e9dac51518c509ed8c37e6`.

@@ -1279,3 +1279,13 @@ asset-regressionskontroll för hela gruppen inklusive access/instanser, inte
 validerad fysisk telefonprestanda. Inga framtida automatiska höjningar, inga
 LOD-/geometriändringar och ingen import av original #1468:s separata
 desktopbudget. Full mätledger och reproduktion finns i verifieringen.
+
+## Riskbaserad verifiering i orkestern (#137)
+
+Neutral arbetsflödespolicy från `0f0891d04a989ad2e0af0cb5865b2464f7914f3c`
+(original #1478), anpassad till publicens egna dokument och releasekontroller.
+2–3 riskbaserade kontroller, giltigt källbundet återbruk, dirigentgranskning utan
+rutinmässiga omkörningar, stopp vid grön plan och kostnadsomprövning kring 10 minuter.
+Dokument kräver inga scen-/triangel-/browserprov. Verkliga hårda kontrakt och
+publicens avskiljning bevaras; inga privata instruktioner, app-/budget-/geometriändringar
+eller nya tjänster överförs. Se verifieringspolicyn och orkesterkommandot.

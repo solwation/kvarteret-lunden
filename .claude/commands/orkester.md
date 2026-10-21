@@ -7,6 +7,37 @@ Du är orkestrerare för `solwation/kvarteret-lunden`. Svara på svenska. Läs `
 
 Område: $ARGUMENTS. Utan argument gäller implementationsärenden i båda reporna enligt det gemensamma ansvaret nedan.
 
+## Minsta tillräckliga verifiering (användaren 2026-10-21)
+
+Gäller även pågående orkestrar, agentprompter och äldre testlistor.
+Välj före arbetet 2–3 små kontroller som kan upptäcka ändringens konkreta risker;
+ange dem kort i tilldelningen och stoppa när de passerar.
+Uttryckliga användarkrav och etablerade hårda kontrakt gäller fortfarande.
+
+- **Bara dokument:** granska diff, relativa länkar och motsägelser. Ingen webbläsare,
+  WebGL, sceninventering eller triangelräkning; automatiska releasekontroller kvarstår.
+- **Lokal ändring:** relevant komponentprov och berörd verklig rutt eller vy räcker
+  normalt. Extra plattform/orientering kräver ändrad kodgren, UI eller konkret risk.
+- **Breda svep:** fulla scen-/bild-/plattform-/triangelprofiler kräver motiverad global
+  risk, exempelvis renderer, culling eller gemensam fysik. Gamla listor är kandidater
+  och ett täckningstak, inte obligatoriska minimikrav.
+- **Återbruk:** återanvänd giltigt bevis med käll-SHA, berörda indata och kvalitetsläge.
+  En orelaterad rebase kräver inget omprov. Räkna oförändrad geometri en gång;
+  dela webbläsaruppvärmning och samla kameror i samma körning där det passar.
+  Skapa inte nya harnessar eller kedjor av mikrobevis som standard.
+- **Granskning:** dirigenten läser diff och befintliga resultat, granskar relevanta
+  bilder om sådana behövdes och kör inte automatiskt om redan gröna kontroller.
+  Omprov kräver ändrad relevant kod/indata, fel eller en uttrycklig materiell risk.
+- **Stoppregel:** leverera när den avgränsade planen är grön. Utöka bara för ny kod,
+  reproducerat fel eller konkret risk; ta bara om en felaktig kameraposition.
+  Optimera inte fungerande detaljgeometri utan observerat behov. Ett gammalt gissat
+  triangeltak är ensamt inget blockerande produktfel eller skäl till en optimeringskedja.
+  Bevara verkliga hårda kontrakt, avskiljning och verifiering av reproducerade buggar;
+  dölj inte fel eller begränsningar bakom ett grönt resultat.
+- **Kostnadsgräns:** när själva verifieringen närmar sig cirka 10 minuter omprövar
+  dirigenten kostnad och omfattning före fler dyra svep. Rapportera status och välj
+  minsta återstående bevis eller en avgränsad leverans; fortsätt inte tyst i timmar.
+
 ## Gemensamt ansvar för båda reporna (användaren 2026-10-16)
 
 `/orkester` i endera repot ansvarar för både `solwation/lunden-3d-apartment` och `solwation/kvarteret-lunden`. Utan uttrycklig snävare användaravgränsning ingår startbara implementationsärenden i båda. Starta även arbete i det andra repot med egna arbetsagenter/checkouter; startrepot ger ingen förtur. Användarens senaste avgränsning styr implementationen, men får aldrig göra kökontrollen blind för det andra repot. Dokumentera ärenden utanför området i status och slutrapport.
@@ -71,7 +102,7 @@ portning behåller sin vanliga prioritering.
 
 ## Modellval
 
-- **Modellval (användaren 2026-10-17):** arbetsagenterna kör en **billigare modell** (i Claude Code `model: "sonnet"` i Agent-anropet; i andra verktyg motsvarande mellanklassmodell), medan dirigenten som väljer ärenden, bryter ner, samordnar och **granskar agenternas arbete** (skärmdumpar, tester, diff, issue-kommentarer) kör en rimligt kompetent modell. Dirigenten ska därför alltid själv titta på skärmdumparna och kontrollera rapporterna innan ett ärende räknas som klart; uppgradera en enskild agent till en starkare modell bara när ärendet uttryckligen kräver det (t.ex. svår felsökning eller arkitektur) och skriv varför i statusen.
+- **Modellval (användaren 2026-10-17):** arbetsagenterna kör en **billigare modell** (i Claude Code `model: "sonnet"` i Agent-anropet; i andra verktyg motsvarande mellanklassmodell), medan dirigenten som väljer ärenden, bryter ner, samordnar och **granskar agenternas arbete** (skärmdumpar, tester, diff, issue-kommentarer) kör en rimligt kompetent modell. Dirigenten ska därför själv granska diff, rapporter och relevanta skärmdumpar när sådana behövs enligt testplanen; uppgradera en enskild agent till en starkare modell bara när ärendet uttryckligen kräver det (t.ex. svår felsökning eller arkitektur) och skriv varför i statusen.
 
 ## Bevakning efter sista lösta ärendet (användaren 2026-10-16)
 
@@ -93,6 +124,6 @@ En aktiv `/orkester` får inte avslutas direkt när kön blir tom. Fortsätt kon
 - Ge agenten exakt issue, scope, reservations-/ägaretikett, berörda filer, detta repos instruktioner och verifikationskrav. En agent gör ett ärende i taget och återrapporterar innan nästa väljs ur färsk kö.
 - Följ originalets reservations- och övertaganderegler i dess `.claude/commands/orkester.md` när andra sessioner berörs. Denna publicsida har **ingen** spelrapportkö. När originalarbete ingår, läs och följ originalets rapportimportavsnitt före urval och under sessionen, inklusive dess slutkontroll. Vid uttrycklig avgränsning till enbart publicsidan körs inte originalets KV-import, Wrangler eller Workers; båda GitHub-köerna ska ändå kontrolleras och ärenden utanför området redovisas.
 - Skapa saknade issues enligt CLAUDE.md innan implementation. Publicera inga personliga bilder, teckningar, familjereferenser, karaktärer, poäng eller andra spelinslag. Använd inte originalets lagring eller tjänster.
-- Testa berört beteende i riktig webbläsare, kör `npm test` och `npm run build`. Granska importer och statiska publiceringsfiler. Commit/push direkt till detta repos `main` efter rebase; inga branches/PR:er. Förbättringar från originalet kräver granskning och registrerat käll-SHA.
-- Vänta in Pages-körning och verifiera den publicerade versionen. Länka commit, tester och eventuella begränsningar i ärendet i detta repo. Stäng när klart; ta bort både `in-progress` och den egna orkesteretiketten. Vid paus/hinder: dokumentera konkret återstående arbete och ta bort aktivetiketterna; stäng inte ofärdigt arbete.
+- Ange 2–3 riskbaserade kontroller i agentens tilldelning enligt policyn ovan; granska befintliga bevis utan rutinmässig omkörning. Testa ändrat appbeteende i relevant verklig vy/rutt, kör `npm test` och `npm run build`. Dokumentändringar kräver ingen webbläsare. Granska importer och statiska publiceringsfiler. Commit/push direkt till detta repos `main` efter rebase; inga branches/PR:er. Förbättringar från originalet kräver granskning och registrerat käll-SHA.
+- Vänta in Pages-körning och verifiera publiceringsstatus. Verifiera ändrat appbeteende live när planen kräver det; en dokumentändring kräver inget nytt prov av oförändrad app. Länka commit, tester och eventuella begränsningar i ärendet i detta repo. Stäng när klart; ta bort både `in-progress` och den egna orkesteretiketten. Vid paus/hinder: dokumentera konkret återstående arbete och ta bort aktivetiketterna; stäng inte ofärdigt arbete.
 - Läs om kön när en agent blir klar. Städa bara egna avslutade worktrees. Rapportera resultat och kvarvarande arbete på svenska. Fyll lediga platser med startbart arbete i båda reporna enligt den gemensamma kön och användarens uttryckliga område.
