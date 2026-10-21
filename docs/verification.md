@@ -674,3 +674,74 @@ mot riktiga Three-objekt. Artefakter:
 `before.log`, `final-world.log`, `matched-summary.json`, `npm-test.log`,
 `build.log`, `built-browser.log`, `built/`, `built-phone-browser.log` och
 `built-phone/`. Chromium/SwiftShader, ingen fysisk telefonprestandamätning.
+
+## Hela uteplatshäckars submission (#119)
+
+Källa `117851d7c2ed1cfefcef5dfbc52223d158b1e1d8`, publik före-bas
+`47eeb85f0d88290638bd0c6fc8b92f29ff34b8f9`. Faktiska Worldprov i
+`tools/patio-hedges-check.mjs` kör dator 1280×800 samt Android Mobile UA i
+390×844 och 844×390, med uttrycklig kontroll av lowMemory false/true/true.
+Telefonernas enda sammanslagna batch behålls; datorn får de åtta befintliga
+hela källorna, utan ändrad form eller ny cullingpolicy.
+
+Varje faktisk datormesh jämförs med sin kanoniska publika `patioHedgeGeometry`
+från planens häckrektangel och riktiga layoutförskjutning. Samtliga ordnade
+position/normal/UV/color/hedgeLow-värden är exakta även sammanlagda mot före-bas:
+112 032 Float32-värden vardera för position, normal och color, 74 688 för UV,
+37 344 för hedgeLow; totalt 1 792 512 byte, 12 448 trianglar och fortsatt
+null-index. Fulla CPU-arrayer granskas, inte tomma attribut. Unionbounds är
+exakt x −40,213501..11,041300, y 0,019029..1,129126, z 16,799168..17,602558 m.
+Telefonernas hela ursprungliga ordnade batch-/bounds-/material-/flaggsnapshot
+är identisk. Samtliga #118-räckens ordnade attribut och gruppantal är oförändrade.
+
+Samma ursprungliga material delas av alla åtta meshar. Färg, leaf/bump-textur,
+vertexColors, shaderpatchens funktion/cachekey `hedge-form-1143`, roughness,
+bumpScale, side/opacity/depthWrite och texturstorlek är identiska. Färger och
+hedgeLow följer varje hela källa och shaderns bakade positionskoordinater ändras
+inte. Publicens `customDepthMaterial` och `customDistanceMaterial` är båda null
+före/efter; inga privata depth-/vindadaptrar kopieras. `visible`, castShadow,
+receiveShadow, frustumCulled och layer 0 bevaras. Riktiga perspektiv- och
+ortografiska skuggkameror kontrollerar vanliga frustumsfärer. Public renderer
+har skuggkartor avstängda; ingen visuell skuggjämförelse påstås.
+
+24 oberoende positiva fysiska strålar (tre per källa) träffar exakt samma ytor
+och avstånd. Riktig publik Navigation går mot egen och grannens häck i båda
+riktningarna med KeyW i 72 steg à1/60 s, utan påhittat stöd eller ändrad
+kollision. Alla fyra rutterna stoppas exakt 0,22 m från den befintliga
+rektangeln med fötter 0 m; start/slutpositioner är identiska före/efter.
+Den befintliga frame/Core/Garage-uppdateringen och Date/gräsdomänfrö följer
+#115/#118:s redovisade testupplägg; produktens tid och slump ändras inte.
+
+Slutliga parade bilder använder `before-valid/`/`final-valid/`; den första
+provade hörnkameran bakom en tät uteplatsskärm sparas bara som rådiagnostik i
+`before/`/`final/`. Den slutliga kameran visar häckens exponerade vänsterände
+från den riktiga uteplatsen. Alla 18 slutliga parade PNG-filer är byteidentiska:
+egen häck, grannhäck, hörn, utsida, källare och hall på samtliga tre profiler.
+21/21 slutliga kontroller passerar.
+
+Faktiska huvudpassritningar ger följande datortradeoff:
+
+| Vy | Ändrade ritanrop | Ändrade trianglar |
+| --- | ---: | ---: |
+| Egen häck | 0 | −10 892 |
+| Grannhäck | 0 | −10 892 |
+| Hörn/ände | +1 | −9 336 |
+| Utsida | 0 | −10 892 |
+| Källare | +1 | −9 336 |
+| Hall | +7 | 0 |
+
+I hallvyn behålls alla åtta källor i frustum: samma 12 448 häcktrianglar kräver
+åtta anrop i stället för ett. Detta är en redovisad nackdel, inte en uppmätt
+FPS-vinst. Båda telefonprofilerna har exakt 0 ändrade anrop/trianglar i varje
+parad vy. Totalt samma attributbytes och ett delat material; datorn får sju
+extra mesh-/geometryobjekt, utan nya texturer eller höjda budgettak.
+Originalets separata fullspelsbudget är inte ett publikt mätresultat.
+
+`npm test` granskar 87 moduler; `npm run build` ger `14d90e7eaefbd1270fc27344`.
+Ordinarie opatchad byggd dator-/Android-UA-browserkontroll passerar riktig
+E-dörr, gång, hissar, mätreglage, båda touchlayouter, isolerad lagring och
+nätverk utan JavaScriptfel eller externa anrop. Artefakter:
+`/tmp/lunden-orchestra-20261021/artifacts-119/`, särskilt `before-valid/`,
+`final-valid/`, deras råloggar, `matched-summary.json`, `npm-test.log`,
+`build.log`, `built-browser.log` och `built/`. Chromium/SwiftShader,
+ingen fysisk telefonprestandamätning.

@@ -20,6 +20,8 @@ På telefoner frigörs CPU-kopian av trapphusens färdigritade dörrskyltar när
 
 Sydplatåns mark är lokalt förankrad i tio granskade LM-markpunkter och två byggnadsaproner (#106). Källans 77 markhöjdsvar och attribution är bevarade. RH2000 minus 14,36 m är en relativ modellreferens; horisontell registrering, interpolation och apronmått är antaganden. Punkten mäter mark, inte ådjup eller lägenhetsgolv. Den ritade triangelytan approximerar den mjuka markmodellen.
 
+Uteplatshäckarnas åtta befintliga geometridelar ritas var för sig på datorn (#119). Telefonerna behåller originalets enda batch; lövform, färg, placering och gånghinder är oförändrade.
+
 Takterrassernas fasta räcken delas på datorn per hel terrass och gavel (#118), så delar utanför kameran kan väljas bort. Telefoner behåller sin tidigare sammanslagna geometri; utseende och fysiska mått är oförändrade.
 
 Gårdens 272 pergolalampor ritas i två kompletta grupper (#115), så lampor utanför kameran eller helt bakom ett tätt garagetak kan väljas bort per pergola. Placering, utseende och befintlig lampstyrning behålls.

@@ -714,7 +714,8 @@ export function buildExterior({ W, D, roofTop, north, south, frame, wall, site, 
   add(roofs, roofMat);
   add(panels, new THREE.MeshStandardMaterial({ color: COLORS.solar, roughness: 0.3, metalness: 0.5 }), false);
   add(patios, mats.patio, false);
-  add(hedges, mats.hedge);
+  // #119, upstream117851d7: whole source hedges; phones retain the original merged batch.
+  for (const parts of lowMemory ? [hedges] : hedges.map((g) => [g])) add(parts, mats.hedge);
   add(fences, mats.fence);
   group.userData.segments = segments;
   group.add(group.userData.patioDecor = buildPatioDecor({ units, xw, xe, D, roofTop })); // #35: the neighbours' furnished patios (src/patiodecor.js)

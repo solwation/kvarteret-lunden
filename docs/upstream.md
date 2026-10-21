@@ -1129,3 +1129,29 @@ exponerar enbart befintlig publik frame/klocka med fast steg och håller hagens
 gräsdomänfrö konstant, enligt #115; ingen determinism tillkommer i produkten.
 `tools/browser-check.mjs` får en valfri `MOBILE_UA` för att även prova den
 ordinarie byggda appens verkliga Android/lowMemory-gren utan modulpatchar.
+
+## Hela uteplatshäckar på dator (#119)
+
+Selektiv källa `117851d7c2ed1cfefcef5dfbc52223d158b1e1d8` (original #1458),
+publik bas `47eeb85f0d88290638bd0c6fc8b92f29ff34b8f9`. Endast submissionen
+av `hedges` i `src/exterior.js` ändras: åtta redan genererade hela källgeometrier
+var för sig på datorn, ursprunglig `[hedges]`-sammanslagning på `lowMemory`-
+telefoner. Samma `patioHedgeGeometry`, material, shader och befintliga mått används.
+#118:s räckesgrupper och deras geometri behålls. Inga personliga dekorationer,
+nya cullers/gates, avstånd, kvalitetsregler, vindpolicy eller spelberoenden importeras.
+
+Publicens egna åtta källor kommer från planens `site.hedge` och befintliga
+`husLLayout`-förskjutningar. Den fysiska kollisionsrektangeln i `world.js` och
+exteriors grannsegment är oförändrade. `surroundings.loggias` bygger A/B/C:s
+separata plantor med egna blockhörn/baser: cylinder med radier 0,17/0,13 m och
+höjd 0,38 m samt 0,34 m ikosaeder. Dessa plantor, `boxwood`-entréhäckar och
+courtyard-planteringar har inte ersatts med Hus L:s häckmått eller submission.
+
+`tools/patio-hedges-check.mjs` jämför samtliga faktiska position/normal/UV/color/
+hedgeLow-arrayer med de åtta kanoniska publika källorna, per källa på dator och
+ordnad sammanlagd telefonbuffert. Materialets befintliga shaderpatch/cachekey,
+texturer och custom-depth/distance-status kontrolleras. Publicappen har inga
+aktiva skuggkartor; normala perspektiv-/ortografiska frustumprov ersätter inga
+påstådda visuella skuggpar. Riktig Navigation provar samma rektangulära kontakt
+vid egen och grannes häck i båda riktningarna. Testresponsens fasta Date/steg
+samt enbart hagens gräsdomänfrö följer #115/#118; produkten ändras inte för provet.
