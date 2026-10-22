@@ -1608,3 +1608,32 @@ Radkärnans hela 4 m räckvidd ligger utanför alla byggnaders 4 m apronhöljen;
 tidigare civilplan skyddas av befintlig stagekedja. Gammal felplacerad kontur låg
 utanför skogarnas seedområden, så inget falskt skogshål behöver bevaras.
 [Verifiering](verification.md#parkering-söder-om-hus-44-132).
+
+
+## Färre färgritningar runt uteplatserna, #139
+
+Importerad och anpassad från originalets `5c6fffd837ae449f47bc8cc874d9d8e5e10a94af` (#1459):
+`src/siteinstancebatch.js` samlar kompletta befintliga träd-/lampinstanser som träffar
+kamerans frustum i färre färgbatcher. Originalens geometrireferenser, aktuella
+instansmatriser/färger, fysiska rays och skuggflaggor bevaras; de nya färgkopiorna saknar
+raycast och skuggkastning. Bara ortogonala, likformigt skalade positiva källramar och
+kända statiska vertexprogram kvalificerar. Ändrade instansantal, positionsversioner,
+material, färgbuffer och transforms kontrolleras vid ritning; övriga fall behåller
+originalritningen. Nästlade kameror/renderingsmål och uppvärmning använder originalen.
+
+Den redan importerade `tightfrustum.js` används också på dator, med samma befintliga
+`PHONE_FRUSTUM.pad` och fragmentregister i `vertexcompile.js`/`foliage.js`. Den ursprungliga
+`phoneFrustum`-diagnostikreferensen behålls. Telefonens instansritning och frustum ändras inte.
+
+Avgränsningar: originalets privata `DetailCuller`/aktiva occluders, `occlusion.js`, parkerade
+bilars LOD och privata bok/interiörändring har inte importerats. Inga nya tjänster, resurser,
+lagringsnycklar eller spelinslag. A/B/C/L:s separata arkitektur, glas och dörrar ändras inte.
+Nuvarande publika app aktiverar ingen skuggkarta; inga uppmätta skuggvinster påstås.
+
+Verifiering mot byggd `dist/`, Chromium1280×800 med faktisk World och samma vyer:
+uteplatshörn867anrop/829066tri →845/759110, områdesvy810/847052 →784/773030.
+Båda avkodade bildpar är pixelidentiska, utan browserfel eller externa anrop. Native19fall
+(`siteinstancebatchtest.mjs`, befintliga `tightfrustumtest.mjs`), `npm test` och `npm run build`
+passerar. En tidig kandidat tappade diagnostikreferensen före appstart; den stoppades före
+publicering och den färdiga byggda omkörningen är grön. Det är en ritanropsmätning, inte FPS
+på fysisk enhet. Råunderlag bevaras i `/home/olw/.local/state/lunden-issue1459-20261022/public-release/`.

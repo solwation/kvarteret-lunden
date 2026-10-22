@@ -1671,3 +1671,17 @@ Slutkontrollen för #100 består av evidenskorsreferens, dokumentdiff/länkar oc
 motsägelser samt automatisk Pages-release. Ingen appkod, ny browserbatch,
 triangel-/plattformsmatris eller manuell npm/build-omkörning behövs för denna
 sammanställning. #98 hålls öppet för separat leveransgranskning.
+
+
+## Områdets färgbatcher, #139
+
+Kör `node --test tools/siteinstancebatchtest.mjs tools/tightfrustumtest.mjs`, `npm test`
+och `npm run build`. Kör sedan `CHROME_PATH=… node tools/siteinstance-check.mjs BASE OUT`
+mot servern för `dist/`. Jämför de avkodade PNG-paren för uteplatshörnet och områdesvyn.
+Båda är pixelidentiska; före/efter867/829066→845/759110 respektive810/847052→784/773030.
+Kontrollen stänger av enbart de nya skrivbordskontrollerna i föreläget och behåller samma
+World, material, kamera och tid. Den kräver fullbordad appstart, färre anrop/trianglar,
+0sidfel och0externa anrop. Nativefallen skyddar aktuella matriser/färger/antal, positiva
+fysiska rays, källa/skugga-identitet, okända shaderprogram, LOD-undantag och återställning
+vid nästlad kamera/fel. Telefonens befintliga frustum och originalpopulationer bevaras.
+Se [källgranskningen](upstream.md#färre-färgritningar-runt-uteplatserna-139).

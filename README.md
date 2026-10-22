@@ -68,6 +68,8 @@ npm run dev
 
 På dator används W A S D/piltangenter för att gå. Rikta mittpunkten mot en dörr eller lucka och klicka för att öppna/stänga; E fungerar också. Första klicket när musen är fri fångar bara musen. I mätläget väljer klick mätpunkter i stället för att öppna objekt. På mobil används styrreglaget och dragning i vyn, även samtidigt med två fingrar. På mobil och skärmar upp till 960 px visas en liten knapp med vald plats. Knappen öppnar en meny som stängs efter val, vid tryck utanför eller med Escape. Större skärmar har numrerade platsknappar. Platsmenyn och tangenterna 1–8 flyttar besökaren till området, L1007, L1004, L1201, innergården, trapphuset, garaget eller hästhagen, i den ordningen. Hästhagen placerar besökaren utanför grinden, med blicken in mot hagen; ponnyerna står vid ankomsten framför besökaren vid staketet (`Paddock.greet`, #88) och är tydligt i bild på både dator och mobil. L1004 och L1201 har modellerade interiörer. L1201:s val tar besökaren till lägenhetens entréhall på våning 3, innanför dörren från loftgången. Sifferraden och det numeriska tangentbordet fungerar under en aktiv visning; genvägar ignoreras i hjälpdialoger och textfält. Mät avstånd väljer två punkter på ytor. Alla mått är ungefärliga modellmått.
 
+På datorn samlas områdets synliga träd och gatlyktor i färre ritningar; detaljerna behålls.
+
 Häckarna vid Hus L:s uteplatser har en lätt bucklig, klippt form med mörkare fot och naturlig tonvariation. Formen är en visuell approximation; gångöppningar och modellens höjd är oförändrade.
 
 Hus A/B:s gemensamma parkdörrar på plan −1 har genomskinligt glas i metallramen. Material och profilsnitt är visuella antaganden; dörrmått och utåtgående rörelse är oförändrade.
