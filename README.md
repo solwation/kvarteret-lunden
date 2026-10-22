@@ -196,3 +196,5 @@ Parkeringen söder om hus 44 (#132) behåller sin exakta konkava åttahörning o
 bara tre hela bilrutor på en lokalt graderad radkärna. Resten är omarkerad kör-/övergångsyta;
 alla verkliga servicevägar och den äldre lokala genomfarten lämnas fria.
 [Primärkälla och antaganden](docs/references/parking-132/README.md).
+
+Med `?perf` kan långa bildintervall mätas lokalt och exporteras utan en telemetritjänst; se [diagnostikprotokollet](docs/frame-intervals.md).

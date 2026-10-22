@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { FrameIntervals } from './frameintervals.js';
 import { buildWorldSliced } from './world.js';
 import { loadingStep, loadingYield } from './loadingstep.js';
 import { Navigation } from './navigation.js';
@@ -25,6 +26,7 @@ const touchLayout = setupTouchLayout({enabled: touch}); // own button/stick layo
 let renderer, camera, scene, world, navigation, core, garage, paddock;
 const debugParams = new URLSearchParams(location.search), paddockRain = Math.max(0, Math.min(1, Number(debugParams.get('paddockrain')) || 0));
 let active = false, ready = false, focus = null, measuring = false, firstPoint = null;
+const intervals = debugParams.has('perf') ? new FrameIntervals() : null;
 const ray = new THREE.Raycaster(), centre = new THREE.Vector2();
 const points = new THREE.Group();
 const clock = new THREE.Clock();
@@ -207,10 +209,23 @@ async function init() {
   $('place-toggle').disabled = false;
   // Keep model access local for diagnostics, without a service connection.
   const siteInstances = lowMemory ? null : installSiteInstanceBatch(renderer, scene);
-  window.lundenViewer = {colorFrustum, siteInstances, phoneFrustum, paddock, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
+  window.lundenViewer = {intervals, colorFrustum, siteInstances, phoneFrustum, paddock, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
   window.kvarteretStartup?.finish();
   $('start').disabled = false; $('start').textContent = 'Börja utforska →';
   status('Dator och mobil · Ingen inloggning');
+  if (intervals) {
+    intervals.metadata = () => {
+      const gl = renderer.getContext(), ext = gl.getExtension('WEBGL_debug_renderer_info');
+      return { build: VERSION || 'dev', source: 'animation-callback-entry/performance.now',
+        gpu: ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER),
+        contextLost: gl.isContextLost(), acceleration: 'Check chrome://gpu', lowMemory,
+        viewport: { width: innerWidth, height: innerHeight, dpr: devicePixelRatio,
+          renderWidth: renderer.domElement.width, renderHeight: renderer.domElement.height } };
+    };
+    document.addEventListener('visibilitychange', () => intervals.note({ background: true }));
+    $('help-dialog').addEventListener('close', () => intervals.note({ paused: true }));
+    intervals.start();
+  }
   renderer.setAnimationLoop(frame);
   watchUpdates({
     snapshot: viewSnapshot,
@@ -231,6 +246,9 @@ function updateCameraNear() {
   if (Math.abs(camera.near - near) > 1e-4) { camera.near = near; camera.updateProjectionMatrix(); }
 }
 function frame() {
+  const measured = intervals?.running;
+  const start = measured ? performance.now() : 0;
+  if (measured) intervals.callback(start, { paused: !active || $('help-dialog').open, background: document.hidden });
   const dt = Math.min(clock.getDelta(), .05);
   if (active && !$('help-dialog').open) navigation.update(dt);
   if (touch) { if (active && !$('help-dialog').open) easeLook(dt); else pendingLook.x = pendingLook.y = 0; } // eased drag-to-look (#1088)
@@ -259,7 +277,12 @@ function frame() {
       $('place').textContent = `L1007 · ${world.roomAt(lv,navigation.pos.x,navigation.pos.z) ?? (lv ? 'Övre plan':'Entréplan')}`;
     }
   }
+  const renderStart = measured ? performance.now() : 0;
   renderer.render(scene,camera);
+  if (measured) {
+    const end = performance.now();
+    intervals.complete({ ms: end - start, phases: { update: renderStart - start, render: end - renderStart }, delta: {} });
+  }
 }
 $('start').addEventListener('click', () => {
   if (!ready) return;

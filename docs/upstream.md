@@ -1637,3 +1637,19 @@ Båda avkodade bildpar är pixelidentiska, utan browserfel eller externa anrop. 
 passerar. En tidig kandidat tappade diagnostikreferensen före appstart; den stoppades före
 publicering och den färdiga byggda omkörningen är grön. Det är en ritanropsmätning, inte FPS
 på fysisk enhet. Råunderlag bevaras i `/home/olw/.local/state/lunden-issue1459-20261022/public-release/`.
+
+## Begränsad callback-diagnostik (#140)
+
+Granskad originalrevision `5c3cd042477cd5c2352d3b1f5eb8411b535623aa` (#1507).
+Endast `src/frameintervals.js` och dess rena ring/statistiktester överförs.
+Beroendet är en minimal `PERF.intervals`-konfiguration; privata HitchLog,
+kamera-/spel-/spar-/mediedata och Cloudflare importeras inte. Publik main anpassas
+med callback-start och två CPU-faser update/render, eget bygg-id/GPU/viewport,
+introduktion/hjälppaus och nativ visibility. Inga kvalitetsnivåer eller simulerings-
+regler från originalet införs. Alla A/B/C/L:s geometrier behålls exakt.
+
+`node --test tools/frameintervalstest.mjs` passerar 2/2; `npm test` auditerar
+94moduler och samma-origin-nätpolicy; `npm run build` passerar.
+[Publikt protokoll och mätgränser](frame-intervals.md).
+Browser-/Pages-resultat och commit länkas i #140. Detta är en verktygsleverans,
+inte en bekräftad orsak eller lösning av originalets rapporterade frysningar.
