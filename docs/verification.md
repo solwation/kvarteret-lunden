@@ -1854,3 +1854,51 @@ browserkontrollen finns i `/tmp/kvarteret-orkester-20261023/evidence154/`.
 Den separata broporten #153 ingår inte i den parade baslinjen. Dirigenten
 integrerar den före #154 och kontrollerar sampublicerad livevy efter Pages.
 Ingen fysisk telefonprestanda eller oberoende uppmätning av referensfotot påstås.
+
+
+## HepCat-husets tak och fasader, #155
+
+2026-10-23: exakt originalkälla `e6652e3b07f30ae17416521b4fcb0f86c20f0211`,
+publik baslinje `ad5e82e07776070db2967a29ad61e823926aa60d`, byggd föreversion
+`45fa024ca4325a7f8fd4bdd0`, efterversion `05bd882587d6a59900da21a4`.
+Butiksbokstäverna är bortvalda; geometri, fotavtryck, fasta detaljer och
+fönster/takfunktioner är det granskade offentliga urvalet. Detta är en separat
+byggnad utan motsvarande variant i hus A/B/C/L. #154:s åvegetation ingår inte.
+
+`node --test tools/hepcattest.mjs` passerar 5/5: bevarade fotavtryck, nordvalm,
+sydgavel upp till nocken, högre tvärtak, skorsten, takhöjd mot ritad geometri,
+utåtvända väggar/atlas-UV och komponentbudget. [Komponentens rådata](../artifacts/155/native-summary.json).
+`npm test` (95 moduler), `npm run build` och `git diff --check` passerar.
+
+Den verkliga byggda scenen provas i headless Chromium/SwiftShader, 1000×700,
+med samma fasta datum och identiska kameror före/efter. Alla sex bilder är
+granskade: [norr före](../artifacts/155/before-north.png) och
+[efter](../artifacts/155/after-north.png),
+[västfasad före](../artifacts/155/before-front.png) och
+[efter](../artifacts/155/after-front.png),
+[södergavel före](../artifacts/155/before-south.png) och
+[efter](../artifacts/155/after-south.png). Nordvalm, högre vit mittdel, svart
+falsat tak, spetsbågiga gavelfönster, nummer 21 och stensockel syns i slutvyerna.
+[Den faktiska atlasen](../artifacts/155/atlas-after.png) är 512×512 och saknar
+butiksbokstäver. Ritanrop norr/väst/söder är 71→69, 55→53 och 67→65;
+trianglar 459776→460218, 463949→464391 och 354490→354932. Inga sidfel eller
+externa anrop. [Byggidentitet, kameror, takgång och resursrådata](../artifacts/155/browser-results.json).
+
+Offentlig motsvarighet till originalets `rooftest`: den byggda appens riktiga
+`Navigation.groundAt`, `Roofs.topAt` och 15 navigationssteg à 1/120 sekund
+provas på fyra berörda takpunkter. Nordvalmens 5,55 m, vingnockens 7,275 m,
+tvärtakets 8,2 m och sydgavelns 7,275 m ger samma stöd och stabil fothöjd
+(4/4). Originalets globala takinventering importeras inte.
+
+WebGL-anrop för texturallokering (`texStorage2D`/`texImage2D`, genererade
+mipnivåer och borttagning) observeras i samma offentliga scen. Kända format ger
+31037852→32052108 byte (29,60→30,57 MiB), delta +1014256 byte (0,967 MiB).
+Inga okända format. Antalet observerade allokeringar sjunker 52→51 och
+rendererregistrerade texturer 50→49. Detta är texelminne från faktisk allokering,
+inklusive mipnivåer; drivrutinens overhead och fysisk GPU-minnesförbrukning
+påstås inte. Ingen gräns höjs och originalets globala textursiffror används inte.
+
+Evidensfilerna följer inte med publiceringspaketet. Skript, loggar och frysta
+före/efterbyggen finns i `/tmp/kvarteret-orkester-20261023/evidence155/`.
+Detta är riktad geometri/takgång i Chromium, ingen fysisk telefonprofil.
+Dirigenten verifierar integrerad byggversion, Pages och publicerad vy före closure.

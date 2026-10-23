@@ -1,0 +1,248 @@
+[
+  {
+    "views": [
+      {
+        "name": "north",
+        "camera": [
+          19,
+          9,
+          -23
+        ],
+        "target": [
+          32,
+          4,
+          -5
+        ],
+        "calls": 71,
+        "triangles": 459776
+      },
+      {
+        "name": "front",
+        "camera": [
+          12,
+          7,
+          0
+        ],
+        "target": [
+          32,
+          4.5,
+          0
+        ],
+        "calls": 55,
+        "triangles": 463949
+      },
+      {
+        "name": "south",
+        "camera": [
+          25,
+          6,
+          26
+        ],
+        "target": [
+          32,
+          4,
+          7
+        ],
+        "calls": 67,
+        "triangles": 354490
+      }
+    ],
+    "roofwalk": [
+      {
+        "name": "north-hip",
+        "x": 32.3,
+        "z": -9,
+        "expected": 5.55,
+        "support": -0.041666666666666664,
+        "roof": 7.07,
+        "feet": [
+          32.3,
+          5.468333333333334,
+          -9
+        ],
+        "ok": false
+      },
+      {
+        "name": "wing-ridge",
+        "x": 32.3,
+        "z": -4,
+        "expected": 7.275,
+        "support": 7.07,
+        "roof": 7.07,
+        "feet": [
+          32.3,
+          7.193333333333334,
+          -4
+        ],
+        "ok": false
+      },
+      {
+        "name": "cross-gable",
+        "x": 28.5,
+        "z": -0.4,
+        "expected": 8.2,
+        "support": 7.54,
+        "roof": 7.54,
+        "feet": [
+          28.5,
+          8.118333333333332,
+          -0.4
+        ],
+        "ok": false
+      },
+      {
+        "name": "south-gable",
+        "x": 32.3,
+        "z": 9.5,
+        "expected": 7.275,
+        "support": 7.07,
+        "roof": 7.07,
+        "feet": [
+          32.3,
+          7.193333333333334,
+          9.5
+        ],
+        "ok": false
+      }
+    ],
+    "textureAllocations": {
+      "bytes": 31037852,
+      "count": 52,
+      "unknown": []
+    },
+    "textureCount": 50,
+    "atlas": null,
+    "version": "before",
+    "errors": [],
+    "external": [],
+    "build": {
+      "version": "45fa024ca4325a7f8fd4bdd0",
+      "builtAt": 1792779411150
+    }
+  },
+  {
+    "views": [
+      {
+        "name": "north",
+        "camera": [
+          19,
+          9,
+          -23
+        ],
+        "target": [
+          32,
+          4,
+          -5
+        ],
+        "calls": 69,
+        "triangles": 460218
+      },
+      {
+        "name": "front",
+        "camera": [
+          12,
+          7,
+          0
+        ],
+        "target": [
+          32,
+          4.5,
+          0
+        ],
+        "calls": 53,
+        "triangles": 464391
+      },
+      {
+        "name": "south",
+        "camera": [
+          25,
+          6,
+          26
+        ],
+        "target": [
+          32,
+          4,
+          7
+        ],
+        "calls": 65,
+        "triangles": 354932
+      }
+    ],
+    "roofwalk": [
+      {
+        "name": "north-hip",
+        "x": 32.3,
+        "z": -9,
+        "expected": 5.55,
+        "support": 5.550000000000001,
+        "roof": 5.550000000000001,
+        "feet": [
+          32.3,
+          5.550000000000001,
+          -9
+        ],
+        "ok": true
+      },
+      {
+        "name": "wing-ridge",
+        "x": 32.3,
+        "z": -4,
+        "expected": 7.275,
+        "support": 7.275,
+        "roof": 7.275,
+        "feet": [
+          32.3,
+          7.275,
+          -4
+        ],
+        "ok": true
+      },
+      {
+        "name": "cross-gable",
+        "x": 28.5,
+        "z": -0.4,
+        "expected": 8.2,
+        "support": 8.2,
+        "roof": 8.2,
+        "feet": [
+          28.5,
+          8.2,
+          -0.4
+        ],
+        "ok": true
+      },
+      {
+        "name": "south-gable",
+        "x": 32.3,
+        "z": 9.5,
+        "expected": 7.275,
+        "support": 7.275,
+        "roof": 7.275,
+        "feet": [
+          32.3,
+          7.275,
+          9.5
+        ],
+        "ok": true
+      }
+    ],
+    "textureAllocations": {
+      "bytes": 32052108,
+      "count": 51,
+      "unknown": []
+    },
+    "textureCount": 49,
+    "atlas": {
+      "width": 512,
+      "height": 512,
+      "mipmaps": true
+    },
+    "version": "after",
+    "errors": [],
+    "external": [],
+    "build": {
+      "version": "05bd882587d6a59900da21a4",
+      "builtAt": 1792779462081
+    }
+  }
+]

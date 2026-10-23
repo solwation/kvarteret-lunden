@@ -1810,3 +1810,24 @@ nya beroenden eller lagringsnycklar ingår. Befintliga fyra parkbatcher och
 trädens instansmaterial återanvänds. Låsta beroenden installerades med
 `npm ci` (0 kända sårbarheter). Egna bildpar och verifiering finns i
 [verifieringsloggen](verification.md).
+
+
+## HepCat-husets tak och fasader, #155
+
+Importerad från `e6652e3b07f30ae17416521b4fcb0f86c20f0211`
+([original #1533](https://github.com/solwation/lunden-3d-apartment/issues/1533)):
+ny `src/hepcat.js`, `SITE.hepcat.model` och berörda HepCat-poster i
+`src/config.js`, enbart HepCat-blocken för väggar/tak/sockel/takgång/fönsterljus
+i `src/surroundings.js` och anpassat `tools/hepcattest.mjs`. De två befintliga
+fotavtrycken behålls. Taket har valm i norr, tegelgavel i söder (nr 21), en högre
+vit mittdel med tvärgående sadeltak och svart falsad plåt. En skorsten och fasta
+stuprör ersätter den tidigare schematiska skorstengruppen. Alla modellmått och
+färger är visuella antaganden. Ljus och takstöd följer de nya fönstren/takytorna.
+
+Anpassning: butiksbokstäverna i södergavelns fönster utelämnas, med vanliga fasta
+fönster kvar. En genererad 512×512-fasadatlas ersätter två gamla fasadtexturer;
+ingen fotofil eller extern resurs tillkommer. Originalets foton, resultatbilder,
+ändringslogg, utvecklingsdokument, persondata och tjänster importeras inte.
+#150:s gavelrättning är redan på plats. Övrig vegetation, hus A/B/C/L och den
+fristående åändringen i #154 ingår inte i denna port. Inga nya beroenden,
+lagringsnycklar eller nätverksanrop tillkommer. Se [verifieringen](verification.md#hepcat-husets-tak-och-fasader-155).
