@@ -32,6 +32,8 @@ Hållplatsens plattform och taktila yta följer de faktiskt ritade terrängtrian
 
 Sankt Lars vägs södra broanslutning har ett högre vägkrön med separata lägre slänter åt väster och öster (#99), förankrat i elva LM-markpunkter och fem tvärsektioner. Väg-/gångcykelbroarnas datum −3 m, anslutningsramp och interpolation är antaganden; LM-punkterna mäter mark. Södra gångcykelbrons ritade anslutning följer nu den lokala gångmarken.
 
+Skolmuren mitt emot kvarteret slutar österut i en tegelkur med öppet framparti, plant tak, fast bänk och en plattyta mot gatan (#157). Muren och kurväggarna stoppar förflyttning medan entrén är öppen. Mått och placering är visuella antaganden.
+
 HepCat-huset öster om Sankt Lars väg har valmat tak i norr, tegelgavel med nummer 21 i söder och en högre vit mittdel med tvärgående tak (#155). Det svarta falsade taket och fasaddetaljerna är visuella tolkningar; byggnadens befintliga fotavtryck behålls.
 
 Vägbron över Höje å har en upphöjd trottoar och grönt kryssräcke på västsidan, vägräcken och svart plåträcke på östsidan (#153). GC-brons fackverk är grönt. Mått och färger är visuella fototolkningar; befintliga däcknivåer och frihöjder behålls.

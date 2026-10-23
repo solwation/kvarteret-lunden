@@ -6,6 +6,7 @@ import { SITE, WALK, PLAYER, OUTDOOR, PADDOCK } from './config.js';
 import { riverAt, deckAt, bridgeRecords, pierBoxes } from './riverbridge.js';
 import { parkDeckAt } from './riverpark.js';
 import { busStopSegments } from './busstopgeo.js';
+import { schoolWallSolids, boxSegments } from './schoolwall.js';
 import { walkingGroundY as groundY, walkingGroundSlope, walkingSupportHeight, groundBelowDeckY, treeFeet } from './surroundings.js';
 import { fenceSegments, stile, stileWalls } from './paddockgeo.js';
 
@@ -39,11 +40,9 @@ export function farSegments() {
   }
   for (const b of SITE.blocks) if (b.style) out.push([b.x0, b.z0, b.x1, b.z0], [b.x1, b.z0, b.x1, b.z1], [b.x1, b.z1, b.x0, b.z1], [b.x0, b.z1, b.x0, b.z0]);
   // original #1542: the school's free-standing brick wall along the far pavement and the greenhouse behind it (surroundings.js
-  // draws both outside OUTDOOR, so only their roof walk knew them): solid from the ground too
-  const SW = SITE.school?.wall, SG = SITE.school?.greenhouse;
-  for (const r of [SW && { x0: SW.x0, x1: SW.x1, z0: SW.z - SW.t / 2, z1: SW.z + SW.t / 2 }, SG].filter(Boolean)) {
-    out.push([r.x0, r.z0, r.x1, r.z0], [r.x1, r.z0, r.x1, r.z1], [r.x1, r.z1, r.x0, r.z1], [r.x0, r.z1, r.x0, r.z0]);
-  }
+  // draws both outside OUTDOOR, so only their roof walk knew them): solid from the ground too. #1534: the wall's boxes
+  // include the bus shelter's gable and back wall and its post (src/schoolwall.js); its open front stays walkable.
+  for (const r of [...schoolWallSolids(), SITE.school?.greenhouse].filter(Boolean)) out.push(...boxSegments(r));
   for (const r of bridgeRecords) rails.push(...railSegs(r.x, r.z, r.dx, r.dz, r.len, r.width / 2 - 0.03)); // the bridges' side rails (the deck ends stay open)
   if (P.woodBridge) {
     const [[ax, az], [bx, bz]] = P.woodBridge.ends, len = Math.hypot(bx - ax, bz - az);

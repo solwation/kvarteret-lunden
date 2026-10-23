@@ -1960,3 +1960,45 @@ Fulla arbetsloggar och riktad browserkontroll finns i
 Ingen fysisk telefon-FPS eller oberoende uppmätning av byggnaden påstås.
 Dirigenten integrerar ovanpå parallella #155, publicerar och kontrollerar
 den sampublicerade livevyn efter Pages.
+
+
+## Busskur i skolmurens östra ände, #157
+
+2026-10-23: selektiv källa `a9776336eeaf4f9e98e384a9403db19acefea60c`
+(original #1534), publik baslinje `0ee351487ca61b361021b22f4c7cbe52c9ce81f8`.
+Byggd föreversion `e365fb89afcdd1bbf6bc4170`, efterversion
+`8753dcc49615fdd52bd446ff`. #146:s murkollision utvidgas till den gemensamma
+mur-/kurplanen utan att skapa en stängd framsida. Detta är en fristående
+skolgårdsdetalj utan motsvarande variant i hus A/B/C/L.
+
+`node --test tools/schoolwalltest.mjs` passerar 3/3: källmodellens vägg-/takmått,
+öppen entré, solida bak-/gavelväggar, verkliga `farSegments` för alla väggar och
+stolpen samt flyttat växthus; tidigare mur utan kur är fortsatt möjlig.
+[Plan och verkliga kollisionssegment](../artifacts/157/native-summary.json).
+`tools/farwalk-check.mjs` har källans uppdaterade väg runt öständen, nytt
+murändprov och två kurprov; den breda historiska gånginventeringen körs inte om.
+`npm test` (96 moduler), `npm run build` och `git diff --check` passerar.
+
+Riktad faktisk byggd WebGL-scen i headless Chromium/SwiftShader, 1000×700,
+fast datum och samma två kameror före/efter. Bildparen är granskade:
+[mur före](../artifacts/157/before-wall.png) och
+[efter](../artifacts/157/after-wall.png),
+[entré före](../artifacts/157/before-shelter.png) och
+[efter](../artifacts/157/after-shelter.png). Kortare mur, tegelkur, platt tak,
+stolpe, fast bänk, papperskorg, plattor, flyttad skylt och flyttat växthus syns.
+Porten återanvänder befintliga mur-/tak-/ram-/kantstensbatcher och texturer.
+Ritanrop 58→58 i översikten och 40→41 vid entrén; trianglar
+351239→351511 och 317600→317968. Ingen ny materialbatch införs; ändrad
+geometri/placering ger annan synlighet i entrévyn. Inga sidfel eller externa anrop.
+[Byggidentitet, kameror och råresultat](../artifacts/157/browser-results.json).
+
+Sex gångprov använder den byggda appens riktiga `Navigation`, hållen W/Shift
+och 1/60-sekundssteg (6/6). Murens mitt och östände stoppar vid z −31,78;
+entrén når z −32,467 under taket; bakväggen stoppar vid z −33,08;
+västgaveln stoppar inifrån vid x 13,82; östpassagen når z −37,853.
+Föreversionen hindrade entrén och östpassagen med den gamla långa muren.
+Alla nya mått och placeringar är visuella antaganden, ingen inmätning eller
+fysisk telefonprofil. Evidensfilerna följer inte med publiceringspaketet.
+Skript, loggar och frysta byggen finns under
+`/tmp/kvarteret-orkester-20261023/evidence157/`. Dirigenten verifierar Pages
+samt integrerad publicerad vy före stängning.

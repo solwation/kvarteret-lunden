@@ -1,0 +1,304 @@
+[
+  {
+    "views": [
+      {
+        "name": "wall",
+        "camera": [
+          5,
+          4,
+          -20
+        ],
+        "target": [
+          12,
+          1.5,
+          -33
+        ],
+        "calls": 58,
+        "triangles": 351239
+      },
+      {
+        "name": "shelter",
+        "camera": [
+          18,
+          1.65,
+          -29
+        ],
+        "target": [
+          15.5,
+          1.2,
+          -33.2
+        ],
+        "calls": 40,
+        "triangles": 317600
+      }
+    ],
+    "walk": [
+      {
+        "name": "wall-centre",
+        "start": [
+          0,
+          -28
+        ],
+        "target": [
+          0,
+          -38
+        ],
+        "end": [
+          0,
+          0,
+          -31.78
+        ],
+        "reached": false,
+        "ok": true
+      },
+      {
+        "name": "wall-east",
+        "start": [
+          12.5,
+          -28
+        ],
+        "target": [
+          12.5,
+          -38
+        ],
+        "end": [
+          12.5,
+          0,
+          -31.78
+        ],
+        "reached": false,
+        "ok": true
+      },
+      {
+        "name": "enter",
+        "start": [
+          16.5,
+          -29
+        ],
+        "target": [
+          16.5,
+          -32.6
+        ],
+        "end": [
+          16.5,
+          0,
+          -31.78
+        ],
+        "reached": false,
+        "ok": false
+      },
+      {
+        "name": "back-wall",
+        "start": [
+          16.5,
+          -29
+        ],
+        "target": [
+          16.5,
+          -38
+        ],
+        "end": [
+          16.5,
+          0,
+          -31.78
+        ],
+        "reached": false,
+        "ok": false
+      },
+      {
+        "name": "west-gable",
+        "start": [
+          16.5,
+          -32.6
+        ],
+        "target": [
+          10,
+          -32.6
+        ],
+        "end": [
+          10.099999999999852,
+          0,
+          -32.6
+        ],
+        "reached": true,
+        "ok": false
+      },
+      {
+        "name": "east-passage",
+        "start": [
+          21.5,
+          -29
+        ],
+        "target": [
+          21.5,
+          -38
+        ],
+        "end": [
+          21.5,
+          0,
+          -31.78
+        ],
+        "reached": false,
+        "ok": false
+      }
+    ],
+    "version": "before",
+    "errors": [],
+    "external": [],
+    "build": {
+      "version": "e365fb89afcdd1bbf6bc4170",
+      "builtAt": 1792780188542
+    }
+  },
+  {
+    "views": [
+      {
+        "name": "wall",
+        "camera": [
+          5,
+          4,
+          -20
+        ],
+        "target": [
+          12,
+          1.5,
+          -33
+        ],
+        "calls": 58,
+        "triangles": 351511
+      },
+      {
+        "name": "shelter",
+        "camera": [
+          18,
+          1.65,
+          -29
+        ],
+        "target": [
+          15.5,
+          1.2,
+          -33.2
+        ],
+        "calls": 41,
+        "triangles": 317968
+      }
+    ],
+    "walk": [
+      {
+        "name": "wall-centre",
+        "start": [
+          0,
+          -28
+        ],
+        "target": [
+          0,
+          -38
+        ],
+        "end": [
+          9.828717505281883e-16,
+          0,
+          -31.78
+        ],
+        "reached": false,
+        "ok": true
+      },
+      {
+        "name": "wall-east",
+        "start": [
+          12.5,
+          -28
+        ],
+        "target": [
+          12.5,
+          -38
+        ],
+        "end": [
+          12.5,
+          0,
+          -31.78
+        ],
+        "reached": false,
+        "ok": true
+      },
+      {
+        "name": "enter",
+        "start": [
+          16.5,
+          -29
+        ],
+        "target": [
+          16.5,
+          -32.6
+        ],
+        "end": [
+          16.5,
+          0,
+          -32.46666666666668
+        ],
+        "reached": true,
+        "ok": true
+      },
+      {
+        "name": "back-wall",
+        "start": [
+          16.5,
+          -29
+        ],
+        "target": [
+          16.5,
+          -38
+        ],
+        "end": [
+          16.5,
+          0,
+          -33.08
+        ],
+        "reached": false,
+        "ok": true
+      },
+      {
+        "name": "west-gable",
+        "start": [
+          16.5,
+          -32.6
+        ],
+        "target": [
+          10,
+          -32.6
+        ],
+        "end": [
+          13.82,
+          0,
+          -32.6
+        ],
+        "reached": false,
+        "ok": true
+      },
+      {
+        "name": "east-passage",
+        "start": [
+          21.5,
+          -29
+        ],
+        "target": [
+          21.5,
+          -38
+        ],
+        "end": [
+          21.5,
+          0.2726214607756849,
+          -37.853333333332756
+        ],
+        "reached": true,
+        "ok": true
+      }
+    ],
+    "version": "after",
+    "errors": [],
+    "external": [],
+    "build": {
+      "version": "8753dcc49615fdd52bd446ff",
+      "builtAt": 1792780213668
+    }
+  }
+]

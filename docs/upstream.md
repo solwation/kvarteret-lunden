@@ -1856,3 +1856,26 @@ importeras inte. Inga nya beroenden, texturer, lampor, lagringsnycklar eller
 tjänster ingår. Befintlig attribution och licenser behålls. Låsta beroenden
 installerades med `npm ci` (0 kända sårbarheter). Verifiering och egna
 bilder finns i [verifieringsloggen](verification.md).
+
+
+## Busskur i skolmurens östra ände, #157
+
+Importerad från `a9776336eeaf4f9e98e384a9403db19acefea60c`
+([original #1534](https://github.com/solwation/lunden-3d-apartment/issues/1534)):
+ny `src/schoolwall.js`, berörda `SITE.school.wall.shelter`/växthus och
+`SITE.street.shelterPaving`/tidtabellstolpe/stenar/hållplatsskylt i
+`src/config.js`, motsvarande `schoolGrounds`/takstöd i `src/surroundings.js`,
+plattor i `src/street.js` och kollision i `src/farwalk.js`.
+Skolmuren kortas till x −26…13,6 och tolkas som 2 m hög; en tegelkur med
+indragen bakvägg, kort västgavel, plant tak på stolpe, fast bänk och väggpapperskorg
+ansluter österut till x 19,6. Växthuset flyttas från x 13…21 till x 0…8.
+Plattor och skylt ansluter hållplatsen till gatan. Alla nya mått/placeringar är
+visuella antaganden, inte inmätning.
+
+#146:s markkollision bevaras genom samma gemensamma väggplan som ritning och
+takgång: mur, kurväggar, stolpe och växthus är solida medan entré/östände är
+öppna. Originalets gångprov anpassas till `tools/farwalk-check.mjs` och ett
+riktat `tools/schoolwalltest.mjs`; originalets HTML-test, foton, resultatbilder,
+ändringslogg och utvecklingsdokument importeras inte. Befintliga materialbatcher
+återanvänds; inga nya texturer, beroenden, nätverkstjänster eller lagringsnycklar.
+Övriga hus och vegetation behålls. Se [verifieringen](verification.md#busskur-i-skolmurens-östra-ände-157).
