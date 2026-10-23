@@ -1,0 +1,236 @@
+{
+  "sourceCommit": "4aa3087a7478d6734593b96eece5c40d4ecbdd23",
+  "publicBaseline": "c26ca6abbd10872e2316a76d3ec51d0a9ad19636",
+  "browser": "Chromium 1208 headless, SwiftShader, desktop 1280x800, July",
+  "limitations": "Original HTML park fixture absent in public; historical source threshold <12000 is not a public gate. Public park geometry 10115 -> 12035 (+1920 reeds); no threshold changed. Separate bridge import #153 excluded from paired baseline.",
+  "results": [
+    {
+      "revision": "before",
+      "version": {
+        "version": "535a37c55f70735b14b51893",
+        "builtAt": 1792779042220
+      },
+      "eye": [
+        16.5,
+        -1.38,
+        123
+      ],
+      "target": [
+        -30,
+        -4.8,
+        130
+      ],
+      "walks": [
+        {
+          "start": 10,
+          "target": 32,
+          "end": [
+            31.86666666666717,
+            -5.491135673793913,
+            111
+          ],
+          "steps": 410,
+          "ok": true
+        },
+        {
+          "start": 32,
+          "target": 10,
+          "end": [
+            10.133333333332828,
+            -5.510916407338083,
+            111
+          ],
+          "steps": 410,
+          "ok": true
+        }
+      ],
+      "calls": 53,
+      "triangles": 405257,
+      "parkMeshes": [
+        {
+          "name": "park-paths-asphalt",
+          "triangles": 5749
+        },
+        {
+          "name": "park-paths",
+          "triangles": 2238
+        },
+        {
+          "name": "park-timber-bridge",
+          "triangles": 228
+        },
+        {
+          "name": "park-shore-growth",
+          "triangles": 1900
+        }
+      ],
+      "bridgeRecords": [
+        {
+          "kind": "road",
+          "ends": [
+            [
+              23.9,
+              100
+            ],
+            [
+              23.3,
+              145.8
+            ]
+          ],
+          "width": 7.2,
+          "slab": 0.45,
+          "pier": 0.75,
+          "foot": 1.8,
+          "x": 23.6,
+          "z": 122.9,
+          "dx": -0.013099312667987124,
+          "dz": 0.9999142003230209,
+          "len": 45.80392996239516,
+          "full": 45.80392996239516
+        },
+        {
+          "kind": "gc",
+          "ends": [
+            [
+              18.1,
+              101
+            ],
+            [
+              17.8,
+              146.5
+            ]
+          ],
+          "length": 40,
+          "width": 3,
+          "slab": 0.18,
+          "truss": 1.45,
+          "panels": 10,
+          "steel": 0.1,
+          "x": 17.950000000000003,
+          "z": 123.75,
+          "dx": -0.006593263280462223,
+          "dz": 0.9999782642034348,
+          "len": 40,
+          "full": 45.50098900024042
+        }
+      ],
+      "errors": [],
+      "external": [],
+      "pathsSha256": "87465fd807750ede30784ac96b91c8d91967a14739240e9890172822756c5fb1"
+    },
+    {
+      "revision": "after",
+      "version": {
+        "version": "f7a7b4675a0f520f0d901ab2",
+        "builtAt": 1792779097749
+      },
+      "eye": [
+        16.5,
+        -1.38,
+        123
+      ],
+      "target": [
+        -30,
+        -4.8,
+        130
+      ],
+      "walks": [
+        {
+          "start": 10,
+          "target": 32,
+          "end": [
+            31.86666666666717,
+            -5.491135673793913,
+            111
+          ],
+          "steps": 410,
+          "ok": true
+        },
+        {
+          "start": 32,
+          "target": 10,
+          "end": [
+            10.133333333332828,
+            -5.510916407338083,
+            111
+          ],
+          "steps": 410,
+          "ok": true
+        }
+      ],
+      "calls": 54,
+      "triangles": 422792,
+      "parkMeshes": [
+        {
+          "name": "park-paths-asphalt",
+          "triangles": 5749
+        },
+        {
+          "name": "park-paths",
+          "triangles": 2238
+        },
+        {
+          "name": "park-timber-bridge",
+          "triangles": 228
+        },
+        {
+          "name": "park-shore-growth",
+          "triangles": 3820
+        }
+      ],
+      "bridgeRecords": [
+        {
+          "kind": "road",
+          "ends": [
+            [
+              23.9,
+              100
+            ],
+            [
+              23.3,
+              145.8
+            ]
+          ],
+          "width": 7.2,
+          "slab": 0.45,
+          "pier": 0.75,
+          "foot": 1.8,
+          "x": 23.6,
+          "z": 122.9,
+          "dx": -0.013099312667987124,
+          "dz": 0.9999142003230209,
+          "len": 45.80392996239516,
+          "full": 45.80392996239516
+        },
+        {
+          "kind": "gc",
+          "ends": [
+            [
+              18.1,
+              101
+            ],
+            [
+              17.8,
+              146.5
+            ]
+          ],
+          "length": 40,
+          "width": 3,
+          "slab": 0.18,
+          "truss": 1.45,
+          "panels": 10,
+          "steel": 0.1,
+          "x": 17.950000000000003,
+          "z": 123.75,
+          "dx": -0.006593263280462223,
+          "dz": 0.9999782642034348,
+          "len": 40,
+          "full": 45.50098900024042
+        }
+      ],
+      "errors": [],
+      "external": [],
+      "pathsSha256": "87465fd807750ede30784ac96b91c8d91967a14739240e9890172822756c5fb1"
+    }
+  ]
+}

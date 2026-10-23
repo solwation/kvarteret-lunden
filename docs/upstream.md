@@ -1782,3 +1782,31 @@ vertexfärger inom de fyra befintliga materialbatcherna. Inga nya beroenden,
 resurser, nätverksanrop eller lagringsnycklar tillkommer. Brohasharna i
 `tools/riverfalltest.mjs` uppdateras till originalets nya granskade baslinje;
 parkstråkens hash behålls. Se [verifieringen](verification.md#vägbrons-räcken-och-trottoar-153).
+
+
+## Höje ås brovy med vass, #154
+
+Selektiv port från [originalets #1531](https://github.com/solwation/lunden-3d-apartment/issues/1531),
+exakt källa `4aa3087a7478d6734593b96eece5c40d4ecbdd23`.
+Importerade block: `SITE.river.widths`/`valleyWidths`,
+`SITE.riverPark.bridgeView` och dess `bridge-west`-trädfält i `src/config.js`,
+`riverAt`/`shoreEnd` i `src/riverbridge.js`, vegetation i `src/riverpark.js`
+och trädtyperna `weepingBirch`/`willow` i `src/surroundings.js`.
+Vattenfåran blir smalare vid broarna, med vass i vattenbrynet, tätare
+undervegetation och hängande trädkronor. Tidigare dalbredder behåller
+strandens yttre fotavtryck, gångvägen, bropelare och frigång; nivåer och
+fallet längs ån behålls. Alla nya bredder, arter och placeringar är
+visuella antaganden från originalets arkiverade referens.
+
+Publicens `trimApproach`/asfaltklippning behålls. Vägbrons geometri och
+färg från originalets #1530 hör till den separata publika #153; dess block
+ändras inte här. Originalets HTML-prov anpassas till
+`tools/riverbridgeviewtest.mjs` och den befintliga `tools/riverat-check.mjs`.
+Den ursprungliga jetpackpunkten blir en kontroll av torr bank och ståhöjd
+fyra meter från bromitt; inga spelmekaniker importeras.
+
+Inga originalfoton, resultatbilder, ändringsloggar, persondata, tjänster,
+nya beroenden eller lagringsnycklar ingår. Befintliga fyra parkbatcher och
+trädens instansmaterial återanvänds. Låsta beroenden installerades med
+`npm ci` (0 kända sårbarheter). Egna bildpar och verifiering finns i
+[verifieringsloggen](verification.md).

@@ -1803,3 +1803,54 @@ ny full navigationsinventering eller fysisk telefonprestanda. Alla nya mått och
 färger är visuella antaganden. Skript/loggar och båda frysta byggen finns utanför
 repot under `/tmp/kvarteret-orkester-20261023/evidence153/`. Dirigenten verifierar
 Pages och publicerad vy före stängning.
+
+
+## Höje ås brovy med vass, #154 (2026-10-23)
+
+Plan: ett avgränsat nativepaket för ånivåer, gång/frigång och vegetation;
+byggd före/efter-vy från GC-brons västkant, inklusive faktisk gång under
+båda broarna; obligatoriska `npm test` och `npm run build`. Ingen husvariant
+A/B/C/L har motsvarande åfåra; inga husgeometrier ändras.
+
+`node --test tools/riverbridgeviewtest.mjs tools/riverfalltest.mjs tools/southbanktest.mjs`
+passerar 14/14. Gångvägen vid z111 är torr med ståhöjd och kan gås
+10→32 och 32→10 i x-led. Originalets fyrameterspunkt kontrolleras som
+torr bank med ståhöjd under varje bro; publicen har ingen jetpack.
+240 vassruggar har fötterna på bank/botten, mer än en tredjedel i vatten,
+med blad ovan vattnet och fria gångvägar/däck. Hängbjörk och pil finns
+bland trädpunkterna; undervegetationen står ovan vattnet. Parkens fyra
+materialbatcher behålls. Befintliga fall-, strand-, ramp- och återhämtningsprov
+passerar. Icke-vattenbroarnas hashprov är oförändrat i denna port.
+
+Native före/efter ger exakt identiska höjder för 45 punkter längs gångstråket,
+samma broposter, däck/undersidor/vattennivåer, pelare och kartlagda gångvägar
+([invarianter](../artifacts/154/invariants.json)).
+`tools/riverat-check.mjs` passerar 20 000 åfrågor och 20 000 kollisioner;
+det tillkomna `valley`-fältet undantas när äldre returvärden jämförs mot
+referensalgoritmen. [Native-logg](../artifacts/154/native.log),
+[riverAt-logg](../artifacts/154/riverat.log). `npm test` passerar (94 moduler,
+publik isolering), liksom bygge och diffkontroll.
+
+Faktisk byggd Chromium/SwiftShader (headless, 1280×800, juli):
+public bas `c26ca6a`, bygge `535a37c55f70735b14b51893` före och
+`f7a7b4675a0f520f0d901ab2` efter. Kameran står på (16,5; −1,38; 123)
+och riktas mot (−30; −4,8; 130). Den verkliga navigationen
+går under broarna i båda riktningarna före/efter, med samma slutpunkter.
+Inga sidfel eller externa anrop. Det granskade bildparet visar smalare
+vattenfåra, vass, hängande trädkronor och tätare vegetation i fonden.
+
+Parkens geometri är 10 115→12 035 trianglar, exakt +1 920 för vassen;
+asfalt, grus och träbro har samma geometrimängder. Fyra parkbatcher
+behålls. Den parade vyn har 53→54 draw calls och 405 257→422 792
+ritade trianglar, när ytterligare trädgeometri blir synlig. Originalets
+HTML-prov har ett historiskt `<12000`-tak, men den fixturen och något
+motsvarande accepterat parktak finns inte i publicen. Publicens egna
+bevarade vägklippning ger 35 fler trianglar än källtaket; ingen gräns
+höjs och ingen geometri justeras enbart för detta historiska tak.
+
+Egna [före](../artifacts/154/before-gc-west.png)/[efter](../artifacts/154/after-gc-west.png)
+och [rådata](../artifacts/154/browser-results.json). Fulla arbetsloggar och
+browserkontrollen finns i `/tmp/kvarteret-orkester-20261023/evidence154/`.
+Den separata broporten #153 ingår inte i den parade baslinjen. Dirigenten
+integrerar den före #154 och kontrollerar sampublicerad livevy efter Pages.
+Ingen fysisk telefonprestanda eller oberoende uppmätning av referensfotot påstås.

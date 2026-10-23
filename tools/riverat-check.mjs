@@ -14,7 +14,9 @@ let seed=94;const rand=()=>((seed=(Math.imul(seed,1664525)+1013904223)>>>0)/4294
 const points=SITE.river.path.map(p=>[...p]);
 for(let i=1;i<SITE.river.path.length;i++)points.push(SITE.river.path[i].map((v,k)=>(v+SITE.river.path[i-1][k])/2));
 while(points.length<20000)points.push([-320+rand()*1000,-230+rand()*700]);
-for(const [x,z]of points){const ref=before.riverAt(x,z);assert.deepEqual(riverAt(x,z),ref);assert.deepEqual(riverAt(x,z),ref);}
+// #154: the new valley-width field extends the result; compare every pre-existing field to the reference algorithm.
+const withoutValley=({valley,...record})=>record;
+for(const [x,z]of points){const ref=before.riverAt(x,z);assert.deepEqual(withoutValley(riverAt(x,z)),ref);assert.deepEqual(withoutValley(riverAt(x,z)),ref);}
 console.log('PASS 20000 river records match exactly, including anchors, segment midpoints and repeated queries');
 
 const BODY={radius:.22,hurdle:.22,...PLAYER};

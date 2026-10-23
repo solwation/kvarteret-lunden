@@ -1,0 +1,22 @@
+✔ the under-bridge path remains dry, with standing clearance and walkable in both directions (193.051742ms)
+✔ the bridge view has grounded water-margin reeds, hanging trees and understory clear of paths (446.232699ms)
+✔ interpreted relative fall is tied to the checked source and preserves the road-bridge datum (2.13579ms)
+✔ rendered water vertices follow the same continuous downstream level as the terrain and navigation (92.995186ms)
+✔ the existing bridge meshes and mapped park paths are byte-for-byte unchanged from 387f802e (25.260688ms)
+✔ public recovery stays outside the wade barrier at every anchor (#91) and dry; outer terrain joins without a step (2.34249ms)
+✔ the timber deck and its ramp tops stay fixed while the front toes remain buried under the local shore (0.461698ms)
+✔ #91: the recovery from the bend at anchor14 (and every nearby start) lands outside the wade barrier (2.404689ms)
+✔ road and cross-section controls retain the sourced ground values and approximate registration (2.017991ms)
+✔ the sampled crest is continuous and rises to the plateau without the former false descent (140.169177ms)
+✔ both actual bank sides are lower than the road, with separately sourced profiles (0.372599ms)
+✔ bounded fades and the flat-crest edge have no discrete jumps; unsupported ground stays exact (1.607893ms)
+✔ both bridge decks, undersides and concrete/steel geometry retain their explicitly assumed datum (67.741798ms)
+✔ opt-in GC strips preserve their footprint and every triangle follows a folded reference terrain (2.23559ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 883.662452

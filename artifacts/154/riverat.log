@@ -1,0 +1,22 @@
+PASS 20000 river records match exactly, including anchors, segment midpoints and repeated queries
+PASS 20000 collision verdicts and resulting positions match exactly (131 contacts, endpoints, zero-length and height gates)
+{
+  "baseline": "0afb8bd05853e4bda079717d3d527a238bf82a3d",
+  "riverDistinct": {
+    "beforeMs": 47.099684000000025,
+    "afterMs": 27.392671000000064
+  },
+  "riverRepeated3": {
+    "beforeMs": 146.9159790000001,
+    "afterMs": 28.679848999999876
+  },
+  "collision": {
+    "beforeMs": 1.6032140000002073,
+    "afterMs": 1.1047100000000682
+  },
+  "collisionHypot": {
+    "before": 15587,
+    "after": 715
+  }
+}
+PASS timing checksums match; timings are diagnostic host measurements, not a phone-FPS acceptance threshold
