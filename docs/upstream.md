@@ -1995,3 +1995,29 @@ lagringsnycklar eller nätverksanrop tillkommer. © OpenStreetMap
 contributors, [ODbL/attribution](https://www.openstreetmap.org/copyright).
 `npm ci` gav 0 kända sårbarheter. Egna bilder och kontroller finns i
 [verifieringsloggen](verification.md).
+
+
+## Sammanhängande fjärrgräs i söder, #160
+
+Importerad från `0ff9d52fc8dc3ff61a347dd0b0d3008d7a60d946`
+([original #1552](https://github.com/solwation/lunden-3d-apartment/issues/1552)):
+enbart `grassMeanColor()` i `src/grass.js` och fjärrplans-/rampblocket i
+`src/southbackdrop.js`. Fjärrplanens vertexfärg beräknas från sommargräsets
+faktiska detaljtextur i linjär färgrymd, inklusive gräsmönstrets genomsnittliga
+blåtonsvärme. En 12 m lång ramp (visuellt antagande) möter den ritade rutnätskanten
+vid z 460 där den ligger över fjärrplanet −3,01 m.
+
+Publicens egen ritade kant är verifierad: huvudhöjningen finns kring x −102…−82,
+med topp −1,8438 m vid x −94, och en mycket liten höjning kring x −32…−28.
+Originalets ungefärliga spann används inte som mätvärde här. Anpassning: endast
+positiva höjdskillnader får ramp; övriga fält, höjdfunktioner, banker, hus och
+parkerings-/vägdata ändras inte. Allt slås samman i befintlig `south-land` med
+befintligt material; inga nya meshar, material, texturer eller ritanrop tillkommer.
+
+`tools/southfar-ground-test.mjs` testar riktad kant/färg. Gavelregressionsharnessen
+`tools/southgabletest.mjs` jämför nu aktuell markkod med endast den gamla gavelns
+väggloop som förevariant och samma deterministiska gräsfärgfixture i båda.
+Därmed kräver den fortsatt identisk mark mellan gavelvarianterna utan att frysa
+hela marken före denna godkända ändring. Originalets foton, resultatbilder,
+ändringslogg och övriga test-/dokumentfiler importeras inte. Inga persondata,
+tjänster, lagringsnycklar eller beroenden tillkommer. Se [verifieringen](verification.md#sammanhängande-fjärrgräs-i-söder-160).

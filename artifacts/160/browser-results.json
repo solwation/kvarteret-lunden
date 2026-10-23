@@ -1,0 +1,156 @@
+[
+  {
+    "camera": [
+      -80,
+      34,
+      420
+    ],
+    "target": [
+      -80,
+      -3,
+      475
+    ],
+    "localHour": 12,
+    "month": 7,
+    "calls": 16,
+    "triangles": 259208,
+    "textureCount": 43,
+    "grass": {
+      "size": [
+        256,
+        256
+      ],
+      "meanLinear": [
+        0.7966932987577737,
+        0.7966932987577737,
+        0.6883625291733392
+      ],
+      "summerBase": [
+        0.16513219449147767,
+        0.25818285291079235,
+        0.08021982030622662
+      ],
+      "expectedFarColor": [
+        0.1315597127605256,
+        0.20569254876819223,
+        0.05425396282389802
+      ],
+      "actualFarColor": [
+        0.21223075687885284,
+        0.38132601976394653,
+        0.10702310502529144
+      ],
+      "maxColorError": 0.1756334709957543
+    },
+    "meshes": [
+      {
+        "name": "south-facade",
+        "triangles": 3950
+      },
+      {
+        "name": "south-roof",
+        "triangles": 670
+      },
+      {
+        "name": "south-glass",
+        "triangles": 4104
+      },
+      {
+        "name": "south-land",
+        "triangles": 96198
+      },
+      {
+        "name": "south-trunks",
+        "triangles": 9.333333333333334
+      },
+      {
+        "name": "south-crowns",
+        "triangles": 36
+      }
+    ],
+    "version": "before",
+    "errors": [],
+    "external": [],
+    "build": {
+      "version": "51318a46c9d9cb578b5f5839",
+      "builtAt": 1792784119543
+    }
+  },
+  {
+    "camera": [
+      -80,
+      34,
+      420
+    ],
+    "target": [
+      -80,
+      -3,
+      475
+    ],
+    "localHour": 12,
+    "month": 7,
+    "calls": 16,
+    "triangles": 259304,
+    "textureCount": 43,
+    "grass": {
+      "size": [
+        256,
+        256
+      ],
+      "meanLinear": [
+        0.7966932987577737,
+        0.7966932987577737,
+        0.6883625291733392
+      ],
+      "summerBase": [
+        0.16513219449147767,
+        0.25818285291079235,
+        0.08021982030622662
+      ],
+      "expectedFarColor": [
+        0.1315597127605256,
+        0.20569254876819223,
+        0.05425396282389802
+      ],
+      "actualFarColor": [
+        0.13155971467494965,
+        0.20569254457950592,
+        0.0542539618909359
+      ],
+      "maxColorError": 4.188686314465784e-9
+    },
+    "meshes": [
+      {
+        "name": "south-facade",
+        "triangles": 3950
+      },
+      {
+        "name": "south-roof",
+        "triangles": 670
+      },
+      {
+        "name": "south-glass",
+        "triangles": 4104
+      },
+      {
+        "name": "south-land",
+        "triangles": 96294
+      },
+      {
+        "name": "south-trunks",
+        "triangles": 9.333333333333334
+      },
+      {
+        "name": "south-crowns",
+        "triangles": 36
+      }
+    ],
+    "version": "after",
+    "errors": [],
+    "external": [],
+    "build": {
+      "version": "8c49436b00dc1dfad5ddee64",
+      "builtAt": 1792784231082
+    }
+  }
+]

@@ -1,0 +1,403 @@
+{
+  "commit": "959c94f2c897342fe1e135ec866d84f39e733b4e",
+  "build": {
+    "version": "96c7b68499addd36f6bd6d6e",
+    "builtAt": 1792785023574
+  },
+  "endBuild": {
+    "version": "96c7b68499addd36f6bd6d6e",
+    "builtAt": 1792785023574
+  },
+  "assets": [
+    "http://localhost:8460/assets/viewer-96c7b68499addd36f6bd6d6e.js"
+  ],
+  "rows": [
+    {
+      "x": -30.60110949653476,
+      "z": 468.2078124851928,
+      "reference": "upper visible emitted grass face, including ramp above flat plane",
+      "grassLevels": [
+        -3.0077946716833566,
+        -3.009999990463257
+      ],
+      "upperGrass": -3.0077946716833566,
+      "asphaltLevels": [
+        -2.984999895095825
+      ],
+      "upperAsphalt": -2.984999895095825,
+      "roadMinusGrass": 0.022794776587531373,
+      "signedOffsetError": -0.002205223412468628,
+      "oldGround": -3.009999990463257,
+      "oldAsphalt": -2.984999895095825
+    },
+    {
+      "x": -30.00610949653476,
+      "z": 468.6003124851928,
+      "reference": "upper visible emitted grass face, including ramp above flat plane",
+      "grassLevels": [
+        -3.0077404509634675,
+        -3.009999990463257
+      ],
+      "upperGrass": -3.0077404509634675,
+      "asphaltLevels": [
+        -2.984999895095825
+      ],
+      "upperAsphalt": -2.984999895095825,
+      "roadMinusGrass": 0.022740555867642342,
+      "signedOffsetError": -0.002259444132357659,
+      "oldGround": -3.009999990463257,
+      "oldAsphalt": -2.984999895095825
+    },
+    {
+      "x": -29.411109496534756,
+      "z": 468.9928124851928,
+      "reference": "upper visible emitted grass face, including ramp above flat plane",
+      "grassLevels": [
+        -3.008428399763929,
+        -3.009999990463257
+      ],
+      "upperGrass": -3.008428399763929,
+      "asphaltLevels": [
+        -2.984999895095825
+      ],
+      "upperAsphalt": -2.984999895095825,
+      "roadMinusGrass": 0.023428504668103756,
+      "signedOffsetError": -0.0015714953318962457,
+      "oldGround": -3.009999990463257,
+      "oldAsphalt": -2.984999895095825
+    },
+    {
+      "x": -28.99351113444728,
+      "z": 469.18281944643996,
+      "reference": "upper visible emitted grass face, including ramp above flat plane",
+      "grassLevels": [
+        -3.0086086398670915,
+        -3.009999990463257
+      ],
+      "upperGrass": -3.0086086398670915,
+      "asphaltLevels": [
+        -2.984999895095825
+      ],
+      "upperAsphalt": -2.984999895095825,
+      "roadMinusGrass": 0.023608744771266288,
+      "signedOffsetError": -0.0013912552287337135,
+      "oldGround": -3.009999990463257,
+      "oldAsphalt": -2.984999895095825
+    },
+    {
+      "x": -28.38851113444728,
+      "z": 469.2978194464399,
+      "reference": "upper visible emitted grass face, including ramp above flat plane",
+      "grassLevels": [
+        -3.0090998162804254,
+        -3.009999990463257
+      ],
+      "upperGrass": -3.0090998162804254,
+      "asphaltLevels": [
+        -2.984999895095825
+      ],
+      "upperAsphalt": -2.984999895095825,
+      "roadMinusGrass": 0.024099921184600248,
+      "signedOffsetError": -0.0009000788153997533,
+      "oldGround": -3.009999990463257,
+      "oldAsphalt": -2.984999895095825
+    },
+    {
+      "x": -31.580000000000002,
+      "z": 469.61,
+      "reference": "upper visible emitted grass face, including ramp above flat plane",
+      "grassLevels": [
+        -3.009007220864305,
+        -3.009999990463257
+      ],
+      "upperGrass": -3.009007220864305,
+      "asphaltLevels": [
+        -2.984999895095825
+      ],
+      "upperAsphalt": -2.984999895095825,
+      "roadMinusGrass": 0.02400732576847986,
+      "signedOffsetError": -0.0009926742315201423,
+      "oldGround": -3.009999990463257,
+      "oldAsphalt": -2.984999895095825
+    },
+    {
+      "x": -31.785000000000004,
+      "z": 470.0025,
+      "reference": "upper visible emitted grass face, including ramp above flat plane",
+      "grassLevels": [
+        -3.009170259386295,
+        -3.009999990463257
+      ],
+      "upperGrass": -3.009170259386295,
+      "asphaltLevels": [
+        -2.984999895095825
+      ],
+      "upperAsphalt": -2.984999895095825,
+      "roadMinusGrass": 0.024170364290469593,
+      "signedOffsetError": -0.0008296357095304088,
+      "oldGround": -3.009999990463257,
+      "oldAsphalt": -2.984999895095825
+    },
+    {
+      "x": -30,
+      "z": 470.38,
+      "reference": "upper visible emitted grass face, including ramp above flat plane",
+      "grassLevels": [
+        -3.008923287391667,
+        -3.008923287391667,
+        -3.009999990463257
+      ],
+      "upperGrass": -3.008923287391667,
+      "asphaltLevels": [
+        -2.984999895095825,
+        -2.9849998950958394
+      ],
+      "upperAsphalt": -2.984999895095825,
+      "roadMinusGrass": 0.02392339229584195,
+      "signedOffsetError": -0.0010766077041580516,
+      "oldGround": -3.009999990463257,
+      "oldAsphalt": -2.9849998950958394
+    },
+    {
+      "x": -31.19,
+      "z": 470.395,
+      "reference": "upper visible emitted grass face, including ramp above flat plane",
+      "grassLevels": [
+        -3.0091999402642244,
+        -3.009999990463257
+      ],
+      "upperGrass": -3.0091999402642244,
+      "asphaltLevels": [
+        -2.984999895095825
+      ],
+      "upperAsphalt": -2.984999895095825,
+      "roadMinusGrass": 0.024200045168399242,
+      "signedOffsetError": -0.000799954831600759,
+      "oldGround": -3.009999990463257,
+      "oldAsphalt": -2.984999895095825
+    },
+    {
+      "x": -30.595,
+      "z": 470.7875,
+      "reference": "upper visible emitted grass face, including ramp above flat plane",
+      "grassLevels": [
+        -3.0092948699990956,
+        -3.009999990463257
+      ],
+      "upperGrass": -3.0092948699990956,
+      "asphaltLevels": [
+        -2.984999895095825
+      ],
+      "upperAsphalt": -2.984999895095825,
+      "roadMinusGrass": 0.024294974903270372,
+      "signedOffsetError": -0.0007050250967296293,
+      "oldGround": -3.009999990463257,
+      "oldAsphalt": -2.984999895095825
+    },
+    {
+      "x": -30,
+      "z": 471.18,
+      "reference": "upper visible emitted grass face, including ramp above flat plane",
+      "grassLevels": [
+        -3.0094549926121914,
+        -3.0094549926121914,
+        -3.009999990463257
+      ],
+      "upperGrass": -3.0094549926121914,
+      "asphaltLevels": [
+        -2.984999895095825,
+        -2.984999895095825
+      ],
+      "upperAsphalt": -2.984999895095825,
+      "roadMinusGrass": 0.02445509751636621,
+      "signedOffsetError": -0.0005449024836337926,
+      "oldGround": -3.009999990463257,
+      "oldAsphalt": -2.984999895095825
+    },
+    {
+      "x": -29.2,
+      "z": 471.18,
+      "reference": "upper visible emitted grass face, including ramp above flat plane",
+      "grassLevels": [
+        -3.0095912420749755,
+        -3.009999990463257
+      ],
+      "upperGrass": -3.0095912420749755,
+      "asphaltLevels": [
+        -2.984999895095825
+      ],
+      "upperAsphalt": -2.984999895095825,
+      "roadMinusGrass": 0.02459134697915033,
+      "signedOffsetError": -0.0004086530208496711,
+      "oldGround": -3.009999990463257,
+      "oldAsphalt": -2.984999895095825
+    },
+    {
+      "x": -30.8,
+      "z": 471.18,
+      "reference": "upper visible emitted grass face, including ramp above flat plane",
+      "grassLevels": [
+        -3.009523125489565,
+        -3.009999990463257
+      ],
+      "upperGrass": -3.009523125489565,
+      "asphaltLevels": [
+        -2.984999895095825
+      ],
+      "upperAsphalt": -2.984999895095825,
+      "roadMinusGrass": 0.024523230393739937,
+      "signedOffsetError": -0.00047676960626006487,
+      "oldGround": -3.009999990463257,
+      "oldAsphalt": -2.984999895095825
+    },
+    {
+      "x": -29.395,
+      "z": 471.295,
+      "reference": "upper visible emitted grass face, including ramp above flat plane",
+      "grassLevels": [
+        -3.009648566544058,
+        -3.009999990463257
+      ],
+      "upperGrass": -3.009648566544058,
+      "asphaltLevels": [
+        -2.984999895095825
+      ],
+      "upperAsphalt": -2.984999895095825,
+      "roadMinusGrass": 0.024648671448233017,
+      "signedOffsetError": -0.00035132855176698424,
+      "oldGround": -3.009999990463257,
+      "oldAsphalt": -2.984999895095825
+    },
+    {
+      "x": -28.79,
+      "z": 471.40999999999997,
+      "reference": "upper visible emitted grass face, including ramp above flat plane",
+      "grassLevels": [
+        -3.009754913449285,
+        -3.009999990463257
+      ],
+      "upperGrass": -3.009754913449285,
+      "asphaltLevels": [
+        -2.984999895095825
+      ],
+      "upperAsphalt": -2.984999895095825,
+      "roadMinusGrass": 0.024755018353459946,
+      "signedOffsetError": -0.0002449816465400559,
+      "oldGround": -3.009999990463257,
+      "oldAsphalt": -2.984999895095825
+    },
+    {
+      "x": -28.185,
+      "z": 471.525,
+      "reference": "upper visible emitted grass face, including ramp above flat plane",
+      "grassLevels": [
+        -3.0098421404758966,
+        -3.009999990463257
+      ],
+      "upperGrass": -3.0098421404758966,
+      "asphaltLevels": [
+        -2.984999895095825
+      ],
+      "upperAsphalt": -2.984999895095825,
+      "roadMinusGrass": 0.024842245380071404,
+      "signedOffsetError": -0.00015775461992859757,
+      "oldGround": -3.009999990463257,
+      "oldAsphalt": -2.984999895095825
+    },
+    {
+      "x": -28.38,
+      "z": 471.64,
+      "reference": "upper visible emitted grass face, including ramp above flat plane",
+      "grassLevels": [
+        -3.009880356788642,
+        -3.009999990463257
+      ],
+      "upperGrass": -3.009880356788642,
+      "asphaltLevels": [
+        -2.984999895095825
+      ],
+      "upperAsphalt": -2.984999895095825,
+      "roadMinusGrass": 0.02488046169281688,
+      "signedOffsetError": -0.00011953830718312158,
+      "oldGround": -3.009999990463257,
+      "oldAsphalt": -2.984999895095825
+    },
+    {
+      "x": -30,
+      "z": 471.98,
+      "reference": "upper visible emitted grass face, including ramp above flat plane",
+      "grassLevels": [
+        -3.009986697832744,
+        -3.009986697832744,
+        -3.009999990463257
+      ],
+      "upperGrass": -3.009986697832744,
+      "asphaltLevels": [
+        -2.984999895095825,
+        -2.984999895095825
+      ],
+      "upperAsphalt": -2.984999895095825,
+      "roadMinusGrass": 0.02498680273691889,
+      "signedOffsetError": -0.000013197263081111965,
+      "oldGround": -3.009999990463257,
+      "oldAsphalt": -2.984999895095825
+    }
+  ],
+  "counts": {
+    "world": 160,
+    "ring": 15,
+    "footway": 0
+  },
+  "batches": [
+    "south-facade",
+    "south-roof",
+    "south-glass",
+    "south-land",
+    "south-trunks",
+    "south-crowns"
+  ],
+  "textureCount": 43,
+  "grass": {
+    "meanLinear": [
+      0.7966932987577737,
+      0.7966932987577737,
+      0.6883625291733392
+    ],
+    "farColor": [
+      0.13155971467494965,
+      0.20569254457950592,
+      0.0542539618909359
+    ]
+  },
+  "view": {
+    "camera": [
+      -45,
+      28,
+      505
+    ],
+    "target": [
+      -55,
+      -3,
+      460
+    ],
+    "localHour": 12,
+    "month": 7,
+    "calls": 914,
+    "triangles": 950569
+  },
+  "summary": {
+    "roadMinusGrass": {
+      "min": 0.022740555867642342,
+      "max": 0.02498680273691889
+    },
+    "signedOffsetError": {
+      "min": -0.002259444132357659,
+      "max": -0.000013197263081111965
+    },
+    "maxAbsOffsetError": 0.002259444132357659,
+    "missing": 0,
+    "coveredOrIntersected": 0
+  },
+  "errors": [],
+  "external": []
+}

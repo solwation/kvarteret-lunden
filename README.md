@@ -38,6 +38,8 @@ HepCat-huset öster om Sankt Lars väg har valmat tak i norr, tegelgavel med num
 
 Vägbron över Höje å har en upphöjd trottoar och grönt kryssräcke på västsidan, vägräcken och svart plåträcke på östsidan (#153). GC-brons fackverk är grönt. Mått och färger är visuella fototolkningar; befintliga däcknivåer och frihöjder behålls.
 
+Fjärrmarken söder om terrängrutnätet följer sommargräsets beräknade medelfärg (#160). En kort ramp möter de små upphöjda kantdelarna vid z 460; rampens 12 m längd är ett visuellt antagande.
+
 Höje ås vatten, stränder och dalbotten följer ett svagt fall nedströms, tolkat från markreferenser. Vattenstånd och djup är fortsatt uppskattningar. Vid broarna har ån en smalare vattenfåra med vass, hängbjörk och pil samt tätare vegetation i fonden (#154). Bredder, arter och placeringar är visuella antaganden; gångvägen under broarna behålls.
 
 Träbrons jordramper har sammanhängande grässidor ner till den ritade återrängen vid båda landfästena (#107). Gånghöjder och vattenpassagen under bron är oförändrade.

@@ -2228,3 +2228,75 @@ isolering), liksom bygge och diffkontroll. Arbetsloggar och båda fokuserade
 browserverktygen finns i `/tmp/kvarteret-orkester-20261023/evidence152/`.
 Ingen fysisk telefonprestanda påstås. Dirigenten publicerar #152 och
 verifierar Pages/live före separat #160-integration och dess kombinationsprov.
+
+
+## Sammanhängande fjärrgräs i söder, #160
+
+2026-10-23: exakt källa `0ff9d52fc8dc3ff61a347dd0b0d3008d7a60d946`,
+publik baslinje `1512835ad6d7d80bcc4fc27fa0784da35a75d3dd`.
+Byggd föreversion `51318a46c9d9cb578b5f5839`, efterversion
+`8c49436b00dc1dfad5ddee64`. Endast gräsmedelfärg/fjärrplan och positiv
+12 m kantramp ändras. Ingen motsvarande husvariant i A/B/C/L berörs.
+
+`node --test tools/southfar-ground-test.mjs tools/southgabletest.mjs` passerar
+5/5: korrekt gammakonverterad gräsmedelfärg på en känd canvasfixture,
+ursprungliga höga/plana kantankare, endast positiv ramp inom 1 cm, oförändrade
+fyra ursprungliga geometri-/materialbatcher före träden samt isolerade gavelstrålar.
+Gavelharnessen bygger nu båda varianterna från aktuell markkod och byter enbart
+väggloopen mot pre-#158-koden från `674a299`; båda får samma neutrala gräsfixture
+för DOM-fri geometrijämförelse. Den jämför därmed gaveln utan att felaktigt
+avvisa senare godkända markändringar. `npm test`, `npm run build` och
+`git diff --check` passerar. [Native-rådata](../artifacts/160/native-summary.json).
+
+Publicens emitterade kant mättes före porten: 151 unika hörn vid z 460,
+huvudhöjning vid x −98/−94/−90/−86 och liten höjning vid x −30.
+Maxhöjd −1,843816876 m vid x −94 motsvarar 1,16618 m över fjärrplanet.
+[Ursprungliga kantvärden](../artifacts/160/edge-before.json).
+Rampen täcker x −102…−82 och −32…−28, z 460…472; endast överhöjd byggs.
+
+Byggd faktisk scen i headless Chromium/SwiftShader, 1000×700, samma sneda kamera,
+juli 12:00 Europe/Stockholm och visningens fasta klara dagsljus.
+[Före](../artifacts/160/before.png) och [efter](../artifacts/160/after.png)
+är granskade: den raka ljusa färgkanten är borta och högre kanten möter fjärrmarken.
+En befintlig byggnad täcker del av förgrunden; det numeriska provet täcker hela kanten.
+Ritanrop 16→16, texturer 43→43, ritade trianglar 259208→259304.
+`south-land` ökar 96198→96294 trianglar; samma fyra grundmeshar
+(`south-facade/roof/glass/land`) och två befintliga trädinstansmeshar är kvar.
+Det finns exakt en landmesh, inget nytt material. Inga sidfel eller externa anrop.
+
+En oberoende beräkning från den faktiska 256×256-gräskartan ger linjärt medel
+[0,7966933, 0,7966933, 0,6883625]. Fjärrfärgens RGB är
+[0,131559715, 0,205692545, 0,054253962], största avvikelse från förväntad
+sommarfärg × kartmedel × blåtonsvärme är 4,19×10⁻⁹ (före 0,1756).
+[Byggidentitet, kamera, färg och resurser](../artifacts/160/browser-results.json).
+
+En enda kompletterande byggd kontroll jämför strålar mot verklig `site-terrain`
+och ramptrianglarna i `south-land`, utan att förväxla rampens topp med planet under.
+Högsta sömfel är 0,003988 m. Rådatans ramputdrag omfattar trianglar med minst
+ett hörn mer än 4 mm över fjärrplanet (94 trianglar); hela landmeshens differens
+är 96 trianglar. Vid den separat arbetade #152-vägens sista krök är ramptoppen
+vid (−32,469) −3,009003 m och vid (−30,469) −3,008006 m, alltså cirka
+1–2 mm över planet; (−28,470) och (−27,471) ligger på planet.
+[Byggd kant-/rampprovning](../artifacts/160/ramp-built.json).
+Integrationsägaren gör minsta kombinerade väg-/rampprov efter #152:s integration.
+
+Rampens längd och fjärrfärgens jämna representation är visuella antaganden,
+ingen inmätning eller ny fysisk telefonprofil. Evidensfilerna följer inte med
+publiceringspaketet. Skript/loggar/frysta byggen finns under
+`/tmp/kvarteret-orkester-20261023/evidence160/`. Pages och publicerad berörd
+vy kontrolleras av dirigenten före stängning.
+
+
+Sampublicering med #152 verifierad på byggversion `96c7b68499addd36f6bd6d6e`.
+De 18 sparade kontaktpunkterna mäts mot den **översta synliga** gräsytan,
+inklusive den lilla rampen. Asfalt ligger 22,740556–24,986803 mm över gräset;
+signerad ändring från tidigare 25 mm är −2,259444…−0,013197 mm. Ingen punkt
+saknar stöd och ingen asfalt skärs eller döljs av rampen. Den granskade
+[julivyn](../artifacts/160/combined-july.png) visar sammanhängande gräs/asfalt;
+[rådata](../artifacts/160/combined-results.json) sparar alla punkter och byggidentitet.
+Fyra kärnbatcher och två befintliga trädinstansmeshar, 43 texturer samt
+World 160 vägarmaturer/15 ring/0 gångväg bevaras. Denna nya kameras 914 anrop
+är ingen före/efterjämförelse. Inga sidfel eller externa anrop. Inga
+produktjusteringar görs för den lilla avsiktliga skillnaden i dekallyft.
+Integrerade nativeprov för mark/gavlar/ring/västväg passerar 13/13,
+liksom `npm test` (97 moduler), bygge och diffkontroll.

@@ -9,7 +9,13 @@ import {SITE} from '../src/config.js';
 const baseline='674a299',url=new URL('../src/southbackdrop.js',import.meta.url);
 const load=async text=>{assert(text.includes(' yield .9;'));text=text.replace(' yield .9;',' return group;'); // stop after the four real mesh batches, before canvas leaf-atlas/trees
  text=text.replace(/from\s+(['"])([^'"]+)\1/g,(_,q,dep)=>`from ${q}${dep.startsWith('.')?new URL(dep,url).href:import.meta.resolve(dep)}${q}`);return import('data:text/javascript;base64,'+Buffer.from(text).toString('base64'));};
-const old=await load(execFileSync('git',['show',`${baseline}:src/southbackdrop.js`],{encoding:'utf8'})),current=await load(readFileSync(url,'utf8'));
+// #160: isolate the gable change against today's land code; later approved grass/ramp changes are shared inputs.
+const today=readFileSync(url,'utf8'),historical=execFileSync('git',['show',`${baseline}:src/southbackdrop.js`],{encoding:'utf8'});
+const oldWall=historical.slice(historical.indexOf('  for(const [ring,hole]'),historical.indexOf('    if(b.levels<4)',historical.indexOf('  for(const [ring,hole]')));
+const start=today.indexOf('  for(const [ring,hole]'),end=today.indexOf('    if(b.levels<4)',start);
+assert(start>=0&&end>start&&oldWall.includes('roofHeight(a)'));
+const neutral=text=>text.replace("import { grassMeanColor } from './grass.js';", "const grassMeanColor=()=>0x779955; // deterministic geometry-only fixture, no canvas");
+const old=await load(neutral(today.slice(0,start)+oldWall+today.slice(end))),current=await load(neutral(today));
 const build=m=>m.buildSouthBackdrop(()=>0),before=build(old),after=build(current),hash=g=>{const h=createHash('sha256');for(const k of Object.keys(g.attributes).sort())h.update(k).update(Buffer.from(g.attributes[k].array.buffer));return h.digest('hex');};
 const summary={baseline,sourceCommit:'5ba0493e58576eba70349c63593990373a607eaf',edges:[],unchanged:{}};
 
