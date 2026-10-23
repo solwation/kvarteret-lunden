@@ -1,0 +1,3 @@
+npm notice run kvarteret-lunden@0.1.0 build
+npm notice run node tools/build.mjs
+Static site built in dist/: cf63d599b7a51acbc39e82a9

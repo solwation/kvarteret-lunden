@@ -2300,3 +2300,55 @@ World 160 vägarmaturer/15 ring/0 gångväg bevaras. Denna nya kameras 914 anrop
 produktjusteringar görs för den lilla avsiktliga skillnaden i dekallyft.
 Integrerade nativeprov för mark/gavlar/ring/västväg passerar 13/13,
 liksom `npm test` (97 moduler), bygge och diffkontroll.
+
+## Brofäste och antagen parkering (#161)
+
+Källa `f9ef2cc0f527af9423b1e5f366af868ae013e9ba`, förebas `c4a37167`.
+Byggda revisioner `96c7b68499addd36f6bd6d6e` → `cf63d599b7a51acbc39e82a9`.
+Tre riktade [nativeprov](../artifacts/161/native.log) passerar: hela rutor och
+anslutning, markföljande refug med utåtvända sidor/fria gångvägar samt
+markföljande zebraränder. 16 hela 2,5×5 m-rutor ryms mot antagen kapacitet 25;
+de gamla lotterna behåller 36 respektive 10 rutor. Refugen ligger 14,5 cm över
+marken (12 cm över modellens asfaltlyft), med två gula pollare och mer än en
+meters fri väg på båda sidor. Den är visuell; provet påstår inte ny fysisk
+kollision eller verifierad tillgänglighetsstandard. Inga nya stolpar ligger på
+mappade gångvägar.
+
+Byggd headless Chromium i juli, samma kameror/tid före och efter:
+[brofäste före](../artifacts/161/desktop-before-bridgehead.png) /
+[efter](../artifacts/161/desktop-after-bridgehead.png),
+[parkering före](../artifacts/161/desktop-before-parking.png) /
+[efter](../artifacts/161/desktop-after-parking.png), samt
+[Android efter](../artifacts/161/android-after-bridgehead.png).
+Bilderna är egna och granskade; antagen parkering, fyra zebraränder,
+refug/pollare, blå skyltar och enfärgad orange flagga syns.
+31 vertikala rays mäter mot den faktiskt byggda terrängmeshen: 12 randprov,
+4 refugprov och 15 parkeringsprov. Maxfel mot respektive avsiktligt marklyft
+45/145/20 mm är 0,0912/0,2308/0,000132 mm; ingen yta saknar markstöd.
+
+Den befintliga offentliga Androidgrinden hålls: hela östcampus inklusive
+access/instanser ökar 39 548 → 40 022 trianglar (+474), under oförändrade
+40 843 med marginal 821. Alla tio campusmeshar bevaras, `east-access`
+11 067 → 11 541. Desktophelgruppen är 81 207 → 81 681 (diagnostik, inget nytt
+tak). Street går 22 → 28 meshar genom sex nya skylt-/flaggfaces; befintliga
+materialbatcher för refug, pollare och ränder återanvänds. Uppmätta scenanrop
+för brofäste är desktop 339 → 345 och Android 49 → 56; parkeringskameran
+40 → 47. Detta är faktiska kamerautfall, inte en ny global budget eller
+påstående om oförändrade scenanrop.
+
+Worlds vägarmaturer går 160 → 159 med befintlig lot-exkludering. En separat
+[källbunden kontroll utan träd/befintliga armaturer](../artifacts/161/lamp-diff.json)
+ger 171 → 170, endast kandidaten för way 44447967 vid
+`(52.40507129450392, 67.29084650491701)`, yaw `2.9770831068702743`, försvinner
+inne i nya loten; inga kandidater tillkommer. Inga omplaceringar eller
+specialregler införs. Harnessen hade ett extra, felaktigt antagande om identiskt
+World-antal; efter att detta identifierats bedömdes redan sparade gröna rays,
+budgetar och bilder direkt, utan fler browserprofiler.
+
+[Rå browserdata](../artifacts/161/browser-results.json) och
+[sammanställda rays/budgetar](../artifacts/161/summary.json) sparar byggversioner,
+kameror och resultat. Inga sidfel eller externa anrop i någon profil.
+[`npm test`](../artifacts/161/npm-test.log) (97 moduler) och
+[`npm run build`](../artifacts/161/after-build.log) passerar.
+Ingen bred inventering, historisk originalbudget eller fysisk FPS-mätning görs.
+Publicering och separat livekontroll hanteras av dirigenten.

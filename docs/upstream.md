@@ -2021,3 +2021,25 @@ Därmed kräver den fortsatt identisk mark mellan gavelvarianterna utan att frys
 hela marken före denna godkända ändring. Originalets foton, resultatbilder,
 ändringslogg och övriga test-/dokumentfiler importeras inte. Inga persondata,
 tjänster, lagringsnycklar eller beroenden tillkommer. Se [verifieringen](verification.md#sammanhängande-fjärrgräs-i-söder-160).
+
+## Brofäste och antagen parkering framför Realgymnasiet (#161)
+
+Selektiv källa: `solwation/lunden-3d-apartment` commit
+`f9ef2cc0f527af9423b1e5f366af868ae013e9ba` (original #1554).
+Endast två nya `SITE.east.access`-poster, `SITE.street.bridgehead` och tillhörande
+geometri i `src/street.js` överförs. Konturer, körgång, nominell kapacitet 25,
+asfalt, övergångsställe, refug, pollare, skyltar och flaggplacering är visuella
+antaganden från källans referensbilder, inte OSM-verifierade uppgifter.
+Körgången ansluter till befintliga kartvägen 44447967.
+
+Publicens `parkinglayout.js` och befintliga parkeringsytor används oförändrade:
+16 hela rutor ryms, utan bilar, bilmodell eller `fill`-hjälpare. Flaggan är
+anpassad till enbart orange färg utan text eller varumärke. Markföljande
+zebraränder, refug och pollare delar befintliga materialbatcher; de tre nya
+skyltarna/flaggorna har totalt sex sidmeshar. Refugen är visuell som i källan;
+ingen ny kollisionsregel införs. `tools/bridgehead1554test.mjs` ersätter källans
+HTML-prov med tre offentliga komponentprov, utan bil-/originalbudgetberoenden.
+Befintlig lot-regel utesluter en vägarmatur inne i den nya konturen.
+
+Inga foton, originalresultatbilder, ändringsloggar, persondata, tjänster,
+lagringsnycklar eller beroenden importeras. Se [verifiering](verification.md#brofäste-och-antagen-parkering-161).

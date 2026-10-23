@@ -1,0 +1,4 @@
+npm notice run kvarteret-lunden@0.1.0 test
+npm notice run node tools/verify.mjs
+PASS: 97 modules audited, import graph bundles, two architectural floor plans, same-origin network policy.
+PASS: app identity/start/scope, Apple icon, PNG dimensions and Android icon declarations.

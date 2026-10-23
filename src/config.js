@@ -352,6 +352,13 @@ export const SITE = {
     shelterPaving: { x0: 8.5, x1: 22.5, lift: 0.02, step: 0.5, curb: 0.1, behind: 2.5 }, // `behind`: m further north past the shelter's open end
     timetable: { at: [21.3, -31.5], w: 0.38, d: 0.24, h: 1.85 },
     stones: [[22.4, -33.3, 0.55], [25.6, -33.8, 0.5]], // [x, z, radius]
+    // Assumed from upstream reference imagery; all positions and dimensions are guess.
+    bridgehead: {
+      crossings: [{ x0: 21.4, x1: 28.4, z0: 79.5, z1: 82.5, axis: 'x' }],
+      island: { x0: 24.1, x1: 25.7, z0: 78.3, z1: 83.7, h: 0.12, lift: 0.025, bollards: [[24.9, 78.9], [24.9, 83.1]], bollardH: 0.8, bollardR: 0.05 },
+      signs: [[29.4, 78.4, 0], [20.4, 83.6, 0]], signY: 2.3, // [x, z, yaw°], on the pavements either side of the road, sign face centre height
+      flag: { at: [76.5, 62], pole: 6.4, w: 0.9, h: 2.8, yaw: 0 }, // a banner hanging from the top of the pole
+    },
     trafficLight: { x: 8.6, z: -23.5 }, warnings: [[13.2, -23.0], [10.6, -23.2]],
     cobbles: { x0: 17.2, x1: 19.5, z0: -17.5, z1: -12.5 }, // inside the corner, by the end of our car park
     leaves: { n: 1400, months: [9, 10, 11], areas: [[-60, 12, -24, -18], [-30, 10, -32.1, -30.05], [19, 21, -12, 12]] },
@@ -966,6 +973,9 @@ export const SITE = {
       {"source":"145221567","surface":"asphalt","polygon":[[68.21,-88.35],[128.32,-87.15],[128.15,-66.1],[105.93,-66.55],[105.74,-57.72],[92.49,-57.98],[92.39,-52.39],[71.71,-52.8],[71.23,-70.14],[68.21,-70.2],[68.21,-88.35]]},
       {"source":"145221572","surface":"paved","polygon":[[76.99,-48.5],[86.3,-48.31],[86.13,-39.9],[76.82,-40.09],[76.99,-48.5]]},
       {"source":"145221740","surface":"asphalt","polygon":[[130.35,-23.46],[147.34,-3.67],[126.01,24.18],[107.98,25.63],[89.73,17.57],[89.78,-8.74],[115.39,-8.64],[130.35,-23.46]]},
+      // Assumed outline, aisle and capacity; no OSM parking outline. Whole bays only, no cars.
+      {"source":"guess-1554","name":"Parkering framför Realgymnasiet (guess)","surface":"asphalt","surfaceSource":"guess","capacity":25,"capacitySource":"guess","polygon":[[30.5,59.2],[75,59.2],[75,74.8],[30.5,74.8]]},
+      {"source":"guess-1554-aisle","name":"Parkeringsgång framför Realgymnasiet (guess)","surface":"asphalt","surfaceSource":"guess","path":[[31.5,65.4],[52.88,64.43]],"w":4.5},
       {"source":"94054863","surface":"paved","polygon":[[24.22,-78.12],[61.31,-77.75],[61.01,-40.76],[23.92,-41.13],[24.22,-78.12]]},
       {"source":"145221570","surface":"asphalt","polygon":[[-18.01,-53.57],[15.89,-52.58],[15.76,-71.33],[-38.89,-70.68],[-38.79,-53.67],[-18.01,-53.57]]},
     ],

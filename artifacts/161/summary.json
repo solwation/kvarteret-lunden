@@ -1,0 +1,709 @@
+{
+  "beforeBuild": {
+    "version": "96c7b68499addd36f6bd6d6e",
+    "builtAt": 1792786123793
+  },
+  "afterBuild": {
+    "version": "cf63d599b7a51acbc39e82a9",
+    "builtAt": 1792786389996
+  },
+  "budgets": [
+    {
+      "profile": "desktop",
+      "revision": "before",
+      "triangles": 81207,
+      "views": [
+        {
+          "name": "bridgehead",
+          "eye": [
+            13,
+            8,
+            102
+          ],
+          "target": [
+            42,
+            2,
+            67
+          ],
+          "calls": 339,
+          "triangles": 609540
+        },
+        {
+          "name": "parking",
+          "eye": [
+            22,
+            12,
+            88
+          ],
+          "target": [
+            53,
+            1,
+            62
+          ],
+          "calls": 40,
+          "triangles": 426500
+        }
+      ]
+    },
+    {
+      "profile": "desktop",
+      "revision": "after",
+      "triangles": 81681,
+      "views": [
+        {
+          "name": "bridgehead",
+          "eye": [
+            13,
+            8,
+            102
+          ],
+          "target": [
+            42,
+            2,
+            67
+          ],
+          "calls": 345,
+          "triangles": 610044
+        },
+        {
+          "name": "parking",
+          "eye": [
+            22,
+            12,
+            88
+          ],
+          "target": [
+            53,
+            1,
+            62
+          ],
+          "calls": 47,
+          "triangles": 427176
+        }
+      ]
+    },
+    {
+      "profile": "android",
+      "revision": "before",
+      "triangles": 39548,
+      "views": [
+        {
+          "name": "bridgehead",
+          "eye": [
+            13,
+            8,
+            102
+          ],
+          "target": [
+            42,
+            2,
+            67
+          ],
+          "calls": 49,
+          "triangles": 436993
+        }
+      ]
+    },
+    {
+      "profile": "android",
+      "revision": "after",
+      "triangles": 40022,
+      "views": [
+        {
+          "name": "bridgehead",
+          "eye": [
+            13,
+            8,
+            102
+          ],
+          "target": [
+            42,
+            2,
+            67
+          ],
+          "calls": 56,
+          "triangles": 437669
+        }
+      ]
+    }
+  ],
+  "measured": [
+    {
+      "kind": "crossing",
+      "x": 21.9,
+      "z": 79.75,
+      "ground": -2.988427297924517,
+      "hits": [
+        {
+          "name": "",
+          "y": -2.9433693880588123,
+          "color": 15658730,
+          "vertexColors": false
+        }
+      ],
+      "expectedLift": 0.045,
+      "error": 5.790986570446133e-05
+    },
+    {
+      "kind": "crossing",
+      "x": 21.9,
+      "z": 81,
+      "ground": -2.9873086677536946,
+      "hits": [
+        {
+          "name": "",
+          "y": -2.9422507280858525,
+          "color": 15658730,
+          "vertexColors": false
+        },
+        {
+          "name": "",
+          "y": -2.9422507280858525,
+          "color": 15658730,
+          "vertexColors": false
+        }
+      ],
+      "expectedLift": 0.045,
+      "error": 5.793966784210791e-05
+    },
+    {
+      "kind": "crossing",
+      "x": 21.9,
+      "z": 82.25,
+      "ground": -2.9868224793059284,
+      "hits": [
+        {
+          "name": "",
+          "y": -2.9419136041984473,
+          "color": 15658730,
+          "vertexColors": false
+        }
+      ],
+      "expectedLift": 0.045,
+      "error": 9.112489251890399e-05
+    },
+    {
+      "kind": "crossing",
+      "x": 22.9,
+      "z": 79.75,
+      "ground": -2.9865970969200077,
+      "hits": [
+        {
+          "name": "",
+          "y": -2.941597103344975,
+          "color": 15658730,
+          "vertexColors": false
+        }
+      ],
+      "expectedLift": 0.045,
+      "error": 6.424967294305084e-09
+    },
+    {
+      "kind": "crossing",
+      "x": 22.9,
+      "z": 81,
+      "ground": -2.9854784667491856,
+      "hits": [
+        {
+          "name": "",
+          "y": -2.9404677145195848,
+          "color": 15658730,
+          "vertexColors": false
+        },
+        {
+          "name": "",
+          "y": -2.9404677145195848,
+          "color": 15658730,
+          "vertexColors": false
+        }
+      ],
+      "expectedLift": 0.045,
+      "error": 1.0752229600827223e-05
+    },
+    {
+      "kind": "crossing",
+      "x": 22.9,
+      "z": 82.25,
+      "ground": -2.9850240767002134,
+      "hits": [
+        {
+          "name": "",
+          "y": -2.9400240175058627,
+          "color": 15658730,
+          "vertexColors": false
+        }
+      ],
+      "expectedLift": 0.045,
+      "error": 5.919435068502121e-08
+    },
+    {
+      "kind": "crossing",
+      "x": 26.9,
+      "z": 79.75,
+      "ground": -2.9799000442028074,
+      "hits": [
+        {
+          "name": "",
+          "y": -2.934900045168064,
+          "color": 15658730,
+          "vertexColors": false
+        }
+      ],
+      "expectedLift": 0.045,
+      "error": 9.652563887074805e-10
+    },
+    {
+      "kind": "crossing",
+      "x": 26.9,
+      "z": 81,
+      "ground": -2.9786036431789427,
+      "hits": [
+        {
+          "name": "",
+          "y": -2.9336177108618386,
+          "color": 15658730,
+          "vertexColors": false
+        },
+        {
+          "name": "",
+          "y": -2.9336177108618386,
+          "color": 15658730,
+          "vertexColors": false
+        }
+      ],
+      "expectedLift": 0.045,
+      "error": 1.406768289598237e-05
+    },
+    {
+      "kind": "crossing",
+      "x": 26.9,
+      "z": 82.25,
+      "ground": -2.9788344115018788,
+      "hits": [
+        {
+          "name": "",
+          "y": -2.9338344334000794,
+          "color": 15658730,
+          "vertexColors": false
+        }
+      ],
+      "expectedLift": 0.045,
+      "error": 2.1898200655567912e-08
+    },
+    {
+      "kind": "crossing",
+      "x": 27.9,
+      "z": 79.75,
+      "ground": -2.9793053686618833,
+      "hits": [
+        {
+          "name": "",
+          "y": -2.9343194959279515,
+          "color": 15658730,
+          "vertexColors": false
+        }
+      ],
+      "expectedLift": 0.045,
+      "error": 1.4127266068156286e-05
+    },
+    {
+      "kind": "crossing",
+      "x": 27.9,
+      "z": 81,
+      "ground": -2.9781774640083256,
+      "hits": [
+        {
+          "name": "",
+          "y": -2.93317747100555,
+          "color": 15658730,
+          "vertexColors": false
+        },
+        {
+          "name": "",
+          "y": -2.93317747100555,
+          "color": 15658730,
+          "vertexColors": false
+        }
+      ],
+      "expectedLift": 0.045,
+      "error": 6.9972242028315534e-09
+    },
+    {
+      "kind": "crossing",
+      "x": 27.9,
+      "z": 82.25,
+      "ground": -2.978426954150194,
+      "hits": [
+        {
+          "name": "",
+          "y": -2.933426976048395,
+          "color": 15658730,
+          "vertexColors": false
+        }
+      ],
+      "expectedLift": 0.045,
+      "error": 2.1898200655567912e-08
+    },
+    {
+      "kind": "island",
+      "x": 24.15,
+      "z": 78.35,
+      "ground": -2.9854657024145013,
+      "hits": [
+        {
+          "name": "",
+          "y": -2.8405381586501903,
+          "color": 11118498,
+          "vertexColors": false
+        }
+      ],
+      "expectedLift": 0.145,
+      "error": 7.245623568905013e-05
+    },
+    {
+      "kind": "island",
+      "x": 24.15,
+      "z": 83.65,
+      "ground": -2.9856456965208054,
+      "hits": [
+        {
+          "name": "",
+          "y": -2.8408498526137436,
+          "color": 11118498,
+          "vertexColors": false
+        }
+      ],
+      "expectedLift": 0.145,
+      "error": 0.0002041560929381958
+    },
+    {
+      "kind": "island",
+      "x": 25.65,
+      "z": 78.35,
+      "ground": -2.9826045900583154,
+      "hits": [
+        {
+          "name": "",
+          "y": -2.8376771363830926,
+          "color": 11118498,
+          "vertexColors": false
+        }
+      ],
+      "expectedLift": 0.145,
+      "error": 7.254632477723955e-05
+    },
+    {
+      "kind": "island",
+      "x": 25.65,
+      "z": 83.65,
+      "ground": -2.9853318542241993,
+      "hits": [
+        {
+          "name": "",
+          "y": -2.8405626328002143,
+          "color": 11118498,
+          "vertexColors": false
+        }
+      ],
+      "expectedLift": 0.145,
+      "error": 0.00023077857601491725
+    },
+    {
+      "kind": "parking",
+      "x": 33,
+      "z": 60,
+      "ground": -3.009999990463257,
+      "hits": [
+        {
+          "name": "east-access",
+          "y": -2.990000009536743,
+          "color": 16777215,
+          "vertexColors": true
+        }
+      ],
+      "expectedLift": 0.02,
+      "error": 1.9073486328541334e-08
+    },
+    {
+      "kind": "parking",
+      "x": 33,
+      "z": 65,
+      "ground": -3.009999990463257,
+      "hits": [
+        {
+          "name": "east-access",
+          "y": -2.984999895095825,
+          "color": 16777215,
+          "vertexColors": true
+        },
+        {
+          "name": "east-access",
+          "y": -2.990000009536743,
+          "color": 16777215,
+          "vertexColors": true
+        }
+      ],
+      "expectedLift": 0.02,
+      "error": 1.9073486328541334e-08
+    },
+    {
+      "kind": "parking",
+      "x": 33,
+      "z": 73,
+      "ground": -3.005847439982972,
+      "hits": [
+        {
+          "name": "east-access",
+          "y": -2.9858474590564583,
+          "color": 16777215,
+          "vertexColors": true
+        }
+      ],
+      "expectedLift": 0.02,
+      "error": 1.9073486328541334e-08
+    },
+    {
+      "kind": "parking",
+      "x": 43,
+      "z": 60,
+      "ground": -3.009999990463257,
+      "hits": [
+        {
+          "name": "east-access",
+          "y": -2.990000009536743,
+          "color": 16777215,
+          "vertexColors": true
+        }
+      ],
+      "expectedLift": 0.02,
+      "error": 1.9073486328541334e-08
+    },
+    {
+      "kind": "parking",
+      "x": 43,
+      "z": 65,
+      "ground": -3.009999990463257,
+      "hits": [
+        {
+          "name": "east-access",
+          "y": -2.984999895095825,
+          "color": 16777215,
+          "vertexColors": true
+        },
+        {
+          "name": "east-access",
+          "y": -2.990000009536743,
+          "color": 16777215,
+          "vertexColors": true
+        },
+        {
+          "name": "east-access",
+          "y": -2.9900000095367574,
+          "color": 16777215,
+          "vertexColors": true
+        }
+      ],
+      "expectedLift": 0.02,
+      "error": 1.9073486328541334e-08
+    },
+    {
+      "kind": "parking",
+      "x": 43,
+      "z": 73,
+      "ground": -3.0077884197235107,
+      "hits": [
+        {
+          "name": "east-access",
+          "y": -2.987788438796997,
+          "color": 16777215,
+          "vertexColors": true
+        },
+        {
+          "name": "east-access",
+          "y": -2.987788438796997,
+          "color": 16777215,
+          "vertexColors": true
+        }
+      ],
+      "expectedLift": 0.02,
+      "error": 1.9073486328541334e-08
+    },
+    {
+      "kind": "parking",
+      "x": 53,
+      "z": 60,
+      "ground": -2.9276053309440613,
+      "hits": [
+        {
+          "name": "east-access",
+          "y": -2.9076052857121937,
+          "color": 16777215,
+          "vertexColors": true
+        }
+      ],
+      "expectedLift": 0.02,
+      "error": 4.5231867602107956e-08
+    },
+    {
+      "kind": "parking",
+      "x": 53,
+      "z": 65,
+      "ground": -2.9699849486351013,
+      "hits": [
+        {
+          "name": "east-access",
+          "y": -2.942706675283034,
+          "color": 16777215,
+          "vertexColors": true
+        },
+        {
+          "name": "east-access",
+          "y": -2.9499849677085876,
+          "color": 16777215,
+          "vertexColors": true
+        }
+      ],
+      "expectedLift": 0.02,
+      "error": 1.9073486328541334e-08
+    },
+    {
+      "kind": "parking",
+      "x": 53,
+      "z": 73,
+      "ground": -2.9924936294555664,
+      "hits": [
+        {
+          "name": "east-access",
+          "y": -2.9724936485290527,
+          "color": 16777215,
+          "vertexColors": true
+        }
+      ],
+      "expectedLift": 0.02,
+      "error": 1.9073486328541334e-08
+    },
+    {
+      "kind": "parking",
+      "x": 63,
+      "z": 60,
+      "ground": -2.86989027261734,
+      "hits": [
+        {
+          "name": "east-access",
+          "y": -2.849890247222959,
+          "color": 16777215,
+          "vertexColors": true
+        }
+      ],
+      "expectedLift": 0.02,
+      "error": 2.5394381281823586e-08
+    },
+    {
+      "kind": "parking",
+      "x": 63,
+      "z": 65,
+      "ground": -2.9891965985298157,
+      "hits": [
+        {
+          "name": "east-access",
+          "y": -2.9576461205060127,
+          "color": 16777215,
+          "vertexColors": true
+        },
+        {
+          "name": "east-access",
+          "y": -2.969196617603302,
+          "color": 16777215,
+          "vertexColors": true
+        },
+        {
+          "name": "east-access",
+          "y": -2.969196617603302,
+          "color": 16777215,
+          "vertexColors": true
+        }
+      ],
+      "expectedLift": 0.02,
+      "error": 1.9073486328541334e-08
+    },
+    {
+      "kind": "parking",
+      "x": 63,
+      "z": 73,
+      "ground": -2.9875060319900513,
+      "hits": [
+        {
+          "name": "east-access",
+          "y": -2.9675059007055182,
+          "color": 16777215,
+          "vertexColors": true
+        },
+        {
+          "name": "east-access",
+          "y": -2.9675059007055182,
+          "color": 16777215,
+          "vertexColors": true
+        }
+      ],
+      "expectedLift": 0.02,
+      "error": 1.3128453303992704e-07
+    },
+    {
+      "kind": "parking",
+      "x": 73,
+      "z": 60,
+      "ground": -3.039040684700012,
+      "hits": [
+        {
+          "name": "east-access",
+          "y": -3.0190406099776936,
+          "color": 16777215,
+          "vertexColors": true
+        }
+      ],
+      "expectedLift": 0.02,
+      "error": 7.472231857222345e-08
+    },
+    {
+      "kind": "parking",
+      "x": 73,
+      "z": 65,
+      "ground": -2.9352309107780457,
+      "hits": [
+        {
+          "name": "east-access",
+          "y": -2.915230870246887,
+          "color": 16777215,
+          "vertexColors": true
+        }
+      ],
+      "expectedLift": 0.02,
+      "error": 4.053115844684929e-08
+    },
+    {
+      "kind": "parking",
+      "x": 73,
+      "z": 73,
+      "ground": -2.852279484272003,
+      "hits": [
+        {
+          "name": "east-access",
+          "y": -2.832279567495803,
+          "color": 16777215,
+          "vertexColors": true
+        }
+      ],
+      "expectedLift": 0.02,
+      "error": 8.322379983424777e-08
+    }
+  ],
+  "WorldRoadLamps": [
+    160,
+    159
+  ],
+  "streetMeshCount": [
+    22,
+    28
+  ],
+  "noErrorsExternal": true
+}

@@ -1,0 +1,15 @@
+{
+  "context": "no-tree/no-existing native diagnostic; separate from actual World160→159",
+  "before": 171,
+  "after": 170,
+  "removed": [
+    {
+      "x": 52.40507129450392,
+      "z": 67.29084650491701,
+      "yaw": 2.9770831068702743,
+      "source": "44447967",
+      "region": "east"
+    }
+  ],
+  "added": []
+}

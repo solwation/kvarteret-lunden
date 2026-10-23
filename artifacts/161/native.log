@@ -1,0 +1,12 @@
+whole bays 16 nominal capacity 25
+✔ assumed lot uses whole existing-engine bays and joins the mapped aisle (14.029837ms)
+✔ refuge has outward sides, mark-supported corners and two bollards; lanes remain open (2.171075ms)
+✔ crossing cells follow sloping ground without covering refuge (0.798891ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 119.977905
