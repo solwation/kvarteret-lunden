@@ -204,6 +204,9 @@ Med `?perf` kan långa bildintervall mätas lokalt och exporteras utan en teleme
 `/orkester` använder den modelloberoende kärnan i
 [dirigenten-och-orkestern](https://github.com/solwation/dirigenten-och-orkestern),
 versionslåst som Git subtree i `.orchestra/shared`. Vanlig kloning räcker.
+Kärnan kräver minsta tillräckliga modellkapacitet och resonemang när val stöds,
+korta arbetsuppdrag och motiverad eskalering med bevarat arbete. Samma
+resurshushållning gäller när modellvalet är låst; verifieringskraven behålls.
 [Projektpolicy](.orchestra/project.md) anger Lundens köer och publiceringskrav;
 [Issueflow](.orchestra/shared/ISSUE-WORKFLOW.md) styr gemensamma etiketter och status.
 Andra agentverktyg kan läsa samma filer direkt. Gemensamma förbättringar görs i

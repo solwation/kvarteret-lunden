@@ -1672,3 +1672,17 @@ enbart som arbetsflödeskrok i separat originalcheckout, aldrig som publik integ
 Verifiering: dokumentdiff/länkar/regelmotsägelser, identisk gemensam release och ett
 isolerat subtree-installations-/uppdateringsprov. `npm test` och `npm run build` samt
 Pages-resultat dokumenteras i #141. Ingen appändring kräver nytt webbläsarprov.
+
+
+## Resurshushållning i orkestern, #142
+
+Granskad originaladoption: `5fdb35cfaec67bb410ad0aa917960138acc7c434`
+(original #1521). Den generiska kärnan importeras direkt som granskad subtree från
+`solwation/dirigenten-och-orkestern` v0.1.1,
+`3ab2b3a59a8deb5d8734c258af4016a8c03b6caf`; originalets apphistorik importeras inte.
+Projektpolicyn länkar till konkreta regler för minsta tillräckliga kapacitet,
+resonemang, kontext och motiverad eskalering. Modellval sker när verktyget stöder det;
+resurshushållning gäller även med låst modell. Acceptans och publiceringskrav behålls.
+Ingen appkod, personlig resurs, lagring, spelmekanik eller tjänsteintegration ingår.
+Verifiering: exakt kärnrelease, dokumentdiff/länkar/motsägelser, `git diff --check`,
+`npm test` (94 moduler) och `npm run build`. Pages-resultatet länkas i #142.
