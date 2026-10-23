@@ -1653,3 +1653,22 @@ regler från originalet införs. Alla A/B/C/L:s geometrier behålls exakt.
 [Publikt protokoll och mätgränser](frame-intervals.md).
 Browser-/Pages-resultat och commit länkas i #140. Detta är en verktygsleverans,
 inte en bekräftad orsak eller lösning av originalets rapporterade frysningar.
+
+## Gemensam orkester och Issueflow (#141, 2026-10-23)
+
+Granskad originalrevision `fa05fed0a339be3fa5e6c75136828ba7c88b5851` (original #1520), med lokal anpassning av
+`.claude/commands/orkester.md`, `AGENTS.md`, `CLAUDE.md`, README och verifieringslänkar.
+Den gemensamma kärnan importeras separat från `solwation/dirigenten-och-orkestern`
+**v0.1.0**, `67507ef71c4979d8340e03e84072719651ada7df`, som squashad subtree i `.orchestra/shared`.
+Ingen historik eller appkod från originalet överförs.
+
+Kort plan, nyttig parallellism, sammanhängande leveranser och riktad verifiering
+ersätter dubblerade orkesterinstruktioner. `.orchestra/project.md` behåller publicens
+egna test/build/Pages-krav, båda köerna, prioritets-/ägarskapsregler och innehållsgränser.
+Labels/status följer github-dashboard/public/ISSUEFLOW.md; ingen Cloudflare-tjänst,
+personlig resurs, spelmekanik eller lagringsändring ingår. Originalets intake nämns
+enbart som arbetsflödeskrok i separat originalcheckout, aldrig som publik integration.
+
+Verifiering: dokumentdiff/länkar/regelmotsägelser, identisk gemensam release och ett
+isolerat subtree-installations-/uppdateringsprov. `npm test` och `npm run build` samt
+Pages-resultat dokumenteras i #141. Ingen appändring kräver nytt webbläsarprov.

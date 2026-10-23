@@ -198,3 +198,13 @@ alla verkliga servicevägar och den äldre lokala genomfarten lämnas fria.
 [Primärkälla och antaganden](docs/references/parking-132/README.md).
 
 Med `?perf` kan långa bildintervall mätas lokalt och exporteras utan en telemetritjänst; se [diagnostikprotokollet](docs/frame-intervals.md).
+
+## Gemensam orkester
+
+`/orkester` använder den modelloberoende kärnan i
+[dirigenten-och-orkestern](https://github.com/solwation/dirigenten-och-orkestern),
+versionslåst som Git subtree i `.orchestra/shared`. Vanlig kloning räcker.
+[Projektpolicy](.orchestra/project.md) anger Lundens köer och publiceringskrav;
+[Issueflow](.orchestra/shared/ISSUE-WORKFLOW.md) styr gemensamma etiketter och status.
+Andra agentverktyg kan läsa samma filer direkt. Gemensamma förbättringar görs i
+kärnans repo och införs här genom en granskad versionsuppdatering.

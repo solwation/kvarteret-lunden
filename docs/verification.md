@@ -1,7 +1,7 @@
 # Verifieringspolicy
 
 Välj 2–3 minsta tillräckliga kontroller före arbetet och stoppa när de passerar.
-[Orkesterns riskbaserade policy](../.claude/commands/orkester.md#minsta-tillräckliga-verifiering-användaren-2026-10-21)
+[Orkesterns riskbaserade policy](../.orchestra/shared/ORCHESTRA.md#verify-the-affected-behavior)
 gäller också pågående arbete: dokument behöver diff/länkar/motsägelsegranskning,
 inte WebGL eller triangelräkning. Lokala ändringar behöver berörd komponent och
 verklig rutt/vy; fler plattformar/orienteringar eller fullprofiler kräver ändrad

@@ -13,10 +13,16 @@ Read [AGENTS.md](AGENTS.md) for public-content, storage and service boundaries. 
   issue's own priority. Continue to review both queues and transfer applicable improvements; independent
   public-project work that is not a port keeps its ordinary triage.
 - Every implementation task for this project has an issue in **solwation/kvarteret-lunden**, as explicitly requested by the user on 2026-10-16. This replaces the previous central original-repository queue. Name affected files and acceptance criteria. Original-only work belongs in the original repository. Search before creating to avoid duplicates.
-- Add `Lapp: <2–6 everyday Swedish words>` and exactly one priority label, judged by whoever creates the issue (user, 2026-10-17): bugs `priority: high` subject to the child-priority ceiling below; requests `high`/`medium`/`low` by value (blocking → high, solid improvement → medium, nice-to-have/some day → low). Do not default to medium. Do not change existing priorities without the user's direction, except for automatic child-priority corrections below.
+- Follow [Issueflow](.orchestra/shared/ISSUE-WORKFLOW.md), the public Issue workflow
+  instructions from github-dashboard, for issue labels, status and closure (user, 2026-10-23).
+  Add `Lapp: <2–6 everyday Swedish words>`, exactly one canonical priority assessed by
+  impact/urgency, and a short rationale. Bugs are not automatically high priority.
+  Preserve explicit/existing priorities except automatic child/port lowering below.
+  Remove all recognized work labels on pause, integration wait, closure or reopening;
+  reclaim only when actual work resumes. Owner labels are separate metadata.
 - **Child priorities never exceed their parents (user, 2026-10-20).** New child stories default to the parent's
   priority; a lower priority is allowed and must be preserved. This applies to every child, including bugs,
-  regressions, test/support stories and further subdivisions, and overrides the default high priority for bugs.
+  regressions, test/support stories and further subdivisions, and also constrains the impact-based priority of bugs.
   Use the lowest priority in the complete ancestor chain as the ceiling, including closed parents and explicit
   cross-repository parentage; a missing priority counts as medium. Read GitHub parent/sub-issue links and explicit
   parentage in titles, bodies and comments (`Del av #N`); an ordinary reference, dependency, transfer link or a bug
@@ -40,7 +46,7 @@ Read [AGENTS.md](AGENTS.md) for public-content, storage and service boundaries. 
   changes need diff/link/contradiction review, no browser or triangle counts. Local app changes need the affected
   component and real route/view; wider profiles need concrete global risk. Reuse source/input/quality-bound green
   evidence across unrelated rebases; the conductor reviews rather than automatically reruns it. Reassess verification
-  cost near 10 minutes. Follow the [orchestra policy](.claude/commands/orkester.md#minsta-tillräckliga-verifiering-användaren-2026-10-21)
+  cost near 10 minutes. Follow the [orchestra policy](.orchestra/shared/ORCHESTRA.md#verify-the-affected-behavior)
   and [verification guide](docs/verification.md#verifieringspolicy). Run the existing fast `npm test` and `npm run build`;
   keep README and affected documentation current. User requirements, hard contracts and public isolation remain in force.
 - Every push to this repository's `main` triggers `.github/workflows/pages.yml`: tests, build, then GitHub Pages deployment. Verify the run; check changed app behaviour live when the scoped plan requires it. Docs-only changes do not require a new browser check of the unchanged app.
@@ -48,6 +54,12 @@ Read [AGENTS.md](AGENTS.md) for public-content, storage and service boundaries. 
 
 ## /orkester
 
-Use [.claude/commands/orkester.md](.claude/commands/orkester.md). An orchestra started in either repository is responsible for both `solwation/lunden-3d-apartment` and `solwation/kvarteret-lunden`. Fetch both complete open queues before every selection and idle check, including when explicit user scope limits implementation to one repository; record outside-scope work. Select globally by high → medium → low, then `created_at`, full repository name and numeric issue number. Work in either repository using separate agents/checkouts and its own issues, claims, labels, verification and publishing rules. Maintain cross-linked status comments in [original #420](https://github.com/solwation/lunden-3d-apartment/issues/420) and [public #4](https://github.com/solwation/kvarteret-lunden/issues/4). Preserve original report-import requirements when original work is in scope. This static public project has no report service, authentication or Cloudflare integration; never transfer personal content or gameplay.
-
-An active `/orkester` polls both complete open queues every five minutes (300 seconds), during active agent work and idle waiting, and continues until 60 minutes after the last resolved implementation issue. Include older issues, not only those created after session start; asking to create an issue during an active orchestra does not permanently exclude it from implementation. Select in-scope work by the ordinary priority and ownership rules; skip only explicitly paused, out-of-scope, validly owned/reserved or concretely blocked work. Resolving another issue in either repository resets the full hour. Update the saved checkpoint and existing cross-linked status comments on every check, including failures; retain the UTC time of the latest complete successful check of both queues, plus the latest successful check per repository. Send chat updates only for state changes, new work, blockers or completion, without recurring empty-queue messages. Keep waits interruptible in steps of at most 60 seconds and stop promptly on the user’s pause/stop. See the command for the full lifecycle and final-check rules.
+Read [.orchestra/project.md](.orchestra/project.md) and its versioned, model-independent
+core/coordination files. [.claude/commands/orkester.md](.claude/commands/orkester.md) is a
+thin adapter; other agent tools read the same files directly. The policy retains both
+queues, global ordering, ownership, two-worker capacity, 300-second polling, 60-minute
+idle watch, heartbeats, original-only intake and public-content boundaries. Use a short
+scope/risk plan, useful parallelism, one delivery for small issues and existing focused
+verification. Keep local policy outside the imported subtree; improve shared behavior
+in its own repository and explicitly adopt a reviewed release here. Preserve subtree
+merge ancestry with `git rebase --rebase-merges` for unpublished subtree imports.

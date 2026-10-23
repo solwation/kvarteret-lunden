@@ -14,3 +14,11 @@ This is a public, impersonal 3D walkthrough derived from solwation/lunden-3d-apa
 ## Issues and orchestration
 
 Read [CLAUDE.md](CLAUDE.md) for the mandatory issue lifecycle and [.claude/commands/orkester.md](.claude/commands/orkester.md) for `/orkester`. Changes in this repository require issues too. The user explicitly requested on 2026-10-16 that issues for this project live in `solwation/kvarteret-lunden`. Claim, label, verify and close them here; coordination lives in issue #4. Original-only work stays in the original repository.
+
+## Shared orchestra and issue workflow
+
+For issue labels/state, follow [.orchestra/shared/ISSUE-WORKFLOW.md](.orchestra/shared/ISSUE-WORKFLOW.md),
+the canonical guide from github-dashboard. For `/orkester` or an explicit request to
+run orchestration, read [.orchestra/project.md](.orchestra/project.md) and its shared
+core/coordination files. Merely reading or editing these files does not start a queue
+session. The core is maintained in [dirigenten-och-orkestern](https://github.com/solwation/dirigenten-och-orkestern).
