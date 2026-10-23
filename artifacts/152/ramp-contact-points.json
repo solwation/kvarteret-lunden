@@ -1,0 +1,146 @@
+[
+  {
+    "x": -30.60110949653476,
+    "z": 468.2078124851928,
+    "ground": -3.009999990463257,
+    "hit": -2.984999895095825,
+    "error": 9.536743163923722e-08,
+    "reference": "upper visible emitted grass face"
+  },
+  {
+    "x": -30.00610949653476,
+    "z": 468.6003124851928,
+    "ground": -3.009999990463257,
+    "hit": -2.984999895095825,
+    "error": 9.536743163923722e-08,
+    "reference": "upper visible emitted grass face"
+  },
+  {
+    "x": -29.411109496534756,
+    "z": 468.9928124851928,
+    "ground": -3.009999990463257,
+    "hit": -2.984999895095825,
+    "error": 9.536743163923722e-08,
+    "reference": "upper visible emitted grass face"
+  },
+  {
+    "x": -28.99351113444728,
+    "z": 469.18281944643996,
+    "ground": -3.009999990463257,
+    "hit": -2.984999895095825,
+    "error": 9.536743163923722e-08,
+    "reference": "upper visible emitted grass face"
+  },
+  {
+    "x": -28.38851113444728,
+    "z": 469.2978194464399,
+    "ground": -3.009999990463257,
+    "hit": -2.984999895095825,
+    "error": 9.536743163923722e-08,
+    "reference": "upper visible emitted grass face"
+  },
+  {
+    "x": -31.580000000000002,
+    "z": 469.61,
+    "ground": -3.009999990463257,
+    "hit": -2.984999895095825,
+    "error": 9.536743163923722e-08,
+    "reference": "upper visible emitted grass face"
+  },
+  {
+    "x": -31.785000000000004,
+    "z": 470.0025,
+    "ground": -3.009999990463257,
+    "hit": -2.984999895095825,
+    "error": 9.536743163923722e-08,
+    "reference": "upper visible emitted grass face"
+  },
+  {
+    "x": -30,
+    "z": 470.38,
+    "ground": -3.009999990463257,
+    "hit": -2.9849998950958394,
+    "error": 9.53674174283825e-08,
+    "reference": "upper visible emitted grass face"
+  },
+  {
+    "x": -31.19,
+    "z": 470.395,
+    "ground": -3.009999990463257,
+    "hit": -2.984999895095825,
+    "error": 9.536743163923722e-08,
+    "reference": "upper visible emitted grass face"
+  },
+  {
+    "x": -30.595,
+    "z": 470.7875,
+    "ground": -3.009999990463257,
+    "hit": -2.984999895095825,
+    "error": 9.536743163923722e-08,
+    "reference": "upper visible emitted grass face"
+  },
+  {
+    "x": -30,
+    "z": 471.18,
+    "ground": -3.009999990463257,
+    "hit": -2.984999895095825,
+    "error": 9.536743163923722e-08,
+    "reference": "upper visible emitted grass face"
+  },
+  {
+    "x": -29.2,
+    "z": 471.18,
+    "ground": -3.009999990463257,
+    "hit": -2.984999895095825,
+    "error": 9.536743163923722e-08,
+    "reference": "upper visible emitted grass face"
+  },
+  {
+    "x": -30.8,
+    "z": 471.18,
+    "ground": -3.009999990463257,
+    "hit": -2.984999895095825,
+    "error": 9.536743163923722e-08,
+    "reference": "upper visible emitted grass face"
+  },
+  {
+    "x": -29.395,
+    "z": 471.295,
+    "ground": -3.009999990463257,
+    "hit": -2.984999895095825,
+    "error": 9.536743163923722e-08,
+    "reference": "upper visible emitted grass face"
+  },
+  {
+    "x": -28.79,
+    "z": 471.40999999999997,
+    "ground": -3.009999990463257,
+    "hit": -2.984999895095825,
+    "error": 9.536743163923722e-08,
+    "reference": "upper visible emitted grass face"
+  },
+  {
+    "x": -28.185,
+    "z": 471.525,
+    "ground": -3.009999990463257,
+    "hit": -2.984999895095825,
+    "error": 9.536743163923722e-08,
+    "reference": "upper visible emitted grass face"
+  },
+  {
+    "x": -28.38,
+    "z": 471.64,
+    "ground": -3.009999990463257,
+    "hit": -2.984999895095825,
+    "error": 9.536743163923722e-08,
+    "reference": "upper visible emitted grass face"
+  },
+  {
+    "x": -30,
+    "z": 471.98,
+    "ground": -3.009999990463257,
+    "hit": -2.984999895095825,
+    "error": 9.536743163923722e-08,
+    "reference": "upper visible emitted grass face"
+  }
+]

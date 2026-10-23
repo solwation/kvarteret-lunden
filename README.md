@@ -201,7 +201,7 @@ redan importerade vägnätet är levererad i #138.
 [Källor och avgränsning](docs/references/roads-134/README.md).
 
 Den inre serviceslingan är nu källnodsansluten till den befintliga yttre vägen (#138):
-95036048 förlängs endast med nästa 34,83 m till 145221614. Bredd/asfalt är antaganden;
+I #138 förlängdes 95036048 med 34,83 m till 145221614. #152 bevarar dessa första fyra noder och kompletterar hela den 514,23 m långa serviceringen. Bredd/asfalt är antaganden;
 [fryst officiell v6 och attribution](docs/references/parking-130/README.md) återanvänds.
 
 Parkeringen söder om hus 44 (#132) behåller sin exakta konkava åttahörning och får
@@ -210,11 +210,13 @@ alla verkliga servicevägar och den äldre lokala genomfarten lämnas fria.
 [Primärkälla och antaganden](docs/references/parking-132/README.md).
 
 Västra servicevägen 145221612 (#148) följer hela den kartlagda 113,32 m-sträckan
-mellan tre befintliga väganslutningar. Ytteränden mot 95036048 lämnas bar;
+mellan tre befintliga väganslutningar. Ytteränden ansluter nu till serviceringen 95036048 (#152);
 asfalt och 4,5 m bredd är antaganden. [Källgranskning](docs/upstream.md#västra-servicevägen-145221612-148-2026-10-23).
 
 
 De befintliga serviceinfarterna 335403605/335403606 vid parkeringsområdet har kontrollerats mot hela kartsträckorna (#149). Bredden 4,5 m är ett antagande; kartans ”paved” för 606 verifierar inte asfalt som material.
+
+Serviceringen 95036048 har också en separat 40,37 m lång gångväg, 199056947, mellan den inre vägen och ringen (#152). Gångvägens bredd 2 m och asfalt är antaganden; den får inga egna gatlampor. Modellens gånggräns utökas inte.
 
 Med `?perf` kan långa bildintervall mätas lokalt och exporteras utan en telemetritjänst; se [diagnostikprotokollet](docs/frame-intervals.md).
 

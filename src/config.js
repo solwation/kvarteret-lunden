@@ -772,7 +772,8 @@ export const SITE = {
       {"source":"145221607","surface":"asphalt","surfaceSource":"guess","terrain":"triangles","w":4.5,"widthSource":"guess","path":[[109.17,309.03],[126.02,297.58],[135.28,302.04],[151.35,289.61]]},
       {"source":"145221604","surface":"asphalt","surfaceSource":"guess","terrain":"triangles","w":4.5,"widthSource":"guess","path":[[73.84,384.24],[88.15,373.42],[105.27,360.47]]},
       {"source":"145221581","surface":"asphalt","surfaceSource":"guess","terrain":"triangles","w":4.5,"widthSource":"guess","path":[[97.32,385.52],[88.15,373.42]]},
-      {"source":"95036048","surface":"asphalt","surfaceSource":"guess","terrain":"triangles","w":4.5,"widthSource":"guess","provenance":"Only the node-connected northern prefix for #130/#138, not the whole OSM loop","highway":"service","path":[[167.1,334.61],[159.81,341.58],[97.32,385.52],[68.88,405.62]]},
+      {"source":"95036048","surface":"asphalt","surfaceSource":"guess","terrain":"triangles","w":4.5,"widthSource":"guess","provenance":"Whole frozen OSM service way; preserves the delivered v6 first four prefix nodes (#130/#138/#152)","highway":"service","path":[[167.1,334.61],[159.81,341.58],[97.32,385.52],[68.88,405.62],[38.47,427.1],[-12.64,463.26],[-18.96,467.75],[-23.66,470.88],[-25.66,471.59],[-27.58,471.64],[-30.0,471.18],[-32.38,469.61],[-68.6,417.65],[-10.57,376.93],[36.11,343.59],[39.28,341.23],[100.69,298.56]]},
+      {"source":"199056947","highway":"footway","surface":"asphalt","surfaceSource":"guess","widthSource":"guess","path":[[16.04,308.22],[39.28,341.23]],"w":2,"terrain":"triangles"},
       {"source":"850235114","surface":"asphalt","terrain":"triangles","w":4.5,"widthSource":"guess","path":[[61.04,242.66],[73.13,233.86]]},
       {"source":"850235115","surface":"asphalt","terrain":"triangles","w":4.5,"widthSource":"guess","path":[[60.53,217.65],[73.13,233.86],[82.72,246.3]]},
       {"source":"public-legacy-distant-parking-loop","provenance":"Existing local loop, not OSM850235114","surface":"asphalt","path":[[-18.84,390.31],[-14.53,391.82],[-8.69,392.21],[-3.21,391.03],[2.69,388.29],[6.38,385.0],[9.37,380.08],[10.22,374.87],[9.14,370.07],[7.4,367.6],[3.61,366.19],[-3.7,367.24],[-8.72,370.38],[-14.56,377.29],[-17.67,383.67],[-18.84,390.31]],"w":4.5},
@@ -798,7 +799,7 @@ export const SITE = {
       {"source":"145221585","highway":"service","surface":"asphalt","surfaceSource":"guess","widthSource":"guess","path":[[43.5,384.31],[26.85,362.85]],"w":4.5,"terrain":"triangles"},
       {"source":"145221592","highway":"service","surface":"asphalt","surfaceSource":"guess","widthSource":"guess","path":[[19.61,402.79],[38.47,427.1]],"w":4.5,"terrain":"triangles"},
       {"source":"145221599","highway":"service","surface":"asphalt","surfaceSource":"guess","widthSource":"guess","path":[[36.11,343.59],[58.24,372.91],[49.03,380.04]],"w":4.5,"terrain":"triangles"},
-      // #148: complete mapped service way; asphalt/4.5 m are guesses. Outer end toward 95036048 remains bare.
+      // #148: complete mapped service way; asphalt/4.5 m are guesses. The mapped outer end now joins the completed 95036048 ring (#152).
       {"source":"145221612","highway":"service","surface":"asphalt","surfaceSource":"guess","widthSource":"guess","path":[[-68.60,417.65],[-74.73,422.08],[-97.60,388.93],[-108.93,372.45],[-127.61,345.26],[-134.70,334.97]],"w":4.5,"terrain":"triangles"},
     ],
     parking: [

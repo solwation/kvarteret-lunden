@@ -1,0 +1,303 @@
+{
+  "build": {
+    "version": "21eec28c6c4e1471a9b971c9",
+    "builtAt": 1792783911584
+  },
+  "probes": 266,
+  "outside": 97,
+  "maxError": 0.0017913368923586845,
+  "maxOutsideError": 9.536744585009194e-8,
+  "maxGrassStackDifference": 0,
+  "gaps": [],
+  "worldRoadLamps": 160,
+  "ringLamps": 15,
+  "footwayLamps": 0,
+  "boundary": [
+    {
+      "source": "95036048",
+      "segment": 5,
+      "offset": -0.05,
+      "side": -2.15,
+      "x": -6.719757019529792,
+      "z": 461.7051475086934,
+      "outside": true,
+      "grassLevels": [
+        -3.009999990463257
+      ],
+      "reference": "upper visible emitted grass face",
+      "referenceFace": 0,
+      "ground": -3.009999990463257,
+      "hit": -2.984999895095825,
+      "error": 9.536743163923722e-8
+    },
+    {
+      "source": "95036048",
+      "segment": 5,
+      "offset": -0.05,
+      "side": 0,
+      "x": -7.961512721238947,
+      "z": 459.95,
+      "outside": false,
+      "grassLevels": [],
+      "reference": "actual terrain query mesh",
+      "referenceFace": null,
+      "ground": -3.0014087669551373,
+      "hit": -2.9764086424675753,
+      "error": 1.2448756194632926e-7
+    },
+    {
+      "source": "95036048",
+      "segment": 5,
+      "offset": -0.05,
+      "side": 2.15,
+      "x": -9.203268422948101,
+      "z": 458.19485249130656,
+      "outside": false,
+      "grassLevels": [],
+      "reference": "actual terrain query mesh",
+      "referenceFace": null,
+      "ground": -2.699197953316826,
+      "hit": -2.6741988113022614,
+      "error": 8.579854352333549e-7
+    },
+    {
+      "source": "95036048",
+      "segment": 5,
+      "offset": 0,
+      "side": -2.15,
+      "x": -6.790429032804125,
+      "z": 461.7551475086934,
+      "outside": true,
+      "grassLevels": [
+        -3.009999990463257
+      ],
+      "reference": "upper visible emitted grass face",
+      "referenceFace": 0,
+      "ground": -3.009999990463257,
+      "hit": -2.984999895095825,
+      "error": 9.536743163923722e-8
+    },
+    {
+      "source": "95036048",
+      "segment": 5,
+      "offset": 0,
+      "side": 0,
+      "x": -8.03218473451328,
+      "z": 460,
+      "outside": false,
+      "grassLevels": [],
+      "reference": "actual terrain query mesh",
+      "referenceFace": null,
+      "ground": -3.009999990463257,
+      "hit": -2.984999895095825,
+      "error": 9.536743163923722e-8
+    },
+    {
+      "source": "95036048",
+      "segment": 5,
+      "offset": 0,
+      "side": 2.15,
+      "x": -9.273940436222434,
+      "z": 458.2448524913066,
+      "outside": false,
+      "grassLevels": [],
+      "reference": "actual terrain query mesh",
+      "referenceFace": null,
+      "ground": -2.7076916306834136,
+      "hit": -2.6826923877747646,
+      "error": 7.570913510349109e-7
+    },
+    {
+      "source": "95036048",
+      "segment": 5,
+      "offset": 0.05,
+      "side": -2.15,
+      "x": -6.861101046078465,
+      "z": 461.80514750869344,
+      "outside": true,
+      "grassLevels": [
+        -3.009999990463257
+      ],
+      "reference": "upper visible emitted grass face",
+      "referenceFace": 0,
+      "ground": -3.009999990463257,
+      "hit": -2.984999895095825,
+      "error": 9.536743163923722e-8
+    },
+    {
+      "source": "95036048",
+      "segment": 5,
+      "offset": 0.05,
+      "side": 0,
+      "x": -8.10285674778762,
+      "z": 460.05,
+      "outside": true,
+      "grassLevels": [
+        -3.009999990463257
+      ],
+      "reference": "upper visible emitted grass face",
+      "referenceFace": 0,
+      "ground": -3.009999990463257,
+      "hit": -2.984999895095825,
+      "error": 9.536743163923722e-8
+    },
+    {
+      "source": "95036048",
+      "segment": 5,
+      "offset": 0.05,
+      "side": 2.15,
+      "x": -9.344612449496774,
+      "z": 458.2948524913066,
+      "outside": false,
+      "grassLevels": [],
+      "reference": "actual terrain query mesh",
+      "referenceFace": null,
+      "ground": -2.716185308050001,
+      "hit": -2.691185964247282,
+      "error": 6.561972810473216e-7
+    },
+    {
+      "source": "95036048",
+      "segment": 12,
+      "offset": -0.05,
+      "side": -2.15,
+      "x": -40.877510538723,
+      "z": 461.17947883749326,
+      "outside": true,
+      "grassLevels": [
+        -3.009999990463257
+      ],
+      "reference": "upper visible emitted grass face",
+      "referenceFace": 0,
+      "ground": -3.009999990463257,
+      "hit": -2.984999895095825,
+      "error": 9.536743163923722e-8
+    },
+    {
+      "source": "95036048",
+      "segment": 12,
+      "offset": -0.05,
+      "side": 0,
+      "x": -39.113741339491924,
+      "z": 459.95,
+      "outside": false,
+      "grassLevels": [],
+      "reference": "actual terrain query mesh",
+      "referenceFace": null,
+      "ground": -2.9918055349029657,
+      "hit": -2.9668055149213046,
+      "error": 1.99816611243242e-8
+    },
+    {
+      "source": "95036048",
+      "segment": 12,
+      "offset": -0.05,
+      "side": 2.15,
+      "x": -37.349972140260846,
+      "z": 458.7205211625067,
+      "outside": false,
+      "grassLevels": [],
+      "reference": "actual terrain query mesh",
+      "referenceFace": null,
+      "ground": -2.090985975536796,
+      "hit": -2.0659926322311577,
+      "error": 0.0000066566943615967156
+    },
+    {
+      "source": "95036048",
+      "segment": 12,
+      "offset": 0,
+      "side": -2.15,
+      "x": -40.84265680508174,
+      "z": 461.2294788374933,
+      "outside": true,
+      "grassLevels": [
+        -3.009999990463257
+      ],
+      "reference": "upper visible emitted grass face",
+      "referenceFace": 0,
+      "ground": -3.009999990463257,
+      "hit": -2.984999895095825,
+      "error": 9.536743163923722e-8
+    },
+    {
+      "source": "95036048",
+      "segment": 12,
+      "offset": 0,
+      "side": 0,
+      "x": -39.07888760585066,
+      "z": 460,
+      "outside": false,
+      "grassLevels": [],
+      "reference": "actual terrain query mesh",
+      "referenceFace": null,
+      "ground": -3.009999990463257,
+      "hit": -2.9849998950958394,
+      "error": 9.53674174283825e-8
+    },
+    {
+      "source": "95036048",
+      "segment": 12,
+      "offset": 0,
+      "side": 2.15,
+      "x": -37.31511840661958,
+      "z": 458.7705211625067,
+      "outside": false,
+      "grassLevels": [],
+      "reference": "actual terrain query mesh",
+      "referenceFace": null,
+      "ground": -2.1268995830149464,
+      "hit": -2.1019060351212886,
+      "error": 0.000006452106342182129
+    },
+    {
+      "source": "95036048",
+      "segment": 12,
+      "offset": 0.05,
+      "side": -2.15,
+      "x": -40.807803071440475,
+      "z": 461.2794788374933,
+      "outside": true,
+      "grassLevels": [
+        -3.009999990463257
+      ],
+      "reference": "upper visible emitted grass face",
+      "referenceFace": 0,
+      "ground": -3.009999990463257,
+      "hit": -2.984999895095825,
+      "error": 9.536743163923722e-8
+    },
+    {
+      "source": "95036048",
+      "segment": 12,
+      "offset": 0.05,
+      "side": 0,
+      "x": -39.0440338722094,
+      "z": 460.05,
+      "outside": true,
+      "grassLevels": [
+        -3.009999990463257
+      ],
+      "reference": "upper visible emitted grass face",
+      "referenceFace": 0,
+      "ground": -3.009999990463257,
+      "hit": -2.9849998950958394,
+      "error": 9.53674174283825e-8
+    },
+    {
+      "source": "95036048",
+      "segment": 12,
+      "offset": 0.05,
+      "side": 2.15,
+      "x": -37.28026467297832,
+      "z": 458.82052116250674,
+      "outside": false,
+      "grassLevels": [],
+      "reference": "actual terrain query mesh",
+      "referenceFace": null,
+      "ground": -2.1628131904930967,
+      "hit": -2.1378190948043994,
+      "error": 0.000005904311302630527
+    }
+  ]
+}

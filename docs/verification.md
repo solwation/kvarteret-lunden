@@ -2163,3 +2163,68 @@ diffkontroll. Arbetsloggar och browserverktyget finns i
 `/tmp/kvarteret-orkester-20261023/evidence149/`. Ingen fysisk
 telefonprestanda påstås. Dirigenten publicerar, kontrollerar Pages/
 berörd livevy och stänger därefter.
+
+
+## Hela serviceringen och separat gångväg, #152 (2026-10-23)
+
+Plan: frysta råpunkter, prefix/nodgraf, hela geometrier och lampklassning;
+byggda före/efter-vyer, faktisk väg-/nod-/gränsstöd och armaturmatriser;
+obligatoriska `npm test`/`npm run build`. Söder om z460 används ritad mark,
+ingen fortsatt höjdsampler. Parkeringsplan/markkällor/hus och A/B/C/L:s
+separata geometrier bevaras.
+
+`node --test tools/servicering1464test.mjs tools/servicewest1463test.mjs tools/serviceroadtest.mjs tools/roadlampstest.mjs`
+passerar 23/23. Serviceväg 95036048 har 17 frysta primärpunkter och
+514,23 m; gångväg 199056947 har två punkter och 40,37 m. Bredder
+4,5/2 m och asfalt är antaganden. De fyra tidigare officiella prefixnoderna
+bevaras, liksom innerslingans anslutningar och 145221612:s ytterände.
+Hela remsor håller undan från hus, gårdshål, skogsmarginaler och tidigare
+hela bilrutor. Gångvägen är ingen fordonsväg och får inga vägarmaturer.
+WALK.z1=250 är oförändrat; bakgrundsvägarna är ingen ny utlovad gångrutt.
+[Native-logg](../artifacts/152/native.log).
+
+Tom träd-/befintlig-armatur-lista ger 161→171 kandidater: tolv nya
+ringlägen och två nu blockerade lägen på 145221614/599 bort. Tre
+ringlägen fanns redan på prefixet. Originalets 130→142 är inget publikt
+måltal. Faktisk byggd World ger 150→160 vägarmaturer: samma tolv
+till och två bort. Ringen har 15 armaturer; gångvägen har noll.
+Stolp-/huvudmatriser och fötter mot ritad mark kontrolleras. Samma
+gatumeshar återanvänds; söderfasadens 3 950 trianglar från #158 behålls.
+
+Byggd Chromium/SwiftShader, headless 1280×800 i juli: public bas
+`1512835ad6d7d80bcc4fc27fa0784da35a75d3dd`, före
+`51318a46c9d9cb578b5f5839`, efter `21eec28c6c4e1471a9b971c9`.
+153 centrum-/sidprov längs 17 segment (service ±2,15 m, gångväg ±0,9 m),
+95 prov kring de 19 noderna och 18 särskilda prov vid de två
+z460-korsningarna passerar. Maxfel mot väglyftet 25 mm är
+0,00000409 m för segment, 0,00179134 m för noder och 0,00000666 m
+vid rutnätsgränsen, samtliga under 2 mm tolerans.
+[Parad sammanfattning](../artifacts/152/summary.json),
+[rådata, byggversioner och berörda armaturer](../artifacts/152/browser-results.json).
+
+En enda fokuserad efterkontroll använder den översta faktiskt emitterade
+uppåtvända gräsytan bortom z460; den antar ingen bestämd gräsfärg.
+Alla 266 strålar passerar, varav 97 utanför rutnätet. Där är största fel
+0,0000000954 m; lägsta och högsta grästräff har identisk höjd på denna
+baslinje. Inga konkreta väg-/markglapp finns i provpunkterna.
+[Synlig toppyta](../artifacts/152/visible-grass-summary.json),
+[alla toppytestrålar](../artifacts/152/visible-grass-rays.json).
+
+Den separata #160-rampen är inte inblandad här. Ringens z460-korsningar
+ligger omkring x−8 och x−39, medan 18 av dess provpunkter närmar sig
+#160:s lilla rampområde x−32…−28/z460…472. Exakta
+[kontaktpunkter](../artifacts/152/ramp-contact-points.json) är sparade för
+minsta kombinerade slutkontroll mot den synliga övre rampytan efter
+integration. Ingen terrängfunktion har ändrats i #152.
+
+Granskade egna bildpar: [ring före](../artifacts/152/before-overview.png)/
+[ring efter](../artifacts/152/after-overview.png),
+[södra markkant före](../artifacts/152/before-southern-edge.png)/
+[södra markkant efter](../artifacts/152/after-southern-edge.png),
+[gångväg före](../artifacts/152/before-footway.png)/
+[gångväg efter](../artifacts/152/after-footway.png).
+Inga sidfel eller externa anrop. `npm test` passerar (97 moduler och publik
+isolering), liksom bygge och diffkontroll. Arbetsloggar och båda fokuserade
+browserverktygen finns i `/tmp/kvarteret-orkester-20261023/evidence152/`.
+Ingen fysisk telefonprestanda påstås. Dirigenten publicerar #152 och
+verifierar Pages/live före separat #160-integration och dess kombinationsprov.

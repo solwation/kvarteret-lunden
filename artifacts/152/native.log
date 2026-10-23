@@ -1,0 +1,31 @@
+✔ deterministic finite roadside coverage across all five mapped regions (107.4155ms)
+✔ posts keep the actual road strips, walking strips, river, bridge and field free (147.187ms)
+✔ existing fixtures and tree trunks remove colliding candidates without modifying inputs (125.330301ms)
+✔ public buildings, bridge earth ramp and fixture-to-fixture passage stay clear (12.8007ms)
+✔ only new far-south fittings use the existing backdrop plane; the inner callback stays exact (0.3799ms)
+✔ outer service ring and footway follow the whole saved OSM ways with guessed dimensions and their own types (1.738ms)
+✔ ring and footway join existing ways only at mapped nodes (0.4189ms)
+✔ complete emitted strips clear southern buildings and woodland plus tree margin (175.8347ms)
+✔ the delivered four-node prefix is preserved and the 2m footway receives no road lamps (133.225ms)
+✔ two actual service ways use the complete primary coordinates and retain guesses separately (1.8849ms)
+✔ both previous local GC curves retain ordered geometry, width and exact terrain clipping (10.034ms)
+✔ both complete 4.5m service footprints remain outside existing building footprints (2.5591ms)
+✔ four northern service ways retain complete primary coordinates and shared branch/entry nodes (0.7165ms)
+✔ new full emitted service footprints clear actual building bodies while preserving courtyard holes (256.229ms)
+✔ normal service lamp candidates keep vehicle classification and stay outside current parking contours (249.821101ms)
+✔ all previously delivered whole parking bays remain clear of the new emitted service footprints (106.0215ms)
+✔ southern crossroad and narrow raw service link keep primary nodes and vehicle semantics without changing footways or lamp widths (103.652301ms)
+✔ four inner service ways retain complete primary geometry and their real internal junction graph (0.4321ms)
+✔ whole outer service ring retains the delivered four official v6 prefix nodes and inner connection (0.809ms)
+✔ western service way follows the whole saved OSM way with guessed dimensions (1.5201ms)
+✔ it joins the three existing roads at mapped nodes and meets the completed outer ring at the mapped outer node (0.7813ms)
+✔ complete emitted strip clears southern buildings and woodland plus tree margin (56.6942ms)
+✔ public lamp placement follows the new road without retaining blocked branch ends (150.2869ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 900.527402

@@ -1913,7 +1913,7 @@ ur källans frysta OSM-underlag från 2026-10-08 och använder samma befintliga
 ändringslogg och övriga appdelar följer inte med.
 
 Hela vägen är 113,32 m och ansluter 30633546, 145221573 och 145221576 vid
-kartlagda noder. Ytteränden mot 95036048 lämnas utan påhittad anslutning.
+kartlagda noder. Vid #148 lämnades ytteränden mot 95036048 bar; #152 ansluter nu den kompletta ringen i samma kartnod.
 Råtypen är `highway=service`; asfalt och 4,5 m bredd är uttryckliga antaganden.
 Publicens befintliga terrängtrianglar, huskroppar, gårdshål, hela bilrutor och
 WALK-gräns bevaras. Den oförändrade lampregeln ger med tom trädlista
@@ -1961,4 +1961,37 @@ resultatbilder, ändringslogg och övriga appdelar importeras inte.
 Inga nya beroenden, nätverkstjänster eller lagringsnycklar tillkommer.
 © OpenStreetMap contributors, [ODbL/attribution](https://www.openstreetmap.org/copyright).
 `npm ci` gav 0 kända sårbarheter. Verifiering finns i
+[verifieringsloggen](verification.md).
+
+
+## Hela serviceringen och separat gångväg, #152
+
+Granskad källa: `ed5a7b251d649f45cc9a182868b57f450e9a2e4e`
+([original #1464](https://github.com/solwation/lunden-3d-apartment/issues/1464)).
+Befintlig OSM 95036048 kompletteras på samma listplats från fyra till
+17 frysta primärpunkter, 514,23 m. De fyra levererade v6-prefixnoderna
+från #130/#138 bevaras. Separat OSM 199056947 får sina två
+primärpunkter, 40,37 m, `highway: 'footway'`. Varken post dupliceras.
+Ringen är serviceväg, 4,5 m; gångvägen är 2 m utan egna vägarmaturer.
+Bredd och asfalt är gissningar för båda. Befintlig 58°-projektion behålls.
+
+Råanslutningar vid 36918924, 145221614/592/599 och 145221612:s
+tidigare bara ytterände bevaras; gångvägen knyter 145221576 till
+ringens kartnod. `tools/servicering1464test.mjs` anpassas med bara dessa
+två frysta OSM-features. Servicewest-provet ändras från bar ände till
+anslutning endast i ringens källnod. Serviceroad-provet skyddar fortsatt
+de första fyra officiella v6-noderna, utan att begränsa vägen till prefixet.
+Alla tidigare parkeringsplan, byggnader, markkällor och gavlar behålls.
+
+Publicens `terrain: 'triangles'`, asfaltklippning och befintliga höjd-/
+markfunktioner återanvänds. Ringen går över z460; stödet har verifierats
+mot faktiskt emitterad och översta synliga gräsyta bortom rutnätet.
+Ingen bred terrängfix importeras. #160:s separata markkant-/ramprättning
+är inte del av den parade #152-baslinjen och får en egen kombinationskontroll.
+
+Originalets foton, resultatbilder, HTML-prov, ändringslogg, `sitegeo.js`,
+personliga resurser och tjänster importeras inte. Inga nya beroenden,
+lagringsnycklar eller nätverksanrop tillkommer. © OpenStreetMap
+contributors, [ODbL/attribution](https://www.openstreetmap.org/copyright).
+`npm ci` gav 0 kända sårbarheter. Egna bilder och kontroller finns i
 [verifieringsloggen](verification.md).
