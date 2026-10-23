@@ -209,6 +209,11 @@ bara tre hela bilrutor på en lokalt graderad radkärna. Resten är omarkerad k�
 alla verkliga servicevägar och den äldre lokala genomfarten lämnas fria.
 [Primärkälla och antaganden](docs/references/parking-132/README.md).
 
+Västra servicevägen 145221612 (#148) följer hela den kartlagda 113,32 m-sträckan
+mellan tre befintliga väganslutningar. Ytteränden mot 95036048 lämnas bar;
+asfalt och 4,5 m bredd är antaganden. [Källgranskning](docs/upstream.md#västra-servicevägen-145221612-148-2026-10-23).
+
+
 Med `?perf` kan långa bildintervall mätas lokalt och exporteras utan en telemetritjänst; se [diagnostikprotokollet](docs/frame-intervals.md).
 
 ## Gemensam orkester

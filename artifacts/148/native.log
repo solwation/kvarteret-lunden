@@ -1,0 +1,27 @@
+✔ deterministic finite roadside coverage across all five mapped regions (93.933709ms)
+✔ posts keep the actual road strips, walking strips, river, bridge and field free (114.356904ms)
+✔ existing fixtures and tree trunks remove colliding candidates without modifying inputs (80.916456ms)
+✔ public buildings, bridge earth ramp and fixture-to-fixture passage stay clear (7.708234ms)
+✔ only new far-south fittings use the existing backdrop plane; the inner callback stays exact (0.245301ms)
+✔ two actual service ways use the complete primary coordinates and retain guesses separately (1.712107ms)
+✔ both previous local GC curves retain ordered geometry, width and exact terrain clipping (6.506928ms)
+✔ both complete 4.5m service footprints remain outside existing building footprints (1.409806ms)
+✔ four northern service ways retain complete primary coordinates and shared branch/entry nodes (0.481402ms)
+✔ new full emitted service footprints clear actual building bodies while preserving courtyard holes (171.138638ms)
+✔ normal service lamp candidates keep vehicle classification and stay outside current parking contours (194.930859ms)
+✔ all previously delivered whole parking bays remain clear of the new emitted service footprints (73.731025ms)
+✔ southern crossroad and narrow raw service link keep primary nodes and vehicle semantics without changing footways or lamp widths (88.355589ms)
+✔ four inner service ways retain complete primary geometry and their real internal junction graph (0.425802ms)
+✔ outer service prefix retains the first four official v6 nodes and connects the inner loop (0.807304ms)
+✔ western service way follows the whole saved OSM way with guessed dimensions (2.219709ms)
+✔ it joins the three existing roads at mapped nodes and keeps the future outer end bare (0.891304ms)
+✔ complete emitted strip clears southern buildings and woodland plus tree margin (56.562141ms)
+✔ public lamp placement follows the new road without retaining blocked branch ends (121.369518ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 740.453719

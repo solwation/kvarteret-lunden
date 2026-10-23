@@ -1901,3 +1901,36 @@ Inga originalfoton, resultatbilder, ändringslogg, persondata, nya beroenden,
 lagringsnycklar eller tjänster importeras. Befintlig attribution och licenser
 behålls. Låsta beroenden installerades med `npm ci` (0 kända sårbarheter).
 Verifiering och egna bilder redovisas i [verifieringsloggen](verification.md).
+
+
+## Västra servicevägen 145221612 (#148, 2026-10-23)
+
+Granskad källa: `e1963a313512e4eaea1261217f82a9c0e2e5113f`. Endast
+vägposten i `src/config.js` och den neutrala kontrollen
+`tools/servicewest1463test.mjs` har överförts. Testet bevarar ett sexnodsutdrag
+ur källans frysta OSM-underlag från 2026-10-08 och använder samma befintliga
+58°-projektion som publicens övriga vägtester; originalets `sitegeo.js`, HTML-test,
+ändringslogg och övriga appdelar följer inte med.
+
+Hela vägen är 113,32 m och ansluter 30633546, 145221573 och 145221576 vid
+kartlagda noder. Ytteränden mot 95036048 lämnas utan påhittad anslutning.
+Råtypen är `highway=service`; asfalt och 4,5 m bredd är uttryckliga antaganden.
+Publicens befintliga terrängtrianglar, huskroppar, gårdshål, hela bilrutor och
+WALK-gräns bevaras. Den oförändrade lampregeln ger med tom trädlista
+159→161 kandidater: fyra till längs vägen och de två nu blockerade ändlägena
+på 573/576 bort. Det berörda äldre 576-testet ändras därför från fem till fyra;
+det är inte en fysisk World- eller mobilbudget.
+
+© OpenStreetMap contributors. Kartdata omfattas av
+[ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/), se
+[OSM:s attribution](https://www.openstreetmap.org/copyright).
+Ingen personlig resurs, gameplay, originalets lagring eller tjänstekoppling importeras.
+
+Den avbrutna config-/test-/dokumentpatchen från tidigare ägare har granskats
+och återanvänts i en ny checkout på aktuell public bas `1e1d9f8`. Originalets
+sex råpunkter har kontrollerats mot exakt källrevision. Det äldre World-beviset
+`633102778d383182f52587ef` bevaras i den gamla checkouten, som lämnats orörd.
+Aktuell byggd före/efter-vy och skarv-/armaturkontroll redovisas med egna
+nya bilder i [verifieringsloggen](verification.md). Produktändringen gäller
+fortsatt bara konfigurationsposten; aktuella parkeringsplan, markkällor och
+#158:s gavlar behålls.

@@ -2048,3 +2048,63 @@ diffkontroll. Fulla arbetsloggar och browserkontrollen finns i
 fysisk telefonprestanda eller oberoende uppmätning av byggnader påstås.
 Dirigenten granskar/integrerar, publicerar och kontrollerar berörd livevy
 efter grön Pages-körning.
+
+
+## Västra servicevägen 145221612, #148 (2026-10-23)
+
+Återupptagen leverans: tidigare ägares bevarade config-/test-/dokumentpatch
+har granskats och återanvänts på public bas `1e1d9f8`; den gamla checkouten
+är orörd. Sex primärpunkter har kontrollerats mot originalets exakta
+`e1963a313512e4eaea1261217f82a9c0e2e5113f` och samma frysta OSM-underlag
+som tidigare vägportar. Äldre World-bevis `633102778d383182f52587ef`
+bevaras där; de nu redovisade bilderna och mätningarna är tagna på aktuell bas.
+
+Plan: riktade servicewest/serviceroad- och lampregelprov; verklig byggd
+vägyta/skarvar/armaturer före/efter; obligatoriska `npm test`/`npm run build`.
+Ingen bred profil eller utökad gånggräns. Byggnader A/B/C/L har ingen
+motsvarande ny kartväg; deras geometri och #158:s gavlar behålls.
+
+`node --test tools/servicewest1463test.mjs tools/serviceroadtest.mjs tools/roadlampstest.mjs`
+passerar 19/19. Den kompletta sexnodsvägen är 113,32 m, asfalt/bredd
+4,5 m är antaganden, typen är `highway=service` och terrängvalet
+`triangles`. Kartans tre anslutningar behålls, och änden mot framtida
+95036048 lämnas bar. Inga andra vägar importeras. Hela bilrutor,
+byggnadskroppar, gårdshål och skogsmarginaler skyddas av proven.
+Den befintliga 58°-projektionen och WALK.z1=250 är oförändrade; den nya
+sträckan ligger bortom gånggränsen och är ingen ny utlovad gångrutt.
+[Native-logg](../artifacts/148/native.log).
+
+Den oförändrade lampregeln ger 159→161 kandidater med tom träd-/befintlig
+armatur-lista. Fyra kandidater tillkommer på 145221612; de tidigare
+ändlägena på 145221573 och 145221576 tas bort. Det berörda äldre
+serviceroad-testets antal för 145221576 uppdateras från fem till fyra.
+Den nya testfilen använder ingen historisk global totalsiffra som grind.
+Originalets 126→128 behöver inte motsvara den fristående publicscenen.
+
+Byggd Chromium/SwiftShader, headless 1280×800 i juli: före
+`cd26e8112639fecc5816627d`, efter `3bbed599544c9effc3f21fb6`.
+Strålar mot faktisk sammanslagen `south-land` och terrängens ritade
+frågemesh kontrollerar centrum och ±2,1 m vid 25/50/75 % av alla fem
+segment. Före får 0/45 stöd vid den nya asfaltens höjd; efter får 45/45
+stöd vid terräng +25 mm. Största höjdfel är 0,0000021 m. Fem punkter
+kring vardera av tre anslutningar, böjen och ytteränden (två meter in)
+ger 25/25 träffar; största fel 0,000425 m, under provets 2 mm tolerans.
+
+Den faktiska World-modellen har 148→150 kompletterande vägarmaturer:
+fyra nya och två borttagna ändarmaturer från samma två källvägar.
+De nya stolparnas fötter avviker högst 0,00000017 m från terrängen;
+armaturhuvud och stolpe har identiska instansmatriser. Samma 22
+gatumeshar behålls och söderfasadens 3 950 trianglar från #158 är kvar.
+Aktuella parkeringsplan och markkällor är inte ändrade. Inga sidfel
+eller externa anrop. [Sammanfattning](../artifacts/148/summary.json),
+[byggversioner, strålar och berörda armaturer](../artifacts/148/browser-results.json).
+
+Granskade egna bildpar: [översikt före](../artifacts/148/before-overview.png)/
+[översikt efter](../artifacts/148/after-overview.png),
+[anslutning före](../artifacts/148/before-junction.png)/
+[anslutning efter](../artifacts/148/after-junction.png).
+`npm test` passerar (97 moduler och publik isolering), liksom bygge och
+diffkontroll. Fulla arbetsloggar och browserverktyget finns i
+`/tmp/kvarteret-orkester-20261023/evidence148/`. Ingen fysisk telefon-FPS
+eller oberoende inmätning påstås. Dirigenten publicerar, kontrollerar
+Pages och berörd livevy och stänger först därefter.
