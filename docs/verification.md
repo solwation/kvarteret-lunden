@@ -1685,3 +1685,40 @@ World, material, kamera och tid. Den kräver fullbordad appstart, färre anrop/t
 fysiska rays, källa/skugga-identitet, okända shaderprogram, LOD-undantag och återställning
 vid nästlad kamera/fel. Telefonens befintliga frustum och originalpopulationer bevaras.
 Se [källgranskningen](upstream.md#färre-färgritningar-runt-uteplatserna-139).
+
+
+## Täta grannhusens gavlar, #150
+
+2026-10-23, baslinje `2fcadd0` (byggversion `4924034576740755531b6624`),
+slutbygge `86886c6772c54f65038a45ce`. Selektiv väggändring från original
+`bad16e072f7a883bc7f8f99281af6b677a393855`; övrig appkod är identisk.
+
+Riktad komponentkontroll bygger verklig generisk geometri för väst/öst/norr med
+plan mark och utan särskilda fasadbyggare eller tillfarter. Tolv hus har totalt
+24 väggkanter som korsar nocken. Tre korta horisontella strålar per korsning,
+20/50/80 procent upp i den tidigare öppna triangeln, ger 0/72 väggträffar före
+och 72/72 efter. Komponenternas batchantal är oförändrat 3/3/4; trianglarna
+ökar 796→812, 788→812 och 2040→2048, exakt två per delad kant. A/B/C/L:s egna
+husbyggare och södermodulen berörs inte; den senare följs separat i #158.
+
+Faktiska byggda WebGL-scenen provas i headless Chromium/SwiftShader, 1000×700,
+med samma fasta datum och identiska kameror före/efter. Consensums västgavel och
+Norra tegelpaviljongens östgavel är visuellt granskade: väggen fyller nu hela
+triangeln fram till nocken. Ritanrop är 53→53 respektive 32→32; ritade trianglar
+427896→427920 respektive 296650→296674. Inga sidfel eller externa anrop.
+Detta är riktade scenvyer, ingen fysisk telefonprestandamätning eller full
+navigationsomkörning. Consensumvyn har en befintlig fönsterram och träd i
+förgrunden, medan den norra gaveln syns fritt.
+
+`npm test` (94 moduler), `npm run build` och `git diff --check` passerar.
+Evidens utanför repot: `/tmp/kvarteret-orkester-20261023/evidence150/`, med
+`component.mjs`, `component-before.json`, `component-after.json`,
+`component-summary.json`, `browser.mjs`, `browser-results.json`,
+`before-consensum.png`, `after-consensum.png`, `before-north.png`,
+`after-north.png`, `npm-test.log` och `build.log`. Pages och publicerad vy
+verifieras av integrationsägaren före stängning.
+
+Granskade offentliga bildpar: [Consensum före](../artifacts/150/before-consensum.png)
+och [efter](../artifacts/150/after-consensum.png), [nordgavel före](../artifacts/150/before-north.png)
+och [efter](../artifacts/150/after-north.png). [Byggidentitet, kameror och ritanrop](../artifacts/150/browser-results.json)
+är sparade tillsammans med bilderna. Dessa evidensfiler ingår inte i publiceringspaketet.

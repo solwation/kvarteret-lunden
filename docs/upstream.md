@@ -1724,3 +1724,19 @@ och `npm run build`. Pages-resultatet länkas i #144.
 ## Spalt i trappväggen, #145
 
 Importerad från originalet: `1fddc8b91406384424c08c21f94e5208c877df3b` (original #1526). `STAIR.niche` i `src/config.js` och ett fyllnadsblock i `buildStructure` (`src/world.js`) direkt efter `buildStairs`: Entréplans norra vägg har en 12 cm djup inbuktning (x 3,9814–4,5313, z 5,5844–5,7044) som gick upp till taket och syntes som en mörk spalt vid flight B:s översta steg. Den fylls från varje stegs undersida (`stairUnderside`) upp till väggens topp (`slabY0`), bara när planen har inbuktningen; nischen i skrubben under trappan (`NICHE` i `src/cleaning.js`) är kvar. Originalets ändringslogg ingår inte. Verifiering: `npm test`, `npm run build` och före/efter-bilder i Chromium (`docs/verification/145/`).
+
+
+## Täta grannhusens gavlar, #150
+
+Importerad från `bad16e072f7a883bc7f8f99281af6b677a393855`
+([original #1527](https://github.com/solwation/lunden-3d-apartment/issues/1527)):
+enbart väggslingan i `buildBackdrop` i `src/sitebackdrop.js`. Väggkanter som
+korsar sadeltakets nock delas vid korsningen, så väggtoppen följer båda takfallen.
+Det tätar 24 tidigare öppna gaveltrianglar på tolv kartlagda grannhus i väster,
+öster och norr, inklusive Consensum och Norra tegelpaviljongen. Befintliga
+fasadbatcher, tak, fönster, plana tak och särskilda fasadbyggare behålls.
+`src/southbackdrop.js` ingår inte; dess motsvarande port följs i #158.
+Originalets ändringslogg och utvecklingsdokument har inte importerats. Inga nya
+beroenden, resurser, tjänster eller lagringsnycklar tillkommer.
+
+Verifiering och begränsningar finns i [verifieringsanteckningen](verification.md#täta-grannhusens-gavlar-150).
