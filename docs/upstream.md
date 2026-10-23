@@ -1719,3 +1719,8 @@ changelog och rapporttjänst ingår inte.
 Ingen appkod, personlig resurs, lagring, spelmekanik eller tjänsteintegration ingår.
 Verifiering: identisk kärna, diff/länkar/motsägelser, `git diff --check`, `npm test`
 och `npm run build`. Pages-resultatet länkas i #144.
+
+
+## Spalt i trappväggen, #145
+
+Importerad från originalet: `1fddc8b91406384424c08c21f94e5208c877df3b` (original #1526). `STAIR.niche` i `src/config.js` och ett fyllnadsblock i `buildStructure` (`src/world.js`) direkt efter `buildStairs`: Entréplans norra vägg har en 12 cm djup inbuktning (x 3,9814–4,5313, z 5,5844–5,7044) som gick upp till taket och syntes som en mörk spalt vid flight B:s översta steg. Den fylls från varje stegs undersida (`stairUnderside`) upp till väggens topp (`slabY0`), bara när planen har inbuktningen; nischen i skrubben under trappan (`NICHE` i `src/cleaning.js`) är kvar. Originalets ändringslogg ingår inte. Verifiering: `npm test`, `npm run build` och före/efter-bilder i Chromium (`docs/verification/145/`).
