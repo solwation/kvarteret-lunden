@@ -63,6 +63,10 @@ Verifiering: `npm test`, `npm run build`, `tools/browser-check.mjs` och Chromium
 - Importerade ändringar: första rensade arkitekturimporten; se filkartan ovan. Verifiering beskrivs i README och docs/verification.md.
 
 
+## Skolmuren och växthuset är solida från marken, #146
+
+Importerad från `bfc4ed380078c411b7a78eaabe9a8be1e6bf0c39` (original #1542): `farSegments()` i `src/farwalk.js` får skolmurens (`SITE.school.wall`, x −26…30, z −32,15, tjocklek 0,3 m) och växthusets (`SITE.school.greenhouse`) rektanglar, eftersom `surroundings.js` ritar dem utanför `WALK`-väggen och bara takpromenaden kände dem. Ingen ny geometri eller renderkostnad. `tools/farwalk-check.mjs` ersätter originalets `farwalktest`: vägen till Klockhuset går nu runt murens östra ände (x 31) och två nya kontroller visar att muren stoppar mitt på sträckan och vid östra änden. Ändringslogg ingår inte (projektet har ingen).
+
 ## Startåterhämtning, #1065
 
 Importerad från `502404a25063b954349a858edf72a74eaa02d14e`: avgränsad hämtning av planritningen med högst två försök, 15 sekunder per försök och 250 ms mellanrum. Ett tillfälligt nätfel, timeout eller HTTP408/429/5xx får ett nytt försök utan att läsa ett cachat felsvar;404 och felaktig JSON avbryter direkt. `src/startup.js` innehåller endast den rena hämtningsfunktionen, med parametrar i `src/config.js`. Originalets felrapportering och sessionStorage-diagnostik har inte importerats.

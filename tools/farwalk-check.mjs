@@ -35,7 +35,10 @@ try{
    ['under the bridges east',[10,111],[[18,111],[24,111],[32,111]],()=>n.pos.x>30&&n.pos.y<=-5.0],
    ['under the bridges west',[32,111],[[24,111],[18,111],[10,111]],()=>n.pos.x<12&&n.pos.y<=-5.0],
    ['HepCat building blocks',[24,0],[[34,0]],()=>n.pos.x<28],
-   ['to the school and clock tower',[20,-10],[[20,-40],[20,-80],[24,-108],[45,-109]],()=>n.pos.z<-108&&n.pos.x>40],
+   // original #1542: the school wall (x -26..30 along the far pavement) is solid from the ground; the walk goes round its east end
+   ['to the school and clock tower',[20,-10],[[31,-28],[31,-38],[21,-39],[20,-80],[24,-108],[45,-109]],()=>n.pos.z<-108&&n.pos.x>40],
+   ['school wall blocks from the street',[0,-28],[[0,-38]],()=>n.pos.z>-32.0&&n.pos.z<-31],
+   ['school wall blocks at the east end',[28,-28],[[28,-38]],()=>n.pos.z>-32.0&&n.pos.z<-31],
    ['clock tower facade blocks',[45,-109],[[45,-125]],()=>n.pos.z>-113.5],
    ['between school buildings east',[45,-109],[[70,-108],[100,-108],[130,-105],[130,-60]],()=>n.pos.z>-62&&n.pos.x>125],
    ['back to the block',[130,-60],[[130,-30],[75,-25],[40,-20],[25,-5]],()=>n.pos.x<30],
