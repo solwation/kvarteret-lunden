@@ -1,0 +1,54 @@
+{
+  "beforeBuild": {
+    "version": "3bbed599544c9effc3f21fb6",
+    "builtAt": 1792783006057
+  },
+  "afterBuild": {
+    "version": "51318a46c9d9cb578b5f5839",
+    "builtAt": 1792783070994
+  },
+  "roadRays": 63,
+  "jointRays": 50,
+  "endRays": 4,
+  "maxRoadError": 8.12255345296331e-7,
+  "maxJointError": 7.688691937360326e-7,
+  "maxEndError": 4.069809364168342e-7,
+  "beforeLamps": 150,
+  "afterLamps": 150,
+  "affectedLamps": [
+    {
+      "x": 200.2861977182568,
+      "z": 291.97476181717593,
+      "yaw": 0.2898612298258388,
+      "source": "335403605",
+      "region": "south",
+      "index": 173,
+      "position": [
+        200.28619384765625,
+        3.998647689819336,
+        291.9747619628906
+      ],
+      "heightError": 5.1958977564936504e-8,
+      "matchingHead": true
+    },
+    {
+      "x": 167.555022159872,
+      "z": 303.7294030915638,
+      "yaw": 1.5119358249211685,
+      "source": "335403606",
+      "region": "south",
+      "index": 174,
+      "position": [
+        167.55502319335938,
+        4.344743251800537,
+        303.7294006347656
+      ],
+      "heightError": 1.3677177435056365e-7,
+      "matchingHead": true
+    }
+  ],
+  "landPositionHash": "3703ffff7252d0b3378e224d7e980e6a6b233304992935fea8dff760da71a662",
+  "terrainPositionHash": "34fb8819a6844a75db73b237609a5ee8e5448ad72892bc4679d18de7eafe1cfe",
+  "fixtureMatrixHash": "a1bb2da926e233baa816ed319635af6a6b4cba9bb658b82c63f76378765dfe28",
+  "allSpotsUnchanged": true
+}

@@ -214,6 +214,8 @@ mellan tre befintliga väganslutningar. Ytteränden mot 95036048 lämnas bar;
 asfalt och 4,5 m bredd är antaganden. [Källgranskning](docs/upstream.md#västra-servicevägen-145221612-148-2026-10-23).
 
 
+De befintliga serviceinfarterna 335403605/335403606 vid parkeringsområdet har kontrollerats mot hela kartsträckorna (#149). Bredden 4,5 m är ett antagande; kartans ”paved” för 606 verifierar inte asfalt som material.
+
 Med `?perf` kan långa bildintervall mätas lokalt och exporteras utan en telemetritjänst; se [diagnostikprotokollet](docs/frame-intervals.md).
 
 ## Gemensam orkester

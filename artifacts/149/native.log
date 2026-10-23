@@ -1,0 +1,27 @@
+✔ deterministic finite roadside coverage across all five mapped regions (94.706646ms)
+✔ posts keep the actual road strips, walking strips, river, bridge and field free (110.263054ms)
+✔ existing fixtures and tree trunks remove colliding candidates without modifying inputs (81.340439ms)
+✔ public buildings, bridge earth ramp and fixture-to-fixture passage stay clear (7.836104ms)
+✔ only new far-south fittings use the existing backdrop plane; the inner callback stays exact (0.2386ms)
+✔ twelve sourced parking parcels fit whole car bays and mapped access without capacity-based strip spacing (1.845601ms)
+✔ bounded emitted patches match full civil planes and query triangles; exterior source vertices and complete-cell partition survive (67.892533ms)
+✔ overlapping support regions retain whole-pocket ownership and preserve new guarded building boundaries (12.122406ms)
+✔ annex-constrained civil plane uses the actual building edge and road mean as three height constraints (0.371ms)
+✔ concave source notch survives and the seven-bay row leaves six metres for the actual service aisle (0.5016ms)
+✔ large parcel reserves six-metre aisle/crossing and preserves the full anchored-apron envelope (3.035002ms)
+✔ house46 keeps fourteen concave source corners and three whole bays outside the actual service aisle (0.3632ms)
+✔ Natts and house47 use clear mapped aisles and a connected service graph without a forced capacity (0.4155ms)
+✔ west courtyard keeps the six-corner notch, three whole bays and all current road corridors clear (38.175719ms)
+✔ south courtyard keeps all eight source corners, three whole bays and every actual road and house apron clear (28.136914ms)
+✔ both ways follow the saved OSM ways with only guessed width/asphalt marked (1.553602ms)
+✔ joints sit at mapped nodes; footways stay footways (1.148201ms)
+✔ complete emitted strips clear southern buildings and woodland plus tree margin (37.233247ms)
+✔ existing public strip geometry, access order and affected parking data remain unchanged (37.281541ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 547.973679

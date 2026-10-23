@@ -1934,3 +1934,31 @@ Aktuell byggd före/efter-vy och skarv-/armaturkontroll redovisas med egna
 nya bilder i [verifieringsloggen](verification.md). Produktändringen gäller
 fortsatt bara konfigurationsposten; aktuella parkeringsplan, markkällor och
 #158:s gavlar behålls.
+
+
+## Råsemantik för befintliga serviceinfarter, #149
+
+Granskad originalkälla: `ad87e2b3a21594c0491865a9c8c89c38729d7b5f`
+([original #1449](https://github.com/solwation/lunden-3d-apartment/issues/1449)).
+OSM 335403605 (56,40 m) och 335403606 (cirka 31 m) fanns redan i
+publicen från #127, commit `e9767d1`, med samma kompletta kartpunkter,
+4,5 m bredd, asfaltyta och `terrain: 'triangles'`. Ingen väg dupliceras
+eller flyttas i listan för att efterlikna originalets senare importordning.
+
+Endast två befintliga poster i `src/config.js` kompletteras med
+`highway: 'service'` och normaliserad `surfaceSource`: `guess` för 605,
+`osm:paved` för 606. Paved belägger hårdgjord yta, inte asfalt specifikt;
+materialvalet asfalt och båda bredderna är fortsatt modellantaganden.
+Den befintliga 58°-projektionen, råpunkter, ordning, parkeringsplan, hus
+och markkällor behålls. 605 slutar inne i parkering 1379042188; 606
+ansluter kartnoden för 36918924/1147690112.
+
+`tools/servicepark1449test.mjs` anpassas selektivt med endast två frysta
+primärfeatures ur originalets OSM-underlag och publicens befintliga
+projektion. Det skyddar också redan levererad geometri/ordning och
+berörda parkeringsdata. Originalets `sitegeo.js`, HTML-test, foton,
+resultatbilder, ändringslogg och övriga appdelar importeras inte.
+Inga nya beroenden, nätverkstjänster eller lagringsnycklar tillkommer.
+© OpenStreetMap contributors, [ODbL/attribution](https://www.openstreetmap.org/copyright).
+`npm ci` gav 0 kända sårbarheter. Verifiering finns i
+[verifieringsloggen](verification.md).

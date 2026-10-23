@@ -2108,3 +2108,58 @@ diffkontroll. Fulla arbetsloggar och browserverktyget finns i
 `/tmp/kvarteret-orkester-20261023/evidence148/`. Ingen fysisk telefon-FPS
 eller oberoende inmätning påstås. Dirigenten publicerar, kontrollerar
 Pages och berörd livevy och stänger först därefter.
+
+
+## Befintliga serviceinfarters råsemantik, #149 (2026-10-23)
+
+Granskningen visade att OSM 335403605/606 redan ritades i publicen från
+#127, commit `e9767d1dce37eaff0c21dff5ab2eda68b6eed4cb`. Punkten i
+originalets lista efter #148 beskriver dess importordning. Publicens
+befintliga ordning behålls och inga dubbla vägar införs. Endast saknad
+`highway: 'service'` och normaliserad ytproveniens kompletteras på de
+två posterna. 605:s asfalt/bredd är antaganden. 606:s `osm:paved`
+belägger hårdgjord yta; valet av asfalt som material är fortsatt ett
+antagande, liksom bredden.
+
+Plan: anpassat käll-/geometri-/parkeringsprov och befintlig lampregel;
+#148:s byggda ray-/armaturharness återanvänds för aktuella vägskarvar
+och bildpar; obligatoriska `npm test`/`npm run build`. A/B/C/L berörs
+inte. Parkeringsplan, hus, markkällor och gånggräns behålls.
+
+`node --test tools/servicepark1449test.mjs tools/roadlampstest.mjs tools/roadsideparkingtest.mjs`
+passerar 19/19. Proven kontrollerar fulla frysta primärpunkter och råtaggar,
+56,40 m/omkring 31 m väg, `terrain: 'triangles'`, gissad bredd 4,5 m,
+kartnoderna vid 36918924/1147690112 och 605:s slut inne i parkering
+1379042188. Gångvägar förblir gångvägar. Kompletta remsor undviker hus
+och skogsmarginaler. Befintliga hela rutor och fria infarter bevaras.
+Ett separat jämförelseprov skyddar samma vägformer/accessordning och
+berörda parkeringsposter mot public bas `2899dcdd`.
+[Native-logg](../artifacts/149/native.log). Den oförändrade lampregeln
+ger exakt samma fulla kandidatlista utan träd/befintliga armaturer,
+161→161; originalets 128→130 är ingen gräns för publicen.
+
+Byggd faktisk Chromium/SwiftShader (headless, 1280×800, juli): före
+`3bbed599544c9effc3f21fb6`, efter `51318a46c9d9cb578b5f5839`.
+63 centrum-/sidstrålar (±2,1 m) längs alla sju segment, 50 prov runt
+noder/ändar och fyra strålar 5 cm innanför ändarna träffar faktisk
+sammanslagen vägyta vid ritad terräng +25 mm. Största felen är
+0,000000812 m, 0,000000769 m respektive 0,000000407 m, under
+provets 2 mm tolerans. Samma gröna stöd finns före kompletteringen.
+
+Den faktiska World-scenen har 150→150 vägarmaturer; de två befintliga
+armaturerna på dessa källvägar står kvar och deras stolp-/huvudmatriser
+matchar. Alla World-lampplaceringar är identiska. Hela stolpinstansmatrisen
+och positionerna i faktisk south-land/terräng har identiska SHA-256 före
+och efter. Båda granskade PNG-bildparen är byteidentiska. Inga sidfel
+eller externa anrop. [Sammanfattning](../artifacts/149/summary.json),
+[rådata, geometri-/matrishashar och PNG-hashar](../artifacts/149/browser-results.json).
+
+Egna bilder: [översikt före](../artifacts/149/before-overview.png)/
+[översikt efter](../artifacts/149/after-overview.png),
+[gemensam nod före](../artifacts/149/before-junction.png)/
+[gemensam nod efter](../artifacts/149/after-junction.png).
+`npm test` passerar (97 moduler och publik isolering), liksom bygge och
+diffkontroll. Arbetsloggar och browserverktyget finns i
+`/tmp/kvarteret-orkester-20261023/evidence149/`. Ingen fysisk
+telefonprestanda påstås. Dirigenten publicerar, kontrollerar Pages/
+berörd livevy och stänger därefter.
