@@ -1686,3 +1686,17 @@ resurshushållning gäller även med låst modell. Acceptans och publiceringskra
 Ingen appkod, personlig resurs, lagring, spelmekanik eller tjänsteintegration ingår.
 Verifiering: exakt kärnrelease, dokumentdiff/länkar/motsägelser, `git diff --check`,
 `npm test` (94 moduler) och `npm run build`. Pages-resultatet länkas i #142.
+
+
+## Upptäckt av orkesteruppdateringar, #143
+
+Granskad originalkälla: `635bd3f9f292b17f4e63bf737c6411c91976c2e3`
+(original #1522). Endast den lokala underhållssektionen i `.orchestra/project.md`
+och README-förklaringen anpassas. Generisk procedur kommer från
+`solwation/dirigenten-och-orkestern`, `cbddafa3193870c7f0693064ae303cc4d6657ff0`.
+Installerad kärna/pin v0.1.1 behålls: start-/återupptagningskontrollen upptäcker
+stabila releaser och versionstaggar och föreslår relevanta buggfixar. Övriga
+uppgraderingar är valfria; importer är fortsatt granskade och uttryckliga.
+Ingen appkod, personlig resurs, lagring, spelmekanik eller tjänsteintegration ingår.
+Verifiering: diff/länkar/motsägelser och oförändrad kärna/pin, `git diff --check`,
+`npm test` och `npm run build`. Pages-resultatet länkas i #143.
