@@ -1,0 +1,13 @@
+✔ the OSM outline (way 130681301) is unchanged (1.416899ms)
+✔ three volumes: the gable house and the range share an eave, the range roof is lower, the hall stands above both (0.1716ms)
+✔ the roofs: roofY peaks at each ridge, falls to the eaves, the hall hips to the east, never under a drawn roof triangle (0.7343ms)
+✔ windows: four on the gable front plus one in the peak, tall hall windows, a round one in the hall gable, range windows over the ground (0.2849ms)
+✔ one geometry per east-backdrop batch, mergeable attributes, finite and near the outline (3.606999ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 103.628174

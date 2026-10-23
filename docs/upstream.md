@@ -1831,3 +1831,28 @@ ingen fotofil eller extern resurs tillkommer. Originalets foton, resultatbilder,
 #150:s gavelrättning är redan på plats. Övrig vegetation, hus A/B/C/L och den
 fristående åändringen i #154 ingår inte i denna port. Inga nya beroenden,
 lagringsnycklar eller nätverksanrop tillkommer. Se [verifieringen](verification.md#hepcat-husets-tak-och-fasader-155).
+
+
+## Realgymnasiet, Sankt Lars väg 20, #156
+
+Selektiv port från [originalets #1532](https://github.com/solwation/lunden-3d-apartment/issues/1532),
+exakt källa `3c140abd98a52737d566df23aad69874a900f1cb`. Ny
+`src/realgym20.js`, endast OSM-post 130681301:s namn, källbeskrivning,
+`template` och `model` i `src/config.js`, samt import/anropskrok i
+`src/sitebackdrop.js` och anpassat `tools/realgym20test.mjs`.
+Kroken skickar publicens `ground`, så sockel och fönster kan följa
+terrängen. Det behållna OSM-avtrycket får ett gavelhus, en lägre länga
+med kupor och trapptorn samt en högre hall. Alla mått, färger och
+fasadtolkningar är visuella antaganden. `roofY` följer de ritade taken.
+
+Fasad, glas och tak går till sina befintliga östbatcher. Hallens tak går
+till den mörka takbatchen för att behålla `schoolRoof`-batchens gränser.
+Gavelrättningen från #150 och övriga byggnads-/husvarianter A/B/C/L behålls.
+`tools/campus-budget-check.mjs` registrerar den nya mallens bidrag i sin
+befintliga 16-byggnadsledger; budgettaket ändras inte.
+
+Originalets foton, resultatbilder, ändringslogg och utvecklingsdokument
+importeras inte. Inga nya beroenden, texturer, lampor, lagringsnycklar eller
+tjänster ingår. Befintlig attribution och licenser behålls. Låsta beroenden
+installerades med `npm ci` (0 kända sårbarheter). Verifiering och egna
+bilder finns i [verifieringsloggen](verification.md).

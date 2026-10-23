@@ -1902,3 +1902,61 @@ Evidensfilerna följer inte med publiceringspaketet. Skript, loggar och frysta
 före/efterbyggen finns i `/tmp/kvarteret-orkester-20261023/evidence155/`.
 Detta är riktad geometri/takgång i Chromium, ingen fysisk telefonprofil.
 Dirigenten verifierar integrerad byggversion, Pages och publicerad vy före closure.
+
+
+## Realgymnasiet, Sankt Lars väg 20, #156 (2026-10-23)
+
+Plan: riktat nativeprov av volymer/tak/markföljande fönster; byggd berörd
+vy före/efter och faktisk publik östcampusbudget; obligatoriska `npm test`
+och `npm run build`. OSM-byggnaden 130681301 använder en egen mall;
+A/B/C/L och deras separata mått/öppningar ändras inte. #150:s rättade
+gavlar i den generiska byggaren behålls.
+
+`node --test tools/realgym20test.mjs` passerar 5/5: oförändrad OSM-kontur,
+gavelhus/lägre länga/hög hall, trapptornets höjd, ritade tak i förhållande
+till `roofY`, fönster över den stigande marken och ändliga kompatibla
+attribut inom konturen. En geometri var i befintliga fasad-/glas-/takbatcher.
+Den verkliga scenvarianten har 180 + 1 024 + 67 = 1 271 trianglar, under
+komponentprovets oförändrade `<3000`. Kroken skickar publicens `ground`;
+sockel/fönster och husets golvreferens använder den verkliga markfunktionen.
+`npm test` passerar (95 moduler och publik isolering), liksom bygge och
+diffkontroll. [Native-logg](../artifacts/156/native.log).
+
+Byggd Chromium/SwiftShader (headless, juli), public bas `7d8f9cb6`: före
+`682a06f93ac8b4242cf4cece`, efter `5b5c5f2fe46e4b254bc35c9f`.
+Dator 1280×800: sydvästkameran (9; 6; 78) mot (49; 4; 40),
+längkameran (13; 5; 26) mot (46; 4; 35). Namngivna östanrop har
+identiska namn/ordning före/efter: 12→12 respektive 9→9. Android-UA
+390×844 har 8→8 i sydvästvyn. Slutsatsen om oförändrade ritanrop
+gäller östgruppen; scenens globala totaler finns också som diagnostik.
+Inga sidfel eller externa anrop. Bilderna har granskats: gavelhus,
+längans kupor och trapptorn samt den höga hallen är synliga.
+
+Publik fullgruppsbudget mäts med den oförändrade
+`tools/campus-budget-counter.mjs`, samma räknare och omfattning som
+`tools/campus-budget-check.mjs`: alla östmeshar, access och klockans
+indexerade instanser. Räknarens eget nativeprov passerar
+([logg](../artifacts/156/counter.log)). Vanlig Android-UA utan `keepgeo`
+ger 38 543→39 548 trianglar, båda under det oförändrade publika taket
+40 843, med 1 295 trianglars marginal efter porten. Access är kvar på
+11 067 och klockan på 144. Tillväxten är exakt +1 005 i fasad/glas/tak;
+övriga batchmängder och meshlistan är oförändrade. Datorns fulla
+resursräkning är 80 202→81 207; 40 843 är Androidgränsen.
+Originalets historiskt röda budget importeras inte. Inget tak höjs.
+Budgetverktygets befintliga byggnadsledger har anpassats till den nya
+mallens tidiga `continue` och syntaxkontrollerats; den avgränsade
+byggda mätningen använder räknaren direkt på verkliga scenen.
+
+Egna bildpar: [sydväst före](../artifacts/156/desktop-before-southwest.png)/
+[sydväst efter](../artifacts/156/desktop-after-southwest.png),
+[längan före](../artifacts/156/desktop-before-range.png)/
+[längan efter](../artifacts/156/desktop-after-range.png),
+[Android före](../artifacts/156/android-before-southwest.png)/
+[Android efter](../artifacts/156/android-after-southwest.png).
+[Rådata och byggversioner](../artifacts/156/browser-results.json).
+Fulla arbetsloggar och riktad browserkontroll finns i
+`/tmp/kvarteret-orkester-20261023/evidence156/`.
+
+Ingen fysisk telefon-FPS eller oberoende uppmätning av byggnaden påstås.
+Dirigenten integrerar ovanpå parallella #155, publicerar och kontrollerar
+den sampublicerade livevyn efter Pages.

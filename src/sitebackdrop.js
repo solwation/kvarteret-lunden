@@ -5,6 +5,7 @@ import { pathStrip, onRoad, onWalk, cutAtTerrain, vehicleTrim, isVehicleWay } fr
 import { registerSnow } from './seasons.js';
 import { buildSchoolFacade, schoolTextures } from './schoolfacade.js';
 import { buildCampusFacade } from './campusfacades.js';
+import { buildRealgym20 } from './realgym20.js';
 import { lowMemory } from './lowmemory.js';
 import { TowerClock } from './towerclock.js';
 import { parkingLots, onEastRoad, onEastBuildingAt } from './parkinglayout.js';
@@ -96,6 +97,7 @@ function buildBackdrop(W,key,ground,brick=null,reflectiveGlass=null,karp=null){
  const group=new THREE.Group();group.name=key+'-backdrop';const parts={facade:[],roof:[],glass:[],access:[],...(brick||W.buildings.some(b=>b.classic)?{modern:[]}: {})},records=[],modernEnds=[];
  for(const b of W.buildings){const p=b.polygon.slice(0,-1),holes=(b.holes??[]).map(h=>h.slice(0,-1)),height=b.storey??W.storey,heights=p.map(v=>ground(...v)),base=Math.max(...heights),bottom=Math.min(...heights)-.1,eave=base+b.levels*height;const footprint=shape(p);footprint.holes=holes.map(h=>new THREE.Path(h.map(([x,z])=>new THREE.Vector2(x,-z))));const wallParts=b.modern?parts.modern:parts.facade;
   if(b.karp&&karp){parts.karpBrick??=[];parts.karpGlass??=[];parts.karpRoof??=[];records.push({...b,base,bottom,...buildKarpFacade(b,p,base,bottom,height,parts)});continue;}
+  if(b.template==='realgym20'){records.push({...b,base,bottom,...buildRealgym20(b,p,base,bottom,parts,ground)});continue;} // #156: reviewed volumes in the existing batches
   if(b.classic){if(reflectiveGlass)parts.schoolGlass??=[];parts.schoolBrick??=[];parts.schoolRoof??=[];const school=buildSchoolFacade(p,base,bottom,eave,parts);records.push({...b,base,bottom,eave,...school});continue;}
   // #576–#581: photo-specific hospital facades share the school's brick, trim, glass and roof batches.
   if(b.campus){if(reflectiveGlass)parts.schoolGlass??=[];parts.schoolBrick??=[];parts.schoolRoof??=[];records.push({...b,base,bottom,...buildCampusFacade(b,p,holes,base,bottom,parts)});

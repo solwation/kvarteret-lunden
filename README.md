@@ -84,6 +84,8 @@ Klocktornets fyra urtavlor visar besökarens lokala tid med tydliga visare och t
 
 Sankt Lars väg 41 har tre våningar ovan sockeln, en lägre tvåvåningsflygel, trapptorn vid 41A och 41B samt valmade plåttak med skorstenar (#151). Mått, färger och fasaddetaljer är visuella modellantaganden.
 
+Realgymnasiet på Sankt Lars väg 20 har ett gavelhus, en lägre länga med takkupor och trapptorn samt en hög hall (#156). Byggnadens mått och fasaddetaljer är visuella modellantaganden.
+
 Gångbanor och trottoarer ansluter längs körbanornas kanter även i sneda korsningar. Vid södra bro-/parkanslutningen möts de skurna ytorna längs samma trottoarkant, så överlappande asfalt inte bildar ljusa eller mörka triangelflisor (#124). Där följer gånghöjden de faktiskt ritade mark-/gångytorna, med en sammanhängande lokal övergång till omgivningens markfunktion (#135). Kartkopplingen vid Karpvägens mynning har en mjuk avrundning; dess radie är ett visuellt antagande.
 
 På pekskärmar går man genom att sätta tummen var som helst på bildens vänstra del (under hjälpknappen och platsmenyn): spaken hamnar under tummen, följer med om tummen dras förbi kanten och återgår till sin vilande plats i hörnet när tummen lyfts. Höger del av bilden är för att titta. I hjälpdialogen finns **Anpassa touchknappar**: dra Öppna/Stäng och Mät avstånd dit du vill, ändra storlek på dem och spaken (nyp eller reglage) och genomskinlighet eller spegla allt för vänsterhänta. Spara, Avbryt och Återställ standard finns i redigerarens list. Layouten sparas bara på enheten i `localStorage` med nyckeln `kvarteret-lunden.touch-layout`; om lagringen är blockerad gäller den under besöket. Standardlayouten är tumbågen.
