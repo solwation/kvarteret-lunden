@@ -86,6 +86,8 @@ Klocktornets fyra urtavlor visar besökarens lokala tid med tydliga visare och t
 
 Sankt Lars väg 41 har tre våningar ovan sockeln, en lägre tvåvåningsflygel, trapptorn vid 41A och 41B samt valmade plåttak med skorstenar (#151). Mått, färger och fasaddetaljer är visuella modellantaganden.
 
+Sadeltakshusens gavlar söder om ån sluter tätt upp till taknocken, så himlen inte längre syns genom öppna trianglar (#158).
+
 Realgymnasiet på Sankt Lars väg 20 har ett gavelhus, en lägre länga med takkupor och trapptorn samt en hög hall (#156). Byggnadens mått och fasaddetaljer är visuella modellantaganden.
 
 Gångbanor och trottoarer ansluter längs körbanornas kanter även i sneda korsningar. Vid södra bro-/parkanslutningen möts de skurna ytorna längs samma trottoarkant, så överlappande asfalt inte bildar ljusa eller mörka triangelflisor (#124). Där följer gånghöjden de faktiskt ritade mark-/gångytorna, med en sammanhängande lokal övergång till omgivningens markfunktion (#135). Kartkopplingen vid Karpvägens mynning har en mjuk avrundning; dess radie är ett visuellt antagande.

@@ -1879,3 +1879,25 @@ riktat `tools/schoolwalltest.mjs`; originalets HTML-test, foton, resultatbilder,
 ändringslogg och utvecklingsdokument importeras inte. Befintliga materialbatcher
 återanvänds; inga nya texturer, beroenden, nätverkstjänster eller lagringsnycklar.
 Övriga hus och vegetation behålls. Se [verifieringen](verification.md#busskur-i-skolmurens-östra-ände-157).
+
+
+## Hela södergavlar upp till nocken, #158
+
+Selektiv rättning från [originalets #1550](https://github.com/solwation/lunden-3d-apartment/issues/1550),
+exakt källa `5ba0493e58576eba70349c63593990373a607eaf`: endast
+väggkantsdelningen i `src/southbackdrop.js` (+4/−1 rader). En kant som
+korsar sadeltakets nocklinje delas där, så fasadtoppen följer båda
+takfallen. Tidigare interpolerades toppen rakt mellan ändpunkterna och
+lämnade en öppen triangel mot himlen. 46 generiska sadeltakshus får
+92 delade kanter och +184 fasadtrianglar, inom samma batch.
+
+Valmade tak delas inte. Fönsterlogiken fortsätter använda de ursprungliga
+hörnen; glas, mark och takgeometri är oförändrade. St Lars 41:s separata
+byggare behålls. #150:s väst-/öst-/nordrättning och A/B/C/L:s egna
+modeller ändras inte. Riktat `tools/southgabletest.mjs` använder samma
+differentiella ray-metod som #150, mot denna publika byggare före/efter.
+
+Inga originalfoton, resultatbilder, ändringslogg, persondata, nya beroenden,
+lagringsnycklar eller tjänster importeras. Befintlig attribution och licenser
+behålls. Låsta beroenden installerades med `npm ci` (0 kända sårbarheter).
+Verifiering och egna bilder redovisas i [verifieringsloggen](verification.md).

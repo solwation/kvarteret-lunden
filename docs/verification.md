@@ -2002,3 +2002,49 @@ fysisk telefonprofil. Evidensfilerna följer inte med publiceringspaketet.
 Skript, loggar och frysta byggen finns under
 `/tmp/kvarteret-orkester-20261023/evidence157/`. Dirigenten verifierar Pages
 samt integrerad publicerad vy före stängning.
+
+
+## Hela södergavlar upp till nocken, #158 (2026-10-23)
+
+Plan: samma komponentmetod som #150, med strålar genom tidigare glipor
+och exakt geometridifferens; en byggd faktisk gavelvy före/efter med
+ritningsjämförelse; obligatoriska `npm test` och `npm run build`.
+Rättningen gäller söderbyggarens generiska sadeltak. Valmade tak,
+St Lars 41:s specialmodell och A/B/C/L:s separata byggare behålls.
+
+`node --test tools/southgabletest.mjs` passerar 2/2. Provet kör denna
+publika söderbyggare före/efter mot public bas `674a299`, stoppar efter
+de fyra verkliga materialbatcherna före canvas/trädkronor och jämför
+geometrin. Vid 92 nockkorsande kanter på samtliga 46 generiska
+sadeltakskroppar träffar tre strålar per tidigare glipa den rättade fasaden
+(20/50/80 % av glipans höjd): 276 bommar före, 276 träffar efter.
+Fasaden ökar 3 766→3 950 trianglar, exakt +2 per delad kant.
+
+Tak-, glas-/fönster- och markattribut är byteidentiska. Valmade tak och
+St Lars 41 byggs dessutom separat före/efter med identiska attribut i alla
+sina batcher. Komponentprovet använder publicens befintliga fjärrdatum
+−3,01 m utanför terränggränsen. Fönsterlogiken fortsätter använda hela
+originalkanten, medan enbart den övre fasadremsan delas vid nocken.
+[Native-logg](../artifacts/158/native.log),
+[strålar, differens och attribut-SHA](../artifacts/158/component-results.json).
+
+Faktisk byggd Chromium/SwiftShader (headless, 1000×700, juli):
+public bas `674a2994d5124047be2d2764a80d33a0a671e673`, före
+`9a76df45252310b1ceb31a6c`, efter `cd26e8112639fecc5816627d`.
+Nattsländegatan 2 (OSM 333642387) ses från
+(117,133155; 7,5840124; 177,748891) mot
+(127,945; 7,5840124; 192,14), samma kamera i båda fallen.
+Det granskade bildparet visar att de tidigare himmelöppningarna i
+gavelraden är stängda. Totala ritanrop är 24→24, södergruppens
+namngivna anrop 4→4. Ritade trianglar är 289 194→289 378, exakt +184.
+Takets 670, glasets 4 104 och markens 95 469 trianglar är oförändrade.
+Inga sidfel eller externa anrop. Egna [före](../artifacts/158/before-gable.png)/
+[efter](../artifacts/158/after-gable.png),
+[rådata och byggversioner](../artifacts/158/browser-results.json).
+
+`npm test` passerar (97 moduler och publik isolering), liksom bygge och
+diffkontroll. Fulla arbetsloggar och browserkontrollen finns i
+`/tmp/kvarteret-orkester-20261023/evidence158/`. Ingen bred profilmatris,
+fysisk telefonprestanda eller oberoende uppmätning av byggnader påstås.
+Dirigenten granskar/integrerar, publicerar och kontrollerar berörd livevy
+efter grön Pages-körning.

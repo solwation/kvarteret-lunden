@@ -1,0 +1,141 @@
+{
+  "sourceCommit": "5ba0493e58576eba70349c63593990373a607eaf",
+  "publicBaseline": "674a2994d5124047be2d2764a80d33a0a671e673",
+  "browser": "Chromium 1208 headless, SwiftShader, 1000x700, July",
+  "results": [
+    {
+      "revision": "before",
+      "version": {
+        "version": "9a76df45252310b1ceb31a6c",
+        "builtAt": 1792780632943
+      },
+      "source": "333642387",
+      "name": "Nattsl\u00e4ndegatan 2",
+      "eye": [
+        117.13315505877492,
+        7.5840124,
+        177.74889132252466
+      ],
+      "target": [
+        127.945,
+        7.5840124,
+        192.14
+      ],
+      "calls": 24,
+      "triangles": 289194,
+      "owned": [
+        {
+          "name": "south-facade",
+          "triangles": 3766
+        },
+        {
+          "name": "south-roof",
+          "triangles": 670
+        },
+        {
+          "name": "south-glass",
+          "triangles": 4104
+        },
+        {
+          "name": "south-land",
+          "triangles": 95469
+        }
+      ],
+      "meshes": [
+        {
+          "name": "south-facade",
+          "triangles": 3766
+        },
+        {
+          "name": "south-roof",
+          "triangles": 670
+        },
+        {
+          "name": "south-glass",
+          "triangles": 4104
+        },
+        {
+          "name": "south-land",
+          "triangles": 95469
+        },
+        {
+          "name": "south-trunks",
+          "triangles": 1120
+        },
+        {
+          "name": "south-crowns",
+          "triangles": 2520
+        }
+      ],
+      "errors": [],
+      "external": []
+    },
+    {
+      "revision": "after",
+      "version": {
+        "version": "cd26e8112639fecc5816627d",
+        "builtAt": 1792780729015
+      },
+      "source": "333642387",
+      "name": "Nattsl\u00e4ndegatan 2",
+      "eye": [
+        117.13315505877492,
+        7.5840124,
+        177.74889132252466
+      ],
+      "target": [
+        127.945,
+        7.5840124,
+        192.14
+      ],
+      "calls": 24,
+      "triangles": 289378,
+      "owned": [
+        {
+          "name": "south-facade",
+          "triangles": 3950
+        },
+        {
+          "name": "south-roof",
+          "triangles": 670
+        },
+        {
+          "name": "south-glass",
+          "triangles": 4104
+        },
+        {
+          "name": "south-land",
+          "triangles": 95469
+        }
+      ],
+      "meshes": [
+        {
+          "name": "south-facade",
+          "triangles": 3950
+        },
+        {
+          "name": "south-roof",
+          "triangles": 670
+        },
+        {
+          "name": "south-glass",
+          "triangles": 4104
+        },
+        {
+          "name": "south-land",
+          "triangles": 95469
+        },
+        {
+          "name": "south-trunks",
+          "triangles": 1120
+        },
+        {
+          "name": "south-crowns",
+          "triangles": 2520
+        }
+      ],
+      "errors": [],
+      "external": []
+    }
+  ]
+}
