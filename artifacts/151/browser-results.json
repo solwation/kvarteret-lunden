@@ -1,0 +1,286 @@
+{
+  "sourceCommit": "2f3d17955663e013240ed40c949448045a4ae234",
+  "baselinePublicCommit": "2fcadd0",
+  "beforeBuild": "4924034576740755531b6624",
+  "afterBuild": "f29b1c3fb80fcba1e49a96ee",
+  "componentTriangles": {
+    "facade": 1946,
+    "roof": 20,
+    "glass": 544,
+    "total": 2510,
+    "capExclusive": 4000
+  },
+  "browser": "installed Chromium 1208, headless, SwiftShader, desktop 1280x800",
+  "results": [
+    {
+      "revision": "before",
+      "views": [
+        {
+          "pose": "41b",
+          "eye": [
+            -53.23084514228185,
+            17,
+            333.9944177637475
+          ],
+          "calls": 917,
+          "triangles": 921304,
+          "assetTris": 105557,
+          "meshes": [
+            {
+              "name": "south-facade",
+              "triangles": 2096
+            },
+            {
+              "name": "south-roof",
+              "triangles": 656
+            },
+            {
+              "name": "south-glass",
+              "triangles": 3696
+            },
+            {
+              "name": "south-land",
+              "triangles": 95469
+            },
+            {
+              "name": "south-trunks",
+              "triangles": 1120
+            },
+            {
+              "name": "south-crowns",
+              "triangles": 2520
+            }
+          ],
+          "shadows": false,
+          "southDraws": [
+            {
+              "name": "south-facade",
+              "triangles": 2096
+            },
+            {
+              "name": "south-roof",
+              "triangles": 656
+            },
+            {
+              "name": "south-glass",
+              "triangles": 3696
+            },
+            {
+              "name": "south-land",
+              "triangles": 95469
+            },
+            {
+              "name": "south-trunks",
+              "triangles": 1120
+            },
+            {
+              "name": "south-crowns",
+              "triangles": 2520
+            }
+          ]
+        },
+        {
+          "pose": "41a",
+          "eye": [
+            4.2263810340606796,
+            17,
+            292.28510033801376
+          ],
+          "calls": 37,
+          "triangles": 354721,
+          "assetTris": 105557,
+          "meshes": [
+            {
+              "name": "south-facade",
+              "triangles": 2096
+            },
+            {
+              "name": "south-roof",
+              "triangles": 656
+            },
+            {
+              "name": "south-glass",
+              "triangles": 3696
+            },
+            {
+              "name": "south-land",
+              "triangles": 95469
+            },
+            {
+              "name": "south-trunks",
+              "triangles": 1120
+            },
+            {
+              "name": "south-crowns",
+              "triangles": 2520
+            }
+          ],
+          "shadows": false,
+          "southDraws": [
+            {
+              "name": "south-facade",
+              "triangles": 2096
+            },
+            {
+              "name": "south-roof",
+              "triangles": 656
+            },
+            {
+              "name": "south-glass",
+              "triangles": 3696
+            },
+            {
+              "name": "south-land",
+              "triangles": 95469
+            },
+            {
+              "name": "south-trunks",
+              "triangles": 1120
+            },
+            {
+              "name": "south-crowns",
+              "triangles": 2520
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "external": []
+    },
+    {
+      "revision": "after",
+      "views": [
+        {
+          "pose": "41b",
+          "eye": [
+            -53.23084514228185,
+            17,
+            333.9944177637475
+          ],
+          "calls": 917,
+          "triangles": 923396,
+          "assetTris": 107649,
+          "meshes": [
+            {
+              "name": "south-facade",
+              "triangles": 3766
+            },
+            {
+              "name": "south-roof",
+              "triangles": 670
+            },
+            {
+              "name": "south-glass",
+              "triangles": 4104
+            },
+            {
+              "name": "south-land",
+              "triangles": 95469
+            },
+            {
+              "name": "south-trunks",
+              "triangles": 1120
+            },
+            {
+              "name": "south-crowns",
+              "triangles": 2520
+            }
+          ],
+          "shadows": false,
+          "southDraws": [
+            {
+              "name": "south-facade",
+              "triangles": 3766
+            },
+            {
+              "name": "south-roof",
+              "triangles": 670
+            },
+            {
+              "name": "south-glass",
+              "triangles": 4104
+            },
+            {
+              "name": "south-land",
+              "triangles": 95469
+            },
+            {
+              "name": "south-trunks",
+              "triangles": 1120
+            },
+            {
+              "name": "south-crowns",
+              "triangles": 2520
+            }
+          ]
+        },
+        {
+          "pose": "41a",
+          "eye": [
+            4.2263810340606796,
+            17,
+            292.28510033801376
+          ],
+          "calls": 37,
+          "triangles": 356813,
+          "assetTris": 107649,
+          "meshes": [
+            {
+              "name": "south-facade",
+              "triangles": 3766
+            },
+            {
+              "name": "south-roof",
+              "triangles": 670
+            },
+            {
+              "name": "south-glass",
+              "triangles": 4104
+            },
+            {
+              "name": "south-land",
+              "triangles": 95469
+            },
+            {
+              "name": "south-trunks",
+              "triangles": 1120
+            },
+            {
+              "name": "south-crowns",
+              "triangles": 2520
+            }
+          ],
+          "shadows": false,
+          "southDraws": [
+            {
+              "name": "south-facade",
+              "triangles": 3766
+            },
+            {
+              "name": "south-roof",
+              "triangles": 670
+            },
+            {
+              "name": "south-glass",
+              "triangles": 4104
+            },
+            {
+              "name": "south-land",
+              "triangles": 95469
+            },
+            {
+              "name": "south-trunks",
+              "triangles": 1120
+            },
+            {
+              "name": "south-crowns",
+              "triangles": 2520
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "external": []
+    }
+  ]
+}

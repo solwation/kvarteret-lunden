@@ -1740,3 +1740,25 @@ Originalets ändringslogg och utvecklingsdokument har inte importerats. Inga nya
 beroenden, resurser, tjänster eller lagringsnycklar tillkommer.
 
 Verifiering och begränsningar finns i [verifieringsanteckningen](verification.md#täta-grannhusens-gavlar-150).
+
+
+## Sankt Lars väg 41, #151
+
+Selektiv arkitekturport från [originalets #1529](https://github.com/solwation/lunden-3d-apartment/issues/1529),
+exakt granskad källa `2f3d17955663e013240ed40c949448045a4ae234`.
+Importerade delar: `src/stlars41.js`, endast St Lars 41-posten (OSM way
+145221569) i `src/config.js` och det anpassade `tools/stlars41test.mjs`.
+Huvudbyggnaden får tre våningar ovan sockeln, lägre tvåvåningsflygel,
+trapptorn vid 41A/41B, valmade plåttak och skorstenar. Befintlig OSM-kontur,
+terränganknytning och sammanslagna fasad-/tak-/glasbatcher behålls;
+modellens `roofY` följer nu de ritade taken. Mått, färger och de delar av
+fasaden som inte syns i referenserna är modellantaganden.
+
+Fotona har enbart varit originalets arkitekturreferenser och importeras inte.
+Originalets resultatbilder, ändringslogg och miljödokument ingår inte.
+Inga nya beroenden, texturer, lampor, lagringsnycklar, nätanrop eller
+tjänster tillkommer; låsta beroenden installerades med `npm ci` (0 kända
+sårbarheter). Befintlig källattribution och licenser behålls.
+Motsvarighetskontroll: ändringen gäller enbart den namngivna byggnaden;
+A/B/C/L använder andra byggare och får inga nya mått eller öppningar.
+Verifiering redovisas i [verifieringsloggen](verification.md).

@@ -1722,3 +1722,43 @@ Granskade offentliga bildpar: [Consensum före](../artifacts/150/before-consensu
 och [efter](../artifacts/150/after-consensum.png), [nordgavel före](../artifacts/150/before-north.png)
 och [efter](../artifacts/150/after-north.png). [Byggidentitet, kameror och ritanrop](../artifacts/150/browser-results.json)
 är sparade tillsammans med bilderna. Dessa evidensfiler ingår inte i publiceringspaketet.
+
+
+## Sankt Lars väg 41, #151 (2026-10-23)
+
+Plan: riktat nativeprov av vånings-/takgeometri och batchbudget; två byggda
+före/efter-vyer vid 41A/41B med oförändrad kamera och ritningsjämförelse;
+obligatoriska `npm test` och `npm run build`. Det är en separat OSM-byggnad
+(145221569); A/B/C/L använder andra byggare och ändras inte.
+
+`node --test tools/stlars41test.mjs` passerar 5/5: oförändrad OSM-kontur,
+tre våningar över sockeln och lägre tvåvåningsflygel, högre trapptorn,
+valmade tak med motsvarande `roofY`, skorstenar förankrade i taket och
+merge-kompatibla attribut. Byggnaden använder en geometri i var och en av
+befintliga fasad-/tak-/glasbatcher. 1 946 + 20 + 544 = 2 510 trianglar
+passerar källprovets oförändrade tak `<4000`. Inga budgetgränser höjs.
+`npm test` passerar (94 moduler och publik isolering); bygget är grönt.
+
+Faktisk byggd Chromium-vy (headless, SwiftShader, 1280×800, juli):
+baslinje `4924034576740755531b6624` från public `2fcadd0`,
+slutbygge `f29b1c3fb80fcba1e49a96ee`. Två parade kameror ger
+917→917 respektive 37→37 draw calls och +2 092 trianglar vardera. Hela
+södergruppens geometrimängd är 105 557→107 649 trianglar; detta är en
+resursräkning, inget nytt globalt budgettak. Inga JavaScriptundantag eller
+externa anrop. Bilderna har granskats: tre våningar, lägre flygel, båda
+trapptornen, valmade tak och skorstenar syns; mark och omgivning ligger kvar.
+
+Egna sparade bevis: [41B före](../artifacts/151/before-41b.png),
+[41B efter](../artifacts/151/after-41b.png),
+[41A före](../artifacts/151/before-41a.png),
+[41A efter](../artifacts/151/after-41a.png) och
+[rådata med byggversioner](../artifacts/151/browser-results.json).
+Arbetsloggar och den riktade browserkontrollen finns under
+`/tmp/kvarteret-orkester-20261023/evidence151/`.
+
+Originalets äldre ”bounded far detail”-grind har ingen motsvarighet i denna
+publika checkout; dess eventuella röda baslinje överförs inte och inget tak
+höjs för att kringgå den. Här verifieras den ändrade komponentens befintliga
+triangeltak och faktiska ritningsmängd. Ingen fysisk telefonprestanda,
+uppmätning av byggnaden eller bred profilmatris påstås. Publicering och
+kontroll av berörd livevy återstår för dirigenten.
