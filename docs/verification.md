@@ -1762,3 +1762,44 @@ höjs för att kringgå den. Här verifieras den ändrade komponentens befintlig
 triangeltak och faktiska ritningsmängd. Ingen fysisk telefonprestanda,
 uppmätning av byggnaden eller bred profilmatris påstås. Publicering och
 kontroll av berörd livevy återstår för dirigenten.
+
+
+## Vägbrons räcken och trottoar, #153
+
+2026-10-23, selektiv originalkälla `ef5c6ef1fc2bb92e45348defd386958b42521c41`.
+Publik baslinje `c26ca6abbd10872e2316a76d3ec51d0a9ad19636`, byggversion
+`535a37c55f70735b14b51893`; slutbygge `45fa024ca4325a7f8fd4bdd0`.
+Vägbrons nya tvärsnitt och GC-fackverkets färg använder exakt de granskade
+originaldelarna. Publicens `trimApproach` och anslutningskod är bevarade.
+
+`node --test tools/riverfalltest.mjs tools/southbanktest.mjs` passerar 12/12:
+nya granskade brobuffertar, oförändrade parkstråk, vattenfall, däckdatum,
+undersidor och GC-anslutningens terrängföljning. `npm test` (94 moduler),
+`npm run build` och `git diff --check` passerar också.
+
+Separat faktisk komponentjämförelse visar exakt lika `bridgeRecords`,
+`pierBoxes`, vattenpositioner, båda `trimApproach`-anropens geometri/bredd/höjder,
+`deckAt`/`deckUnderAt` och ritade undersidor vid tre punkter per bro.
+`farWalls` ger identiska kollisionssegment på och under båda broarna vid samma
+punkter. Fyra materialbatcher behålls; komponenten ökar 2770→4714 trianglar.
+Betong/stål får vertexfärger och trottoaren tillför 12 asfalttrianglar.
+[Sammanfattning](../artifacts/153/component-summary.json),
+[rådata före](../artifacts/153/component-before.json) och
+[efter](../artifacts/153/component-after.json).
+
+Den verkliga byggda WebGL-scenen provas i headless Chromium/SwiftShader,
+1000×700, med fast datum och identiska kameror före/efter. Bilderna är granskade:
+[längs vägbron före](../artifacts/153/before-along.png) och
+[efter](../artifacts/153/after-along.png),
+[båda broarna från åsidan före](../artifacts/153/before-river.png) och
+[efter](../artifacts/153/after-river.png). Trottoar, granitkant, grönt kryssräcke,
+vägräcken och svart plåträcke syns i längsvyn; GC-fackverket är grönt i översikten.
+Ritanrop är 894→894 respektive 46→46 och trianglar 819501→821445 respektive
+443721→445665. Inga sidfel eller externa anrop. [Byggidentitet, kameror och råresultat](../artifacts/153/browser-results.json).
+Dessa evidensfiler följer inte med publiceringspaketet.
+
+Kontrollen gäller broarnas berörda geometri och befintliga kollisionsdata, ingen
+ny full navigationsinventering eller fysisk telefonprestanda. Alla nya mått och
+färger är visuella antaganden. Skript/loggar och båda frysta byggen finns utanför
+repot under `/tmp/kvarteret-orkester-20261023/evidence153/`. Dirigenten verifierar
+Pages och publicerad vy före stängning.

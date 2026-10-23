@@ -32,6 +32,8 @@ Hållplatsens plattform och taktila yta följer de faktiskt ritade terrängtrian
 
 Sankt Lars vägs södra broanslutning har ett högre vägkrön med separata lägre slänter åt väster och öster (#99), förankrat i elva LM-markpunkter och fem tvärsektioner. Väg-/gångcykelbroarnas datum −3 m, anslutningsramp och interpolation är antaganden; LM-punkterna mäter mark. Södra gångcykelbrons ritade anslutning följer nu den lokala gångmarken.
 
+Vägbron över Höje å har en upphöjd trottoar och grönt kryssräcke på västsidan, vägräcken och svart plåträcke på östsidan (#153). GC-brons fackverk är grönt. Mått och färger är visuella fototolkningar; befintliga däcknivåer och frihöjder behålls.
+
 Höje ås vatten, stränder och dalbotten följer ett svagt fall nedströms, tolkat från markreferenser. Vattenstånd och djup är fortsatt uppskattningar.
 
 Träbrons jordramper har sammanhängande grässidor ner till den ritade återrängen vid båda landfästena (#107). Gånghöjder och vattenpassagen under bron är oförändrade.

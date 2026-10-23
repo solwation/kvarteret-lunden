@@ -1762,3 +1762,23 @@ sårbarheter). Befintlig källattribution och licenser behålls.
 Motsvarighetskontroll: ändringen gäller enbart den namngivna byggnaden;
 A/B/C/L använder andra byggare och får inga nya mått eller öppningar.
 Verifiering redovisas i [verifieringsloggen](verification.md).
+
+
+## Vägbrons räcken och trottoar, #153
+
+Importerad från `ef5c6ef1fc2bb92e45348defd386958b42521c41`
+([original #1530](https://github.com/solwation/lunden-3d-apartment/issues/1530)):
+vägbrons byggloop och hjälpfunktioner i `src/riverbridge.js`, enbart
+`SITE.bridges.roadDeck` i `src/config.js` och GC-fackverkets gröna färg.
+Västsidan får upphöjd trottoar, granitkant, vägräcke och grönt räcke med
+krysstag/täta spjälor; östsidan får granitkant, vägräcke och svart plåträcke
+med överliggare. Kantbalkarna når fortfarande från den befintliga undersidan.
+Alla nya mått och färger är fototolkade visuella antaganden, inte inmätning.
+Originalets foton, ändringslogg och utvecklingsdokument importeras inte.
+
+Publicens `trimApproach` och GC-anslutning behålls. Däck, frihöjd, broplacering,
+pelare, kollisionsräcken och vattennivåer ändras inte. Färgvariationerna använder
+vertexfärger inom de fyra befintliga materialbatcherna. Inga nya beroenden,
+resurser, nätverksanrop eller lagringsnycklar tillkommer. Brohasharna i
+`tools/riverfalltest.mjs` uppdateras till originalets nya granskade baslinje;
+parkstråkens hash behålls. Se [verifieringen](verification.md#vägbrons-räcken-och-trottoar-153).

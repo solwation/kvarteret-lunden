@@ -443,7 +443,15 @@ export const SITE = {
   // All heights, widths, pier dimensions, rail/truss section sizes and colours below are visual ASSUMPTIONS.
   bridges: {road:{ends:[[23.9,100],[23.3,145.8]],width:7.2,slab:.45,pier:.75,foot:1.8},
     gc:{ends:[[18.1,101],[17.8,146.5]],length:40,width:3,slab:.18,truss:1.45,panels:10,steel:.10},
-    deckY:-3,waterY:-6.2,bedY:-6.8,shoreY:-5.5,shoreSpan:7.5,valleySpan:8.5,pierMargin:.2,rail:1.1,post:.07,railStep:1.9,approach:8},
+    deckY:-3,waterY:-6.2,bedY:-6.8,shoreY:-5.5,shoreSpan:7.5,valleySpan:8.5,pierMargin:.2,rail:1.1,post:.07,railStep:1.9,approach:8,
+    // #153 (upstream #1530): photo-interpreted cross-section; ALL dimensions and colours are visual *guesses*.
+    // West (GC side): guard rail, granite kerb, raised footway and green parapet with X braces/vertical bars.
+    // East: granite kerb, guard rail and black plate parapet with handrail. Existing 7.2 m deck/underside retained.
+    roadDeck:{edge:{w:.3,up:.25,out:.05},walk:{w:1.4,h:.12},kerb:{w:.15,h:.13},verge:.4,
+      parapet:{h:1.15,inset:.08,top:[.15,.04],mid:.12,low:.33,post:.1,bay:2.6,brace:[.06,.02],slat:[.02,.012],slatStep:.11},
+      plate:{h:.9,t:.03,rail:1.1,post:.08,bay:2.6},
+      guard:{h:.6,beam:.3,t:.05,post:.1,step:3.2,gap:.15},
+      colors:{green:0x3d5a4e,black:0x1f2423,galv:0x9ea5a3,granite:0x8f8e8a,gcSteel:0x3d5a4e}}},
   // #532 foundation: sourced horizontal river centreline near the two bridges; #533 owns detailed banks/paths/vegetation.
   // Width and uniform depth remain assumptions; do not describe these as measured water levels or surveyed banks.
   // `bankScale` (guess, from original #1233) shortens every bank span below so the slope to the water is steeper; not surveyed.

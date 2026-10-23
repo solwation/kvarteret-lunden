@@ -1,0 +1,128 @@
+[
+  {
+    "views": [
+      {
+        "name": "along",
+        "camera": [
+          23.5,
+          -1.3,
+          140
+        ],
+        "target": [
+          23.8,
+          -2.3,
+          112
+        ],
+        "calls": 894,
+        "triangles": 819501
+      },
+      {
+        "name": "river",
+        "camera": [
+          1,
+          1,
+          137
+        ],
+        "target": [
+          23,
+          -2.8,
+          121
+        ],
+        "calls": 46,
+        "triangles": 443721
+      }
+    ],
+    "meshes": [
+      {
+        "name": "bridges-concrete",
+        "triangles": 216,
+        "vertexColors": false
+      },
+      {
+        "name": "bridges-steel",
+        "triangles": 1776,
+        "vertexColors": false
+      },
+      {
+        "name": "bridges-asphalt",
+        "triangles": 1020,
+        "vertexColors": false
+      },
+      {
+        "name": "bridges-water",
+        "triangles": 714,
+        "vertexColors": false
+      }
+    ],
+    "version": "before",
+    "errors": [],
+    "external": [],
+    "build": {
+      "version": "535a37c55f70735b14b51893",
+      "builtAt": 1792778832364
+    }
+  },
+  {
+    "views": [
+      {
+        "name": "along",
+        "camera": [
+          23.5,
+          -1.3,
+          140
+        ],
+        "target": [
+          23.8,
+          -2.3,
+          112
+        ],
+        "calls": 894,
+        "triangles": 821445
+      },
+      {
+        "name": "river",
+        "camera": [
+          1,
+          1,
+          137
+        ],
+        "target": [
+          23,
+          -2.8,
+          121
+        ],
+        "calls": 46,
+        "triangles": 445665
+      }
+    ],
+    "meshes": [
+      {
+        "name": "bridges-concrete",
+        "triangles": 264,
+        "vertexColors": true
+      },
+      {
+        "name": "bridges-steel",
+        "triangles": 3660,
+        "vertexColors": true
+      },
+      {
+        "name": "bridges-asphalt",
+        "triangles": 1032,
+        "vertexColors": false
+      },
+      {
+        "name": "bridges-water",
+        "triangles": 714,
+        "vertexColors": false
+      }
+    ],
+    "version": "after",
+    "errors": [],
+    "external": [],
+    "build": {
+      "version": "45fa024ca4325a7f8fd4bdd0",
+      "builtAt": 1792778893501
+    }
+  }
+]

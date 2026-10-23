@@ -1,0 +1,103 @@
+{
+  "baseCommit": "c26ca6abbd10872e2316a76d3ec51d0a9ad19636",
+  "sourceCommit": "ef5c6ef1fc2bb92e45348defd386958b42521c41",
+  "invariantsEqual": true,
+  "checked": [
+    "bridgeRecords",
+    "pierBoxes",
+    "deckAt",
+    "deckUnderAt",
+    "drawn underside rays",
+    "farWalls on deck and under deck",
+    "water positions",
+    "trimApproach geometry/width/heights, both calls"
+  ],
+  "trianglesBefore": 2770,
+  "trianglesAfter": 4714,
+  "beforeMeshes": [
+    {
+      "name": "bridges-concrete",
+      "triangles": 216,
+      "hashes": {
+        "normal": "d716201aa09ec93728e1f8b1a9e1b6bf1133de0989c0424ba53470293e6e2d38",
+        "position": "e2343177d2189a1cd9b94276ced3dfccf08d0b1601b9d4cc8fc538b49281b949",
+        "uv": "f87d8b8ede42b0e4c29f38d43d33ba286e81387f0fa13935aeca18e238928144"
+      },
+      "vertexColors": false
+    },
+    {
+      "name": "bridges-steel",
+      "triangles": 1776,
+      "hashes": {
+        "normal": "5d80421cccc181f43c20abed48a39f6a32ecbef8f473661cc64bc5bc229de883",
+        "position": "55679a48465313d7e45ac4880884f583b048039697fada0221decb4057132660",
+        "uv": "1ccca13631f96df88cf71ba930fff9004563381f0a6b69485b924ee4de6e20f3"
+      },
+      "vertexColors": false
+    },
+    {
+      "name": "bridges-asphalt",
+      "triangles": 64,
+      "hashes": {
+        "normal": "c3688de3e2e87a0af1c694e7f8eecc184eb4731761c5e8600534828c40fb37c6",
+        "position": "d1a521d2fd648fe671f9e4451b738d96b4ea92163637c75aaae911df8c884751",
+        "uv": "4a159ac48b461fbe59252c0fae2222d63e44666f8f327af16eafb6b158cfc8df"
+      },
+      "vertexColors": false
+    },
+    {
+      "name": "bridges-water",
+      "triangles": 714,
+      "hashes": {
+        "normal": "3ebf47bac3484be9a4e53fbe98a859aa52269bc8b063b23d6bbe1fa2206dd1ea",
+        "position": "e49e4f9c173d38dc1bdb5204adb851de8bf6923a86131baab0d7111f4d512c79",
+        "uv": "eb43f92327283f4654b8628cfbe57187fbbdf153006d4fec1fbee727cd7cb12f"
+      },
+      "vertexColors": false
+    }
+  ],
+  "afterMeshes": [
+    {
+      "name": "bridges-concrete",
+      "triangles": 264,
+      "hashes": {
+        "color": "d1bc6f916efa1985e84277eaa08aeff051c3495216bfe71fb66cacf5538e8f82",
+        "normal": "b63bd10f26a9d5961920696a5a9ba827e2b6f2b2c8ab5132afb17ce557e77b27",
+        "position": "9302109695a3f38292fc1df4b7c95223e3b11b8bde3ca27778a739805a6a1594",
+        "uv": "b697127746021eac2d81c44e43d72737d816ee77c6be5df53dd7c7962664ebdd"
+      },
+      "vertexColors": true
+    },
+    {
+      "name": "bridges-steel",
+      "triangles": 3660,
+      "hashes": {
+        "color": "6545fb171abec248fa77778e222355006922bf106c36d3eda615c14ba83ae7b3",
+        "normal": "0eb2d303f305a1b204728a2b6461bf8ac64354aea4f33923e668fd342b0e1462",
+        "position": "0a454d58ef013b8aee21510867b17245567d567dcfaa2ac05701e770f1c08774",
+        "uv": "77224eab8beeb3d039fd6959a06f8d3e36c6337fda9255e913be902e626dc82a"
+      },
+      "vertexColors": true
+    },
+    {
+      "name": "bridges-asphalt",
+      "triangles": 76,
+      "hashes": {
+        "normal": "023d1a407c648bcbf391630b4274ef2a251150cedbf7ee8f439650c636add4c6",
+        "position": "b5e164a2882916e8a07dc0b2ef9757cadaad155e29a1ab041b0cdc6559ecb521",
+        "uv": "8a396b1290cb635b48981c3fff5ae9373a107f43ba0f4950b6f21b1608006a75"
+      },
+      "vertexColors": false
+    },
+    {
+      "name": "bridges-water",
+      "triangles": 714,
+      "hashes": {
+        "normal": "3ebf47bac3484be9a4e53fbe98a859aa52269bc8b063b23d6bbe1fa2206dd1ea",
+        "position": "e49e4f9c173d38dc1bdb5204adb851de8bf6923a86131baab0d7111f4d512c79",
+        "uv": "eb43f92327283f4654b8628cfbe57187fbbdf153006d4fec1fbee727cd7cb12f"
+      },
+      "vertexColors": false
+    }
+  ]
+}
