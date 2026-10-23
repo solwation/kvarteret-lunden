@@ -42,6 +42,7 @@ uses ordinary triage. Refresh the queue after label corrections before selecting
 | Ordering | high → medium → low, then `created_at`, full repo name, numeric issue |
 | Active ownership | `in-progress` and `orkester: <stable-session-id>` during actual work only |
 | Capacity | At most 2 workers including helpers per conductor, at least 1 while startable work exists |
+| Phase hooks | [Project phase hooks](#project-phase-hooks); report intake under [queue intake hooks](#queue-intake-hooks) |
 | Resource policy | [Smallest sufficient capability/effort](shared/ORCHESTRA.md#spend-resources-deliberately); explicit supported selection, compact context, justified escalation |
 | Queue poll | Every 300 seconds during active work and idle; also before every new selection |
 | Idle watch | 60 minutes after latest resolved implementation issue in either repository, even with narrower scope |
@@ -128,30 +129,41 @@ limits and phase timings. Use truthful tool attribution; no forced provider foot
 
 The 2–3-check risk plan and 10-minute verification review point are in the shared core.
 Historical inventories are candidates, not mandatory sweep lists. Hard contracts,
-actual reproduced bugs and user acceptance remain gates. For house layout fixes inspect
-relevant A/B/C/L equivalents, with representative checks and each variant's dimensions;
-independent defects become separate issues. No app changelog for instruction-only work.
+actual reproduced bugs and user acceptance remain gates. Project-specific activities
+per phase are the [phase hooks](#project-phase-hooks) below.
 
-## Repository hooks
+## Project phase hooks
 
-- Read [public boundaries](../AGENTS.md), [README](../README.md) and
-  [upstream review](../docs/upstream.md) before importing. Keep only applicable neutral
-  architecture/navigation/rendering improvements. No personal images/data, characters,
-  gameplay, original storage or Cloudflare integration. Record exact source SHAs.
+Apply [the shared hook contract](shared/ORCHESTRA.md#apply-project-hooks-at-each-phase).
+The conductor owns every hook unless the short plan names a worker for a scoped
+activity; the conductor still checks outcomes at each phase boundary. All hooks are
+required when triggered. A false trigger is noted briefly where it changes the expected
+evidence. Listed order is execution order.
+
+| Hook | Phase and trigger/timing | Procedure | Requirement and completion evidence |
+| --- | --- | --- | --- |
+| Read boundaries | `planning`: every change, entry | [Public boundaries](../AGENTS.md), [CLAUDE.md](../CLAUDE.md) and the affected docs; plan the 2–3 risk-based checks and follow-up destination | Plan names the checks and evidence destination |
+| Upstream review | `planning`: imports from the original, before implementation | [README](../README.md) and [upstream review](../docs/upstream.md); keep only applicable neutral architecture/navigation/rendering improvements | Exact source SHAs and the selected/rejected parts recorded in the issue |
+| House equivalents | `planning`: house layout/geometry fixes, before implementation | Identify the relevant A/B/C/L equivalents and data variants; independent defects become separate issues | Houses checked listed; each variant keeps its own dimensions, openings and budget |
+| Public boundary | `implementation`: every change, exit | Inspect the patch for unrelated edits and preserve concurrent work; no personal images/data, characters, gameplay, original storage or Cloudflare integration | Patch contains only scoped, public content |
+| Fast checks | `verification`: every change, including docs | `npm test` and `npm run build` per [verification](../docs/verification.md) | Both pass on the verified revision |
+| Behaviour checks | `verification`: app changes, after fast checks | The relevant real-browser route/view from the verification guide; screenshots stay under `artifacts/` and are reviewed; docs need diff/link/consistency review instead | Revision-bound result; no browser sweep of an unchanged app; untested behaviour never claimed |
+| Inspect results | `review`: every change, before delivery | Read the combined diff and evidence against acceptance and the public boundary | Defects corrected and affected checks repeated |
+| Publish and Pages | `delivery`: every completed change | Fetch/rebase (`--rebase-merges` for subtree imports), push `main` without force; wait for the actual Pages run; check changed live behaviour when the plan requires it | Delivered commit on `origin/main` and a linked green Pages run; a local build alone is not publication |
+| Complete issue | `follow-up`: every tracked change, before closure | Completion comment with outcome, commit, Pages run, checks and limits; cross-link the original issue for ports; remove all active and own owner labels | Closed only when acceptance is met; unmet acceptance stays open with next action and owner |
+
+## Queue intake hooks
+
+These follow [COORDINATION.md](shared/COORDINATION.md), not the phase hooks.
+
 - This public project has no report service. For exclusively public scope skip original
   report intake while retaining both queues. If original work is in scope, run its
   intake hook in its own checkout, using that project's current `.orchestra/project.md`
   and `docs/development/report-import.md`; never import the service into this app.
-- Follow [verification](../docs/verification.md): `npm test` and `npm run build` remain
-  required even for docs. App changes need the relevant real-browser route/view. Docs
-  need diff/link/consistency review, no new browser sweep of the unchanged application.
-- Every main push triggers Pages. Wait for the actual run, link its result and source
-  commit, and check changed live behavior when the scoped plan requires it before
-  closing. A green local build alone is not successful publication.
 
 ## Shared version and maintenance
 
-Shared release: **v0.1.1**, commit **3ab2b3a59a8deb5d8734c258af4016a8c03b6caf**. Imported as a squashed subtree
+Shared release: **v0.1.2**, commit **ce0d93613be74c0bf653377629500b404fb8b966**. Imported as a squashed subtree
 at `.orchestra/shared`. See [installation/contribution instructions](shared/README.md).
 Improve the core in its own clean repository, release it, then explicitly update both
 Lunden pins. Keep this local policy outside the subtree; do not export project history.
@@ -179,6 +191,5 @@ Record UTC check time, upstream/pin, examined targets and outcome in private sta
 or existing maintenance status. If the read fails or is incomplete, retain the pin, disclose
 the limitation once, retry on next session/resume and continue independent work;
 never cache failure as success. This check installs no background scheduler.
-The [shared procedure](https://github.com/solwation/dirigenten-och-orkestern/blob/cbddafa3193870c7f0693064ae303cc4d6657ff0/README.md#check-for-upstream-updates)
-is adopted here as local maintenance policy while the installed shared subtree stays
-on its reviewed release. A later import follows the existing explicit update procedure.
+This applies the core [update-discovery procedure](shared/README.md#check-for-upstream-updates).
+A later import follows the existing explicit update procedure.
