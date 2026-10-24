@@ -2406,3 +2406,22 @@ Verifieringen hölls till komponentbevarande och en parvis faktisk vy per
 profil. Två desktopbilder ersattes efter egeninspektion för att få bort
 Fortsätt-knappen genom riktigt muslås; gröna funktionsprov upprepades inte.
 Ingen fysisk telefon eller global värstafallsprofil påstås.
+
+## Mjukare kantlinjer, #165
+
+Källa `814603f755e69da5e7d1d6adcb32a2a23ce21e35`; publik förebas `16f73fe`.
+`npm test` och `npm run build` passerar; `node --test tools/architectureedgestest.mjs`
+passerar 8/8 för båda kantbyggarna (kompakta normaliserade färger, ett batch och
+ett material, olika tint per yta och per materialgrupp, ingen extra
+geometri). Faktisk app i Chromium/SwiftShader, 960×540, fast klocka
+(`tools/architectureedges-check.mjs`), före → efter, identiskt:
+
+| Vy | Ritanrop | Trianglar | Linjer | Kantbatchar |
+| --- | ---: | ---: | ---: | ---: |
+| Trapphus | 191 → 191 | 450 249 → 450 249 | 3 824 → 3 824 | 232 → 232 |
+| Lägenhet | 412 → 412 | 716 978 → 716 978 | 6 280 → 6 280 | 232 → 232 |
+| Gård | 844 → 844 | 698 295 → 698 295 | 11 843 → 11 843 | 232 → 232 |
+
+Alla 232 batchar har färgattribut efter ändringen (0 före). Bilder:
+[före](verification/165/before-home.png) / [efter](verification/165/after-home.png);
+mätdata i `verification/165/*.json`. Ingen fysisk enhet testad.

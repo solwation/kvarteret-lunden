@@ -2076,3 +2076,17 @@ Originalets höjda sydtak tillämpas inte här. Public saknar ett motsvarande
 lokalt sydtak; den faktiska ökningen mäts i befintliga batcher utan nytt
 tak. Den befintliga Androidöstbudgeten 40 843 är oförändrad och passerar.
 Se [verifieringen](verification.md#delad-tegelstil-för-södra-paviljonger-164).
+
+## Mjukare kantlinjer, #165
+
+Granskad källa: `814603f755e69da5e7d1d6adcb32a2a23ce21e35`
+([original #1579](https://github.com/solwation/lunden-3d-apartment/issues/1579)).
+Urval: enbart `src/architectureedges.js` och `tools/architecturetest.html`
+(det senare som nytt nodprov `tools/architectureedgestest.mjs` och
+webbläsarkontrollen `tools/architectureedges-check.mjs`). Kantlinjerna får byggytans
+materialfärg (även per materialgrupp) med mörkningsfaktorn 0,62 (visuell
+gissning) som 8-bitars normaliserad vertexfärg i det befintliga
+linjebatchet. Samma ändring gjordes i `src/architectural-edges.js`
+(trapphus/garage, dörrar, hiss), som är en lokal kopia med egen
+djuppåverkan. Originalets ändringslogg, rapportbilder och HTML-prov ingår inte.
+Inga nya beroenden, material, ritanrop eller trianglar.
