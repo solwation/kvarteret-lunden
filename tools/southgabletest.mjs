@@ -11,7 +11,9 @@ const load=async text=>{assert(text.includes(' yield .9;'));text=text.replace(' 
  text=text.replace(/from\s+(['"])([^'"]+)\1/g,(_,q,dep)=>`from ${q}${dep.startsWith('.')?new URL(dep,url).href:import.meta.resolve(dep)}${q}`);return import('data:text/javascript;base64,'+Buffer.from(text).toString('base64'));};
 // #160: isolate the gable change against today's land code; later approved grass/ramp changes are shared inputs.
 const today=readFileSync(url,'utf8'),historical=execFileSync('git',['show',`${baseline}:src/southbackdrop.js`],{encoding:'utf8'});
-const oldWall=historical.slice(historical.indexOf('  for(const [ring,hole]'),historical.indexOf('    if(b.levels<4)',historical.indexOf('  for(const [ring,hole]')));
+const historicalWall=historical.slice(historical.indexOf('  for(const [ring,hole]'),historical.indexOf('    if(b.levels<4)',historical.indexOf('  for(const [ring,hole]')));
+// Public #164: share the approved pavilion style in both gable variants; isolate only the old roof-top seam.
+const oldWall=historicalWall.replace(']),b.facade));', ']),wallColor));')+'    if(pav){pav.edge(a,c,sign);continue;}\n';
 const start=today.indexOf('  for(const [ring,hole]'),end=today.indexOf('    if(b.levels<4)',start);
 assert(start>=0&&end>start&&oldWall.includes('roofHeight(a)'));
 const neutral=text=>text.replace("import { grassMeanColor } from './grass.js';", "const grassMeanColor=()=>0x779955; // deterministic geometry-only fixture, no canvas");

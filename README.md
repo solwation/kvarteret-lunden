@@ -88,6 +88,8 @@ Klocktornets fyra urtavlor visar besökarens lokala tid med tydliga visare och t
 
 Sankt Lars väg 41 har tre våningar ovan sockeln, en lägre tvåvåningsflygel, trapptorn vid 41A och 41B samt valmade plåttak med skorstenar (#151). Mått, färger och fasaddetaljer är visuella modellantaganden.
 
+Sju äldre fyravåningspaviljonger i södra Sankt Lars har samma röda tegelstil, vita sockel, friser och inramade fönster som nr 41 (#164). Husens befintliga kartkonturer, våningsantal och tak behålls; fasaddetaljer och färger är visuella antaganden.
+
 Sadeltakshusens gavlar söder om ån sluter tätt upp till taknocken, så himlen inte längre syns genom öppna trianglar (#158).
 
 Realgymnasiet på Sankt Lars väg 20 har ett gavelhus, en lägre länga med takkupor och trapptorn samt en hög hall (#156). Byggnadens mått och fasaddetaljer är visuella modellantaganden.

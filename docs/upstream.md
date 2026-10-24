@@ -2043,3 +2043,36 @@ Befintlig lot-regel utesluter en vägarmatur inne i den nya konturen.
 
 Inga foton, originalresultatbilder, ändringsloggar, persondata, tjänster,
 lagringsnycklar eller beroenden importeras. Se [verifiering](verification.md#brofäste-och-antagen-parkering-161).
+
+
+## Delad tegelstil för södra paviljonger, #164
+
+Granskad källa: `c3b468830bfc8cb869b8332377c830cdd7454ecd`
+([original #1556](https://github.com/solwation/lunden-3d-apartment/issues/1556)).
+Urval: nya `src/brickstyle.js`, nr 41:s refaktor i `src/stlars41.js`,
+enbart `SITE.south.brickStyle` och fasad-/fönsterkroken i publicens
+`src/southbackdrop.js`. Sankt Lars väg 42/43/44/45/46/47/54 får rött
+tegel, vit sockel, takfotsfris, gördelgesims och vita fönsterramar med
+flack segmentspets. Mått, färger och placeringar är visuella antaganden;
+de sju paviljongernas fasader har inte verifierats mot egna foton.
+
+Varje offentlig byggnadspost, OSM-polygon (inklusive 44:s gård),
+våningsantal, tak, bas/fasadfot och `roofY` behålls. Nr 41 använder samma
+stilverktyg med byte-identiska ordnade positioner/normaler/färger före/efter.
+Originalets senare markgraderingar, parkeringslayout och `keepBase`-poster
+överförs inte. Publicens mark-/asfaltklippning och tidigare väganpassningar
+är kvar. Tvåvåningshus/radhus och A/B/C/L:s separata byggare ändras inte.
+
+`tools/brickstyletest.mjs` överförs och får ett publikt nr 41-hashprov.
+Befintligt `southgabletest.mjs` delar den nya paviljongstilen mellan sina
+båda gavelvarianter, så det fortsätter isolera gavelrättningen från #158.
+Originalets foton, resultatbilder, ändringslogg, rapportdata, HTML-prov,
+budgetändring och utvecklingsdokument ingår inte i produkten. Befintlig
+attribution/licens behålls; inga nya beroenden, texturer, lampor, meshar,
+lagringsnycklar eller nätverks-/speltjänster tillkommer. Befintliga fyra
+sydytbatcher och två trädinstansbatcher används.
+
+Originalets höjda sydtak tillämpas inte här. Public saknar ett motsvarande
+lokalt sydtak; den faktiska ökningen mäts i befintliga batcher utan nytt
+tak. Den befintliga Androidöstbudgeten 40 843 är oförändrad och passerar.
+Se [verifieringen](verification.md#delad-tegelstil-för-södra-paviljonger-164).

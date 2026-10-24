@@ -2352,3 +2352,57 @@ kameror och resultat. Inga sidfel eller externa anrop i någon profil.
 [`npm run build`](../artifacts/161/after-build.log) passerar.
 Ingen bred inventering, historisk originalbudget eller fysisk FPS-mätning görs.
 Publicering och separat livekontroll hanteras av dirigenten.
+
+
+## Delad tegelstil för södra paviljonger, #164
+
+Källa `c3b468830bfc8cb869b8332377c830cdd7454ecd`; publik förebas
+`f6d4d1d`, förebygge `cf63d599b7a51acbc39e82a9`, efterbygge
+`8124ee637074927d1ac64549`. `npm test` passerar (98 moduler och
+publik import-/innehålls-/nätgräns); `npm run build` passerar med låsta
+oförändrade beroenden. `node --test --test-isolation=none
+ tools/brickstyletest.mjs tools/stlars41test.mjs tools/southgabletest.mjs`
+passerar 10/10: alla sju valda fyravåningshus, stilgeometrins färg/höjd/
+kontur/batchning, nr 41:s arkitektur och den tidigare gavelrättningen.
+Det nya hashprovet visar identiska ordnade attribut i nr 41:s alla tre
+geometrier. Alla tidigare `SITE.south`-data jämfördes exakt före/efter,
+med endast nya `brickStyle` undantagen.
+
+Faktisk byggd publik app kördes i Chromium 145/SwiftShader med en
+matchad rapportliknande södervy på dator (960×540) och Android-UA/
+lowMemory (844×390), DPR 1. Ögat `(75,62,216)` riktas mot
+`(−15,4,370)`, månad 10 och samma deterministiska slumpindata i båda
+versionerna. Exakt ursprunglig kamerametadata saknas, så bildkompositionen
+är återskapad ungefärligt från originalets rapportvy; våra egna före/efter-
+kameror är exakt identiska. Ingen kvalitets-, ljus- eller budgetgräns ändras.
+
+| Profil | Scenanrop före → efter | Scenans trianglar | Hela sydgruppen |
+| --- | ---: | ---: | ---: |
+| Dator | 27 → 27 | 296 015 → 302 391 | 112 622 → 118 998 |
+| Android | 30 → 30 | 376 303 → 382 679 | 112 202 → 118 578 |
+
+Ökningen är 6 376 trianglar; samma sydmeshar och materialbatcher används.
+Hela östcampus är oförändrat: 81 681 på datorn och 40 022 på Android,
+under befintliga 40 843 med 821 marginal. Public har inget lokalt
+sydtak; originalets höjda tak importeras inte. Detta är riktade verkliga
+kamerautfall, inga nya globala maxvärden eller fysisk FPS-mätning.
+
+Alla 54 byggnadsregister behåller polygoner/hål, våningar, bas/fot,
+takfot och takprov exakt. Faktiska positionsbuffertar i `south-roof`,
+`south-land` och `site-terrain` är SHA-256-identiska före/efter, även
+parkerings-/vägytorna. De tre originallagringsmarkörerna behålls;
+inga nya lagringsnycklar, externa anrop, WebSockets eller sidfel.
+A/B/C/L byggs separat och använder inte den nya stilmodulen.
+
+Egna inspekterade bilder: [dator före](verification/164/desktop-before-report.png) /
+[efter](verification/164/desktop-after-report.png) samt
+[Android före](verification/164/phone-before-report.png) /
+[efter](verification/164/phone-after-report.png). JSON per vy och
+`browser-results.json` sparar faktiska kameror, register, positionshashar,
+renderkostnad och isoleringsresultat lokalt under `artifacts/164/`.
+Ingen originalbild eller rapportmetadata ingår i publiceringspaketet.
+
+Verifieringen hölls till komponentbevarande och en parvis faktisk vy per
+profil. Två desktopbilder ersattes efter egeninspektion för att få bort
+Fortsätt-knappen genom riktigt muslås; gröna funktionsprov upprepades inte.
+Ingen fysisk telefon eller global värstafallsprofil påstås.
