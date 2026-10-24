@@ -2090,3 +2090,16 @@ linjebatchet. Samma ändring gjordes i `src/architectural-edges.js`
 (trapphus/garage, dörrar, hiss), som är en lokal kopia med egen
 djuppåverkan. Originalets ändringslogg, rapportbilder och HTML-prov ingår inte.
 Inga nya beroenden, material, ritanrop eller trianglar.
+
+## Kantlinjernas konstruktionsdata frigörs, #166
+
+Granskad källa: `aee89d9dc6926d25749c26a059aaefac8e2eb3ce`
+([original #1590](https://github.com/solwation/lunden-3d-apartment/issues/1590)).
+Urval: enbart `src/architectureedges.js`. `material.onBeforeCompile` och `line.raycast`
+var closures skapade inne i `architectureEdges()`, så V8 höll hela funktionens scope
+(solids, triangelträd, veckindex) vid liv under hela sessionen. De är nu funktioner på
+modulnivå (`edgeDepthOffset`, `noRaycast`) med oförändrad shaderkod. Samma ändring
+gjordes i `src/architectural-edges.js` (trapphus/garage, dörrar, hiss), som är en lokal
+kopia och behåller sitt eget djupförskjutningsvärde (enbart 1 mm, utan 0,4 %-termen).
+Originalets ändringslogg och prestandadokument ingår inte. Inga nya beroenden,
+material, ritanrop eller trianglar.

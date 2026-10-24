@@ -2425,3 +2425,25 @@ geometri). Faktisk app i Chromium/SwiftShader, 960×540, fast klocka
 Alla 232 batchar har färgattribut efter ändringen (0 före). Bilder:
 [före](verification/165/before-home.png) / [efter](verification/165/after-home.png);
 mätdata i `verification/165/*.json`. Ingen fysisk enhet testad.
+
+## Kantlinjernas konstruktionsdata frigörs, #166
+
+Källa: original `aee89d9` (#1590). Ren refaktorering: shaderkoden och kantgeometrin är
+oförändrade, `edgeDepthOffset`/`noRaycast` ligger på modulnivå i båda kantfilerna.
+`npm test`, `npm run build` och `tools/architectureedgestest.mjs` gröna.
+
+Visuellt: `tools/architectureedges-check.mjs` (trapphus, lägenhet, gård; 960×540)
+före och efter ger byte-identiska PNG-filer och oförändrade räknare (232 kantbatchar,
+48 092 kantvertex, 191/412/844 ritanrop).
+
+JS-heap, iPhone-lik profil (852×393, DPR 3, iOS-UA, touch; Chromium/SwiftShader;
+CDP `Performance.getMetrics` `JSHeapUsedSize`, efter två `HeapProfiler.collectGarbage`,
+5 s efter första ritade bildrutor), MB:
+
+| | före | efter |
+| --- | ---: | ---: |
+| JS-heap efter GC | 274,5 (1 körning) | 110,1 / 110,4 (2 körningar) |
+| JS-heap, provtagen topp (100 ms) | 340 (1 körning) | 224 / 266 |
+
+Toppen är grovt provtagen och brusig; värdet efter GC är det stabila. En enda körning
+före (en andra hängde sig). Ingen fysisk enhet testad.
