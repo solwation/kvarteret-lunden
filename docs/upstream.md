@@ -2114,3 +2114,13 @@ hälften omvända och belystes från skuggsidan (DoubleSide). Det lokala byte-f�
 nr 41 har nya positionshashar (bara hörnordningen inom trianglarna ändras; normaler och färger
 är identiska). Originalets ändringslogg, foton och bilder ingår inte. Inga nya beroenden,
 material, ritanrop eller trianglar.
+
+## Kantlinjer på vertexfärgade ytor, #168
+
+Granskad källa: `8314c8f6` ([original #1615](https://github.com/solwation/lunden-3d-apartment/issues/1615)).
+Urval: `edgeSurfaceColors` i både `src/architectureedges.js` och den lokala kopian
+`src/architectural-edges.js` (trapphus/garage): ett ensamt material med `vertexColors` och
+ett `color`-attribut räknas som en grupp över hela geometrin, så kanterna följer de målade
+hörnen i stället för materialets vita grundfärg (ljusgrå linjer på mörka trappsteg, dörrar och
+karmar). Originalets lekstuga, ändringslogg och bilder ingår inte. Inga nya beroenden,
+material, ritanrop eller trianglar.

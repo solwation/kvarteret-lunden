@@ -15,6 +15,13 @@ for(const [name,architectureEdges] of [['apartment/standard builder',apartmentEd
   assert(batch[0].material.vertexColors&&c.normalized&&c.array.BYTES_PER_ELEMENT===1&&c.count===24);
   assert.equal(batch[0].geometry.index,null,'no extra triangles or index');
  });
+ test(`${name}: a single vertex-coloured material tints edges by the painted vertices (upstream #1615)`,()=>{
+  const g=mergeGeometries([new T.BoxGeometry(1,1,1).translate(-1.2,0,0),new T.BoxGeometry(1,1,1).translate(1.2,0,0)]),pc=[];
+  for(let i=0;i<g.attributes.position.count;i++)pc.push(...(g.attributes.position.getX(i)<0?[.1,.1,.12]:[.9,.8,.7]));
+  g.setAttribute('color',new T.Float32BufferAttribute(pc,3));const root=new T.Group();root.add(new T.Mesh(g,new T.MeshBasicMaterial({vertexColors:true})));
+  const batch=architectureEdges(root),c=batch[0].geometry.attributes.color;let darkest=1;for(let i=0;i<c.count;i++)darkest=Math.min(darkest,c.getComponent(i,0));
+  assert.equal(tints(batch[0]).size,2,'one tint per painted box');assert(darkest<.1,`dark paint gives dark edges (${darkest})`);
+ });
  test(`${name}: different surfaces get different, darkened tints in a single batch`,()=>{
   const root=new T.Group();for(const [x,color] of [[-1,0xffffff],[1,0x305070]]){const m=new T.Mesh(new T.BoxGeometry(1,1,1),new T.MeshBasicMaterial({color}));m.position.x=x*1.2;root.add(m);}
   const batch=architectureEdges(root);assert.equal(batch.length,1);

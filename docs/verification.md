@@ -2457,3 +2457,12 @@ Riktig WebGL-visning i Chromium/SwiftShader (`window.lundenViewer`, samma kamero
 solsidorna är ljust tegelröda och nr 41:s takfall belysta i stället för nästan svarta, inga
 sidfel: [paviljong 42](verification/167/paviljong-42-fore-efter.jpg),
 [nr 41](verification/167/nr41-fore-efter.jpg). Ingen fysisk enhet testad.
+
+## Kantlinjer på vertexfärgade ytor, #168
+
+`node --test tools/architectureedgestest.mjs`: 10/10; det nya vertexfärgade fallet underkänns
+för båda byggarna utan ändringen. `npm test` och `npm run build` gröna. Riktig WebGL-visning i
+Chromium/SwiftShader (`window.lundenViewer`, platsen Trapphuset): kantbatcharna har 226 olika
+färgtoner mot 44 före, med samma 49 556 hörn; inga sidfel. Ingen bild: kamerans flytt till
+platsen gav olika vyer före/efter, så en jämförelsebild hade inte visat samma sak. Ingen
+fysisk enhet testad.
