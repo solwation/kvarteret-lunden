@@ -44,13 +44,59 @@ test('walls, friezes and windows stay on the footprint, between the ground and t
   }
 });
 
-test('shared style refactor preserves nr 41 ordered geometry attributes byte-for-byte', () => {
-  // Public f6d4d1d output, with the same fixed base/bottom as tools/stlars41test.mjs.
-  const expected = {"facade":[{"position":"d5ae8ca6e645c1a72da5b0f17c9a9c17f910366b58738c1779108718d3bcaff5","normal":"faea7ff150f00546a43bf1e9360ff66acfca5d94b2f99fa41a5b3fd4126e9e96","color":"72bedd6e393dde2aef1e6588b37f02586be79c551e6dfd8ab574f5ed11fdd6b1"}],"roof":[{"position":"83db97b2a284d85439eca48980e0dd6ae87cbc30e1118b856953e6a204ec6c37","normal":"e0ffc4d7de0a84067d8bee5cb7cf1969aa92a0c24dd64a949a6aeb65e1f8d96b"}],"glass":[{"position":"dd2646d31bb667d13dd12fc7a1b0b17bf2326dca68110d2452566d01d8a6f9fd","normal":"3d3ef265dadfff306b51715dfe9858e7643cfe8d6a6262e94a38e1e2d1afd47b"}]};
+test('nr 41 ordered geometry attributes stay byte-for-byte stable', () => {
+  // Public f6d4d1d output, with the same fixed base/bottom as tools/stlars41test.mjs. Upstream #1614 (04612dc) rewinds
+  // reversed triangles: only the position hashes changed (vertex order within triangles); normals and colours are identical.
+  const expected = {"facade":[{"position":"e6592cf4c48c2ae4ee064ce51c12d8ed79d52f5cba70c1e9948fc6d897624a51","normal":"faea7ff150f00546a43bf1e9360ff66acfca5d94b2f99fa41a5b3fd4126e9e96","color":"72bedd6e393dde2aef1e6588b37f02586be79c551e6dfd8ab574f5ed11fdd6b1"}],"roof":[{"position":"361b4635f0dcb2f60b58515d857af79a68a274a805c0ca54b7bee7729a454a0e","normal":"e0ffc4d7de0a84067d8bee5cb7cf1969aa92a0c24dd64a949a6aeb65e1f8d96b"}],"glass":[{"position":"f511e9dd8716681fcaba54ceeed2b4842df81309c33bef9d717265fe56ffbbad","normal":"3d3ef265dadfff306b51715dfe9858e7643cfe8d6a6262e94a38e1e2d1afd47b"}]};
   const b = S.buildings.find(b => b.template === 'stlars41'), parts = {facade: [], roof: [], glass: []};
   buildStLars41(b, b.polygon.slice(0, -1), 1.83, 1.2, parts);
   const actual = Object.fromEntries(Object.entries(parts).map(([kind, geometries]) => [kind, geometries.map(g =>
     Object.fromEntries(Object.entries(g.attributes).map(([name, a]) => [name, createHash('sha256').update(Buffer.from(a.array.buffer, a.array.byteOffset, a.array.byteLength)).digest('hex')])))]));
   assert.deepEqual(actual, expected);
   for (const geometries of Object.values(parts)) for (const g of geometries) g.dispose();
+});
+
+// Upstream #1614 (04612dc): each triangle's winding must agree with its explicit normal. The facade / roof / glass materials are DoubleSide,
+// and three r170 flips the normal on back faces (`normal *= faceDirection`), so a triangle wound against its normal is lit
+// as if it faced the other way: the sun side dark, the shade side lit. Checked for every brickKit user.
+const reversed = g => {
+  const p = g.attributes.position, n = g.attributes.normal, a = new THREE.Vector3(), b = new THREE.Vector3(), c = new THREE.Vector3(), m = new THREE.Vector3();
+  let bad = 0, all = 0;
+  for (let i = 0; i < p.count; i += 3) {
+    a.fromBufferAttribute(p, i); b.fromBufferAttribute(p, i + 1).sub(a); c.fromBufferAttribute(p, i + 2).sub(a);
+    const geo = b.cross(c); if (geo.length() < 1e-9) continue; // degenerate (clamped arch slivers)
+    all++; if (geo.dot(m.fromBufferAttribute(n, i)) <= 0) bad++;
+  }
+  return [bad, all];
+};
+const assertWound = (parts, name) => {
+  for (const key of ['facade', 'roof', 'glass']) for (const g of parts[key]) {
+    const [bad, all] = reversed(g);
+    assert.ok(all > 0, `${name} ${key}: has triangles`);
+    assert.equal(bad, 0, `${name} ${key}: ${bad} of ${all} triangles wound against their normal`);
+    g.dispose();
+  }
+};
+
+test('every pavilion triangle winds the way its normal points, outer rings and holes alike (upstream #1614)', () => {
+  const base = 2, bottom = 1.5;
+  for (const b of pavilions) {
+    const p = b.polygon.slice(0, -1), eave = base + b.levels * S.storey, parts = { facade: [], roof: [], glass: [] }, pav = brickPavilion(b, base, bottom, eave);
+    for (const [ring, hole] of [[p, false], ...(b.holes ?? []).map(h => [h.slice(0, -1), true])]) {
+      const sign = (hole ? -1 : 1) * Math.sign(ring.reduce((s, q, i) => { const r = ring[(i + 1) % ring.length]; return s + q[0] * r[1] - r[0] * q[1]; }, 0));
+      for (let i = 0; i < ring.length; i++) pav.edge(ring[i], ring[(i + 1) % ring.length], sign);
+      // the same footprint walked the other way round must come out right as well
+      const back = [...ring].reverse(); for (let i = 0; i < back.length; i++) pav.edge(back[i], back[(i + 1) % back.length], -sign);
+    }
+    pav.flush(parts);
+    assertWound(parts, b.name);
+  }
+});
+
+test('every Sankt Lars väg 41 triangle winds the way its normal points (upstream #1614)', () => {
+  const b = S.buildings.find(q => q.template === 'stlars41'), parts = { facade: [], roof: [], glass: [] };
+  assert.ok(b, 'nr 41 is listed');
+  buildStLars41(b, b.polygon.slice(0, -1), 2, 1.5, parts);
+  assert.ok(parts.facade.length && parts.roof.length && parts.glass.length, 'nr 41 fills all three batches');
+  assertWound(parts, b.name);
 });

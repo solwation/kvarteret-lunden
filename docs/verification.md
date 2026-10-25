@@ -2447,3 +2447,13 @@ CDP `Performance.getMetrics` `JSHeapUsedSize`, efter två `HeapProfiler.collectG
 
 Toppen är grovt provtagen och brusig; värdet efter GC är det stabila. En enda körning
 före (en andra hängde sig). Ingen fysisk enhet testad.
+
+## Tegelhusens vindning, #167
+
+`node --test tools/brickstyletest.mjs tools/stlars41test.mjs`: 10/10. Utan ändringen i
+`src/brickstyle.js` underkänns vindningstesterna (nr 42: 816 av 1632, nr 41: 926 av 1946
+fasadtrianglar omvända) och byte-för-byte-testet. `npm test` och `npm run build` gröna.
+Riktig WebGL-visning i Chromium/SwiftShader (`window.lundenViewer`, samma kameror före/efter):
+solsidorna är ljust tegelröda och nr 41:s takfall belysta i stället för nästan svarta, inga
+sidfel: [paviljong 42](verification/167/paviljong-42-fore-efter.jpg),
+[nr 41](verification/167/nr41-fore-efter.jpg). Ingen fysisk enhet testad.

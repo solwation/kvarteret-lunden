@@ -2103,3 +2103,14 @@ gjordes i `src/architectural-edges.js` (trapphus/garage, dörrar, hiss), som är
 kopia och behåller sitt eget djupförskjutningsvärde (enbart 1 mm, utan 0,4 %-termen).
 Originalets ändringslogg och prestandadokument ingår inte. Inga nya beroenden,
 material, ritanrop eller trianglar.
+
+## Tegelhusens vindning mot normalen, #167
+
+Granskad källa: `04612dce1ef6ac13ca780747fe4e5d4ba2f8aac6`
+([original #1614](https://github.com/solwation/lunden-3d-apartment/issues/1614)).
+Urval: `tri`/`upTri` i `src/brickstyle.js` och vindningstesterna i `tools/brickstyletest.mjs`.
+Varje triangel vindas nu så att dess geometriska normal stämmer med den skrivna; före var
+hälften omvända och belystes från skuggsidan (DoubleSide). Det lokala byte-för-byte-testet av
+nr 41 har nya positionshashar (bara hörnordningen inom trianglarna ändras; normaler och färger
+är identiska). Originalets ändringslogg, foton och bilder ingår inte. Inga nya beroenden,
+material, ritanrop eller trianglar.
