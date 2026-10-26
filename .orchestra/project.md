@@ -173,7 +173,7 @@ These follow [COORDINATION.md](shared/COORDINATION.md), not the phase hooks.
 
 ## Shared version and maintenance
 
-Shared release: **v0.3.2**, commit **ebe2cb8738d9f1ce52f68497e8cfa26b90a01bc1**. Imported as a squashed subtree
+Shared release: **v0.4.0**, commit **d317d0d8733f548d5e62cf8cb1717c495f316c91**. Imported as a squashed subtree
 at `.orchestra/shared`. See [installation](shared/INSTALL.md) and [contribution](shared/CONTRIBUTING.md) instructions.
 Improve the core in its own clean repository, release it, then explicitly update both
 Lunden pins. Keep this local policy outside the subtree; do not export project history.
