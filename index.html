@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#ecebe5">
   <meta name="description" content="Utforska Kvarteret Lunden i 3D. Byggnader, gård och fast inredning i en fristående visualisering.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Bufz0ylsvH5VX0RelLTkdCzDLj+JPhHmKTdEC0GXlzs=' 'sha256-JrHK1HJhvMZLBzdVFLo6dFr32Bm3qL647LEcE1YBqCA='; style-src 'self'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Bufz0ylsvH5VX0RelLTkdCzDLj+JPhHmKTdEC0GXlzs=' 'sha256-JoDvzU/IagYnGfj5PWM8K75rkRcIDAtECA5DDyXv7ms='; style-src 'self'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'">
   <title>Kvarteret Lunden · Utforska i 3D</title>
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
@@ -59,7 +59,28 @@ let visibleAt=now();document.addEventListener('visibilitychange',()=>{if(!docume
 const watch=setInterval(()=>{if(startup.done||startup.cause)return clearInterval(watch);
 if(document.hidden||!slow.hidden||now()-Math.max(startup.last,visibleAt)<startup.stallMs)return;
 startup.stalled={name:startup.step,at:Math.round(now())};slow.hidden=false;},500);});
-import('./src/main.js').catch(startup.fail);
+// Import retry (#170, adapted from lunden-3d-apartment e649a763 (#1627) and d46872fc (#1630)): a failed or hung import of the
+// main module is retried once with a new URL (the browser caches a failed module per URL), then the page reloads once per
+// reloadWindow (clears a cached failure of a static dependency), and only then is the error view shown. A hang counts as a
+// failure when no request finishes for stallTimeout while the card still says "Hämtar programfilerna". Keep the numbers in
+// sync with STARTUP.importRetries/importRetryDelay/importReloadWindow/importStallTimeout in src/config.js.
+const MAIN='./src/main.js',RELOAD_KEY='kvarteret-lunden.import-reload';
+const importWithRetry=async(url,{importer=u=>import(u),retries=1,delay=3000,stallTimeout=30000,reloadWindow=300000,reload=()=>location.reload(),
+watch=cb=>{try{const o=new PerformanceObserver(cb);o.observe({type:'resource'});return()=>o.disconnect();}catch{return()=>{};}},
+downloading=()=>startup.step==='Hämtar programfilerna',storage,sleep=ms=>new Promise(r=>setTimeout(r,ms))}={})=>{
+if(storage===undefined){try{storage=sessionStorage;}catch{}}
+const stalled=promise=>{if(!(stallTimeout>0))return promise;let timer,stop=()=>{};
+const hung=new Promise((_,reject)=>{const arm=()=>{clearTimeout(timer);timer=setTimeout(()=>{if(downloading())reject(Error(`Importing a module script failed: stalled ${Math.round(stallTimeout/1000)} s`));},stallTimeout);};arm();stop=watch(arm);});
+return Promise.race([promise,hung]).finally(()=>{clearTimeout(timer);stop();});};
+let first;
+for(let attempt=0;attempt<=retries;attempt++){
+try{if(attempt)await sleep(delay);const next=new URL(url,location.href);if(attempt)next.searchParams.set('r',attempt);return await stalled(importer(next.href));}
+catch(error){if(causeOf(error)!=='import')throw error;if(!first)first=error;console.warn('Startup import failed, try',attempt+1,error);}}
+try{const last=JSON.parse(storage?.getItem(RELOAD_KEY)||'null');
+if(storage&&!(last&&Date.now()-last.at<reloadWindow)){storage.setItem(RELOAD_KEY,JSON.stringify({at:Date.now()}));await sleep(delay);reload();return true;}}catch{}
+throw first;};
+window.kvarteretImportWithRetry=importWithRetry;
+importWithRetry(MAIN).catch(startup.fail);
 })();
 </script>
 </head>

@@ -64,7 +64,7 @@ assert(html.includes('connect-src \'self\''));
 // Every inline script (import map, startup guard #37) must be allowed by its exact hash in the CSP.
 const csp=html.match(/Content-Security-Policy" content="([^"]+)"/)[1];
 for(const [,code] of html.matchAll(/<script(?: type="importmap")?>([\s\S]*?)<\/script>/g))assert(csp.includes(`'sha256-${createHash('sha256').update(code).digest('base64')}'`),'Inline script hash missing from the CSP');
-assert(/import\('\.\/src\/main\.js'\)/.test(html),'The startup guard must import main.js');
+assert(/const MAIN='\.\/src\/main\.js'/.test(html)&&/importWithRetry\(MAIN\)/.test(html),'The startup guard must import main.js (with retry, #170)');
 console.log(`PASS: ${files.length} modules audited, import graph bundles, two architectural floor plans, same-origin network policy.`);
 const manifest=JSON.parse(await readFile('manifest.webmanifest','utf8'));
 const manifestURL=new URL('https://example.invalid/kvarteret-lunden/manifest.webmanifest');

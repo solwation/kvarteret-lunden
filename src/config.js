@@ -2207,7 +2207,11 @@ export const FLOOR_DRAIN = { size: 0.2, grate: 0.15, bars: 8, h: 0.005, shower: 
 // stepYield (#39, from the original's d9d9abb, *guess*): longest wait for a frame after a loading step, so a throttled tab
 // is not held up. stallSeconds (#39, from 397d1cd, *guess*): one step lasting this long shows "Det här tar ovanligt lång
 // tid" with Försök igen (literal stallMs in index.html); well above a normal phone "Bygger huset".
-export const STARTUP = { dataTimeout: 5000, planTimeout: 15000, dataAttempts: 2, retryDelay: 250, stepYield: 50, stallSeconds: 40 };
+export const STARTUP = { dataTimeout: 5000, planTimeout: 15000, dataAttempts: 2, retryDelay: 250, stepYield: 50, stallSeconds: 40,
+  // #170 (from lunden-3d-apartment e649a763/#1627 and d46872fc/#1630, *guess*; literals in index.html's guard): a failed main module
+  // import is retried importRetries times (new URL) after importRetryDelay ms, then the page reloads once per importReloadWindow ms
+  // before the error view. A hung import fails when no request finishes for importStallTimeout ms (slow 3G still finishes files).
+  importRetries: 1, importRetryDelay: 3000, importReloadWindow: 300000, importStallTimeout: 30000 };
 
 // Clock readability proportions are visual assumptions; original tower dimensions remain unchanged.
 export const TOWER_CLOCK = {
