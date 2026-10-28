@@ -2132,3 +2132,31 @@ material, ritanrop eller trianglar.
 Ändrat från originalet: ingen omkontroll av publicerad version före försöket (`prepareStartup`/`recheck` finns inte här; projektets uppdateringsflöde ligger i `src/updates.js`), eftersom `dist/` är en enda paketerad fil utan statiska beroenden som kan komma från olika byggen. Kraschloggen (`recordStartupFailure`/`takeStartupFailure`, `module`/`tries`) och Cloudflare har inte förts över. `bootstrap.js` och `startuprecovery.js` finns inte här. CSP-hashen är omräknad; `npm test` kräver nu `importWithRetry(MAIN)` i skyddet.
 
 Verifiering: `npm test`, `npm run build`, `tools/importretry-check.mjs` (normal start oförändrad med en begäran; första begäran 404 respektive avbruten ger ett försök med `r=1` och riktig scenstart; ihållande 404 ger omladdning och sedan felkort med orsak `import`; stallfall och ingen omladdningsloop) och `tools/startup-error-check.mjs`.
+
+
+## Orkester v0.6.0 och återupptagning, #172
+
+Den generiska kärnan importeras direkt från
+`solwation/dirigenten-och-orkestern` **v0.6.0**,
+`aecd631907c3374800e562c98125d905863ff925`, som squashad subtree.
+Installerad tidigare version var v0.4.1 `5e48d8370f051f5a15bbb740881dbf51187316a9`;
+hela mellanliggande instruktionsdiffen inklusive v0.5.0 är granskad.
+Exakt importerad trädhash är `6442bd8c017d6bff86130ad9a8a3bc82f6ce6680`.
+Subtree-merge och `git-subtree-*`-proveniens bevaras för nästa uppdatering.
+Originalets motsvarande adoption är `a1392712`
+([#1666](https://github.com/solwation/lunden-3d-apartment/issues/1666)),
+men inga originalfiler eller någon originalhistorik importeras.
+
+0.6.0 prioriterar återupptagning av oavslutat lokalt arbete. En lokal kopia får
+tas bort först när innehållet bevisligen finns på main; synligt aktiva agenters
+arbete lämnas orört. Den blandade uppdateringens 0.5.0 ger sessions-id med värd
+och modell; befintliga id:n behöver inte byta namn. Köordning, två arbetare,
+300-sekunderspollning, 60-minutersbevakning, Issueflow och publicens innehålls-/
+tjänstegränser behålls. Originalets rapportintag körs bara i originalcheckouten.
+
+Användarens automatiska stabila uppdateringsbeslut i `5329b779` är bevarat i
+projektpolicyn; README är samstämmig med det. Inga appfiler, resurser, beroenden,
+lagringsnycklar, spelmekaniker eller Cloudflare-integrationer ändras. Därför finns
+ingen ny resultatbild eller appändringslogg. Kontroller: exakt kärnträd, hela
+diffen, lokala dokumentlänkar och värdregler samt obligatoriska `npm test` och
+`npm run build`. Faktisk Pages-körning och publiceringsrevision redovisas i #172.

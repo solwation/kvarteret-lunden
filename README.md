@@ -229,11 +229,13 @@ Med `?perf` kan långa bildintervall mätas lokalt och exporteras utan en teleme
 
 `/orkester` använder den modelloberoende kärnan i
 [dirigenten-och-orkestern](https://github.com/solwation/dirigenten-och-orkestern),
-versionslåst som Git subtree i `.orchestra/shared`. Vanlig kloning räcker.
+versionslåst till **v0.6.0** (`aecd6319`) som Git subtree i `.orchestra/shared`. Vanlig kloning räcker.
 Vid start eller återupptagning kontrollerar dirigenten nya stabila releaser och
-versionstaggar, med högst ett dygns återanvändning av en lyckad kontroll. Relevanta
-buggfixar ska ge uppdateringsförslag; övriga uppgraderingar är valfria. Importen
-är fortsatt granskad och uttrycklig, utan automatisk uppdatering.
+versionstaggar, med högst ett dygns återanvändning av en lyckad kontroll. Nya
+stabila uppdateringar importeras automatiskt som lågprioriterat underhåll vid nästa
+köval enligt användarens beslut; pågående arbete avbryts inte. Hela ändringen granskas
+före import och exakt version/proveniens sparas. Kärnan återupptar oavslutat lokalt
+arbete före nya ärenden och behåller befintliga sessions-id:n som giltiga.
 Kärnan kräver minsta tillräckliga modellkapacitet och resonemang när val stöds,
 korta arbetsuppdrag och motiverad eskalering med bevarat arbete. Samma
 resurshushållning gäller när modellvalet är låst; verifieringskraven behålls.
