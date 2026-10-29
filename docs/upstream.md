@@ -2160,3 +2160,15 @@ lagringsnycklar, spelmekaniker eller Cloudflare-integrationer ändras. Därför 
 ingen ny resultatbild eller appändringslogg. Kontroller: exakt kärnträd, hela
 diffen, lokala dokumentlänkar och värdregler samt obligatoriska `npm test` och
 `npm run build`. Faktisk Pages-körning och publiceringsrevision redovisas i #172.
+
+## Blågrå campustak per byggnad, #173
+
+Överförd från `230e23f6e3b870e1ca2307ff190b075670af4fcc` (original #1679): `SITE.east.roofColors`
+(`styles` per `campus.style`, `classic`, `sources`; alla värden *guess*) i `src/config.js`, neutral
+sömtextur och `schoolRoofTint()` i `src/schoolfacade.js`, samt `tintRoof()`, `vertexColors` på
+`schoolRoof` och en säsongskrok i `src/sitebackdrop.js` som stänger av vertexfärgerna i snömånaderna
+så att taken förblir vita. Taken tonas via vertexfärger i den delade `schoolRoof`-batchen: inga nya
+ritanrop eller trianglar. Orörda tak (Realgymnasiet Sankt Lars väg 20) behåller den mörka plåten.
+Originalets referensbilder, changelogpost och dokumentationsrad är inte importerade (ingen changelog
+här); koden är identisk med originalets utom att `sitebackdrop.js` anpassades för nedströms rader.
+[Verifiering](verification.md#blågrå-campustak-173).
