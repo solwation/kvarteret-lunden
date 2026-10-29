@@ -2468,3 +2468,13 @@ Chromium/SwiftShader (`window.lundenViewer`, platsen Trapphuset): kantbatcharna 
 färgtoner mot 44 före, med samma 49 556 hörn; inga sidfel. Ingen bild: kamerans flytt till
 platsen gav olika vyer före/efter, så en jämförelsebild hade inte visat samma sak. Ingen
 fysisk enhet testad.
+
+## Blågrå campustak, #173
+
+`npm test` och `npm run build` gröna. Riktig WebGL-visning i Chromium/SwiftShader
+(`window.lundenViewer`, samma kameror före/efter, östra campus från sydost): taken är blågrå
+i stället för nästan svarta i juli ([före till vänster, efter till höger](verification/173/campustak-juli-fore-efter.jpg));
+`?month=1` ger oförändrade, ljusa snötak, eftersom vertexfärgerna stängs av i snömånaderna
+([januari](verification/173/campustak-januari-fore-efter.jpg)). `renderer.info.render.calls`
+oförändrat före/efter: 918 i juli, 915 i januari; inga sidfel. Takfärgerna är *guess*.
+Ingen fysisk enhet testad.
