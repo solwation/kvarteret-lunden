@@ -2478,3 +2478,18 @@ i stället för nästan svarta i juli ([före till vänster, efter till höger](
 ([januari](verification/173/campustak-januari-fore-efter.jpg)). `renderer.info.render.calls`
 oförändrat före/efter: 918 i juli, 915 i januari; inga sidfel. Takfärgerna är *guess*.
 Ingen fysisk enhet testad.
+
+## Karpvägen: färger och våningar, #174
+
+`npm test` och `npm run build` gröna. Riktig WebGL-visning i Chromium/SwiftShader
+(`window.lundenViewer`, kameran satt på marken vid Karpvägen med samma pose före/efter):
+Östra långan har ljusare, gråvit fasad och en våning till
+([juli, före till vänster, efter till höger](verification/174/karpvagen-juli-langan-fore-efter.jpg)).
+De tre tegelhusen sedda från sydost har oförändrad tegelfasad; de mörkare blågrå taken syns
+bara svagt från marken ([juli](verification/174/karpvagen-juli-vast-fore-efter.jpg)).
+Med `?month=1` ([långan](verification/174/karpvagen-januari-langan-fore-efter.jpg),
+[tegelhusen](verification/174/karpvagen-januari-vast-fore-efter.jpg)) ligger snön kvar på marken
+och taken är opåverkade av tonen; från marken syns inga takytor på långan, så snötakens vithet
+är inte visuellt belagd i just dessa vyer (båda takmaterialen är oförändrade i koden).
+`renderer.info.render.calls` oförändrat (juli 36/40/39, januari 35/39/37); trianglar +188 i alla
+tre vyer (den extra våningen); inga sidfel. Värdena är *guess*. Ingen fysisk enhet testad.

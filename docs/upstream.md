@@ -2172,3 +2172,11 @@ ritanrop eller trianglar. Orörda tak (Realgymnasiet Sankt Lars väg 20) behåll
 Originalets referensbilder, changelogpost och dokumentationsrad är inte importerade (ingen changelog
 här); koden är identisk med originalets utom att `sitebackdrop.js` anpassades för nedströms rader.
 [Verifiering](verification.md#blågrå-campustak-173).
+
+## Karpvägen: färger och våningar, #174
+
+Överförd från `f4376d56f5bb6135f94059914e46d2080ec2f764` (original #1680): rena *guess*-värden i
+`src/config.js`: `SITE.west.facade` `0xd1c6b2` → `0xe3e1dc`, `SITE.west.roof` `0x56605d` → `0x4a5664`,
+`SITE.west.karp.colors.roof` `0x34373a` → `0x465263` och `levels` 3 → 4 för Östra långan vid Karpvägen
+(`88457595`). Fotavtryck oförändrade; inga nya ritanrop. Originalets changelogpost och
+dokumentationsrad är inte importerade. [Verifiering](verification.md#karpvägen-färger-och-våningar-174).
