@@ -7,6 +7,7 @@ import { cutSegmentOpenings } from './segmentopenings.js';
 import { southBankGround, southBankCentre } from './southbank.js';
 import { buildBusStop } from './busstop.js';
 import {southBackdropParts} from './southbackdrop.js';
+import {buildEdgeBackdrop} from './edgebackdrop.js';
 import {buildWestBackdrop,buildEastBackdrop,buildNorthBackdrop,westTreeSpots,eastTreeSpots,northTreeSpots} from './sitebackdrop.js';
 import { buildRiverPark, parkDeckAt, parkFillAt, parkRampFill, parkTreeSpots, parkShrubSpots } from './riverpark.js';
 import * as THREE from 'three';
@@ -1879,6 +1880,7 @@ export function* surroundingsParts({ grass, husL = null }) {
   const southGround=Object.assign((x,z)=>renderedTerrainY(x,z),{grid:roadGround.grid,surfaceGrid:renderedTerrainY.surfaceGrid});
   for (const parts = southBackdropParts(southGround, connectPavement, parkingPatch);;) { const r = parts.next(); if (r.done) { south = r.value; break; } yield 0.46 + 0.09 * r.value; }
   group.add(south);
+  group.add(buildEdgeBackdrop(renderedTerrainY)); // original #1682: the world's edge (fields, road, boxes beyond the terrain rectangle)
   // The #124 audit core contains the southern shared-edge/graded footprints.
   // Handoff occupies only its next existing emitted-terrain grid cell on each side.
   walkingSupport=new WalkSupport({x0:13,x1:36,z0:143,z1:192},terrainDetailGrid);
