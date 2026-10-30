@@ -119,6 +119,12 @@ export const RADIATOR = {
   pipe: { r: 0.0075, spacing: 0.05, inset: 0.035, rosette: 0.022 },
 };
 
+// #182 (upstream #1677): OSM ids of the houses by Sävsländegatan, Nattsländegatan and Hattsnäckegränden (shared by the window rows and `south.villas`).
+const SOUTH_VILLAS = [
+  '333642383', '333642385', '333642389', '333642392', '333642396', '403628166', '403628168', '403628172', '403628174', '403628178', // Sävsländegatan
+  '333642384', '333642387', '333642391', '333642393', '333642395', '367079610', '367079611', '367079612', '367079613', '367079616', // Nattsländegatan
+  '333642386', '333642390', '333642397', '403628164', '403628170', '403628176', // Hattsnäckegränden
+];
 export const SITE = {
   // Terrain (#79). Kv. Lunden stands on a garage box: the courtyard ("den upphöjda gården", info brochure
   // p. 16) lies on the garage deck at our Entréplan / patio level (y 0; the lower row houses have their
@@ -703,10 +709,17 @@ export const SITE = {
     // Seven unaddressed/uncertain bodies stay blank. Longitudinal-only rows, face cutoff and spacing are visual guesses.
     lowRiseWindows: { parallelCos: .98, minFaceShare: .45, sources: [
       '88457551', '88457559', '88457560', '88457562', '88457571', '88457572', '88457578', '88457584', '88457587', '88457589', '88457593', '88457596', '88457604', // Sankt Lars väg
-      '333642383', '333642385', '333642389', '333642392', '333642396', '403628166', '403628168', '403628172', '403628174', '403628178', // Sävsländegatan
-      '333642384', '333642387', '333642391', '333642393', '333642395', '367079610', '367079611', '367079612', '367079613', '367079616', // Nattsländegatan
-      '333642386', '333642390', '333642397', '403628164', '403628170', '403628176', // Hattsnäckegränden
+      ...SOUTH_VILLAS,
     ] },
+    // #182 (upstream #1677): the terraced houses and villas by Nattsländegatan, Sävsländegatan and Hattsnäckegränden (the `lowRiseWindows` rows
+    // after Sankt Lars väg) are red-brown with dark grey, low-pitched roofs, some with solar panels, in the Google 3D view of
+    // 2026-10-29. Every colour, pitch and panel placement is a *guess* read from that image. `rise` replaces the 1.6 m gable;
+    // `solar`: dark quad on the south slope, `along`/`across` fractions of the ridge length / half the span, `lift` over the roof (m).
+    villas: { facade: 0x9a4f3f, roof: 0x4b4e53, rise: 0.95,
+      solar: { color: 0x1f2735, lift: 0.04, along: [0.12, 0.88], across: [0.1, 0.85], sources: [
+        '367079611', '367079612', '333642395', '333642390', '403628164', '403628176', '333642385', '403628172',
+      ] },
+      sources: SOUTH_VILLAS },
     // Public #164, upstream #1556: nr 41's brick vocabulary on seven existing four-storey pavilions.
     // Facades are not surveyed: all dimensions below (metres), belt placement and colours are visual assumptions.
     // Plinth above base, frieze projection, belt floor lines/top lift, window-head rise and frame width.
