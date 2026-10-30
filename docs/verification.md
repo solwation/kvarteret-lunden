@@ -2669,3 +2669,14 @@ före, höger efter): [från sydväst](verification/188/sydvast-fore-efter.jpg),
 bakom. `renderer.info.render.calls` oförändrat 187/48/45, trianglar 590 025/459 215/396 003 → 589 735/458 925/395 713. Inga sidfel. Husets läge
 (x 37–61, z 62–76) ligger söder om Realgymnasiets OSM-kontur (z ≤ 58,8) och utanför alla rutor. Mått och färg är *guess*; ingen fysisk enhet och inte
 telefonprofilen (`?lowmem`) testad.
+
+## Gåbart område söderut till Sankt Lars väg 42, #191
+
+`npm test` och `npm run build` gröna. `node tools/farwalk-check.mjs http://localhost:8193 artifacts/i191/farwalk` (mot `python3 -m http.server`
+i repots rot, Chromium/SwiftShader, `ANGLE`-standard) gröna, inklusive de nya södergångarna: till fots Lunden → Sankt Lars väg 42:s norra
+sida (−63, 317,8), runt 44:s byggnad och tillbaka, väggarna vid 47 och 54 stoppar, en trädstam i södra skogen stoppar och södra kanten
+(`WALK.z1` 452) stoppar. Inga sidfel. Ritanrop/trianglar före (`HEAD~1`) och efter, 1100x760, samma kamera: startvy 524 / 759 826,
+vid 42:an (−63, 319, blick söderut) 20 / 297 881, södra kanten (10, 446) 17 / 294 169; identiska, eftersom ändringen bara är
+navigation och kollision. Resultatbild vid 42:an: [Sankt Lars väg 42](verification/191/sankt-lars-42.png). Observation: övre vänstra
+hörnet visar ett lådformat block i en trädkrona (samma sak som originalets #1723, rättas inte här). `servicepark1449test` har ett
+redan befintligt fel (`199056947` i åtkomstordningen) som är oberoende av #191. Ingen cykel nedströms, så upstreams cykelgångar hoppas över.

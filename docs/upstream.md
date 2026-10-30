@@ -2311,6 +2311,17 @@ inga bilar, så de saknar verkan), källans `.html`-test för östra campus (ned
 ändringslogg och `docs/development/environment.md` (finns inte nedströms). Förutsättningarna #161 (bridgehead/#1554), Realgymnasiets geometri
 och de OSM-baserade parkeringarna i öster fanns redan. [Verifiering](verification.md#parkeringsrad-vid-bron-och-lagt-tegelhus-188).
 
+## Gåbart område söderut till Sankt Lars väg 42, #191
+
+Överförd från `0503758e2c47dcf6613a7a861448b02346d6921d` (original #1714, bildcommit `44766323`): `WALK.z1` 250 → 452 (*guess*;
+`SITE.backgroundGround.z1` är 460 även nedströms), `southTreeFeet` i `src/surroundings.js` (sydkulissens `userData.trees` och
+`bigTrees`, inte kantraderna) och trunk-diamanter för dem i `src/farwalk.js`. Nedströms `WALK` behåller `wade`, `rescue` och
+`maxSlope 1,2`. Testerna anpassades: `tools/farwalk-check.mjs` fick södergångarna (till fots till 42, runt 44, väggarna vid 47/54,
+en trädstam, södra kanten); upstreams cykelgångar och `perfcount`-spotarna utesluts (nedströms finns ingen cykel eller `perfcount`).
+`servicepark1449test`, `servicewest1463test` och `servicering1464test` hävdade `WALK.z1 === 250`/"vägen ligger söder om gränsen"
+och jämför nu mot den gamla gränsen 250. Originalets changelogpost och miljödokumentation är inte importerade.
+[Verifiering](verification.md#gabart-omrade-soderut-till-sankt-lars-vag-42-191).
+
 ## Orkester v0.6.1, #189
 
 Den generiska kärnan uppdaterad från v0.6.0 `aecd631907c3374800e562c98125d905863ff925` till
