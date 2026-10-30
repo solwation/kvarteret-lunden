@@ -2192,3 +2192,13 @@ originalet före porten; koden är identisk. Originalets changelogpost, dokument
 `tools/riverparktest.html` (finns inte här) är inte importerade, och inga ekorrar eller
 paddockkontroller följer med. Originalets #1685 (fler plättar) portas separat.
 [Verifiering](verification.md#tätare-skog-i-ådalen-175).
+
+## Grönare gräsmark, höstbrunning från oktober, #176
+
+Överförd från `a4859f58a5942e2741301cc49bcb63b99804e0f9` (original #1681) och `3f51a4bd98495692dc76d03f222918358134dc29`
+(original #1695): `GRASS.summer` `0x718b50` → `0x609548` och `GRASS.autumnMix` är nu per månad
+(`{ 9: 0.12, 10: 0.5, 11: 0.6 }`, alla *guess*) i `src/config.js`; `src/grass.js` läser `G.autumnMix[month] ?? 0`,
+skapar canvasen med `willReadFrequently: true` och `grassMeanColor` ger reservfärgen sommarfärg × 0,8 om avläsningen blir helt
+noll. Enda läsaren av `autumnMix` nedströms var `grass.js`; testen `tools/southfar-ground-test.mjs` läser inte
+`GRASS.summer` som hexvärde (originalets `southbackdroptest.html` finns inte här). Originalets changelogpost är inte
+importerad (ingen changelog). [Verifiering](verification.md#grönare-gräsmark-höstbrunning-från-oktober-176).

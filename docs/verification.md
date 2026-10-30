@@ -2507,3 +2507,15 @@ de två OSM-skogsplättarna fylls med stora, breda kronor
 utan att ha granskats mot stigar numerärt: `tools/riverparktest.html` finns inte nedströms och
 `clear()` är oförändrad, så stig-/bro-/hållplatsfriheten är bara visuellt sedd, inte uppmätt.
 `n` och `scale` är *guess*. Ingen fysisk enhet testad.
+
+## Grönare gräsmark, höstbrunning från oktober, #176
+
+`npm test` och `npm run build` gröna. Riktig WebGL-visning i Chromium/SwiftShader
+(`window.lundenViewer`, samma kamerapose före/efter, området sett från sydväst; vänster före, höger efter):
+gräset är grönare i [juli](verification/176/graesmark-juli-fore-efter.jpg) och i
+[september](verification/176/graesmark-september-fore-efter.jpg) (`?month=9`, tidigare redan halmfärgat,
+nu bara 12 % höstton). Med `?month=1` ligger snön kvar och bilden är oförändrad
+([januari](verification/176/graesmark-januari-fore-efter.jpg)). `renderer.info.render.calls` och trianglar
+oförändrade före/efter (juli och september 53 ritanrop / 439 779 trianglar, januari 51 / 399 579); inga sidfel.
+Oktober och november (50 %/60 % höstton) är inte avbildade och värdena är *guess*. Läsreservens
+(`grassMeanColor`, helt nollad avläsning) gren är inte provkörd; den är identisk med originalets. Ingen fysisk enhet testad.
