@@ -12,7 +12,8 @@ const hits=(a,b,segments)=>segments.filter(([x0,z0,x1,z1])=>{
  return t>=0&&t<=1&&u>=0&&u<=1;
 });
 test('the reviewed wall ends at the recessed eastern shelter with a clear front and roof overhead',()=>{
- const p=schoolWallPlan(),s=p.shelter;assert.equal(p.rects.length,3);near(p.h,2);near(p.rects[0].x0,-26);near(p.rects[0].x1,13.6);near(s.x1,19.6);near(s.backZ,-33.3);near(s.frontZ,-32);near(s.roof.y0,2.45);near(s.roof.y1,2.61);
+ const p=schoolWallPlan(),s=p.shelter;assert.equal(p.rects.length,3);near(p.h,2);near(p.rects[0].x0,-26);near(p.rects[0].x1,13.6);near(s.x1,19.6);near(s.backZ,-33.3);near(s.frontZ,-32);near(s.roof.y0,2.5);near(s.roof.y1,2.72);near(s.wallEnd,25.1);near(s.post.x,17.2);near(s.post.z,-30.9);near(s.cabinet.x0,25.425);near(s.cabinet.x1,25.775);
+ assert(hits([22.5,-29],[22.5,-38],schoolWallSolids().flatMap(boxSegments)).length>0);assert(hits([25.6,-29],[25.6,-38],schoolWallSolids().flatMap(boxSegments)).length>0);assert(hits([17.2,-28.5],[17.2,-32],schoolWallSolids().flatMap(boxSegments)).length>0);
  assert.equal(hits([16.5,-29],[16.5,-32.6],schoolWallSolids().flatMap(boxSegments)).length,0);
  assert(hits([16.5,-32.6],[16.5,-38],schoolWallSolids().flatMap(boxSegments)).length>0);
  assert(hits([16.5,-32.6],[10,-32.6],schoolWallSolids().flatMap(boxSegments)).length>0);

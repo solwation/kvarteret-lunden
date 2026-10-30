@@ -2296,3 +2296,7 @@ generalisering av villornas tintmekanism (`WB`/`roofColor`: fasad-, takhöjd och
 18 OSM-id:n plus ladan 88457556 i `SITE.south.buildings` och samma `lowRiseWindows`-rad; `wallColor` fanns redan från #182, så
 patchen applicerades för hand. Originalets changelogpost och dokumentationsrad är inte importerade. Förutsättningarna #180
 (`cbacdac`) och #182 (`a5cd533`) ingick. [Verifiering](verification.md#vitputsade-hus-med-rott-tegeltak-vid-sankt-lars-vag-soder-183).
+
+## Busskuren i skolmurens ände efter närbilden (#187, original #1702)
+
+Port från `aaa86e6ed2247c21168d1d1ae200761c2b2dd261`: `school.wall.shelter` i `src/config.js` (`wallEast`, tjockare tak med `out`/`beam`, grå stolpe, ljus bänk, högre papperskorg, `pipe`, `sign`, `cabinet`, `boulder`; `stones` tömd eftersom stenblocket nu är `boulder`), `src/schoolwall.js` (murens fortsättning österut, skåpet som kollisionsfast), `src/street.js` (plattytan följer murens nya ände, stenblocket ritas) och skolgrunden i `src/surroundings.js` (eget `timber`-mesh för taket, +1 ritanrop; vertexfärger i ramens batch). Patcharna applicerades utan konflikt. Utesluten: originalets changelogpost och miljödokumentation. Farwalk-kontrollerna är anpassade i `tools/farwalk-check.mjs` (ny väg runt skåpet, stolpe-, murförlängnings- och skåpprov) och `tools/schoolwalltest.mjs`. [Verifiering](verification.md#busskuren-i-skolmurens-ande-187).

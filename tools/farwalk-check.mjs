@@ -35,11 +35,14 @@ try{
    ['under the bridges east',[10,111],[[18,111],[24,111],[32,111]],()=>n.pos.x>30&&n.pos.y<=-5.0],
    ['under the bridges west',[32,111],[[24,111],[18,111],[10,111]],()=>n.pos.x<12&&n.pos.y<=-5.0],
    ['HepCat building blocks',[24,0],[[34,0]],()=>n.pos.x<28],
-   // original #1542: the school wall (x -26..13.6, shelter back wall to19.6) is solid from the ground; the walk goes round its east end
-   ['to the school and clock tower',[20,-10],[[22.5,-29],[21.5,-38],[21,-39],[20,-80],[24,-108],[45,-109]],()=>n.pos.z<-108&&n.pos.x>40],
+   // original #1542: the school wall (x -26..13.6, shelter back wall open to 19.6, continuing to 25.1, cabinet x 25.4..25.8, #1702) is solid from the ground; the walk goes round its east end
+   ['to the school and clock tower',[20,-10],[[22.5,-29],[28.5,-30.5],[28.5,-38],[21,-39],[20,-80],[24,-108],[45,-109]],()=>n.pos.z<-108&&n.pos.x>40],
    ['school wall blocks from the street',[0,-28],[[0,-38]],()=>n.pos.z>-32.0&&n.pos.z<-31],
    ['school wall blocks at the east end',[12.5,-28],[[12.5,-38]],()=>n.pos.z>-32.0&&n.pos.z<-31],
    ['school shelter entrance is open, back wall blocks',[16.5,-29],[[16.5,-38]],()=>n.pos.z<-32.3&&n.pos.z>-33.3],
+   ['school shelter post blocks',[17.2,-28.5],[[17.2,-32]],()=>n.pos.z>-30.9+0.075&&n.pos.z<-29.8],
+   ['school shelter continuing wall blocks from the street',[22.5,-29],[[22.5,-38]],()=>n.pos.z>-33.3&&n.pos.z<-32.3],
+   ['school shelter cabinet blocks',[25.6,-29],[[25.6,-38]],()=>n.pos.z>-32.3&&n.pos.z<-31],
    ['school shelter gable blocks from inside',[16.5,-32.6],[[10,-32.6]],()=>n.pos.x>13.6&&n.pos.x<14.3],
    ['clock tower facade blocks',[45,-109],[[45,-125]],()=>n.pos.z>-113.5],
    ['between school buildings east',[45,-109],[[70,-108],[100,-108],[130,-105],[130,-60]],()=>n.pos.z>-62&&n.pos.x>125],
