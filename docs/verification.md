@@ -2546,3 +2546,21 @@ får `needsUpdate = true` höjer inte `version`, loggas en gång via `console.er
 three `WebGLAttributes.update` (mockad GL) kastar inte. Helsidesladdning i Chromium/SwiftShader (25 s) på skrivbord och med
 `?lowmem`: canvas skapas, 0 sidfel, 0 `console.error`. Det visar att telefonprofilen startar, inte att något frigjort attribut
 faktiskt markerades i en riktig session; guarden är provad med enhetstest. Ingen fysisk enhet testad. Testet ingår inte i `npm test`.
+
+## Stora lövträd mellan sjukhushusen, #179
+
+`npm test` och `npm run build` gröna. Riktig WebGL-visning i Chromium/SwiftShader (`window.lundenViewer`, juli, samma kameror före/efter;
+vänster före, höger efter): gamla, bredkronade lövträd står på gräsytorna mellan paviljongerna (nr 41–47) i stället för bara de
+glesa skogsträden
+([vid vägen mot söder](verification/179/fran-vagen-vid-nr-45-mot-soder-fore-efter.jpg),
+[västra gräsytan mot öster](verification/179/vastra-grasytan-mot-ost-fore-efter.jpg),
+[södra gräsytan mot söder](verification/179/sodra-grasytan-mot-soder-fore-efter.jpg)).
+`renderer.info.render.calls` oförändrat (18/24/18); trianglar per vy +0,4 % (275 642 → 276 838, 293 723 → 294 919, 272 066 → 273 262),
+alltså under det ~3 % som ärendet tillåter. `south-crowns.count` 70 → 93: 23 stora träd (originalet 27; nedströms har fler
+mappade vägar i `SITE.south.access`, så fler slumppositioner faller bort). Avstånden är mätta på de 23 faktiska positionerna mot
+`SITE.south`-data: minst 5,56 m till byggnadskant (krav 5), 3,85 m till vägkant (3,5), 3,70 m till parkering (3), 0 träd i fält
+eller inne i fotavtryck. Inga sidfel. Paviljongernas och parkeringarnas polygoner (nr 41–47) är identiska med originalet; nedströms
+räknas även `legacyClearings` som parkering. Originalets `tools/southbackdroptest.html` finns inte nedströms, så ingen triangelgräns
+uppdaterades. Träden ingår som i originalet inte i markskuggan (`userData.trees` innehåller bara skogsträden). `bigTrees`-placering är *guess*. Ingen
+fysisk enhet testad; telefonprofilen (`?lowmem`) är inte provkörd.
+

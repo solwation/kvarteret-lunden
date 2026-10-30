@@ -2223,3 +2223,14 @@ geometrinamn. Nedströms fanns bara `freeGeometryAfterUpload`; `canary()` fanns 
 (klon-varningen blir också `console.error`). Anpassat: originalets `bedCare`-undantag finns inte nedströms, och `src/crashlog.js`
 finns inte här (ingen Cloudflare), så `console.error` är enda spåret. Bion (#1688) finns inte nedströms och portas inte.
 Originalets changelogpost och dokumentationsrad är inte importerade. [Verifiering](verification.md#telefonprofilen-frigjord-geometri-178).
+
+## Stora lövträd mellan sjukhushusen, #179
+
+Överförd från `3b13397cf60894bb02972c691e6c9376a8758aa3` (original #1675): `SITE.south.bigTrees` i `src/config.js` (höjd, radie,
+avstånd, frigång, fem gräsytepolygoner, alla *guess*) och placering i `src/southbackdrop.js` efter de glesa skogsträden som fler
+instanser i `south-trunks`/`south-crowns` (tjockare stammar, avstånd till fotavtryck, vägar, parkeringar och fält;
+`userData.bigTrees` skild från `userData.trees`). Patchen gick att tillämpa oförändrad; anpassat: parkeringskontrollen räknar
+även `SITE.south.legacyClearings` (finns bara nedströms). Byggnads- och parkeringspolygonerna var identiska med originalet; nedströms
+har tio fler `access`-vägar, vilket ger 23 i stället för 27 träd. Originalets changelogpost, dokumentationsrad och
+`tools/southbackdroptest.html` (finns inte här) är inte importerade. [Verifiering](verification.md#stora-lövträd-mellan-sjukhushusen-179).
+
