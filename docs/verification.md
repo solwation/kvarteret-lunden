@@ -2655,3 +2655,7 @@ mot 234 före, ett fick ingen ersättningsplats). Orsak: `clear()` i `src/riverp
 polygon med 1,5 m marginal är nu en del av `clear()`. Riktig WebGL-visning i Chromium/SwiftShader (960x540, 15 juli, samma kamera före/efter;
 vänster före, höger efter): [vy mot hagens kant](verification/186/hagen-fore-efter.jpg). `renderer.info.render.calls` oförändrat (828 före och efter),
 trianglar 851 617 → 849 990. Inga sidfel. Testet körs med `node --test tools/riverbridgeviewtest.mjs` (ingår inte i `npm test`), tillsammans med de andra parktesterna (alla gröna). Ingen fysisk enhet och inte telefonprofilen (`?lowmem`) testad.
+
+## Busskuren i skolmurens ände (#187)
+
+Port av original #1702 (`aaa86e6e`), se [upstream](upstream.md). `npm test`, `npm run build` och `node --test tools/schoolwalltest.mjs` (3/3) gröna. `tools/farwalk-check.mjs` mot byggd/serverad app: alla prov passerar, inklusive nya prov för stolpen, murens förlängning och plåtskåpet. Riktig WebGL i headless Chromium/SwiftShader (1000x700, två kameror, före/efter): från gatan [före](verification/187/busskur-before-a.png) och [efter](verification/187/busskur-after-a.png), från öster [före](verification/187/busskur-before-b.png) och [efter](verification/187/busskur-after-b.png). Ritanrop `renderer.info.render.calls` 50 → 51 och 49 → 50 (+1, takets `timber`-mesh). Inga sidfel.
