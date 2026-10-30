@@ -2212,3 +2212,14 @@ konstanter, omräknad betonghash (`337755db…`) och korridortestet. `SITE.bridg
 identiska med originalet före porten bortsett från nedströms `trimApproach`, som är orört. Originalets
 changelogpost, dokumentationsrad och referensbilder är inte importerade (ingen changelog här).
 [Verifiering](verification.md#ån-ligger-nere-i-marken-177).
+
+## Telefonprofilen kraschar inte på frigjord geometri, #178
+
+Överförd från `40e53ed73b1aea81813e392ea6a4ee357d9a3c43` (original #1691; bakgrund #1688, `1d5e7ce3`): `canary()`,
+`reportFreed()` (WeakSet, en rapport per attribut) och etiketter (`cpuFreedName`, `cpuFreedLabel`, `userData.freeLabel`) i
+`src/lowmemory.js`, samt `tools/lowmemcanarytest.mjs`. En frigjord attributs `needsUpdate = true` höjer inte längre `version`,
+så three kastar inte "Resizing buffer attributes is not supported"; i stället loggas `console.error` med attribut- och
+geometrinamn. Nedströms fanns bara `freeGeometryAfterUpload`; `canary()` fanns inte alls och lades till i sin slutliga form
+(klon-varningen blir också `console.error`). Anpassat: originalets `bedCare`-undantag finns inte nedströms, och `src/crashlog.js`
+finns inte här (ingen Cloudflare), så `console.error` är enda spåret. Bion (#1688) finns inte nedströms och portas inte.
+Originalets changelogpost och dokumentationsrad är inte importerade. [Verifiering](verification.md#telefonprofilen-frigjord-geometri-178).

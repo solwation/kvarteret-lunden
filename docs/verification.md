@@ -2537,3 +2537,12 @@ krön ≥ 1,3 m över vattnet och att varje nedsänkt markpunkt ligger under vat
 Bro-, stig- och navigeringskoden använder bara `waterYAt`/`shoreYAt` relativt, så ingen logik ändrades;
 `node --test tools/riverbridgeviewtest.mjs` (stigar, rev och gång över broarna mot vattnet, 2 av 2) är grön.
 `waterY`/`bedY` är *guess*. Ingen fysisk enhet testad.
+
+## Telefonprofilen: frigjord geometri, #178
+
+`npm test` och `npm run build` gröna. `node --test tools/lowmemcanarytest.mjs` (three 0.170.0 från `node_modules`) ger 3 av 3
+gröna med ändringen och 0 av 3 (alla röda) med `src/lowmemory.js` från `origin/main` `6d0b1a0`: en frigjord normal/uv som
+får `needsUpdate = true` höjer inte `version`, loggas en gång via `console.error` med `attribute=…` och `geometry=…`, och
+three `WebGLAttributes.update` (mockad GL) kastar inte. Helsidesladdning i Chromium/SwiftShader (25 s) på skrivbord och med
+`?lowmem`: canvas skapas, 0 sidfel, 0 `console.error`. Det visar att telefonprofilen startar, inte att något frigjort attribut
+faktiskt markerades i en riktig session; guarden är provad med enhetstest. Ingen fysisk enhet testad. Testet ingår inte i `npm test`.
