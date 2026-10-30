@@ -2680,3 +2680,5 @@ vid 42:an (−63, 319, blick söderut) 20 / 297 881, södra kanten (10, 446) 17 
 navigation och kollision. Resultatbild vid 42:an: [Sankt Lars väg 42](verification/191/sankt-lars-42.png). Observation: övre vänstra
 hörnet visar ett lådformat block i en trädkrona (samma sak som originalets #1723, rättas inte här). `servicepark1449test` har ett
 redan befintligt fel (`199056947` i åtkomstordningen) som är oberoende av #191. Ingen cykel nedströms, så upstreams cykelgångar hoppas över.
+
+#192: `servicepark1449test` förväntar nu `199056947` (gångväg, tillagd avsiktligt i 991a229/#152) direkt efter `95036048` i södra åtkomstordningen; endast testet ändrat, ingen data eller geometri. `node --test tools/service*test.mjs`, `npm test` och `npm run build` gröna.

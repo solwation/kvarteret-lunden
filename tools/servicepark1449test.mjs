@@ -49,7 +49,9 @@ test('complete emitted strips clear southern buildings and woodland plus tree ma
 test('existing public strip geometry, access order and affected parking data remain unchanged',async()=>{
  const text=execFileSync('git',['show','2899dcdd:src/config.js'],{encoding:'utf8'});
  const before=(await import('data:text/javascript;base64,'+Buffer.from(text).toString('base64'))).SITE;
- assert.deepEqual(SITE.south.access.map(r=>r.source),before.south.access.map(r=>r.source));
+ // #192: footway 199056947 was added intentionally after 2899dcdd (991a229, #152), directly after 95036048.
+ const expectedOrder=before.south.access.map(r=>r.source);expectedOrder.splice(expectedOrder.indexOf('95036048')+1,0,'199056947');
+ assert.deepEqual(SITE.south.access.map(r=>r.source),expectedOrder);
  const shape=({source,path,w,surface,terrain,widthSource})=>({source,path,w,surface,terrain,widthSource});
  for(const road of[r5,r6]){const old=before.south.access.find(r=>r.source===road.source);assert.deepEqual(shape(road),shape(old));assert(isVehicleWay(old));}
  for(const id of['1379042188','1379042235'])assert.deepEqual(SITE.south.parking.find(p=>p.source===id),before.south.parking.find(p=>p.source===id));
