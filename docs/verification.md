@@ -2576,3 +2576,26 @@ blir vita snötak också med kuporna ([januari 42–44](verification/180/paviljo
 (21/24/18 i juli, 20/23/17 i januari); trianglar per vy +1 342 (t.ex. 290 583 → 291 925, +0,5 % av hela vyn; originalets mätning
 var +1 342 av ca 55 000 i det avlägsna bidraget). Inga sidfel. Takformer och färger är *guess*. Ingen fysisk enhet och inte
 telefonprofilen (`?lowmem`) testad. Originalets `tools/southbackdroptest.html` finns inte här, så inget triangeltak ändrades.
+
+## Världens kant: avlägsna kulisser, #181
+
+`npm test` och `npm run build` gröna, och `node tools/edgebackdroptest.mjs` (portat, 20 av 20: 76 lådhus, 338 trädplatser, inga
+fält över kartlagda fält, bandet utanför terrängrektangeln, telefon utan hus och träd). Riktig WebGL-visning i
+Chromium/SwiftShader (`window.lundenViewer`, samma kameror före/efter; vänster före, höger efter). Skrivbord, juli:
+[västerut](verification/181/hog-vast-dator-fore-efter.jpg) (radhus och trädrader där det tidigare var en tom grön
+horisont), [söderut](verification/181/hog-soder-dator-fore-efter.jpg) (åkrar, cykelväg, trädrader), samt
+[från marknivå väst](verification/181/vast-dator-fore-efter.jpg), [söder](verification/181/soder-dator-fore-efter.jpg) och
+[norr](verification/181/norr-dator-fore-efter.jpg). Med `?lowmem` visas bara marken
+([väst](verification/181/hog-vast-lowmem-fore-efter.jpg), [söder](verification/181/hog-soder-lowmem-fore-efter.jpg),
+[marknivå](verification/181/vast-lowmem-fore-efter.jpg)); inga hus och inga träd (`edge-houses` saknas, `south-crowns` 93 som före).
+Med `?month=1` är marken, husen och taken vita och träden kala
+([väst](verification/181/hog-vast-januari-fore-efter.jpg), [söder](verification/181/hog-soder-januari-fore-efter.jpg),
+[marknivå](verification/181/vast-januari-fore-efter.jpg)).
+Ritanrop (`renderer.info.render.calls`, före → efter): skrivbord 10→14, 12→15, 8→12, 18→19 (marknivå väst/öst/norr/söder)
+och 10→14, 15→16 (höjdvyerna); telefonläge +1 (bara markmeshen). De två nya meshar (`edge-land`, `edge-houses`) ger högst +2;
+resterande +1 till +2 på skrivbord kommer av att `south-trunks`/`south-crowns` nu har en större begränsningssfär (kantträden)
+och därför ritas i vyer där de tidigare culleades bort (kantgruppen dold ger fortfarande +2 mot före). Ett batchpar utan
+nya meshar, men acceptansgränsen "högst +2" överskrids alltså i några vyer, mätt, på skrivbord. Trianglar i de mätta vyerna:
++9 % till +11 % på skrivbord (t.ex. 194 863→219 308), +0,4 % i telefonläge. Inga sidfel eller `console.error` i någon körning.
+Inga exakta triangeltal i nedströms tester behövde uppdateras (originalets `southbackdroptest.html`/`parking1452test.html` finns
+inte här). Alla värden är *guess*. Testat i headless Chromium/SwiftShader; `?lowmem` är profilen på en dator, ingen fysisk telefon.

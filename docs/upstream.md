@@ -2244,3 +2244,17 @@ en säsongskrok som stänger av takets vertexfärger i snömånaderna. Nedström
 samma takbatch och samma säsongsmekanism (`registerSeasonal`) före porten; koden är identisk. Originalets changelogpost,
 dokumentationsrader och `tools/southbackdroptest.html` (finns inte här) är inte importerade. Referensbilderna följer inte med.
 [Verifiering](verification.md#paviljongtak-med-kupor-och-skorstenar-180).
+
+## Världens kant: avlägsna kulisser, #181
+
+Överförd från `55e83be892806b243cf45eef993d15b12b788a8a` (original #1682; testantal `2c8c63be`): nya `src/edgebackdrop.js`
+och blocket `EDGE_BACKDROP` (alla värden *guess*) i `src/config.js` (fjäderkant runt terrängrektangeln, markplatta norr om den,
+åkerlappar, cykelväg, Malmövägen, lådhus och industrihallar i två sammanslagna ritanrop samt trädrader och skogsplättar som
+fler instanser i `south-trunks`/`south-crowns`). Hookar: en import och `trees.push(...edgeTreeSpots())` i `src/southbackdrop.js`
+(`userData.trees` utesluter kantträd, ny `userData.edgeTrees`) och `group.add(buildEdgeBackdrop(renderedTerrainY))` i
+`src/surroundings.js`. Nedströms hade samma `SITE.backgroundGround`, `SITE.south.treeHeight/treeRadius` och
+`lowMemory`/`registerSnow`/`registerSeasonal`; koden är identisk. Anpassat: kommentaren i `EDGE_BACKDROP` pekar inte på
+originalets `docs/references/google-3d-…` (importeras inte); anropet i `surroundings.js` står efter `group.add(south)` eftersom
+nedströms `southBackdropParts` har annan signatur. `tools/edgebackdroptest.mjs` är oförändrad (20 av 20). Originalets
+changelogpost, dokumentationsrader, `tools/southbackdroptest.html` och `tools/parking1452test.html` (finns inte här, så
+inga exakta triangeltal behövde uppdateras) är inte importerade. [Verifiering](verification.md#världens-kant-avlägsna-kulisser-181).
