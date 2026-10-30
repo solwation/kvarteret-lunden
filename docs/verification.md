@@ -2622,3 +2622,15 @@ Riktig WebGL-visning i Chromium/SwiftShader (`window.lundenViewer`, 960x540, 15 
 [östra svängen](verification/184/ostra-svangen-fore-efter.jpg). `renderer.info.render.calls` oförändrat i alla fyra vyer (34/31/39/33);
 trianglar +3,1 %, +2,6 %, +2,5 % och +1,1 % (t.ex. 293 646 → 302 761), under ärendets ~5 %. Inga sidfel. Polygonerna är *guess*.
 Ingen fysisk enhet och inte telefonprofilen (`?lowmem`) testad.
+
+## Villorna vid Nattsländegatan, #182
+
+`npm test` och `npm run build` gröna. Riktig WebGL-visning i Chromium/SwiftShader (`window.lundenViewer`, samma kameror före/efter,
+960x540): de 26 villorna och radhusen vid Sävsländegatan, Nattsländegatan och Hattsnäckegränden är rödbruna med mörkgrå, låga tak
+(`rise` 0,95) och mörka solpaneler på åtta tak. [Från norr, juli](verification/182/villorna-fran-norr-juli-fore-efter.jpg),
+[från väster, juli](verification/182/villorna-fran-vast-juli-fore-efter.jpg). Med `?month=1` är taken fortfarande vita snötak
+([från norr](verification/182/villorna-fran-norr-januari-fore-efter.jpg), [från väster](verification/182/villorna-fran-vast-januari-fore-efter.jpg)).
+`renderer.info.render.calls` oförändrat före/efter (24/32 i juli, 23/31 i januari); trianglar per vy +16 (298 061 → 298 077,
+372 856 → 372 872, 294 713 → 294 729, 355 936 → 355 952), alltså åtta solpanelsquads. Inga sidfel. Samma 26 OSM-id:n som i
+originalet finns i `SITE.south`. Färger, taklutning och panelplacering är *guess*; ingen fysisk enhet och inte telefonprofilen
+(`?lowmem`) testad. Originalets `tools/parking1452test.html` finns inte nedströms, så inget triangeltak ändrades.

@@ -2277,3 +2277,12 @@ inga exakta triangeltal behövde uppdateras) är inte importerade. [Verifiering]
 `scale` 1,7–2,5) i `src/config.js`. Patchen gick att tillämpa oförändrad; förutsättningen `spacing`/`exact` i `parkTreeSpots` kom
 med #175 (`0cd62f4`). Originalets changelogpost, dokumentationsrad och `tools/riverparktest.html` (finns inte här) är inte importerade;
 i stället gjordes en egen Node-kontroll mot config-data. [Verifiering](verification.md#mer-skog-på-ådalens-övriga-sluttningar-184).
+## Villorna vid Nattsländegatan, #182
+
+Överförd från `910f8d6301e44408c6c55d08aeaf1de8aec732df` (original #1677): `SITE.south.villas` (fasad, tak, `rise` 0,95 och åtta
+solpanelstak, alla värden *guess*) och `SOUTH_VILLAS` i `src/config.js` (de 26 OSM-källorna; återanvänds i `lowRiseWindows.sources`),
+samt i `src/southbackdrop.js` fasad- och takfärg per villa via vertexfärger och solpanelerna som en quad per tak i takbatchen.
+Nedströms hade samma 26 OSM-id:n i `SITE.south.buildings` och samma `lowRiseWindows`; patchen applicerades för hand eftersom
+filerna avviker (nedströms använde redan `wallColor` men målade fasaden med `b.facade`). Originalets changelogpost,
+dokumentationsrad och `tools/parking1452test.html` (finns inte här) är inte importerade. Förutsättningen #180 (takvertexfärger) ingick.
+[Verifiering](verification.md#villorna-vid-nattslandegatan-182).
