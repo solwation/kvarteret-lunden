@@ -2493,3 +2493,17 @@ och taken är opåverkade av tonen; från marken syns inga takytor på långan, 
 är inte visuellt belagd i just dessa vyer (båda takmaterialen är oförändrade i koden).
 `renderer.info.render.calls` oförändrat (juli 36/40/39, januari 35/39/37); trianglar +188 i alla
 tre vyer (den extra våningen); inga sidfel. Värdena är *guess*. Ingen fysisk enhet testad.
+
+## Tätare skog i ådalen, #175
+
+`npm test` och `npm run build` gröna. Riktig WebGL-visning i Chromium/SwiftShader
+(`window.lundenViewer`, juli, samma kameror före/efter; vänster före, höger efter):
+de två OSM-skogsplättarna fylls med stora, breda kronor
+([från norra bron](verification/175/adalen-fran-norr-fore-efter.jpg),
+[sydväst i dalen](verification/175/adalen-sydvast-fore-efter.jpg),
+[mot busshållplatsen](verification/175/adalen-busshallplats-fore-efter.jpg)).
+`renderer.info.render.calls` oförändrat (36/86/92); trianglar +4,3 %, +1,3 % och +3,1 %
+(364 125→379 959, 539 087→546 251, 539 359→556 017); inga sidfel. Träden ligger på marken
+utan att ha granskats mot stigar numerärt: `tools/riverparktest.html` finns inte nedströms och
+`clear()` är oförändrad, så stig-/bro-/hållplatsfriheten är bara visuellt sedd, inte uppmätt.
+`n` och `scale` är *guess*. Ingen fysisk enhet testad.

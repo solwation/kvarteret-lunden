@@ -2180,3 +2180,15 @@ här); koden är identisk med originalets utom att `sitebackdrop.js` anpassades 
 `SITE.west.karp.colors.roof` `0x34373a` → `0x465263` och `levels` 3 → 4 för Östra långan vid Karpvägen
 (`88457595`). Fotavtryck oförändrade; inga nya ritanrop. Originalets changelogpost och
 dokumentationsrad är inte importerade. [Verifiering](verification.md#karpvägen-färger-och-våningar-174).
+
+## Tätare skog i ådalen, #175
+
+Överförd från `898625ec98677979aad754e620282cb0da205808` (original #1674): `parkTreeSpots` i
+`src/riverpark.js` får plättegenskaperna `spacing` (minsta avstånd, även mot tidigare träds eget
+avstånd) och `exact` (`n` multipliceras inte med `treeDensity`), samt två nya plättar i
+`SITE.riverPark.patches` (`forest-165719099`, `forest-333646812`, OSM-polygoner i planens
+koordinater, `n`/`scale` *guess*). Befintliga plättar och `parkTreeSpots` var identiska med
+originalet före porten; koden är identisk. Originalets changelogpost, dokumentationsrad och
+`tools/riverparktest.html` (finns inte här) är inte importerade, och inga ekorrar eller
+paddockkontroller följer med. Originalets #1685 (fler plättar) portas separat.
+[Verifiering](verification.md#tätare-skog-i-ådalen-175).
