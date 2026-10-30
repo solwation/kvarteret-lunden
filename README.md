@@ -229,7 +229,7 @@ Med `?perf` kan långa bildintervall mätas lokalt och exporteras utan en teleme
 
 `/orkester` använder den modelloberoende kärnan i
 [dirigenten-och-orkestern](https://github.com/solwation/dirigenten-och-orkestern),
-versionslåst till **v0.6.0** (`aecd6319`) som Git subtree i `.orchestra/shared`. Vanlig kloning räcker.
+versionslåst till **v0.6.1** (`432e1879`) som Git subtree i `.orchestra/shared`. Vanlig kloning räcker.
 Vid start eller återupptagning kontrollerar dirigenten nya stabila releaser och
 versionstaggar, med högst ett dygns återanvändning av en lyckad kontroll. Nya
 stabila uppdateringar importeras automatiskt som lågprioriterat underhåll vid nästa

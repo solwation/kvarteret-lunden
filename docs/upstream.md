@@ -2310,3 +2310,15 @@ Port från `aaa86e6ed2247c21168d1d1ae200761c2b2dd261`: `school.wall.shelter` i `
 inga bilar, så de saknar verkan), källans `.html`-test för östra campus (nedströms finns ingen motsvarighet; antalet byggnader prövas inte där),
 ändringslogg och `docs/development/environment.md` (finns inte nedströms). Förutsättningarna #161 (bridgehead/#1554), Realgymnasiets geometri
 och de OSM-baserade parkeringarna i öster fanns redan. [Verifiering](verification.md#parkeringsrad-vid-bron-och-lagt-tegelhus-188).
+
+## Orkester v0.6.1, #189
+
+Den generiska kärnan uppdaterad från v0.6.0 `aecd631907c3374800e562c98125d905863ff925` till
+`solwation/dirigenten-och-orkestern` **v0.6.1** `432e1879416a91215b4e174699c7af705fd0359d` (versionstagg)
+med `git subtree pull --squash`; importerad trädhash `5529ad7549d96cd093894fb67ee3f04d84d2ef72` är identisk med uppströms.
+Hela instruktionsdiffen (3 commits) är granskad. Nytt: kärnans egen `/orkester` startar kösession, korta turer i den delade
+verifieringskön, skilda infogningsankare och behåll-båda vid konflikter i loggar som bara växer, chattsvar skrivs in på
+issuet, arbetare stoppar processer via PID, committar vid delmål och skickar inga personuppgifter till externa tjänster.
+Inget motsäger värdreglerna: här startar `/orkester` redan en kösession, arbetare committar lokalt och dirigenten publicerar
+(ingen push från arbetare, inga PR). Inga appfiler ändras. Originalets motsvarande import spåras i
+[#1717](https://github.com/solwation/lunden-3d-apartment/issues/1717).
