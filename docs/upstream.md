@@ -2286,3 +2286,13 @@ Nedströms hade samma 26 OSM-id:n i `SITE.south.buildings` och samma `lowRiseWin
 filerna avviker (nedströms använde redan `wallColor` men målade fasaden med `b.facade`). Originalets changelogpost,
 dokumentationsrad och `tools/parking1452test.html` (finns inte här) är inte importerade. Förutsättningen #180 (takvertexfärger) ingick.
 [Verifiering](verification.md#villorna-vid-nattslandegatan-182).
+
+## Vitputsade hus med rött tegeltak vid Sankt Lars väg söder, #183
+
+Överförd från `ed63071a311ffefd5d6540ab12a3ada35526d4e9` (original #1678): `SITE.south.whiteHouses` (vit puts, rött tegeltak,
+`rise` 1,6 och underblocket `barn` med mörkt, brantare och högre tak på OSM 88457556, alla värden *guess*) och konstanten
+`SOUTH_LARS_VAG` (13 OSM-id:n, återanvänds i `lowRiseWindows.sources`) i `src/config.js`, samt i `src/southbackdrop.js` en
+generalisering av villornas tintmekanism (`WB`/`roofColor`: fasad-, takhöjd och takfärg per hus via vertexfärger). Nedströms hade samma
+18 OSM-id:n plus ladan 88457556 i `SITE.south.buildings` och samma `lowRiseWindows`-rad; `wallColor` fanns redan från #182, så
+patchen applicerades för hand. Originalets changelogpost och dokumentationsrad är inte importerade. Förutsättningarna #180
+(`cbacdac`) och #182 (`a5cd533`) ingick. [Verifiering](verification.md#vitputsade-hus-med-rott-tegeltak-vid-sankt-lars-vag-soder-183).

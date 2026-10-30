@@ -2634,3 +2634,14 @@ Ingen fysisk enhet och inte telefonprofilen (`?lowmem`) testad.
 372 856 → 372 872, 294 713 → 294 729, 355 936 → 355 952), alltså åtta solpanelsquads. Inga sidfel. Samma 26 OSM-id:n som i
 originalet finns i `SITE.south`. Färger, taklutning och panelplacering är *guess*; ingen fysisk enhet och inte telefonprofilen
 (`?lowmem`) testad. Originalets `tools/parking1452test.html` finns inte nedströms, så inget triangeltak ändrades.
+
+## Vitputsade hus med rött tegeltak vid Sankt Lars väg söder, #183
+
+`npm test` och `npm run build` gröna. Riktig WebGL-visning i Chromium/SwiftShader (`window.lundenViewer`, fast klocka 15 juli,
+samma kameror före/efter, 960x540; före till vänster, efter till höger): husen vid Sankt Lars väg längst söderut är vitputsade med röda
+tegeltak, och ladan (OSM 88457556) har ett mörkgrått, högre och brantare tak ([husen, juli](verification/183/husen-juli-fore-efter.jpg),
+[ladan, juli](verification/183/ladan-juli-fore-efter.jpg)). Med `?month=1` är taken fortfarande vita snötak
+([husen](verification/183/husen-januari-fore-efter.jpg), [ladan](verification/183/ladan-januari-fore-efter.jpg)).
+`renderer.info.render.calls` och trianglar är identiska före/efter i alla fyra vyer (916/924 anrop, 912 279/1 039 771 trianglar i juli;
+913/921 anrop, 830 079/899 311 trianglar i januari), alltså inga nya ritanrop. Inga sidfel. Samma 18 OSM-id:n plus ladan finns i
+`SITE.south.buildings`. Färger och taklutning är *guess*; ingen fysisk enhet och inte telefonprofilen (`?lowmem`) testad.
