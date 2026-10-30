@@ -2234,3 +2234,13 @@ instanser i `south-trunks`/`south-crowns` (tjockare stammar, avstånd till fotav
 har tio fler `access`-vägar, vilket ger 23 i stället för 27 träd. Originalets changelogpost, dokumentationsrad och
 `tools/southbackdroptest.html` (finns inte här) är inte importerade. [Verifiering](verification.md#stora-lövträd-mellan-sjukhushusen-179).
 
+
+## Paviljongtak med kupor och skorstenar, #180
+
+Överförd från `02003c7889ff2b6bc466480988bf0f4e7c692044` (original #1676): nya `src/pavilionroof.js` (gavelkupor, mittgavel,
+skorstenar), blocket `SITE.south.pavilionRoof` (alla värden *guess*) och i `src/southbackdrop.js` ett anrop per paviljong i
+`brickStyle.sources`, blågrå takfärg, takmaterial med vertexfärger (`S.roofColor` blir standardfärg för takgeometri utan egen) och
+en säsongskrok som stänger av takets vertexfärger i snömånaderna. Nedströms hade samma sju paviljonger i `brickStyle.sources`,
+samma takbatch och samma säsongsmekanism (`registerSeasonal`) före porten; koden är identisk. Originalets changelogpost,
+dokumentationsrader och `tools/southbackdroptest.html` (finns inte här) är inte importerade. Referensbilderna följer inte med.
+[Verifiering](verification.md#paviljongtak-med-kupor-och-skorstenar-180).

@@ -2564,3 +2564,15 @@ räknas även `legacyClearings` som parkering. Originalets `tools/southbackdropt
 uppdaterades. Träden ingår som i originalet inte i markskuggan (`userData.trees` innehåller bara skogsträden). `bigTrees`-placering är *guess*. Ingen
 fysisk enhet testad; telefonprofilen (`?lowmem`) är inte provkörd.
 
+
+## Paviljongtak med kupor och skorstenar, #180
+
+`npm test` och `npm run build` gröna (även efter ombasering på #179). Riktig WebGL-visning i Chromium/SwiftShader
+(`window.lundenViewer`, samma kameror före/efter, 960x540): de sju paviljongernas tak är blågrå med kupor, mittgavlar och
+skorstenar. [Juli, södra paviljonger 42–44, före till vänster, efter till höger](verification/180/paviljongtak-p4243-juli-fore-efter.jpg),
+[juli, 45–47](verification/180/paviljongtak-p4647-juli-fore-efter.jpg). Med `?month=1` stängs takets vertexfärger av och taken
+blir vita snötak också med kuporna ([januari 42–44](verification/180/paviljongtak-p4243-januari-fore-efter.jpg),
+[januari 45–47](verification/180/paviljongtak-p4647-januari-fore-efter.jpg)). `renderer.info.render.calls` oförändrat före/efter
+(21/24/18 i juli, 20/23/17 i januari); trianglar per vy +1 342 (t.ex. 290 583 → 291 925, +0,5 % av hela vyn; originalets mätning
+var +1 342 av ca 55 000 i det avlägsna bidraget). Inga sidfel. Takformer och färger är *guess*. Ingen fysisk enhet och inte
+telefonprofilen (`?lowmem`) testad. Originalets `tools/southbackdroptest.html` finns inte här, så inget triangeltak ändrades.
