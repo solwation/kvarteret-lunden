@@ -2258,3 +2258,11 @@ originalets `docs/references/google-3d-…` (importeras inte); anropet i `surrou
 nedströms `southBackdropParts` har annan signatur. `tools/edgebackdroptest.mjs` är oförändrad (20 av 20). Originalets
 changelogpost, dokumentationsrader, `tools/southbackdroptest.html` och `tools/parking1452test.html` (finns inte här, så
 inga exakta triangeltal behövde uppdateras) är inte importerade. [Verifiering](verification.md#världens-kant-avlägsna-kulisser-181).
+
+## Mer skog på ådalens övriga sluttningar, #184
+
+Överförd från `23112ed9e146f6002a3fa4ca6c7e54f106650beb` (original #1685): fem gissade skogsplättar sist i `SITE.riverPark.patches`
+(`forest-west-north`, `forest-west-south`, `forest-east-north`, `forest-east-south`, `forest-bend-south`; `exact`, `spacing` 8,5 m,
+`scale` 1,7–2,5) i `src/config.js`. Patchen gick att tillämpa oförändrad; förutsättningen `spacing`/`exact` i `parkTreeSpots` kom
+med #175 (`0cd62f4`). Originalets changelogpost, dokumentationsrad och `tools/riverparktest.html` (finns inte här) är inte importerade;
+i stället gjordes en egen Node-kontroll mot config-data. [Verifiering](verification.md#mer-skog-på-ådalens-övriga-sluttningar-184).

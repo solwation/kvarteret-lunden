@@ -2599,3 +2599,16 @@ nya meshar, men acceptansgränsen "högst +2" överskrids alltså i några vyer,
 +9 % till +11 % på skrivbord (t.ex. 194 863→219 308), +0,4 % i telefonläge. Inga sidfel eller `console.error` i någon körning.
 Inga exakta triangeltal i nedströms tester behövde uppdateras (originalets `southbackdroptest.html`/`parking1452test.html` finns
 inte här). Alla värden är *guess*. Testat i headless Chromium/SwiftShader; `?lowmem` är profilen på en dator, ingen fysisk telefon.
+
+## Mer skog på ådalens övriga sluttningar, #184
+
+`npm test` och `npm run build` gröna. Egen Node-kontroll (importerar `src/config.js`, `src/riverpark.js` och `src/paddockgeo.js`, samma
+`clear()`-regler som i `parkTreeSpots`): alla fem nya plättar får sitt `n` (14 + 4 + 6 + 7 + 6 = 37 träd, 72 skogsträd totalt), minsta
+avstånd från ett skogsträd till hagens ytterkant 15,9 m, 0 skogsträd i hagen, 0 på stig, ramp eller bro (stigkant minst 1,16 m), och
+inget av de nya plätthörnen ligger i hagen. Kontrollen är inte inlagd i `npm test`. Obs: sex träd från de äldre plättarna
+(`western-bank` m.fl.) ligger redan före ändringen inne i hagens yta; de ingår inte här och är orörda.
+Riktig WebGL-visning i Chromium/SwiftShader (`window.lundenViewer`, 960x540, 15 juli, samma kameror före/efter; vänster före, höger efter):
+[västra dalen](verification/184/vastra-dalen-fore-efter.jpg), [östra dalen](verification/184/ostra-dalen-fore-efter.jpg),
+[östra svängen](verification/184/ostra-svangen-fore-efter.jpg). `renderer.info.render.calls` oförändrat i alla fyra vyer (34/31/39/33);
+trianglar +3,1 %, +2,6 %, +2,5 % och +1,1 % (t.ex. 293 646 → 302 761), under ärendets ~5 %. Inga sidfel. Polygonerna är *guess*.
+Ingen fysisk enhet och inte telefonprofilen (`?lowmem`) testad.
