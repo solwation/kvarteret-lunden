@@ -2333,3 +2333,14 @@ issuet, arbetare stoppar processer via PID, committar vid delmål och skickar in
 Inget motsäger värdreglerna: här startar `/orkester` redan en kösession, arbetare committar lokalt och dirigenten publicerar
 (ingen push från arbetare, inga PR). Inga appfiler ändras. Originalets motsvarande import spåras i
 [#1717](https://github.com/solwation/lunden-3d-apartment/issues/1717).
+
+## Gång- och cykelbana på båda sidor av vägbron (#194, original #1704)
+
+Port av originalets `1e2824e6` (bildcommit `22d5f32d`) som diff: `roadDeck.eastWalk` (3 m) och `roadDeck.westFill` (0,75 m) i
+`SITE.bridges.roadDeck`, `deckAt`/`deckUnderAt` över hela bredden (`inSlab`), `parapet()` återanvänds på östra ytterkanten,
+östra plattan, landfästena och kantbalken breddas, svarta plåtkanten och västra räcket tas bort, `railSegs(..., sides)` i
+`src/farwalk.js`, asfaltanslutningar i båda ändar (nedströms med `trimApproach`), `tools/eastwalk1704test.mjs`, nya gångar i
+`tools/farwalk-check.mjs` och omräknade hashar i `tools/riverfalltest.mjs` (identiska med originalets). Nedströms `roadDeck`
+motsvarade originalets föregående tillstånd. Utesluts: originalets changelogpost, miljödokumentation, `farwalktest.html`
+(nedströms `farwalk-check.mjs`) och bildfilerna (nya egna bilder). Ingen cykel nedströms; "cykelbana" är bara namnet på banan.
+[Verifiering](verification.md#gang--och-cykelbana-pa-bada-sidor-av-vagbron-194).

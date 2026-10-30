@@ -2682,3 +2682,15 @@ hörnet visar ett lådformat block i en trädkrona (samma sak som originalets #1
 redan befintligt fel (`199056947` i åtkomstordningen) som är oberoende av #191. Ingen cykel nedströms, så upstreams cykelgångar hoppas över.
 
 #192: `servicepark1449test` förväntar nu `199056947` (gångväg, tillagd avsiktligt i 991a229/#152) direkt efter `95036048` i södra åtkomstordningen; endast testet ändrat, ingen data eller geometri. `node --test tools/service*test.mjs`, `npm test` och `npm run build` gröna.
+
+## Gång- och cykelbana på båda sidor av vägbron (#194)
+
+Port av originalets #1704. `node --test tools/riverfalltest.mjs tools/eastwalk1704test.mjs` 10/10 (hasharna för de tre
+brobatcherna är identiska med originalets), `npm test` och `npm run build` gröna. Bron: fyra batcher
+(`bridges-concrete/-steel/-asphalt/-water`), 4 070 trianglar (före 4 714; svarta plåtkanten och två räcken borta), under 5 000.
+`tools/farwalk-check.mjs` mot källservern i Chromium: alla gröna, inklusive vägbrons yttre räcke vid x ~30 (stoppar), östra
+banan norrifrån söderut över däcket och upp på vägbanken (28,6; 149,8) och tillbaka söderifrån (29,3; -3,0; 96,2), samt under
+broarna åt båda hållen; inga sidfel. Ritanrop/trianglar före/efter, 1280x800: fotovinkeln (23,6; -1,3; 118, blick norrut) 903 / 847 431 före
+och 903 / 847 407 efter, östvyn (40; -1,0; 122) 97 / 598 279 före och 97 / 598 255 efter: inga nya ritanrop. Bilder:
+[fotovinkel norrut](verification/194/fore-efter-fotovinkel.jpg), [från öster](verification/194/fore-efter-ost.jpg) (före till vänster).
+Chromium/SwiftShader, ingen fysisk prestanda. Fotovinkeln är egen (originalets kamera anges inte i dess commit).

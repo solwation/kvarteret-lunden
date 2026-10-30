@@ -498,8 +498,13 @@ export const SITE = {
     // #177 (upstream #1684): waterY/bedY were -6.2/-6.8 (water only 0.7 m under the 15 m shore flat, so the river looked like it floated); both 0.8 m lower (*guess*), shoreY unchanged.
     // #153 (upstream #1530): photo-interpreted cross-section; ALL dimensions and colours are visual *guesses*.
     // West (GC side): guard rail, granite kerb, raised footway and green parapet with X braces/vertical bars.
-    // East: granite kerb, guard rail and black plate parapet with handrail. Existing 7.2 m deck/underside retained.
-    roadDeck:{edge:{w:.3,up:.25,out:.05},walk:{w:1.4,h:.12},kerb:{w:.15,h:.13},verge:.4,
+    // East: granite kerb, guard rail, raised G/C path (#194) and green parapet (the black plate edge is gone). Existing 7.2 m deck/underside retained.
+    // #194 (upstream #1704): the east side has a gång- och cykelbana too, built as part of the road bridge's own cross-section
+    // (`eastWalk`, *guess* 3 m wide like the GC bridge, same raised height and green parapet as the west footway), not as a separate bridge.
+    // The slab, abutments and edge beams widen to the east only; the underside height stays (#1285).
+    // West (#194): the raised footway and the GC bridge (0.4-0.7 m apart) read as ONE wide path, so the road's west parapet and the GC truss's
+    // east side are dropped, `westFill` (*guess*) closes the gap on the road slab and the GC bridge's own outer truss is the path's outer rail.
+    roadDeck:{eastWalk:{w:3,h:.12},westFill:{w:.75},edge:{w:.3,up:.25,out:.05},walk:{w:1.4,h:.12},kerb:{w:.15,h:.13},verge:.4,
       parapet:{h:1.15,inset:.08,top:[.15,.04],mid:.12,low:.33,post:.1,bay:2.6,brace:[.06,.02],slat:[.02,.012],slatStep:.11},
       plate:{h:.9,t:.03,rail:1.1,post:.08,bay:2.6},
       guard:{h:.6,beam:.3,t:.05,post:.1,step:3.2,gap:.15},

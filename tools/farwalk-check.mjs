@@ -31,7 +31,10 @@ try{
    ['river blocks',[-41,118],[[-41,150]],()=>{const r=riverAt(n.pos.x,n.pos.z);return r.distance>=r.width/2+1.5&&n.pos.y<-4;}],
    ['road bridge crossing',[23.5,90],[[23.7,100],[23.5,125],[23.3,143],[23.3,155]],()=>n.pos.z>150],
    ['cycle bridge crossing',[18,92],[[18.1,101],[17.9,125],[17.8,146],[17.8,155]],()=>n.pos.z>150],
-   ['bridge rail blocks',[23.5,125],[[30,125]],()=>n.pos.x<27.8],
+   // #194 (upstream #1704): the road slab carries the east G/C path (3 m), so the outer rail stands at x ~30.3 (was ~27.5)
+   ['bridge rail blocks',[23.5,125],[[34,125]],()=>n.pos.x<30.6&&n.pos.y>-3.05],
+   ['east G/C path north to south over the deck and up onto the embankment',[29.3,96],[[28.9,125],[28.6,150]],()=>n.pos.z>148&&n.pos.y>-3.2],
+   ['east G/C path back south to north',[28.6,150],[[28.9,125],[29.3,96]],()=>n.pos.z<98&&Math.abs(n.pos.y+3)<0.2],
    ['under the bridges east',[10,111],[[18,111],[24,111],[32,111]],()=>n.pos.x>30&&n.pos.y<=-5.0],
    ['under the bridges west',[32,111],[[24,111],[18,111],[10,111]],()=>n.pos.x<12&&n.pos.y<=-5.0],
    ['HepCat building blocks',[24,0],[[34,0]],()=>n.pos.x<28],
