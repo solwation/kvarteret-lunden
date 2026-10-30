@@ -2519,3 +2519,21 @@ nu bara 12 % höstton). Med `?month=1` ligger snön kvar och bilden är oförän
 oförändrade före/efter (juli och september 53 ritanrop / 439 779 trianglar, januari 51 / 399 579); inga sidfel.
 Oktober och november (50 %/60 % höstton) är inte avbildade och värdena är *guess*. Läsreservens
 (`grassMeanColor`, helt nollad avläsning) gren är inte provkörd; den är identisk med originalets. Ingen fysisk enhet testad.
+
+## Ån ligger nere i marken, #177
+
+`npm test`, `npm run build` och `node --test tools/riverfalltest.mjs` (7 av 7) gröna. Riktig WebGL-visning i
+Chromium/SwiftShader (`window.lundenViewer`, juli, samma kameror före/efter; vänster före, höger efter):
+vattnet ligger 1,5 m under strandplanet i stället för 0,7 m och vattenbandet slutar där slänten möter vattnet,
+så ingen hård vattenskiva svävar över gräset
+([från ån, ögonhöjd på stranden](verification/177/an-fran-norra-stranden-fore-efter.jpg),
+[vid gång- och cykelbron](verification/177/an-vid-gc-bron-fore-efter.jpg),
+[från gång- och cykelbron](verification/177/an-fran-gc-bron-fore-efter.jpg),
+[från vägbron](verification/177/an-fran-vagbron-fore-efter.jpg)).
+`renderer.info.render.calls` oförändrat (40/39/39/40); trianglar något färre (−0,1 % till −0,2 %); inga sidfel.
+Brodäck (`deckY`), plattjocklek och räcken är oförändrade; bara landfästen och pelare når 0,8 m djupare
+(betongkontrollsumman i `riverfalltest.mjs` omräknad, samma värde som originalet). Det nya korridortestet visar
+krön ≥ 1,3 m över vattnet och att varje nedsänkt markpunkt ligger under vattenbandet längs hela ån.
+Bro-, stig- och navigeringskoden använder bara `waterYAt`/`shoreYAt` relativt, så ingen logik ändrades;
+`node --test tools/riverbridgeviewtest.mjs` (stigar, rev och gång över broarna mot vattnet, 2 av 2) är grön.
+`waterY`/`bedY` är *guess*. Ingen fysisk enhet testad.

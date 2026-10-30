@@ -2202,3 +2202,13 @@ skapar canvasen med `willReadFrequently: true` och `grassMeanColor` ger reservf�
 noll. Enda läsaren av `autumnMix` nedströms var `grass.js`; testen `tools/southfar-ground-test.mjs` läser inte
 `GRASS.summer` som hexvärde (originalets `southbackdroptest.html` finns inte här). Originalets changelogpost är inte
 importerad (ingen changelog). [Verifiering](verification.md#grönare-gräsmark-höstbrunning-från-oktober-176).
+
+## Ån ligger nere i marken, #177
+
+Överförd från `b8649913a0b25c97b083d2d2772538a38b6b198d` (original #1684): `SITE.bridges.waterY` -6,2 → -7
+och `bedY` -6,8 → -7,6 (*guess*, `shoreY` oförändrad) i `src/config.js`, samt per-hörn-breddning av
+vattenbandet med `min(bank*bankScale*.4, 2.5)` i `src/riverbridge.js`. `tools/riverfalltest.mjs`: nya
+konstanter, omräknad betonghash (`337755db…`) och korridortestet. `SITE.bridges` och `riverbridge.js` var
+identiska med originalet före porten bortsett från nedströms `trimApproach`, som är orört. Originalets
+changelogpost, dokumentationsrad och referensbilder är inte importerade (ingen changelog här).
+[Verifiering](verification.md#ån-ligger-nere-i-marken-177).
