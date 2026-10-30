@@ -7,7 +7,7 @@ import { riverAt, deckAt, bridgeRecords, pierBoxes } from './riverbridge.js';
 import { parkDeckAt } from './riverpark.js';
 import { busStopSegments } from './busstopgeo.js';
 import { schoolWallSolids, boxSegments } from './schoolwall.js';
-import { walkingGroundY as groundY, walkingGroundSlope, walkingSupportHeight, groundBelowDeckY, treeFeet } from './surroundings.js';
+import { walkingGroundY as groundY, walkingGroundSlope, walkingSupportHeight, groundBelowDeckY, treeFeet, southTreeFeet } from './surroundings.js';
 import { fenceSegments, stile, stileWalls } from './paddockgeo.js';
 
 const ringSegs = (p) => {
@@ -54,7 +54,7 @@ export function farSegments() {
     const h = p.half;
     piers.push([p.x - h, p.z - h, p.x + h, p.z - h], [p.x + h, p.z - h, p.x + h, p.z + h], [p.x + h, p.z + h, p.x - h, p.z + h], [p.x - h, p.z + h, p.x - h, p.z - h]);
   }
-  for (const t of treeFeet) { // trunks outside the home block (the park woods, the campus avenues): a small diamond each (*guess* radii)
+  for (const t of [...treeFeet, ...southTreeFeet]) { // trunks outside the home block (the park woods, the campus avenues): a small diamond each (*guess* radii)
     if (t.x > OUTDOOR.x0 && t.x < OUTDOOR.x1 && t.z > OUTDOOR.z0 && t.z < OUTDOOR.z1) continue;
     const r = W.trunk[t.kind] ?? W.trunk.tree;
     out.push([t.x - r, t.z, t.x, t.z - r], [t.x, t.z - r, t.x + r, t.z], [t.x + r, t.z, t.x, t.z + r], [t.x, t.z + r, t.x - r, t.z]);

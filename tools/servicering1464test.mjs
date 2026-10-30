@@ -26,9 +26,9 @@ test('outer service ring and footway follow the whole saved OSM ways with guesse
   assert.deepEqual(raw.tags,{highway});assert.equal(road.highway,highway);assert.equal(road.w,w);
   assert.equal(road.surface,'asphalt');assert.equal(road.widthSource,'guess');assert.equal(road.surfaceSource,'guess');assert.equal(road.terrain,'triangles');
   assert.deepEqual(road.path,plan(raw));assert(Math.abs(length(road)-len)<.01,road.source+' '+length(road));
-  assert(road.path.every(([,z])=>z>WALK.z1));
+  assert(road.path.every(([,z])=>z>250));
  }
- assert(isVehicleWay(ring));assert(!isVehicleWay(foot),'the footway keeps footway semantics');assert.equal(WALK.z1,250);
+ assert(isVehicleWay(ring));assert(!isVehicleWay(foot),'the footway keeps footway semantics');
 });
 
 test('ring and footway join existing ways only at mapped nodes',()=>{

@@ -16,7 +16,7 @@ try{
  await page.locator('#start').click({timeout:120000});await page.evaluate(()=>document.exitPointerLock?.());
  const res=await page.evaluate(async()=>{
   const {WALK,SITE}=await import(new URL('/src/config.js',location.origin));
-  const {groundY,groundBelowDeckY}=await import(new URL('/src/surroundings.js',location.origin)); // #69: the north and the far west/east now lie above y 0, so a start point is lifted onto the ground (never below 0: lower ground is fallen onto)
+  const {groundY,groundBelowDeckY}=await import(new URL('/src/surroundings.js',location.origin)); const {southTreeFeet,treeFeet}=await import(new URL('/src/surroundings.js',location.origin)); // #69: the north and the far west/east now lie above y 0, so a start point is lifted onto the ground (never below 0: lower ground is fallen onto)
   const {parkRampEnds}=await import(new URL('/src/riverpark.js',location.origin));
   const {riverAt,waterYAt}=await import(new URL('/src/riverbridge.js',location.origin));
   const {navigation:n,camera}=window.lundenViewer, dt=1/60;
@@ -50,7 +50,12 @@ try{
    ['edge west',[-240,30],[[-290,30]],()=>n.pos.x>=WALK.x0&&n.pos.x<WALK.x0+0.6],
    ['edge east',[300,20],[[340,20]],()=>n.pos.x<=WALK.x1&&n.pos.x>WALK.x1-0.6],
    ['edge north',[60,-180],[[60,-230]],()=>n.pos.z>=WALK.z0],
-   ['edge south',[60,230],[[60,280]],()=>n.pos.z<=WALK.z1],
+   // #191 (upstream #1714): the walkable south (WALK.z1 452): Lunden -> Sankt Lars väg 42's north side, round 44's courtyard building, 47/54 walls, a south-woodland trunk
+   ['on foot to Sankt Lars väg 42',[25,200],[[11.5,247.7],[-10,291.5],[-43.8,315],[-58,295.2],[-72.1,305.3],[-63,317.8]],()=>Math.hypot(n.pos.x+63,n.pos.z-317.8)<1.5&&Math.abs(n.pos.y-Math.max(0,groundY(n.pos.x,n.pos.z)))<0.3],
+   ['round building 44',[-66,420],[[-64,386],[-18,386],[8,408],[8,428],[-8,446],[8,428],[8,408],[-18,386],[-64,386],[-66,420]],()=>Math.hypot(n.pos.x+66,n.pos.z-420)<1.5],
+   ['wall of 47 blocks',[95,372],[[95,345]],()=>Math.hypot(n.pos.x-95,n.pos.z-345)>1],
+   ['wall of 54 blocks',[-185,405],[[-205,430]],()=>Math.hypot(n.pos.x+205,n.pos.z-430)>1],
+   ['edge south',[10,WALK.z1-6],[[10,WALK.z1+25]],()=>n.pos.z<=WALK.z1&&n.pos.z>WALK.z1-3],
   ];
   { // #86 (upstream #1337/#1338): the little timber footbridge by the paddock stands on earth ramps - walk over it both ways, W held
    const E=parkRampEnds(),W0=SITE.riverPark.woodBridge,along=(e,d)=>[e.x+e.dx*d,e.z+e.dz*d];
@@ -59,6 +64,8 @@ try{
    R.push(['timber footbridge ramps are smooth',along(E[0],9),[],()=>{let steep=0,step=0;for(const e of E){let prev=null;for(let d=0.2;d<=W0.ramp.length;d+=0.1){const [x,zz]=along(e,d),y=groundY(x,zz);if(prev!==null)step=Math.max(step,Math.abs(y-prev));prev=y;steep=Math.max(steep,Math.abs(groundY(...along(e,d+0.1))-y)/0.1);}}return step<0.1&&steep<WALK.maxSlope*0.8;}]);
   }
   const results=R.map(([name,s,p,ok])=>{const stuck=walk(s,p);return {name,ok:ok(),end:n.pos.toArray().map(v=>+v.toFixed(2)),stuck};});
+  {const t=southTreeFeet.find(u=>u.kind==='tree'&&u.z>260&&u.z<440&&!southTreeFeet.some(o=>o!==u&&Math.hypot(o.x-u.x,o.z-u.z)<6)&&!treeFeet.some(o=>Math.hypot(o.x-u.x,o.z-u.z)<6));
+   const bad=t?walk([t.x-3,t.z],[[t.x+3,t.z]]):-2;results.push({name:'a south woodland trunk blocks',ok:!!t&&n.pos.x<t.x-0.1,end:t?[t.x,t.z,...n.pos.toArray()]:[]});}
   // dropped into the river: back on the bank
   const r0=riverAt(-41,143);n.teleport(r0.x+r0.nx*0.2,groundBelowDeckY(r0.x,r0.z),r0.z+r0.nz*0.2);n.update(dt);
   const r=riverAt(n.pos.x,n.pos.z);results.push({name:'river rescue',ok:r.distance>=r.width/2+1,end:n.pos.toArray()});

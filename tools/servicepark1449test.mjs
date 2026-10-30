@@ -23,9 +23,9 @@ const inside=(poly,[x,z])=>{let c=false;for(let i=0,j=poly.length-1;i<poly.lengt
 test('both ways follow the saved OSM ways with only guessed width/asphalt marked',()=>{
  const s5=source.features.find(f=>f.id==='335403605'),s6=source.features.find(f=>f.id==='335403606');
  assert.deepEqual(s5.tags,{highway:'service'});assert.deepEqual(s6.tags,{highway:'service',surface:'paved'});
- for(const[r,s]of[[r5,s5],[r6,s6]]){assert.equal(r.highway,'service');assert.equal(r.w,4.5);assert.equal(r.widthSource,'guess');assert.equal(r.terrain,'triangles');assert.deepEqual(r.path,plan(s));assert(isVehicleWay(r));assert(r.path.every(([,z])=>z>WALK.z1))}
+ for(const[r,s]of[[r5,s5],[r6,s6]]){assert.equal(r.highway,'service');assert.equal(r.w,4.5);assert.equal(r.widthSource,'guess');assert.equal(r.terrain,'triangles');assert.deepEqual(r.path,plan(s));assert(isVehicleWay(r));assert(r.path.every(([,z])=>z>250))}
  assert.equal(r5.surfaceSource,'guess');assert.equal(r6.surfaceSource,'osm:paved');
- assert(Math.abs(len(r5.path)-56.399)<.05,len(r5.path));assert(Math.abs(len(r6.path)-31)<1,len(r6.path));assert.equal(WALK.z1,250);
+ assert(Math.abs(len(r5.path)-56.399)<.05,len(r5.path));assert(Math.abs(len(r6.path)-31)<1,len(r6.path));
 });
 
 test('joints sit at mapped nodes; footways stay footways',()=>{

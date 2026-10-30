@@ -24,7 +24,7 @@ test('western service way follows the whole saved OSM way with guessed dimension
  assert.equal(road.highway,'service');assert.equal(road.w,4.5);assert.equal(road.widthSource,'guess');assert.equal(road.surfaceSource,'guess');assert.equal(road.terrain,'triangles');
  assert.deepEqual(road.path,plan(raw));assert(isVehicleWay(road));
  const length=road.path.slice(1).reduce((s,p,i)=>s+Math.hypot(p[0]-road.path[i][0],p[1]-road.path[i][1]),0);assert(Math.abs(length-113.3156)<.01,length);
- assert(road.path.every(([,z])=>z>WALK.z1));assert.equal(WALK.z1,250);
+ assert(road.path.every(([,z])=>z>250));
 });
 
 test('it joins the three existing roads at mapped nodes and meets the completed outer ring at the mapped outer node',()=>{
