@@ -2300,3 +2300,13 @@ patchen applicerades för hand. Originalets changelogpost och dokumentationsrad 
 ## Busskuren i skolmurens ände efter närbilden (#187, original #1702)
 
 Port från `aaa86e6ed2247c21168d1d1ae200761c2b2dd261`: `school.wall.shelter` i `src/config.js` (`wallEast`, tjockare tak med `out`/`beam`, grå stolpe, ljus bänk, högre papperskorg, `pipe`, `sign`, `cabinet`, `boulder`; `stones` tömd eftersom stenblocket nu är `boulder`), `src/schoolwall.js` (murens fortsättning österut, skåpet som kollisionsfast), `src/street.js` (plattytan följer murens nya ände, stenblocket ritas) och skolgrunden i `src/surroundings.js` (eget `timber`-mesh för taket, +1 ritanrop; vertexfärger i ramens batch). Patcharna applicerades utan konflikt. Utesluten: originalets changelogpost och miljödokumentation. Farwalk-kontrollerna är anpassade i `tools/farwalk-check.mjs` (ny väg runt skåpet, stolpe-, murförlängnings- och skåpprov) och `tools/schoolwalltest.mjs`. [Verifiering](verification.md#busskuren-i-skolmurens-ande-187).
+
+## Parkeringsrad vid bron och lågt tegelhus (#188)
+
+Överförd från `2a24aea5c0181f4fa8204eb02e48c03c52383e9f` (original #1703). Valt: tillvalet `row` i
+`src/parkinglayout.js` (en rad om sju rutor vinkelrätt mot Sankt Lars väg), `windows:false` i `src/sitebackdrop.js`, parkeringen
+`guess-1554` som rad (kapacitet 7, `guess-1554-aisle` borttagen) och det låga tegelhuset `guess-1703` (platt mörkt tak, geometri *guess*) i
+`src/config.js`, samt anpassning av `tools/bridgehead1554test.mjs`. Uteslutet: `reversed`, `noseToAisle` och `fill` (nedströms har parkeringarna
+inga bilar, så de saknar verkan), källans `.html`-test för östra campus (nedströms finns ingen motsvarighet; antalet byggnader prövas inte där),
+ändringslogg och `docs/development/environment.md` (finns inte nedströms). Förutsättningarna #161 (bridgehead/#1554), Realgymnasiets geometri
+och de OSM-baserade parkeringarna i öster fanns redan. [Verifiering](verification.md#parkeringsrad-vid-bron-och-lagt-tegelhus-188).

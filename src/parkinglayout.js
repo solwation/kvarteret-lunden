@@ -33,11 +33,13 @@ export function parkingLots() {
   for (const lot of E.access.filter((a) => a.polygon && a.capacity)) {
     const ring = ringOf(lot.polygon), bays = [], runs = [];
     const inner = (x, z) => insidePoly(x, z, ring) && edgeDist(x, z, ring) >= P.edgeClear;
-    for (const road of roads) for (let i = 1; i < road.path.length; i++) {
+    // #1703: a lot may be a single row of stalls square to a street instead (`row: { path, side }`): a virtual aisle of width 0 along the kerb, one side only, not drawn as road
+    const aisles = lot.row ? [{ path: lot.row.path, w: 0, source: lot.source, side: lot.row.side }] : roads;
+    for (const road of aisles) for (let i = 1; i < road.path.length; i++) {
       const a = road.path[i - 1], b = road.path[i], len = Math.hypot(b[0] - a[0], b[1] - a[1]);
       if (len < P.bayW || !insidePoly((a[0] + b[0]) / 2, (a[1] + b[1]) / 2, ring)) continue; // an aisle: a service way segment inside this lot
       const u = [(b[0] - a[0]) / len, (b[1] - a[1]) / len];
-      for (const side of [1, -1]) {
+      for (const side of road.side ? [road.side] : [1, -1]) {
         const n = [-u[1] * side, u[0] * side];
         let run = null;
         for (let k = 0; (k + 1) * P.bayW <= len + 1e-6; k++) {

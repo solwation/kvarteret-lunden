@@ -2659,3 +2659,13 @@ trianglar 851 617 → 849 990. Inga sidfel. Testet körs med `node --test tools/
 ## Busskuren i skolmurens ände (#187)
 
 Port av original #1702 (`aaa86e6e`), se [upstream](upstream.md). `npm test`, `npm run build` och `node --test tools/schoolwalltest.mjs` (3/3) gröna. `tools/farwalk-check.mjs` mot byggd/serverad app: alla prov passerar, inklusive nya prov för stolpen, murens förlängning och plåtskåpet. Riktig WebGL i headless Chromium/SwiftShader (1000x700, två kameror, före/efter): från gatan [före](verification/187/busskur-before-a.png) och [efter](verification/187/busskur-after-a.png), från öster [före](verification/187/busskur-before-b.png) och [efter](verification/187/busskur-after-b.png). Ritanrop `renderer.info.render.calls` 50 → 51 och 49 → 50 (+1, takets `timber`-mesh). Inga sidfel.
+
+## Parkeringsrad vid bron och lågt tegelhus, #188
+
+`npm test` och `npm run build` gröna; `node --test tools/bridgehead1554test.mjs` 3/3 (raden: sju hela rutor i en rad, alla vinkelräta mot gatan,
+inga rutor i huset, `guess-1554-aisle` borta). Riktig WebGL-visning i Chromium/SwiftShader (960x540, `?month=7`, samma kameror före/efter; vänster
+före, höger efter): [från sydväst](verification/188/sydvast-fore-efter.jpg), [från gatan](verification/188/vast-fore-efter.jpg),
+[ovanifrån](verification/188/ovanifran-fore-efter.jpg). Raden om sju platser ligger mot gatan och det låga huset (platt mörkt tak, inga fönster) står
+bakom. `renderer.info.render.calls` oförändrat 187/48/45, trianglar 590 025/459 215/396 003 → 589 735/458 925/395 713. Inga sidfel. Husets läge
+(x 37–61, z 62–76) ligger söder om Realgymnasiets OSM-kontur (z ≤ 58,8) och utanför alla rutor. Mått och färg är *guess*; ingen fysisk enhet och inte
+telefonprofilen (`?lowmem`) testad.

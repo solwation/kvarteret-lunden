@@ -1025,6 +1025,8 @@ export const SITE = {
           "gableDormer":{"a":1.0,"b":[3.5,8.0],"top":7.5},
           "dormers":[{"a":0.8,"b":[16.0,20.0],"top":7.0},{"a":0.8,"b":[24.5,26.0],"top":6.6},{"a":0.8,"b":[29.5,31.0],"top":6.6}],
           "downpipes":[0.5,11.2,38.6],"vents":[[13.5,16.5,3.0,8.0,1.2]]}},
+      // #1703: the low brick house behind the car row, one storey with a flat dark roof about 1-1.5 m over the cars. Footprint, height and colour are all *guess*; wall box + flat roof in the shared batches, no windows (`windows: false`).
+      {"source":"guess-1703","polygon":[[37,62],[61,62],[61,76],[37,76],[37,62]],"name":"Lågt tegelhus bakom parkeringen (guess)","levels":1,"levelsSource":"guess","storey":2.4,"roof":"flat","windows":false,"facade":14513752},
       {"source":"145221568","polygon":[[43.51,2.27],[43.59,-7.33],[50.43,-7.26],[50.34,2.34],[43.51,2.27]],"name":"Komplementbyggnad 145221568","levels":1,"levelsSource":"visual assumption","storey":3.6,"roofRise":2,"frameColor":15657439},
       {"source":"88457613","polygon":[[-64.12,-68.25],[-63.81,-121.44],[-67.62,-121.47],[-67.63,-120.2],[-77.62,-120.28],[-77.54,-133.09],[-67.3,-133.01],[-67.32,-130.44],[-64.01,-130.41],[-64.01,-132.44],[-63.91,-149.78],[-59.73,-149.75],[-59.7,-153.85],[-51.38,-153.78],[-51.4,-150.45],[-46.25,-150.41],[-46.3,-141.13],[-50.67,-141.15],[-50.68,-139.83],[-57.96,-139.88],[-58.01,-132.56],[-50.03,-132.49],[-50.46,-56.41],[-74.94,-56.6],[-74.87,-68.33],[-64.12,-68.25]],"name":"Montessorigrundskolan / byggnad 4","levels":1,"levelsSource":"Commons 2014 photo: one-storey wards; two-storey block from Hemsö By4 photo (position guess)","storey":4.7,"frameColor":15657439,
         "campus":{"style":"ward","sections":[{"name":"two-storey block","box":[-64.3,-133.2,-49.8,-120.1],"levels":2}],"chimneys":[[-57.2,-72],[-57.2,-92],[-57.2,-112],[-57,-126.6],[-55.5,-146]]}},
@@ -1055,9 +1057,9 @@ export const SITE = {
       {"source":"145221567","surface":"asphalt","polygon":[[68.21,-88.35],[128.32,-87.15],[128.15,-66.1],[105.93,-66.55],[105.74,-57.72],[92.49,-57.98],[92.39,-52.39],[71.71,-52.8],[71.23,-70.14],[68.21,-70.2],[68.21,-88.35]]},
       {"source":"145221572","surface":"paved","polygon":[[76.99,-48.5],[86.3,-48.31],[86.13,-39.9],[76.82,-40.09],[76.99,-48.5]]},
       {"source":"145221740","surface":"asphalt","polygon":[[130.35,-23.46],[147.34,-3.67],[126.01,24.18],[107.98,25.63],[89.73,17.57],[89.78,-8.74],[115.39,-8.64],[130.35,-23.46]]},
-      // Assumed outline, aisle and capacity; no OSM parking outline. Whole bays only, no cars.
-      {"source":"guess-1554","name":"Parkering framför Realgymnasiet (guess)","surface":"asphalt","surfaceSource":"guess","capacity":25,"capacitySource":"guess","polygon":[[30.5,59.2],[75,59.2],[75,74.8],[30.5,74.8]]},
-      {"source":"guess-1554-aisle","name":"Parkeringsgång framför Realgymnasiet (guess)","surface":"asphalt","surfaceSource":"guess","path":[[31.5,65.4],[52.88,64.43]],"w":4.5},
+      // #1703: the bridgehead car park is ONE row of about 7 stalls square to Sankt Lars väg (no aisle of its own), at the kerb from the south corner of Realgymnasiet's gable house to the crossing.
+      // Outline, row (`row.path` = the kerb line, `side` -1 = stalls on its +x side) and capacity are all *guess*; replaces #161's 15 m deep two-sided lot and its aisle `guess-1554-aisle`. Whole bays only, no cars.
+      {"source":"guess-1554","name":"Parkeringsrad vid bron (guess)","surface":"asphalt","surfaceSource":"guess","capacity":7,"capacitySource":"guess","row":{"path":[[31.5,59.6],[31.5,77.1]],"side":-1},"polygon":[[31,59.2],[37,59.2],[37,77.5],[31,77.5]]},
       {"source":"94054863","surface":"paved","polygon":[[24.22,-78.12],[61.31,-77.75],[61.01,-40.76],[23.92,-41.13],[24.22,-78.12]]},
       {"source":"145221570","surface":"asphalt","polygon":[[-18.01,-53.57],[15.89,-52.58],[15.76,-71.33],[-38.89,-70.68],[-38.79,-53.67],[-18.01,-53.57]]},
     ],

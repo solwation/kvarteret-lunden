@@ -5,11 +5,12 @@ import {SITE, PLAYER} from '../src/config.js';
 import {parkingLots,insidePoly,onEastRoad,onEastBuildingAt} from '../src/parkinglayout.js';
 import {bridgeheadIsland,bridgeheadGroundRect} from '../src/street.js';
 const E=SITE.east,B=SITE.street.bridgehead,I=B.island;
-test('assumed lot uses whole existing-engine bays and joins the mapped aisle',()=>{
- const lot=E.access.find(p=>p.source==='guess-1554'),aisle=E.access.find(p=>p.source==='guess-1554-aisle'),mapped=E.access.find(p=>p.source==='44447967'),mine=parkingLots().lots.find(p=>p.source===lot.source);
- assert.equal(lot.capacitySource,'guess');assert.equal(lot.surfaceSource,'guess');assert(!('fill' in lot));assert.deepEqual(aisle.path.at(-1),mapped.path[0]);assert(mine.bays.length>=12&&mine.bays.length<=25);
+test('assumed lot is one row of seven whole bays square to the street (#1703) with a low house behind',()=>{
+ const lot=E.access.find(p=>p.source==='guess-1554'),house=E.buildings.find(b=>b.source==='guess-1703'),mine=parkingLots().lots.find(p=>p.source===lot.source);
+ assert.equal(lot.capacitySource,'guess');assert.equal(lot.surfaceSource,'guess');assert(!('fill' in lot));assert(!E.access.some(p=>p.source==='guess-1554-aisle'));assert.equal(mine.bays.length,7);assert.equal(mine.runs.length,1);assert(mine.bays.every(b=>Math.abs(b.n[0])>.999));assert(house&&house.roof==='flat'&&house.windows===false);
  for(const b of mine.bays)for(const du of[-1,0,1])for(const dn of[-1,0,1]){const x=b.cx+b.u[0]*du*b.hw+b.n[0]*dn*b.hd,z=b.cz+b.u[1]*du*b.hw+b.n[1]*dn*b.hd;assert(insidePoly(x,z,lot.polygon));assert(!onEastBuildingAt(x,z));assert(!onEastRoad(x,z,-.1));}
  assert.deepEqual(parkingLots().lots.filter(p=>p!==mine).map(p=>[p.source,p.bays.length]),[['145221623',36],['44447969',10]]);
+ for(const b of mine.bays)for(const du of[-1,1])for(const dn of[-1,1]){const x=b.cx+b.u[0]*du*b.hw+b.n[0]*dn*b.hd,z=b.cz+b.u[1]*du*b.hw+b.n[1]*dn*b.hd;assert(!insidePoly(x,z,house.polygon.slice(0,-1)),'stall clear of the low house');}
  console.log('whole bays',mine.bays.length,'nominal capacity',lot.capacity);
 });
 test('refuge has outward sides, mark-supported corners and two bollards; lanes remain open',()=>{
