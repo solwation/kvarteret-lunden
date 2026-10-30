@@ -26,6 +26,34 @@ export function freeCanvasAfterUpload(tex) {
 const KEEP_GEO = typeof location !== 'undefined' && /[?&]keepgeo\b/.test(location.search);
 const GEO_FREE = ['normal', 'uv', 'uv1', 'color', 'plantWind'];
 const noop = () => {};
+let canaryOn = false;
+const reported = new WeakSet();
+/** Report once per attribute through console.error (this project has no crash log; the console line is the trace, #178). */
+function reportFreed(attr, what) {
+  if (reported.has(attr)) return;
+  reported.add(attr);
+  console.error(`freeGeometryAfterUpload: a freed vertex attribute was ${what} (#628/#178)`, `attribute=${attr.cpuFreedName || attr.name || '?'}`, `geometry=${attr.cpuFreedLabel || '?'}`);
+}
+/**
+ * Once: a copy of an attribute whose array was freed would upload an empty buffer, and marking one for upload makes three
+ * throw "Resizing buffer attributes is not supported" in render (froze phones in the original, #1560, #1595, #1688). Both are
+ * bugs to fix at the maker, but the second must never crash: the `needsUpdate` setter reports it once and does NOT raise
+ * `version`, so the GPU keeps its stale (still valid) buffer instead of three throwing (original #1691, port #178).
+ */
+function canary() {
+  if (canaryOn) return;
+  canaryOn = true;
+  const copy = THREE.BufferAttribute.prototype.copy;
+  THREE.BufferAttribute.prototype.copy = function (source) {
+    if (source.cpuFreed) reportFreed(source, 'cloned');
+    return copy.call(this, source);
+  };
+  const d = Object.getOwnPropertyDescriptor(THREE.BufferAttribute.prototype, 'needsUpdate');
+  if (d?.set) Object.defineProperty(THREE.BufferAttribute.prototype, 'needsUpdate', { ...d, set(v) {
+    if (v === true && this.cpuFreed) { reportFreed(this, 'marked for upload'); return; }
+    d.set.call(this, v);
+  } });
+}
 /**
  * Free a geometry's CPU copies once they are on the GPU (#628 step 4). three keeps every vertex attribute array for as
  * long as the geometry lives (the phone profile held ~138 MB); phones only, desktop is untouched. Only the attributes the
@@ -40,10 +68,14 @@ const noop = () => {};
 export function freeGeometryAfterUpload(geo, names = GEO_FREE) {
   if (!lowMemory || KEEP_GEO || !geo?.attributes || geo.userData.keepCpu) return geo;
   if (Object.values(geo.attributes).some((a) => a.usage !== 35044)) return geo; // Dynamic attributes must remain available on the CPU.
+  canary();
   for (const n of names) {
     const a = geo.attributes[n];
     if (!a || a.isInterleavedBufferAttribute || !a.array?.length) continue;
-    a.onUpload(() => { a.array = new a.array.constructor(0); a.cpuFreed = true; a.onUploadCallback = noop; });
+    a.onUpload(() => {
+      a.array = new a.array.constructor(0); a.cpuFreed = true; a.onUploadCallback = noop;
+      a.cpuFreedName = n; a.cpuFreedLabel = geo.name || geo.userData.freeLabel || geo.uuid; // names for the canary's report
+    });
   }
   return geo;
 }
@@ -82,6 +114,7 @@ export function freeSceneGeometryCopies(root, renderer) {
     const g = o.geometry;
     if (!o.isMesh || o.isSkinnedMesh || !g || handled.has(g) || (g.morphAttributes && Object.keys(g.morphAttributes).length)) return;
     handled.add(g);
+    if (!g.userData.freeLabel) { let p = o; while (p && !p.name) p = p.parent; g.userData.freeLabel = p?.name ? (p === o ? p.name : `${p.name}>${o.type}`) : o.type; } // a geometry has no name of its own
     if (pack) packNormals(g);
     freeGeometryAfterUpload(g);
     n++;
