@@ -2645,3 +2645,13 @@ tegeltak, och ladan (OSM 88457556) har ett mörkgrått, högre och brantare tak 
 `renderer.info.render.calls` och trianglar är identiska före/efter i alla fyra vyer (916/924 anrop, 912 279/1 039 771 trianglar i juli;
 913/921 anrop, 830 079/899 311 trianglar i januari), alltså inga nya ritanrop. Inga sidfel. Samma 18 OSM-id:n plus ladan finns i
 `SITE.south.buildings`. Färger och taklutning är *guess*; ingen fysisk enhet och inte telefonprofilen (`?lowmem`) testad.
+
+## Parkträd inne i hästhagen, #186
+
+`npm test` och `npm run build` gröna. Ny kontroll i `tools/riverbridgeviewtest.mjs`: inget träd
+eller buskage från `parkTreeSpots`/`parkShrubSpots` ligger inne i hagens polygon (`paddockgeo.outline`) eller närmare än 1,5 m utanför
+den. Före ändringen låg sex träd från plätten `western-bank` inne i hagen (x −184,1..−147,2, z 213,0..218,3); efter är det 0 (233 träd
+mot 234 före, ett fick ingen ersättningsplats). Orsak: `clear()` i `src/riverpark.js` kände inte till hagen. Plättarna är orörda; hagens
+polygon med 1,5 m marginal är nu en del av `clear()`. Riktig WebGL-visning i Chromium/SwiftShader (960x540, 15 juli, samma kamera före/efter;
+vänster före, höger efter): [vy mot hagens kant](verification/186/hagen-fore-efter.jpg). `renderer.info.render.calls` oförändrat (828 före och efter),
+trianglar 851 617 → 849 990. Inga sidfel. Testet körs med `node --test tools/riverbridgeviewtest.mjs` (ingår inte i `npm test`), tillsammans med de andra parktesterna (alla gröna). Ingen fysisk enhet och inte telefonprofilen (`?lowmem`) testad.

@@ -22,3 +22,12 @@ test('the bridge view has grounded water-margin reeds, hanging trees and underst
  for(const[x,z]of SITE.river.path){const r=riverAt(x,z);assert(r.valley>=r.width,'narrowing retains the former valley footprint');}
  group.traverse(o=>{o.geometry?.dispose();o.material?.dispose();});
 });
+
+test('#186: no park tree or shrub stands inside the pony paddock outline',async()=>{
+ const g=await import('../src/paddockgeo.js'),ground=()=>0;
+ const spots=[...parkTreeSpots(ground),...parkShrubSpots(ground)];
+ assert(spots.length>150);
+ const inside=spots.filter(t=>g.inPoly(g.outline,t.x,t.z));
+ assert.deepEqual(inside.map(t=>[t.patch,+t.x.toFixed(1),+t.z.toFixed(1)]),[]);
+ assert(spots.every(t=>g.inPoly(g.outline,t.x,t.z)||g.ringDist(g.outline,t.x,t.z)>=1.5),'1.5 m margin kept');
+});
