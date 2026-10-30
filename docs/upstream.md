@@ -2173,6 +2173,17 @@ Originalets referensbilder, changelogpost och dokumentationsrad är inte importe
 här); koden är identisk med originalets utom att `sitebackdrop.js` anpassades för nedströms rader.
 [Verifiering](verification.md#blågrå-campustak-173).
 
+## Skorstenslock på östra campus behåller sin färg, #185
+
+Överförd från `3cb0dc816635588961457ff958ca892bc24bf28a` (original #1696, följdport till #173):
+`tintRoof()` i `src/sitebackdrop.js` använder `??=` så att geometri som redan har `userData.tint`
+behåller den, och skorstenslocken i `src/schoolfacade.js` och `src/campusfacades.js` får
+`tint(..., schoolRoofTint())` (grå plåt i stället för byggnadens blågrå taktoner).
+`campusfacades.js` importerar `schoolRoofTint` från `schoolfacade.js`; den cirkulära importen är säker
+eftersom anropet sker vid körning. Samma batch, inga nya ritanrop. Originalets changelogpost och
+utvecklingsdokumentation är inte importerade (ingen changelog här); koden är identisk med originalets.
+[Verifiering](verification.md#skorstenslock-pa-ostra-campus-185).
+
 ## Karpvägen: färger och våningar, #174
 
 Överförd från `f4376d56f5bb6135f94059914e46d2080ec2f764` (original #1680): rena *guess*-värden i

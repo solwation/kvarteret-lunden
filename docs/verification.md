@@ -2479,6 +2479,16 @@ i stället för nästan svarta i juli ([före till vänster, efter till höger](
 oförändrat före/efter: 918 i juli, 915 i januari; inga sidfel. Takfärgerna är *guess*.
 Ingen fysisk enhet testad.
 
+## Skorstenslock på östra campus, #185
+
+`npm test` och `npm run build` gröna. Riktig WebGL-visning i Chromium/SwiftShader
+(`window.lundenViewer`, fast klocka 15 juli, samma kamerapose före/efter): skorstenslocken på
+campusbyggnaderna är grå i stället för ljusblå
+([långa vårdbyggnaden, före till vänster, efter till höger](verification/185/skorstenslock-ward-juli-fore-efter.jpg);
+[Klockhuset](verification/185/skorstenslock-klockhuset-juli-fore-efter.jpg)); takfärgerna från #173
+är oförändrade. `renderer.info.render.calls` och trianglar identiska före/efter i alla tre vyer
+(27/28/30 anrop; 295 127/273 711/333 790 trianglar); inga sidfel. Ingen fysisk enhet testad.
+
 ## Karpvägen: färger och våningar, #174
 
 `npm test` och `npm run build` gröna. Riktig WebGL-visning i Chromium/SwiftShader
