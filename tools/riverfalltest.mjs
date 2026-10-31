@@ -31,8 +31,9 @@ test('rendered water vertices follow the same continuous downstream level as the
 // #177 re-baselined the concrete snapshot: abutments/piers reach the 0.8 m lower bed (SITE.bridges.bedY).
 // #153: bridge buffers re-baselined for reviewed road cross-section/vertex colours; park paths retain their earlier hash.
 // #194 (upstream #1704) re-baselined them again for the east G/C path on the road slab (cross-section only, same three batches).
+// #196 (upstream #1730) re-baselined the steel batch only: the inner green rail on both sides.
 test('the reviewed bridge cross-section and existing mapped park paths retain their buffers',()=>{
- const expected={'bridges-concrete':'c56100a53954e1b055a7d92a1441b6bf2a8c70d75dc8a8ac343518aaaba1e734','bridges-steel':'6e69e2a53b9d39b4b5102b74787ab0b9648c41d6e2d9ac7e9b1cd25d7bf4ad0e','bridges-asphalt':'93cfeb3ee56af0fb96877234d0e91b2ecc7a1c5d0558b60f5c59a6aca7d3bee5'};
+ const expected={'bridges-concrete':'c56100a53954e1b055a7d92a1441b6bf2a8c70d75dc8a8ac343518aaaba1e734','bridges-steel':'1070ca39faaaeb2318dc4af70d7a569a3236dfebb47b5e25df732606287915d9','bridges-asphalt':'93cfeb3ee56af0fb96877234d0e91b2ecc7a1c5d0558b60f5c59a6aca7d3bee5'};
  for(const m of buildRiverBridges().children.filter(m=>m.name!=='bridges-water')){const h=createHash('sha256'),g=m.geometry;for(const k of Object.keys(g.attributes).sort())h.update(k).update(Buffer.from(g.attributes[k].array.buffer));if(g.index)h.update(Buffer.from(g.index.array.buffer));assert.equal(h.digest('hex'),expected[m.name]);}
  assert.equal(hash(JSON.stringify(SITE.riverPark.paths)),'2e682c6a3361bbdab008dafb210f8b24b8b5566f784932735b1aafb153173150');
 });

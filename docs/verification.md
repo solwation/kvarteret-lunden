@@ -2694,3 +2694,13 @@ broarna åt båda hållen; inga sidfel. Ritanrop/trianglar före/efter, 1280x800
 och 903 / 847 407 efter, östvyn (40; -1,0; 122) 97 / 598 279 före och 97 / 598 255 efter: inga nya ritanrop. Bilder:
 [fotovinkel norrut](verification/194/fore-efter-fotovinkel.jpg), [från öster](verification/194/fore-efter-ost.jpg) (före till vänster).
 Chromium/SwiftShader, ingen fysisk prestanda. Fotovinkeln är egen (originalets kamera anges inte i dess commit).
+
+## Inre grönt räcke mellan vägräcke och GC-bana (#196)
+
+Port av originalets #1730 (`3c92d4b5`). Felet bekräftades först: före-bilden visar inget grönt spjälräcke mellan vägräcket
+och GC-banan på någon sida av vägbron. `roadDeck.inner` (`west`/`east`, *guess*) i `src/config.js` och två extra anrop av
+`parapet` i `src/riverbridge.js` ritar räcket på båda sidor; endast stålbatchen växer. Stålhashen i
+`tools/riverfalltest.mjs` är omräknad här och blev identisk med originalets (`1070ca39…`). `node --test tools/riverfalltest.mjs tools/eastwalk1704test.mjs`
+10/10, `npm test`, `npm run build` och `tools/farwalk-check.mjs` (kollision, räcken, broar) gröna. Bilder från fotovinkeln (22,6; z 150; blick norrut, 1280x800):
+[före](verification/196/fore-fotovinkel-norrut.png), [efter](verification/196/efter-fotovinkel-norrut.png).
+Chromium/SwiftShader. Appen saknar `?at=`; kameran sattes via `lundenViewer.navigation.teleport`.
