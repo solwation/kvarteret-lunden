@@ -2358,3 +2358,51 @@ Verifiering: `npm test`, `npm run build` och Chromium (SwiftShader) före/efter 
 Överförd från `e0827648` (bilder `0d42c50a`, original #1722): `planEntrances(b, streets)` och femte parametern `{streets, ground}` till `brickPavilion` i `src/brickstyle.js` (1–2 entréer per paviljong med vit karm, mörkgrön dubbeldörr, litet tak och trappsteg mot marken, allt i fasad-batchen; markfönster under dörrarna utelämnas), `SITE.south.brickEntrance` i `src/config.js` (alla mått *guess*), gatorna (Sankt Lars väg, `S.access`, `S.paths`) samlade i `src/southbackdrop.js`, och entrékontrollen i `tools/brickstyletest.mjs`. Patchen gick på utan avvikelser i `brickstyle.js`; config, southbackdrop och testet applicerades för hand (olika omgivande rader). Originalets ändringslogg och miljödokument är inte förda över (ingen ändringslogg här; ingen motsvarande miljöfil).
 
 Verifiering: `node --test tools/brickstyletest.mjs` 6/6, `npm test` och `npm run build` gröna. Chromium (SwiftShader) före/efter, 1100x760, samma kamera 11 m framför entrén, UI-överlägget dolt: nr 42:s nordvästra entré 410 → 410 ritanrop, 769 206 → 769 430 trianglar, 52 → 52 texturer; nr 45:s entré 924 → 924 ritanrop, 975 632 → 975 856 trianglar, 59 → 59 texturer; inga sidfel. Marken är i stort sett plan vid dörrarna, så trappstegen blir en avsats med få eller inga extra steg. Bilder: [42 före](verification/195/sl42-fore.png), [42 efter](verification/195/sl42-efter.png), [45 före](verification/195/sl45-fore.png), [45 efter](verification/195/sl45-efter.png).
+
+## Inre grönt räcke på vägbron, #196
+
+Överförd från `3c92d4b5` (original #1730): `roadDeck.inner` (`west`/`east`, *guess*) i `src/config.js` och två extra `parapet`-anrop i `src/riverbridge.js`; endast stålbatchen växer.
+
+Verifiering: `node --test tools/riverfalltest.mjs tools/eastwalk1704test.mjs`, `npm test`, `npm run build` och `tools/farwalk-check.mjs` gröna. Detaljer och bilder: [verification.md, #196](verification.md#inre-grönt-räcke-mellan-vägräcke-och-gc-bana-196).
+
+## Klockhusets mittparti mot parken, #197
+
+Överförd från `5d3437ed` (original #1733, första rättelsen): `campus.centre` i `src/config.js` vänd mot parken (risalit, fronton, bågfönster och torn). Inte överfört: brevlådan (#1706, spelinslag).
+
+Verifiering: `npm test`, `npm run build` och `tools/farwalk-check.mjs` gröna. Detaljer och bilder: [verification.md, #197](verification.md#klockhusets-mittparti-vänt-mot-parken-197).
+
+## Lågt tegelhus vid bron, #198
+
+Överförd från `0f81d668` (original #1731): ny polygon för `guess-1703` i `src/config.js` och det valfria fältet `sunk` i `src/sitebackdrop.js`. Alla mått *guess*.
+
+Verifiering: `node --test tools/bridgehead1554test.mjs`, `npm test` och `npm run build` gröna; inga nya ritanrop. Detaljer och bilder: [verification.md, #198](verification.md#lågt-tegelhus-vid-bron-flyttat-och-sänkt-198).
+
+## Parkeringsraden vid kantstenen, #199
+
+Överförd från `6346d821` (original #1735): `guess-1554` (rad och polygon) och västkanten på `guess-1703` i `src/config.js`. Inte överfört: bilmodellens fält (`fill`/`reversed`/`noseToAisle`), eftersom bilmodellen saknas här.
+
+Verifiering: `node --test tools/bridgehead1554test.mjs tools/edgebackdroptest.mjs` gröna. Detaljer och bilder: [verification.md, #199](verification.md#parkeringsraden-vid-bron-flyttad-mot-kantstenen-199).
+
+## Låg byggnad bakom Realgymnasiets sal, #200
+
+Överförd från `e5c7a796` (original #1732): `guess-1732-ne`/`-recess`/`-sw`/`-annex` ersätter `Komplementbyggnad 88457600` i `src/config.js`, och det valfria fältet `units` (takaggregat) i `src/sitebackdrop.js`. Ny `tools/eastlowbuildingtest.mjs` ersätter originalets `eastbackdroptest`-kontroll.
+
+Verifiering: `npm test`, `npm run build`, `eastlowbuildingtest`, `realgym20test` och `bridgehead1554test` gröna. Detaljer och bilder: [verification.md, #200](verification.md#låg-byggnad-och-tillbyggnad-bakom-realgymnasiets-sal-200).
+
+## Branta valmtak och Klockhusets gårdsvolym, #201
+
+Överförd från `fcfc0646` och `d736d4f1` (original #1733/#1734): valmtaksgeneratorn och `buildCourt` i `src/campusfacades.js`, samt `hip`, sektioner och `roofs` i `src/config.js`. Inte överfört: brevlådan (#1706).
+
+Verifiering: `npm test`, `npm run build`, `tools/east-campus-check.mjs` och `tools/farwalk-check.mjs` gröna. Taken jämfördes med originalets kod och var identiska utom brevlådan. Detaljer och bilder: [verification.md, #201](verification.md#branta-valmtak-per-del-och-klockhusets-gårdsvolym-201).
+
+## Fler och större träd vid Klockhuset, #202
+
+Överförd från `0f3679db` (original #1738): `SITE.east.treeScale` och fyra nya `treePatches` i `src/config.js`. Alla värden *guess*.
+
+Verifiering: `npm test` och `npm run build` gröna. Ingen trädtest finns här. Detaljer och bilder: [verification.md, #202](verification.md#fler-och-större-träd-vid-klockhuset-202).
+
+## Lekplats på Sankt Thomas skolgård, #203
+
+Överförd från `60d560e1` (original #1737): ny `src/schoolyard.js`, `drape()` utbruten i `src/sitebackdrop.js` och `yard` på 145221572 i `src/config.js`. Gårdsposterna rättades först i #204 (se #59-avsnittet). `CAMPUS_LOD.maxTris` höjdes från 40 843 till 41 700 (+749 trianglar för lekplatsen; originalet har den i alla profiler).
+
+Verifiering: `npm test`, `npm run build`, `tools/east-campus-check.mjs` och `tools/campus-budget-check.mjs` gröna (telefon 41 363 trianglar). Detaljer och bilder: [verification.md, #203](verification.md#lekplats-på-sankt-thomas-skolgård-203).
