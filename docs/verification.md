@@ -2751,3 +2751,28 @@ de tre volymerna och tillbyggnaden finns och att aggregatet är angivet. `node -
 ## Fler och större träd vid Klockhuset (#202)
 
 Port av originalets #1738 (`0f3679db`; originalets bilder `95216bbf` följer inte med). `SITE.east.treeScale` i `src/config.js` går från [1,2, 1,8] till [1,45, 2,4], och de fyra nya `treePatches` `klockhuset-north` (n 26), `klockhuset-northwest` (12), `klockhuset-east-between` (10) och `east-park-dense` (14) ligger sist i listan så att övriga slumppositioner behålls. Alla värden är gissningar. Trädmotorn (`src/sitebackdrop.js`) är samma som i originalet och filtrerar bort träd på hus, vägar och gångar; ingen kod ändrades. Originalets `data/changelog.json` och `docs/development/environment.md` finns inte här. `npm test` och `npm run build` gröna; ingen särskild trädtest finns (`east-campus-check`/`campus-budget-check` täcker inte träd), och inga nya ritanrop väntas eftersom träden delar befintlig batch. Bilder, 1280x800, Chromium/SwiftShader, samma kamera (x 55, z -95, 30 m över marken, snett nedåt mot norr): [före](verification/202/fore-klockhuset.png), [efter](verification/202/efter-klockhuset.png).
+
+## Branta valmtak per del och Klockhusets gårdsvolym (#201)
+
+Port av originalets #1733/#1734 (`fcfc0646` generator och config, `d736d4f1` brantare byggnad 88 och byggnad 2:s mittremsa;
+originalets bilder `37368234` följer inte med). `src/campusfacades.js` får valmtaksgeneratorn (`outlineAngle`, `hipParts`,
+`hipTop`, `buildHip`), som aktiveras med `roof.hip`: varje takdel är en rektangel i konturens egen vridning med exakta takplan,
+flyglar löper in under högre tak, en långsida mot högre vägg blir pulpettak, en gavel stänger mot en lika hög del och
+`dormer`/`dormers` ger takkupor (varannan på telefon). `buildCourt` ritar Klockhusets indragna gårdsvägg (z −120) med tre
+bågfönster och ett burspråk; vanliga fönster hoppar över den sträckan, och risalitens taklist följer delen bakom den. `roofY`
+returnerar takplanen. I `src/config.js` har `stenhammar` och `klockhuset` `hip` med lutning 0,95, Klockhuset är en envåningsbas
+med tvåvåningssektioner (paviljonger höjda 0,6 m, indraget mittparti) och en låg flygel (lutning 0,12), byggnad 2/7/8 har
+`roofs`-rutor (takkupor på 2 och 7) och `anshelm` (byggnad 88) har `rise` 4,5 och `slope` 0,9. Alla nya mått är *guess* ur
+originalets avläsning av en Google 3D-snedbild, som inte finns i det publika repot.
+
+Avvikelser från originalet: ingen brevlåda (#1706), så `mailboxBodyParts` och `MAILBOX` saknas som förut; inga övriga skillnader.
+Ett nodskript som bygger byggnad 1, 2, 7, 8, 9, 88 och 4 med portens och originalets (`d736d4f1`) kod gav identiska `roofY` på
+ett 1,7 × 1,3 m-rutnät, takfot/nock, delar, fönster och trianglar per batch, utom Klockhusets 72 brevlådetrianglar.
+`npm test`, `npm run build`, `tools/east-campus-check.mjs` (desktop och portrait, alla kontroller gröna) och
+`tools/farwalk-check.mjs` gröna. `tools/campus-budget-check.mjs`: kampusen på telefon 39 628 -> 38 795 trianglar (tak 40 843),
+ritanrop oförändrade (portrait 203/515, landscape 932/936). Verktygets påstående om 16 byggnadsposter fallerar redan på basen
+230e98d (20 poster efter tidigare portar); siffrorna kommer från en kopia utan det påståendet. Bilder, 1280x800,
+Chromium/SwiftShader, kameran via `lundenViewer.navigation.teleport` i originalets lägen: referensvinkeln (x 2, z −76, 40 m,
+girvinkel −41°, lutning −36°) [före](verification/201/fore-referensvinkel.png), [efter](verification/201/efter-referensvinkel.png);
+gårdssidan (x 46, z −78, 8 m) [före](verification/201/fore-gardssidan.png), [efter](verification/201/efter-gardssidan.png);
+[byggnad 2 med takkupor](verification/201/efter-byggnad2.png).
