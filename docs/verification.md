@@ -2747,3 +2747,7 @@ Originalets `eastbackdroptest` finns inte här; `tools/eastlowbuildingtest.mjs` 
 de tre volymerna och tillbyggnaden finns och att aggregatet är angivet. `node --test` på den, `realgym20test` och
 `bridgehead1554test` samt `npm test` och `npm run build` gröna. Bilder, 1280x800, Chromium/SwiftShader, samma vinkel (x 98, z 80, 14 m över marken):
 [före](verification/200/fore-bakom-salen.png), [efter](verification/200/efter-bakom-salen.png).
+
+## Fler och större träd vid Klockhuset (#202)
+
+Port av originalets #1738 (`0f3679db`; originalets bilder `95216bbf` följer inte med). `SITE.east.treeScale` i `src/config.js` går från [1,2, 1,8] till [1,45, 2,4], och de fyra nya `treePatches` `klockhuset-north` (n 26), `klockhuset-northwest` (12), `klockhuset-east-between` (10) och `east-park-dense` (14) ligger sist i listan så att övriga slumppositioner behålls. Alla värden är gissningar. Trädmotorn (`src/sitebackdrop.js`) är samma som i originalet och filtrerar bort träd på hus, vägar och gångar; ingen kod ändrades. Originalets `data/changelog.json` och `docs/development/environment.md` finns inte här. `npm test` och `npm run build` gröna; ingen särskild trädtest finns (`east-campus-check`/`campus-budget-check` täcker inte träd), och inga nya ritanrop väntas eftersom träden delar befintlig batch. Bilder, 1280x800, Chromium/SwiftShader, samma kamera (x 55, z -95, 30 m över marken, snett nedåt mot norr): [före](verification/202/fore-klockhuset.png), [efter](verification/202/efter-klockhuset.png).
