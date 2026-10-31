@@ -2183,7 +2183,7 @@ behåller den, och skorstenslocken i `src/schoolfacade.js` och `src/campusfacade
 `campusfacades.js` importerar `schoolRoofTint` från `schoolfacade.js`; den cirkulära importen är säker
 eftersom anropet sker vid körning. Samma batch, inga nya ritanrop. Originalets changelogpost och
 utvecklingsdokumentation är inte importerade (ingen changelog här); koden är identisk med originalets.
-[Verifiering](verification.md#skorstenslock-pa-ostra-campus-185).
+[Verifiering](verification.md#skorstenslock-på-östra-campus-185).
 
 ## Karpvägen: färger och våningar, #174
 
@@ -2286,7 +2286,7 @@ samt i `src/southbackdrop.js` fasad- och takfärg per villa via vertexfärger oc
 Nedströms hade samma 26 OSM-id:n i `SITE.south.buildings` och samma `lowRiseWindows`; patchen applicerades för hand eftersom
 filerna avviker (nedströms använde redan `wallColor` men målade fasaden med `b.facade`). Originalets changelogpost,
 dokumentationsrad och `tools/parking1452test.html` (finns inte här) är inte importerade. Förutsättningen #180 (takvertexfärger) ingick.
-[Verifiering](verification.md#villorna-vid-nattslandegatan-182).
+[Verifiering](verification.md#villorna-vid-nattsländegatan-182).
 
 ## Vitputsade hus med rött tegeltak vid Sankt Lars väg söder, #183
 
@@ -2296,11 +2296,11 @@ dokumentationsrad och `tools/parking1452test.html` (finns inte här) är inte im
 generalisering av villornas tintmekanism (`WB`/`roofColor`: fasad-, takhöjd och takfärg per hus via vertexfärger). Nedströms hade samma
 18 OSM-id:n plus ladan 88457556 i `SITE.south.buildings` och samma `lowRiseWindows`-rad; `wallColor` fanns redan från #182, så
 patchen applicerades för hand. Originalets changelogpost och dokumentationsrad är inte importerade. Förutsättningarna #180
-(`cbacdac`) och #182 (`a5cd533`) ingick. [Verifiering](verification.md#vitputsade-hus-med-rott-tegeltak-vid-sankt-lars-vag-soder-183).
+(`cbacdac`) och #182 (`a5cd533`) ingick. [Verifiering](verification.md#vitputsade-hus-med-rött-tegeltak-vid-sankt-lars-väg-söder-183).
 
 ## Busskuren i skolmurens ände efter närbilden (#187, original #1702)
 
-Port från `aaa86e6ed2247c21168d1d1ae200761c2b2dd261`: `school.wall.shelter` i `src/config.js` (`wallEast`, tjockare tak med `out`/`beam`, grå stolpe, ljus bänk, högre papperskorg, `pipe`, `sign`, `cabinet`, `boulder`; `stones` tömd eftersom stenblocket nu är `boulder`), `src/schoolwall.js` (murens fortsättning österut, skåpet som kollisionsfast), `src/street.js` (plattytan följer murens nya ände, stenblocket ritas) och skolgrunden i `src/surroundings.js` (eget `timber`-mesh för taket, +1 ritanrop; vertexfärger i ramens batch). Patcharna applicerades utan konflikt. Utesluten: originalets changelogpost och miljödokumentation. Farwalk-kontrollerna är anpassade i `tools/farwalk-check.mjs` (ny väg runt skåpet, stolpe-, murförlängnings- och skåpprov) och `tools/schoolwalltest.mjs`. [Verifiering](verification.md#busskuren-i-skolmurens-ande-187).
+Port från `aaa86e6ed2247c21168d1d1ae200761c2b2dd261`: `school.wall.shelter` i `src/config.js` (`wallEast`, tjockare tak med `out`/`beam`, grå stolpe, ljus bänk, högre papperskorg, `pipe`, `sign`, `cabinet`, `boulder`; `stones` tömd eftersom stenblocket nu är `boulder`), `src/schoolwall.js` (murens fortsättning österut, skåpet som kollisionsfast), `src/street.js` (plattytan följer murens nya ände, stenblocket ritas) och skolgrunden i `src/surroundings.js` (eget `timber`-mesh för taket, +1 ritanrop; vertexfärger i ramens batch). Patcharna applicerades utan konflikt. Utesluten: originalets changelogpost och miljödokumentation. Farwalk-kontrollerna är anpassade i `tools/farwalk-check.mjs` (ny väg runt skåpet, stolpe-, murförlängnings- och skåpprov) och `tools/schoolwalltest.mjs`. [Verifiering](verification.md#busskuren-i-skolmurens-ände-187).
 
 ## Parkeringsrad vid bron och lågt tegelhus (#188)
 
@@ -2310,7 +2310,7 @@ Port från `aaa86e6ed2247c21168d1d1ae200761c2b2dd261`: `school.wall.shelter` i `
 `src/config.js`, samt anpassning av `tools/bridgehead1554test.mjs`. Uteslutet: `reversed`, `noseToAisle` och `fill` (nedströms har parkeringarna
 inga bilar, så de saknar verkan), källans `.html`-test för östra campus (nedströms finns ingen motsvarighet; antalet byggnader prövas inte där),
 ändringslogg och `docs/development/environment.md` (finns inte nedströms). Förutsättningarna #161 (bridgehead/#1554), Realgymnasiets geometri
-och de OSM-baserade parkeringarna i öster fanns redan. [Verifiering](verification.md#parkeringsrad-vid-bron-och-lagt-tegelhus-188).
+och de OSM-baserade parkeringarna i öster fanns redan. [Verifiering](verification.md#parkeringsrad-vid-bron-och-lågt-tegelhus-188).
 
 ## Gåbart område söderut till Sankt Lars väg 42, #191
 
@@ -2321,7 +2321,7 @@ och de OSM-baserade parkeringarna i öster fanns redan. [Verifiering](verificati
 en trädstam, södra kanten); upstreams cykelgångar och `perfcount`-spotarna utesluts (nedströms finns ingen cykel eller `perfcount`).
 `servicepark1449test`, `servicewest1463test` och `servicering1464test` hävdade `WALK.z1 === 250`/"vägen ligger söder om gränsen"
 och jämför nu mot den gamla gränsen 250. Originalets changelogpost och miljödokumentation är inte importerade.
-[Verifiering](verification.md#gabart-omrade-soderut-till-sankt-lars-vag-42-191).
+[Verifiering](verification.md#gåbart-område-söderut-till-sankt-lars-väg-42-191).
 
 ## Orkester v0.6.1, #189
 
@@ -2344,7 +2344,7 @@ Port av originalets `1e2824e6` (bildcommit `22d5f32d`) som diff: `roadDeck.eastW
 `tools/farwalk-check.mjs` och omräknade hashar i `tools/riverfalltest.mjs` (identiska med originalets). Nedströms `roadDeck`
 motsvarade originalets föregående tillstånd. Utesluts: originalets changelogpost, miljödokumentation, `farwalktest.html`
 (nedströms `farwalk-check.mjs`) och bildfilerna (nya egna bilder). Ingen cykel nedströms; "cykelbana" är bara namnet på banan.
-[Verifiering](verification.md#gang--och-cykelbana-pa-bada-sidor-av-vagbron-194).
+[Verifiering](verification.md#gång--och-cykelbana-på-båda-sidor-av-vägbron-194).
 
 
 ## Trädkronor utan lådformat block, #193
