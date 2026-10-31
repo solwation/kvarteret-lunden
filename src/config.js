@@ -1096,7 +1096,17 @@ export const SITE = {
       {"source":"44447969","name":"Östra campusparkeringen","surface":"asphalt","capacity":20,"capacitySource":"guess","polygon":[[196.06,-37.72],[189.82,-21.9],[192.2,7.75],[206.2,7.66],[204.71,-19.6]]},
       {"source":"145221566","name":"Förskolan Framtiden gård","surface":"paved","polygon":[[129.42,-89.2],[66.93,-86.35],[64.6,-23.58],[104.66,-22.41],[120.84,-23.07],[130.35,-23.46],[130.2,-33.79],[130.09,-49.96]]},
       {"source":"145221567","name":"Förskolan Freinet gård","surface":"paved","polygon":[[129.42,-89.2],[66.93,-86.35],[66.75,-136.67],[66.68,-157.77],[128.42,-159.55],[128.56,-151.91]]},
-      {"source":"145221572","name":"Sankt Thomas skolgård","surface":"gravel","polygon":[[18.5,-86.12],[66.93,-86.35],[66.75,-136.67],[17.39,-134.96]]},
+      {"source":"145221572","name":"Sankt Thomas skolgård","surface":"gravel","polygon":[[18.5,-86.12],[66.93,-86.35],[66.75,-136.67],[17.39,-134.96]],
+       // #1737 (docs/foton/snedbild-klockhuset-sankt-thomas.png, Google 3D heading 99°): the playground in front of Klockhuset's yard face: an oval lawn,
+       // play-sand patches round the wooden play frames, a sandbox, and clipped hedges along the yard's edges towards Realgymnasiet (z ≈ -87) and Förskolan Freinet
+       // (x ≈ 66); the hedge stops at z -104 so the walk past the face to the east (z ≈ -108) stays open. Every size and position is *guess* (pixels mapped
+       // through the yard's four corners); drawn in the east `access` batch by src/schoolyard.js, visual only (no collision).
+       "yard":{"lawns":[{"centre":[47,-101.5],"radii":[9.5,5.5],"angle":15,"n":28}],
+        "sand":[[[27,-88],[39,-88],[41,-93],[38,-99],[31,-104],[26,-101],[25,-93]],[[44,-87.9],[56,-87.9],[57,-91.5],[50,-93.5],[44,-92]],[[59.5,-97],[65.4,-97],[65.4,-104],[59.5,-104]]],
+        "hedge":{"paths":[[[29,-86.9],[66.2,-87.1],[66.1,-104]]],"h":1.0,"w":0.8,"piece":4,"sink":0.3},
+        "play":[{"kind":"swing","at":[50,-90],"yaw":0,"size":[3,2.2]},{"kind":"house","at":[33,-91],"yaw":15,"size":[1.6,1.6,1.4]},{"kind":"climb","at":[32.5,-99.5],"yaw":15,"size":[2,2,1.8]}],
+        "lift":{"sand":0.05,"lawn":0.08},
+        "colors":{"lawn":0x5d8a3a,"sand":0xd6c39a,"hedge":0x3b5828,"wood":0x8a6a48,"seat":0x2f2f2f,"roof":0xa8483a,"slide":0xc9a227}}},
       {"source":"145221740","name":"Realgymnasiet gård","surface":"paved","polygon":[[22.16,-40.01],[21.34,-85.05],[62.29,-83.09],[60.36,-26.09],[37.75,-26.74],[27.84,-26.65],[23.63,-26.86],[21.37,-33.48]]},
       // #1703: the bridgehead car park is ONE row of about 7 stalls square to Sankt Lars väg (no aisle of its own), at the kerb (#1735: x 29.4, just past the road's east edge x ~29; *guess*, +-1 m) from the south corner of Realgymnasiet's gable house to the crossing.
       // Outline, row (`row.path` = the kerb line, `side` -1 = stalls on its +x side) and capacity are all *guess*; replaces #161's 15 m deep two-sided lot and its aisle `guess-1554-aisle`. Whole bays only, no cars.
@@ -1999,7 +2009,8 @@ panel: { w: .26, h: .065, lift: .36, offset: .008, pickDepth: .02 }
 // Full east-backdrop asset regression guard, including access and clock instances (#136).
 // Historical 33676 + guessed 2324 headroom; accepted precision/clock growth +4843.
 // Not a measured physical-phone frame-time budget; future growth requires a new audit.
-export const CAMPUS_LOD = { curve: 3, roofGrid: 2, maxTris: 40843 };
+// #203 (2026-10-31): +749 for the Sankt Thomas playground ported from original 60d560e1, which keeps the playground in all profiles within its phone budget (42 200); margin was already reduced by #204's restored courtyard surfaces.
+export const CAMPUS_LOD = { curve: 3, roofGrid: 2, maxTris: 41700 };
 
 // Touch stick feel (upstream 211e0e9, original #1088; *guess* values tuned by eye): deflection r = distance / knob travel.
 // Below `deadZone` nothing moves (a resting thumb never drifts); up to `full` the output rises along t^`curve`

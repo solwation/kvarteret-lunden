@@ -2780,3 +2780,7 @@ gårdssidan (x 46, z −78, 8 m) [före](verification/201/fore-gardssidan.png), 
 ## Skolgårdarnas ytor, #204
 
 `SITE.east.access` 145221566, 145221567, 145221572, 145221740, 94054863 och 145221570 har originalets polygoner, namn och ytor (`e749b076`, orörda i originalets main `60d560e1`); `src/sitebackdrop.js` behövde ingen ändring (`name` läses inte, `gravel`/`paved` finns redan). Uppifrån-bilder över skolområdet (1280x800, Chromium/SwiftShader, x 90, z −95, 260 m, rakt nedåt): [före](verification/204/fore-top.png), [efter](verification/204/efter-top.png).
+
+## Lekplats på Sankt Thomas skolgård, #203
+
+Port av originalets #1737 (`60d560e1`): `src/schoolyard.js` ritar oval gräsmatta, tre sandytor, häck längs mot Realgymnasiet och Förskolan Freinet samt tre enkla lekredskap (gunga, lekhus, klätterställning med rutschkana) i den befintliga `access`-batchen, utan nya ritanrop, texturer eller material. `drape(poly, lift)` är utbruten ur `src/sitebackdrop.js` och `yard`-fältet sitter på 145221572. Alla mått är *guess* (som i originalet), enbart visuellt utan kollision. +749 trianglar: `CAMPUS_LOD.maxTris` höjdes 40 843 → 41 700 (telefonprofilens tak; lekplatsen finns kvar i alla profiler, marginalen hade redan minskat av #204). Bilder (1280x800, Chromium/SwiftShader): uppifrån [före](verification/203/fore-top.png) / [efter](verification/203/efter-top.png), snett [före](verification/203/fore-snett.png) / [efter](verification/203/efter-snett.png), från söder mot Klockhuset [före](verification/203/fore-nara.png) / [efter](verification/203/efter-nara.png).
