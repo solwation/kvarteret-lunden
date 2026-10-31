@@ -1,7 +1,7 @@
 # Verifieringspolicy
 
 Välj 2–3 minsta tillräckliga kontroller före arbetet och stoppa när de passerar.
-[Orkesterns riskbaserade policy](../.orchestra/shared/ORCHESTRA.md#verify-the-affected-behavior)
+[Orkesterns riskbaserade policy](../.orchestra/shared/ORCHESTRA.md#verification)
 gäller också pågående arbete: dokument behöver diff/länkar/motsägelsegranskning,
 inte WebGL eller triangelräkning. Lokala ändringar behöver berörd komponent och
 verklig rutt/vy; fler plattformar/orienteringar eller fullprofiler kräver ändrad

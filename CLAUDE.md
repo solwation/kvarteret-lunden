@@ -46,7 +46,7 @@ Read [AGENTS.md](AGENTS.md) for public-content, storage and service boundaries. 
   changes need diff/link/contradiction review, no browser or triangle counts. Local app changes need the affected
   component and real route/view; wider profiles need concrete global risk. Reuse source/input/quality-bound green
   evidence across unrelated rebases; the conductor reviews rather than automatically reruns it. Reassess verification
-  cost near 10 minutes. Follow the [orchestra policy](.orchestra/shared/ORCHESTRA.md#verify-the-affected-behavior)
+  cost near 10 minutes. Follow the [orchestra policy](.orchestra/shared/ORCHESTRA.md#verification)
   and [verification guide](docs/verification.md#verifieringspolicy). Run the existing fast `npm test` and `npm run build`;
   keep README and affected documentation current. User requirements, hard contracts and public isolation remain in force.
 - Every push to this repository's `main` triggers `.github/workflows/pages.yml`: tests, build, then GitHub Pages deployment. Verify the run; check changed app behaviour live when the scoped plan requires it. Docs-only changes do not require a new browser check of the unchanged app.
