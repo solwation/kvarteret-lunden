@@ -40,6 +40,9 @@ try{
    ['HepCat building blocks',[24,0],[[34,0]],()=>n.pos.x<28],
    // original #1542: the school wall (x -26..13.6, shelter back wall open to 19.6, continuing to 25.1, cabinet x 25.4..25.8, #1702) is solid from the ground; the walk goes round its east end
    ['to the school and clock tower',[20,-10],[[22.5,-29],[28.5,-30.5],[28.5,-38],[21,-39],[20,-80],[24,-108],[45,-109]],()=>n.pos.z<-108&&n.pos.x>40],
+   // #197 (upstream #1733): the risalit with the clock tower faces the park (−z); the courtyard front is the plain wing wall (z ~ −114.3)
+   ['Klockhuset: courtyard front blocks',[35,-109],[[35,-125]],()=>n.pos.z>-114.8&&n.pos.z<-113.5],
+   ['Klockhuset: risalit with the clock tower blocks from the park side',[45,-145],[[45,-125]],()=>n.pos.z<-133.9&&n.pos.z>-135],
    ['school wall blocks from the street',[0,-28],[[0,-38]],()=>n.pos.z>-32.0&&n.pos.z<-31],
    ['school wall blocks at the east end',[12.5,-28],[[12.5,-38]],()=>n.pos.z>-32.0&&n.pos.z<-31],
    ['school shelter entrance is open, back wall blocks',[16.5,-29],[[16.5,-38]],()=>n.pos.z<-32.3&&n.pos.z>-33.3],
@@ -47,7 +50,6 @@ try{
    ['school shelter continuing wall blocks from the street',[22.5,-29],[[22.5,-38]],()=>n.pos.z>-33.3&&n.pos.z<-32.3],
    ['school shelter cabinet blocks',[25.6,-29],[[25.6,-38]],()=>n.pos.z>-32.3&&n.pos.z<-31],
    ['school shelter gable blocks from inside',[16.5,-32.6],[[10,-32.6]],()=>n.pos.x>13.6&&n.pos.x<14.3],
-   ['clock tower facade blocks',[45,-109],[[45,-125]],()=>n.pos.z>-113.5],
    ['between school buildings east',[45,-109],[[70,-108],[100,-108],[130,-105],[130,-60]],()=>n.pos.z>-62&&n.pos.x>125],
    ['back to the block',[130,-60],[[130,-30],[75,-25],[40,-20],[25,-5]],()=>n.pos.x<30],
    ['edge west',[-240,30],[[-290,30]],()=>n.pos.x>=WALK.x0&&n.pos.x<WALK.x0+0.6],

@@ -2704,3 +2704,17 @@ och GC-banan på någon sida av vägbron. `roadDeck.inner` (`west`/`east`, *gues
 10/10, `npm test`, `npm run build` och `tools/farwalk-check.mjs` (kollision, räcken, broar) gröna. Bilder från fotovinkeln (22,6; z 150; blick norrut, 1280x800):
 [före](verification/196/fore-fotovinkel-norrut.png), [efter](verification/196/efter-fotovinkel-norrut.png).
 Chromium/SwiftShader. Appen saknar `?at=`; kameran sattes via `lundenViewer.navigation.teleport`.
+
+## Klockhusets mittparti vänt mot parken (#197)
+
+Port av originalets #1733 (`5d3437ed`). Felet bekräftades först: före-bilden från parksidan visar en platt fasad med bara
+tornspetsen över taket, medan risaliten med fronton, bågfönster och torn stod på gårdssidan. `campus.centre` i `src/config.js`
+har nu `face` −133,9, `normal` −1, `x [39,6; 51,0]` och tornet vid z −129,9 (OSM-utsprånget x 39,8–50,8, z −131,3 → −133,8);
+den tredje skorstenen flyttades till gårdshalvan (45,5; −119). OSM-polygonen och grannhusen är oförändrade; `src/farwalk.js`
+behövde ingen ändring (kollisionen läser `centre`). Avvikelser från originalet: publikt finns ingen brevlåda (#1706), så
+`mailbox`-flaggan och `MAILBOX` följer inte med; före-värdena var annars identiska (`x [39,6; 51,6]`, `face` −112,6). Originalets
+`tools/farwalktest.html` motsvaras här av `tools/farwalk-check.mjs`: det gamla steget "clock tower facade blocks" ersattes av
+gårdsfasaden (z −114,8…−113,5) och risaliten från parksidan (z −135…−133,9). `npm test`, `npm run build` och
+`tools/farwalk-check.mjs` mot källservern är gröna. Bilder, 1280x800, Chromium/SwiftShader (kameran via `lundenViewer.navigation.teleport`):
+[före, parksidan](verification/197/fore-park.png), [efter, parksidan](verification/197/efter-park.png),
+[före, skolgården](verification/197/fore-court.png), [efter, skolgården](verification/197/efter-court.png) (tornet bakom taket, gårdsfasaden utan risalit).
