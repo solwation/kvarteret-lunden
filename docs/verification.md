@@ -2718,3 +2718,17 @@ gårdsfasaden (z −114,8…−113,5) och risaliten från parksidan (z −135…
 `tools/farwalk-check.mjs` mot källservern är gröna. Bilder, 1280x800, Chromium/SwiftShader (kameran via `lundenViewer.navigation.teleport`):
 [före, parksidan](verification/197/fore-park.png), [efter, parksidan](verification/197/efter-park.png),
 [före, skolgården](verification/197/fore-court.png), [efter, skolgården](verification/197/efter-court.png) (tornet bakom taket, gårdsfasaden utan risalit).
+
+## Lågt tegelhus vid bron flyttat och sänkt (#198)
+
+Port av originalets #1731 (`0f81d668`). `guess-1703` i `src/config.js` har nu polygonen x 36,8…43,5, z 58,55…67,5 (före: x 37…61,
+z 62…76, över slänten och OSM-servicevägen 44447967) och `storey` 2,6 med nytt `sunk` 1,15. `sunk` är ett valfritt fält i
+`src/sitebackdrop.js` (m under högsta hörnets mark): våningen sänks så att taket står ≈1,45 m över marken, i höjd med biltaken;
+övriga byggnader saknar `sunk` och är oförändrade. Avvikelser från originalet: före-värdet `storey` var 2,4 och `levelsSource`
+`guess` (originalets före-text skilde sig); satellit- och snedbilderna ligger inte i det publika repot, så kommentaren
+hänvisar bara till dem. `node --test tools/bridgehead1554test.mjs` 3/3 (inga förväntningar ändrade; originalets
+`eastbackdroptest`/`eastlottest` finns inte här), `npm test` och `npm run build` gröna. Bilder, 1280x800, Chromium/SwiftShader
+(kameran via `lundenViewer.navigation.teleport`), ritanrop/trianglar före -> efter: övergångsstället (36; z 82, mot huset) 461 / 661 508 -> 461 / 661 679,
+snett från sydost (47; z 90) 900 / 858 916 -> 900 / 859 087: inga nya ritanrop.
+[före, övergångsstället](verification/198/fore-oevergang.png), [efter](verification/198/efter-oevergang.png),
+[före, sydost](verification/198/fore-sida.png), [efter](verification/198/efter-sida.png). Vinkeln är egen, inte originalets.
