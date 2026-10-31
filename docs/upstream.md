@@ -2412,3 +2412,10 @@ Verifiering: `npm test`, `npm run build`, `tools/east-campus-check.mjs` och `too
 Överförd från `8f41bd54` (original #1743) och `95e5b176` (original #1744), bara i `src/config.js`: Klockhusets `tower.base` 1,4 → 3,0 så att sockeln och urtavlorna står fria från takfallet, och `inward: true` borttaget ur `anshelm.roof` så att byggnad 88:s tak faller tillbaka till takfoten vid den öppna gården utan glasvägg (alla mått *guess*). Originalets `tools/eastbackdroptest.html` och changelog finns inte här.
 
 Verifiering: `npm test`, `npm run build` och Chromium-prov (SwiftShader) av scenen: strålar in mot gården träffade glas vid x 36,1 före och inga efter (höjd 10–13 m), takhöjden vid gården 14,5 → 10,3 m. Före/efter-bilder: [verification.md, #209](verification.md#klockhusets-torn-fritt-från-taket-och-öppen-gård-i-byggnad-88-209).
+
+
+## Nordic Wellness S:t Lars Sportcenter ersätter NTI-skolan, #210
+
+Importerad från `aff257de94f6c820b7312445a7ee51d5fac59e92` (original #1745): `src/nordicgym.js`, `template:'nordicgym'` i `src/sitebackdrop.js`, posten `guess-1745` i `SITE.east` (ersätter den klassiska skolposten för OSM-väg `88457612`, ingen dubblett) och uppslaget via `osm` i `src/surroundings.js`, samt OSM-källfilen `docs/references/surrounding-views/nordic-wellness-osm-check-2026-10-31.json`. Fotavtrycket är ytterrektangeln av OSM-vägen (cirka 55 x 19 m); våningar, höjder, solpaneltak, låg sydvästdel och glashörnet i sydost är *gissningar* (*guess*) från originalets Google 3D-vyer. Dessa skärmdumpar har inte kopierats hit. Inga personliga resurser, spelinslag eller tjänster ingår; originalets `eastbackdroptest.html` och ändringslogg finns inte här.
+
+Verifiering: `npm test`, `npm run build` och scenprov i Chromium (en gymbyggnad `guess-1745` på x -38,9...15,9, z -71,3...-52,5, tre våningar, ingen kvarvarande NTI-post, inga sidfel) samt före/efter-bilder i `docs/verification/210/`.
