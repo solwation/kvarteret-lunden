@@ -2406,3 +2406,9 @@ Verifiering: `npm test` och `npm run build` gröna. Ingen trädtest finns här. 
 Överförd från `60d560e1` (original #1737): ny `src/schoolyard.js`, `drape()` utbruten i `src/sitebackdrop.js` och `yard` på 145221572 i `src/config.js`. Gårdsposterna rättades först i #204 (se #59-avsnittet). `CAMPUS_LOD.maxTris` höjdes från 40 843 till 41 700 (+749 trianglar för lekplatsen; originalet har den i alla profiler).
 
 Verifiering: `npm test`, `npm run build`, `tools/east-campus-check.mjs` och `tools/campus-budget-check.mjs` gröna (telefon 41 363 trianglar). Detaljer och bilder: [verification.md, #203](verification.md#lekplats-på-sankt-thomas-skolgård-203).
+
+## Klockhusets torn fritt från taket och öppen gård i byggnad 88, #209
+
+Överförd från `8f41bd54` (original #1743) och `95e5b176` (original #1744), bara i `src/config.js`: Klockhusets `tower.base` 1,4 → 3,0 så att sockeln och urtavlorna står fria från takfallet, och `inward: true` borttaget ur `anshelm.roof` så att byggnad 88:s tak faller tillbaka till takfoten vid den öppna gården utan glasvägg (alla mått *guess*). Originalets `tools/eastbackdroptest.html` och changelog finns inte här.
+
+Verifiering: `npm test`, `npm run build` och Chromium-prov (SwiftShader) av scenen: strålar in mot gården träffade glas vid x 36,1 före och inga efter (höjd 10–13 m), takhöjden vid gården 14,5 → 10,3 m. Före/efter-bilder: [verification.md, #209](verification.md#klockhusets-torn-fritt-från-taket-och-öppen-gård-i-byggnad-88-209).
