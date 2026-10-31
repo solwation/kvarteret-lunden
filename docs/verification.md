@@ -2736,3 +2736,14 @@ snett från sydost (47; z 90) 900 / 858 916 -> 900 / 859 087: inga nya ritanrop.
 ## Parkeringsraden vid bron flyttad mot kantstenen (#199)
 
 Port av originalets #1735 (`6346d821`). `guess-1554` i `src/config.js` har nu raden `row.path` x 29,4 (före 31,5) och polygonen x 29,05…34,8 (före 31…37); `guess-1703` har västkanten x 34,5 (före 36,8), så huset är x 34,5…43,5, z 58,55…67,5. Alla värden är gissningar (±1 m). Avvikelser från originalet: här finns ingen bilmodell (`fill`/`reversed`/`noseToAisle`) och ingen `data/changelog.json` eller `docs/development/environment.md`, så bara config och denna notis ändrades. Före-värdena motsvarade originalets före-läge efter #188/#198. `node --test tools/bridgehead1554test.mjs tools/edgebackdroptest.mjs` 4/4 gröna (inga förväntningar ändrade). Bilder, 1280x800, Chromium/SwiftShader, kameran via `lundenViewer.navigation.teleport`: [övergångsstället från söder](verification/199/efter-oevergang.png), [snett från sydost](verification/199/efter-sida.png). Ingen före-bild togs.
+
+## Låg byggnad och tillbyggnad bakom Realgymnasiets sal (#200)
+
+Port av originalets #1732 (`e5c7a796`; originalets bilder `09810cbf` följer inte med). `Komplementbyggnad 88457600` i
+`SITE.east.buildings` (`src/config.js`) ersätts av de gissade platta tegelvolymerna `guess-1732-ne`, `-recess` och `-sw`
+(var och en med `osm: '88457600'`) plus tillbyggnaden `guess-1732-annex` med ett takaggregat. `src/sitebackdrop.js` får det
+valfria fältet `units` (`[[x, z, bredd, djup, höjd]]`, bara platta tak, i glasbatchen, inget nytt ritanrop). Alla mått är gissningar.
+Originalets `eastbackdroptest` finns inte här; `tools/eastlowbuildingtest.mjs` kontrollerar i stället att 88457600 är ersatt, att
+de tre volymerna och tillbyggnaden finns och att aggregatet är angivet. `node --test` på den, `realgym20test` och
+`bridgehead1554test` samt `npm test` och `npm run build` gröna. Bilder, 1280x800, Chromium/SwiftShader, samma vinkel (x 98, z 80, 14 m över marken):
+[före](verification/200/fore-bakom-salen.png), [efter](verification/200/efter-bakom-salen.png).
