@@ -2776,3 +2776,7 @@ Chromium/SwiftShader, kameran via `lundenViewer.navigation.teleport` i originale
 girvinkel −41°, lutning −36°) [före](verification/201/fore-referensvinkel.png), [efter](verification/201/efter-referensvinkel.png);
 gårdssidan (x 46, z −78, 8 m) [före](verification/201/fore-gardssidan.png), [efter](verification/201/efter-gardssidan.png);
 [byggnad 2 med takkupor](verification/201/efter-byggnad2.png).
+
+## Skolgårdarnas ytor, #204
+
+`SITE.east.access` 145221566, 145221567, 145221572, 145221740, 94054863 och 145221570 har originalets polygoner, namn och ytor (`e749b076`, orörda i originalets main `60d560e1`); `src/sitebackdrop.js` behövde ingen ändring (`name` läses inte, `gravel`/`paved` finns redan). Uppifrån-bilder över skolområdet (1280x800, Chromium/SwiftShader, x 90, z −95, 260 m, rakt nedåt): [före](verification/204/fore-top.png), [efter](verification/204/efter-top.png).

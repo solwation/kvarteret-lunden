@@ -1094,15 +1094,15 @@ export const SITE = {
       {"source":"159284525","surface":"asphalt","path":[[193.02,34.82],[195.65,30.96],[197.66,13.19],[197.5,-9.96],[194.66,-29.07],[188.29,-38.62]],"w":4.5},
       {"source":"145221623","name":"Parkering vid Sankt Thomas/Klockhuset","surface":"asphalt","capacity":35,"capacitySource":"guess","polygon":[[38.68,15.41],[40.14,-19.07],[85.54,-17.08],[84.09,17.41]]},
       {"source":"44447969","name":"Östra campusparkeringen","surface":"asphalt","capacity":20,"capacitySource":"guess","polygon":[[196.06,-37.72],[189.82,-21.9],[192.2,7.75],[206.2,7.66],[204.71,-19.6]]},
-      {"source":"145221566","surface":"paved","polygon":[[24.46,-113.16],[39.88,-113.47],[39.92,-111.45],[44.97,-111.35],[44.93,-113.37],[64.9,-113.43],[64.84,-110.82],[71.23,-110.69],[70.85,-128.27],[64.45,-128.4],[64.39,-131.0],[50.79,-130.68],[50.71,-133.78],[39.82,-133.52],[39.88,-131.33],[26.39,-131.02],[26.33,-128.42],[24.46,-128.42],[24.46,-113.16]]},
-      {"source":"145221567","surface":"asphalt","polygon":[[68.21,-88.35],[128.32,-87.15],[128.15,-66.1],[105.93,-66.55],[105.74,-57.72],[92.49,-57.98],[92.39,-52.39],[71.71,-52.8],[71.23,-70.14],[68.21,-70.2],[68.21,-88.35]]},
-      {"source":"145221572","surface":"paved","polygon":[[76.99,-48.5],[86.3,-48.31],[86.13,-39.9],[76.82,-40.09],[76.99,-48.5]]},
-      {"source":"145221740","surface":"asphalt","polygon":[[130.35,-23.46],[147.34,-3.67],[126.01,24.18],[107.98,25.63],[89.73,17.57],[89.78,-8.74],[115.39,-8.64],[130.35,-23.46]]},
+      {"source":"145221566","name":"Förskolan Framtiden gård","surface":"paved","polygon":[[129.42,-89.2],[66.93,-86.35],[64.6,-23.58],[104.66,-22.41],[120.84,-23.07],[130.35,-23.46],[130.2,-33.79],[130.09,-49.96]]},
+      {"source":"145221567","name":"Förskolan Freinet gård","surface":"paved","polygon":[[129.42,-89.2],[66.93,-86.35],[66.75,-136.67],[66.68,-157.77],[128.42,-159.55],[128.56,-151.91]]},
+      {"source":"145221572","name":"Sankt Thomas skolgård","surface":"gravel","polygon":[[18.5,-86.12],[66.93,-86.35],[66.75,-136.67],[17.39,-134.96]]},
+      {"source":"145221740","name":"Realgymnasiet gård","surface":"paved","polygon":[[22.16,-40.01],[21.34,-85.05],[62.29,-83.09],[60.36,-26.09],[37.75,-26.74],[27.84,-26.65],[23.63,-26.86],[21.37,-33.48]]},
       // #1703: the bridgehead car park is ONE row of about 7 stalls square to Sankt Lars väg (no aisle of its own), at the kerb (#1735: x 29.4, just past the road's east edge x ~29; *guess*, +-1 m) from the south corner of Realgymnasiet's gable house to the crossing.
       // Outline, row (`row.path` = the kerb line, `side` -1 = stalls on its +x side) and capacity are all *guess*; replaces #161's 15 m deep two-sided lot and its aisle `guess-1554-aisle`. Whole bays only, no cars.
       {"source":"guess-1554","name":"Parkeringsrad vid bron (guess)","surface":"asphalt","surfaceSource":"guess","capacity":7,"capacitySource":"guess","row":{"path":[[29.4,59.6],[29.4,77.1]],"side":-1},"polygon":[[29.05,59.2],[34.8,59.2],[34.8,77.5],[29.05,77.5]]},
-      {"source":"94054863","surface":"paved","polygon":[[24.22,-78.12],[61.31,-77.75],[61.01,-40.76],[23.92,-41.13],[24.22,-78.12]]},
-      {"source":"145221570","surface":"asphalt","polygon":[[-18.01,-53.57],[15.89,-52.58],[15.76,-71.33],[-38.89,-70.68],[-38.79,-53.67],[-18.01,-53.57]]},
+      {"source":"94054863","name":"Höjebroskolan skolgård","surface":"paved","polygon":[[130.09,-49.96],[129.42,-89.2],[128.56,-151.91],[167.4,-153.51],[171.8,-51.62]]},
+      {"source":"145221570","name":"Lunds Montessorigrundskola gård","surface":"gravel","polygon":[[-105.75,-85.22],[-106.28,-142.26],[-76.54,-155.82],[-44.43,-155.28],[-47.41,-52.64],[-84.23,-55.41],[-103.88,-73.75]]},
     ],
     trees: [
       [56.94,-193.99,"564870146"],

@@ -443,6 +443,7 @@ Verifiering: `npm test`, `npm run build` och Chromium (headless, SwiftShader): p
 Importerad från `e749b076` (original #1262): karterade innergårdar, parkeringar, kantstenar, parkeringsrutor och servicevägar i skolområdet och söder om Höje å från OpenStreetMap.
 - `src/config.js`:
   - `SITE.east.access`: tillagda skolgårdar och parkeringar (OSM-vägar 145221623, 44447969, 145221566, 145221567, 145221572, 145221740, 94054863, 145221570) med markmaterial (asfalt/grus/plattor).
+  - Rättelse (#204): den första importen hade fel polygoner för 145221566, 145221567, 145221572, 145221740, 94054863 och 145221570. De har nu originalets polygoner, namn och ytor (originalets main `60d560e1`, samma värden som i `e749b076`); `yard`-fältet på 145221572 ingår inte (#203). Parkeringsposterna 145221623/44447969 är oförändrade.
   - `SITE.south.access`: 8 karterade servicevägar söder om ån (OSM-vägar 850235114, 850235115, 36918923, 189432572, 30633544, 30633545, 145221590, 145221588).
   - `SITE.south.parking`: karterade parkeringsytor (145221619, 850235113, 145221624, 145221626, 145221628, 145221629) och 6 vinkelräta gatuparkeringsfickor längs Sankt Lars väg (1379042014, 1379042106, 1379042188, 1379042235, 1379043164, 1379043165).
 - `src/sitebackdrop.js`:
