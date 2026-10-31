@@ -2732,3 +2732,7 @@ hänvisar bara till dem. `node --test tools/bridgehead1554test.mjs` 3/3 (inga f�
 snett från sydost (47; z 90) 900 / 858 916 -> 900 / 859 087: inga nya ritanrop.
 [före, övergångsstället](verification/198/fore-oevergang.png), [efter](verification/198/efter-oevergang.png),
 [före, sydost](verification/198/fore-sida.png), [efter](verification/198/efter-sida.png). Vinkeln är egen, inte originalets.
+
+## Parkeringsraden vid bron flyttad mot kantstenen (#199)
+
+Port av originalets #1735 (`6346d821`). `guess-1554` i `src/config.js` har nu raden `row.path` x 29,4 (före 31,5) och polygonen x 29,05…34,8 (före 31…37); `guess-1703` har västkanten x 34,5 (före 36,8), så huset är x 34,5…43,5, z 58,55…67,5. Alla värden är gissningar (±1 m). Avvikelser från originalet: här finns ingen bilmodell (`fill`/`reversed`/`noseToAisle`) och ingen `data/changelog.json` eller `docs/development/environment.md`, så bara config och denna notis ändrades. Före-värdena motsvarade originalets före-läge efter #188/#198. `node --test tools/bridgehead1554test.mjs tools/edgebackdroptest.mjs` 4/4 gröna (inga förväntningar ändrade). Bilder, 1280x800, Chromium/SwiftShader, kameran via `lundenViewer.navigation.teleport`: [övergångsstället från söder](verification/199/efter-oevergang.png), [snett från sydost](verification/199/efter-sida.png). Ingen före-bild togs.
