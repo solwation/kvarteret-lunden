@@ -2419,3 +2419,12 @@ Verifiering: `npm test`, `npm run build` och Chromium-prov (SwiftShader) av scen
 Importerad från `aff257de94f6c820b7312445a7ee51d5fac59e92` (original #1745): `src/nordicgym.js`, `template:'nordicgym'` i `src/sitebackdrop.js`, posten `guess-1745` i `SITE.east` (ersätter den klassiska skolposten för OSM-väg `88457612`, ingen dubblett) och uppslaget via `osm` i `src/surroundings.js`, samt OSM-källfilen `docs/references/surrounding-views/nordic-wellness-osm-check-2026-10-31.json`. Fotavtrycket är ytterrektangeln av OSM-vägen (cirka 55 x 19 m); våningar, höjder, solpaneltak, låg sydvästdel och glashörnet i sydost är *gissningar* (*guess*) från originalets Google 3D-vyer. Dessa skärmdumpar har inte kopierats hit. Inga personliga resurser, spelinslag eller tjänster ingår; originalets `eastbackdroptest.html` och ändringslogg finns inte här.
 
 Verifiering: `npm test`, `npm run build` och scenprov i Chromium (en gymbyggnad `guess-1745` på x -38,9...15,9, z -71,3...-52,5, tre våningar, ingen kvarvarande NTI-post, inga sidfel) samt före/efter-bilder i `docs/verification/210/`.
+
+
+## Nordic Wellness flyttas, NTI-skolan återställs, #212
+
+Importerad från `7b901876ec00857b6132578a47796db75667593e` (original #1756, rättelse av #1745/#210): skolposten för OSM-väg `88457612` är tillbaka i `SITE.east` exakt som före #210, uppslaget i `schoolGrounds` i `src/surroundings.js` går på `source==='88457612'` igen, och gymposten är nu `guess-1756` (x -231,5...-176,5, z -246,5...-227,5, `model.unit` på (-179,9, -237)) vid Sankt Lars väg 90–92, utanför gångytan. Referens-JSON:en fick en rättelse. `tools/eastbackdroptest.html` och ändringsloggen finns inte här.
+
+Teleportplatsen Nordic Wellness (#211) flyttades till x -226, z -197 (gångytans norra kant, `yaw -0,62`, `pitch 0,12`) med sidan och glashörnet i bild; punkten valdes där stödhöjden stämmer med `groundY`/`renderedTerrainY`.
+
+Verifiering: `npm test`, `npm run build`, `tools/place-shortcuts-check.mjs`, `tools/places-browser-check.mjs`, `tools/place-picker-check.mjs` samt bilder i [docs/verification/212/](verification/212/README.md).

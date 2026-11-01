@@ -39,12 +39,12 @@ const locations = {
 };
 
 // Destinations removed from the menu, mapped to their replacement for a resumed older view.
-// #211: four outdoor viewpoints (menu items 9-12). x/z/yaw are *guess*es chosen by eye in the walkable area; the feet height is the terrain
+// #211: four outdoor viewpoints (menu items 9-12; #212 moved Nordic Wellness to the new gym position). x/z/yaw are *guess*es chosen by eye in the walkable area; the feet height is the terrain
 // under them (as for the paddock), deckY for the bridge. yaw: 0 looks north (-z), PI south, +PI/2 west.
 const VIEWPOINTS = {
   park42: {name: 'Parken · Sankt Lars väg 42', x: -78, z: 330, yaw: 3.0},
   clocktower: {name: 'Klocktornet', x: 48, z: -163, yaw: 3.06, pitch: .2}, // the tower (x 45.3) from the lawn; a bit back so it fits and clear of the lamp post
-  nordic: {name: 'Nordic Wellness', x: 18, z: -35, yaw: .75, pitch: .1}, // SE corner: the glass corner and the long brick side
+  nordic: {name: 'Nordic Wellness', x: -226, z: -197, yaw: -.62, pitch: .12}, // #212: the gym stands at Sankt Lars väg 90-92 (x -231...-176, z -246...-227, outside WALK, z >= -200); from the walk edge, SW of it, the long brick side and the SE glass corner
   carbridge: {name: 'Bilbron · Höje å', x: 18.5, y: SITE.bridges.deckY, z: 123, yaw: Math.PI / 2, pitch: -.1},
 };
 

@@ -117,5 +117,6 @@
    "wheelchair": "yes",
    "wikidata": "Q89192443"
   }
- }
+ },
+ "correction_2026-11-01": "#212 (original #1756, commit 7b901876, the user's report): the conclusion in `result` is WRONG. OSM way 88457612 (Sankt Lars väg 3) really is the old NTI school and was restored. Nordic Wellness S:t Lars Sportcenter is at Sankt Lars väg 90-92 (1177: Sankt Lars väg 90 = 55.68789 N, 13.18222 E), in the northern part of S:t Larsparken. geoToPlan(13.18222, 55.68789) = model (-203.8, -237.0), outside WALK (z >= -200). No footprint source was reachable, so the ~55 x 19 m box is a *guess* (record guess-1756). The way_88457612 data below is the school's outline."
 }
