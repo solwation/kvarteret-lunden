@@ -2437,3 +2437,10 @@ Importerad från `b7b3e82e78ab1632616a5638968a2304a5b744ed` (original #1762, rä
 Teleportplatsen Nordic Wellness flyttades till x -140, z -197 (gångytans norra kant, gångstråk, `yaw 0,31`, `pitch 0,1`, markhöjd 4,96 från `groundY`/`renderedTerrainY`); gymmet ligger cirka 100 m rakt norrut, sidan mot vägen, glashörnet och lågdelen i bild.
 
 Verifiering: `npm test`, `npm run build` och Chromium-bilder i [docs/verification/213/](verification/213/README.md).
+
+
+## Plankskärmar på uteplatserna, #214
+
+Överförd från `925ee9928c0ad503d06e5623390504d28297f869` (original #1786): ny `src/screenwall.js`, `SCREEN_WALL` i `src/config.js`, grannarnas uteplatsväggar och takterrassernas skärmar i `src/exterior.js` (`screenWallParts` slås ihop i befintligt stängselparti) samt `M.fence` med brädtextur och L1007:s egna två väggar i `src/world.js`. Tjocklek, kollision och mått är oförändrade, inga nya material eller draw calls; alla värden *guess*. Originalets ändringslogg och miljödokument finns inte här. Texturens slumpfrö är `214`.
+
+Verifiering: `npm test`, `npm run build` och före/efter-bilder med samma antal draw calls: [docs/verification/214/](verification/214/README.md).

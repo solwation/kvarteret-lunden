@@ -21,6 +21,7 @@ import { buildCourtyard } from './courtyard.js';
 import { grassMaterial } from './grass.js';
 import { pavingTexture } from './patio.js';
 import { patioHedgeMaterial } from './patiohedge.js';
+import { screenWallParts, screenWallTexture } from './screenwall.js';
 import { mirrorLamps, buildInterior, buildElCabinet } from './interior.js';
 import { Toilet } from './toilet.js';
 import { RoomMap } from './rooms.js';
@@ -102,7 +103,7 @@ const M = {
   grass: grassMaterial(),
   patio: mat(0xffffff, { map: pavingTexture(), roughness: 0.95 }), // slab paving (PATIO.paving)
   hedge: patioHedgeMaterial(),
-  fence: mat(COLORS.fence, { roughness: 0.9 }),
+  fence: mat(0xffffff, { map: screenWallTexture(), roughness: 0.85 }), // #214: boards in a cream frame (SCREEN_WALL)
 };
 // Peab's standard finish for the visitable flats (#574, STANDARD): its own parquet and limestone window boards; walls,
 // ceilings, doors, frames, glass and the stair's white parts are the same white as ours
@@ -1053,7 +1054,9 @@ function* worldParts(plan) {
   }
   for (const f of site.fences ?? []) {
     const [ax, az] = f.a, [bx, bz] = f.b;
-    scene.add(box(ax - 0.025, bx + 0.025, Math.min(az, bz), Math.max(az, bz), 0, FENCE_HEIGHT, M.fence));
+    const wall = new THREE.Mesh(mergeGeometries(screenWallParts(ax - 0.025, bx + 0.025, 0, FENCE_HEIGHT, Math.min(az, bz), Math.max(az, bz))), M.fence);
+    wall.castShadow = wall.receiveShadow = true; // #214: boards + end posts, still one mesh per wall
+    scene.add(wall);
     outdoor.push([ax, az, bx, bz]);
   }
   // Hus L: brick façades, the neighbouring units, the stacked units above and the loftgång
