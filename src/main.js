@@ -44,7 +44,7 @@ const locations = {
 const VIEWPOINTS = {
   park42: {name: 'Parken · Sankt Lars väg 42', x: -78, z: 330, yaw: 3.0},
   clocktower: {name: 'Klocktornet', x: 48, z: -163, yaw: 3.06, pitch: .2}, // the tower (x 45.3) from the lawn; a bit back so it fits and clear of the lamp post
-  nordic: {name: 'Nordic Wellness', x: -226, z: -197, yaw: -.62, pitch: .12}, // #212: the gym stands at Sankt Lars väg 90-92 (x -231...-176, z -246...-227, outside WALK, z >= -200); from the walk edge, SW of it, the long brick side and the SE glass corner
+  nordic: {name: 'Nordic Wellness', x: -140, z: -197, yaw: .31, pitch: .1}, // #213: the gym (OSM 1136415461, x -207...-160, z -367...-294, 95+ m beyond WALK's north edge z -200) seen from the walk edge SE of it; the short road-side face, the long park face and the glass corner
   carbridge: {name: 'Bilbron · Höje å', x: 18.5, y: SITE.bridges.deckY, z: 123, yaw: Math.PI / 2, pitch: -.1},
 };
 

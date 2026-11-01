@@ -2428,3 +2428,12 @@ Importerad från `7b901876ec00857b6132578a47796db75667593e` (original #1756, rä
 Teleportplatsen Nordic Wellness (#211) flyttades till x -226, z -197 (gångytans norra kant, `yaw -0,62`, `pitch 0,12`) med sidan och glashörnet i bild; punkten valdes där stödhöjden stämmer med `groundY`/`renderedTerrainY`.
 
 Verifiering: `npm test`, `npm run build`, `tools/place-shortcuts-check.mjs`, `tools/places-browser-check.mjs`, `tools/place-picker-check.mjs` samt bilder i [docs/verification/212/](verification/212/README.md).
+
+
+## Nordic Wellness flyttas öster om Sankt Lars väg, #213
+
+Importerad från `b7b3e82e78ab1632616a5638968a2304a5b744ed` (original #1762, rättelse av #1756/#212): gymposten är nu `guess-1762` (ersätter `guess-1756`) på OSM-väg `1136415461`, öster om Sankt Lars väg mellan vägen och Skånevägen: ytterrektangeln 68,8 x 36,7 m, vriden 8,7 grader, plan x -206,7...-160,0, z -367,5...-294,0, alltså norr om gångytan (z >= -200). `src/nordicgym.js` bygger nu i fotavtryckets eget led och vrider det på plats. Referens-JSON:en fick `correction_2026-11-01_1762`, Overpass-frågan och vägens geometri; #212:s egen rättelsetext behölls. Originalets bilder, `tools/eastbackdroptest.html` och ändringslogg finns inte här.
+
+Teleportplatsen Nordic Wellness flyttades till x -140, z -197 (gångytans norra kant, gångstråk, `yaw 0,31`, `pitch 0,1`, markhöjd 4,96 från `groundY`/`renderedTerrainY`); gymmet ligger cirka 100 m rakt norrut, sidan mot vägen, glashörnet och lågdelen i bild.
+
+Verifiering: `npm test`, `npm run build` och Chromium-bilder i [docs/verification/213/](verification/213/README.md).
