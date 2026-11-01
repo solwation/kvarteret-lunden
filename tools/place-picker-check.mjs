@@ -3,10 +3,10 @@ import {mkdir, writeFile} from 'node:fs/promises';
 import {chromium} from 'playwright';
 
 // Run against the built, served app; no mocked world, navigation or picker handlers.
-// CHROME_PATH=/path/to/chrome node tools/place-picker-check.mjs http://localhost:8170 /tmp/kvarteret-picker-8-button
+// CHROME_PATH=/path/to/chrome node tools/place-picker-check.mjs http://localhost:8170 /tmp/kvarteret-picker-12-button
 const base = (process.argv[2] ?? 'http://localhost:8170').replace(/\/$/, '') + '/';
-const out = process.argv[3] ?? '/tmp/kvarteret-picker-8-button';
-const ids = ['area', 'home', 'l1004', 'l1201', 'courtyard', 'core', 'garage', 'paddock'];
+const out = process.argv[3] ?? '/tmp/kvarteret-picker-12-button';
+const ids = ['area', 'home', 'l1004', 'l1201', 'courtyard', 'core', 'garage', 'paddock', 'park42', 'clocktower', 'nordic', 'carbridge'];
 // A fresh isolated browser context seeds only this app's own one-use resume key.
 const resumeKey = 'kvarteret-lunden.update-resume';
 const report = {base, checks: [], errors: [], external: []};
@@ -43,10 +43,10 @@ async function openApp(options, resume) {
   assert.equal(await toggle.getAttribute('aria-controls'), 'place-menu');
   assert.equal(await toggle.isEnabled(), true);
   assert.equal(await page.locator('nav.locations div#place-menu.place-buttons').count(), 1);
-  assert.equal(await page.locator('#place-menu [data-place]').count(), 8);
+  assert.equal(await page.locator('#place-menu [data-place]').count(), 12);
   assert.equal(await page.locator('[role="menu"], [role="menuitem"]').count(), 0, 'ordinary disclosure buttons');
   assert.deepEqual(await page.locator('[data-place]').evaluateAll(bs => bs.map(b => b.textContent.trim()[0])),
-    ['1', '2', '3', '4', '5', '6', '7', '8']);
+    ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'N', 'B']);
   await disclosure(page, false, 'startup');
   return {context, page, toggle};
 }
@@ -64,7 +64,7 @@ async function destination(page, id, label) {
   const actual = await state(page);
   const expected = await page.evaluate(id => {
     const p = window.lundenViewer.locations[id];
-    const label = document.querySelector(`[data-place="${id}"]`).textContent.trim().replace(/^[1-8]\s*·\s*/, '');
+    const label = document.querySelector(`[data-place="${id}"]`).textContent.trim().replace(/^[0-9]\s*·\s*/, '');
     return {position: [p.x, p.y, p.z], name: p.name, label};
   }, id);
   assert.deepEqual(actual.position, expected.position, `${label}: actual navigation.pos for ${id}`);
@@ -117,7 +117,7 @@ async function layout(page, width, height, label) {
       assert(bounds.toggleWidth >= 90 && bounds.toggleWidth <= 140, `${label}: Området about 110px`);
   } else {
     const rows = await page.locator('[data-place]').evaluateAll(bs => bs.map(b => b.getBoundingClientRect().top));
-    assert(Math.max(...rows) - Math.min(...rows) <= 1, `${label}: desktop buttons in one row`);
+    assert(new Set(rows.map(top => Math.round(top))).size <= 2, `${label}: desktop buttons in at most two rows (#211)`);
   }
   report.checks.push({label, bounds});
 }
@@ -241,7 +241,7 @@ try {
   await d.keyboard.press('Space');
   await destination(d, 'home', 'keyboard Space chooses');
   await desktop.toggle.focus();
-  for (const [key, id] of [['ArrowUp', 'paddock'], ['Home', 'area'], ['End', 'paddock'], ['ArrowDown', 'area']]) {
+  for (const [key, id] of [['ArrowUp', 'carbridge'], ['Home', 'area'], ['End', 'carbridge'], ['ArrowDown', 'area']]) {
     await d.keyboard.press(key);
     await disclosure(d, true, `${key} opens or keeps menu`);
     assert.equal(await d.evaluate(() => document.activeElement.dataset.place), id, `${key}: button focus`);
@@ -276,21 +276,21 @@ try {
   await screenshot(d, 'desktop-650-keyboard-after');
 
   for (const prefix of ['Digit', 'Numpad']) {
-    for (const [index, id] of ids.entries()) {
+    for (const [index, id] of ids.slice(0, 10).entries()) { // keys 1-9 and 0; the last two places are menu-only
       await openMenu(d);
-      await d.keyboard.press(`${prefix}${index + 1}`);
+      await d.keyboard.press(`${prefix}${(index + 1) % 10}`);
       await destination(d, id, `${prefix} closes open menu`);
     }
   }
   await layout(d, 1280, 800, 'resize back to desktop');
-  await destination(d, 'paddock', 'resize back preserves selection');
+  await destination(d, 'clocktower', 'resize back preserves selection');
   await screenshot(d, 'desktop-resized-after');
   await desktop.context.close();
   assert.deepEqual(report.errors, [], 'no app exceptions');
   assert.deepEqual(report.external, [], 'no external requests');
   assert.equal((await (await fetch(new URL('version.json', base))).json()).version, report.version, 'build unchanged throughout check');
   report.pass = true;
-  console.log(`PASS: button disclosure, eight actual destinations, touch 390/320/landscape, 650/960/961/1280, Tab/Enter/Space/Escape/outside, resize, Digit/Numpad and takeResume; ${out}`);
+  console.log(`PASS: button disclosure, twelve actual destinations, touch 390/320/landscape, 650/960/961/1280, Tab/Enter/Space/Escape/outside, resize, Digit/Numpad and takeResume; ${out}`);
 } catch (error) {
   report.pass = false;
   report.failure = error.stack;

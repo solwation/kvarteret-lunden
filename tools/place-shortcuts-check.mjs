@@ -30,7 +30,7 @@ try {
           document.querySelector('dialog').close();
           window.ready = window.active = true;
           window.calls = [];
-          const names = ['area', 'home', 'courtyard', 'core', 'garage', 'l1004', 'upper', 'extra8', 'extra9', 'extra10'];
+          const names = ['area', 'home', 'courtyard', 'core', 'garage', 'l1004', 'upper', 'extra8', 'extra9', 'extra10', 'extra11'];
           document.getElementById('menu').replaceChildren(...names.slice(0, count).map(name => {
             const button = document.createElement('button');
             button.dataset.place = name;
@@ -57,18 +57,19 @@ try {
   await page.goto('http://shortcuts.test/fixture.html');
   await page.waitForFunction(() => typeof window.setup === 'function');
 
-  const names = ['area', 'home', 'courtyard', 'core', 'garage', 'l1004', 'upper', 'extra8', 'extra9'];
-  for (const count of [5, 6, 7, 9]) {
+  const names = ['area', 'home', 'courtyard', 'core', 'garage', 'l1004', 'upper', 'extra8', 'extra9', 'extra10'];
+  const key = i => String(i % 10); // the tenth place is on key 0
+  for (const count of [5, 6, 7, 9, 10]) {
     await page.evaluate(count => window.setup(count), count);
     assert.deepEqual(await page.locator('[data-place]').evaluateAll(buttons => buttons.map(b => ({
       place: b.dataset.place, text: b.textContent, shortcut: b.getAttribute('aria-keyshortcuts'), title: b.title,
       childPreserved: b.querySelector('span') !== null,
     }))), names.slice(0, count).map((name, i) => ({
-      place: name, text: `${i + 1} · ${name}`, shortcut: String(i + 1),
-      title: `${name} – tangent ${i + 1} (sifferraden eller numeriska tangentbordet)`, childPreserved: true,
+      place: name, text: `${key(i + 1)} · ${name}`, shortcut: key(i + 1),
+      title: `${name} – tangent ${key(i + 1)} (sifferraden eller numeriska tangentbordet)`, childPreserved: true,
     })));
-    for (let i = 1; i <= count; i++) await page.keyboard.press(`Digit${i}`);
-    for (let i = 1; i <= count; i++) await page.keyboard.press(`Numpad${i}`);
+    for (let i = 1; i <= count; i++) await page.keyboard.press(`Digit${key(i)}`);
+    for (let i = 1; i <= count; i++) await page.keyboard.press(`Numpad${key(i)}`);
     assert.deepEqual(await page.evaluate(() => window.calls), [...names.slice(0, count), ...names.slice(0, count)]);
     results.push(`${count} places: menu order, visible numbers, aria-keyshortcuts, titles, Digit and Numpad callbacks`);
   }
@@ -124,16 +125,18 @@ try {
   assert.deepEqual(await page.evaluate(() => window.send({}, '[data-place]')), {prevented: true, calls: []});
   await page.evaluate(() => window.dispose());
   await ignored({code: 'Digit7', key: '7'});
-  await page.evaluate(() => window.setup(10));
-  assert.equal(await page.locator('[data-place]').nth(9).textContent(), 'extra10');
-  assert.equal(await page.locator('[data-place]').nth(9).getAttribute('aria-keyshortcuts'), null);
+  await page.evaluate(() => window.setup(11));
+  assert.equal(await page.locator('[data-place]').nth(9).textContent(), '0 · extra10');
+  assert.equal(await page.locator('[data-place]').nth(9).getAttribute('aria-keyshortcuts'), '0');
+  assert.equal(await page.locator('[data-place]').nth(10).textContent(), 'extra11');
+  assert.equal(await page.locator('[data-place]').nth(10).getAttribute('aria-keyshortcuts'), null);
   await page.evaluate(() => {
     window.dispose();
     document.getElementById('menu').replaceChildren();
     window.setup(0);
   });
   await ignored();
-  results.push('valid navigation prevents default; disabled/detached buttons, prehandled events, cleanup, empty menu and nine-key limit');
+  results.push('valid navigation prevents default; disabled/detached buttons, prehandled events, cleanup, empty menu and ten-key limit');
   assert.deepEqual(errors, []);
   console.log(JSON.stringify({browser: await browser.version(), results, errors}, null, 2));
 } finally {

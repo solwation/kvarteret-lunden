@@ -39,6 +39,15 @@ const locations = {
 };
 
 // Destinations removed from the menu, mapped to their replacement for a resumed older view.
+// #211: four outdoor viewpoints (menu items 9-12). x/z/yaw are *guess*es chosen by eye in the walkable area; the feet height is the terrain
+// under them (as for the paddock), deckY for the bridge. yaw: 0 looks north (-z), PI south, +PI/2 west.
+const VIEWPOINTS = {
+  park42: {name: 'Parken · Sankt Lars väg 42', x: -78, z: 330, yaw: 3.0},
+  clocktower: {name: 'Klocktornet', x: 48, z: -163, yaw: 3.06, pitch: .2}, // the tower (x 45.3) from the lawn; a bit back so it fits and clear of the lamp post
+  nordic: {name: 'Nordic Wellness', x: 18, z: -35, yaw: .75, pitch: .1}, // SE corner: the glass corner and the long brick side
+  carbridge: {name: 'Bilbron · Höje å', x: 18.5, y: SITE.bridges.deckY, z: 123, yaw: Math.PI / 2, pitch: -.1},
+};
+
 const LEGACY_PLACES = {l1202: 'l1201'};
 
 function status(text) { $('load-status').textContent = text; }
@@ -60,7 +69,7 @@ function moveTo(name) {
   if (!p || !navigation) return;
   navigation.keys.clear(); navigation.analog.x = navigation.analog.y = 0;
   navigation.teleport(p.x, p.y, p.z);
-  camera.rotation.set(0, p.yaw, 0, 'YXZ');
+  camera.rotation.set(p.pitch ?? 0, p.yaw, 0, 'YXZ');
   if (name === 'paddock') paddock?.greet(p.x, p.z, p.yaw); // #88: the ponies come to the fence in front of the visitor
   $('place').textContent = p.name;
   const label = placeLabels.get(name) ?? p.name;
@@ -187,6 +196,7 @@ async function init() {
   // looking south-east past the hall towards the kitchen.
   const l1201 = world.units.find(unit => unit.id === 'L1201');
   if (l1201) locations.l1201 = {name:'L1201 · Entréplan', x:l1201.ox + 1.5, y:l1201.bottom, z:l1201.oz + 1.0, yaw:Math.PI + .6};
+  for (const [id, v] of Object.entries(VIEWPOINTS)) locations[id] = {...v, y: v.y ?? Math.max(groundY(v.x, v.z), renderedTerrainY(v.x, v.z))};
   locations.paddock = {name:'Hästhagen', x:visitSpot.x, y:Math.max(groundY(visitSpot.x, visitSpot.z), renderedTerrainY(visitSpot.x, visitSpot.z)), z:visitSpot.z, yaw:visitSpot.yaw}; // outside the gate, looking in (#83)
   navigation = new Navigation(world, camera);
   moveTo('area');
