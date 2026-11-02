@@ -2788,3 +2788,12 @@ Port av originalets #1737 (`60d560e1`): `src/schoolyard.js` ritar oval gräsmatt
 ## Klockhusets torn fritt från taket och öppen gård i byggnad 88, #209
 
 Port av originalets #1743 (`8f41bd54`) och #1744 (`95e5b176`). Ingen motsvarighet till originalets `tools/eastbackdroptest.html` finns, så en tillfällig Chromium-kontroll (SwiftShader, inte committad) lästes ur `lundenViewer.scene`: glasstrålar västerut från gården (x 43,5, z −58) på höjd 10–13 m träffade glas vid x 36,1 före och ingenting efter; taket (`east-schoolRoof`) vid x 35,8 gick från 14,5 till 10,3 m. Bilder (1280x800): Klockhusets torn söderifrån uppifrån [före](verification/209/fore-syd.png) / [efter](verification/209/efter-syd.png) (södra urtavlan sjönk före ner i takfallet bakom nocken), byggnad 88 [före](verification/209/fore-b88.png) / [efter](verification/209/efter-b88.png). Inga sidfel; `npm test` och `npm run build` gröna.
+
+
+## Orkesterkärna v0.7.1, #229
+
+Den officiella generiska kärnan `94c81f236bf892e979ecf1b20ede9d12885cc3d2` importeras exakt via squashad subtree med
+bevarad merge-historik. Kontroll: identisk subtree-tree, paketets relativa länkar och ankare, riktade värdpolicy-länkar,
+bevarade offentliga innehålls-/lagrings-/nätverksregler och timers samt `git diff --check`, `npm test` och `npm run build`.
+Endast instruktionstext och proveniens ändras; appen är oförändrad och har inget meningsfullt visuellt resultat att fånga.
+Ingen ny browserkörning, bild eller spelarändringslogg behövs. Publicerad revision och verklig Pages-status anges i #229.
