@@ -182,9 +182,15 @@ These follow [COORDINATION.md](shared/COORDINATION.md), not the phase hooks.
 
 ## Shared version and maintenance
 
-Shared release: **v0.7.0**, commit **2bd00217aa1704134c6e2a3d5c9614c6b7fdbfbe**. Imported as a squashed subtree
-at `.orchestra/shared`; upgraded from v0.6.1 in #208, matching original
-[#1740](https://github.com/solwation/lunden-3d-apartment/issues/1740). See [installation](shared/INSTALL.md) and [contribution](shared/CONTRIBUTING.md) instructions.
+Shared release: **v0.7.1**, commit **94c81f236bf892e979ecf1b20ede9d12885cc3d2**. Imported directly from the official release
+as a squashed subtree at `.orchestra/shared` in [#229](https://github.com/solwation/kvarteret-lunden/issues/229), matching
+[original #1816](https://github.com/solwation/lunden-3d-apartment/issues/1816). The earlier v0.7.0 import from v0.6.1 remains recorded
+in #208 and original #1740. No original application code, assets or history are imported.
+
+v0.7.1 clarifies visual follow-up. Required host/user evidence and publication-before-closure gates remain authoritative;
+a generic unsupported-capture note does not waive a required host gate. Public content, storage and network boundaries,
+repository rank, priority ceilings, ownership and queue/heartbeat/idle timers are unchanged.
+See [installation](shared/INSTALL.md) and [contribution](shared/CONTRIBUTING.md) instructions.
 Improve the core in its own clean repository, release it, then explicitly update both
 Lunden pins. Keep this local policy outside the subtree; do not export project history.
 

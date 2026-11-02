@@ -2534,3 +2534,22 @@ Importerad från `d177f330ec234ee64e198a4f5afff220516176f7` (original #1807): `s
 Originalets ändringslogg, miljö- och prestandadokument samt Nerf/huvudträffsposter ingår inte. Originalets desktopbudget i `tools/eastbackdroptest.html` (84 700 till 87 800) finns inte här; inget motsvarande desktoptak finns i `tools/`, och telefonbudgeten `CAMPUS_LOD.maxTris` är orörd eftersom telefoner inte får något nytt.
 
 Verifiering: `npm test` grön; före/efter-bilder i [docs/verification/227/](verification/227/README.md). Ritanrop oförändrade, +1 830 trianglar per vy på desktop, 0 på telefon (`?lowmem`).
+
+
+## Orkesterkärna v0.7.1, #229
+
+Direktimport av den officiella releasen `solwation/dirigenten-och-orkestern` v0.7.1,
+`94c81f236bf892e979ecf1b20ede9d12885cc3d2`, via granskad squashad subtree från v0.7.0
+(`2bd00217aa1704134c6e2a3d5c9614c6b7fdbfbe`). Hela paketträdet är identiskt med den fastställda releasen;
+merge-historik och git-subtree-trailers bevaras. Original #1816 är en parallell uppdatering av samma generiska källa,
+inte en import av originalets apphistorik.
+
+Sex generiska dokument ändras: bildbevis i slutkommentarer för UI/UX, styling och 2D/3D-rendering förtydligas,
+och installationsexemplen använder v0.7.1. `.orchestra/project.md` uppdaterar pin/proveniens och behåller publicens
+obligatoriska test/build/Pages-krav, innehålls-/lagrings-/nätverksgränser, repoordning, prioritet, ägarskap och timers.
+En generell text om otillgänglig bildfångst upphäver inte en obligatorisk värd-/användargrind.
+Ingen appkod, personlig resurs, originalbild, spelmekanik, lagring eller tjänst importeras.
+
+Verifiering: exakt subtree-tree, paketets relativa länkar, riktade länkar/ankare i värdpolicyn, dokumentdiff/motsägelser,
+`npm test` och `npm run build`. Detta är instruktionstext utan meningsfullt visuellt appresultat; ingen browser eller bild
+krävs. Dirigenten länkar publicerad revision och faktisk Pages-körning i #229 före stängning.
