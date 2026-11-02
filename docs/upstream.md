@@ -2503,3 +2503,10 @@ Importerad från `cf116e2082c96214422e0879dc63725689cedcfc` (original #1798) och
 - Alla färger, våningshöjder och takformer är *guess* från originalets visuella granskning. Originalets ändringslogg och miljödokument ingår inte (finns inte här); träden som döljer markytorna ovanifrån (#1804) är en egen portning.
 
 Verifiering: `npm test`, `node tools/edgebackdroptest.mjs`; före/efter-bilder, ritanrop och trianglar i [docs/verification/223/](verification/223/README.md).
+
+## Klippta häckar längs sjukhusparkeringarna söder om ån, #225
+
+Importerad från `00add7eadb7a523426afea00ae389dc2a9d68240` (original #1805): `SITE.south.yard` i `src/config.js` (33 häckboxar, 1,0 x 0,8 m, en långsida vid vardera OSM-parkeringen 145221619, 145221626, 145221628 och 145221629) och en rad i `src/southbackdrop.js` som ritar dem med `schoolyardParts` (#222) i södra fondens `land`-batch. Parkeringskonturerna är identiska med originalets, så häcklinjerna är oförändrade. Telefoner (`lowMemory`) hoppar över dem. Alla mått och färgen är *guess*. Originalets ändringslogg, miljö- och prestandadokument och `tools/southbackdroptest.html` ingår inte (nedströms finns inget sådant test).
+
+Verifiering: `npm test` grön; före/efter-bilder i [docs/verification/225/](verification/225/README.md). Ritanrop oförändrade, +396 trianglar per vy på desktop, 0 på telefon (`?lowmem`).
+

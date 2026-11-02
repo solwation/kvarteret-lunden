@@ -942,6 +942,16 @@ export const SITE = {
       // #148: complete mapped service way; asphalt/4.5 m are guesses. The mapped outer end now joins the completed 95036048 ring (#152).
       {"source":"145221612","highway":"service","surface":"asphalt","surfaceSource":"guess","widthSource":"guess","path":[[-68.60,417.65],[-74.73,422.08],[-97.60,388.93],[-108.93,372.45],[-127.61,345.26],[-134.70,334.97]],"w":4.5,"terrain":"triangles"},
     ],
+    // Public #225 (original #1805): clipped hedges along one long edge of four hospital car parks. Reuses the #1737 `yard` mechanism (hedge boxes only,
+    // src/schoolyard.js) in the south `land` batch: no draw call. Each path runs 1 m outside the NW edge of the OSM car park named in the comment (the
+    // polygons are identical to the original's). Lengths, height and colour are a *guess*; phones (`lowMemory`) skip them. Visual only, no collision.
+    yard: { lawns: [], sand: [], play: [], lift: { sand: 0.05, lawn: 0.08 }, colors: { hedge: 0x3b5828 },
+      hedge: { h: 1.0, w: 0.8, piece: 8, sink: 0.3, paths: [
+        [[-19.9, 258], [26.7, 225.1]],     // 145221619, NW edge
+        [[67.5, 381], [106, 353.6]],       // 145221626, NW edge
+        [[-125.4, 332.8], [-61.8, 287.2]], // 145221628, NW edge
+        [[-14.4, 383.2], [39.3, 345.1]],   // 145221629, NW edge
+      ] } },
     parking: [
       {"source":"145221619","surface":"asphalt","surfaceSource":"guess","capacitySource":"absent in official OSM; geometry-based layout guess","layout":"double-row","layoutEdge":[0,1],"aisleW":6,"reservedRoad":"public-legacy-parking-crossing","otherReservedRoads":["public-legacy-west-parking-crossing","public-legacy-service-curve"],"civilRoad":"30633546","civilStage":3,"protectBuildings":true,"protectBank":true,"protectApron":"88457592","otherAprons":["145221569"],"civilAnchors":{"reference":[10,248,1.26],"baselineEntry":true,"apronVertex":2},"polygon":[[-19.37,258.81],[27.25,225.93],[37.02,239.75],[-9.59,272.63]]},
       {"source":"850235113","surface":"asphalt","surfaceSource":"guess","capacity":3,"capacitySource":"guess","civilRoad":"850235115","civilStage":4,"layout":"concave-row","layoutEdge":[0,1],"bayCount":3,"layoutInset":0.1,"gradeRow":true,"transition":4,"protectBuildings":true,"provenance":"OSM v2 exact concave contour; three whole bays, inset/outer civil transition and asphalt are guesses; unmarked court retains boundary and house levels","polygon":[[63.78,234.37],[53.36,220.22],[64.7,211.13],[77.05,225.2],[73.03,228.14],[74.46,230.92],[79.33,227.41],[92.14,245.05],[87.29,248.5],[86.43,247.22],[76.91,253.56],[68.67,242.1],[72.64,239.41],[69,230.78]]},
