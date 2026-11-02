@@ -2621,3 +2621,27 @@ vid dirigentens integration, utan en ny bred browserrunda.
 Verifiering: riktade gränskontrakt, faktisk före/efter-promenad med terrängtäckning längs
 hela gånggränsen, bibehållet nät-/lagringsskydd, `npm test` och `npm run build`.
 [Egna granskade nådd-platsbilder och mätvärden](verification/232/README.md).
+
+
+## Skolgräsets material och årstider, #233
+
+Exakt granskad originalkälla: `0519f127e9ec6574bdf9226c17aa0e2f244b8c2c` (original #1813).
+Selektivt överförda delar är endast lawn-markeringen i `src/schoolyard.js`, import av
+`grassUV`/`grassMaterial` samt extraktion till `parts.lawn` och dess icke-kastande
+skuggflagga i `src/sitebackdrop.js`. Kommentaren om batcherna är anpassad till resultatet.
+Publicens statiska gungsitsar är kvar; ingen OutdoorSeats/input/Rest- eller spelkod,
+personlig resurs, originalbild, tjänst, lagring eller git-historik har importerats.
+
+De fem aktuella lawn-posterna (tre basytor, två desktopdetaljer) behåller exakt sina
+kartpolygoner, höjder, lyft och trianglar. Sand, lek-/sportytor, häckar och åtta statiska
+gungsitsar är oförändrade. Befintlig grästextur och shader används med world-metre UV;
+djupbias följer befintlig access-yta, gräset tar emot men kastar inte skuggor. En enda
+ny sammanhållen `east-lawn`-batch, inget nytt ljus eller textur. Färg och delad map följer
+exakt terrängens standardgräs i sommar, höst, snö och tillbaka till sommar.
+
+Verifiering: `tools/schoolgrass-check.mjs` prövar faktiskt emitterade positioner/normaler
+(51 798 vertexar totalt, samma hash före/efter; lawn5 385), icke-lawn-geometri, polygoner,
+statiska sitsar, material/UV/skuggflagga och säsongsåtergång. Egna skolöversikter från
+samma kamera i juni och november visar färgändringen; oförändrade trianglar och ett
+extra ritanrop. `npm test`/`npm run build` samt faktisk nät-/lagringsisolering är gröna.
+[Egna bilder, exakta kommandon och råresultat](verification/233/README.md).

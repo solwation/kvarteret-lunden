@@ -2844,3 +2844,22 @@ kontrolleras. Kör med orkesterns browserwrapper, fem minuters gräns och delat 
 Exakta källor, kommandon och egna bilder: [docs/verification/232](verification/232/README.md).
 Ingen fysisk mobil eller privat Player-kod används. Obligatoriska `npm test`/`npm run build`
 ska vara gröna; root kör dessutom #230:s snabba vägkontrakt på kombinerad integrationskod.
+
+
+## Skolgräs och årstider, #233
+
+`node tools/schoolgrass-check.mjs BASE OUT before|after` bygger den riktiga publika
+scenen och jämför hash för samtliga positioner/normaler i skolans access+lawn, draperade
+polygoner/lyft och övrig skolgeometri inklusive åtta statiska gungsitsar. Fem lawns
+får samma shader, world-metre UV, materialfärg och delade map som standardterrängen
+vid sommar→höst→snö→sommar; mottagna men inga kastade skuggor kontrolleras också.
+
+Samma översikt fångas i juni och november från (195,126.62,15), yaw40°, pitch−38°.
+Före-läget laddar endast schoolyard/sitebackdrop från exakt publik bas
+`9e27bbb30ca5422ffe293dcc41b6a22bc5b55bf9`; SCHOOL_GRASS_BASE kan sättas för en annan
+uttryckligen granskad bas. Det återställer aldrig arbetskopians produktfiler. Efter
+viewportbyte väntar harnesset två rAF innan manuell rendering så första bilden inte
+fångas efter en tömd resize-buffer. Testet kräver inga externa anrop, inga sidfel och
+oförändrade original-lagringsmarkörer. Kör genom orkesterns browserwrapper med delat
+lås och fem minuters gräns. `npm test` och `npm run build` krävs. [Egna granskade bilder
+och råresultat](verification/233/README.md); Chromium/SwiftShader, ingen fysisk telefon.

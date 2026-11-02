@@ -8,6 +8,8 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+Skolornas gräsmattor använder samma gräsdetalj, höstfärg och snö som den omgivande marken (#233).
+
 Vägar och gångstråk i utkanten fortsätter bort i dimman; vägarnas kartlagda geometri och gånggränser är bevarade (#230).
 
 Promenadytan i väster når 25 meter längre ut på befintlig mark, med byggnads- och vattenskydd kvar (#232).

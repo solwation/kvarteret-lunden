@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { lowMemory } from './lowmemory.js';
 // #1737: Sankt Thomas skolgård's playground (an access record's `yard`, src/config.js): an oval lawn, play-sand patches, clipped hedges
-// along the edges and a few simple wooden play frames, all merged into the backdrop's vertex-coloured `access` batch (no draw call).
+// along the edges and a few simple wooden play frames in the backdrop batches; lawns share seasonal grass (#233).
 // `drape(polygon, lift)` is sitebackdrop.js's terrain-following flat polygon; boxes stand on the ground at their middle. Visual only: no collision.
 const box=(w,h,d,x,y,z,yaw,tint,tiltX=0,tiltZ=0)=>{const g=new THREE.BoxGeometry(w,h,d).toNonIndexed();g.deleteAttribute('uv');if(tiltX)g.rotateX(tiltX);if(tiltZ)g.rotateZ(tiltZ);g.rotateY(yaw).translate(x,y,z);g.userData.tint=tint;return g;};
 // #1807: a record's optional `detail` ({sand,pads,lawns,hedge,play}, same shapes, hedge `color` may name another colour such as the fence) is drawn on top of the base yard and
@@ -17,7 +17,8 @@ function yardBody(Y,ground,drape){
  for(const s of Y.pads??[])push(drape(s,Y.lift.sand+.01),C.pad); // #1807: a coloured play surface
  for(const l of Y.lawns){const[cx,cz]=l.centre,[a,b]=l.radii,t=l.angle*Math.PI/180,poly=[];
   for(let i=0;i<l.n;i++){const u=i/l.n*2*Math.PI,x=a*Math.cos(u),z=b*Math.sin(u);poly.push([cx+x*Math.cos(t)-z*Math.sin(t),cz+x*Math.sin(t)+z*Math.cos(t)]);}
-  push(drape(poly,Y.lift.lawn),C.lawn);}
+  const lawn=drape(poly,Y.lift.lawn);if(lawn)lawn.userData.schoolLawn=true;
+  push(lawn,C.lawn);}
  const H=Y.hedge;for(const path of H.paths)for(let i=0;i+1<path.length;i++){ // pieces no longer than H.piece m, each level on its own ground and sunk H.sink so a slope leaves no gap
   const[a0,b0]=path[i],[a1,b1]=path[i+1],len=Math.hypot(a1-a0,b1-b0),n=Math.max(1,Math.ceil(len/H.piece)),yaw=Math.atan2(-(b1-b0),a1-a0);
   for(let k=0;k<n;k++){const x=a0+(a1-a0)*(k+.5)/n,z=b0+(b1-b0)*(k+.5)/n,y0=Math.min(ground(a0+(a1-a0)*k/n,b0+(b1-b0)*k/n),ground(a0+(a1-a0)*(k+1)/n,b0+(b1-b0)*(k+1)/n))-H.sink,top=ground(x,z)+H.h;
