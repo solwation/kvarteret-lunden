@@ -2510,3 +2510,9 @@ Importerad från `00add7eadb7a523426afea00ae389dc2a9d68240` (original #1805): `S
 
 Verifiering: `npm test` grön; före/efter-bilder i [docs/verification/225/](verification/225/README.md). Ritanrop oförändrade, +396 trianglar per vy på desktop, 0 på telefon (`?lowmem`).
 
+
+## Mörkare sommarkronor och tätare ådal, #224
+
+Importerad från `c34d9a0e8cb30f0cacde95ca9ecb71e9ef2b1b89` (original #1804). `SEASON.trees` för maj–september (mörkare och blåare; övriga månader orörda), `SITE.south.treeHeight`/`treeRadius` (7–16 / 2.8–6.4 m) och `SITE.riverPark.treeScale` (1.2–2.6) hade här samma värden som originalet före #1804. Nytt: `SITE.riverPark.infill` (36 mindre träd i sex ådalsfält), `parkInfillSpots` i `src/riverpark.js` och ett sista block i `trees()` i `src/surroundings.js` med egen slumpström och egen seed; det hoppar över mobiler (`lowMemory`). #218:s `upstream-banks` och dess växtlighet är orörda eftersom infyllnaden bara läser `parkTreeSpots` och aldrig delar dess slumpström. Alla värden är *guess* efter ögonmått. Originalets ändringslogg och miljö-, växt- och prestandadokument ingår inte.
+
+Verifiering: `npm test` grön (inklusive `tools/seasoncrowntest.mjs`); före/efter-bilder, instans- och ritanropsmätning i [docs/verification/224/](verification/224/README.md). Trädkronor 2208 -> 2244 på dator, oförändrat på mobil; samma antal InstancedMesh (21/20).
