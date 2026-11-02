@@ -2828,3 +2828,19 @@ Bas `995ea013c450e567c87b68dfe6f6c14e614105df`; granskad originalkälla
   [docs/verification/231](verification/231/README.md). Ingen fysisk telefon eller bred profilrunda påstås.
 
 Dirigenten publicerar egna bilder före stängning och anger levererad revision samt faktisk Pages-körning i #231.
+
+## Västremsans promenadyta, #232
+
+`node tools/walkboundstest.mjs` kräver neutral WALK.x0−285, oförändrade publika
+vad-/räddnings-/lutningsvärden och hela gångrektangeln minst8m innanför ritad terräng.
+`node tools/westwalk-check.mjs BASE OUT before|after` kör publicens verkliga Navigation
+från (−250,30) mot (−280,30), vidare till (−280,20), (−280,40), (−250,40) och tillbaka.
+Endast inledande startteleport är tillåten inom denna sammanhängande rutt. Flyg och
+räddningsflyttar räknas. Ritmeshens/griddens gränser och ändliga ytor samplas längs
+hela WALK-kanten. Efter nådd-platsbilden görs egna korta försök mot nya ytterkanten,
+befintlig byggnad och åns vattenspärr. Nätlogg, sidfel och ursprungliga lagringsmarkörer
+kontrolleras. Kör med orkesterns browserwrapper, fem minuters gräns och delat lås.
+
+Exakta källor, kommandon och egna bilder: [docs/verification/232](verification/232/README.md).
+Ingen fysisk mobil eller privat Player-kod används. Obligatoriska `npm test`/`npm run build`
+ska vara gröna; root kör dessutom #230:s snabba vägkontrakt på kombinerad integrationskod.

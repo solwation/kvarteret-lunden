@@ -1722,7 +1722,8 @@ export const SOUTH_PLATEAU = { radius: 35, fade: [225, 240], points: [[-150,255,
 export const ELEVATION = { protect: { x0: -86, x1: 46, z0: -36, z1: 72 }, ramp: 30, river: [32, 30], edge: 30,
   pad: 10, padRamp: 8, padMin: 0.4, southFade: SOUTH_PLATEAU.fade, legacyGridRows: 46, southAnchor: 3, southApron: 4 }; // #1306: far buildings stand on a level pad (the ground's mean under them) that grades back over `pad` m, unless the ground under the footprint varies by less than `padMin` m (*guess*)
 // #191 (upstream #1714): z1 452 (was 250) takes in Sankt Lars väg 42-47 with 44's courtyard and 54; the terrain ends at SITE.backgroundGround.z1 460, so the edge stays 8 m away (*guess*)
-export const WALK = { x0: -260, x1: 320, z0: -200, z1: 452, cell: 40, wade: 2, rescue: 3, maxSlope: 1.2,
+// #232: 25 m more neutral walking space in the west, still 65 m inside the drawn terrain (guess).
+export const WALK = { x0: -285, x1: 320, z0: -200, z1: 452, cell: 40, wade: 2, rescue: 3, maxSlope: 1.2,
   trunk: { big: 0.45, tree: 0.3, birch: 0.2, young: 0.15 } };
 
 export const GARAGE = {

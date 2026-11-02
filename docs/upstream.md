@@ -2597,3 +2597,27 @@ antaganden, inte nya höjdmätningar.
 Originalets ponny-/ekorr-/fisk-/spel-/servicekopplingar, rapport-/resultatbilder, apphistorik och generella config-/världsändringar
 importeras inte. Originalets tester används endast efter anpassning till den publika datan och navigationen.
 Kontroller och egna bilder dokumenteras under [verifiering #231](verification.md#åns-fortsättning-231).
+
+## Neutral promenadyta i väster, #232
+
+Exakt granskad originalkälla: `e69459ae71274ee8d87d325c8f834a90b562ac8a` (original #1817).
+Endast den neutrala ändringen `WALK.x0: -260 → -285` i `src/config.js` är överförd,
+med en egen neutral marginalkommentar. Övriga WALK-värden är exakt publicens tidigare
+värden: x1 320, z0 −200, z1 452, cell40, wade2, rescue3, maxSlope1.2 och befintliga
+träd-/kroppsmarginaler. Originalets maxSlope0.7, glid-/plaskmekanik och övriga Player-
+eller hag-/djurändringar har inte importerats. Inga bilder, resurser, tjänster, lagring
+eller git-historik från originalet är överförda.
+
+Publicens befintliga ritade terräng slutar vid x −350…340, z −340…460. Hela WALK
+ligger kvar innanför den; marginalerna är väst65, öst20, nord140 och syd8 meter.
+`tools/walkboundstest.mjs` skyddar dessa gränser och de publika inställningarna.
+`tools/westwalk-check.mjs` använder verklig public Navigation, med en enda startpunkt
+före en sammanhängande promenad över gamla västgränsen och genom västremsan vid z20–40.
+Separata korta hinder-/vattenförsök kontrollerar nya ytterkanten, befintlig byggnad och
+vattenbarriären. Ingen privat Player-testkod har kopierats. Rutten ligger långt från
+#231:s ändrade åprofil; #230:s WALK-beroende roadEnd-kontrakt kontrolleras tillsammans
+vid dirigentens integration, utan en ny bred browserrunda.
+
+Verifiering: riktade gränskontrakt, faktisk före/efter-promenad med terrängtäckning längs
+hela gånggränsen, bibehållet nät-/lagringsskydd, `npm test` och `npm run build`.
+[Egna granskade nådd-platsbilder och mätvärden](verification/232/README.md).
