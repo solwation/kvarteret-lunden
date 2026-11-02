@@ -2526,3 +2526,11 @@ Verifiering: `npm test` grön; före/efter-bilder i [docs/verification/226/](ver
 ## #228: `tools/southgabletest.mjs` stale pitch expectation
 
 The test's gable-ray subtest failed for OSM building `333642383` (a villa) because it computed the ridge from `b.rise`, while the builder draws the villa/white-house pitch variant (`houseVariant(...rises...)`, public #182/#183/#219). Not a missing port: the original has no such test and no `333642383` in its data. The test now mirrors the drawn pitch via the exported `houseVariant`; no check was loosened (same 46 bodies, 92 edges, two triangles per split edge).
+
+## Lekhörn och staket på skolgårdarna, #227
+
+Importerad från `d177f330ec234ee64e198a4f5afff220516176f7` (original #1807): `src/schoolyard.js` (valfritt `detail`-block per gård med `pads`, `bench` och häckfärgen `color` som staket; hoppas över under `lowMemory`) och `YARD_COLORS_1807` med `detail`-data för Förskolan Framtiden, Freinet, Höjebroskolan och Montessori i `SITE.east.access` i `src/config.js`. Polygonerna för de fyra gårdarna är identiska med originalets, så inga hörn hamnar under byggnader (kontrollerat i översiktsbilden). Framtidens gård fick nu ett `yard`-fält (saknades efter #221).
+
+Originalets ändringslogg, miljö- och prestandadokument samt Nerf/huvudträffsposter ingår inte. Originalets desktopbudget i `tools/eastbackdroptest.html` (84 700 till 87 800) finns inte här; inget motsvarande desktoptak finns i `tools/`, och telefonbudgeten `CAMPUS_LOD.maxTris` är orörd eftersom telefoner inte får något nytt.
+
+Verifiering: `npm test` grön; före/efter-bilder i [docs/verification/227/](verification/227/README.md). Ritanrop oförändrade, +1 830 trianglar per vy på desktop, 0 på telefon (`?lowmem`).
