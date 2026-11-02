@@ -1152,8 +1152,9 @@ export const SITE = {
       {"source":"159284525","surface":"asphalt","path":[[193.02,34.82],[195.65,30.96],[197.66,13.19],[197.5,-9.96],[194.66,-29.07],[188.29,-38.62]],"w":4.5},
       {"source":"145221623","name":"Parkering vid Sankt Thomas/Klockhuset","surface":"asphalt","capacity":35,"capacitySource":"guess","polygon":[[38.68,15.41],[40.14,-19.07],[85.54,-17.08],[84.09,17.41]]},
       {"source":"44447969","name":"Östra campusparkeringen","surface":"asphalt","capacity":20,"capacitySource":"guess","polygon":[[196.06,-37.72],[189.82,-21.9],[192.2,7.75],[206.2,7.66],[204.71,-19.6]]},
-      {"source":"145221566","name":"Förskolan Framtiden gård","surface":"paved","polygon":[[129.42,-89.2],[66.93,-86.35],[64.6,-23.58],[104.66,-22.41],[120.84,-23.07],[130.35,-23.46],[130.2,-33.79],[130.09,-49.96]]},
-      {"source":"145221567","name":"Förskolan Freinet gård","surface":"paved","polygon":[[129.42,-89.2],[66.93,-86.35],[66.75,-136.67],[66.68,-157.77],[128.42,-159.55],[128.56,-151.91]]},
+      // #1796 (*guess*, Google 3D): the yards are greyer than the old beige, and Freinet's and Montessori's get one lawn oval each (`yard` with only `lawns`, merged into the access batch: no draw call)
+      {"source":"145221566","name":"Förskolan Framtiden gård","surface":"paved","color":0x9a9a90,"polygon":[[129.42,-89.2],[66.93,-86.35],[64.6,-23.58],[104.66,-22.41],[120.84,-23.07],[130.35,-23.46],[130.2,-33.79],[130.09,-49.96]]},
+      {"source":"145221567","name":"Förskolan Freinet gård","surface":"paved","color":0x9a9a90,"polygon":[[129.42,-89.2],[66.93,-86.35],[66.75,-136.67],[66.68,-157.77],[128.42,-159.55],[128.56,-151.91]],"yard":{"sand":[],"hedge":{"paths":[],"h":1.0,"w":0.8,"piece":4,"sink":0.3},"play":[],"lawns":[{"centre":[97,-92],"radii":[27,16],"angle":0,"n":24}],"lift":{"sand":0.05,"lawn":0.08},"colors":{"lawn":0x5d8a3a,"sand":0xd6c39a,"hedge":0x3b5828,"wood":0x8a6a48,"seat":0x2f2f2f,"roof":0xa8483a,"slide":0xc9a227}}},
       {"source":"145221572","name":"Sankt Thomas skolgård","surface":"gravel","polygon":[[18.5,-86.12],[66.93,-86.35],[66.75,-136.67],[17.39,-134.96]],
        // #1737 (docs/foton/snedbild-klockhuset-sankt-thomas.png, Google 3D heading 99°): the playground in front of Klockhuset's yard face: an oval lawn,
        // play-sand patches round the wooden play frames, a sandbox, and clipped hedges along the yard's edges towards Realgymnasiet (z ≈ -87) and Förskolan Freinet
@@ -1169,8 +1170,8 @@ export const SITE = {
       // #1703: the bridgehead car park is ONE row of about 7 stalls square to Sankt Lars väg (no aisle of its own), at the kerb (#1735: x 29.4, just past the road's east edge x ~29; *guess*, +-1 m) from the south corner of Realgymnasiet's gable house to the crossing.
       // Outline, row (`row.path` = the kerb line, `side` -1 = stalls on its +x side) and capacity are all *guess*; replaces #161's 15 m deep two-sided lot and its aisle `guess-1554-aisle`. Whole bays only, no cars.
       {"source":"guess-1554","name":"Parkeringsrad vid bron (guess)","surface":"asphalt","surfaceSource":"guess","capacity":7,"capacitySource":"guess","row":{"path":[[29.4,59.6],[29.4,77.1]],"side":-1},"polygon":[[29.05,59.2],[34.8,59.2],[34.8,77.5],[29.05,77.5]]},
-      {"source":"94054863","name":"Höjebroskolan skolgård","surface":"paved","polygon":[[130.09,-49.96],[129.42,-89.2],[128.56,-151.91],[167.4,-153.51],[171.8,-51.62]]},
-      {"source":"145221570","name":"Lunds Montessorigrundskola gård","surface":"gravel","polygon":[[-105.75,-85.22],[-106.28,-142.26],[-76.54,-155.82],[-44.43,-155.28],[-47.41,-52.64],[-84.23,-55.41],[-103.88,-73.75]]},
+      {"source":"94054863","name":"Höjebroskolan skolgård","surface":"paved","color":0x9a9a90,"polygon":[[130.09,-49.96],[129.42,-89.2],[128.56,-151.91],[167.4,-153.51],[171.8,-51.62]]},
+      {"source":"145221570","name":"Lunds Montessorigrundskola gård","surface":"gravel","color":0xa89f86,"polygon":[[-105.75,-85.22],[-106.28,-142.26],[-76.54,-155.82],[-44.43,-155.28],[-47.41,-52.64],[-84.23,-55.41],[-103.88,-73.75]],"yard":{"sand":[],"hedge":{"paths":[],"h":1.0,"w":0.8,"piece":4,"sink":0.3},"play":[],"lawns":[{"centre":[-78,-102],"radii":[24,42],"angle":0,"n":24}],"lift":{"sand":0.05,"lawn":0.08},"colors":{"lawn":0x5d8a3a,"sand":0xd6c39a,"hedge":0x3b5828,"wood":0x8a6a48,"seat":0x2f2f2f,"roof":0xa8483a,"slide":0xc9a227}}},
     ],
     trees: [
       [56.94,-193.99,"564870146"],
@@ -1247,8 +1248,9 @@ export const SITE = {
     // shared roof batch through vertex colours (no extra draw call). `styles` by `campus.style`, `classic` for the
     // school-style NTI building, `sources` = an OSM id's own colour (wins over its style; a building's `campus.roofColor` too).
     roofColors: {
-      styles: { ward: 0x7a8cab, stenhammar: 0x6f819f, anshelm: 0x5f7090, laundry: 0x4d5564, klockhuset: 0x6a7792 },
-      classic: 0x76889f,
+      // #1796: the pavilions' roofs are dark slate grey in Google's views, so the pale blues are lowered to the same dark family as the laundry's; *guess*, read by eye from oblique images.
+      styles: { ward: 0x4f5b72, stenhammar: 0x4c586f, anshelm: 0x464f60, laundry: 0x4d5564, klockhuset: 0x4f5b72 },
+      classic: 0x56627a,
       sources: {},
     },
 
