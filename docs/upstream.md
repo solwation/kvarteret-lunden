@@ -2522,3 +2522,7 @@ Verifiering: `npm test` grön (inklusive `tools/seasoncrowntest.mjs`); före/eft
 Importerad från `308b12b6edbede82daeccfb3d4712d6318e845ea` (original #1806): `src/southgardens.js` (oförändrad), `SITE.south.gardens` som egen delblock efter `whiteHouses` i `src/config.js` och en rad i `src/southbackdrop.js` som lägger häckarna i fasadbatchen (`gardenParts`, hoppas över av `lowMemory`). Villa- och vithuskällorna, vägarna (`paths`, `access`), parkeringarna och byggnaderna ger samma 136 häckdelar som i originalet (kontrollerat med `gardenHedges()`), så layouten är oförändrad. Hus, vägar och parkeringar som häckarna undviker kommer från #219, #223 och #225. Alla mått och färgen är *guess*. Originalets ändringslogg, miljö- och prestandadokument och `tools/southbackdroptest.html` ingår inte (nedströms finns inget sådant test).
 
 Verifiering: `npm test` grön; före/efter-bilder i [docs/verification/226/](verification/226/README.md). Ritanrop oförändrade (26/26), +544 trianglar per vy på desktop, 0 på telefon (`?lowmem`).
+
+## #228: `tools/southgabletest.mjs` stale pitch expectation
+
+The test's gable-ray subtest failed for OSM building `333642383` (a villa) because it computed the ridge from `b.rise`, while the builder draws the villa/white-house pitch variant (`houseVariant(...rises...)`, public #182/#183/#219). Not a missing port: the original has no such test and no `333642383` in its data. The test now mirrors the drawn pitch via the exported `houseVariant`; no check was loosened (same 46 bodies, 92 edges, two triangles per split edge).

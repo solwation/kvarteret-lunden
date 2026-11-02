@@ -6,6 +6,7 @@ import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import * as T from 'three';
 import {SITE} from '../src/config.js';
+import {houseVariant} from '../src/southbackdrop.js';
 const baseline='674a299',url=new URL('../src/southbackdrop.js',import.meta.url);
 const load=async text=>{assert(text.includes(' yield .9;'));text=text.replace(' yield .9;',' return group;'); // stop after the four real mesh batches, before canvas leaf-atlas/trees
  text=text.replace(/from\s+(['"])([^'"]+)\1/g,(_,q,dep)=>`from ${q}${dep.startsWith('.')?new URL(dep,url).href:import.meta.resolve(dep)}${q}`);return import('data:text/javascript;base64,'+Buffer.from(text).toString('base64'));};
@@ -23,8 +24,10 @@ const summary={baseline,sourceCommit:'5ba0493e58576eba70349c63593990373a607eaf',
 
 test('every former gable opening hits the actual facade and costs exactly two triangles per split edge',()=>{
  const S=SITE.south;let bodies=0;
+ // #228: the drawn pitch is the villa/white-house variant (src/southbackdrop.js line `rise=PV?...`), not b.rise; mirror that choice (brick houses keep b.rise).
+ const V=S.villas,W=S.whiteHouses,drawnRise=b=>{const barn=W.barn.sources.includes(b.source),PV=V.sources.includes(b.source)?V:S.brickHouses?.roofs[b.source]!==undefined?null:W.sources.includes(b.source)?W:null;return PV?(PV===W&&barn?W.rise:houseVariant(PV.rises,b.source,3,PV.rise)):b.rise;};
  for(const b of S.buildings.filter(b=>!b.template&&b.roof!=='hipped')){bodies++;const p=b.polygon.slice(0,-1);let edge=0,len=0;for(let i=0;i<p.length;i++){const q=p[(i+1)%p.length],d=Math.hypot(q[0]-p[i][0],q[1]-p[i][1]);if(d>len){len=d;edge=i;}}
-  const a=p[edge],c=p[(edge+1)%p.length],ux=(c[0]-a[0])/len,uz=(c[1]-a[1])/len,v=q=>-uz*q[0]+ux*q[1],vs=p.map(v),mid=(Math.min(...vs)+Math.max(...vs))/2,half=(Math.max(...vs)-Math.min(...vs))/2,eave=Math.max(...p.map(([,z])=>z<=SITE.backgroundGround.z1?0:-3.01))+b.levels*S.storey,top=q=>eave+b.rise*Math.max(0,1-Math.abs(v(q)-mid)/half);
+  const a=p[edge],c=p[(edge+1)%p.length],ux=(c[0]-a[0])/len,uz=(c[1]-a[1])/len,v=q=>-uz*q[0]+ux*q[1],vs=p.map(v),mid=(Math.min(...vs)+Math.max(...vs))/2,half=(Math.max(...vs)-Math.min(...vs))/2,eave=Math.max(...p.map(([,z])=>z<=SITE.backgroundGround.z1?0:-3.01))+b.levels*S.storey,rise=drawnRise(b),top=q=>eave+rise*Math.max(0,1-Math.abs(v(q)-mid)/half);
   for(const ring of[p,...(b.holes??[]).map(h=>h.slice(0,-1))])for(let i=0;i<ring.length;i++){const a=ring[i],c=ring[(i+1)%ring.length],va=v(a)-mid,vc=v(c)-mid;if(va*vc>=0)continue;const t=va/(va-vc),x=a[0]+(c[0]-a[0])*t,z=a[1]+(c[1]-a[1])*t,oldTop=top(a)+(top(c)-top(a))*t,d=Math.hypot(c[0]-a[0],c[1]-a[1]),n=new T.Vector3((c[1]-a[1])/d,0,-(c[0]-a[0])/d),rays=[];
    for(const f of[.2,.5,.8]){const target=new T.Vector3(x,oldTop+(top([x,z])-oldTop)*f,z),ray=new T.Raycaster(target.clone().addScaledVector(n,.05),n.clone().negate(),0,.1),hits=root=>ray.intersectObject(root.getObjectByName('south-facade')).length;rays.push({fraction:f,before:hits(before),after:hits(after)});assert.equal(rays.at(-1).before,0);assert(rays.at(-1).after>0,`source ${b.source}, ridge ${x},${z}, fraction ${f}`);}
    summary.edges.push({source:b.source,name:b.name,x,z,eave,ridge:top([x,z]),gap:top([x,z])-oldTop,n:n.toArray(),rays});

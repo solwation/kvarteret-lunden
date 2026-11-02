@@ -49,7 +49,7 @@ function terrainTriangles(poly,max,grid=null,southOnly=false){
 }
 const upGeometry=(pts,y)=>{const pos=[];for(let i=0;i<pts.length;i+=3){let [a,b,c]=[pts[i],pts[i+1],pts[i+2]];if((b[1]-a[1])*(c[0]-a[0])-(b[0]-a[0])*(c[1]-a[1])<0)[b,c]=[c,b];for(const q of [a,b,c])pos.push(q[0],y(q[0],q[1]),q[1]);}const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));g.setAttribute('normal',new THREE.Float32BufferAttribute(Array.from({length:pos.length/3},()=>[0,1,0]).flat(),3));return g;};
 /** #219 (upstream #1795): one entry of a small palette per house, from a hash of its OSM id (`salt` keeps colour, roof and pitch independent). */
-const houseVariant=(list,source,salt,fallback)=>{if(!list?.length)return fallback;let h=salt*2654435761>>>0;for(const c of String(source))h=Math.imul(h^c.charCodeAt(0),16777619)>>>0;return list[(h>>>8)%list.length];};
+export const houseVariant=(list,source,salt,fallback)=>{if(!list?.length)return fallback;let h=salt*2654435761>>>0;for(const c of String(source))h=Math.imul(h^c.charCodeAt(0),16777619)>>>0;return list[(h>>>8)%list.length];};
 /** The southern backdrop in one call; southBackdropParts yields a rough share (0–1) between its parts (#1133). */
 export function buildSouthBackdrop(ground){const parts=southBackdropParts(ground);for(;;){const r=parts.next();if(r.done)return r.value;}}
 export function* southBackdropParts(ground, trimAsphalt=g=>g, parkingPatch=null){
