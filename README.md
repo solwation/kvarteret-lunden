@@ -8,6 +8,8 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+Vägar och gångstråk i utkanten fortsätter bort i dimman; vägarnas kartlagda geometri och gånggränser är bevarade (#230).
+
 Behåll byggnader, omgivning, fast inredning, förflyttning, dörrar och mätverktyg. Ta bort personlig möblering, teckningar, foton, familjereferenser, karaktärer, poäng, leksaker och andra spelinslag.
 
 Söder om träfotgängarbron ligger en inhägnad hage med två ponnyer (importerad från originalet, #76; skjulet står på jämn mark, #80, och har flyttats tillsammans med vattenhon närmare staketet med bibehållen passage, #102; placeringen är ett antagande). Ponnyerna är enbart miljö och går inte att klappa eller interagera med; de betar gräset i hagen (#78), som är en tät låg matta som växer tillbaka på 72 timmar verklig tid och sparas lokalt i webbläsaren (#84), tre skuggträd står i hagen och ponnyerna söker skydd i regn och står synliga inne i skjulet när det är snö (#79/#87; i snömånaderna har ponnyerna varsitt vintertäcke (#103), halm ligger i skjulet och en girlang med varma lampor hänger på framkanten, #92; saknar väder här, testa med `?paddockrain=0.8` och `?month=1`). Lägg till `?nopaddock` i adressen för att stänga av hagen.

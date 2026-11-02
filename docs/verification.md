@@ -2797,3 +2797,18 @@ bevarad merge-historik. Kontroll: identisk subtree-tree, paketets relativa länk
 bevarade offentliga innehålls-/lagrings-/nätverksregler och timers samt `git diff --check`, `npm test` och `npm run build`.
 Endast instruktionstext och proveniens ändras; appen är oförändrad och har inget meningsfullt visuellt resultat att fånga.
 Ingen ny browserkörning, bild eller spelarändringslogg behövs. Publicerad revision och verklig Pages-status anges i #229.
+
+## Vägar bort i dimman, #230
+
+`node tools/roadendstest.mjs` kontrollerar alla sju stråk, båda trottoarerna, lokala WALK-beroende
+dimändpunkter, bevarade kartdata, höjd över mark/kantband, ändlig budget och faktisk emitterad
+överlappning vid parkstråkens klippgränser (336 kvartsmeterspunkter). Kör även befintliga
+`node tools/edgebackdroptest.mjs`, `npm test` och `npm run build`.
+
+`node tools/roadends-view-check.mjs BASE OUT before|after` fångar samma verkliga skolöversikt
+från (−215,66.7,−230), yaw47°, pitch−25°, juni. Efter-vyn körs mot färdigt `dist/`. Testet sätter
+markörer under originalets lagringsnycklar, försöker ange ignorerade cloud/sync-parametrar och
+kräver oförändrade markörer, inga nya lokala nycklar, inga externa nätanrop och inga sidfel.
+Kör genom orkesterns minnesbegränsade browserwrapper med delat lås. Egna granskade bilder och
+exakta kommandon finns i [docs/verification/230](verification/230/README.md). Chromium/SwiftShader;
+ingen fysisk mobilprestanda påstås. Inga originalbilder har överförts.

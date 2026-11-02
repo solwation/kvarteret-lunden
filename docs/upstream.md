@@ -2553,3 +2553,28 @@ Ingen appkod, personlig resurs, originalbild, spelmekanik, lagring eller tjänst
 Verifiering: exakt subtree-tree, paketets relativa länkar, riktade länkar/ankare i värdpolicyn, dokumentdiff/motsägelser,
 `npm test` och `npm run build`. Detta är instruktionstext utan meningsfullt visuellt appresultat; ingen browser eller bild
 krävs. Dirigenten länkar publicerad revision och faktisk Pages-körning i #229 före stängning.
+
+## Vägar och trottoarer fortsätter bort i dimman, #230
+
+Granskad exakt originalkälla: `b7dbf569f3b55b8ee3d8fd71087dc3a40d384c4a` (original #1812).
+Enbart `ROAD_ENDS` i `src/config.js`, den rena `src/roadends.js`, samt `roadEndParts` och dess
+importer/anrop i `src/edgebackdrop.js` är överförda. `skirtTop`, `COLORS.paving`, `cutAtTerrain`
+och befintlig `ground.grid` fanns redan här. De sju valda väg-/parkändarna och kantfondens egna
+väg-/cykelstråk får fortsättningar längs sina sista kartlagda tangenter. Fortsättningen är ett
+uttryckligt visuellt antagande; källornas hörn, ordning, bredder, trottoarer och kollisionsdata
+ändras inte. Parkstråkens kartlagda delar utanför befintlig ritklippning återställs och överlappar
+sista hela ritade quad; klippgränserna här är samma x −270/330 och z 260 som i källan.
+
+Lokala `WALK` är oförändrat (x −260…320, z −200…452). Dimändpunkterna räknas från just det
+publika projektets `WALK` vid körning; inga senare originalvärden har kopierats. Ett extra prov
+vidgar tillfälligt alla lokala gånggränser och kräver nya dimändpunkter, för att skydda kommande
+#232. Remsorna följer befintlig lokal terräng/kantband och slås ihop med `edge-land`: inga nya
+material, texturer, ljus eller ritanrop. Telefoner behåller samma vägfortsättningar i markbatchen.
+
+Originalets spel-/djur-/huvudträffsdata, ändringslogg, miljödokument, rapporter, bilder, verktygens
+privata modulupplösning och git-historik ingår inte. Testet `tools/roadendstest.mjs` är ett granskat
+neutralt kontrakt med publik Three-installation och två extra lokala WALK-kontroller.
+
+Verifiering: 26 väg-/skarvkontrakt (336 kvartsmeterspunkter, noll glipor), befintligt
+`tools/edgebackdroptest.mjs`, `npm test`, `npm run build`, och egen faktisk skolvy före/efter med
+oförändrade original-lagringsmarkörer och inga externa nätanrop. [Resultat och egna bilder](verification/230/README.md).

@@ -2675,6 +2675,22 @@ export const ROAD_LIGHTS = { step: 32, edge: 0.65, minRoadWidth: 3.5, clear: 0.3
 // #140: opt-in diagnostic ring (~60 s at 60 Hz), 50 ms trace threshold; budget guesses.
 export const PERF = { intervals: { keep: 3600, markMs: 50 } };
 
+// #230: reviewed neutral continuations from original #1812; all extra geography is a guess.
+export const ROAD_ENDS = {
+  fogClearance: 700, nearStep: 3, farStep: 24, overlap: .25,
+  parkOverlap: 2, // m + half path width: covers the original 1.5 m whole-quad sampling and oblique edge clipping (*guess*)
+  parkClip: { x0: -270, x1: 330, z1: 260 }, // existing riverpark.js drawing limits; restore its sourced outer pieces
+  items: [
+    { group: 'roads', source: 'Sankt Lars väg', end: 0, lift: .012, color: 0x5d5f61 },
+    { group: 'north', source: '130442838', end: 0, lift: .025, color: 0x5f6164 },
+    { group: 'east', source: '44447965', end: -1, lift: .025, color: 0x5f6164 },
+    { group: 'south', source: '45211117', end: -1, lift: .025, color: 0x5f6164 },
+    { group: 'east', source: '61112064', end: -1, lift: .025, color: 0xb5ac90 },
+    { group: 'park', source: '27185148', end: -1 },
+    { group: 'park', source: '61112061', end: 0 },
+  ],
+};
+
 /**
  * #1682: the world's edge. Far scenery outside SITE.backgroundGround (the modelled terrain rectangle): a feathered band round the
  * terrain, a ground slab north of it, fields, a cycle path, Malmövägen, low box silhouettes and tree rows. All plan coordinates
