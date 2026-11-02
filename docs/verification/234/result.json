@@ -1,0 +1,252 @@
+{
+  "baseline": "9e27bbb30ca5422ffe293dcc41b6a22bc5b55bf9",
+  "reports": [
+    {
+      "phase": "before",
+      "captures": [
+        {
+          "name": "overview",
+          "camera": [
+            -126,
+            12,
+            54
+          ],
+          "look": [
+            -143,
+            0.8,
+            33
+          ],
+          "calls": 41,
+          "triangles": 377418
+        },
+        {
+          "name": "ground",
+          "camera": [
+            -133,
+            2.633143879023355,
+            23
+          ],
+          "look": [
+            -143,
+            1.5,
+            33
+          ],
+          "calls": 42,
+          "triangles": 409542
+        }
+      ],
+      "storage": {
+        "local": {
+          "lunden.drawing": "original-drawing-sentinel",
+          "lunden.cloud.queue": "original-queue-sentinel"
+        },
+        "session": "original-session-sentinel"
+      },
+      "errors": [],
+      "external": []
+    },
+    {
+      "phase": "after",
+      "captures": [
+        {
+          "name": "overview",
+          "camera": [
+            -126,
+            12,
+            54
+          ],
+          "look": [
+            -143,
+            0.8,
+            33
+          ],
+          "calls": 44,
+          "triangles": 378258
+        },
+        {
+          "name": "ground",
+          "camera": [
+            -133,
+            2.633143879023355,
+            23
+          ],
+          "look": [
+            -143,
+            1.5,
+            33
+          ],
+          "calls": 45,
+          "triangles": 410382
+        }
+      ],
+      "component": {
+        "checks": [
+          {
+            "name": "three fixed visible batches",
+            "ok": true
+          },
+          {
+            "name": "bounded material/triangle cost",
+            "ok": true,
+            "triangles": 840
+          },
+          {
+            "name": "no picking or interaction targets",
+            "ok": true
+          },
+          {
+            "name": "embedded support pullup",
+            "ok": true,
+            "bottom": 0.5723505020141602,
+            "ground": 0.6173505087813903
+          },
+          {
+            "name": "embedded support pullup",
+            "ok": true,
+            "bottom": 0.505768358707428,
+            "ground": 0.5507684114843237
+          },
+          {
+            "name": "embedded support press",
+            "ok": true,
+            "bottom": 0.4090375006198883,
+            "ground": 0.45403747625151164
+          },
+          {
+            "name": "embedded support press",
+            "ok": true,
+            "bottom": 0.3656412661075592,
+            "ground": 0.410641255048007
+          },
+          {
+            "name": "embedded support press",
+            "ok": true,
+            "bottom": 0.4277762472629547,
+            "ground": 0.47277625218896313
+          },
+          {
+            "name": "embedded support press",
+            "ok": true,
+            "bottom": 0.4103780686855316,
+            "ground": 0.4553780476159275
+          },
+          {
+            "name": "embedded support press",
+            "ok": true,
+            "bottom": 0.3854263126850128,
+            "ground": 0.43042632754750654
+          },
+          {
+            "name": "embedded support press",
+            "ok": true,
+            "bottom": 0.3720761835575104,
+            "ground": 0.4170761885322601
+          },
+          {
+            "name": "embedded support step",
+            "ok": true,
+            "bottom": 0.3009616732597351,
+            "ground": 0.34596169037097596
+          },
+          {
+            "name": "embedded support step",
+            "ok": true,
+            "bottom": 0.28698644042015076,
+            "ground": 0.33198645457502207
+          },
+          {
+            "name": "embedded support step",
+            "ok": true,
+            "bottom": 0.2700439989566803,
+            "ground": 0.31504401625886647
+          },
+          {
+            "name": "embedded support step",
+            "ok": true,
+            "bottom": 0.25606879591941833,
+            "ground": 0.3010687804629125
+          },
+          {
+            "name": "chips above actual terrain triangles",
+            "ok": true,
+            "minGap": 0.031490960861968786
+          },
+          {
+            "name": "actual navigation press",
+            "ok": true,
+            "localZ": 1.1699999999999973,
+            "pos": [
+              -143.82731493398887,
+              0.4195462397281591,
+              33.827314933987644
+            ]
+          },
+          {
+            "name": "actual navigation step",
+            "ok": true,
+            "localZ": 0.6599999999999948,
+            "pos": [
+              -140.42613131648295,
+              0.29718816794556213,
+              36.50724963468328
+            ]
+          },
+          {
+            "name": "actual navigation pull-support",
+            "ok": true,
+            "localZ": 0.3049999999999984,
+            "pos": [
+              -145.6551859633563,
+              0.5494715078552566,
+              30.77614917316749
+            ]
+          },
+          {
+            "name": "actual navigation pull-open",
+            "ok": true,
+            "localZ": -0.899999999998107,
+            "pos": [
+              -145.40416305603688,
+              0.6249899943533137,
+              29.323044737830013
+            ]
+          },
+          {
+            "name": "collision registered",
+            "ok": true
+          }
+        ],
+        "ok": true
+      },
+      "storage": {
+        "local": {
+          "lunden.drawing": "original-drawing-sentinel",
+          "lunden.cloud.queue": "original-queue-sentinel"
+        },
+        "session": "original-session-sentinel"
+      },
+      "errors": [],
+      "external": []
+    }
+  ],
+  "source": "52be76d1e4d50521edb042c99805cbbdbcf21140",
+  "implementation": "1bf0b46c1f5ce97f73d2d24d251d06c3b322d8ff",
+  "captureProvenance": "Overview pair from initial green pass; ground pair from final green side-view pass on the identical product source. Rejected an obstructed alternative overview. No rendering or product code changed between passes.",
+  "checks": {
+    "nativeComponent": {
+      "ok": true,
+      "stations": 3,
+      "batches": 3,
+      "triangles": 840,
+      "supports": 12,
+      "solidPolygons": 6,
+      "collisionSegments": 24,
+      "minChipGap": 0.03514537164781495,
+      "noTargetsOrRuntimeState": true
+    },
+    "npmTest": "108 modules/import graph/floor plans/same-origin/app/icon PASS",
+    "npmBuild": "7c6f3bd42091051fbe8e1b41 PASS",
+    "browserPeakMiB": 1029,
+    "diffCheck": "PASS"
+  }
+}
