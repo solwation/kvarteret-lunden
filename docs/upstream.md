@@ -2486,3 +2486,9 @@ Verifiering: `npm test` grön; före/efter-bilder i [docs/verification/221/](ver
 Importerad från `7fa065d7f7758d7f334834f1c5e7b52653dcb1d7` (original #1797). `SITE.east.roofColors.styles.laundry` (Kunskapsskolan, byggnad 19) ändras från `0x4d5564` till `0x3c4864`; övriga stilar från #221 är orörda. Parkeringen `145221623` (Klockhuset, samma kontur som i originalet) får en `yard` med bara häck (två sträckor med lucka för gångvägen), och en rad i `src/sitebackdrop.js` gör att parkeringar också ritar sin `yard`. Allt är *guess* från originalets visuella granskning. Originalets ändringslogg och miljödokument ingår inte.
 
 Verifiering: `npm test` grön; före/efter-bilder i [docs/verification/222/](verification/222/README.md). Ritanrop oförändrade (176 och 61), +72 trianglar per vy.
+
+## Varierade fasad- och takfärger söder om ån, #219
+
+Importerad från `7684219a197cdd0ad5150c818c5a9c05a0873578` (original #1795): `facades`, `roofs` och `rises` i `SITE.south.villas` och `SITE.south.whiteHouses` i `src/config.js` samt `houseVariant` i `src/southbackdrop.js`. Varje hus väljer färg, takfärg och taklutning ur en liten palett med en stabil hash av OSM-id (ingen slump); ladan 88457556 behåller sitt mörka tak. `villas.sources` och `whiteHouses.sources` är identiska med originalets. Avvikelse: nr 48 och 49 (`brickHouses`, #217) ligger också i `whiteHouses.sources`, så här får `brickHouses` företräde (`PV=V??(BH?null:WB)`); originalets rad låter vit palett gå före tegel. Inga nya ritanrop eller trianglar (före/efter identiska). Alla värden är *guess*. Originalets ändringslogg ingår inte (kvarteret har ingen).
+
+Verifiering: `npm test` grön; före/efter-bilder och ritanrop i [docs/verification/219/](verification/219/README.md).
