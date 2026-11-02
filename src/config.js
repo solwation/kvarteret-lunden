@@ -801,13 +801,20 @@ export const SITE = {
     // m, `yaw` degrees turning the along axis from +x towards +z, `h` eave height over the lowest ground corner, `roof`
     // 'flat' | 'gable' (ridge along `size[0]`) with `rise` m, `hoods` rooftop boxes [along, across, w, d, h] from the centre (pipes/vents).
     brickHouses: { facade: 0x9b4a38, roofs: { '88457584': 0x7b4d4a, '88457589': 0x4e4a55 } },
-    annexes: { facade: 0xe6e4dc, roof: 0x9aa1a8, hood: 0xc9ccce, brick: 0x9b4a38, gableRoof: 0x6e4a48, items: [
+    annexes: { facade: 0xe6e4dc, roof: 0x9aa1a8, hipRoof: 0x9fb4a8, hood: 0xc9ccce, brick: 0x9b4a38, gableRoof: 0x6e4a48, items: [
       // the low white service building on the south-east side of nr 47 (flat grey roof with ventilation hoods) and its lower wing
       { name: 'Service building nr 47', c: [93, 368], size: [30, 15], yaw: -35, h: 5.5, roof: 'flat', hoods: [[-8, 0, 3, 2.5, 1.4], [0, 2, 4, 3, 1.8], [8, -1, 2.5, 2.5, 1.2]] },
       { name: 'Service wing nr 47', c: [108, 381], size: [14, 9], yaw: -35, h: 3.6, roof: 'flat', hoods: [[0, 0, 2.5, 2, 1]] },
       // small red-brick 1.5-storey pavilions with gable roofs (one south-east of nr 46, one west of nr 42)
       { name: 'Pavilion by nr 46', c: [127, 332], size: [11, 7], yaw: -35, h: 4.2, roof: 'gable', rise: 2.4, brick: true },
       { name: 'Pavilion by nr 42', c: [-125, 372], size: [12, 7.5], yaw: -35, h: 4.2, roof: 'gable', rise: 2.4, brick: true },
+      // public #220 (original #1794): the western quarter's Thermo Fisher hall (pale green-grey hipped roof, dark flat wing on its south-west
+      // side) and two small neighbours. OSM has none of them; positions were read by projecting Google 3D views through the game camera
+      // anchored on the modelled nr 44 (+-20-30 m), sizes and colours by eye (*guess*). `wall` / `roofColor` override the shared colours, `roof: 'hip'` is a hipped roof.
+      { name: 'Thermo Fisher hall', c: [-9, 495], size: [34, 22], yaw: -30, h: 8, roof: 'hip', rise: 3.2, wall: 0x7d8588, roofColor: 0xb3cbbb },
+      { name: 'Thermo Fisher low wing', c: [-12, 517], size: [26, 12], yaw: -30, h: 5.5, roof: 'flat', wall: 0x565b60, roofColor: 0x30343a },
+      { name: 'Barn west of the hall', c: [-56, 524], size: [24, 11], yaw: -30, h: 4.2, roof: 'gable', rise: 3, wall: 0xcdbfae, roofColor: 0xa77f7b },
+      { name: 'House in the western woods', c: [-117, 493], size: [12, 8], yaw: -30, h: 4.2, roof: 'gable', rise: 2.6, wall: 0xd8d0c0, roofColor: 0x4e5662 },
     ] },
     buildings: [
       {"source":"88457551","polygon":[[246.3,350.37],[250.7,348.97],[251.42,351.23],[255.49,349.95],[258.92,360.68],[244.6,365.21],[241.15,354.37],[246.99,352.53],[246.3,350.37]],"levels":2,"levelsSource":"visual assumption","name":"Sankt Lars väg 64","roof":"gable","roofSource":"visual assumption","rise":1.6,"facade":13024420},
@@ -927,6 +934,9 @@ export const SITE = {
     parking: [
       {"source":"145221619","surface":"asphalt","surfaceSource":"guess","capacitySource":"absent in official OSM; geometry-based layout guess","layout":"double-row","layoutEdge":[0,1],"aisleW":6,"reservedRoad":"public-legacy-parking-crossing","otherReservedRoads":["public-legacy-west-parking-crossing","public-legacy-service-curve"],"civilRoad":"30633546","civilStage":3,"protectBuildings":true,"protectBank":true,"protectApron":"88457592","otherAprons":["145221569"],"civilAnchors":{"reference":[10,248,1.26],"baselineEntry":true,"apronVertex":2},"polygon":[[-19.37,258.81],[27.25,225.93],[37.02,239.75],[-9.59,272.63]]},
       {"source":"850235113","surface":"asphalt","surfaceSource":"guess","capacity":3,"capacitySource":"guess","civilRoad":"850235115","civilStage":4,"layout":"concave-row","layoutEdge":[0,1],"bayCount":3,"layoutInset":0.1,"gradeRow":true,"transition":4,"protectBuildings":true,"provenance":"OSM v2 exact concave contour; three whole bays, inset/outer civil transition and asphalt are guesses; unmarked court retains boundary and house levels","polygon":[[63.78,234.37],[53.36,220.22],[64.7,211.13],[77.05,225.2],[73.03,228.14],[74.46,230.92],[79.33,227.41],[92.14,245.05],[87.29,248.5],[86.43,247.22],[76.91,253.56],[68.67,242.1],[72.64,239.41],[69,230.78]]},
+      // public #220 (original #1794): the two large car parks of the western quarter, OSM footprints (OSM API pull 2026-11-02); plain asphalt without bays, which would hover over the slope between their ends
+      {"source":"145221622","surface":"asphalt","surfaceSource":"guess","provenance":"OSM v1 contour; plain asphalt, no bays","polygon":[[-33.48,489.92],[-1.56,468.12],[26.42,508.95],[-5.5,530.75],[-33.48,489.92]]},
+      {"source":"145221630","surface":"asphalt","surfaceSource":"guess","provenance":"OSM v1 contour; plain asphalt, no bays","polygon":[[-191.17,385.03],[-153.04,356.85],[-129.02,389.26],[-142.99,399.58],[-96.62,462.12],[-109.87,471.93],[-156.21,409.42],[-167.12,417.48],[-191.17,385.03]]},
       {"source":"145221624","surface":"asphalt","surfaceSource":"guess","capacity":6,"capacitySource":"guess","civilRoad":"145221607","civilStage":5,"layout":"double-row","layoutEdge":[0,1],"bayCount":3,"aisleW":6,"protectBuildings":true,"provenance":"OSM v1 contour; six whole bays, 6m clear aisle and civil plane are guesses","polygon":[[129.03,295.85],[147.96,281.76],[157.54,294.58],[138.61,308.68]]},
       {"source":"145221626","surface":"asphalt","surfaceSource":"guess","capacity":3,"capacitySource":"guess","civilRoad":"145221604","civilStage":5,"layout":"concave-row","layoutEdge":[3,2],"rowAlong":39,"bayCount":3,"protectBuildings":true,"provenance":"OSM v1 contour; three whole bays at the wider-clearance end, civil plane and clear lane are guesses","polygon":[[68.12,381.83],[106.57,354.46],[113.4,364.03],[74.96,391.4]]},
       {"source":"145221628","surface":"asphalt","surfaceSource":"guess","capacity":3,"capacitySource":"guess","civilRoad":"145221573","civilStage":6,"layout":"concave-row","layoutEdge":[0,1],"rowAlong":66,"bayCount":3,"layoutInset":0.1,"gradeRow":true,"transition":4,"protectBuildings":true,"protectApron":"145221569","provenance":"OSM v1 six-corner contour; three whole bays and a bounded row plane are guesses; all actual service corridors remain unmarked","polygon":[[-124.86,333.62],[-61.23,288.04],[-46.07,309.14],[-93.04,342.78],[-98.19,335.6],[-114.87,347.54]]},
@@ -2620,7 +2630,7 @@ export const EDGE_BACKDROP = {
   // field/forest crosses the edge (east z > 30 and the field south of it, the pony fields and the woodland at the south edge).
   skirt: { width: 70, innerTone: [1.13, 1, 1.13], step: 8, sides: [
     { side: 'west', from: -340, to: 460 }, { side: 'north', from: -350, to: 340 }, { side: 'east', from: -340, to: 30 },
-    { side: 'south', from: -350, to: -180 }, { side: 'south', from: -12, to: 205 },
+    { side: 'south', from: -350, to: -180 }, { side: 'south', from: 30, to: 205 }, // public #220 (original #1803): from x 30, not -12: the band (+0.08 m) hid the western car park 145221622 (x -33...26, z 468...531)
   ] },
   fields: [
     { name: 'Åker sydväst', color: 0xa9ad62, polygon: [[-700, 430], [-380, 400], [-350, 640], [-640, 660]] },
