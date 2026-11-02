@@ -2444,3 +2444,9 @@ Verifiering: `npm test`, `npm run build` och Chromium-bilder i [docs/verificatio
 Överförd från `925ee9928c0ad503d06e5623390504d28297f869` (original #1786): ny `src/screenwall.js`, `SCREEN_WALL` i `src/config.js`, grannarnas uteplatsväggar och takterrassernas skärmar i `src/exterior.js` (`screenWallParts` slås ihop i befintligt stängselparti) samt `M.fence` med brädtextur och L1007:s egna två väggar i `src/world.js`. Tjocklek, kollision och mått är oförändrade, inga nya material eller draw calls; alla värden *guess*. Originalets ändringslogg och miljödokument finns inte här. Texturens slumpfrö är `214`.
 
 Verifiering: `npm test`, `npm run build` och före/efter-bilder med samma antal draw calls: [docs/verification/214/](verification/214/README.md).
+
+## Nordic Wellness vänds mot vägen, Grenhuset läggs till, #216
+
+Importerad från `761257f9aea9daab76d7112304d60f9f7d57a85f` (original #1788): `src/nordicgym.js` vänder gymmets glasfasad och glashörn mot Sankt Lars väg (korta västsydvästra sidan och den södra parkfasaden), flyttar lågdelen till gymmets östra ände och bygger Grenhuset (OSM-väg `88457557`, tre våningar tegel med plattak och fönsterrader mot vägen) på västra sidan av vägen. Allt går i östra fondens befintliga `facade`/`roof`/`glass`-batcher: inga nya draw calls, texturer eller ljus (originalet mätte +136 trianglar). Gymposten `guess-1762` i `src/config.js` är oförändrad bortsett från kommentaren. Originalets ändringslogg- och personreferenser ingår inte; kommentarerna hänvisar inte till originalets foton.
+
+Verifiering: `npm test` grön. Resultatbilder i `docs/verification/216/`: `rapportvy.png`, `oversikt-hogt.png`, `fran-vagen.png`, `fran-vagen-grenhuset.png`. Chromium med SwiftShader; ingen fysisk enhet.
