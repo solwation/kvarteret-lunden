@@ -781,6 +781,13 @@ export const SITE = {
       rises: [1.6, 1.3, 2.0, 2.4],
       barn: { roof: 0x3a3d43, rise: 4.6, sources: ['88457556'] },
       sources: [...SOUTH_LARS_VAG, '88457554', '88457611', '145221620', '145221625', '145221627', '88457556'] },
+    // Public #226, upstream #1806 (Google 3D review 2026-11-02): the villas and white houses stand in hedged gardens. One low clipped hedge
+    // per plot side, as thin vertex-coloured tents in the south backdrop's facade batch (4 triangles per `piece`; no draw call, none on phones).
+    // The plot is the house's footprint box grown by `side` / `back` / `front` m; the front (the side nearer a road or path) stays open, the
+    // back and both sides get hedge. Pieces on a road/path (`roadClear` m beyond its half width), on a parking lot, inside any building or inside
+    // an earlier house's plot (shared boundary) are left out. Every size, colour and margin is a *guess* read by eye from the Google views.
+    gardens: { color: 0x3d5a2c, width: 1.1, height: 1.5, sink: 0.05, piece: 14, side: 3.6, back: 5, front: 6, roadClear: 0.8,
+      sources: [...SOUTH_VILLAS, ...SOUTH_LARS_VAG, '88457554', '88457611', '145221620', '145221625', '145221627'] },
     // Public #164, upstream #1556: nr 41's brick vocabulary on seven existing four-storey pavilions.
     // Facades are not surveyed: all dimensions below (metres), belt placement and colours are visual assumptions.
     // Plinth above base, frieze projection, belt floor lines/top lift, window-head rise and frame width.

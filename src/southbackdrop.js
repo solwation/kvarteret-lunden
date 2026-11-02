@@ -11,6 +11,7 @@ import { brickPavilion, BRICK_STYLE } from './brickstyle.js';
 import { pavilionRoofDetail } from './pavilionroof.js';
 import { lowMemory } from './lowmemory.js';
 import { schoolyardParts } from './schoolyard.js'; // public #225 (original #1805)
+import { gardenParts } from './southgardens.js'; // public #226 (original #1806)
 import { annexParts, annexPolygons } from './southannex.js'; // public #217 (original #1793)
 import { paddockLandParts } from './paddock.js';
 import { busStopApron } from './busstopgeo.js';
@@ -83,6 +84,7 @@ export function* southBackdropParts(ground, trimAsphalt=g=>g, parkingPatch=null)
   records.push({...b,base,bottom,eave,roofY:(x,z)=>roofHeight([x,z])}); // roofY: the drawn roof's height, for the walkable roof (#1294)
  }
  if(S.annexes)annexParts(farGround,parts); // public #217 (original #1793): low volumes OSM does not map, in the same facade/roof batches
+ if(S.gardens&&!lowMemory)gardenParts(farGround,parts); // public #226 (original #1806): clipped garden hedges round the villas' and white houses' plots, in the facade batch (none on phones)
  // Append new panes after all old glass: existing landmark/special facade geometry stays an exact prefix.
  for(const b of records)parts.glass.push(...lowRiseWindowParts(b,b.base));
  yield .6;
