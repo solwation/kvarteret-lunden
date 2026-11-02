@@ -1,0 +1,407 @@
+{
+  "baseline": "995ea013c450e567c87b68dfe6f6c14e614105df",
+  "reports": [
+    {
+      "phase": "before",
+      "captures": [
+        {
+          "name": "west-air",
+          "camera": [
+            -216,
+            31.6,
+            215
+          ],
+          "ground": -5.745222864917798
+        },
+        {
+          "name": "west-ground",
+          "camera": [
+            -230,
+            -2.397406104899869,
+            258
+          ],
+          "ground": -3.997406104899869
+        },
+        {
+          "name": "east-air",
+          "camera": [
+            320,
+            31.6,
+            45
+          ],
+          "ground": -4.566588118922328
+        },
+        {
+          "name": "east-ground",
+          "camera": [
+            330,
+            -3.5972624554684427,
+            21
+          ],
+          "ground": -5.197262455468443
+        }
+      ],
+      "actual": [],
+      "storage": {
+        "local": {
+          "lunden.drawing": "original-drawing-sentinel",
+          "lunden.cloud.queue": "original-queue-sentinel"
+        },
+        "session": "original-session-sentinel"
+      },
+      "errors": [],
+      "external": []
+    },
+    {
+      "phase": "after",
+      "captures": [
+        {
+          "name": "west-air",
+          "camera": [
+            -216,
+            31.6,
+            215
+          ],
+          "ground": -5.745222864917798
+        },
+        {
+          "name": "west-ground",
+          "camera": [
+            -230,
+            -2.397406104899869,
+            258
+          ],
+          "ground": -3.997406104899869
+        },
+        {
+          "name": "east-air",
+          "camera": [
+            320,
+            31.6,
+            45
+          ],
+          "ground": -4.566588118922328
+        },
+        {
+          "name": "east-ground",
+          "camera": [
+            330,
+            -3.5972624554684427,
+            21
+          ],
+          "ground": -5.197262455468443
+        }
+      ],
+      "component": {
+        "ok": true,
+        "checks": [
+          {
+            "ok": true,
+            "message": "two existing batches"
+          },
+          {
+            "ok": true,
+            "message": "bounded corridor subdivision, no new draw call"
+          },
+          {
+            "ok": true,
+            "message": "Höje å uppströms: rendered surface at 0.1m outside terrain"
+          },
+          {
+            "ok": true,
+            "message": "Höje å uppströms: water is visible, with no far-ground/skirt cap at 0.1m (-6.672598838806152 vs -6.672598647482322)"
+          },
+          {
+            "ok": true,
+            "message": "actual water in edge-land"
+          },
+          {
+            "ok": true,
+            "message": "Höje å uppströms: rendered surface at 1m outside terrain"
+          },
+          {
+            "ok": true,
+            "message": "Höje å uppströms: water is visible, with no far-ground/skirt cap at 1m (-6.672598838806152 vs -6.672598647482322)"
+          },
+          {
+            "ok": true,
+            "message": "actual water in edge-land"
+          },
+          {
+            "ok": true,
+            "message": "Höje å uppströms: rendered surface at 3m outside terrain"
+          },
+          {
+            "ok": true,
+            "message": "Höje å uppströms: water is visible, with no far-ground/skirt cap at 3m (-6.672598838806152 vs -6.672598647482322)"
+          },
+          {
+            "ok": true,
+            "message": "actual water in edge-land"
+          },
+          {
+            "ok": true,
+            "message": "Höje å uppströms: rendered surface at 10m outside terrain"
+          },
+          {
+            "ok": true,
+            "message": "Höje å uppströms: water is visible, with no far-ground/skirt cap at 10m (-6.672598838806152 vs -6.672598647482322)"
+          },
+          {
+            "ok": true,
+            "message": "actual water in edge-land"
+          },
+          {
+            "ok": true,
+            "message": "Höje å uppströms: rendered surface at 25m outside terrain"
+          },
+          {
+            "ok": true,
+            "message": "Höje å uppströms: water is visible, with no far-ground/skirt cap at 25m (-6.672598838806152 vs -6.672598647482322)"
+          },
+          {
+            "ok": true,
+            "message": "actual water in edge-land"
+          },
+          {
+            "ok": true,
+            "message": "Höje å uppströms: submerged emitted bank at offset -3.2 is covered by emitted water"
+          },
+          {
+            "ok": true,
+            "message": "Höje å uppströms: submerged emitted bank at offset -3.5 is covered by emitted water"
+          },
+          {
+            "ok": true,
+            "message": "Höje å uppströms: submerged emitted bank at offset 3.2 is covered by emitted water"
+          },
+          {
+            "ok": true,
+            "message": "Höje å uppströms: submerged emitted bank at offset 3.5 is covered by emitted water"
+          },
+          {
+            "ok": true,
+            "message": "Höje å uppströms: actual submerged bank triangles were probed"
+          },
+          {
+            "ok": true,
+            "message": "Höje å uppströms: bank rendered at offset 8"
+          },
+          {
+            "ok": true,
+            "message": "Höje å uppströms: bank meets local terrain without a cliff at offset 8"
+          },
+          {
+            "ok": true,
+            "message": "Höje å uppströms: bank rendered at offset 18"
+          },
+          {
+            "ok": true,
+            "message": "Höje å uppströms: bank meets local terrain without a cliff at offset 18"
+          },
+          {
+            "ok": true,
+            "message": "Höje å nedströms: rendered surface at 0.1m outside terrain"
+          },
+          {
+            "ok": true,
+            "message": "Höje å nedströms: water is visible, with no far-ground/skirt cap at 0.1m (-7.424990653991699 vs -7.424990590544272)"
+          },
+          {
+            "ok": true,
+            "message": "actual water in edge-land"
+          },
+          {
+            "ok": true,
+            "message": "Höje å nedströms: rendered surface at 1m outside terrain"
+          },
+          {
+            "ok": true,
+            "message": "Höje å nedströms: water is visible, with no far-ground/skirt cap at 1m (-7.424990653991699 vs -7.424990590544272)"
+          },
+          {
+            "ok": true,
+            "message": "actual water in edge-land"
+          },
+          {
+            "ok": true,
+            "message": "Höje å nedströms: rendered surface at 3m outside terrain"
+          },
+          {
+            "ok": true,
+            "message": "Höje å nedströms: water is visible, with no far-ground/skirt cap at 3m (-7.424990653991699 vs -7.424990590544272)"
+          },
+          {
+            "ok": true,
+            "message": "actual water in edge-land"
+          },
+          {
+            "ok": true,
+            "message": "Höje å nedströms: rendered surface at 10m outside terrain"
+          },
+          {
+            "ok": true,
+            "message": "Höje å nedströms: water is visible, with no far-ground/skirt cap at 10m (-7.424990653991699 vs -7.424990590544272)"
+          },
+          {
+            "ok": true,
+            "message": "actual water in edge-land"
+          },
+          {
+            "ok": true,
+            "message": "Höje å nedströms: rendered surface at 25m outside terrain"
+          },
+          {
+            "ok": true,
+            "message": "Höje å nedströms: water is visible, with no far-ground/skirt cap at 25m (-7.424990653991699 vs -7.424990590544272)"
+          },
+          {
+            "ok": true,
+            "message": "actual water in edge-land"
+          },
+          {
+            "ok": true,
+            "message": "Höje å nedströms: submerged emitted bank at offset -3.2 is covered by emitted water"
+          },
+          {
+            "ok": true,
+            "message": "Höje å nedströms: submerged emitted bank at offset -3.5 is covered by emitted water"
+          },
+          {
+            "ok": true,
+            "message": "Höje å nedströms: submerged emitted bank at offset 3.2 is covered by emitted water"
+          },
+          {
+            "ok": true,
+            "message": "Höje å nedströms: submerged emitted bank at offset 3.5 is covered by emitted water"
+          },
+          {
+            "ok": true,
+            "message": "Höje å nedströms: actual submerged bank triangles were probed"
+          },
+          {
+            "ok": true,
+            "message": "Höje å nedströms: bank rendered at offset 8"
+          },
+          {
+            "ok": true,
+            "message": "Höje å nedströms: bank meets local terrain without a cliff at offset 8"
+          },
+          {
+            "ok": true,
+            "message": "Höje å nedströms: bank rendered at offset 18"
+          },
+          {
+            "ok": true,
+            "message": "Höje å nedströms: bank meets local terrain without a cliff at offset 18"
+          }
+        ]
+      },
+      "actual": [
+        {
+          "river": "Höje å uppströms",
+          "d": 0.1,
+          "mesh": "edge-land",
+          "y": -6.672598838806152,
+          "water": -6.672598647482322,
+          "ok": true
+        },
+        {
+          "river": "Höje å uppströms",
+          "d": 1,
+          "mesh": "edge-land",
+          "y": -6.672598838806152,
+          "water": -6.672598647482322,
+          "ok": true
+        },
+        {
+          "river": "Höje å uppströms",
+          "d": 3,
+          "mesh": "edge-land",
+          "y": -6.672598838806152,
+          "water": -6.672598647482322,
+          "ok": true
+        },
+        {
+          "river": "Höje å uppströms",
+          "d": 10,
+          "mesh": "edge-land",
+          "y": -6.672598838806152,
+          "water": -6.672598647482322,
+          "ok": true
+        },
+        {
+          "river": "Höje å uppströms",
+          "d": 25,
+          "mesh": "edge-land",
+          "y": -6.672598838806152,
+          "water": -6.672598647482322,
+          "ok": true
+        },
+        {
+          "river": "Höje å nedströms",
+          "d": 0.1,
+          "mesh": "edge-land",
+          "y": -7.424990653991699,
+          "water": -7.424990590544272,
+          "ok": true
+        },
+        {
+          "river": "Höje å nedströms",
+          "d": 1,
+          "mesh": "edge-land",
+          "y": -7.424990653991699,
+          "water": -7.424990590544272,
+          "ok": true
+        },
+        {
+          "river": "Höje å nedströms",
+          "d": 3,
+          "mesh": "edge-land",
+          "y": -7.424990653991699,
+          "water": -7.424990590544272,
+          "ok": true
+        },
+        {
+          "river": "Höje å nedströms",
+          "d": 10,
+          "mesh": "edge-land",
+          "y": -7.424990653991699,
+          "water": -7.424990590544272,
+          "ok": true
+        },
+        {
+          "river": "Höje å nedströms",
+          "d": 25,
+          "mesh": "edge-land",
+          "y": -7.424990653991699,
+          "water": -7.424990590544272,
+          "ok": true
+        }
+      ],
+      "storage": {
+        "local": {
+          "lunden.drawing": "original-drawing-sentinel",
+          "lunden.cloud.queue": "original-queue-sentinel"
+        },
+        "session": "original-session-sentinel"
+      },
+      "errors": [],
+      "external": []
+    }
+  ],
+  "implementation": "a473af88fc59396b147c1e71708072d1926c57f5",
+  "source": "59d737b28a7d46deb95b0c2688f897e73013cd7d",
+  "checks": {
+    "source": "OSM, 25 historical station positions/chainage/width/bank/water; retained bridge/ground/south data; fog beyond current WALK PASS",
+    "riverFall": "7/7 PASS including unchanged bridge buffer hashes and public recovery",
+    "npmTest": "106 modules, import graph, floor plans, same-origin, app/icon declarations PASS",
+    "npmBuild": "PASS cf2a4ade8eb9898a2e327298",
+    "browserPeakMiB": 1084
+  },
+  "limitations": [
+    "Full Chromium/SwiftShader desktop diagnostic views; no physical phone",
+    "Far-bank sizes/levels and final west tangent are visual assumptions",
+    "Parent performs combined integration and actual Pages verification"
+  ]
+}
