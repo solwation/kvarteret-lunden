@@ -2480,3 +2480,9 @@ Verifiering: `npm test` grön; före/efter-bilder, oförändrat antal ritanrop o
 Importerad från `398e9a9cc2b1455fd50868d8f95cea0209a47e5a` (original #1796). `SITE.east.roofColors` hade här samma värden som originalet före #1796 och `styles` (`ward`, `stenhammar`, `anshelm`, `klockhuset`) samt `classic` sänks nu till samma mörka skifferfamilj som `laundry` (`laundry` är oförändrad; #222 hanterar Kunskapsskolans tak). Gårdarna vid Framtiden, Freinet och Höjebroskolan får färgen `0x9a9a90`, Montessorigården nytt grus `0xa89f86`, och Freinet och Montessori får var en gräsoval via befintliga `yard.lawns` (går i `access`-batchen). Alla färger och ovaler är *guess* från originalets visuella granskning. Originalets ändringslogg ingår inte. Lekplatserna (#227) och Kunskapsskolans tak/häck (#222) är egna portningar.
 
 Verifiering: `npm test` grön; före/efter-bilder i [docs/verification/221/](verification/221/README.md). Ritanrop oförändrade i alla tre vyer (+1043 trianglar för gräsovalerna). Chromium med SwiftShader; ingen fysisk enhet.
+
+## Kunskapsskolans tak och häck vid Klockhuset, #222
+
+Importerad från `7fa065d7f7758d7f334834f1c5e7b52653dcb1d7` (original #1797). `SITE.east.roofColors.styles.laundry` (Kunskapsskolan, byggnad 19) ändras från `0x4d5564` till `0x3c4864`; övriga stilar från #221 är orörda. Parkeringen `145221623` (Klockhuset, samma kontur som i originalet) får en `yard` med bara häck (två sträckor med lucka för gångvägen), och en rad i `src/sitebackdrop.js` gör att parkeringar också ritar sin `yard`. Allt är *guess* från originalets visuella granskning. Originalets ändringslogg och miljödokument ingår inte.
+
+Verifiering: `npm test` grön; före/efter-bilder i [docs/verification/222/](verification/222/README.md). Ritanrop oförändrade (176 och 61), +72 trianglar per vy.

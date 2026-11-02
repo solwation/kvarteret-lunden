@@ -1150,7 +1150,12 @@ export const SITE = {
       {"source":"145221608","surface":"asphalt","path":[[42.02,-22.6],[41.59,9.63],[62.44,9.9],[62.84,-12.92],[64.6,-23.58]],"w":4.5},
       {"source":"159284495","surface":"asphalt","path":[[103.93,63.38],[111.66,62.1],[124.13,56.78],[132.13,55.42],[151.46,51.2],[175.16,45.0],[190.09,38.61],[193.02,34.82]],"w":4.5},
       {"source":"159284525","surface":"asphalt","path":[[193.02,34.82],[195.65,30.96],[197.66,13.19],[197.5,-9.96],[194.66,-29.07],[188.29,-38.62]],"w":4.5},
-      {"source":"145221623","name":"Parkering vid Sankt Thomas/Klockhuset","surface":"asphalt","capacity":35,"capacitySource":"guess","polygon":[[38.68,15.41],[40.14,-19.07],[85.54,-17.08],[84.09,17.41]]},
+      {"source":"145221623","name":"Parkering vid Sankt Thomas/Klockhuset","surface":"asphalt","capacity":35,"capacitySource":"guess","polygon":[[38.68,15.41],[40.14,-19.07],[85.54,-17.08],[84.09,17.41]],
+       // #1797 (Google 3D review 2026-11-02, 06_kunskapsskolan_h000/h180): a clipped hedge lines the car park's north edge, which the game left bare; reuses the #1737 yard
+       // mechanism with hedges only (no sand, lawns or play frames). Two runs with a gap for the footpath into the yard (x ~56-62); path and height are a *guess* read by eye from the oblique views; drawn in the same `access` batch.
+       "yard":{"lawns":[],"sand":[],"play":[],"lift":{"sand":0.05,"lawn":0.08},
+        "hedge":{"paths":[[[46,-19.9],[55,-19.7]],[[63,-19.4],[71,-18.6]]],"h":0.7,"w":0.7,"piece":4,"sink":0.3},
+        "colors":{"lawn":0x5d8a3a,"sand":0xd6c39a,"hedge":0x3b5828,"wood":0x8a6a48,"seat":0x2f2f2f,"roof":0xa8483a,"slide":0xc9a227}}},
       {"source":"44447969","name":"Östra campusparkeringen","surface":"asphalt","capacity":20,"capacitySource":"guess","polygon":[[196.06,-37.72],[189.82,-21.9],[192.2,7.75],[206.2,7.66],[204.71,-19.6]]},
       // #1796 (*guess*, Google 3D): the yards are greyer than the old beige, and Freinet's and Montessori's get one lawn oval each (`yard` with only `lawns`, merged into the access batch: no draw call)
       {"source":"145221566","name":"Förskolan Framtiden gård","surface":"paved","color":0x9a9a90,"polygon":[[129.42,-89.2],[66.93,-86.35],[64.6,-23.58],[104.66,-22.41],[120.84,-23.07],[130.35,-23.46],[130.2,-33.79],[130.09,-49.96]]},
@@ -1249,7 +1254,7 @@ export const SITE = {
     // school-style NTI building, `sources` = an OSM id's own colour (wins over its style; a building's `campus.roofColor` too).
     roofColors: {
       // #1796: the pavilions' roofs are dark slate grey in Google's views, so the pale blues are lowered to the same dark family as the laundry's; *guess*, read by eye from oblique images.
-      styles: { ward: 0x4f5b72, stenhammar: 0x4c586f, anshelm: 0x464f60, laundry: 0x4d5564, klockhuset: 0x4f5b72 },
+      styles: { ward: 0x4f5b72, stenhammar: 0x4c586f, anshelm: 0x464f60, laundry: 0x3c4864, klockhuset: 0x4f5b72 },
       classic: 0x56627a,
       sources: {},
     },
