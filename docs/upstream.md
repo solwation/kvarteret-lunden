@@ -2578,3 +2578,22 @@ neutralt kontrakt med publik Three-installation och två extra lokala WALK-kontr
 Verifiering: 26 väg-/skarvkontrakt (336 kvartsmeterspunkter, noll glipor), befintligt
 `tools/edgebackdroptest.mjs`, `npm test`, `npm run build`, och egen faktisk skolvy före/efter med
 oförändrade original-lagringsmarkörer och inga externa nätanrop. [Resultat och egna bilder](verification/230/README.md).
+
+## Åns fortsättning genom terrängkanten, #231
+
+Selektiv import från originalets `59d737b28a7d46deb95b0c2688f897e73013cd7d` (#1814): den neutrala
+`src/riveredge.js`, fortsatt OSM-planlinje och `EDGE_BACKDROP.riverContinuation`, append-only-flödet i
+`src/riverbridge.js`, kanalens smala undantag från kantutjämning i `src/surroundings.js` och klippning av de
+befintliga far-ground-planen i `src/southbackdrop.js`. `src/edgebackdrop.js` skär ut kanalen och lägger vatten/bankar
+i sin befintliga landbatch före väg-/gånglagren. Ingen ny mesh eller nytt material behövs.
+
+Publicens gamla 25 stationer, fallankare, brohöjder, broarnas egna `trimApproach`-anslutning, övriga mark-/southdata och
+navigationsgränser behålls. Vatten fortsätter under den nedsänkta banksluttningen; kanten ansluter till publicens
+ritade terräng. Planläget följer arkiverad OSM way 137217705, med ett separat neutralt utdrag i
+[referensen](references/surrounding-views/river-137217705-2026-10-08.json). Den sista västpunkten är en antagen tangent
+bakom dimman. Bredd, bankmått, förlängd relativ fallprofil och konstant vattennivå utanför terrängen är visuella
+antaganden, inte nya höjdmätningar.
+
+Originalets ponny-/ekorr-/fisk-/spel-/servicekopplingar, rapport-/resultatbilder, apphistorik och generella config-/världsändringar
+importeras inte. Originalets tester används endast efter anpassning till den publika datan och navigationen.
+Kontroller och egna bilder dokumenteras under [verifiering #231](verification.md#åns-fortsättning-231).

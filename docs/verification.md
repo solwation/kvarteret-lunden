@@ -2812,3 +2812,19 @@ kräver oförändrade markörer, inga nya lokala nycklar, inga externa nätanrop
 Kör genom orkesterns minnesbegränsade browserwrapper med delat lås. Egna granskade bilder och
 exakta kommandon finns i [docs/verification/230](verification/230/README.md). Chromium/SwiftShader;
 ingen fysisk mobilprestanda påstås. Inga originalbilder har överförts.
+
+## Åns fortsättning, #231
+
+Bas `995ea013c450e567c87b68dfe6f6c14e614105df`; granskad originalkälla
+`59d737b28a7d46deb95b0c2688f897e73013cd7d`. Tre riktade kontrollfamiljer:
+
+- `node tools/rivercontinuation-source-test.mjs`: OSM-plan, 25 äldre stationers läge/chainage/bredd/bank/vattennivå,
+  oförändrad publik bro-/mark-/southkonfiguration och WALK, båda slutpunkterna bortom dimman.
+  `node tools/riverfalltest.mjs`: befintliga brobuffer-hashar, referensfall och publik vattenbarriär/återhämtning (7 kontroller).
+- `npm test` och `npm run build`: publika import-/innehålls-/same-origin-kontrakt och statiskt bygge.
+- `tools/rivercontinuation-view-check.mjs BASE OUT [BASELINE]`: riktad faktisk scen i full Chromium, samma mark-/flygkamera vid
+  båda ändarna före/efter, emitterad kanal/strand/skarv (`rivercontinuationtest.mjs`), faktisk scenstråle vid båda skarvarna samt
+  nätverkslogg och orörda original-lagringssentineler. Egna granskade bilder och maskinresultat i
+  [docs/verification/231](verification/231/README.md). Ingen fysisk telefon eller bred profilrunda påstås.
+
+Dirigenten publicerar egna bilder före stängning och anger levererad revision samt faktisk Pages-körning i #231.

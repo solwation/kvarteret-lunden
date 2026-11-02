@@ -20,6 +20,8 @@ Visningen ska vara statisk och fungera **utan Cloudflare-integration**. Original
 
 På telefoner frigörs CPU-kopian av trapphusens färdigritade dörrskyltar när bilden har laddats upp till grafiken. Skyltarnas upplösning och de uppdaterbara hissdisplayerna behålls.
 
+Höje å och dess stränder fortsätter genom terrängkanterna tills dimman döljer dem (#231). Planläget följer OSM; bankmått, fjärrvattennivå och den sista västliga fortsättningen är antaganden. Befintliga brohöjder och navigationsgränser behålls.
+
 Sydplatåns mark är lokalt förankrad i tio granskade LM-markpunkter och två byggnadsaproner (#106). Källans 77 markhöjdsvar och attribution är bevarade. RH2000 minus 14,36 m är en relativ modellreferens; horisontell registrering, interpolation och apronmått är antaganden. Punkten mäter mark, inte ådjup eller lägenhetsgolv. Den ritade triangelytan approximerar den mjuka markmodellen.
 
 Uteplatshäckarnas åtta befintliga geometridelar ritas var för sig på datorn (#119). Telefonerna behåller originalets enda batch; lövform, färg, placering och gånghinder är oförändrade.
