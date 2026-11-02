@@ -114,6 +114,88 @@ export function houseBoxes() {
   return boxes.filter((b) => ![[-1, -1], [1, -1], [1, 1], [-1, 1]].some(([sx, sz]) => inRect(b.x + sx * b.w / 2 * Math.cos(b.angle) - sz * b.d / 2 * Math.sin(b.angle), b.z + sx * b.w / 2 * Math.sin(b.angle) + sz * b.d / 2 * Math.cos(b.angle), 6)));
 }
 
+/** #1798: the OSM footprints of EDGE_BACKDROP.footprints as non-indexed geometries (position, normal, colour) for the `edge-houses` batch.
+ *  Walls run from the lowest ground corner (`ground` = the terrain's height function, as for the band) to the eave, flat roofs are triangulated polygons,
+ *  small rectangles get a gable, rectangular blocks of `setback.minLevels`+ storeys a dark set-back top storey. Outside the terrain rectangle only. */
+export function footprintGeometries(ground = () => -Infinity) {
+  const F = E.footprints, out = [];
+  if (!F) return out;
+  const pal = (kind, id, key) => { const a = F.palettes[kind][key]; return new THREE.Color(a[Math.abs(id) % a.length]); };
+  for (const it of F.items) {
+    const P = it.polygon.slice(), n = P.length, id = parseInt(it.source, 10) || 0;
+    const cx = P.reduce((a, p) => a + p[0], 0) / n, cz = P.reduce((a, p) => a + p[1], 0) / n;
+    if (inRect(cx, cz)) continue;
+    let A = 0; for (let i = 0; i < n; i++) { const p = P[i], q = P[(i + 1) % n]; A += p[0] * q[1] - q[0] * p[1]; }
+    const area = Math.abs(A) / 2, s = A >= 0 ? 1 : -1;
+    const lv = it.levels || F.levelsByArea.find(([m]) => area <= m)[1];
+    const h = it.kind === 'garage' ? F.garageHeight : it.kind === 'parking' ? F.parkingHeight : lv * F.storey;
+    const gy = P.map(([x, z]) => Math.max(E.level, skirtTop(x, z, ground))), floor = Math.max(...gy), bottom = Math.min(...gy) - F.base, eave = floor + h;
+    const wall = pal(it.kind, id, 'walls'), roof = pal(it.kind, id, 'roofs');
+    const pos = [], col = [];
+    const tri = (a, b, c, c0, up) => { // a, b, c = [x, y, z]; flipped when its normal disagrees with `up` (a [x, y, z] direction)
+      const ux = b[0] - a[0], uy = b[1] - a[1], uz = b[2] - a[2], vx = c[0] - a[0], vy = c[1] - a[1], vz = c[2] - a[2];
+      const nx = uy * vz - uz * vy, ny = uz * vx - ux * vz, nz = ux * vy - uy * vx;
+      for (const p of nx * up[0] + ny * up[1] + nz * up[2] < 0 ? [a, c, b] : [a, b, c]) { pos.push(...p); col.push(c0.r, c0.g, c0.b); }
+    };
+    const wallRing = (poly, y0, y1, c0) => poly.forEach((p, i) => {
+      const q = poly[(i + 1) % poly.length], dx = q[0] - p[0], dz = q[1] - p[1], o = s > 0 ? [dz, 0, -dx] : [-dz, 0, dx];
+      tri([p[0], y0, p[1]], [q[0], y0, q[1]], [q[0], y1, q[1]], c0, o); tri([p[0], y0, p[1]], [q[0], y1, q[1]], [p[0], y1, p[1]], c0, o);
+    });
+    const flatRoof = (poly, y, c0) => {
+      const idx = THREE.ShapeUtils.triangulateShape(poly.map(([x, z]) => new THREE.Vector2(x, z)), []);
+      for (const [a, b, c] of idx) tri([poly[a][0], y, poly[a][1]], [poly[b][0], y, poly[b][1]], [poly[c][0], y, poly[c][1]], c0, [0, 1, 0]);
+    };
+    const rect = n === 4;
+    const len = (a, b) => Math.hypot(b[0] - a[0], b[1] - a[1]);
+    if (rect && it.kind !== 'garage' && it.kind !== 'parking' && area <= F.gable.maxArea && lv <= 3) { // gable: ridge along the long side
+      let Q = P; if (len(P[0], P[1]) < len(P[1], P[2])) Q = [P[1], P[2], P[3], P[0]];
+      const span = len(Q[1], Q[2]), rise = Math.min(F.gable.maxRise, span * F.gable.rise), ry = eave + rise;
+      const R0 = [(Q[0][0] + Q[3][0]) / 2, (Q[0][1] + Q[3][1]) / 2], R1 = [(Q[1][0] + Q[2][0]) / 2, (Q[1][1] + Q[2][1]) / 2];
+      wallRing(P, bottom, eave, wall);
+      const up = (a, b, c, y) => tri([a[0], y[0], a[1]], [b[0], y[1], b[1]], [c[0], y[2], c[1]], roof, [0, 1, 0]);
+      const wl = (a, b, c) => tri([a[0], eave, a[1]], [b[0], eave, b[1]], [c[0], ry, c[1]], wall, [(a[0] + b[0]) / 2 - cx, 0, (a[1] + b[1]) / 2 - cz]);
+      up(Q[0], Q[1], R1, [eave, eave, ry]); up(Q[0], R1, R0, [eave, ry, ry]); up(R0, R1, Q[2], [ry, ry, eave]); up(R0, Q[2], Q[3], [ry, eave, eave]);
+      wl(Q[3], Q[0], R0); wl(Q[1], Q[2], R1);
+    } else {
+      wallRing(P, bottom, eave, wall);
+      flatRoof(P.map(([x, z]) => [x, z]), eave, roof);
+      if (rect && it.kind === 'block' && lv >= F.setback.minLevels) { // dark set-back top storey inside the roof edge
+        const u = [P[1][0] - P[0][0], P[1][1] - P[0][1]], v = [P[3][0] - P[0][0], P[3][1] - P[0][1]], lu = Math.hypot(...u), lv2 = Math.hypot(...v), k = F.setback.inset;
+        if (lu > 3 * k && lv2 > 3 * k) {
+          const f = (a, b) => [P[0][0] + u[0] * a / lu + v[0] * b / lv2, P[0][1] + u[1] * a / lu + v[1] * b / lv2];
+          const I = [f(k, k), f(lu - k, k), f(lu - k, lv2 - k), f(k, lv2 - k)], y1 = eave + F.setback.height;
+          const wc = new THREE.Color(F.setback.wall), rc = new THREE.Color(F.setback.roof);
+          I.forEach((p, i) => { const q = I[(i + 1) % 4], dx = q[0] - p[0], dz = q[1] - p[1], o = s > 0 ? [dz, 0, -dx] : [-dz, 0, dx];
+            tri([p[0], eave, p[1]], [q[0], eave, q[1]], [q[0], y1, q[1]], wc, o); tri([p[0], eave, p[1]], [q[0], y1, q[1]], [p[0], y1, p[1]], wc, o); });
+          flatRoof(I, y1, rc);
+        }
+      }
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
+    g.computeVertexNormals();
+    out.push(g);
+  }
+  return out;
+}
+
+/** #1808 (original): the OSM ground features of EDGE_BACKDROP.ground (car parks, lawns, scrub, pitches, a pond, roads, paths, a ditch) as flat parts for the `edge-land` batch.
+ *  Features within `clear` m of the terrain rectangle are skipped (the feathered band slopes over them). Nothing on phones. */
+export function groundParts() {
+  const G = E.ground, out = [];
+  if (!G || (lowMemory && E.lowMemory.ground === false)) return out;
+  const L = { ...E.lift, ...G.lift };
+  for (const it of G.items) {
+    const pts = it.polygon ?? it.path;
+    if (pts.some(([x, z]) => inRect(x, z, G.clear))) continue;
+    const col = G.colors[it.kind];
+    if (it.polygon) out.push(flat(it.polygon, E.level + L[it.kind === 'green' ? 'yard' : it.kind], col));
+    else out.push(ribbon(it.path, it.width, E.level + (it.kind === 'ditch' ? L.water : L[it.kind]), col));
+  }
+  return out;
+}
+
 /** Tree spots [{x, z, y, h, r, edge}] for the south backdrop's instanced batches: rows along field edges and woods (none on phones). */
 export function edgeTreeSpots() {
   if (lowMemory && E.lowMemory.trees === false) return [];
@@ -137,6 +219,7 @@ export function buildEdgeBackdrop(ground) {
   parts.push(flat([[N.x0, N.z0], [N.x1, N.z0], [N.x1, B.z0], [N.x0, B.z0]], E.level, far));
   parts.push(...skirtParts(far, ground));
   for (const f of E.fields) parts.push(flat(f.polygon, E.level + lift.field, f.color));
+  parts.push(...groundParts()); // #223 (original #1808): lawns, car parks, roads and paths between the north-west houses
   for (const p of E.paths) parts.push(ribbon(p.path, p.width, E.level + lift.path, p.color));
   for (const r of E.rivers ?? []) parts.push(band(r.path, r.width, E.level + lift.path, r.color, ground)); // #218 (original #1790): under the road strip, which crosses it
   for (const p of E.roads) parts.push(ribbon(p.path, p.width, E.level + lift.road, p.color, ground)); // #218 (original #1802): lifted over the sloping band, above the river strip's 0.35 m
@@ -151,6 +234,7 @@ export function buildEdgeBackdrop(ground) {
       g.deleteAttribute('uv'); g.setAttribute('color', new THREE.Float32BufferAttribute(cols, 3));
       return g.rotateY(-b.angle).translate(b.x, E.level + b.h / 2 - 0.05, b.z);
     });
+    geos.push(...footprintGeometries(ground)); // #223 (original #1798): OSM footprints in the same batch
     const houses = new THREE.Mesh(mergeGeometries(geos), new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, roughness: 0.95 }));
     houses.name = 'edge-houses';
     geos.forEach((g) => g.dispose());

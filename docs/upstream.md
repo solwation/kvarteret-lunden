@@ -2492,3 +2492,14 @@ Verifiering: `npm test` grön; före/efter-bilder i [docs/verification/222/](ver
 Importerad från `7684219a197cdd0ad5150c818c5a9c05a0873578` (original #1795): `facades`, `roofs` och `rises` i `SITE.south.villas` och `SITE.south.whiteHouses` i `src/config.js` samt `houseVariant` i `src/southbackdrop.js`. Varje hus väljer färg, takfärg och taklutning ur en liten palett med en stabil hash av OSM-id (ingen slump); ladan 88457556 behåller sitt mörka tak. `villas.sources` och `whiteHouses.sources` är identiska med originalets. Avvikelse: nr 48 och 49 (`brickHouses`, #217) ligger också i `whiteHouses.sources`, så här får `brickHouses` företräde (`PV=V??(BH?null:WB)`); originalets rad låter vit palett gå före tegel. Inga nya ritanrop eller trianglar (före/efter identiska). Alla värden är *guess*. Originalets ändringslogg ingår inte (kvarteret har ingen).
 
 Verifiering: `npm test` grön; före/efter-bilder och ritanrop i [docs/verification/219/](verification/219/README.md).
+
+## Kallby ängar och bostäderna i norr i fonden, #223
+
+Importerad från `cf116e2082c96214422e0879dc63725689cedcfc` (original #1798) och `b17e022fa5eb39f07a4cb89f899f26f13f873425` (original #1808). Kantbandet (`band`, `skirtTop`) kom med #218, så koden gick att föra över nästan oförändrad.
+
+- `EDGE_BACKDROP.footprints` i `src/config.js` (116 OSM-fotavtryck norr och nordväst om terrängen, hämtade 2026-11-02) och `footprintGeometries(ground)` i `src/edgebackdrop.js`: väggar från lägsta markhörnet (följer kantbandet), flata tak, sadeltak på små rektanglar och ett indraget mörkt takvåningsplan på rektangulära block med fyra våningar eller fler. Geometrin slås ihop med de befintliga `edge-houses`-lådorna i samma mesh (inget nytt ritanrop). OSM-utdraget finns i `docs/references/surrounding-views/osm-north-2026-11-02.json`.
+- `EDGE_BACKDROP.ground` (136 OSM-parkeringar, gräsytor, buskmark, vägar, stigar och ett dike) och `groundParts()`, som läggs i `edge-land` och hoppar över allt närmare än 90 m från terrängen (kantbandet lutar över det). `E.lowMemory.ground = false`: telefoner får varken fotavtrycken (`houses: false` gäller samma mesh) eller markytorna. Originalets markutdrag `docs/references/surrounding-views/osm-north-ground-2026-11-02.json` följer med.
+- `tools/edgebackdroptest.mjs`: originalets 8 + 6 kontroller, oförändrade.
+- Alla färger, våningshöjder och takformer är *guess* från originalets visuella granskning. Originalets ändringslogg och miljödokument ingår inte (finns inte här); träden som döljer markytorna ovanifrån (#1804) är en egen portning.
+
+Verifiering: `npm test`, `node tools/edgebackdroptest.mjs`; före/efter-bilder, ritanrop och trianglar i [docs/verification/223/](verification/223/README.md).
