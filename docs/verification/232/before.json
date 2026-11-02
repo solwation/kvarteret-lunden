@@ -1,0 +1,68 @@
+{
+  "first": {
+    "phase": "before",
+    "west": {
+      "target": [
+        -280,
+        30
+      ],
+      "reached": false,
+      "end": [
+        -259.78,
+        2.7942369943999994,
+        30
+      ],
+      "ticks": 1801
+    },
+    "coverage": {
+      "walk": {
+        "x0": -260,
+        "x1": 320,
+        "z0": -200,
+        "z1": 452,
+        "cell": 40,
+        "wade": 2,
+        "rescue": 3,
+        "maxSlope": 1.2,
+        "trunk": {
+          "big": 0.45,
+          "tree": 0.3,
+          "birch": 0.2,
+          "young": 0.15
+        }
+      },
+      "meshMin": [
+        -350,
+        -7.8982930183410645,
+        -340
+      ],
+      "meshMax": [
+        340,
+        12.314000129699707,
+        460
+      ],
+      "grid": [
+        -350,
+        340,
+        -340,
+        460
+      ]
+    },
+    "boundarySamples": 496,
+    "badBoundarySamples": 0,
+    "metrics": {
+      "ticks": 1840,
+      "rescues": 0,
+      "aloft": 0,
+      "maxStep": 0.0267124307010795
+    },
+    "camera": [
+      -259.78,
+      4.414236994399998,
+      30
+    ]
+  },
+  "rest": null,
+  "errors": [],
+  "external": []
+}

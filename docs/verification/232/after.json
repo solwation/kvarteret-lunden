@@ -1,0 +1,181 @@
+{
+  "first": {
+    "phase": "after",
+    "west": {
+      "target": [
+        -280,
+        30
+      ],
+      "reached": true,
+      "end": [
+        -279.8133333333062,
+        2.8,
+        30
+      ],
+      "ticks": 1118
+    },
+    "coverage": {
+      "walk": {
+        "x0": -285,
+        "x1": 320,
+        "z0": -200,
+        "z1": 452,
+        "cell": 40,
+        "wade": 2,
+        "rescue": 3,
+        "maxSlope": 1.2,
+        "trunk": {
+          "big": 0.45,
+          "tree": 0.3,
+          "birch": 0.2,
+          "young": 0.15
+        }
+      },
+      "meshMin": [
+        -350,
+        -7.8982930183410645,
+        -340
+      ],
+      "meshMax": [
+        340,
+        12.314000129699707,
+        460
+      ],
+      "grid": [
+        -350,
+        340,
+        -340,
+        460
+      ]
+    },
+    "boundarySamples": 506,
+    "badBoundarySamples": 0,
+    "metrics": {
+      "ticks": 1158,
+      "rescues": 0,
+      "aloft": 0,
+      "maxStep": 0.0267124307010795
+    },
+    "camera": [
+      -279.8133333333062,
+      4.419999999999998,
+      30
+    ]
+  },
+  "rest": {
+    "route": [
+      {
+        "target": [
+          -280,
+          20
+        ],
+        "reached": true,
+        "end": [
+          -279.9964836494793,
+          2.300525597701314,
+          20.188375920736007
+        ],
+        "ticks": 368
+      },
+      {
+        "target": [
+          -280,
+          40
+        ],
+        "reached": true,
+        "end": [
+          -279.99996717199076,
+          2.3049612911679995,
+          39.81504227826034
+        ],
+        "ticks": 736
+      },
+      {
+        "target": [
+          -250,
+          40
+        ],
+        "reached": true,
+        "end": [
+          -250.18720043206747,
+          2.843043172658577,
+          39.99884585988962
+        ],
+        "ticks": 1118
+      },
+      {
+        "target": [
+          -250,
+          30
+        ],
+        "reached": true,
+        "end": [
+          -250.00350539502506,
+          2.306189851280071,
+          30.187231963875142
+        ],
+        "ticks": 368
+      }
+    ],
+    "metrics": {
+      "ticks": 3788,
+      "rescues": 0,
+      "aloft": 0,
+      "maxStep": 0.02679844090886011
+    },
+    "edge": {
+      "target": [
+        -300,
+        30
+      ],
+      "reached": false,
+      "end": [
+        -284.78,
+        2.8,
+        30
+      ],
+      "ticks": 901
+    },
+    "building": {
+      "target": [
+        34,
+        0
+      ],
+      "reached": false,
+      "end": [
+        27.68,
+        -0.41666666666666663,
+        -3.310167100399081e-16
+      ],
+      "ticks": 601
+    },
+    "water": {
+      "target": [
+        -41,
+        150
+      ],
+      "reached": false,
+      "end": [
+        -40.928775754718956,
+        -5.7759848155849145,
+        141.57841873210145
+      ],
+      "ticks": 1501
+    },
+    "river": {
+      "distance": 5.08383462595968,
+      "width": 6.157198016581778
+    },
+    "sentinels": [
+      "original-drawing-sentinel",
+      "original-queue-sentinel",
+      "original-session-sentinel"
+    ],
+    "keys": [
+      "lunden.cloud.queue",
+      "lunden.drawing"
+    ]
+  },
+  "errors": [],
+  "external": []
+}
