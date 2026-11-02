@@ -2645,3 +2645,22 @@ statiska sitsar, material/UV/skuggflagga och säsongsåtergång. Egna skolövers
 samma kamera i juni och november visar färgändringen; oförändrade trianglar och ett
 extra ritanrop. `npm test`/`npm run build` samt faktisk nät-/lagringsisolering är gröna.
 [Egna bilder, exakta kommandon och råresultat](verification/233/README.md).
+
+## Passivt utegym i trä vid Karpvägen, #234
+
+Selektiv neutral extraktion från originalets `52be76d1e4d50521edb042c99805cbbdbcf21140` (#1811),
+vars produktkod motsvarar verifierade `ca95c15f0f81110768dba9cfa2e13d5098479860`.
+`src/outdoorgym.js` är en separat passiv builder: räcke med stöd, träbänk med fast stock, låg stegbräda och flisyta.
+`OUTDOOR_GYM` i `src/config.js` innehåller enbart statiska geometrimått, materialfärger och placering.
+Publicens egna terränghöjder används genom `renderedTerrainY` i `src/surroundings.js`; markdata och navigationens
+befintliga regler ändras inte. `src/farwalk.js` registrerar samma stöd-/brädfotavtryck som buildern ritar.
+Räckets två stöd inklusive snedsträvor blockerar, medan passagen under själva stången är fri.
+
+Allt trä inklusive stocken slås i en fast batch; metall och flis har varsin batch: totalt 3 material/ritanrop och
+840 trianglar. Träet använder publicens plana färg-/materialstil, så originalets woodgrain-modul och textur behövs inte.
+Övriga granskade beroenden är befintliga Three.js/mergeGeometries och publicens config/mark-/kollisionssystem.
+Placering (-143,33), vridning, mått, färger och frigång är bildtolkade antaganden, inte verifierad Peab-utrustning.
+
+Originalets exercise-/Rest-/kamera-/input-/animationsstate, pickables/targets, repetitioner, poäng,
+lagring/tjänster, originalbilder och privat historik importeras inte. Ingen ny UI- eller interaktionsväg skapas.
+Egna bilder och scoped kontroller finns under [verifiering #234](verification.md#passivt-utegym-234).

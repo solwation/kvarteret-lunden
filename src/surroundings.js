@@ -1,3 +1,4 @@
+import {buildOutdoorGym} from './outdoorgym.js';
 import { roadsidePockets, gradeParkingTerrain, constrainPocketPlane, setParkingPlane, parkingHull } from './roadsideparking.js';
 import { terrainCellGroups } from './terraincells.js';
 import { lowMemory } from './lowmemory.js';
@@ -1900,6 +1901,7 @@ export function* surroundingsParts({ grass, husL = null }) {
   group.add(buildRiverBridges(roadGround, connectPavement));
   yield 0.2;
   group.add(buildRiverPark(renderedTerrainY,renderedTerrainY, connectPavement));
+  group.add(buildOutdoorGym(renderedTerrainY)); // Public #234: passive timber park fittings
   group.add(buildBusStop(renderedTerrainY)); // #71 (original #1301)
   yield 0.25;
   const backdrops = [buildWestBackdrop(renderedTerrainY,{glass:glassMaterial})];

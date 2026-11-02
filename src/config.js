@@ -3046,3 +3046,19 @@ export const EDGE_BACKDROP = {
   ],
   lowMemory: { houses: false, trees: false, ground: false }, // phones: the land mesh only, without the OSM ground polygons (viewlod.js's idea: far detail is the first to go)
 };
+
+// Public #234, selective geometry from original 52be76d1: passive timber park fittings.
+// Location by Karpvägen, dimensions, colours and clearances are image-interpreted assumptions, not a verified installation.
+export const OUTDOOR_GYM = {
+  at: [-143,33], yaw: -45, pad: [14,7.5], padStep: 1, padLift: .035,
+  wood: 0x9d714e, steel: 0x363d3e, chips: 0xb59c73, post: .085, bar: .03, board: .045,
+  bench: .52, logRadius: .11, pullHeight: 2.35, stepHeight: .42,
+  geometry: {
+    postSides: 8, logSides: 10,
+    pull: {postX: .85, topExtra: .12, braceDrop: .2, braceBack: .55},
+    press: {postX: .65, logY: 1.25, logZ: .4, logLength: 1.75, benchW: .7, benchD: 1.85,
+      footZ: .7, footX: .24, slatX: .22, slatW: .2, crossD: .18, halfW: .38, halfD: .95},
+    step: {footX: .5, footZ: .28, boardW: 1.3, boardD: .25, halfW: .68, halfD: .44},
+  },
+  stations: [{id:'pullup',x:-4.3,z:0},{id:'press',x:0,z:0},{id:'step',x:4.3,z:0}],
+};

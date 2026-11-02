@@ -2863,3 +2863,18 @@ fångas efter en tömd resize-buffer. Testet kräver inga externa anrop, inga si
 oförändrade original-lagringsmarkörer. Kör genom orkesterns browserwrapper med delat
 lås och fem minuters gräns. `npm test` och `npm run build` krävs. [Egna granskade bilder
 och råresultat](verification/233/README.md); Chromium/SwiftShader, ingen fysisk telefon.
+
+## Passivt utegym, #234
+
+Publik bas `9e27bbb30ca5422ffe293dcc41b6a22bc5b55bf9`; selektiv neutral originalkälla
+`52be76d1e4d50521edb042c99805cbbdbcf21140`. Tre avgränsade kontrollfamiljer:
+
+- `node tools/outdoorgymtest.mjs`: tre statiska stationer, tre batcher/840 trianglar utan ny textur,
+  12 markförankrade stolpstöd, flisyta över terräng samt 6 stöd-/brädfotavtryck och 24 segment i publicens farwalk.
+- `npm test` och `npm run build`: publik importgraf/innehåll/isolering och statiskt bygge.
+- `tools/outdoorgym-view-check.mjs BASE OUT`: verklig publik plats före/efter, faktiskt emitterat markstöd och flis mot
+  `renderedTerrainY`, verklig Navigation som stoppas vid bänk/stegbräda/stöd men kan gå under stången;
+  browserfel/nätverkslogg och orörda originallagringssentineler. Egna granskade översikts-/markbilder och resultat sparas i
+  [docs/verification/234](verification/234/README.md). Full Chromium/SwiftShader, ingen fysisk telefon eller bred profilrunda.
+
+Dirigenten publicerar bildbevis före stängning och anger levererad revision samt faktisk Pages-körning i #234.
