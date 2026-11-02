@@ -2,7 +2,7 @@ import { Vector3 } from 'three';
 import * as config from './config.js';
 import { stairHeight, stairUnderside } from './stairs.js';
 import { walkingGroundY as groundY, walkingSupportHeight, groundBelowDeckY } from './surroundings.js';
-import { deckAt } from './riverbridge.js';
+import { deckAt, upstreamRiverZone } from './riverbridge.js'; // #218 (original #1790): the upstream stretch's water guards north of z 60
 import { stileSurface, farWalls, waterBlocked, tooSteep, waterRescue, buildingRescue } from './farwalk.js'; // upstream #1236: walking beyond the block
 
 // Walking geometry adapted from src/player.js in solwation/lunden-3d-apartment,
@@ -179,7 +179,7 @@ export class Navigation {
     if (this.aloft || this.inFootprint() || this.unit || this.inCore || this.below) return;
     const g = groundY(this.pos.x, this.pos.z);
     if (this.pos.y > g + 0.05) return;
-    const back = (this.pos.z > 60 && waterRescue(this.pos.x, this.pos.z, this.pos.y)) || buildingRescue(this.pos.x, this.pos.z);
+    const back = ((this.pos.z > 60 || upstreamRiverZone(this.pos.x, this.pos.z)) && waterRescue(this.pos.x, this.pos.z, this.pos.y)) || buildingRescue(this.pos.x, this.pos.z);
     if (back) {
       const gy = deckAt(back.x, back.z) !== null && this.pos.y < -3.5 ? groundBelowDeckY(back.x, back.z) : groundY(back.x, back.z);
       this.pos.set(back.x, gy, back.z);
@@ -241,7 +241,7 @@ export class Navigation {
         const support=walkingSupportHeight(x,z);
         return support!==null&&support>previous.y+BODY.stepUp+1e-6;
       };
-      if (this.pos.z > 60 && !this.aloft && (waterBlocked(this.pos.x, this.pos.z, undefined, previous.y) || tooSteep(this.pos.x, this.pos.z, undefined, previous.y) || localStep(this.pos.x,this.pos.z))) {
+      if ((this.pos.z > 60 || upstreamRiverZone(this.pos.x, this.pos.z)) && !this.aloft && (waterBlocked(this.pos.x, this.pos.z, undefined, previous.y) || tooSteep(this.pos.x, this.pos.z, undefined, previous.y) || localStep(this.pos.x,this.pos.z))) {
         // The same local support owns ramp slope and reachable steps. A higher
         // support must block horizontally, rather than becoming a -Infinity floor.
         const bad = (x, z) => waterBlocked(x, z, undefined, previous.y) || tooSteep(x, z, undefined, previous.y) || localStep(x,z);

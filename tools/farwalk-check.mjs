@@ -75,7 +75,8 @@ try{
   const r0=riverAt(-41,143);n.teleport(r0.x+r0.nx*0.2,groundBelowDeckY(r0.x,r0.z),r0.z+r0.nz*0.2);n.update(dt);
   const r=riverAt(n.pos.x,n.pos.z);results.push({name:'river rescue',ok:r.distance>=r.width/2+1,end:n.pos.toArray()});
   // #90: the public navigation keeps its geographical water barrier and lands on the locally graded dry shore.
-  for(const i of[1,8,16]){const[x,z]=SITE.river.path[i];n.teleport(x,groundBelowDeckY(x,z),z);n.rescue();const end=n.pos.toArray(),r=riverAt(end[0],end[2]);results.push({name:`local river recovery at station ${i}`,ok:r.distance>=r.width/2+1&&end[1]>waterYAt(end[0],end[2])+.3,end});}
+  // #218 (original #1790): the #532 section's stations 1, 8 and 16 (after the upstream vertices) plus upstream vertex 1 (x 300, north of z 60 inside WALK).
+  for(const i of[1,8,16].map(i=>i+(SITE.river.upstream?.count??0)).concat(1)){const[x,z]=SITE.river.path[i];n.teleport(x,groundBelowDeckY(x,z),z);n.rescue();const end=n.pos.toArray(),r=riverAt(end[0],end[2]);results.push({name:`local river recovery at station ${i}`,ok:r.distance>=r.width/2+1&&end[1]>waterYAt(end[0],end[2])+.3,end});}
   // #91: from every river anchor the recovery point is outside the barrier and a W-held walk away from the water is not stopped
   {const bad=[];SITE.river.path.forEach(([x,z],i)=>{if(!(x>WALK.x0+5&&z<WALK.z1-5))return;n.teleport(x,groundBelowDeckY(x,z),z);n.rescue();const a=n.pos.clone(),q=riverAt(a.x,a.z);
     const sx=Math.sign((a.x-q.x)*q.nx+(a.z-q.z)*q.nz)||1,tx=a.x+q.nx*sx*4,tz=a.z+q.nz*sx*4;let t=0;

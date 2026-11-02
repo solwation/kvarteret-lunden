@@ -17,12 +17,14 @@ import { createHash } from 'node:crypto';
 const output = process.argv[2];
 if (!output) throw Error('Usage: node tools/riverheight-api.mjs OUTPUT.json');
 const endpoint = 'https://api.kart-api.se/v1/hojd';
-const sections = new Set([0, 4, 8, 13, SITE.river.path.length - 1]);
+// #218 (original #1790): the reference export samples the #532 section only (SITE.river.path from upstream.count); the upstream stretch has no stations.
+const river = SITE.river.path.slice(SITE.river.upstream?.count ?? 0);
+const sections = new Set([0, 4, 8, 13, river.length - 1]);
 const offsets = [-24, -12, -6, -3, 0, 3, 6, 12, 24]; // m: chosen sampling offsets, not surveyed river widths
 const points = [];
 let distance = 0;
-for (let i = 0; i < SITE.river.path.length; i++) {
-  const [cx, cz] = SITE.river.path[i], a = SITE.river.path[Math.max(0, i - 1)], b = SITE.river.path[Math.min(i + 1, SITE.river.path.length - 1)];
+for (let i = 0; i < river.length; i++) {
+  const [cx, cz] = river[i], a = river[Math.max(0, i - 1)], b = river[Math.min(i + 1, river.length - 1)];
   if (i) distance += Math.hypot(cx - a[0], cz - a[1]);
   const dx = b[0] - a[0], dz = b[1] - a[1], length = Math.hypot(dx, dz);
   if (!(length > 0)) throw Error('River tangent is degenerate');

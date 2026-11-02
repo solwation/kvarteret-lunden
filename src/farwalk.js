@@ -3,7 +3,7 @@
 // built from (SITE.west/east/north/south polygons, SITE.bridges, SITE.river), so what is drawn is what blocks. Segments are
 // [x0, z0, x1, z1]; `farWalls(x, z)` returns the ones in the buckets round a point (a stable array per bucket, no per-frame work).
 import { SITE, WALK, PLAYER, OUTDOOR, PADDOCK } from './config.js';
-import { riverAt, deckAt, bridgeRecords, pierBoxes } from './riverbridge.js';
+import { riverAt, deckAt, bridgeRecords, pierBoxes, upstreamRiverZone } from './riverbridge.js';
 import { parkDeckAt } from './riverpark.js';
 import { busStopSegments } from './busstopgeo.js';
 import { schoolWallSolids, boxSegments } from './schoolwall.js';
@@ -105,16 +105,17 @@ const onDeck = (x, z, y) => (deckAt(x, z) !== null && !underDeck(y)) || parkDeck
 /** The surface under feet `y` at (x, z): the deck on it, the ground under it (#62), else `groundY`. */
 export const surfaceY = (x, z, y) => (deckAt(x, z) !== null && underDeck(y) ? groundBelowDeckY(x, z) : groundY(x, z));
 
-/** Water that stops the visitor: the river and its shallow edge (`WALK.wade`), except on a bridge deck. */
+/** Water that stops the visitor: the river and its shallow edge (`WALK.wade`), except on a bridge deck. North of z 60 (the home block)
+ *  only along the upstream stretch (`upstreamRiverZone`, #218 / original #1790), like `tooSteep` and `waterRescue`. */
 export function waterBlocked(x, z, wade = WALK.wade, y) {
-  if (z < 60 || onDeck(x, z, y)) return false;
+  if ((z < 60 && !upstreamRiverZone(x, z)) || onDeck(x, z, y)) return false;
   const r = riverAt(x, z);
   return r.distance < r.width / 2 + wade;
 }
 
 /** Ground too steep to climb: actual local face gradient, otherwise the shared field sampled 0.3 m round. */
 export function tooSteep(x, z, maxSlope = WALK.maxSlope, y) {
-  if (z < 60 || onDeck(x, z, y)) return false;
+  if ((z < 60 && !upstreamRiverZone(x, z)) || onDeck(x, z, y)) return false;
   const local=walkingGroundSlope(x,z);
   if(local!==null)return local>maxSlope; // actual ramp gradient; discrete steps use Navigation's existing stepUp
   const h = 0.3, g = underDeck(y) && walkingSupportHeight(x,z)===null ? groundBelowDeckY : groundY, gx = (g(x + h, z) - g(x - h, z)) / (2 * h), gz = (g(x, z + h) - g(x, z - h)) / (2 * h);
@@ -124,7 +125,7 @@ export function tooSteep(x, z, maxSlope = WALK.maxSlope, y) {
 const WATER_RESCUE_MARGIN = 0.15; // m beyond the wade barrier, so a recovery never lands on its edge (#91)
 /** Someone who ended up in the water (a fall, a jump, the jetpack): the dry bank point to put them back on, or null. */
 export function waterRescue(x, z, y) {
-  if (z < 60 || onDeck(x, z, y)) return null;
+  if ((z < 60 && !upstreamRiverZone(x, z)) || onDeck(x, z, y)) return null;
   const r = riverAt(x, z);
   if (r.distance >= r.width / 2) return null;
   // #91: one normal offset can still land inside the wade barrier at a bend (the barrier is measured to the nearest segment), so step out until clear.
