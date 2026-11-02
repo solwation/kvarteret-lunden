@@ -1,0 +1,31 @@
+{
+  "phase": "after",
+  "base": "http://localhost:8941/dist",
+  "result": {
+    "camera": [
+      -215,
+      66.7,
+      -230
+    ],
+    "rotation": [
+      -0.4363323129985824,
+      0.8203047484373349,
+      0,
+      "YXZ"
+    ],
+    "calls": 23,
+    "triangles": 290427,
+    "edgeLandVertices": 29982,
+    "sentinels": [
+      "original-drawing-sentinel",
+      "original-queue-sentinel",
+      "original-session-sentinel"
+    ],
+    "localKeys": [
+      "lunden.cloud.queue",
+      "lunden.drawing"
+    ]
+  },
+  "external": [],
+  "errors": []
+}
