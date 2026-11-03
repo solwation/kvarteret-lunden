@@ -1,0 +1,27 @@
+{
+  "workerSource": "c606b6c3a7ba3d1b9418e7b1eadbc8cf6786c4fa",
+  "integrationBase": "172d2686c58a9201fc748a925a8a2687141edefc",
+  "exactCatRuntimeModules": [
+    "catpuppet",
+    "outdoorcatbrain",
+    "outdoorcats",
+    "cataffordances",
+    "catcontact",
+    "catexploration",
+    "cathabitat",
+    "catnuzzle"
+  ],
+  "exactRetainedRuntimeModules": [
+    "startupcache",
+    "surroundings",
+    "riverbridge",
+    "ducks",
+    "duckbrain",
+    "duckhabitat",
+    "duckmodel",
+    "duckkiss",
+    "ambienthearts"
+  ],
+  "unchangedNonCatConfigExports": 99,
+  "mainReview": "Only Cat imports/constructor adapted;246 finish/catch and244 ducks retained exactly. App accepted source runtime reused after unrelated integration; no new browser matrix."
+}
