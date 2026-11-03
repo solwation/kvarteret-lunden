@@ -2880,3 +2880,46 @@ Workers/WebSockets/originalets lagring och tjänster. Ingen ny main-hook eller U
 `npm test`, `npm run build`, riktad geometri-/budget-/fotavtryckskontroll och en faktisk publik gymvy
 med nät-/lagringsisolering: [egna bevis och mätmetod](verification/243/README.md).
 Den historiska #234-beskrivningen ovan avser dess dåvarande modell; #243 ersätter utseendet.
+
+## Generiska ankpar, större åstråk och intern parpuss, #244
+
+Konsoliderad selektiv originalkälla `131b5d9d9c11a5853320d7b36b4bf61409367f39`
+(original #1839/#1846): `duckmodel.js`, `duckhabitat.js`, enbart ren DuckBrain/DuckFlock
+från `duckbrain.js`, DuckKiss och relevanta statiska DUCKS-parametrar. Den äldre
+#235-överföringens fyra kroppar behålls, nu med två delade könsgeometrier och ett material.
+Kropparnas topologi är fortfarande 640 trianglar per fågel, totalt 4 calls / 2 560 tri.
+Könsskillnad, spräcklighet, ögonstreck och vingfält är vertexfärger, inga nya kroppstexturer.
+
+Publicens egna `riverPath`, `riverAt`, `waterYAt`, vägrutor och den befintliga
+`renderedTerrainY`-callbacken används. Fyra neutrala individer bildar två stabila blandade
+par med honlig ledare, följe, tillfällig grupp och återgång till par. Det bekanta åavsnittet
+behåller ett par; det andra får större årevir. Mål följer den kartlagda mittlinjen med
+korta delmål genom böjar, inom habitatgräns/stränder och utanför väg-/brodäck.
+Placering, antal, arter/form, parbeteende, revir, hastigheter och tider är modellantaganden;
+visningen gör inget zoologiskt realismpåstående. När-/ritgränser 65/100 m och befintlig
+main-hook behålls; båda parterna fryser när en partner är utanför aktiv närgräns.
+
+DuckKiss behåller samma yttyp, fria vändavstånd och modellmätta näbbfronter med strikt
+höjdskillnad före start. Visibilitet, avstånd, timeout och cooldown avbryter/avgränsar
+händelsen, sedan återupptas samma mål/identiteter. En separat lokal seedad chansgenerator
+ersätter originalets Math.random för själva parvalet, så synliga chansslag inte förbrukar
+rörelsens slumpström. Inga förflyttningar eller måltvingningar läggs till för pussar.
+
+`ambienthearts.js` är endast den rena procedurcanvas-/Points-renderaren extraherad från
+samma källas `pingping.js`; **den modulen och dess ägarkaraktär importeras aldrig**.
+Den utvalda ursprungliga funktionsregionens SHA256 är
+`920313a6bad9c76559157ad04841f3d51fd2dba154d72d096ef3580b4058d670`.
+Delat API: `new Hearts(scene,n=5,scale=2.5)`, `.burst(pos)`, `.update(dt)`, `.points`,
+`.k`, `.dispose()`. En lazily skapad, återanvänd pool med fem punkter/ett kort call och
+en 64×64 lokal procedurtextur, inga ljus eller skuggor/klickmål. Kattporten #245 får
+återanvända samma rena modul. Storlek/tid är visuella antaganden.
+
+Bortval: ALL bröd/mat/Items/Life/lure/eating, klickmål, ljud, poäng/statistik/medaljer,
+personliga namn/bilder, samlingsregistrering, synk, tjänster och originalets lagring.
+Inga gamla hela main/config-filer eller nyare personliga bestiarieberoenden kopieras.
+Endast DUCKS-blocket ersätts i publikens egen konfiguration; #243:s gym och annan miljö
+behålls. Källhänvisning och befintlig relevant attribution/licens kvarstår.
+
+3/3 riskbaserade komponentgrupper, npm test/build och en enda faktisk publik appturn med
+naturlig puss, modellkontakt, återgång, budget och nät-/lagringsisolering: [egna bevis](verification/244/README.md).
+Den historiska #235-beskrivningen gäller den tidigare modellen; #244 ersätter dess ankmoduler.

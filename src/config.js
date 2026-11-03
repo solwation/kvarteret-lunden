@@ -3326,18 +3326,218 @@ export const OUTDOOR_GYM = {
   ]
 };
 
-// #1815: four local ducks; model dimensions, habitat, motion and timing are visual guesses.
+// Public #244: neutral model/pair/habitat assumptions from original 131b5d9d.
 export const DUCKS = Object.freeze({
-  count: 4, near: 65, draw: 100, speed: .65, swimSpeed: .85,
-  goalReach: .25, stopReach: .2, maxStep: .1, phaseSwim: 5, phaseWalk: 15,
-  bob: .015, waddle: .13,
-  habitat: { at: [-160, 207], span: 18, waterSpan: .65, shore: [2, 2], along: 11, extraBank: 5,
-    sink: .12, waterMargin: .08, spacing: 2, startAlong: 1.5, startShore: 3 },
-  model: { segments: [8, 5], blobs: [
-    [[0,.29,0],[.22,.21,.38],0x8c7761], [[0,.37,-.12],[.19,.1,.25],0x5e5143],
-    [[0,.47,.23],[.115,.18,.12],0x354d34], [[0,.61,.28],[.135,.13,.14],0x256746],
-    [[0,.58,.44],[.10,.035,.12],0xe2ad39], [[0,.33,-.36],[.1,.07,.17],0x3f3932]],
-    paired: [[[.12,.65,.35],[.023,.025,.025],0x16130e],[[.12,.035,.04],[.075,.03,.13],0xd88c24]] },
+  "count": 4,
+  "near": 65,
+  "draw": 100,
+  "speed": 0.65,
+  "swimSpeed": 0.85,
+  "goalReach": 0.25,
+  "stopReach": 0.2,
+  "maxStep": 0.1,
+  "phaseSwim": 5,
+  "phaseWalk": 15,
+  "bob": 0.015,
+  "waddle": 0.13,
+  "social": {
+    "seed": 1839,
+    "femaleFraction": 0.5,
+    "follow": 1.05,
+    "pairWait": 2.7,
+    "catchup": 1.35,
+    "groupPeriod": 320,
+    "groupSeconds": 95,
+    "groupReach": 6,
+    "groupSide": 1.6
+  },
+  "kiss": {
+    "first": 20,
+    "scan": 10,
+    "chance": 0.12,
+    "cooldown": 180,
+    "near": 12,
+    "reach": 2.3,
+    "minDistance": 0.75,
+    "aligned": 0.8,
+    "speed": 0.28,
+    "turn": 1.6,
+    "turnGap": 0.22,
+    "face": 0.04,
+    "arrive": 0.002,
+    "settle": 0.4,
+    "duration": 2.2,
+    "timeout": 15,
+    "sample": 0.2,
+    "rise": 0.01,
+    "maxStep": 0.1,
+    "phaseSwim": 5,
+    "phaseWalk": 15,
+    "hearts": 5,
+    "heartScale": 2.5,
+    "heartLift": 0.12
+  },
+  "habitat": {
+    "at": [
+      -160,
+      207
+    ],
+    "restOffsets": [
+      0,
+      24,
+      48,
+      72
+    ],
+    "territories": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2,
+        3
+      ]
+    ],
+    "range": [
+      -8,
+      80
+    ],
+    "extraBank": 4,
+    "maxShoreHeight": 1.65,
+    "routeStep": 2,
+    "shoreStep": 0.25,
+    "sink": 0.12,
+    "waterMargin": 0.08
+  },
+  "model": {
+    "segments": [
+      8,
+      5
+    ],
+    "female": [
+      8548434,
+      6903870,
+      9205589,
+      9402710,
+      11895093,
+      5851702
+    ],
+    "speckle": [
+      0.64,
+      1.18
+    ],
+    "eyeStripe": 3747105,
+    "wingBlue": 3560824,
+    "blobs": [
+      [
+        [
+          0,
+          0.29,
+          0
+        ],
+        [
+          0.22,
+          0.21,
+          0.38
+        ],
+        9205601
+      ],
+      [
+        [
+          0,
+          0.37,
+          -0.12
+        ],
+        [
+          0.19,
+          0.1,
+          0.25
+        ],
+        6181187
+      ],
+      [
+        [
+          0,
+          0.47,
+          0.23
+        ],
+        [
+          0.115,
+          0.18,
+          0.12
+        ],
+        3493172
+      ],
+      [
+        [
+          0,
+          0.61,
+          0.28
+        ],
+        [
+          0.135,
+          0.13,
+          0.14
+        ],
+        2451270
+      ],
+      [
+        [
+          0,
+          0.58,
+          0.44
+        ],
+        [
+          0.1,
+          0.035,
+          0.12
+        ],
+        14855481
+      ],
+      [
+        [
+          0,
+          0.33,
+          -0.36
+        ],
+        [
+          0.1,
+          0.07,
+          0.17
+        ],
+        4143410
+      ]
+    ],
+    "paired": [
+      [
+        [
+          0.12,
+          0.65,
+          0.35
+        ],
+        [
+          0.023,
+          0.025,
+          0.025
+        ],
+        1446670
+      ],
+      [
+        [
+          0.12,
+          0.035,
+          0.04
+        ],
+        [
+          0.075,
+          0.03,
+          0.13
+        ],
+        14191652
+      ]
+    ]
+  }
 });
 
 // Public #236: source routes/phase/scale are visual assumptions, not a survey of real animals.

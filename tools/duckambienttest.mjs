@@ -1,24 +1,6 @@
-import test from 'node:test';
-import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
-import {DuckBrain,duckHabitat,DUCKS} from '../src/duckbrain.js';
-import {riverAt,waterYAt} from '../src/riverbridge.js';
-import {renderedTerrainY} from '../src/surroundings.js';
-test('four deterministic ambient ducks roam local river/shore with finite bounded speed and surface contact',()=>{
- const r=riverAt(...DUCKS.habitat.at),h=duckHabitat(r,renderedTerrainY,waterYAt),seen=new Set();
- for(let i=0;i<DUCKS.count;i++){
-  const a=new DuckBrain({home:h.home(i),habitat:h,seed:i+1}),b=new DuckBrain({home:h.home(i),habitat:h,seed:i+1});let distance=0;
-  for(let j=0;j<6000;j++){
-   const x=a.x,y=a.y,z=a.z;a.update(.1);b.update(.1);assert.deepEqual(a,b);assert(h.contains(a.x,a.z));assert.equal(a.y,h.surface(a.x,a.z).y);
-   const d=Math.hypot(a.x-x,a.y-y,a.z-z);distance+=d;assert(d<=Math.max(DUCKS.speed,DUCKS.swimSpeed)*.1+1e-6);seen.add(a.swimming?'water':'bank');
-  }
-  assert(distance>20);for(const dt of [NaN,Infinity,-1]){const before=[a.x,a.y,a.z];a.update(dt);assert.deepEqual([a.x,a.y,a.z],before);}
- }
- assert.deepEqual([...seen].sort(),['bank','water']);
-});
-test('ambient modules and selected config contain no interaction, audio, storage or service dependencies',()=>{
- for(const name of ['duckbrain','ducks']){
-  const s=readFileSync(`src/${name}.js`,'utf8');assert(!/heldBread|feedBread|\blife\b|holdable|audio|sfx|say\(|badge|targets\(|pickable|userData|localStorage|sessionStorage|fetch\(|WebSocket|score/i.test(s));
- }
- assert.deepEqual(Object.keys(DUCKS).sort(),['count','near','draw','speed','swimSpeed','goalReach','stopReach','maxStep','phaseSwim','phaseWalk','bob','waddle','habitat','model'].sort());
-});
+import test from 'node:test';import assert from 'node:assert/strict';import{readFileSync}from'node:fs';
+import{DuckFlock,DUCKS}from'../src/duckbrain.js';import{duckHabitat}from'../src/duckhabitat.js';import{duckModel}from'../src/duckmodel.js';import{DuckKiss,duckBill}from'../src/duckkiss.js';import{riverAt}from'../src/riverbridge.js';import{groundBelowDeckY}from'../src/surroundings.js';
+const flat={contains:(x,z)=>Math.abs(x)<100&&Math.abs(z)<100,surface:()=>({y:0,water:true}),home:i=>({x:i*4,z:1.05}),goal:(mode,a,b,pair)=>({x:pair*4+(a-.5)*3,z:8+b*3})};
+test('two shared-sex topologies keep the four-body 2560 triangle budget and public-only imports',()=>{const m=duckModel(),f=duckModel(true);assert.deepEqual(m.attributes.position.array,f.attributes.position.array);assert.notDeepEqual(m.attributes.color.array,f.attributes.color.array);assert.equal(m.index.count/3*4,2560);assert.deepEqual(duckBill(m.attributes.position),duckBill(f.attributes.position));for(const name of['ducks','duckbrain','duckhabitat','duckmodel','duckkiss','ambienthearts'])assert(!/heldBread|feedBread|new Life\(|holdable|audio|sfx|say\(|badge|targets\(|pickable|localStorage|sessionStorage|fetch\(|WebSocket|score|bestiary/i.test(readFileSync('src/'+name+'.js','utf8')),name);assert(!('foodReach'in DUCKS.kiss));assert(!('pick'in DUCKS));});
+test('seeded stable mates, female leadership, temporary grouping and bounded actual river/shore contact',()=>{const h=duckHabitat(groundBelowDeckY),a=new DuckFlock(h),b=new DuckFlock(h),ids=a.brains.map(q=>[q.id,q.mate,q.female]);let grouped=false,returned=false,water=false,land=false;const range=[Infinity,-Infinity];for(let i=0;i<3500;i++){a.update(.05);b.update(.05);assert.deepEqual(a.brains.map(q=>[q.x,q.y,q.z,q.seed]),b.brains.map(q=>[q.x,q.y,q.z,q.seed]));grouped||=a.grouped;returned||=i>2000&&!a.grouping;for(const q of a.brains){assert(h.contains(q.x,q.z));assert.equal(q.y,h.surface(q.x,q.z).y);water||=q.swimming;land||=!q.swimming;const off=riverAt(q.x,q.z).along-h.origin;range[0]=Math.min(range[0],off);range[1]=Math.max(range[1],off);}}assert(grouped&&returned&&water&&land);assert(range[1]-range[0]>45);assert.deepEqual(a.brains.map(q=>[q.id,q.mate,q.female]),ids);assert(a.brains.every(q=>a.brains.find(m=>m.id===q.mate)?.mate===q.id));const before=a.brains.map(q=>[q.x,q.z]);a.update(.1,()=>false);assert.deepEqual(a.brains.map(q=>[q.x,q.z]),before);for(const dt of[NaN,Infinity,-1]){a.update(dt);assert(a.brains.every(q=>Number.isFinite(q.x+q.z)));}});
+test('real bill contact, one burst, clean return/cooldown and hidden/far/terrain cancellation',()=>{const f=new DuckFlock(flat),bill=duckBill(duckModel().attributes.position);let bursts=0;const config={...DUCKS.kiss,chance:1},k=new DuckKiss({config,bill,habitat:flat,seen:()=>true,random:()=>0,burst:()=>bursts++});k.time=config.first;f.grouping=false;k.update(.05,f);assert(k.pair);const pair=k.pair,identity=f.brains.map(q=>[q.id,q.mate,q.goal,q.seed]);let contact;for(let i=0;i<500&&k.pair;i++){k.update(.05,f);if(k.pair?.burst&&!contact){const tips=pair.birds.map(q=>({x:q.x+Math.sin(q.yaw)*bill.z,z:q.z+Math.cos(q.yaw)*bill.z,y:q.y+bill.y}));contact=Math.hypot(tips[0].x-tips[1].x,tips[0].z-tips[1].z);assert(contact<.003);assert(Math.hypot(pair.birds[0].x-pair.birds[1].x,pair.birds[0].z-pair.birds[1].z)>.9);}}assert.equal(bursts,1);assert.equal(k.pair,null);assert.deepEqual(f.brains.map(q=>[q.id,q.mate,q.goal,q.seed]),identity);assert(pair.birds.every(q=>!q.kissing));k.update(.05,f);assert.equal(k.pair,null);for(const why of['hidden','far','terrain']){const flock=new DuckFlock(flat),kiss=new DuckKiss({config,bill,habitat:flat,seen:()=>true,random:()=>0});kiss.time=config.first;kiss.update(.05,flock);assert(kiss.pair);if(why==='far')kiss.seen=()=>false;if(why==='terrain')kiss.habitat={...flat,contains:()=>false};kiss.update(.05,flock,why==='hidden');assert.equal(kiss.pair,null);}});

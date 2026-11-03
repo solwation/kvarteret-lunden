@@ -1,0 +1,3 @@
+TypeError [ERR_INVALID_ARG_TYPE]: The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received undefined
+    at writeFile (node:internal/fs/promises:1205:5)
+    at file:///home/devcontainers/orkester-olw-win10-gpt6-20261103/public-duck-social/tools/duckambient-check.mjs:19:305

@@ -2932,3 +2932,15 @@ samt totalt 58 polygoner/232 registrerade segment. Fast presshöjd 0,95 m, inga 
 publika appen en gång, jämför gamla/nya passiva gruppen från samma kamera och kontrollerar ingen extern
 trafik samt orörda originallagringsmarkörer. `HOLD_GYM_VIEW=1` håller scenen till `/tmp/243-release`.
 [Egna bilder, källor och avgränsningar](verification/243/README.md).
+
+## Ankpar och små parpussar #244
+
+`node --test tools/duckambienttest.mjs` täcker modelltopologi/färg och offentlig importgräns,
+seedade par/grupp/återgång samt faktisk ågeografi/mark-vattenkontakt, och modellmätta
+näbbfronter/engångseffekt/cooldown/avbrott. `npm test` och `npm run build` är gröna.
+`CHROME_PATH=… node tools/duckambient-check.mjs BASE docs/verification/244` kör en enda
+publik app med verklig renderedTerrainY och följer den naturliga möjligheten från normala
+seedade hem, utan forcerat par/mål/chance. Puss-/återgångsbilder, exakt 4 calls / 2 560 tri
+för kropparna och +1 call/+5 punkter/0 tri för effekten samt isoleringssentineller sparas.
+Browsern hålls till `/tmp/244-release`; en valfri lokal command-loop tillåter omramning i samma scen.
+[Metod, egna bilder och begränsningar](verification/244/README.md).

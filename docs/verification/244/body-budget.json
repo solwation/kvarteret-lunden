@@ -1,0 +1,22 @@
+{
+  "body": {
+    "on": {
+      "calls": 38,
+      "triangles": 429647,
+      "points": 0
+    },
+    "off": {
+      "calls": 34,
+      "triangles": 427087,
+      "points": 0
+    },
+    "delta": {
+      "calls": 4,
+      "triangles": 2560
+    }
+  },
+  "far": {
+    "hidden": true,
+    "frozen": true
+  }
+}
