@@ -2162,6 +2162,7 @@ eye: 1.62,
 radius: 0.22,
 walk: 1.6,
 run: 3.2,
+runOutdoor: 4.8, // public #241: +50% outdoors, explicit navigation guess
 sprintStick: 0.95,
 turnSpeed: 1.9,
 crouchEye: 0.95,

@@ -1,0 +1,8 @@
+// Public #241: real Navigation on controlled flat floor and wall/door segments.
+import assert from 'node:assert/strict';
+import {PerspectiveCamera} from 'three';
+import {Navigation} from '../src/navigation.js';
+const make=(outdoor=true,segments=[])=>{const w={size:{x:100,z:100},levels:[{segments}],doors:[],units:[]},n=new Navigation(w,new PerspectiveCamera());n.groundAt=()=>0;Object.defineProperty(n,'outdoors',{get:()=>outdoor});n.teleport(20,0,30);return n;};
+const results=[];for(const [name,outdoor,keys,analog,expected]of [['walk',true,['KeyW'],0,1.6],['outdoor Shift',true,['KeyW','ShiftLeft'],0,4.8],['indoor Shift',false,['KeyW','ShiftLeft'],0,3.2],['full-stick unchanged',true,[],1,1.6],['half-stick unchanged',true,[],.5,.8],['crouch unchanged',true,['KeyW','ShiftLeft','ControlLeft'],0,.8]]){const n=make(outdoor);n.keys=new Set(keys);n.analog.y=analog;for(let i=0;i<120;i++)n.update(1/120);const distance=30-n.pos.z;assert(Math.abs(distance-expected)<1e-8,name);results.push({name,distance,sprinting:n.sprinting});}
+for(const dt of [1/60,1/30,.1]){let closed=true;const n=make(true);n.world.movingSegments=()=>closed?[[0,28,100,28]]:[];n.keys=new Set(['KeyW','ShiftLeft']);for(let t=0;t<1;t+=dt)n.update(dt);assert(Math.abs(n.pos.z-28.22)<1e-8,'closed door stop '+dt);closed=false;for(let t=0;t<1;t+=dt)n.update(dt);assert(n.pos.z<25,'open door passage '+dt);const w=make(true,[[0,28,100,28]]);w.keys=new Set(['KeyW','ShiftLeft']);for(let t=0;t<1;t+=dt)w.update(dt);assert(Math.abs(w.pos.z-28.22)<1e-8,'wall stop '+dt);results.push({dt,closedDoor:28.22,wall:w.pos.z,openDoor:n.pos.z});}
+console.log(JSON.stringify({ok:true,scope:'actual Navigation; controlled floor/region boolean/segments, actual production collision/substeps/controls',results}));

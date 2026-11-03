@@ -2816,3 +2816,15 @@ Originalets 87 800-desktoptak används inte som publik mobilacceptans. Även bor
 bidrag kan inte lösa förhandsöverskridandet; ingen annan omgivning klipps och taket höjs inte här.
 Arkitekturen levereras som Refs-slice, med slutlig budgetacceptans/stängning av #240 kvar hos dirigenten.
 [Egna bilder, exakta källhashar, räkningar och begränsningar](verification/240/README.md).
+
+
+## Snabbare utomhuslöpning med Shift, #241
+
+Exakt granskad originalkälla `04dcf10f34f5a2b133c419ad0c0ef4bb06c5f712` (original #1832).
+Endast `PLAYER.runOutdoor=4.8` och `Player.runSpeed`-regionvalet har anpassats till publikens egna `PLAYER`/`BODY` och `Navigation`. 4,8 m/s är den uttryckliga gissningen från originalets användarbegäran, 50 procent över tidigare utomhuslöpning. Gång 1,6 m/s, inomhuslöpning 3,2 m/s, krypfaktor, analog mängd, Shift-villkor och tids-/distanssubdivision är oförändrade.
+
+Publikens `Navigation.outdoors` ensamt räcker inte: garage och trapphus kan ha true där. Ny `runSpeed` kräver därför outdoors och samtidigt varken below eller inCore. `unit` ligger redan i lokal outdoors-klassning. `world.core` är en sammansatt Core med tre attached CoreHouse (A/B/C); publikens Navigation.cores samlar även separat coreHouses och deduplicerar. Faktisk browserkontroll läser respektive CoreHouse.contains och Core.contains för A/B/C och representativt L-läge, utan att införa originalets Player-klassning eller skriva om världens representation.
+
+Publikens fulla styrspaksutslag är gång, inte automatisk sprint. Det lokala villkoret bevaras: Shift krävs för sprint, också om analog styrning kombineras med tangentbord. Ingen sprintfunktion, knapp eller ny touchmekanik läggs till. Originalets Player-klass, full-stick-tröskel som kontrollvillkor, kaffeturbo, statistik, avatarer, speldata, bilder, tjänster och lagring har inte importerats. Inga layout-/renderändringar eller beroendeuppgraderingar ingår.
+
+Verifiering: `npm test`, `npm run build`, `tools/sprint-check.mjs` med faktisk Navigation på kontrollerad plan yta/region och vägg-/dörrsegment, samt `tools/sprint-view-check.mjs` på verklig publik värld. Föreversionen serverar enbart Navigation från publik bas `db9695948d95ec8d21789056e474276b4d325a96`, resten är samma scen. Native W+Shift under tre simulerade sekunder ger 9,6→14,4 m på samma rutt; faktiska L/A/B/C, egen och besökt lägenhet samt garage behåller 3,2 m/s. [Egna granskade före/efterbilder, rådata, koordinater och begränsningar](verification/241/README.md).

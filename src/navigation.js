@@ -92,6 +92,8 @@ export class Navigation {
       : this.pos.y > groundY(this.pos.x, this.pos.z) + (config.ROOFS?.aloft ?? 2);
   }
   get outdoors() { return (!this.inFootprint() && !this.unit) || this.aloft; }
+  // Public #241: reviewed original 04dcf10f; local cores/units/garage retain indoor pace.
+  get runSpeed() { return this.outdoors && !this.below && !this.inCore ? BODY.runOutdoor : BODY.run; }
   get level() {
     if (!this.inFootprint() || this.aloft) return 0;
     return this.pos.y > config.LEVELS[0].floor + 1.6 && config.LEVELS.length > 1 ? 1 : 0;
@@ -211,7 +213,7 @@ export class Navigation {
     const amount = Math.min(1, Math.hypot(f, s));
     this.crouched = this.crouch || k.has('ControlLeft') || k.has('ControlRight') || (this.crouched && !this.roomToStand());
     this.sprinting = amount > 0 && !this.crouched && (k.has('ShiftLeft') || k.has('ShiftRight'));
-    const speed = (this.sprinting ? BODY.run : BODY.walk) * (this.crouched ? BODY.crouchSpeed : 1);
+    const speed = (this.sprinting ? this.runSpeed : BODY.walk) * (this.crouched ? BODY.crouchSpeed : 1);
     const yaw = this.camera.rotation.y, length = Math.hypot(f, s) || 1;
     const dx = (-Math.sin(yaw) * f + Math.cos(yaw) * s) / length * speed * amount;
     const dz = (-Math.cos(yaw) * f - Math.sin(yaw) * s) / length * speed * amount;

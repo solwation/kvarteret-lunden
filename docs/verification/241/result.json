@@ -1,0 +1,167 @@
+{
+  "baseline": "db9695948d95ec8d21789056e474276b4d325a96",
+  "results": [
+    {
+      "phase": "before",
+      "start": [
+        -250,
+        2.3,
+        30
+      ],
+      "end": [
+        -240.3999999999985,
+        1.9165305355284712,
+        30
+      ],
+      "sprinting": true,
+      "keys": [
+        "ShiftLeft",
+        "KeyW"
+      ],
+      "outdoors": true,
+      "inCore": false,
+      "below": false,
+      "distance": 9.6000000000015,
+      "seconds": 3,
+      "regions": null,
+      "errors": [],
+      "external": [],
+      "storage": {
+        "local": "untouched-original",
+        "session": "untouched-original"
+      }
+    },
+    {
+      "phase": "after",
+      "start": [
+        -250,
+        2.3,
+        30
+      ],
+      "end": [
+        -235.60000000000286,
+        1.9981161779191532,
+        30
+      ],
+      "sprinting": true,
+      "keys": [
+        "ShiftLeft",
+        "KeyW"
+      ],
+      "outdoors": true,
+      "inCore": false,
+      "below": false,
+      "distance": 14.399999999997135,
+      "seconds": 3,
+      "regions": {
+        "rows": [
+          {
+            "name": "L",
+            "pos": [
+              -17.785,
+              0,
+              8.595
+            ],
+            "inCore": true,
+            "below": false,
+            "unit": null,
+            "outdoors": true,
+            "run": 3.2
+          },
+          {
+            "name": "Hus A",
+            "pos": [
+              -0.125,
+              0,
+              41.4
+            ],
+            "inCore": true,
+            "below": false,
+            "unit": null,
+            "outdoors": true,
+            "run": 3.2,
+            "actualContains": true,
+            "compositeContains": true
+          },
+          {
+            "name": "Hus B",
+            "pos": [
+              -32.12,
+              0,
+              45.870000000000005
+            ],
+            "inCore": true,
+            "below": false,
+            "unit": null,
+            "outdoors": true,
+            "run": 3.2,
+            "actualContains": true,
+            "compositeContains": true
+          },
+          {
+            "name": "Hus C",
+            "pos": [
+              -61.39,
+              0,
+              25.33
+            ],
+            "inCore": true,
+            "below": false,
+            "unit": null,
+            "outdoors": true,
+            "run": 3.2,
+            "actualContains": true,
+            "compositeContains": true
+          },
+          {
+            "name": "L1007",
+            "pos": [
+              2,
+              0,
+              2
+            ],
+            "inCore": false,
+            "below": false,
+            "unit": null,
+            "outdoors": false,
+            "run": 3.2
+          },
+          {
+            "name": "L1004",
+            "pos": [
+              -21.9485,
+              0,
+              6.3495
+            ],
+            "inCore": false,
+            "below": false,
+            "unit": "L1004",
+            "outdoors": false,
+            "run": 3.2
+          },
+          {
+            "name": "garage",
+            "pos": [
+              -70.225,
+              -3,
+              44
+            ],
+            "inCore": false,
+            "below": true,
+            "unit": null,
+            "outdoors": true,
+            "run": 3.2
+          }
+        ],
+        "cores": 4,
+        "parts": 3
+      },
+      "errors": [],
+      "external": [],
+      "storage": {
+        "local": "untouched-original",
+        "session": "untouched-original"
+      }
+    }
+  ]
+}

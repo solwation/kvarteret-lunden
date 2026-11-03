@@ -1,0 +1,3 @@
+browsertest: no systemd user scope here, running without a memory ceiling
+before PASS 9.600m in 3s
+after PASS 14.400m in 3s
