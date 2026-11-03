@@ -2895,3 +2895,15 @@ spel-/ljud-/lagringsberoenden. `tools/squirrelambient-check.mjs` laddar den rikt
 scenen en gång och granskar å-/hagträdens metadata, naturliga markpauser, renderingens
 synlig/dold-delta samt vintersömn och isolering. npm test och bygge passerar.
 [Resultat och egna bilder](verification/237/README.md).
+
+## Nordic Wellness-arkitektur, #240 (budgetacceptans kvar)
+
+`node tools/nordicgym-source-test.mjs` låser den granskade originalmodellen och oförändrade övriga SITE-data
+(ange `NORDIC_SOURCE_REPO` till originalets git-checkout). `node tools/nordicgymtest.mjs` kontrollerar
+fönster, trappor/glober/dörr, höjder och parkeringslinjer på krökt mark. npm test och bygge är gröna.
+`tools/nordicgym-check.mjs` verifierar verkliga publika front-/sido-/bakvyer, elva batcher, självritad skylt,
++1 draw/+2 tri, 179/181/179 m LOD och nät-/lagringsgränser.
+
+`tools/nordicgym-budget-check.mjs` ger uttryckligen **underkänt**: lågminnesöstgruppen 44 068 före porten,
+45 885 efter, mot bevarade 41 700. Förhandsavvikelsen är #242, separat från den verifierade arkitekturen;
+#240 stängs inte som helt godkänt innan budgetacceptansen är klar. [Egna bilder och råbevis](verification/240/README.md).

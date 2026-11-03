@@ -1,0 +1,262 @@
+{
+  "geometry": {
+    "budget": {
+      "triangles": 87738,
+      "meshes": [
+        {
+          "name": "east-facade",
+          "triangles": 944,
+          "instances": 1
+        },
+        {
+          "name": "east-roof",
+          "triangles": 133,
+          "instances": 1
+        },
+        {
+          "name": "east-glass",
+          "triangles": 3589,
+          "instances": 1
+        },
+        {
+          "name": "east-access",
+          "triangles": 15471,
+          "instances": 1
+        },
+        {
+          "name": "east-modern",
+          "triangles": 16160,
+          "instances": 1
+        },
+        {
+          "name": "east-modern-2",
+          "triangles": 11784,
+          "instances": 1
+        },
+        {
+          "name": "east-modern-3",
+          "triangles": 21734,
+          "instances": 1
+        },
+        {
+          "name": "east-schoolGlass",
+          "triangles": 4598,
+          "instances": 1
+        },
+        {
+          "name": "east-schoolBrick",
+          "triangles": 3594,
+          "instances": 1
+        },
+        {
+          "name": "east-schoolRoof",
+          "triangles": 7790,
+          "instances": 1
+        },
+        {
+          "name": "east-lawn",
+          "triangles": 1795,
+          "instances": 1
+        },
+        {
+          "name": "nordic-wellness-lettering",
+          "triangles": 2,
+          "instances": 1
+        },
+        {
+          "name": "tower-clock-dials",
+          "triangles": 128,
+          "instances": 4
+        },
+        {
+          "name": "tower-clock-hands",
+          "triangles": 16,
+          "instances": 8
+        }
+      ]
+    },
+    "batches": [
+      "east-facade",
+      "east-roof",
+      "east-glass",
+      "east-access",
+      "east-modern",
+      "east-modern-2",
+      "east-modern-3",
+      "east-schoolGlass",
+      "east-schoolBrick",
+      "east-schoolRoof",
+      "east-lawn"
+    ],
+    "windows": 26,
+    "front": 21,
+    "footprint": [
+      [
+        -206.67,
+        -299.53
+      ],
+      [
+        -196.29,
+        -367.49
+      ],
+      [
+        -160.04,
+        -361.95
+      ],
+      [
+        -170.42,
+        -293.99
+      ],
+      [
+        -206.67,
+        -299.53
+      ]
+    ],
+    "eave": 16.712492,
+    "nordicGym": {
+      "x0": -34.37569203143235,
+      "x1": 34.37569203143235,
+      "z0": -18.33544442766845,
+      "z1": 18.335444427668453,
+      "lowX0": 20.37569203143235,
+      "lowZ0": 9.335444427668453,
+      "hallStart": -22.37569203143235,
+      "centre": [
+        -183.355,
+        -330.74
+      ],
+      "axis": [
+        0.15098591507175116,
+        -0.9885359140921213
+      ]
+    },
+    "sign": {
+      "canvas": [
+        1024,
+        128
+      ],
+      "color": 28452,
+      "white": 2601,
+      "triangles": 2,
+      "side": 0,
+      "frontVisible": true,
+      "bottom": 16.09249200953674,
+      "top": 16.612491990463255,
+      "upperTop": 16.012491999999998,
+      "far": 180
+    },
+    "lights": 4
+  },
+  "views": [
+    {
+      "name": "front",
+      "camera": [
+        -188,
+        8,
+        -265
+      ],
+      "target": [
+        -185,
+        11,
+        -299
+      ],
+      "shown": {
+        "frame": 22,
+        "calls": 24,
+        "triangles": 332360,
+        "points": 0,
+        "lines": 732
+      },
+      "hidden": {
+        "frame": 23,
+        "calls": 23,
+        "triangles": 332358,
+        "points": 0,
+        "lines": 732
+      },
+      "deltaCalls": 1,
+      "deltaTriangles": 2
+    },
+    {
+      "name": "side",
+      "camera": [
+        -129.26,
+        10,
+        -320.46
+      ],
+      "target": [
+        -181,
+        11,
+        -330
+      ],
+      "shown": {
+        "frame": 25,
+        "calls": 24,
+        "triangles": 332760,
+        "points": 0,
+        "lines": 732
+      },
+      "hidden": {
+        "frame": 26,
+        "calls": 23,
+        "triangles": 332758,
+        "points": 0,
+        "lines": 732
+      },
+      "deltaCalls": 1,
+      "deltaTriangles": 2
+    },
+    {
+      "name": "rear",
+      "camera": [
+        -133.83,
+        12,
+        -389.97
+      ],
+      "target": [
+        -185,
+        11,
+        -354
+      ],
+      "shown": {
+        "frame": 28,
+        "calls": 41,
+        "triangles": 381555,
+        "points": 0,
+        "lines": 732
+      },
+      "hidden": {
+        "frame": 29,
+        "calls": 40,
+        "triangles": 381553,
+        "points": 0,
+        "lines": 732
+      },
+      "deltaCalls": 1,
+      "deltaTriangles": 2
+    }
+  ],
+  "lod": [
+    {
+      "distance": 179,
+      "visible": true
+    },
+    {
+      "distance": 181,
+      "visible": false
+    },
+    {
+      "distance": 179,
+      "visible": true
+    }
+  ],
+  "storage": {
+    "local": {
+      "lunden.drawing": "original-sentinel"
+    },
+    "session": "original-session-sentinel"
+  },
+  "errors": [],
+  "external": [],
+  "limits": "Actual public source app, desktop Chromium SwiftShader. Controlled inspection cameras (some elevated), not a continuous walk or physical phone/FPS benchmark. Separate low-memory whole-campus cap is non-green and tracked by #242."
+}

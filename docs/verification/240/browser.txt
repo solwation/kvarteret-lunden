@@ -1,0 +1,7 @@
+browsertest: no systemd user scope here, running without a memory ceiling
+PASS actual public app ready
+PASS 26 panes,11 retained batches,one visible procedural sign quad
+PASS front 24 332360 sign +1/+2
+PASS side 24 332760 sign +1/+2
+PASS rear 41 381555 sign +1/+2
+PASS actual architecture/sign/LOD and public isolation

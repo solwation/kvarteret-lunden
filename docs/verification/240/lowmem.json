@@ -1,0 +1,136 @@
+{
+  "base": "9e767cda8ac2957344a9f147c5b8ec3d2d400fb3",
+  "results": [
+    {
+      "phase": "before",
+      "lowMemory": true,
+      "cap": 41700,
+      "triangles": 44068,
+      "meshes": [
+        {
+          "name": "east-facade",
+          "triangles": 536,
+          "instances": 1
+        },
+        {
+          "name": "east-roof",
+          "triangles": 157,
+          "instances": 1
+        },
+        {
+          "name": "east-glass",
+          "triangles": 2158,
+          "instances": 1
+        },
+        {
+          "name": "east-access",
+          "triangles": 14207,
+          "instances": 1
+        },
+        {
+          "name": "east-modern",
+          "triangles": 16424,
+          "instances": 1
+        },
+        {
+          "name": "east-schoolGlass",
+          "triangles": 2836,
+          "instances": 1
+        },
+        {
+          "name": "east-schoolBrick",
+          "triangles": 3069,
+          "instances": 1
+        },
+        {
+          "name": "east-schoolRoof",
+          "triangles": 3308,
+          "instances": 1
+        },
+        {
+          "name": "east-lawn",
+          "triangles": 1229,
+          "instances": 1
+        },
+        {
+          "name": "tower-clock-dials",
+          "triangles": 128,
+          "instances": 4
+        },
+        {
+          "name": "tower-clock-hands",
+          "triangles": 16,
+          "instances": 8
+        }
+      ]
+    },
+    {
+      "phase": "after",
+      "lowMemory": true,
+      "cap": 41700,
+      "triangles": 45885,
+      "meshes": [
+        {
+          "name": "east-facade",
+          "triangles": 944,
+          "instances": 1
+        },
+        {
+          "name": "east-roof",
+          "triangles": 133,
+          "instances": 1
+        },
+        {
+          "name": "east-glass",
+          "triangles": 3589,
+          "instances": 1
+        },
+        {
+          "name": "east-access",
+          "triangles": 14207,
+          "instances": 1
+        },
+        {
+          "name": "east-modern",
+          "triangles": 16424,
+          "instances": 1
+        },
+        {
+          "name": "east-schoolGlass",
+          "triangles": 2836,
+          "instances": 1
+        },
+        {
+          "name": "east-schoolBrick",
+          "triangles": 3069,
+          "instances": 1
+        },
+        {
+          "name": "east-schoolRoof",
+          "triangles": 3308,
+          "instances": 1
+        },
+        {
+          "name": "east-lawn",
+          "triangles": 1229,
+          "instances": 1
+        },
+        {
+          "name": "nordic-wellness-lettering",
+          "triangles": 2,
+          "instances": 1
+        },
+        {
+          "name": "tower-clock-dials",
+          "triangles": 128,
+          "instances": 4
+        },
+        {
+          "name": "tower-clock-hands",
+          "triangles": 16,
+          "instances": 8
+        }
+      ]
+    }
+  ]
+}

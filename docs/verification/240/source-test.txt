@@ -1,0 +1,2 @@
+PASS exact final model/config/sign, unchanged other SITE records and reviewed ground/sign hooks
+Baseline flat gym/Grenhuset contribution 1038 →2853 (+sign2), net 1817

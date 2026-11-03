@@ -2778,3 +2778,41 @@ En enda sammanslagen vertexfärgad Lambert-mesh omfattar hölje, tom korg och re
 Inget basketFloor/basketCollide/basketCarries, player/world-koppling, ombord-/carry-/last-state, öl/skål/poäng, restock/appearance, ljud, synk/tjänst eller lagring följer med. Ingen balloon-debugparameter används; browserkontrollen låser Date.now till ett verkligt tidsfönster, och en gammal `&balloon` ändrar inte schemat. Det finns ingen `world.balloon` och inga nya fysiska ytor eller navigationsegenskaper.
 
 Verifiering: `npm test`, `npm run build`, `tools/balloon-check.mjs` för schema/övergångar/negativ tid, deterministisk cirkel och matris, faktisk rörelse, instrumenterad off-window-retur, neutral geometri och publik gräns. En faktisk gårds-/himmelsvy visar ballongen i normal belysning med uppmätt drawdelta; samma klockslag efter omladdning ger exakt samma position. Egna granskade bilder, råvärden och källhashar finns i [verifiering #239](verification/239/README.md).
+
+## Nordic Wellness fasad, entré, hall och skylt, #240
+
+Granskade originalkällor: front `042cf8f4c52447a70be4e4b5f8fb200aaf83c807` (#1822) och färdig
+integrerad hall/glas/entré/parkering/skylt `46f7be89a6c8a4b601d9d2158a9097abc606bfaa` (#1823–25).
+Den färdiga nordicgym-modulens byggkod, gymmets enda model-post i config och den isolerade
+nordicgymsign-modulen överförs selektivt. Källkontrollen låser den färdiga byggkoden och
+model-posten till originalet; samtliga andra SITE-poster är oförändrade. Referensfoton,
+originalets resultatbilder, personliga resurser, spel/tjänster och historik importeras inte.
+
+Den befintliga publika östgruppen har samma elva huvudbatcher som originalet: facade/roof/glass,
+access, tre modern-grupper, schoolGlass/schoolBrick/schoolRoof och lawn. Gruppering, material,
+andra byggnader, markgeometri och skuggflaggor är kvar. sitebackdrop skickar nu sin befintliga
+`ground` vidare till gymmet; surroundings skickade redan `renderedTerrainY` till buildEastBackdrop.
+Ingen ny markmodell behövs. Detta bevarar källans hörninterpolerade parkeringsdäck och linjerna
+som delas vid dess triangelveck. [Hela integrationsdiffen](verification/240/integration.diff).
+
+Kort tegelfront och 12×6 m cirkulationshörn delar samma kontrakt med den gröna hallen. Den grunda,
+ogenomskinliga blå glasmodellen innehåller fyra synliga trappflyglar, räcken, två globlampor och en
+dekorativ entrédörr med tröskel/skärmtak/cykelställ. Det är fast omgivning, ingen spelinteraktion.
+Fönster, varma färger och fasadsken är bakade vertexfärger; inga lampor tillkommer. Den verkliga
+fasadskylten återges med lokalt ritad canvastext NORDICWELLNESS/SPORTCENTER, ingen logotypfil eller
+privat resurs. En FrontSide-quad tillför exakt ett närdistansritanrop/två trianglar, med befintlig
+lowmemory canvas-frigöring och native LOD vid 180 m. Den medför inget påstående om samarbete.
+
+Återanvänt designunderlag: originalets granskade #1822–25 samt dess riktade geometriprov, inte dess
+bilder. Publika kontroller: source-/omgivningsparitet; elva komponentkontroller inklusive 26 fönster,
+fyra trappflyglar, glob-/dörrrays och sju parkeringslinjer på krökt mark; npm test/build; riktiga egna
+front-/sido-/bakvyer med signkostnad/LOD och publik nät-/lagringsisolering.
+
+**Budgetgrinden är inte grön.** Publicens fulla lågminnesöstgrupp är 44 068 trianglar redan på bas
+`9e767cda8ac2957344a9f147c5b8ec3d2d400fb3`, före denna port. Efter porten är den 45 885 (+1 817),
+mot oförändrade 41 700. #136 fastställer att access och nästlade klockinstanser ingår; #205:s gamla
+byggnadsantal är inte förklaringen. Förhandsavvikelsen är separat [#242](https://github.com/solwation/kvarteret-lunden/issues/242).
+Originalets 87 800-desktoptak används inte som publik mobilacceptans. Även borttagning av hela gymmets
+bidrag kan inte lösa förhandsöverskridandet; ingen annan omgivning klipps och taket höjs inte här.
+Arkitekturen levereras som Refs-slice, med slutlig budgetacceptans/stängning av #240 kvar hos dirigenten.
+[Egna bilder, exakta källhashar, räkningar och begränsningar](verification/240/README.md).

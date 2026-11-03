@@ -38,6 +38,8 @@ I Höje å syns passiva fiskar och ringar när de går upp till ytan (#238). Rö
 
 Fyra anonyma ekorrar hoppar mellan trädkronor, klättrar och letar på marken vid ån, hagen och en sydlig lund (#237). De är enbart miljö, utan nötter, matning eller interaktion, och döljs vintertid.
 
+Nordic Wellness vid Sankt Lars väg har tegelfront med varma bottenfönster, grön glasentré med synlig trappa, grön hall och terrängföljande parkering (#240). Fasadskylten är självritad och innebär inget samarbete; mått och material är visuella antaganden. Den separata mobilbudgetavvikelsen följs i #242.
+
 Sydplatåns mark är lokalt förankrad i tio granskade LM-markpunkter och två byggnadsaproner (#106). Källans 77 markhöjdsvar och attribution är bevarade. RH2000 minus 14,36 m är en relativ modellreferens; horisontell registrering, interpolation och apronmått är antaganden. Punkten mäter mark, inte ådjup eller lägenhetsgolv. Den ritade triangelytan approximerar den mjuka markmodellen.
 
 Uteplatshäckarnas åtta befintliga geometridelar ritas var för sig på datorn (#119). Telefonerna behåller originalets enda batch; lövform, färg, placering och gånghinder är oförändrade.

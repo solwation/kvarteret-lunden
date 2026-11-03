@@ -1,0 +1,18 @@
+browsertest: no systemd user scope here, running without a memory ceiling
+before 44068 cap 41700
+after 45885 cap 41700
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: new public whole-east asset must retain its existing cap
+    at file:///home/devcontainers/orkester-olw-win10-gpt6-20261103/public-nordic/tools/nordicgym-budget-check.mjs:9:153 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.20.0
