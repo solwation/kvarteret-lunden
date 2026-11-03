@@ -3062,3 +3062,17 @@ export const OUTDOOR_GYM = {
   },
   stations: [{id:'pullup',x:-4.3,z:0},{id:'press',x:0,z:0},{id:'step',x:4.3,z:0}],
 };
+
+// #1815: four local ducks; model dimensions, habitat, motion and timing are visual guesses.
+export const DUCKS = Object.freeze({
+  count: 4, near: 65, draw: 100, speed: .65, swimSpeed: .85,
+  goalReach: .25, stopReach: .2, maxStep: .1, phaseSwim: 5, phaseWalk: 15,
+  bob: .015, waddle: .13,
+  habitat: { at: [-160, 207], span: 18, waterSpan: .65, shore: [2, 2], along: 11, extraBank: 5,
+    sink: .12, waterMargin: .08, spacing: 2, startAlong: 1.5, startShore: 3 },
+  model: { segments: [8, 5], blobs: [
+    [[0,.29,0],[.22,.21,.38],0x8c7761], [[0,.37,-.12],[.19,.1,.25],0x5e5143],
+    [[0,.47,.23],[.115,.18,.12],0x354d34], [[0,.61,.28],[.135,.13,.14],0x256746],
+    [[0,.58,.44],[.10,.035,.12],0xe2ad39], [[0,.33,-.36],[.1,.07,.17],0x3f3932]],
+    paired: [[[.12,.65,.35],[.023,.025,.025],0x16130e],[[.12,.035,.04],[.075,.03,.13],0xd88c24]] },
+});

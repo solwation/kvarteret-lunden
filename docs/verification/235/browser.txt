@@ -1,0 +1,10 @@
+Successful source-app run, saved session stdout before the final capture-only correction.
+Full measurements and gates from that completed run remain in browser.json.
+
+browsertest: no systemd user scope here, running without a memory ceiling
+PASS actual public World ready
+PASS actual habitat/contact/motion; four shared meshes; exact budget delta 4 2560 no targets/services/storage changes
+
+The later bounded camera-only attempt reached the same green behavior/budget stage but failed a
+fixture framing assertion (one final deep-water swimmer, incorrectly requiring two); see capture-limit.txt.
+No product code changed between runs. The capture threshold was corrected to the available swimmer count.

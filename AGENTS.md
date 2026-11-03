@@ -4,6 +4,7 @@ This is a public, impersonal 3D walkthrough derived from solwation/lunden-3d-apa
 
 - Preserve buildings, surroundings, fixed fittings, navigation, doors and measurement tools.
 - Exclude personal furniture, pictures, drawings, family references, characters, scores, toys and gameplay.
+- User-approved exception (#235–238, 2026-11-03): generic ambient ducks, outdoor cats, squirrels and river fish may appear as scenery, alongside the existing ponies. This permits no feeding, petting, catching, targets, scores, sound, personal names or other gameplay. It does not permit other characters.
 - No Cloudflare integration, Workers, WebSockets or connections to the original project's shared data or game services.
 - Use independent browser storage names. Never read, migrate, clear or modify the original application's stored data.
 - Keep a clean history. Import only reviewed source files and assets, not the original repository's complete tree or history.

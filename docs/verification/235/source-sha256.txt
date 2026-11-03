@@ -1,0 +1,14 @@
+Original 578ecc09b02c7355e299fc58d0e0127b622ee85a reviewed whole-file SHA-256 (selected parts only imported):
+bafe30cdf8512dce451f4c0fa23e7cc8f390fbeccad2724d33fd5f063380e80d  original/src/ducks.js
+cc24ca40a69b2e4891b1a10916ee647968c9531292760813816d5efcd701ecf2  original/src/duckbrain.js
+6e95234335fde5a986c314a8e1bdc8e1bdc2b7203f7a5a4229d04b4251d1475f  original/src/config.js
+
+Adapted public production sources (unchanged across all browser runs):
+8844d5e18c54e0f72eb78b9fa65c9ce0c5503b23316052bbffee83234a3c4b27  src/ducks.js
+36acd85e5b6926454069594aa0ae9524da7c952875a92425d6a7fda84f77e09d  src/duckbrain.js
+ed6745c0232dec0ee61b3c5988f59cbb633bccbb9be04ea6e09bec3156111ac1  src/config.js
+1f76727593d5ad64fa81801791cf13b5d62b718bc04e913223ffc0e382cd9164  src/main.js
+
+Current verification tools (camera-only assertion correction syntax-checked, not re-bootstrapped):
+b3fd1c65910b5682735421aa80c92febac2d472e2c1377507f0d9e74bed92fce  tools/duckambienttest.mjs
+8fadf941d0333bccc1f0a56612082523120a20634595f0d14a646eb6bbad9a53  tools/duckambient-check.mjs

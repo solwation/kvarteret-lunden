@@ -14,7 +14,7 @@ Vägar och gångstråk i utkanten fortsätter bort i dimman; vägarnas kartlagda
 
 Promenadytan i väster når 25 meter längre ut på befintlig mark, med byggnads- och vattenskydd kvar (#232).
 
-Behåll byggnader, omgivning, fast inredning, förflyttning, dörrar och mätverktyg. Ta bort personlig möblering, teckningar, foton, familjereferenser, karaktärer, poäng, leksaker och andra spelinslag.
+Behåll byggnader, omgivning, fast inredning, förflyttning, dörrar och mätverktyg. Ta bort personlig möblering, teckningar, foton, familjereferenser, karaktärer, poäng, leksaker och andra spelinslag. Användarens uttryckliga undantag (#235–238, 2026-11-03) tillåter generiska ankor, utekatter, ekorrar och åfiskar enbart som passiva miljödjur, jämte befintliga ponnyer; det tillåter inte matning, klappning, fångst, klickmål, poäng, ljud eller personliga namn.
 
 Söder om träfotgängarbron ligger en inhägnad hage med två ponnyer (importerad från originalet, #76; skjulet står på jämn mark, #80, och har flyttats tillsammans med vattenhon närmare staketet med bibehållen passage, #102; placeringen är ett antagande). Ponnyerna är enbart miljö och går inte att klappa eller interagera med; de betar gräset i hagen (#78), som är en tät låg matta som växer tillbaka på 72 timmar verklig tid och sparas lokalt i webbläsaren (#84), tre skuggträd står i hagen och ponnyerna söker skydd i regn och står synliga inne i skjulet när det är snö (#79/#87; i snömånaderna har ponnyerna varsitt vintertäcke (#103), halm ligger i skjulet och en girlang med varma lampor hänger på framkanten, #92; saknar väder här, testa med `?paddockrain=0.8` och `?month=1`). Lägg till `?nopaddock` i adressen för att stänga av hagen.
 
@@ -27,6 +27,8 @@ På telefoner frigörs CPU-kopian av trapphusens färdigritade dörrskyltar när
 Vid Karpvägen visas tre passiva träredskap på en flisyta (#234). Placering, storlek och material är bildtolkade antaganden, inte verifierad utrustning på platsen. Redskapen är fast omgivning utan tränings- eller poängfunktion.
 
 Höje å och dess stränder fortsätter genom terrängkanterna tills dimman döljer dem (#231). Planläget följer OSM; bankmått, fjärrvattennivå och den sista västliga fortsättningen är antaganden. Befintliga brohöjder och navigationsgränser behålls.
+
+Fyra ankor simmar och går vid Höje å (#235). Flocken är enbart miljö utan ljud eller interaktion; placering, storlek och beteende är visuella antaganden.
 
 Sydplatåns mark är lokalt förankrad i tio granskade LM-markpunkter och två byggnadsaproner (#106). Källans 77 markhöjdsvar och attribution är bevarade. RH2000 minus 14,36 m är en relativ modellreferens; horisontell registrering, interpolation och apronmått är antaganden. Punkten mäter mark, inte ådjup eller lägenhetsgolv. Den ritade triangelytan approximerar den mjuka markmodellen.
 

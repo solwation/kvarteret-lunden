@@ -2878,3 +2878,11 @@ Publik bas `9e27bbb30ca5422ffe293dcc41b6a22bc5b55bf9`; selektiv neutral original
   [docs/verification/234](verification/234/README.md). Full Chromium/SwiftShader, ingen fysisk telefon eller bred profilrunda.
 
 Dirigenten publicerar bildbevis före stängning och anger levererad revision samt faktisk Pages-körning i #234.
+
+## Passiva ankor, #235
+
+`node --test tools/duckambienttest.mjs` skyddar deterministisk rörelse, lokal strand/vattenyta,
+begränsad hastighet och borttagna spel-/ljud-/lagringsberoenden. `tools/duckambient-check.mjs`
+laddar den verkliga publika scenen vid ån, mäter samma vy med flocken synlig/dold,
+kontrollerar faktisk terrängkontakt och tar egna resultatbilder. `npm test` och
+`npm run build` passerar. [Resultat och omfattning](verification/235/README.md).

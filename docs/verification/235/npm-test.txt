@@ -1,0 +1,11 @@
+
+> kvarteret-lunden@0.1.0 test
+> node tools/verify.mjs
+
+PASS: 110 modules audited, import graph bundles, two architectural floor plans, same-origin network policy.
+PASS: app identity/start/scope, Apple icon, PNG dimensions and Android icon declarations.
+npm notice
+npm notice New patch version of npm available! 11.21.0 -> 11.21.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.21.1
+npm notice To update run: npm install -g npm@11.21.1
+npm notice

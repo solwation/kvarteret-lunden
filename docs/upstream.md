@@ -2664,3 +2664,38 @@ Placering (-143,33), vridning, mått, färger och frigång är bildtolkade antag
 Originalets exercise-/Rest-/kamera-/input-/animationsstate, pickables/targets, repetitioner, poäng,
 lagring/tjänster, originalbilder och privat historik importeras inte. Ingen ny UI- eller interaktionsväg skapas.
 Egna bilder och scoped kontroller finns under [verifiering #234](verification.md#passivt-utegym-234).
+
+## Godkänt undantag för miljödjur, #235–238
+
+Användarbeslut 2026-11-03 i #235–238: generiska ankor, utekatter, ekorrar och åfiskar får
+finnas enbart som omgivning, jämte de befintliga ponnyerna. Det är ett snävt undantag
+från förbudet mot karaktärer, inte ett tillstånd till andra karaktärer eller till matning,
+klappning, fångst, klick-/E-mål, poäng, ljud, personliga namn eller spelberoenden.
+Gränsen för personliga resurser, originalets lagring och tjänster är oförändrad.
+AGENTS.md och README beskriver samma avgränsning. Varje djurport verifieras separat;
+denna dokumentation gör inte #236–238 implementerade.
+
+## Passiv ankflock vid Höje å, #235
+
+Exakt granskad originalkälla: `578ecc09b02c7355e299fc58d0e0127b622ee85a` (original #1815).
+Selektivt överfört: modellbyggaren från `src/ducks.js`, lokala sim-/gångsteg och
+slumpgenerator från `src/duckbrain.js`, samt enbart modell-, rörelse-, avstånds- och
+habitatvärden ur `DUCKS` i `src/config.js`. Mått och placering är visuella antaganden.
+Inget från senare belönings-/brödändringar importeras. Ingen originalbild eller
+personlig resurs/historik importeras.
+
+Publicens `riverAt` och `waterYAt` väljer den lokala åns tangent och vattennivå; markhöjden
+kommer från publicens `renderedTerrainY`, så strandfötterna följer den ritade ytan.
+Livsmiljön ligger i den västliga åparken, skild från broar och hage. Fyra `Mesh` delar
+samma geometri och material; inga skuggor eller ljus tillkommer. Fjärran/underjordiska
+ankor ritas inte och avlägsna ankor simuleras inte.
+
+Bortvalt: allt bröd/Life/Items, matlockning och matning, cooldown/ätande, mål och pickboxar,
+E/klick/text/notiser, holdable/audio/quack, poäng/statistik/medaljer, synk, tjänster och
+lagring. Publicens huvudloop lägger enbart till flockens skapande och uppdatering;
+fokus- och interaktionslistorna är oförändrade.
+
+Verifiering: deterministiska 600-sekundersförlopp för fyra ankor och granskad beroendegräns,
+`npm test`, `npm run build` samt riktig publik åvy med rörelse, yt-/habitatkontroll,
+exakt ritdelta och oförändrade originalmarkörer i lagringen/inga externa nätanrop.
+[Egna bilder, källhashar, mätvärden och begränsningar](verification/235/README.md).
