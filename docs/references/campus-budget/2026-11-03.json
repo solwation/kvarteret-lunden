@@ -1,0 +1,1240 @@
+{
+  "issue": 242,
+  "date": "2026-11-03",
+  "kind": "one reviewed full east-backdrop asset regression guard; not physical-device frame-time or FPS budget",
+  "scope": "entire east-backdrop subtree including access/lawn, sign and count-weighted clock instances",
+  "base": "ed59f08c2b60c10391444f8aa5adad19d7864b5f",
+  "lastReviewedCheckpoint": {
+    "ref": "8c4ccf09654528ec32999d52f8179985703cc6b3",
+    "triangles": 41363,
+    "cap": 41700,
+    "retainedAbsoluteHeadroom": 337
+  },
+  "acceptedSubsequentGrowth": 4522,
+  "currentMeasuredTriangles": 45885,
+  "reviewedCap": 46222,
+  "earliestPostCheckpointBreach": {
+    "ref": "c7a7ff8a68e0770dc29630837edddc9baa57f2b0",
+    "triangles": 41867,
+    "oldCap": 41700,
+    "excess": 167
+  },
+  "historyMethod": "24 fresh Android history snapshots; 8-minute bounded run; final two source-bound measurements reused from #240, current endpoint confirmed in actual World in both formats",
+  "nonzeroDeltas": [
+    {
+      "ref": "03bd49e6b55821fb19bc64bc55df555ad441dca8",
+      "subject": "Skolgårdarnas ytor: originalets polygoner, namn och ytor för 145221566/567/572/740, 94054863 och 145221570 (källa e749b076, originalets main 60d560e1) (Fixes #204)",
+      "delta": 1819,
+      "total": 40614,
+      "materials": {
+        "east-access": 1819
+      }
+    },
+    {
+      "ref": "8c4ccf09654528ec32999d52f8179985703cc6b3",
+      "subject": "Sankt Thomas skolgård: lekplats med gräsmatta, sandytor, häck och lekredskap i access-batchen; drape() utbruten; CAMPUS_LOD.maxTris 40843 -> 41700 (källa originalets 60d560e1, Fixes #203)",
+      "delta": 749,
+      "total": 41363,
+      "materials": {
+        "east-access": 749
+      }
+    },
+    {
+      "ref": "b303a6ac648928a7d803644f0e27cba31a6cba48",
+      "subject": "Klockhusets torn lyfts och byggnad 88:s innergård öppnas utan glasvägg (källa originalets 8f41bd54 och 95e5b176, Fixes #209)",
+      "delta": -8,
+      "total": 41355,
+      "materials": {
+        "east-schoolGlass": -8
+      }
+    },
+    {
+      "ref": "a1ed3b592e19200266122ab2c4c48e72caa503e4",
+      "subject": "Nordic Wellness S:t Lars Sportcenter ersätter NTI-skolan öster om Sankt Lars väg (original aff257de, #1745) (Fixes #210)",
+      "delta": -2218,
+      "total": 39137,
+      "materials": {
+        "east-schoolBrick": -112,
+        "east-facade": 36,
+        "east-modern": -1692,
+        "east-schoolRoof": -674,
+        "east-roof": 36,
+        "east-schoolGlass": -252,
+        "east-glass": 440
+      }
+    },
+    {
+      "ref": "c7a7ff8a68e0770dc29630837edddc9baa57f2b0",
+      "subject": "Nordic Wellness flyttas till Sankt Lars väg 90-92, NTI-skolan återställs och teleportplatsen följer med (original 7b901876 från solwation/lunden-3d-apartment, #1756) (Fixes #212)",
+      "delta": 2730,
+      "total": 41867,
+      "materials": {
+        "east-schoolBrick": 112,
+        "east-modern": 1692,
+        "east-schoolRoof": 674,
+        "east-schoolGlass": 252
+      }
+    },
+    {
+      "ref": "ded7afc62b6e4821efa3ffa08d0af17c990ea10a",
+      "subject": "Nordic Wellness flyttas öster om Sankt Lars väg till OSM-väg 1136415461 med vridet fotavtryck, teleportplatsen följer med (original b7b3e82e från solwation/lunden-3d-apartment, #1762) (Fixes #213)",
+      "delta": 272,
+      "total": 42139,
+      "materials": {
+        "east-glass": 272
+      }
+    },
+    {
+      "ref": "b2ef36f110f28ecf7ba06f276b817ef0893e808c",
+      "subject": "Vänd Nordic Wellness mot Sankt Lars väg och lägg till Grenhuset på andra sidan (Fixes #216)",
+      "delta": 254,
+      "total": 42393,
+      "materials": {
+        "east-facade": 100,
+        "east-roof": 24,
+        "east-glass": 130
+      }
+    },
+    {
+      "ref": "34bd3a1937553ba5e302c7ce94af7ad51c7f82b3",
+      "subject": "Höje å förlängd uppströms till Malmövägen, mjuk övergång vid z 60 och Malmövägen över kantbandet (Fixes #218)",
+      "delta": 560,
+      "total": 42953,
+      "materials": {
+        "east-access": 560
+      }
+    },
+    {
+      "ref": "799c4cb441eb1ba474138ed54ba3c606a61e526c",
+      "subject": "Mörka skifferstak och grönare skolgårdar i norra skolkvarteret (Fixes #221)",
+      "delta": 1043,
+      "total": 43996,
+      "materials": {
+        "east-access": 1043
+      }
+    },
+    {
+      "ref": "3f726db7b8965c0ddb53a730a3039c1a693d294e",
+      "subject": "Kunskapsskolans tak mörkare och blåare och en häck vid parkeringen vid Klockhuset (Fixes #222)",
+      "delta": 72,
+      "total": 44068,
+      "materials": {
+        "east-access": 72
+      }
+    },
+    {
+      "ref": "ed59f08c2b60c10391444f8aa5adad19d7864b5f",
+      "subject": "Portera Nordic Wellness fasad och entré med budgetbevis (Refs #240)",
+      "delta": 1817,
+      "total": 45885,
+      "materials": {
+        "east-facade": 408,
+        "east-roof": -24,
+        "east-glass": 1431,
+        "nordic-wellness-lettering": 2
+      }
+    }
+  ],
+  "history": [
+    {
+      "ref": "60c6c5094af6d69c5c7bfee178df5abc3f351127",
+      "lowMemory": true,
+      "cap": 40843,
+      "counts": {
+        "east-facade": 400,
+        "east-roof": 97,
+        "east-glass": 1316,
+        "east-access": 11193,
+        "east-modern": 16424,
+        "east-schoolGlass": 2844,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 400,
+        "east-roof": 97,
+        "east-glass": 1316,
+        "east-access": 11193,
+        "east-modern": 16424,
+        "east-schoolGlass": 2844,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 38795,
+      "subject": "campus-budget-check: expected building count derived from SITE.east.buildings instead of hard-coded 16 (Fixes #205)",
+      "delta": 0,
+      "materialDelta": {}
+    },
+    {
+      "ref": "03bd49e6b55821fb19bc64bc55df555ad441dca8",
+      "lowMemory": true,
+      "cap": 40843,
+      "counts": {
+        "east-facade": 400,
+        "east-roof": 97,
+        "east-glass": 1316,
+        "east-access": 13012,
+        "east-modern": 16424,
+        "east-schoolGlass": 2844,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 400,
+        "east-roof": 97,
+        "east-glass": 1316,
+        "east-access": 13012,
+        "east-modern": 16424,
+        "east-schoolGlass": 2844,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 40614,
+      "subject": "Skolgårdarnas ytor: originalets polygoner, namn och ytor för 145221566/567/572/740, 94054863 och 145221570 (källa e749b076, originalets main 60d560e1) (Fixes #204)",
+      "delta": 1819,
+      "materialDelta": {
+        "east-access": 1819
+      }
+    },
+    {
+      "ref": "8c4ccf09654528ec32999d52f8179985703cc6b3",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 400,
+        "east-roof": 97,
+        "east-glass": 1316,
+        "east-access": 13761,
+        "east-modern": 16424,
+        "east-schoolGlass": 2844,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 400,
+        "east-roof": 97,
+        "east-glass": 1316,
+        "east-access": 13761,
+        "east-modern": 16424,
+        "east-schoolGlass": 2844,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 41363,
+      "subject": "Sankt Thomas skolgård: lekplats med gräsmatta, sandytor, häck och lekredskap i access-batchen; drape() utbruten; CAMPUS_LOD.maxTris 40843 -> 41700 (källa originalets 60d560e1, Fixes #203)",
+      "delta": 749,
+      "materialDelta": {
+        "east-access": 749
+      }
+    },
+    {
+      "ref": "b303a6ac648928a7d803644f0e27cba31a6cba48",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 400,
+        "east-roof": 97,
+        "east-glass": 1316,
+        "east-access": 13761,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 400,
+        "east-roof": 97,
+        "east-glass": 1316,
+        "east-access": 13761,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 41355,
+      "subject": "Klockhusets torn lyfts och byggnad 88:s innergård öppnas utan glasvägg (källa originalets 8f41bd54 och 95e5b176, Fixes #209)",
+      "delta": -8,
+      "materialDelta": {
+        "east-schoolGlass": -8
+      }
+    },
+    {
+      "ref": "a1ed3b592e19200266122ab2c4c48e72caa503e4",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 436,
+        "east-roof": 133,
+        "east-glass": 1756,
+        "east-access": 13761,
+        "east-modern": 14732,
+        "east-schoolGlass": 2584,
+        "east-schoolBrick": 2957,
+        "east-schoolRoof": 2634,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 436,
+        "east-roof": 133,
+        "east-glass": 1756,
+        "east-access": 13761,
+        "east-modern": 14732,
+        "east-schoolGlass": 2584,
+        "east-schoolBrick": 2957,
+        "east-schoolRoof": 2634
+      },
+      "total": 39137,
+      "subject": "Nordic Wellness S:t Lars Sportcenter ersätter NTI-skolan öster om Sankt Lars väg (original aff257de, #1745) (Fixes #210)",
+      "delta": -2218,
+      "materialDelta": {
+        "east-schoolBrick": -112,
+        "east-facade": 36,
+        "east-modern": -1692,
+        "east-schoolRoof": -674,
+        "east-roof": 36,
+        "east-schoolGlass": -252,
+        "east-glass": 440
+      }
+    },
+    {
+      "ref": "c7a7ff8a68e0770dc29630837edddc9baa57f2b0",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 436,
+        "east-roof": 133,
+        "east-glass": 1756,
+        "east-access": 13761,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 436,
+        "east-roof": 133,
+        "east-glass": 1756,
+        "east-access": 13761,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 41867,
+      "subject": "Nordic Wellness flyttas till Sankt Lars väg 90-92, NTI-skolan återställs och teleportplatsen följer med (original 7b901876 från solwation/lunden-3d-apartment, #1756) (Fixes #212)",
+      "delta": 2730,
+      "materialDelta": {
+        "east-schoolBrick": 112,
+        "east-modern": 1692,
+        "east-schoolRoof": 674,
+        "east-schoolGlass": 252
+      }
+    },
+    {
+      "ref": "ded7afc62b6e4821efa3ffa08d0af17c990ea10a",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 436,
+        "east-roof": 133,
+        "east-glass": 2028,
+        "east-access": 13761,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 436,
+        "east-roof": 133,
+        "east-glass": 2028,
+        "east-access": 13761,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 42139,
+      "subject": "Nordic Wellness flyttas öster om Sankt Lars väg till OSM-väg 1136415461 med vridet fotavtryck, teleportplatsen följer med (original b7b3e82e från solwation/lunden-3d-apartment, #1762) (Fixes #213)",
+      "delta": 272,
+      "materialDelta": {
+        "east-glass": 272
+      }
+    },
+    {
+      "ref": "b2ef36f110f28ecf7ba06f276b817ef0893e808c",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 13761,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 13761,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 42393,
+      "subject": "Vänd Nordic Wellness mot Sankt Lars väg och lägg till Grenhuset på andra sidan (Fixes #216)",
+      "delta": 254,
+      "materialDelta": {
+        "east-facade": 100,
+        "east-roof": 24,
+        "east-glass": 130
+      }
+    },
+    {
+      "ref": "83a7163837164aa9cf7b15e885242d349b3cf06b",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 13761,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 13761,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 42393,
+      "subject": "Servicebyggnad och små paviljonger vid sjukhusblocken söder om ån, nr 48 och 49 i tegel (Fixes #217)",
+      "delta": 0,
+      "materialDelta": {}
+    },
+    {
+      "ref": "34bd3a1937553ba5e302c7ce94af7ad51c7f82b3",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 14321,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 14321,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 42953,
+      "subject": "Höje å förlängd uppströms till Malmövägen, mjuk övergång vid z 60 och Malmövägen över kantbandet (Fixes #218)",
+      "delta": 560,
+      "materialDelta": {
+        "east-access": 560
+      }
+    },
+    {
+      "ref": "9a37b7aa5c78af251cfec938284fda4e9d2d4323",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 14321,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 14321,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 42953,
+      "subject": "Thermo Fisher-hallen, två stora parkeringar och småbyggnader i västra sjukhuskvarteret (Fixes #220)",
+      "delta": 0,
+      "materialDelta": {}
+    },
+    {
+      "ref": "799c4cb441eb1ba474138ed54ba3c606a61e526c",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15364,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15364,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 43996,
+      "subject": "Mörka skifferstak och grönare skolgårdar i norra skolkvarteret (Fixes #221)",
+      "delta": 1043,
+      "materialDelta": {
+        "east-access": 1043
+      }
+    },
+    {
+      "ref": "3f726db7b8965c0ddb53a730a3039c1a693d294e",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15436,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15436,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 44068,
+      "subject": "Kunskapsskolans tak mörkare och blåare och en häck vid parkeringen vid Klockhuset (Fixes #222)",
+      "delta": 72,
+      "materialDelta": {
+        "east-access": 72
+      }
+    },
+    {
+      "ref": "4b2497f26e529942cc6a2b2a095895b9ce5b1c93",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15436,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15436,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 44068,
+      "subject": "Varierade fasad- och takfärger och taklutning på villorna och radhusen söder om ån (Fixes #219)",
+      "delta": 0,
+      "materialDelta": {}
+    },
+    {
+      "ref": "7936574f55fb2cf5a029f465f0919e957d71f5ff",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15436,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15436,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 44068,
+      "subject": "Kallby ängar och bostäderna i norr: 116 OSM-fotavtryck som hus och 136 parkeringar, gräsytor, vägar och stigar i fonden (Fixes #223)",
+      "delta": 0,
+      "materialDelta": {}
+    },
+    {
+      "ref": "ee3d50add49078dea8cb9d413a31f2fec6f7aa96",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15436,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15436,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 44068,
+      "subject": "Klippta häckar längs parkeringarna vid sjukhuspaviljongerna söder om ån (Fixes #225)",
+      "delta": 0,
+      "materialDelta": {}
+    },
+    {
+      "ref": "3e5464c05c2b0beb408e390c0648ad48a1215b8b",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15436,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15436,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 44068,
+      "subject": "Mörkare, blågrönare sommarkronor, större storleksspridning och 36 extra träd i ådalen på datorn (Fixes #224)",
+      "delta": 0,
+      "materialDelta": {}
+    },
+    {
+      "ref": "fb360ee3305fa7f7bce9a4c6190b6480c514dbf1",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15436,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15436,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 44068,
+      "subject": "Klippta häckar kring villatomterna och de vita husen söder om ån (Fixes #226)",
+      "delta": 0,
+      "materialDelta": {}
+    },
+    {
+      "ref": "995ea013c450e567c87b68dfe6f6c14e614105df",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15436,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15436,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 44068,
+      "subject": "Lekhörn, sandlådor, bänkar och staket på skolgårdarna norr och öster om kvarteret (Fixes #227)",
+      "delta": 0,
+      "materialDelta": {}
+    },
+    {
+      "ref": "094ea11fa09eeebbcf491730fad36390232d792e",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15436,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15436,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 44068,
+      "subject": "Låt vägar och trottoarer fortsätta bort i dimman (Refs #230)",
+      "delta": 0,
+      "materialDelta": {}
+    },
+    {
+      "ref": "64dcff59f5d1d24e4c638a09ffd5da5ec60fdb34",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15436,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15436,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 44068,
+      "subject": "Fortsätt Höje å genom den publika terrängkanten (Refs #231)",
+      "delta": 0,
+      "materialDelta": {}
+    },
+    {
+      "ref": "d97d18a3b457228f9262a8dfae9b6f7c0d92f3b2",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15436,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 15436,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308
+      },
+      "total": 44068,
+      "subject": "Utöka neutral promenadyta västerut (Refs #232)",
+      "delta": 0,
+      "materialDelta": {}
+    },
+    {
+      "ref": "1e6fc4c503b3e5e73114a4f36b43451f1e34a486",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 14207,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "east-lawn": 1229,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 14207,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "east-lawn": 1229
+      },
+      "total": 44068,
+      "subject": "Låt skolgräset följa terrängens material och årstider (Refs #233)",
+      "delta": 0,
+      "materialDelta": {
+        "east-lawn": 1229,
+        "east-access": -1229
+      }
+    },
+    {
+      "ref": "e4b858ece26d207aacf1c35ee66dde3bb1bc4489",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 14207,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "east-lawn": 1229,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "direct": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 14207,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "east-lawn": 1229
+      },
+      "total": 44068,
+      "subject": "Lägg till ett passivt träutegym vid Karpvägen (Refs #234)",
+      "delta": 0,
+      "materialDelta": {}
+    },
+    {
+      "ref": "9e767cda8ac2957344a9f147c5b8ec3d2d400fb3",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 536,
+        "east-roof": 157,
+        "east-glass": 2158,
+        "east-access": 14207,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "east-lawn": 1229,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "total": 44068,
+      "measurementOrigin": "reused source-bound #240 lowmem.json before; current endpoint confirmed by actual World before/after in #242",
+      "subject": "Refs #238: add passive local river fish and surface rings",
+      "delta": 0,
+      "materialDelta": {}
+    },
+    {
+      "ref": "ed59f08c2b60c10391444f8aa5adad19d7864b5f",
+      "lowMemory": true,
+      "cap": 41700,
+      "counts": {
+        "east-facade": 944,
+        "east-roof": 133,
+        "east-glass": 3589,
+        "east-access": 14207,
+        "east-modern": 16424,
+        "east-schoolGlass": 2836,
+        "east-schoolBrick": 3069,
+        "east-schoolRoof": 3308,
+        "east-lawn": 1229,
+        "nordic-wellness-lettering": 2,
+        "tower-clock-dials": 128,
+        "tower-clock-hands": 16
+      },
+      "total": 45885,
+      "measurementOrigin": "reused source-bound #240 lowmem.json after; current endpoint confirmed by actual World before/after in #242",
+      "subject": "Portera Nordic Wellness fasad och entré med budgetbevis (Refs #240)",
+      "delta": 1817,
+      "materialDelta": {
+        "east-facade": 408,
+        "east-roof": -24,
+        "east-glass": 1431,
+        "nordic-wellness-lettering": 2
+      }
+    }
+  ],
+  "review": {
+    "by": "session conductor",
+    "decision": "Approved before production change, conditional on actual current World matching45885; condition met in both formats",
+    "retainedHeadroom": 337,
+    "geometryPolicy": "no topology, precision, curve/roofGrid, material, light, window or opening changes"
+  },
+  "currentBuildingLedger": [
+    {
+      "source": "88457546",
+      "materials": {
+        "modern": 1666,
+        "schoolGlass": 212,
+        "schoolBrick": 162,
+        "schoolRoof": 135
+      }
+    },
+    {
+      "source": "88457547",
+      "materials": {
+        "modern": 1926,
+        "schoolGlass": 360,
+        "schoolBrick": 144,
+        "schoolRoof": 592
+      }
+    },
+    {
+      "source": "88457552",
+      "materials": {
+        "modern": 1710,
+        "schoolGlass": 222,
+        "schoolBrick": 236,
+        "schoolRoof": 128
+      }
+    },
+    {
+      "source": "88457558",
+      "materials": {
+        "facade": 24,
+        "roof": 4,
+        "glass": 80
+      }
+    },
+    {
+      "source": "88457565",
+      "materials": {
+        "facade": 48,
+        "roof": 8,
+        "glass": 120
+      }
+    },
+    {
+      "source": "88457581",
+      "materials": {
+        "modern": 1482,
+        "schoolGlass": 444,
+        "schoolBrick": 532,
+        "schoolRoof": 321
+      }
+    },
+    {
+      "source": "guess-1732-ne",
+      "materials": {
+        "facade": 20,
+        "roof": 2
+      }
+    },
+    {
+      "source": "guess-1732-recess",
+      "materials": {
+        "facade": 20,
+        "roof": 2
+      }
+    },
+    {
+      "source": "guess-1732-sw",
+      "materials": {
+        "facade": 20,
+        "roof": 2
+      }
+    },
+    {
+      "source": "guess-1732-annex",
+      "materials": {
+        "facade": 20,
+        "roof": 2,
+        "glass": 12
+      }
+    },
+    {
+      "source": "88457601",
+      "materials": {
+        "modern": 928,
+        "schoolGlass": 256,
+        "schoolBrick": 296,
+        "schoolRoof": 229
+      }
+    },
+    {
+      "source": "88457606",
+      "materials": {
+        "modern": 1674,
+        "schoolGlass": 222,
+        "schoolBrick": 236,
+        "schoolRoof": 100
+      }
+    },
+    {
+      "source": "88457612",
+      "materials": {
+        "modern": 1692,
+        "schoolGlass": 252,
+        "schoolBrick": 112,
+        "schoolRoof": 674
+      }
+    },
+    {
+      "source": "guess-1762",
+      "materials": {
+        "facade": 544,
+        "roof": 36,
+        "glass": 2273
+      }
+    },
+    {
+      "source": "130578352",
+      "materials": {
+        "facade": 24,
+        "roof": 4,
+        "glass": 40
+      }
+    },
+    {
+      "source": "130678797",
+      "materials": {
+        "modern": 1876,
+        "schoolGlass": 240,
+        "schoolBrick": 215,
+        "schoolRoof": 125
+      }
+    },
+    {
+      "source": "130681301",
+      "materials": {
+        "facade": 180,
+        "roof": 67,
+        "glass": 1024
+      }
+    },
+    {
+      "source": "guess-1703",
+      "materials": {
+        "facade": 20,
+        "roof": 2
+      }
+    },
+    {
+      "source": "145221568",
+      "materials": {
+        "facade": 24,
+        "roof": 4,
+        "glass": 40
+      }
+    },
+    {
+      "source": "88457613",
+      "materials": {
+        "modern": 2190,
+        "schoolGlass": 356,
+        "schoolBrick": 192,
+        "schoolRoof": 682
+      }
+    },
+    {
+      "source": "relation/1309427",
+      "materials": {
+        "modern": 1280,
+        "schoolGlass": 272,
+        "schoolBrick": 944,
+        "schoolRoof": 322
+      }
+    }
+  ],
+  "currentMeshLedger": [
+    {
+      "name": "east-facade",
+      "triangles": 944,
+      "instances": 1
+    },
+    {
+      "name": "east-roof",
+      "triangles": 133,
+      "instances": 1
+    },
+    {
+      "name": "east-glass",
+      "triangles": 3589,
+      "instances": 1
+    },
+    {
+      "name": "east-access",
+      "triangles": 14207,
+      "instances": 1
+    },
+    {
+      "name": "east-modern",
+      "triangles": 16424,
+      "instances": 1
+    },
+    {
+      "name": "east-schoolGlass",
+      "triangles": 2836,
+      "instances": 1
+    },
+    {
+      "name": "east-schoolBrick",
+      "triangles": 3069,
+      "instances": 1
+    },
+    {
+      "name": "east-schoolRoof",
+      "triangles": 3308,
+      "instances": 1
+    },
+    {
+      "name": "east-lawn",
+      "triangles": 1229,
+      "instances": 1
+    },
+    {
+      "name": "nordic-wellness-lettering",
+      "triangles": 2,
+      "instances": 1
+    },
+    {
+      "name": "tower-clock-dials",
+      "triangles": 128,
+      "instances": 4
+    },
+    {
+      "name": "tower-clock-hands",
+      "triangles": 16,
+      "instances": 8
+    }
+  ],
+  "worldProfiles": [
+    {
+      "profile": "portrait",
+      "triangles": 45885,
+      "beforeCap": 41700,
+      "afterCap": 46222,
+      "imageHashes": {
+        "near": "6d58647fb14e2bc56f09de9567b449f578a2d1bd49e6ad6bb13bbb4176907ce0",
+        "far": "d9f5805a7845365818000801d57de1bad92363c9e4980c41a51a83ee3b4b0747"
+      }
+    },
+    {
+      "profile": "landscape",
+      "triangles": 45885,
+      "beforeCap": 41700,
+      "afterCap": 46222,
+      "imageHashes": {
+        "near": "1be3f95a9e2830e90f82ecc6fb72c73199203ec8aebfbe03a7dab99b7977e611",
+        "far": "49236462323d386271082b9e39419aab8f266acca04629bef0ee0f1553e039d0"
+      }
+    }
+  ]
+}

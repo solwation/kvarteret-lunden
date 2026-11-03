@@ -1,0 +1,9 @@
+Base ed59f08c2b60c10391444f8aa5adad19d7864b5f; only product delta is reviewed maxTris guard and comments.
+39dbe3b918d2067eab5ce5d0b9617ef9ba4e47daaa2191cac05b160eeff89f04  src/config.js
+7d9470d40450fc112c9e74f825fc0d38faac090dbd9758af1f716981fee4960b  tools/campus-budget-counter.mjs
+f91bdccbd42d1500f45aeaab4d120a1db42069af61df31e2bf1dced697fdb328  tools/campus-budget-check.mjs
+02f5b91b4498311c721643eff2b2ad0438ce85482b0dae5319f0e54ff33f05fc  tools/nordicgym-budget-check.mjs
+26bd27afc2c08fad3dacb48264b94c818626f956b6385fd98fbad929f07a2392  tools/campus-budget-history.mjs
+31de2fe54f0aec17628451e837848c49a58d899166f858e8fe7d57821de8c501  docs/references/campus-budget/2026-11-03.json
+
+Canonical counter unchanged from base: 7d9470d40450fc112c9e74f825fc0d38faac090dbd9758af1f716981fee4960b

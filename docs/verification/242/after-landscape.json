@@ -1,0 +1,931 @@
+{
+  "lowMemory": true,
+  "shadows": false,
+  "cap": 46222,
+  "budget": {
+    "triangles": 45885,
+    "meshes": [
+      {
+        "name": "east-facade",
+        "triangles": 944,
+        "instances": 1
+      },
+      {
+        "name": "east-roof",
+        "triangles": 133,
+        "instances": 1
+      },
+      {
+        "name": "east-glass",
+        "triangles": 3589,
+        "instances": 1
+      },
+      {
+        "name": "east-access",
+        "triangles": 14207,
+        "instances": 1
+      },
+      {
+        "name": "east-modern",
+        "triangles": 16424,
+        "instances": 1
+      },
+      {
+        "name": "east-schoolGlass",
+        "triangles": 2836,
+        "instances": 1
+      },
+      {
+        "name": "east-schoolBrick",
+        "triangles": 3069,
+        "instances": 1
+      },
+      {
+        "name": "east-schoolRoof",
+        "triangles": 3308,
+        "instances": 1
+      },
+      {
+        "name": "east-lawn",
+        "triangles": 1229,
+        "instances": 1
+      },
+      {
+        "name": "nordic-wellness-lettering",
+        "triangles": 2,
+        "instances": 1
+      },
+      {
+        "name": "tower-clock-dials",
+        "triangles": 128,
+        "instances": 4
+      },
+      {
+        "name": "tower-clock-hands",
+        "triangles": 16,
+        "instances": 8
+      }
+    ]
+  },
+  "buildings": [
+    {
+      "source": "88457546",
+      "materials": {
+        "modern": 1666,
+        "schoolGlass": 212,
+        "schoolBrick": 162,
+        "schoolRoof": 135
+      }
+    },
+    {
+      "source": "88457547",
+      "materials": {
+        "modern": 1926,
+        "schoolGlass": 360,
+        "schoolBrick": 144,
+        "schoolRoof": 592
+      }
+    },
+    {
+      "source": "88457552",
+      "materials": {
+        "modern": 1710,
+        "schoolGlass": 222,
+        "schoolBrick": 236,
+        "schoolRoof": 128
+      }
+    },
+    {
+      "source": "88457558",
+      "materials": {
+        "facade": 24,
+        "roof": 4,
+        "glass": 80
+      }
+    },
+    {
+      "source": "88457565",
+      "materials": {
+        "facade": 48,
+        "roof": 8,
+        "glass": 120
+      }
+    },
+    {
+      "source": "88457581",
+      "materials": {
+        "modern": 1482,
+        "schoolGlass": 444,
+        "schoolBrick": 532,
+        "schoolRoof": 321
+      }
+    },
+    {
+      "source": "guess-1732-ne",
+      "materials": {
+        "facade": 20,
+        "roof": 2
+      }
+    },
+    {
+      "source": "guess-1732-recess",
+      "materials": {
+        "facade": 20,
+        "roof": 2
+      }
+    },
+    {
+      "source": "guess-1732-sw",
+      "materials": {
+        "facade": 20,
+        "roof": 2
+      }
+    },
+    {
+      "source": "guess-1732-annex",
+      "materials": {
+        "facade": 20,
+        "roof": 2,
+        "glass": 12
+      }
+    },
+    {
+      "source": "88457601",
+      "materials": {
+        "modern": 928,
+        "schoolGlass": 256,
+        "schoolBrick": 296,
+        "schoolRoof": 229
+      }
+    },
+    {
+      "source": "88457606",
+      "materials": {
+        "modern": 1674,
+        "schoolGlass": 222,
+        "schoolBrick": 236,
+        "schoolRoof": 100
+      }
+    },
+    {
+      "source": "88457612",
+      "materials": {
+        "modern": 1692,
+        "schoolGlass": 252,
+        "schoolBrick": 112,
+        "schoolRoof": 674
+      }
+    },
+    {
+      "source": "guess-1762",
+      "materials": {
+        "facade": 544,
+        "roof": 36,
+        "glass": 2273
+      }
+    },
+    {
+      "source": "130578352",
+      "materials": {
+        "facade": 24,
+        "roof": 4,
+        "glass": 40
+      }
+    },
+    {
+      "source": "130678797",
+      "materials": {
+        "modern": 1876,
+        "schoolGlass": 240,
+        "schoolBrick": 215,
+        "schoolRoof": 125
+      }
+    },
+    {
+      "source": "130681301",
+      "materials": {
+        "facade": 180,
+        "roof": 67,
+        "glass": 1024
+      }
+    },
+    {
+      "source": "guess-1703",
+      "materials": {
+        "facade": 20,
+        "roof": 2
+      }
+    },
+    {
+      "source": "145221568",
+      "materials": {
+        "facade": 24,
+        "roof": 4,
+        "glass": 40
+      }
+    },
+    {
+      "source": "88457613",
+      "materials": {
+        "modern": 2190,
+        "schoolGlass": 356,
+        "schoolBrick": 192,
+        "schoolRoof": 682
+      }
+    },
+    {
+      "source": "relation/1309427",
+      "materials": {
+        "modern": 1280,
+        "schoolGlass": 272,
+        "schoolBrick": 944,
+        "schoolRoof": 322
+      }
+    }
+  ],
+  "buffers": [
+    {
+      "mesh": "east-facade",
+      "name": "position",
+      "type": "Float32Array",
+      "count": 2832,
+      "itemSize": 3,
+      "bytes": 33984,
+      "upload": {
+        "bytes": 33984,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-facade",
+      "name": "normal",
+      "type": "Float32Array",
+      "count": 2832,
+      "itemSize": 3,
+      "bytes": 33984,
+      "upload": {
+        "bytes": 33984,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-facade",
+      "name": "color",
+      "type": "Float32Array",
+      "count": 2832,
+      "itemSize": 3,
+      "bytes": 33984,
+      "upload": {
+        "bytes": 33984,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-facade",
+      "name": "uv",
+      "type": "Float32Array",
+      "count": 2832,
+      "itemSize": 2,
+      "bytes": 22656,
+      "upload": {
+        "bytes": 22656,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-roof",
+      "name": "position",
+      "type": "Float32Array",
+      "count": 399,
+      "itemSize": 3,
+      "bytes": 4788,
+      "upload": {
+        "bytes": 4788,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-roof",
+      "name": "normal",
+      "type": "Float32Array",
+      "count": 399,
+      "itemSize": 3,
+      "bytes": 4788,
+      "upload": {
+        "bytes": 4788,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-glass",
+      "name": "position",
+      "type": "Float32Array",
+      "count": 10767,
+      "itemSize": 3,
+      "bytes": 129204,
+      "upload": {
+        "bytes": 129204,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-glass",
+      "name": "normal",
+      "type": "Float32Array",
+      "count": 10767,
+      "itemSize": 3,
+      "bytes": 129204,
+      "upload": {
+        "bytes": 129204,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-glass",
+      "name": "color",
+      "type": "Float32Array",
+      "count": 10767,
+      "itemSize": 3,
+      "bytes": 129204,
+      "upload": {
+        "bytes": 129204,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-access",
+      "name": "position",
+      "type": "Float32Array",
+      "count": 42621,
+      "itemSize": 3,
+      "bytes": 511452,
+      "upload": {
+        "bytes": 511452,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-access",
+      "name": "normal",
+      "type": "Float32Array",
+      "count": 42621,
+      "itemSize": 3,
+      "bytes": 511452,
+      "upload": {
+        "bytes": 511452,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-access",
+      "name": "color",
+      "type": "Float32Array",
+      "count": 42621,
+      "itemSize": 3,
+      "bytes": 511452,
+      "upload": {
+        "bytes": 511452,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-modern",
+      "name": "position",
+      "type": "Float32Array",
+      "count": 49272,
+      "itemSize": 3,
+      "bytes": 591264,
+      "upload": {
+        "bytes": 591264,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-modern",
+      "name": "normal",
+      "type": "Float32Array",
+      "count": 49272,
+      "itemSize": 3,
+      "bytes": 591264,
+      "upload": {
+        "bytes": 591264,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-modern",
+      "name": "color",
+      "type": "Float32Array",
+      "count": 49272,
+      "itemSize": 3,
+      "bytes": 591264,
+      "upload": {
+        "bytes": 591264,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-schoolGlass",
+      "name": "position",
+      "type": "Float32Array",
+      "count": 8508,
+      "itemSize": 3,
+      "bytes": 102096,
+      "upload": {
+        "bytes": 102096,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-schoolGlass",
+      "name": "normal",
+      "type": "Float32Array",
+      "count": 8508,
+      "itemSize": 3,
+      "bytes": 102096,
+      "upload": {
+        "bytes": 102096,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-schoolBrick",
+      "name": "position",
+      "type": "Float32Array",
+      "count": 9207,
+      "itemSize": 3,
+      "bytes": 110484,
+      "upload": {
+        "bytes": 110484,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-schoolBrick",
+      "name": "normal",
+      "type": "Float32Array",
+      "count": 9207,
+      "itemSize": 3,
+      "bytes": 110484,
+      "upload": {
+        "bytes": 110484,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-schoolBrick",
+      "name": "color",
+      "type": "Float32Array",
+      "count": 9207,
+      "itemSize": 3,
+      "bytes": 110484,
+      "upload": {
+        "bytes": 110484,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-schoolBrick",
+      "name": "uv",
+      "type": "Float32Array",
+      "count": 9207,
+      "itemSize": 2,
+      "bytes": 73656,
+      "upload": {
+        "bytes": 73656,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-schoolRoof",
+      "name": "position",
+      "type": "Float32Array",
+      "count": 9924,
+      "itemSize": 3,
+      "bytes": 119088,
+      "upload": {
+        "bytes": 119088,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-schoolRoof",
+      "name": "normal",
+      "type": "Float32Array",
+      "count": 9924,
+      "itemSize": 3,
+      "bytes": 119088,
+      "upload": {
+        "bytes": 119088,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-schoolRoof",
+      "name": "uv",
+      "type": "Float32Array",
+      "count": 9924,
+      "itemSize": 2,
+      "bytes": 79392,
+      "upload": {
+        "bytes": 79392,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-schoolRoof",
+      "name": "color",
+      "type": "Float32Array",
+      "count": 9924,
+      "itemSize": 3,
+      "bytes": 119088,
+      "upload": {
+        "bytes": 119088,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-lawn",
+      "name": "position",
+      "type": "Float32Array",
+      "count": 3687,
+      "itemSize": 3,
+      "bytes": 44244,
+      "upload": {
+        "bytes": 44244,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-lawn",
+      "name": "normal",
+      "type": "Float32Array",
+      "count": 3687,
+      "itemSize": 3,
+      "bytes": 44244,
+      "upload": {
+        "bytes": 44244,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "east-lawn",
+      "name": "uv",
+      "type": "Float32Array",
+      "count": 3687,
+      "itemSize": 2,
+      "bytes": 29496,
+      "upload": {
+        "bytes": 29496,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "nordic-wellness-lettering",
+      "name": "position",
+      "type": "Float32Array",
+      "count": 4,
+      "itemSize": 3,
+      "bytes": 48,
+      "upload": null
+    },
+    {
+      "mesh": "nordic-wellness-lettering",
+      "name": "normal",
+      "type": "Float32Array",
+      "count": 4,
+      "itemSize": 3,
+      "bytes": 48,
+      "upload": null
+    },
+    {
+      "mesh": "nordic-wellness-lettering",
+      "name": "uv",
+      "type": "Float32Array",
+      "count": 4,
+      "itemSize": 2,
+      "bytes": 32,
+      "upload": null
+    },
+    {
+      "mesh": "nordic-wellness-lettering",
+      "name": "index",
+      "type": "Uint16Array",
+      "count": 6,
+      "itemSize": 1,
+      "bytes": 12,
+      "upload": null
+    },
+    {
+      "mesh": "tower-clock-dials",
+      "name": "position",
+      "type": "Float32Array",
+      "count": 34,
+      "itemSize": 3,
+      "bytes": 408,
+      "upload": {
+        "bytes": 408,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "tower-clock-dials",
+      "name": "normal",
+      "type": "Float32Array",
+      "count": 34,
+      "itemSize": 3,
+      "bytes": 408,
+      "upload": {
+        "bytes": 408,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "tower-clock-dials",
+      "name": "uv",
+      "type": "Float32Array",
+      "count": 34,
+      "itemSize": 2,
+      "bytes": 272,
+      "upload": {
+        "bytes": 272,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "tower-clock-dials",
+      "name": "index",
+      "type": "Uint16Array",
+      "count": 96,
+      "itemSize": 1,
+      "bytes": 192,
+      "upload": {
+        "bytes": 192,
+        "target": 34963
+      }
+    },
+    {
+      "mesh": "tower-clock-dials",
+      "name": "instanceMatrix",
+      "type": "Float32Array",
+      "count": 4,
+      "itemSize": 16,
+      "bytes": 256,
+      "upload": {
+        "bytes": 256,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "tower-clock-hands",
+      "name": "position",
+      "type": "Float32Array",
+      "count": 4,
+      "itemSize": 3,
+      "bytes": 48,
+      "upload": {
+        "bytes": 48,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "tower-clock-hands",
+      "name": "normal",
+      "type": "Float32Array",
+      "count": 4,
+      "itemSize": 3,
+      "bytes": 48,
+      "upload": {
+        "bytes": 48,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "tower-clock-hands",
+      "name": "uv",
+      "type": "Float32Array",
+      "count": 4,
+      "itemSize": 2,
+      "bytes": 32,
+      "upload": {
+        "bytes": 32,
+        "target": 34962
+      }
+    },
+    {
+      "mesh": "tower-clock-hands",
+      "name": "index",
+      "type": "Uint16Array",
+      "count": 6,
+      "itemSize": 1,
+      "bytes": 12,
+      "upload": {
+        "bytes": 12,
+        "target": 34963
+      }
+    },
+    {
+      "mesh": "tower-clock-hands",
+      "name": "instanceMatrix",
+      "type": "Float32Array",
+      "count": 8,
+      "itemSize": 16,
+      "bytes": 512,
+      "upload": {
+        "bytes": 512,
+        "target": 34962
+      }
+    }
+  ],
+  "resources": {
+    "geometryObjects": 12,
+    "materials": 12,
+    "textures": [
+      {
+        "slot": "map",
+        "width": 256,
+        "height": 256,
+        "type": 1009,
+        "format": 1023,
+        "mipmaps": true
+      },
+      {
+        "slot": "envMap",
+        "width": null,
+        "height": null,
+        "type": 1009,
+        "format": 1023,
+        "mipmaps": true
+      },
+      {
+        "slot": "map",
+        "width": 256,
+        "height": 256,
+        "type": 1009,
+        "format": 1023,
+        "mipmaps": true
+      },
+      {
+        "slot": "map",
+        "width": 64,
+        "height": 64,
+        "type": 1009,
+        "format": 1023,
+        "mipmaps": true
+      },
+      {
+        "slot": "map",
+        "width": 256,
+        "height": 256,
+        "type": 1009,
+        "format": 1023,
+        "mipmaps": true
+      },
+      {
+        "slot": "map",
+        "width": 1024,
+        "height": 128,
+        "type": 1009,
+        "format": 1023,
+        "mipmaps": true
+      },
+      {
+        "slot": "map",
+        "width": 1,
+        "height": 1,
+        "type": 1009,
+        "format": 1023,
+        "mipmaps": true
+      }
+    ],
+    "attributeBytes": 4996212,
+    "observedUploadBytes": 4996072
+  },
+  "geometry": {
+    "east-facade": "c668efeb280c60f92ca16fed5e1c37e4f071b8f36e4efe4d641f3ca1db8e7be6",
+    "east-roof": "f1bde87226ad805b911e697f15ea822afd2d9b3788eb75a340487a2025dbbc91",
+    "east-glass": "43a586add755cb022b1e050eedee9ba93f6b307e0724d76ba006af07da3caa45",
+    "east-access": "a22cc090b17fac6a53a17e1b1ae46fb977f5d4a79c8f84f932bc3825eb61c998",
+    "east-modern": "19283cb0e6c65a33a9e19d4984d7865a3afeaa30cfff5cb3b6ac69a8df1ad89e",
+    "east-schoolGlass": "b09e028fafb3cad23b230b874415bd4370a334370925eea86bce6ce53e1ba4ca",
+    "east-schoolBrick": "b374da9f1e53174e5472693631ee85c09c45a11d07d3eaeb48f8a72093357c71",
+    "east-schoolRoof": "854e98ee74d0e329f9ec3d583a252e6f95aba514f115282e117a2e2e3a03964f",
+    "east-lawn": "eab629cb0d1b7fd5b53922dba7a1596b60be309c1309422360d9f0dda3069deb"
+  },
+  "views": [
+    {
+      "name": "near",
+      "eye": [
+        138,
+        14.999575107864604,
+        -82
+      ],
+      "calls": 936,
+      "triangles": 1045040,
+      "owned": [
+        {
+          "name": "east-schoolGlass",
+          "triangles": 2836
+        },
+        {
+          "name": "east-facade",
+          "triangles": 944
+        },
+        {
+          "name": "east-roof",
+          "triangles": 133
+        },
+        {
+          "name": "east-glass",
+          "triangles": 3589
+        },
+        {
+          "name": "east-access",
+          "triangles": 14207
+        },
+        {
+          "name": "east-lawn",
+          "triangles": 1229
+        },
+        {
+          "name": "east-modern",
+          "triangles": 16424
+        },
+        {
+          "name": "east-schoolBrick",
+          "triangles": 3069
+        },
+        {
+          "name": "east-schoolRoof",
+          "triangles": 3308
+        }
+      ],
+      "geometries": 830,
+      "textures": 60
+    },
+    {
+      "name": "far",
+      "eye": [
+        45,
+        44.99957510786461,
+        -190
+      ],
+      "calls": 944,
+      "triangles": 1077730,
+      "owned": [
+        {
+          "name": "east-schoolGlass",
+          "triangles": 2836
+        },
+        {
+          "name": "east-facade",
+          "triangles": 944
+        },
+        {
+          "name": "east-roof",
+          "triangles": 133
+        },
+        {
+          "name": "east-glass",
+          "triangles": 3589
+        },
+        {
+          "name": "east-access",
+          "triangles": 14207
+        },
+        {
+          "name": "east-lawn",
+          "triangles": 1229
+        },
+        {
+          "name": "east-modern",
+          "triangles": 16424
+        },
+        {
+          "name": "east-schoolBrick",
+          "triangles": 3069
+        },
+        {
+          "name": "east-schoolRoof",
+          "triangles": 3308
+        },
+        {
+          "name": "tower-clock-dials",
+          "triangles": 128
+        },
+        {
+          "name": "tower-clock-hands",
+          "triangles": 16
+        }
+      ],
+      "geometries": 832,
+      "textures": 61
+    }
+  ],
+  "imageHashes": {
+    "near": "1be3f95a9e2830e90f82ecc6fb72c73199203ec8aebfbe03a7dab99b7977e611",
+    "far": "49236462323d386271082b9e39419aab8f266acca04629bef0ee0f1553e039d0"
+  },
+  "errors": [],
+  "external": []
+}

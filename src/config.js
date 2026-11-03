@@ -2140,11 +2140,12 @@ drum: { radius: .16, depth: .30, shell: .012, centerY: .42, slots: 3 },
 panel: { w: .26, h: .065, lift: .36, offset: .008, pickDepth: .02 }
 };
 
-// Full east-backdrop asset regression guard, including access and clock instances (#136).
-// Historical 33676 + guessed 2324 headroom; accepted precision/clock growth +4843.
+// Full east-backdrop asset regression guard, including access/lawn, sign and clock instances (#136/#242).
 // Not a measured physical-phone frame-time budget; future growth requires a new audit.
-// #203 (2026-10-31): +749 for the Sankt Thomas playground ported from original 60d560e1, which keeps the playground in all profiles within its phone budget (42 200); margin was already reduced by #204's restored courtyard surfaces.
-export const CAMPUS_LOD = { curve: 3, roofGrid: 2, maxTris: 41700 };
+// #203's last reviewed checkpoint: 41,363 triangles / cap41,700, preserving337 headroom.
+// #242 traces accepted subsequent geometry (+4,522) to45,885; cap46,222 retains that same337.
+// One reviewed revision, not an automatic cap increase: docs/references/campus-budget/2026-11-03.json.
+export const CAMPUS_LOD = { curve: 3, roofGrid: 2, maxTris: 46222 };
 
 // Touch stick feel (upstream 211e0e9, original #1088; *guess* values tuned by eye): deflection r = distance / knob travel.
 // Below `deadZone` nothing moves (a resting thumb never drifts); up to `full` the output rises along t^`curve`

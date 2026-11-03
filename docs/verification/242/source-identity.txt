@@ -1,0 +1,1 @@
+PASS all other configuration exports identical; curve3 and roofGrid2 retained; only reviewed maxTris41700→46222 changes

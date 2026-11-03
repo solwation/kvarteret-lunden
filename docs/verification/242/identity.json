@@ -1,0 +1,172 @@
+[
+  {
+    "profile": "portrait",
+    "triangles": 45885,
+    "beforeCap": 41700,
+    "afterCap": 46222,
+    "geometry": {
+      "east-facade": "c668efeb280c60f92ca16fed5e1c37e4f071b8f36e4efe4d641f3ca1db8e7be6",
+      "east-roof": "f1bde87226ad805b911e697f15ea822afd2d9b3788eb75a340487a2025dbbc91",
+      "east-glass": "43a586add755cb022b1e050eedee9ba93f6b307e0724d76ba006af07da3caa45",
+      "east-access": "a22cc090b17fac6a53a17e1b1ae46fb977f5d4a79c8f84f932bc3825eb61c998",
+      "east-modern": "19283cb0e6c65a33a9e19d4984d7865a3afeaa30cfff5cb3b6ac69a8df1ad89e",
+      "east-schoolGlass": "b09e028fafb3cad23b230b874415bd4370a334370925eea86bce6ce53e1ba4ca",
+      "east-schoolBrick": "b374da9f1e53174e5472693631ee85c09c45a11d07d3eaeb48f8a72093357c71",
+      "east-schoolRoof": "854e98ee74d0e329f9ec3d583a252e6f95aba514f115282e117a2e2e3a03964f",
+      "east-lawn": "eab629cb0d1b7fd5b53922dba7a1596b60be309c1309422360d9f0dda3069deb"
+    },
+    "resources": {
+      "geometryObjects": 12,
+      "materials": 12,
+      "textures": [
+        {
+          "slot": "map",
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mipmaps": true
+        },
+        {
+          "slot": "envMap",
+          "width": null,
+          "height": null,
+          "type": 1009,
+          "format": 1023,
+          "mipmaps": true
+        },
+        {
+          "slot": "map",
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mipmaps": true
+        },
+        {
+          "slot": "map",
+          "width": 64,
+          "height": 64,
+          "type": 1009,
+          "format": 1023,
+          "mipmaps": true
+        },
+        {
+          "slot": "map",
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mipmaps": true
+        },
+        {
+          "slot": "map",
+          "width": 1024,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mipmaps": true
+        },
+        {
+          "slot": "map",
+          "width": 1,
+          "height": 1,
+          "type": 1009,
+          "format": 1023,
+          "mipmaps": true
+        }
+      ],
+      "attributeBytes": 4996212,
+      "observedUploadBytes": 4996072
+    },
+    "imageHashes": {
+      "near": "6d58647fb14e2bc56f09de9567b449f578a2d1bd49e6ad6bb13bbb4176907ce0",
+      "far": "d9f5805a7845365818000801d57de1bad92363c9e4980c41a51a83ee3b4b0747"
+    }
+  },
+  {
+    "profile": "landscape",
+    "triangles": 45885,
+    "beforeCap": 41700,
+    "afterCap": 46222,
+    "geometry": {
+      "east-facade": "c668efeb280c60f92ca16fed5e1c37e4f071b8f36e4efe4d641f3ca1db8e7be6",
+      "east-roof": "f1bde87226ad805b911e697f15ea822afd2d9b3788eb75a340487a2025dbbc91",
+      "east-glass": "43a586add755cb022b1e050eedee9ba93f6b307e0724d76ba006af07da3caa45",
+      "east-access": "a22cc090b17fac6a53a17e1b1ae46fb977f5d4a79c8f84f932bc3825eb61c998",
+      "east-modern": "19283cb0e6c65a33a9e19d4984d7865a3afeaa30cfff5cb3b6ac69a8df1ad89e",
+      "east-schoolGlass": "b09e028fafb3cad23b230b874415bd4370a334370925eea86bce6ce53e1ba4ca",
+      "east-schoolBrick": "b374da9f1e53174e5472693631ee85c09c45a11d07d3eaeb48f8a72093357c71",
+      "east-schoolRoof": "854e98ee74d0e329f9ec3d583a252e6f95aba514f115282e117a2e2e3a03964f",
+      "east-lawn": "eab629cb0d1b7fd5b53922dba7a1596b60be309c1309422360d9f0dda3069deb"
+    },
+    "resources": {
+      "geometryObjects": 12,
+      "materials": 12,
+      "textures": [
+        {
+          "slot": "map",
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mipmaps": true
+        },
+        {
+          "slot": "envMap",
+          "width": null,
+          "height": null,
+          "type": 1009,
+          "format": 1023,
+          "mipmaps": true
+        },
+        {
+          "slot": "map",
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mipmaps": true
+        },
+        {
+          "slot": "map",
+          "width": 64,
+          "height": 64,
+          "type": 1009,
+          "format": 1023,
+          "mipmaps": true
+        },
+        {
+          "slot": "map",
+          "width": 256,
+          "height": 256,
+          "type": 1009,
+          "format": 1023,
+          "mipmaps": true
+        },
+        {
+          "slot": "map",
+          "width": 1024,
+          "height": 128,
+          "type": 1009,
+          "format": 1023,
+          "mipmaps": true
+        },
+        {
+          "slot": "map",
+          "width": 1,
+          "height": 1,
+          "type": 1009,
+          "format": 1023,
+          "mipmaps": true
+        }
+      ],
+      "attributeBytes": 4996212,
+      "observedUploadBytes": 4996072
+    },
+    "imageHashes": {
+      "near": "1be3f95a9e2830e90f82ecc6fb72c73199203ec8aebfbe03a7dab99b7977e611",
+      "far": "49236462323d386271082b9e39419aab8f266acca04629bef0ee0f1553e039d0"
+    }
+  }
+]

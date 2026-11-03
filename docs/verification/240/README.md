@@ -61,3 +61,13 @@ are clear. Cameras use the reviewed original design locations in the actual publ
 inspection views, not a continuous walk or a claim that every camera stands on a footpath. Desktop
 Chromium/SwiftShader at 1100×720, fixed June daylight. No physical-phone or measured-FPS claim. The
 low-memory budget count is a component asset check, not a second visual/device-performance profile.
+
+## Budget acceptance updated by #242 (2026-11-03)
+
+The non-green measurements and raw files above are preserved historical evidence, not a current
+blocker. #242 traced every nonzero increase after #205/#203 and the earliest breach (#212), then
+obtained conductor review before the one-off revision to **46,222**. Actual World remains **45,885**
+in both low-memory formats, retaining precisely the latest accepted **337** headroom. All four near/far
+images, geometry, resources and building ledgers are identical before/after; no product geometry or
+quality changed. This supplies the budget acceptance for #240; its architecture and images remain valid.
+[Reviewed full-SHA ledger](../../references/campus-budget/2026-11-03.json), [#242 verification](../242/README.md).

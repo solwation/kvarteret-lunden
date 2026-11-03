@@ -1,0 +1,3 @@
+PASS full-SHA ledger arithmetic:41700+4522=46222;45885+337=46222
+PASS actual before/after render metrics identical in portrait and landscape (all near/far views)
+PASS 21-building ledger plus access/lawn, sign and nested clock instances equals canonical total45885

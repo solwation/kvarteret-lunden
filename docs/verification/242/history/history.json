@@ -1,0 +1,678 @@
+[
+  {
+    "ref": "60c6c50",
+    "lowMemory": true,
+    "cap": 40843,
+    "counts": {
+      "east-facade": 400,
+      "east-roof": 97,
+      "east-glass": 1316,
+      "east-access": 11193,
+      "east-modern": 16424,
+      "east-schoolGlass": 2844,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 400,
+      "east-roof": 97,
+      "east-glass": 1316,
+      "east-access": 11193,
+      "east-modern": 16424,
+      "east-schoolGlass": 2844,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 38795
+  },
+  {
+    "ref": "03bd49e",
+    "lowMemory": true,
+    "cap": 40843,
+    "counts": {
+      "east-facade": 400,
+      "east-roof": 97,
+      "east-glass": 1316,
+      "east-access": 13012,
+      "east-modern": 16424,
+      "east-schoolGlass": 2844,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 400,
+      "east-roof": 97,
+      "east-glass": 1316,
+      "east-access": 13012,
+      "east-modern": 16424,
+      "east-schoolGlass": 2844,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 40614
+  },
+  {
+    "ref": "8c4ccf0",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 400,
+      "east-roof": 97,
+      "east-glass": 1316,
+      "east-access": 13761,
+      "east-modern": 16424,
+      "east-schoolGlass": 2844,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 400,
+      "east-roof": 97,
+      "east-glass": 1316,
+      "east-access": 13761,
+      "east-modern": 16424,
+      "east-schoolGlass": 2844,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 41363
+  },
+  {
+    "ref": "b303a6a",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 400,
+      "east-roof": 97,
+      "east-glass": 1316,
+      "east-access": 13761,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 400,
+      "east-roof": 97,
+      "east-glass": 1316,
+      "east-access": 13761,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 41355
+  },
+  {
+    "ref": "a1ed3b5",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 436,
+      "east-roof": 133,
+      "east-glass": 1756,
+      "east-access": 13761,
+      "east-modern": 14732,
+      "east-schoolGlass": 2584,
+      "east-schoolBrick": 2957,
+      "east-schoolRoof": 2634,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 436,
+      "east-roof": 133,
+      "east-glass": 1756,
+      "east-access": 13761,
+      "east-modern": 14732,
+      "east-schoolGlass": 2584,
+      "east-schoolBrick": 2957,
+      "east-schoolRoof": 2634
+    },
+    "total": 39137
+  },
+  {
+    "ref": "c7a7ff8",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 436,
+      "east-roof": 133,
+      "east-glass": 1756,
+      "east-access": 13761,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 436,
+      "east-roof": 133,
+      "east-glass": 1756,
+      "east-access": 13761,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 41867
+  },
+  {
+    "ref": "ded7afc",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 436,
+      "east-roof": 133,
+      "east-glass": 2028,
+      "east-access": 13761,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 436,
+      "east-roof": 133,
+      "east-glass": 2028,
+      "east-access": 13761,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 42139
+  },
+  {
+    "ref": "b2ef36f",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 13761,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 13761,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 42393
+  },
+  {
+    "ref": "83a7163",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 13761,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 13761,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 42393
+  },
+  {
+    "ref": "34bd3a1",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 14321,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 14321,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 42953
+  },
+  {
+    "ref": "9a37b7a",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 14321,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 14321,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 42953
+  },
+  {
+    "ref": "799c4cb",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15364,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15364,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 43996
+  },
+  {
+    "ref": "3f726db",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15436,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15436,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 44068
+  },
+  {
+    "ref": "4b2497f",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15436,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15436,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 44068
+  },
+  {
+    "ref": "7936574",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15436,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15436,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 44068
+  },
+  {
+    "ref": "ee3d50a",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15436,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15436,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 44068
+  },
+  {
+    "ref": "3e5464c",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15436,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15436,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 44068
+  },
+  {
+    "ref": "fb360ee",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15436,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15436,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 44068
+  },
+  {
+    "ref": "995ea01",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15436,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15436,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 44068
+  },
+  {
+    "ref": "094ea11",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15436,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15436,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 44068
+  },
+  {
+    "ref": "64dcff5",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15436,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15436,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 44068
+  },
+  {
+    "ref": "d97d18a",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15436,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 15436,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308
+    },
+    "total": 44068
+  },
+  {
+    "ref": "1e6fc4c",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 14207,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "east-lawn": 1229,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 14207,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "east-lawn": 1229
+    },
+    "total": 44068
+  },
+  {
+    "ref": "e4b858e",
+    "lowMemory": true,
+    "cap": 41700,
+    "counts": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 14207,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "east-lawn": 1229,
+      "tower-clock-dials": 128,
+      "tower-clock-hands": 16
+    },
+    "direct": {
+      "east-facade": 536,
+      "east-roof": 157,
+      "east-glass": 2158,
+      "east-access": 14207,
+      "east-modern": 16424,
+      "east-schoolGlass": 2836,
+      "east-schoolBrick": 3069,
+      "east-schoolRoof": 3308,
+      "east-lawn": 1229
+    },
+    "total": 44068
+  }
+]

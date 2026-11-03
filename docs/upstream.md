@@ -2808,13 +2808,13 @@ bilder. Publika kontroller: source-/omgivningsparitet; elva komponentkontroller 
 fyra trappflyglar, glob-/dörrrays och sju parkeringslinjer på krökt mark; npm test/build; riktiga egna
 front-/sido-/bakvyer med signkostnad/LOD och publik nät-/lagringsisolering.
 
-**Budgetgrinden är inte grön.** Publicens fulla lågminnesöstgrupp är 44 068 trianglar redan på bas
-`9e767cda8ac2957344a9f147c5b8ec3d2d400fb3`, före denna port. Efter porten är den 45 885 (+1 817),
+**Historisk budgetavvikelse (senare granskad i #242).** Publicens fulla lågminnesöstgrupp var 44 068 trianglar redan på bas
+`9e767cda8ac2957344a9f147c5b8ec3d2d400fb3`, före denna port. Efter porten var den 45 885 (+1 817),
 mot oförändrade 41 700. #136 fastställer att access och nästlade klockinstanser ingår; #205:s gamla
 byggnadsantal är inte förklaringen. Förhandsavvikelsen är separat [#242](https://github.com/solwation/kvarteret-lunden/issues/242).
 Originalets 87 800-desktoptak används inte som publik mobilacceptans. Även borttagning av hela gymmets
 bidrag kan inte lösa förhandsöverskridandet; ingen annan omgivning klipps och taket höjs inte här.
-Arkitekturen levereras som Refs-slice, med slutlig budgetacceptans/stängning av #240 kvar hos dirigenten.
+Arkitekturen levererades som Refs-slice. #242 har nu spårat orsakerna och granskat engångstaket 46 222 med 337 marginal; budgetacceptansen är uppfylld utan ändrad arkitektur eller bilder. Stängning/publicering följs av dirigenten.
 [Egna bilder, exakta källhashar, räkningar och begränsningar](verification/240/README.md).
 
 
@@ -2828,3 +2828,25 @@ Publikens `Navigation.outdoors` ensamt räcker inte: garage och trapphus kan ha 
 Publikens fulla styrspaksutslag är gång, inte automatisk sprint. Det lokala villkoret bevaras: Shift krävs för sprint, också om analog styrning kombineras med tangentbord. Ingen sprintfunktion, knapp eller ny touchmekanik läggs till. Originalets Player-klass, full-stick-tröskel som kontrollvillkor, kaffeturbo, statistik, avatarer, speldata, bilder, tjänster och lagring har inte importerats. Inga layout-/renderändringar eller beroendeuppgraderingar ingår.
 
 Verifiering: `npm test`, `npm run build`, `tools/sprint-check.mjs` med faktisk Navigation på kontrollerad plan yta/region och vägg-/dörrsegment, samt `tools/sprint-view-check.mjs` på verklig publik värld. Föreversionen serverar enbart Navigation från publik bas `db9695948d95ec8d21789056e474276b4d325a96`, resten är samma scen. Native W+Shift under tre simulerade sekunder ger 9,6→14,4 m på samma rutt; faktiska L/A/B/C, egen och besökt lägenhet samt garage behåller 3,2 m/s. [Egna granskade före/efterbilder, rådata, koordinater och begränsningar](verification/241/README.md).
+
+## Ny engångsrevision av publik östcampusbudget, #242
+
+Denna publika budget-/test-/dokumentändring har ingen motsvarande överföring till originalet;
+originalets andra desktoptak används inte här. #136:s kontrakt gäller fortfarande hela östgruppens
+lågminnestillgångar inklusive access/lawn, skylt och nästlade klockinstanser, inte fysisk FPS.
+
+Historiken efter #205 är spårad till fulla commit-SHA:n och materialledgers. Efter #203 mättes
+41 363 trianglar mot godkända 41 700, med 337 kvarvarande marginal. Efterföljande godkända
+arkitektur-/precisionsändringar tillför netto 4 522; aktuell faktisk World är 45 885. Dirigenten
+granskade förslaget före ändring och godkände engångsrevisionen **46 222**, som bevarar just dessa
+337 trianglar. Det är inte en automatisk höjning till aktuell summa eller återställning av en större
+äldre marginal. Framtida tillväxt kräver ny granskning. `curve:3` och `roofGrid:2`, alla andra
+konfigurationsvärden och all produktgeometri/material/precision är oförändrade.
+
+Den befintliga budget-fixturens byggnadsledger kompletteras för Nordic-template, den separerade
+lawn-batchen och skyltens två trianglar; summan måste vara exakt samma orörda kanoniska counter.
+Före/efter i faktisk Android/lowMemory World, båda formaten: identiska geometri-, byggnads- och
+resursledgers samt identiska fyra när-/fjärr-PNG-hashar. npm test/build passerar. Cap-only är ett
+ickevisuellt undantag: inga nya produktbilder behövs. #240:s tidigare underkända siffror bevaras som
+historia, men den granskade budgetacceptansen är nu uppfylld och arkitekturbilderna är oförändrade.
+[Fullt käll-/mätunderlag](references/campus-budget/2026-11-03.json), [verifiering](verification/242/README.md).

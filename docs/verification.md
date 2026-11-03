@@ -2896,7 +2896,7 @@ scenen en gång och granskar å-/hagträdens metadata, naturliga markpauser, ren
 synlig/dold-delta samt vintersömn och isolering. npm test och bygge passerar.
 [Resultat och egna bilder](verification/237/README.md).
 
-## Nordic Wellness-arkitektur, #240 (budgetacceptans kvar)
+## Nordic Wellness-arkitektur, #240 (budget accepterad genom #242)
 
 `node tools/nordicgym-source-test.mjs` låser den granskade originalmodellen och oförändrade övriga SITE-data
 (ange `NORDIC_SOURCE_REPO` till originalets git-checkout). `node tools/nordicgymtest.mjs` kontrollerar
@@ -2904,6 +2904,20 @@ fönster, trappor/glober/dörr, höjder och parkeringslinjer på krökt mark. np
 `tools/nordicgym-check.mjs` verifierar verkliga publika front-/sido-/bakvyer, elva batcher, självritad skylt,
 +1 draw/+2 tri, 179/181/179 m LOD och nät-/lagringsgränser.
 
-`tools/nordicgym-budget-check.mjs` ger uttryckligen **underkänt**: lågminnesöstgruppen 44 068 före porten,
-45 885 efter, mot bevarade 41 700. Förhandsavvikelsen är #242, separat från den verifierade arkitekturen;
-#240 stängs inte som helt godkänt innan budgetacceptansen är klar. [Egna bilder och råbevis](verification/240/README.md).
+`tools/nordicgym-budget-check.mjs` gav historiskt **underkänt** med det dåvarande taket: lågminnesöstgruppen 44 068 före porten,
+45 885 efter, mot dåvarande 41 700. #242 har nu spårat ökningen och granskat engångstaket 46 222
+med samma senaste accepterade marginal 337. Faktisk World i båda lågminnesformaten passerar, med
+identiska före/efterbilder, geometri och resurser. #240:s arkitektur och bilder är oförändrade. [Egna bilder och råbevis](verification/240/README.md).
+
+## Spårad engångsrevision av östcampusbudgeten, #242
+
+#136:s fulla asset-kontrakt bevaras. Den första senare överträdelsen skedde vid #212; material-/commithistoriken
+förklarar hela ökningen till 45 885. Senaste accepterade checkpointen #203 var 41 363/41 700; efterföljande
+netto +4 522 ger granskat tak 46 222 med oförändrad 337 marginal. Det är inte en fysisk FPS-budget.
+
+`BUDGET_COMPARE_REF=ed59f08 node tools/campus-budget-check.mjs GAME OUT` verifierar faktisk World före/efter
+i Android/lowMemory porträtt och landskap, komplett byggnadsledger/counter, identiska resurser/geometri och
+fyra identiska PNG-hashar. Counter är orörd; instrumenteringen omfattar nu även Nordic/lawn/skylt.
+Alla andra konfigurationsvärden, precision och geometrier är identiska. npm test/build passerar.
+Ickevisuellt cap-only-undantag; inga nya produktbilder eller breda profilprov.
+[Full källledger](references/campus-budget/2026-11-03.json), [råbevis och begränsningar](verification/242/README.md).
