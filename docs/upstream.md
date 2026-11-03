@@ -2765,3 +2765,16 @@ Verifiering: två riktade Node-test, npm test, npm run build och en faktisk publ
 vid ån och hagen med naturligt nådda rörelsetillstånd, vinter-/avståndsgrind, exakt ritdelta
 och oförändrade originallagringsmarkörer/inga externa anrop.
 [Egna granskade bilder, råresultat, källhashar och begränsningar](verification/237/README.md).
+
+## Passiv luftballong på himlen, #239
+
+Selektiv originalkälla `578ecc09b02c7355e299fc58d0e0127b622ee85a` (original #1646, med regnbågsfält från #1770).
+`src/balloon.js` behåller bara balloonGeometry/stripeAt och en neutral renderklass; `src/balloongeo.js` exporterar enbart balloonScale/balloonPos. `BALLOON` innehåller bara synlig geometri, färger, schema och cirkelrörelse. Källattribution finns i modulerna. Ingen originalbild, resurs eller git-historik har importerats.
+
+Lokal `Date.now()/1000` styr samma rena schema: 2 400 s period, 2 160 s fönster, 25 s in-/uttoning. Radie 100 m runt (-30,30), hastighet 3,5 m/s och regnbågsgeometrins mått/färger behålls som visuella antaganden. Publikens molnfria scen motiverar två uttryckliga configgissningar: korgens visuella bottenhöjd 250→90 m (fortfarande ovanför hustaken, tydligare från marken) och far 900→400 m. Med två radier ger det högst cirka 600 m horisontellt till ballongen, inom befintlig dimma 200–650 m och kamerans fjärrplan 700 m. Ingen dimma, kamera eller byggnadsgeometri ändras.
+
+En enda sammanslagen vertexfärgad Lambert-mesh omfattar hölje, tom korg och rep: 996 trianglar, ett ritanrop, inga texturer, skuggor, extra ljus eller klickmål. Korgen är enbart ritad form. `main.js` äger eget `ambientBalloon` och döljer den i underjordsvyn. Utanför tidsfönstret gör update bara klock-/skaltest och tidig retur, utan kamera-, position-, skal- eller matrisarbete. Lokal matrixAutoUpdate är avstängd; när den syns komponeras matrisen uttryckligen efter klockpositionen. Geometrin byggs en gång vid uppstart.
+
+Inget basketFloor/basketCollide/basketCarries, player/world-koppling, ombord-/carry-/last-state, öl/skål/poäng, restock/appearance, ljud, synk/tjänst eller lagring följer med. Ingen balloon-debugparameter används; browserkontrollen låser Date.now till ett verkligt tidsfönster, och en gammal `&balloon` ändrar inte schemat. Det finns ingen `world.balloon` och inga nya fysiska ytor eller navigationsegenskaper.
+
+Verifiering: `npm test`, `npm run build`, `tools/balloon-check.mjs` för schema/övergångar/negativ tid, deterministisk cirkel och matris, faktisk rörelse, instrumenterad off-window-retur, neutral geometri och publik gräns. En faktisk gårds-/himmelsvy visar ballongen i normal belysning med uppmätt drawdelta; samma klockslag efter omladdning ger exakt samma position. Egna granskade bilder, råvärden och källhashar finns i [verifiering #239](verification/239/README.md).

@@ -1,0 +1,2 @@
+browsertest: no systemd user scope here, running without a memory ceiling
+PASS visible sky capture, +1 draw/+996 tri

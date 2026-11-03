@@ -1,0 +1,12 @@
+{
+  "original": "578ecc09b02c7355e299fc58d0e0127b622ee85a",
+  "publicBase": "354b471a511929a6334f94d1c5c96572230e80a3",
+  "sha256": {
+    "src/main.js": "7029aab66d37512e26abd6200ecde4d5537b7e362b5fe9166c0ad7e8d941312b",
+    "src/config.js": "3dbcd215636fa0f9f4044c114c609b25f8984bdd28c42454ecade4673cf0dffb",
+    "src/balloon.js": "f91a5267e16898df2b2baf07417ddb444dc1ae958b0e8f87b5600633dd25028e",
+    "src/balloongeo.js": "264de493a87951e0714ea3414dc8035ef32aea6022d31cc8951e04132b6c8b49",
+    "tools/balloon-check.mjs": "ee2b70655833e871a17615ee1b4a09080658848113af94dc9b8df64686f20f4a",
+    "tools/balloon-view-check.mjs": "169f513b9f2bb0e268895e57c078a8c4537910308deb2059bf609e23c13772c7"
+  }
+}

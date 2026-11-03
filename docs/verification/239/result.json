@@ -1,0 +1,53 @@
+{
+  "ok": true,
+  "time": 1793491500,
+  "iso": "2026-11-01T00:05:00.000Z",
+  "view": {
+    "visible": true,
+    "position": [
+      -70.6586040450199,
+      90,
+      121.36124953781166
+    ],
+    "scale": 1,
+    "camera": [
+      9,
+      1.6,
+      21
+    ],
+    "look": [
+      -70.6586040450199,
+      100,
+      121.36124953781166
+    ],
+    "before": {
+      "calls": 84,
+      "triangles": 596377
+    },
+    "after": {
+      "calls": 85,
+      "triangles": 597373
+    },
+    "delta": {
+      "calls": 1,
+      "triangles": 996
+    },
+    "children": 0,
+    "targets": false
+  },
+  "motion": 17.477677520874355,
+  "reloadSame": true,
+  "off": {
+    "visible": false,
+    "hasWorldCollision": false
+  },
+  "storage": {
+    "local": {
+      "lunden.drawing": "untouched-original",
+      "lunden.cloud.queue": "untouched-original"
+    },
+    "session": "untouched-original"
+  },
+  "external": [],
+  "errors": []
+}

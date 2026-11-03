@@ -1,0 +1,1 @@
+{"ok":true,"triangles":996,"draws":1,"children":0,"schedule":{"period":2400,"window":2160,"fade":25},"configGuess":{"floor":90,"far":400},"checks":"window edges/fades/negative time; deterministic circle+render matrix; active motion; off-window zero camera/position/scale/matrix access; distance/hidden; neutral one mesh/material; no raycast/shadow/texture/physics/services/storage"}

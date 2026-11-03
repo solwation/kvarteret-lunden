@@ -3123,3 +3123,9 @@ export const SQUIRRELS = {
   {scale:1.25, width:1, color:0x8a5632, belly:0xd9c3a0, tail:0x9a6338, tip:null, ground:0.88, shy:4, speed:1.0, perch:1},
  ],
 };
+
+// Public #239: visual guesses; no cloud deck. floor90 keeps it well above roofs but readable;
+// far400 + two100m radii puts the furthest visible position inside the existing 650m fog end.
+export const BALLOON={center:{x:-30,z:30},radius:100,speed:3.5,floor:90,period:2400,window:2160,fadeIn:25,
+  basketR:1.15,rim:.6,envR:8.5,envLow:5,stripes:14,far:400,
+  rainbow:[0xe0302a,0xf2851c,0xf6d02a,0x3fa83c,0x2f6fd2,0x4a3aa0,0x8c3fb4]};

@@ -1,0 +1,2 @@
+browsertest: no systemd user scope here, running without a memory ceiling
+PASS actual sky view, +1 draw/+996 tri, motion, same-time reload, off-window, isolated public
