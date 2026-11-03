@@ -14,6 +14,9 @@ import { Garage } from './garage.js';
 import { Balloon } from './balloon.js';
 import { Ducks } from './ducks.js';
 
+import { farSegments } from './farwalk.js';
+import { createAmbientCatGround, catPhysicalSegments } from './cathabitat.js';
+import { skirtTop } from './edgebackdrop.js';
 import { OutdoorCats } from './outdoorcats.js';
 
 import { RiverFish } from './riverfish.js';
@@ -25,7 +28,7 @@ import { applySeason } from './seasons.js';
 import { groundY, renderedTerrainY, treeFeet, aoTrees, southTreeFeet } from './surroundings.js';
 import { Core } from './core.js';
 import { CoreHouse } from './corehouse.js';
-import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, LIGHTING, STARTUP, TOUCH, VIEW_NEAR, SITE } from './config.js';
+import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, LIGHTING, STARTUP, TOUCH, VIEW_NEAR, SITE, OUTDOOR, EDGE_BACKDROP } from './config.js';
 import { region, stickMirrored, setupTouchLayout } from './touchlayout.js';
 
 const $ = id => document.getElementById(id);
@@ -189,7 +192,7 @@ async function init() {
   paddock = new URLSearchParams(location.search).has('nopaddock') ? null : new Paddock({ scene, camera, ground: (x, z) => (z > SITE.backgroundGround.z1 ? -3.01 : Math.max(groundY(x, z), renderedTerrainY(x, z))), trees: treeFeet }); // original #1280: the fenced pony paddock, scenery only
   ducks = new Ducks({scene,camera,ground:renderedTerrainY}); // #235: ambient only; use the actual drawn bank/riverbed
 
-  ambientCats = debugParams.has('nocats') ? null : new OutdoorCats({scene,camera,ground:(x,z)=>Math.max(groundY(x,z),renderedTerrainY(x,z)),lowMemory});
+  ambientCats = debugParams.has('nocats') ? null : new OutdoorCats({scene,camera,ground:createAmbientCatGround((x,z)=>Math.max(groundY(x,z),renderedTerrainY(x,z)),renderedTerrainY,skirtTop,OUTDOOR,EDGE_BACKDROP.level),barriers:catPhysicalSegments([...world.levels[0].segments,...farSegments()]),trunks:[...treeFeet,...southTreeFeet],lowMemory});
 
   ambientFish = debugParams.has('noriverfish') ? null : new RiverFish({scene,camera});
 

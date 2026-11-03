@@ -1,25 +1,21 @@
-// Public #236: emitted geometry, deterministic scene state and local terrain routes.
-import assert from 'node:assert/strict';
-import * as THREE from 'three';
-import {readFileSync} from 'node:fs';
-import {OutdoorCats} from '../src/outdoorcats.js';
-import {OUTDOOR_CATS as C} from '../src/config.js';
-import {routeSamples} from '../src/outdoorcatroute.js';
-import {groundY,renderedTerrainY} from '../src/surroundings.js';
-import {onRoad} from '../src/roads.js';
-import {waterYAt} from '../src/riverbridge.js';
-import {applySeason} from '../src/seasons.js';
-const ground=(x,z)=>Math.max(groundY(x,z),renderedTerrainY(x,z));
-let now=C.epoch+123;
-const camera=new THREE.PerspectiveCamera(),scene=new THREE.Scene(),o=new OutdoorCats({scene,camera,ground,now:()=>now});
-assert.equal(o.cats.length,4);let samples=0;
-for(const spec of C.cats)for(const [x,z] of routeSamples(spec.route,.25)){samples++;assert(!onRoad(x,z,.1),`road ${x},${z}`);assert(ground(x,z)>waterYAt(x,z)+.3,`water ${x},${z}`);}
-for(const c of o.cats){const s=c.brain.scheduled(now);camera.position.set(s.x+1,ground(s.x,s.z)+1,s.z+1);o.update();assert(c.state.near&&c.mesh.visible);const count=c.mesh.geometry.attributes.position.count;assert.equal(count/3,2040);assert(c.mesh.geometry.attributes.position.array.every(Number.isFinite));assert.equal(c.mesh.material.map,null);assert(!c.mesh.userData.door);assert.deepEqual(new THREE.Raycaster().intersectObject(c.mesh),[]);
- const same=new OutdoorCats({scene:new THREE.Scene(),camera,ground,now:()=>now});same.update();assert.deepEqual(same.cats[c.brain.id].state,c.state);assert.deepEqual([...same.cats[c.brain.id].mesh.geometry.attributes.position.array],[...c.mesh.geometry.attributes.position.array]);
- camera.position.set(s.x+C.drawDist+1,ground(s.x,s.z),s.z);o.update();assert(!c.mesh.visible);
+// Public #245: bounded plans and emitted low-poly model contacts; actual scene surfaces are checked separately.
+import assert from 'node:assert/strict';import * as T from 'three';import{readFileSync}from'node:fs';
+import{OutdoorCats}from'../src/outdoorcats.js';import{OutdoorCatBrain}from'../src/outdoorcatbrain.js';import{OUTDOOR_CATS as C}from'../src/config.js';import{CAT_AFFORDANCES as G}from'../src/cataffordances.js';import{catHabitatFree,createCatClear}from'../src/cathabitat.js';import{onVehicle}from'../src/roads.js';
+let nodes=0,samples=0;const reports=[];
+for(let id=0;id<4;id++){const b=new OutdoorCatBrain(C.cats[id],id),signatures=new Set();let minSpan=Infinity,maxHome=0,maxDecisions=0,maxEvaluations=0;
+ for(let day=0;day<7;day++){const p=b.planner.day(id,day,b.traits);assert.deepEqual(p,b.planner.day(id,day,b.traits));assert.ok(p.visited.length>=8);let minZ=Infinity,maxZ=-Infinity,minX=Infinity,maxX=-Infinity,home=0;
+  for(let t=0;t<86400;t+=60){const s=b.planner.at(id,day*86400+t,b.traits);minZ=Math.min(minZ,s.z);maxZ=Math.max(maxZ,s.z);minX=Math.min(minX,s.x);maxX=Math.max(maxX,s.x);if(s.goal===G.homes[id]&&!s.walking)home++;}
+  minSpan=Math.min(minSpan,Math.max(maxZ-minZ,maxX-minX));maxHome=Math.max(maxHome,home/1440);maxDecisions=Math.max(maxDecisions,p.decisions);maxEvaluations=Math.max(maxEvaluations,p.evaluations);signatures.add(JSON.stringify(p.visited)+p.segs.map(s=>s.goal).join());assert.ok(p.walked>1000);}
+ assert.ok(minSpan>=200);assert.ok(maxHome<.4);assert.ok(signatures.size>1);assert.ok(maxDecisions<=56&&maxEvaluations<=1008);assert.ok(b.planner.cache.size<=12);reports.push({id,minSpan,maxHome,maxDecisions,maxEvaluations});nodes+=7;
 }
-const first=o.cats[0],s=first.brain.scheduled(now),p=first.brain.plan,leg=p.legs[0];now=C.epoch-first.brain.spec.phase+leg.walk+1;while(first.brain.scheduled(now).activity!=='wash')now+=p.period;camera.position.set(leg.bx+1,ground(leg.bx,leg.bz)+1,leg.bz+1);o.update();const a=first.mesh.geometry.attributes.position.array.slice();now+=.7;o.update();assert(a.some((v,i)=>v!==first.mesh.geometry.attributes.position.array[i]),'near rest pose animates');
-const phone=new OutdoorCats({scene:new THREE.Scene(),camera,ground,lowMemory:true,now:()=>now});assert.equal(phone.drawDist,18);const ps=phone.cats[0].brain.scheduled(now);camera.position.set(ps.x+19,ground(ps.x,ps.z),ps.z);phone.update();assert(!phone.cats[0].mesh.visible);o.update();assert(o.cats[0].mesh.visible&&!o.cats[0].state.near);assert.equal(first.mesh.geometry,first.sit);
-applySeason(1);o.update();assert(o.cats.every(c=>!c.mesh.visible));applySeason(6);o.update();assert(o.cats[0].mesh.visible);o.update(true);assert(o.cats.every(c=>!c.mesh.visible));
-for(const file of ['catpuppet.js','outdoorcats.js','outdoorcatbrain.js','outdoorcatroute.js']){const code=readFileSync('src/'+file,'utf8');assert(!/localStorage|sessionStorage|fetch\(|WebSocket|onPet|onFed|CatSpawner|catLabel|catCards|footprint|sfx\./.test(code),file);}
-console.log(JSON.stringify({ok:true,routeSamples:samples,cats:4,trianglesPerCat:2040,drawsPerVisibleCat:1,phoneDraw:18,desktopDraw:32,near:7,checks:'terrain/roads/water; same-time scene+pose; animated rest; one mesh; no raycast/texture; desktop/phone cutoff; winter/hidden; isolated sources'}));
+for(const[a,b,points]of G.edges)for(let j=1;j<points.length;j++){const p=points[j-1],q=points[j];if(p[4]||q[4])continue;const n=Math.max(1,Math.ceil(Math.hypot(q[0]-p[0],q[2]-p[2])/.3));for(let k=0;k<=n;k++){const x=p[0]+(q[0]-p[0])*k/n,z=p[2]+(q[2]-p[2])*k/n;assert.ok(catHabitatFree(x,z));assert.equal(onVehicle(x,z,.2),false);samples++;}}
+// The canvas stub is only for a procedural particle pool; no image/shader claim is made here.
+globalThis.document={createElement:()=>({width:64,height:64,getContext:()=>new Proxy({createRadialGradient:()=>({addColorStop(){}})},{get:(t,p)=>t[p]??(()=>{})})})};
+let now=C.epoch+51650;const camera=new T.PerspectiveCamera(65,1,.05,100),scene=new T.Scene();camera.position.set(-270,1,-303);camera.lookAt(-270,.25,-305.45);const o=new OutdoorCats({scene,camera,ground:()=>0,now:()=>now});let contact=null;
+for(let i=0;i<600;i++){o.update();now+=.1;if(o.hearts?.points.visible&&o.nuzzle.pair?.contact>C.nuzzle.settle){const pair=o.nuzzle.pair,noses=pair.cats.map(c=>c.nuzzleShape.nose.getWorldPosition(new T.Vector3()).applyMatrix4(c.mesh.matrixWorld));contact={time:now,gap:noses[0].distanceTo(noses[1]),pair:pair.cats.map(c=>c.id)};assert.ok(Math.abs(contact.gap-.012)<.001);break;}}
+assert.ok(contact);for(let i=0;i<300;i++){now+=.1;o.update();}assert.equal(o.nuzzle.pair,null);assert.ok(o.cats.every(c=>c.st==='route'));assert.equal(o.hearts.points.geometry.attributes.position.count,5);
+const climb=o.cats[0].planner.day(0,0,o.cats[0].traits).segs.find(s=>s.activity==='climb'&&s.b[1]>s.a[1]);o.cats.forEach(c=>{c.delay=0;c.st='route';});now=C.epoch+(climb.t0+climb.t1)/2;camera.position.set(4,1.8,26);camera.lookAt(2.5,1.8,28.5);o.nuzzle.next=Infinity;o.update();const c=o.cats[0],a=c.mesh.geometry.attributes.position;let paw=-Infinity,body=-Infinity;for(let i=0;i<a.count;i++){const v=new T.Vector3().fromBufferAttribute(a,i).applyMatrix4(c.mesh.matrixWorld);body=Math.max(body,v.z);if(c.climbContact.ranges.some(([lo,hi])=>i>=lo&&i<hi))paw=Math.max(paw,v.z);}assert.ok(c.state.near&&c.state.climbing);assert.ok(Math.abs(28.8-paw-.005)<.001);assert.ok(body<=28.8-.004);assert.equal(a.count/3,2040);
+const s=c.scheduled(now);camera.position.set(s.x+19,s.y,s.z);o.update();assert.ok(c.mesh.visible&&!c.state.near);const phone=new OutdoorCats({scene:new T.Scene(),camera,ground:()=>0,lowMemory:true,now:()=>now});phone.nuzzle.next=Infinity;phone.update();assert.ok(!phone.cats[0].mesh.visible);assert.equal(o.drawDist,32);assert.equal(phone.drawDist,18);o.update(true);assert.ok(o.cats.every(c=>!c.mesh.visible));
+o.winter=true;o.update(false);assert.ok(o.cats.every(c=>!c.mesh.visible));o.winter=false;assert.equal(createCatClear(()=>0,[],[{x:-49.3,z:13.1,kind:'tree'}])(-49.3,12.5,-49.3,13.7),false);
+for(const file of['outdoorcats.js','outdoorcatbrain.js','catexploration.js','cataffordances.js','cathabitat.js','catcontact.js','catnuzzle.js'])assert.ok(!/localStorage|sessionStorage|fetch\(|WebSocket|onPet|onFed|CatSpawner|sfx\.|catCards/.test(readFileSync('src/'+file,'utf8')),file);
+console.log(JSON.stringify({ok:true,days:nodes,graphSamples:samples,reports,contact,climb:{pawGap:28.8-paw,bodyClear:28.8-body},cats:4,trianglesPerCat:2040,drawDist:32,phoneDist:18,near:7}));

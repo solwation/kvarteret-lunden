@@ -1,0 +1,36 @@
+{
+  "id": "climb-image",
+  "result": {
+    "state": {
+      "x": 2.5,
+      "y": 1.5249999424784622,
+      "z": 28.5,
+      "yaw": 0,
+      "walking": true,
+      "activity": "climb",
+      "goal": 17,
+      "day": 0,
+      "segment": 232,
+      "elapsed": 2.7727271681433194,
+      "discovered": 17,
+      "restLeft": 0,
+      "elevated": true,
+      "climbing": true,
+      "wallZ": 28.8,
+      "contactBlend": 1,
+      "pitch": -1.15,
+      "surface": null,
+      "visible": true,
+      "near": true
+    },
+    "camera": [
+      4.2,
+      2.0749999424784624,
+      26.5
+    ],
+    "calls": 124,
+    "triangles": 704656
+  },
+  "errors": [],
+  "external": []
+}

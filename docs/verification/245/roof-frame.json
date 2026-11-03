@@ -1,0 +1,50 @@
+{
+  "id": "roof-image",
+  "result": {
+    "state": {
+      "x": 0.75,
+      "y": 2.99,
+      "z": 28.48,
+      "yaw": 3.141592653589793,
+      "walking": false,
+      "activity": "look",
+      "goal": 17,
+      "day": 0,
+      "segment": 237,
+      "elapsed": 5.000000030842784,
+      "discovered": 18,
+      "restLeft": 1509.2839990526772,
+      "elevated": true,
+      "climbing": false,
+      "contactBlend": 1,
+      "pitch": 1.15,
+      "surface": {
+        "id": "canopy-Hus A-0",
+        "x0": 0.2,
+        "x1": 2.25,
+        "z0": 28.25,
+        "z1": 28.65,
+        "y": 2.99,
+        "sourceBounds": {
+          "id": "canopy-Hus A-0",
+          "x0": 0.030000000000000027,
+          "x1": 2.42,
+          "z0": 28.1,
+          "z1": 29.1,
+          "y": 2.99
+        }
+      },
+      "visible": true,
+      "near": true
+    },
+    "camera": [
+      4.1,
+      4.4,
+      25.8
+    ],
+    "calls": 138,
+    "triangles": 696992
+  },
+  "errors": [],
+  "external": []
+}

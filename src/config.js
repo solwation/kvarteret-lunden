@@ -3541,19 +3541,14 @@ export const DUCKS = Object.freeze({
   }
 });
 
-// Public #236: source routes/phase/scale are visual assumptions, not a survey of real animals.
+// Public #245: anonymous id-seeded exploration/animation guesses; no real-animal survey or personal profiles.
 export const OUTDOOR_CATS = {
-  epoch:1793491200,drawDist:32,drawDistPhone:18,near:7,speed:.42,
-  cats: [
-    { color: 0x7b8188, zone: 'innergården', phase: 0, rest: [50, 25, 80, 30, 70, 20],
-      route: [[-10, 21], [-4, 20.6], [2, 21.4], [7, 23.4], [1, 24.2], [-6, 24]] },
-    { color: 0x7b8188, zone: 'innergården', phase: 140, rest: [70, 30, 50, 90, 25],
-      route: [[-43, 20.6], [-39.5, 21.2], [-39.5, 28.4], [-43, 28.6], [-44, 24.5]] },
-    { color: 0x7b8188, zone: 'parken vid Höje å', phase: 60, rest: [75, 35, 90, 30, 60, 45],
-      route: [[-80, 95], [-62, 92], [-52, 100], [-58, 112], [-75, 115], [-85, 106]] },
-    { color: 0x7b8188, zone: 'parken vid Höje å', phase: 300, rest: [45, 80, 35, 70],
-      route: [[-70, 100], [-56, 98], [-60, 106], [-72, 108]] },
-  ],
+ epoch:1793491200,drawDist:32,drawDistPhone:18,near:7,speed:.42,returnSpeed:.55,
+ variation:{social:[.35,.55],play:[.3,.6],lazy:[.1,.6],shy:[.1,.6],curious:[.4,.5]},
+ exploration:{daySeconds:86400,maxGoals:56,minGoals:8,speed:.55,initialRadius:100,growth:70,distanceCost:600,minRest:90,rest:1200,
+ lazyGoalReduction:.6,curiosityBase:.4,repeatNovelty:.08,noise:.9,specialWeight:.25,homeLazyWeight:.25,seatReserve:2,cachePlans:12,footRadius:.12,roadMargin:.2,sampleStep:.25,maxDrop:.22,waterClear:.3,barrierCell:10,climbPitch:1.15,climbContactBlend:.3,climbMaxOffset:.5,climbPawInset:.005},
+ nuzzle:{scan:3,chance:.65,cooldown:150,reach:5,minDistance:.7,speed:.32,turn:2.5,face:.12,arrive:.008,settle:.8,duration:3,timeout:25,maxHeadShift:.14,maxStep:.1,rub:.06,rubHz:[3,2],heartLift:.08,hearts:5,heartScale:2.5},
+ cats:[{color:0x7b8188,zone:0,phase:0},{color:0x7b8188,zone:0,phase:140},{color:0x7b8188,zone:1,phase:60},{color:0x7b8188,zone:1,phase:300}],
 };
 
 // Public #238: passive visual assumptions, fixed local seed; no population/catch service.

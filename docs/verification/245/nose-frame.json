@@ -1,0 +1,113 @@
+{
+  "id": "nose-image",
+  "result": {
+    "contact": {
+      "time": 1793542864.599986,
+      "centersGap": 0.011999999999943611,
+      "noseRadius": 0.006,
+      "surfaceGap": -5.638892131010209e-14,
+      "rootGap": 0.5579999999999927,
+      "pair": [
+        0,
+        1
+      ],
+      "point": {
+        "x": -270,
+        "y": 6.452,
+        "z": -305.45
+      },
+      "points": 5
+    },
+    "camera": [
+      -270,
+      6.890000000000001,
+      -303.3
+    ],
+    "states": [
+      {
+        "x": -270.279,
+        "y": 6.19,
+        "z": -305.45,
+        "yaw": 1.5707963267948966,
+        "walking": false,
+        "activity": "nuzzle",
+        "goal": 15,
+        "day": 0,
+        "segment": 188,
+        "elapsed": 207.9028976566915,
+        "discovered": 16,
+        "restLeft": 1311.8754910107236,
+        "elevated": false,
+        "climbing": false,
+        "contactBlend": 1,
+        "pitch": 1.15,
+        "visible": true,
+        "near": true
+      },
+      {
+        "x": -269.721,
+        "y": 6.19,
+        "z": -305.45,
+        "yaw": -1.5707963267948966,
+        "walking": false,
+        "activity": "nuzzle",
+        "goal": 15,
+        "day": 0,
+        "segment": 144,
+        "elapsed": 20.758127066103043,
+        "discovered": 16,
+        "restLeft": 2051.066499580993,
+        "elevated": false,
+        "climbing": false,
+        "contactBlend": 1,
+        "pitch": 1.15,
+        "visible": true,
+        "near": true
+      },
+      {
+        "x": -80.45,
+        "y": -1.871490509013333,
+        "z": 95.45,
+        "yaw": 0,
+        "walking": false,
+        "activity": "look",
+        "goal": 2,
+        "day": 0,
+        "segment": 244,
+        "elapsed": 473.9009150193524,
+        "discovered": 18,
+        "restLeft": 1199.7069214192816,
+        "elevated": false,
+        "climbing": false,
+        "contactBlend": 1,
+        "pitch": 1.15,
+        "visible": false,
+        "near": false
+      },
+      {
+        "x": -227.55,
+        "y": 6.010170000000001,
+        "z": -292.55,
+        "yaw": 0,
+        "walking": false,
+        "activity": "sleep",
+        "goal": 11,
+        "day": 0,
+        "segment": 188,
+        "elapsed": 1551.8420321438753,
+        "discovered": 18,
+        "restLeft": 272.26956395262096,
+        "elevated": false,
+        "climbing": false,
+        "contactBlend": 1,
+        "pitch": 1.15,
+        "visible": false,
+        "near": false
+      }
+    ],
+    "calls": 18,
+    "triangles": 296208
+  },
+  "errors": [],
+  "external": []
+}

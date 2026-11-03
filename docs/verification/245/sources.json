@@ -1,0 +1,22 @@
+{
+  "base": "52a8f4a42638a5816444ac356cc1c1b39e6c4865",
+  "originalSource": "131b5d9d9c11a5853320d7b36b4bf61409367f39",
+  "sharedDependencyCommit": "725dc63a3b5e48b3fa0e2216665be090454e8ea8",
+  "note": "ambienthearts.js belongs to public244, excluded from this commit. Final held v2 runtime equals these cat module bodies except import-URL rewrites and later attribution-only header. All four images use final v2 graph and trunk clearance. Main constructor parameters match held replacement. Build/test precede attribution-only header addition, emitted behavior unchanged.",
+  "sha256": {
+    "src/catpuppet.js": "594a360b892b98df36f363599707a443ea0f9227dcbf296868ea46453e872f79",
+    "src/config.js": "596b16d80ba28fe38ebb03b1cd39fd5bb5133149f753a88d94b64536311f3f90",
+    "src/main.js": "5b771e772d3ad0f5f39abd8932e694a34deda30b22fc49aeb115a1d18bd4fe6c",
+    "src/outdoorcatbrain.js": "34dc23f22b62976b086b5bbd632553ae9211e0e5d40ad2ab590e47fc0324731d",
+    "src/outdoorcats.js": "41ba34e8d4a109b364945b5e054718f1825ba3f25407d655b10a50493ee57035",
+    "src/ambienthearts.js": "95c7c4cc722158e948e8b858a578e675755adce89590e1e91fced087a9fbbfb0",
+    "src/cataffordances.js": "ac7b0c95ee6bcf2741cc9232cc090a73aa5533db1f8b0fb234b8a81944d0b92b",
+    "src/catcontact.js": "4e491d4cb9cd9c57ad4e1aa431ae94fbd495b55747853c49a18e74fab3b97561",
+    "src/catexploration.js": "fd304d027f12dd8f44abac036f608d66c6bbdee020f08a9b9062237823ec3c47",
+    "src/cathabitat.js": "17128add518f9dddb075309baf298c623a913d87331a11657e781d86b7ebe787",
+    "src/catnuzzle.js": "6df9418d3eea97ea0495396617d619f73e97e07ebf6641c4b1e477347aa751b4",
+    "tools/outdoorcats-check.mjs": "481f94dfb829b4085fef2a57c6fc373d04298892c6a24183223b6dd50be4207e",
+    "tools/outdoorcats-view-check.mjs": "4c192aee194348947d075450ccdc309ce623f4d99116c8a72c21160fdfee3122",
+    "tools/outdoorcats-scene.mjs": "92cfdfc78e89a4de35e9413ba20f356c9c1d0f6e56ca4b11b9ec1a611907ea2a"
+  }
+}
