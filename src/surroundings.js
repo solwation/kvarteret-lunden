@@ -1,3 +1,4 @@
+import {createStartupPointCache} from './startupcache.js';
 import {buildOutdoorGym} from './outdoorgym.js';
 import { roadsidePockets, gradeParkingTerrain, constrainPocketPlane, setParkingPlane, parkingHull } from './roadsideparking.js';
 import { terrainCellGroups } from './terraincells.js';
@@ -122,8 +123,12 @@ export function walkingGroundSlope(x,z) {
 /** #62: the ground UNDER a bridge deck; `groundY` returns the deck there. */
 export const groundBelowDeckY = (x, z) => terrainY(x, z);
 /** The terrain itself (the grass / asphalt surface; groundY without the stairs' treads and the recesses' floors). */
+const terrainBuildCache=createStartupPointCache('terrain');
 function terrainY(x,z) {
   const parking=parkingPatch?.top(x,z);if(parking!==null&&parking!==undefined)return parking+.01;
+  return terrainBuildCache.read(x,z,rawTerrainY);
+}
+function rawTerrainY(x,z) {
   if(!legacyBuildingPads)legacyBuildingPads=makeBuildingPads(terrainRawLegacyY,260,false,[]);
   if(z<=ELEVATION.southFade[0])return paddedTerrainY(x,z,bankLegacyY,legacyBuildingPads);
   if(!buildingPads)buildingPads=makeBuildingPads();
@@ -228,7 +233,11 @@ export const terrainNorth = Math.min(E.profile[0][0], Wst.profile[0][0]);
  * is vertical. */
 let terrainSurface = (x,z) => terrainY(x,z)-.01;
 /** Rendered triangle surface for background planting/paths; walking support is queried separately below. */
-export const renderedTerrainY = (x,z) => terrainSurface(x,z);
+const surfaceBuildCache=createStartupPointCache('drawn terrain');
+const sampleTerrainSurface=(x,z)=>terrainSurface(x,z);
+export const renderedTerrainY=(x,z)=>surfaceBuildCache.read(x,z,sampleTerrainSurface);
+// Both raw and emitted surfaces may change when public parking/terrain construction advances.
+function clearTerrainBuildCaches(){terrainBuildCache.clear();surfaceBuildCache.clear();}
 /** #73 (original #1309): the terrain mesh's grid lines ({X, Z}, sorted; set by terrainGeometry) so a surface laid on it can be cut along the same
  * cells: each cell is two triangles split along the (X[i+1],Z[j])-(X[i],Z[j+1]) diagonal, and `renderedTerrainY` is exactly linear in each. */
 let terrainGrid = null, terrainDetailGrid = null;
@@ -238,7 +247,7 @@ renderedTerrainY.surfaceGrid = () => terrainDetailGrid;
 /** Holes in the terrain mesh [x0, x1, z0, z1]: Hus C stands at the courtyard's level (y 0), so its stair well (CORE_C.pit) would be covered by the grass (#639). */
 const TERRAIN_PITS = [CORE_C.pit];
 function terrainGeometry(southeastCells = null) {
-  parkingPatch=null;
+  parkingPatch=null;clearTerrainBuildCaches();
   const St = Wst.stair, z0 = S.backgroundGround.z0; // #1305: from the world's north edge (the flat plate there is gone)
   const xs = new Set([S.backgroundGround.x0, -200, 200, S.backgroundGround.x1, E.x0 - 0.01, E.x0 + 0.01, E.x1, E.x1 + E.blend, E.gable, E.level, E.walk, R.x0 + 0.01, R.x1 - 0.01, R.x1 + 0.01,
       Wst.x - 0.01, Wst.x + 0.01, St.x1 - 0.01, St.x1 + 0.01]),
@@ -303,6 +312,7 @@ function terrainGeometry(southeastCells = null) {
     const y=(du,dv)=>pos[(row?row[b+dv][a+du]:(j+dv)*nx+i+du)*3+1];
     return f+g<=1?y(0,0)+(y(1,0)-y(0,0))*f+(y(0,1)-y(0,0))*g:y(1,1)+(y(0,1)-y(1,1))*(1-f)+(y(1,0)-y(1,1))*(1-g);
   };
+  clearTerrainBuildCaches(); // #246: emitted triangle sampler replaces the analytic surface
   const geo = new THREE.BufferGeometry();
   geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
   geo.setAttribute('uv', new THREE.Float32BufferAttribute(new Array((pos.length / 3) * 2).fill(0), 2));
@@ -323,6 +333,7 @@ function terrainGeometry(southeastCells = null) {
   }
   parkingPatch={plans,top,cut};
   terrainSurface=(x,z)=>parkingPatch.top(x,z)??nativeSurface(x,z);
+  clearTerrainBuildCaches(); // #246: parking-patched surface replaces the native emitted sampler
   terrainDetailGrid={...nativeGrid,cut:parkingPatch.cut};
   geo.computeVertexNormals();
   return geo;

@@ -22,6 +22,8 @@ När träden och gårdens klängväxt saknar löv vintertid ritas deras tomma l�
 
 Visningen ska vara statisk och fungera **utan Cloudflare-integration**. Originalets Workers, WebSockets, delade lagring och speltjänster ska inte användas. Eventuell lokal lagring ska ha egna namn och aldrig läsa eller ändra originalets data.
 
+Under uppbyggnaden återanvänds exakta mark- och åsampel i små tillfälliga tabeller (#246). De rensas när terrängens eller parkeringens underlag byts och släpps före den vanliga visningen. Inget sparas mellan besök. Lokala startmätningar finns i verifieringsdokumentationen; tiderna varierar med enhet och webbläsare.
+
 På telefoner frigörs CPU-kopian av trapphusens färdigritade dörrskyltar när bilden har laddats upp till grafiken. Skyltarnas upplösning och de uppdaterbara hissdisplayerna behålls.
 
 Vid Karpvägen visas ett passivt utegym med trästationer, snedbänkar, parallellställning och en svart hinderbana med nät, stubbar och balansbalkar (#234/#243). Grusytan har låg stålkant; sittbänkar, papperskorg och lyktarmaturer hör till miljön. Pressstocken är fast. Placering, storlek och material är bildtolkade antaganden, inte verifierad utrustning på platsen. Redskapen är fast omgivning utan tränings- eller poängfunktion.

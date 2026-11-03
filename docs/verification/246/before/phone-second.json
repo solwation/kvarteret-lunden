@@ -1,0 +1,242 @@
+{
+  "probe": {
+    "steps": [
+      {
+        "name": "Startar 3D-grafiken",
+        "at": 186.29999999701977
+      },
+      {
+        "name": "Hämtar planritningen",
+        "at": 799.7999999970198
+      },
+      {
+        "name": "Bygger huset",
+        "at": 803.8999999985099
+      },
+      {
+        "name": "Bygger trapphus och garage",
+        "at": 25823.79999999702
+      }
+    ],
+    "longTasks": [
+      {
+        "start": 69.70000000298023,
+        "duration": 116
+      },
+      {
+        "start": 197.60000000149012,
+        "duration": 603
+      },
+      {
+        "start": 812.1000000014901,
+        "duration": 162
+      },
+      {
+        "start": 975.7999999970198,
+        "duration": 50
+      },
+      {
+        "start": 1027.1000000014901,
+        "duration": 1188
+      },
+      {
+        "start": 2217.5,
+        "duration": 836
+      },
+      {
+        "start": 3055.2000000029802,
+        "duration": 1122
+      },
+      {
+        "start": 4178.89999999851,
+        "duration": 202
+      },
+      {
+        "start": 4382.89999999851,
+        "duration": 2047
+      },
+      {
+        "start": 6453.89999999851,
+        "duration": 3702
+      },
+      {
+        "start": 10157.39999999851,
+        "duration": 423
+      },
+      {
+        "start": 10581.29999999702,
+        "duration": 2022
+      },
+      {
+        "start": 12604.89999999851,
+        "duration": 238
+      },
+      {
+        "start": 12843.89999999851,
+        "duration": 881
+      },
+      {
+        "start": 13726.79999999702,
+        "duration": 786
+      },
+      {
+        "start": 14744.89999999851,
+        "duration": 389
+      },
+      {
+        "start": 15134.70000000298,
+        "duration": 8727
+      },
+      {
+        "start": 24240.89999999851,
+        "duration": 241
+      },
+      {
+        "start": 24483.5,
+        "duration": 77
+      },
+      {
+        "start": 24600.60000000149,
+        "duration": 293
+      },
+      {
+        "start": 24895.20000000298,
+        "duration": 162
+      },
+      {
+        "start": 25058.60000000149,
+        "duration": 297
+      },
+      {
+        "start": 25359.70000000298,
+        "duration": 78
+      },
+      {
+        "start": 25490.70000000298,
+        "duration": 333
+      },
+      {
+        "start": 25824.79999999702,
+        "duration": 334
+      },
+      {
+        "start": 26166.70000000298,
+        "duration": 1029
+      },
+      {
+        "start": 27196.39999999851,
+        "duration": 884
+      }
+    ],
+    "ready": 27195.70000000298,
+    "entry": 30197.70000000298,
+    "navigationMs": 14.300000004470348,
+    "renderReturned": 30608.39999999851,
+    "playable": 31021
+  },
+  "navigation": {
+    "response": 1.3999999985098839,
+    "domContentLoaded": 28.600000001490116,
+    "load": 28.799999997019768
+  },
+  "resources": [
+    {
+      "name": "http://localhost:8921/before/assets/style-c7bf0ca6c235a44c43b89e5b.css",
+      "initiator": "link",
+      "start": 11.600000001490116,
+      "response": 12.600000001490116,
+      "transfer": 0,
+      "encoded": 17342,
+      "decoded": 17342
+    },
+    {
+      "name": "http://localhost:8921/before/assets/viewer-c7bf0ca6c235a44c43b89e5b.js",
+      "initiator": "script",
+      "start": 15.100000001490116,
+      "response": 17.700000002980232,
+      "transfer": 0,
+      "encoded": 1491920,
+      "decoded": 1491920
+    },
+    {
+      "name": "http://localhost:8921/before/icon.svg",
+      "initiator": "other",
+      "start": 40.5,
+      "response": 41.20000000298023,
+      "transfer": 0,
+      "encoded": 169,
+      "decoded": 169
+    },
+    {
+      "name": "http://localhost:8921/before/data/plan.json?v=c7bf0ca6c235a44c43b89e5b",
+      "initiator": "fetch",
+      "start": 801,
+      "response": 801.7000000029802,
+      "transfer": 0,
+      "encoded": 32404,
+      "decoded": 32404
+    },
+    {
+      "name": "http://localhost:8921/before/version.json?_=1781517600000",
+      "initiator": "fetch",
+      "start": 27196.29999999702,
+      "response": 27198.10000000149,
+      "transfer": 363,
+      "encoded": 63,
+      "decoded": 63
+    }
+  ],
+  "render": {
+    "frame": 25,
+    "calls": 474,
+    "triangles": 786102,
+    "points": 0,
+    "lines": 6043
+  },
+  "memory": {
+    "geometries": 429,
+    "textures": 37
+  },
+  "cache": null,
+  "collision": {
+    "levels": 2,
+    "coreHouses": 3,
+    "ground": 0,
+    "position": [
+      2.875,
+      0,
+      -12
+    ]
+  },
+  "storage": {
+    "local": "untouched-original",
+    "session": "untouched-original"
+  },
+  "cdp": {
+    "LayoutDuration": 0.017167,
+    "ScriptDuration": 1.079157,
+    "TaskDuration": 27.664605,
+    "JSHeapUsedSize": 227151304
+  },
+  "profile": "phone",
+  "visit": "second",
+  "errors": [],
+  "external": [],
+  "headers": [
+    {
+      "url": "http://localhost:8921/before/assets/viewer-c7bf0ca6c235a44c43b89e5b.js",
+      "status": 200,
+      "cache": "public, max-age=600"
+    },
+    {
+      "url": "http://localhost:8921/before/data/plan.json?v=c7bf0ca6c235a44c43b89e5b",
+      "status": 200,
+      "cache": "public, max-age=600"
+    },
+    {
+      "url": "http://localhost:8921/before/version.json?_=1781517600000",
+      "status": 200,
+      "cache": "public, max-age=600"
+    }
+  ]
+}

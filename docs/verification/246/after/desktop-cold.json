@@ -1,0 +1,277 @@
+{
+  "probe": {
+    "steps": [
+      {
+        "name": "Startar 3D-grafiken",
+        "at": 369.5
+      },
+      {
+        "name": "Hämtar planritningen",
+        "at": 2066.10000000149
+      },
+      {
+        "name": "Bygger huset",
+        "at": 2071.8000000044703
+      },
+      {
+        "name": "Bygger trapphus och garage",
+        "at": 21388.40000000596
+      }
+    ],
+    "longTasks": [
+      {
+        "start": 98,
+        "duration": 271
+      },
+      {
+        "start": 378.1000000014901,
+        "duration": 1689
+      },
+      {
+        "start": 2076,
+        "duration": 168
+      },
+      {
+        "start": 2245.60000000149,
+        "duration": 57
+      },
+      {
+        "start": 2304.4000000059605,
+        "duration": 1181
+      },
+      {
+        "start": 3487.3000000044703,
+        "duration": 807
+      },
+      {
+        "start": 4297,
+        "duration": 1121
+      },
+      {
+        "start": 5419.60000000149,
+        "duration": 202
+      },
+      {
+        "start": 5623,
+        "duration": 2015
+      },
+      {
+        "start": 7658.80000000447,
+        "duration": 2625
+      },
+      {
+        "start": 10285.10000000149,
+        "duration": 327
+      },
+      {
+        "start": 10613.30000000447,
+        "duration": 1412
+      },
+      {
+        "start": 12026.40000000596,
+        "duration": 214
+      },
+      {
+        "start": 12241.60000000149,
+        "duration": 869
+      },
+      {
+        "start": 13113,
+        "duration": 638
+      },
+      {
+        "start": 14034.90000000596,
+        "duration": 53
+      },
+      {
+        "start": 14098.40000000596,
+        "duration": 433
+      },
+      {
+        "start": 14532.80000000447,
+        "duration": 4652
+      },
+      {
+        "start": 19644,
+        "duration": 268
+      },
+      {
+        "start": 19913.60000000149,
+        "duration": 86
+      },
+      {
+        "start": 20040.90000000596,
+        "duration": 336
+      },
+      {
+        "start": 20378,
+        "duration": 171
+      },
+      {
+        "start": 20550.70000000298,
+        "duration": 319
+      },
+      {
+        "start": 20873.70000000298,
+        "duration": 84
+      },
+      {
+        "start": 21005.80000000447,
+        "duration": 382
+      },
+      {
+        "start": 21389.30000000447,
+        "duration": 345
+      },
+      {
+        "start": 21742.40000000596,
+        "duration": 1034
+      },
+      {
+        "start": 22776.5,
+        "duration": 1021
+      }
+    ],
+    "ready": 22775.70000000298,
+    "entry": 27033.80000000447,
+    "navigationMs": 13.5,
+    "renderReturned": 27646.30000000447,
+    "playable": 28217.5
+  },
+  "navigation": {
+    "response": 22,
+    "domContentLoaded": 68,
+    "load": 68.30000000447035
+  },
+  "resources": [
+    {
+      "name": "http://localhost:8921/after/assets/style-213458517d5b388a469fff26.css",
+      "initiator": "link",
+      "start": 30.900000005960464,
+      "response": 37.20000000298023,
+      "transfer": 17642,
+      "encoded": 17342,
+      "decoded": 17342
+    },
+    {
+      "name": "http://localhost:8921/after/assets/viewer-213458517d5b388a469fff26.js",
+      "initiator": "script",
+      "start": 48.20000000298023,
+      "response": 56.5,
+      "transfer": 1493435,
+      "encoded": 1493135,
+      "decoded": 1493135
+    },
+    {
+      "name": "http://localhost:8921/after/icon.svg",
+      "initiator": "other",
+      "start": 69.90000000596046,
+      "response": 72.40000000596046,
+      "transfer": 469,
+      "encoded": 169,
+      "decoded": 169
+    },
+    {
+      "name": "http://localhost:8921/after/data/plan.json?v=213458517d5b388a469fff26",
+      "initiator": "fetch",
+      "start": 2067.7000000029802,
+      "response": 2070.7000000029802,
+      "transfer": 32704,
+      "encoded": 32404,
+      "decoded": 32404
+    },
+    {
+      "name": "http://localhost:8921/after/version.json?_=1781517600000",
+      "initiator": "fetch",
+      "start": 22776.40000000596,
+      "response": 22778.90000000596,
+      "transfer": 363,
+      "encoded": 63,
+      "decoded": 63
+    }
+  ],
+  "render": {
+    "frame": 25,
+    "calls": 519,
+    "triangles": 830644,
+    "points": 0,
+    "lines": 9498
+  },
+  "memory": {
+    "geometries": 483,
+    "textures": 45
+  },
+  "cache": [
+    {
+      "name": "river",
+      "active": false,
+      "hits": 895339,
+      "misses": 505104,
+      "evictions": 472480,
+      "peak": 32624,
+      "entries": 0,
+      "max": 32768
+    },
+    {
+      "name": "terrain",
+      "active": false,
+      "hits": 1112315,
+      "misses": 866525,
+      "evictions": 807318,
+      "peak": 32755,
+      "entries": 0,
+      "max": 32768
+    },
+    {
+      "name": "drawn terrain",
+      "active": false,
+      "hits": 8564067,
+      "misses": 6951472,
+      "evictions": 6918704,
+      "peak": 32768,
+      "entries": 0,
+      "max": 32768
+    }
+  ],
+  "collision": {
+    "levels": 2,
+    "coreHouses": 3,
+    "ground": 0,
+    "position": [
+      2.875,
+      0,
+      -12
+    ]
+  },
+  "storage": {
+    "local": "untouched-original",
+    "session": "untouched-original"
+  },
+  "cdp": {
+    "LayoutDuration": 0.022553,
+    "ScriptDuration": 1.379646,
+    "TaskDuration": 23.180989,
+    "JSHeapUsedSize": 288868160
+  },
+  "profile": "desktop",
+  "visit": "cold",
+  "errors": [],
+  "external": [],
+  "headers": [
+    {
+      "url": "http://localhost:8921/after/assets/viewer-213458517d5b388a469fff26.js",
+      "status": 200,
+      "cache": "public, max-age=600"
+    },
+    {
+      "url": "http://localhost:8921/after/data/plan.json?v=213458517d5b388a469fff26",
+      "status": 200,
+      "cache": "public, max-age=600"
+    },
+    {
+      "url": "http://localhost:8921/after/version.json?_=1781517600000",
+      "status": 200,
+      "cache": "public, max-age=600"
+    }
+  ]
+}

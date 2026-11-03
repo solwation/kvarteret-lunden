@@ -1,0 +1,5 @@
+
+> kvarteret-lunden@0.1.0 build
+> node tools/build.mjs
+
+Static site built in dist/: c7bf0ca6c235a44c43b89e5b

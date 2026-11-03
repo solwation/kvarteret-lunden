@@ -1,3 +1,4 @@
+import {finishStartupCaches} from './startupcache.js';
 import * as THREE from 'three';
 import { FrameIntervals } from './frameintervals.js';
 import { buildWorldSliced } from './world.js';
@@ -232,11 +233,12 @@ async function init() {
     $('resume').hidden = !active || touch;
   }
   world.windowLights?.update(12, 0, true);
+  const startupCache=finishStartupCaches(); // #246: release all build tables before ordinary input/rendering
   ready = true;
   $('place-toggle').disabled = false;
   // Keep model access local for diagnostics, without a service connection.
   const siteInstances = lowMemory ? null : installSiteInstanceBatch(renderer, scene);
-  window.lundenViewer = {intervals, colorFrustum, siteInstances, phoneFrustum, paddock, ducks, ambientCats, ambientFish, squirrels, ambientBalloon, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
+  window.lundenViewer = {startupCache,intervals, colorFrustum, siteInstances, phoneFrustum, paddock, ducks, ambientCats, ambientFish, squirrels, ambientBalloon, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
   window.kvarteretStartup?.finish();
   $('start').disabled = false; $('start').textContent = 'Börja utforska →';
   status('Dator och mobil · Ingen inloggning');
@@ -460,4 +462,4 @@ stick.addEventListener('pointerdown', e => { if (!grabStick(e) && joystickPointe
 stick.addEventListener('pointermove', e => { if (e.pointerId === joystickPointer) { followStick(e); steer(e); } });
 for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) stick.addEventListener(type, releaseStick);
 // The guard in index.html shows the failed step, its cause and Försök igen (#37).
-init().catch(error => { console.error(error); window.kvarteretStartup?.fail(error); });
+init().catch(error => { finishStartupCaches(); console.error(error); window.kvarteretStartup?.fail(error); });

@@ -1,0 +1,59 @@
+TAP version 13
+# Subtest: exact Float64 coordinates/hash collisions/signed zero, isolated objects, scalar fallbacks and release
+not ok 1 - exact Float64 coordinates/hash collisions/signed zero, isolated objects, scalar fallbacks and release
+  ---
+  duration_ms: 10.840657
+  type: 'test'
+  location: '/home/devcontainers/orkester-olw-win10-gpt6-20261103/public-startup-cache/tools/startupcache246test.mjs:4:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert(Object.is(c.read(9,9,()=>value),value))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///home/devcontainers/orkester-olw-win10-gpt6-20261103/public-startup-cache/tools/startupcache246test.mjs:4:814)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: real raw/native/parking sampler changes clear tables; cache on/off geometry and walking support are identical
+not ok 2 - real raw/native/parking sampler changes clear tables; cache on/off geometry and walking support are identical
+  ---
+  duration_ms: 2965.277092
+  type: 'test'
+  location: '/home/devcontainers/orkester-olw-win10-gpt6-20261103/public-startup-cache/tools/startupcache246test.mjs:5:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 1.7550000000000001
+    - 1.755
+           ^
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1.755
+  actual: 1.7550000000000001
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///home/devcontainers/orkester-olw-win10-gpt6-20261103/public-startup-cache/tools/startupcache246test.mjs:7:108)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 0
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3054.829132

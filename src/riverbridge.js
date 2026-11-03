@@ -1,3 +1,4 @@
+import {createStartupPointCache} from './startupcache.js';
 import * as THREE from 'three';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
 import {SITE, COLORS, ELEVATION} from './config.js';
@@ -23,7 +24,9 @@ export function roadBridgeSpan(x,z){const r=bridgeRecords[0];return Math.abs(loc
 // Public #94, reviewed upstream ba5db2f9: no intermediate scan records; memoize a repeated ground/water query.
 // Callers treat the returned record as read-only. River coordinates are static.
 let lastX=NaN,lastZ=NaN,lastR=null;
-export function riverAt(x,z){
+const riverBuildCache=createStartupPointCache('river',{clone:r=>({...r})});
+export const riverAt=(x,z)=>riverBuildCache.read(x,z,rawRiverAt);
+function rawRiverAt(x,z){
  if(x===lastX&&z===lastZ)return lastR;
  const P=riverPath;let bi=-1,bd=Infinity;
  // The short eastern join has negative chainage, so every historical station keeps its exact along value.

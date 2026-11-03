@@ -2944,3 +2944,17 @@ seedade hem, utan forcerat par/mål/chance. Puss-/återgångsbilder, exakt 4 cal
 för kropparna och +1 call/+5 punkter/0 tri för effekten samt isoleringssentineller sparas.
 Browsern hålls till `/tmp/244-release`; en valfri lokal command-loop tillåter omramning i samma scen.
 [Metod, egna bilder och begränsningar](verification/244/README.md).
+
+## Tillfällig exakt byggcache #246
+
+`node --test tools/startupcache246test.mjs` täcker exakt Float64/signed-zero/hashkollision,
+objektkopior, scalar-fallback, clear/release/sena imports och två isolerade kopior av
+de verkliga publika terrängmodulerna av/på. Samtliga tre muterbara samplerövergångar
+registreras efter faktiskt cache-clear; emitterad position/index-bytehash, samplerreturer
+och dynamiskt parkingPatch-/walkingSupport-företräde är identiska.
+`npm test` och `npm run build` är gröna.
+`tools/startupcache246-profile.mjs BASE OUT` mäter kall/andra dokument på två ordinarie
+kvalitetsprofiler mot frysta byggda paket med verifierade 600 s HTTP-cacheheaders.
+Normal startknapp, faktisk Navigation-update och presenterad aktiv render används som
+spelbarhetsmarkör. `HOLD_STARTUP=1` håller sista scenen till `/tmp/246-release`.
+[Exakt metod, jämförelse, egna bilder och begränsningar](verification/246/README.md).

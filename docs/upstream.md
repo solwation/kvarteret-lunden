@@ -2923,3 +2923,35 @@ behålls. Källhänvisning och befintlig relevant attribution/licens kvarstår.
 3/3 riskbaserade komponentgrupper, npm test/build och en enda faktisk publik appturn med
 naturlig puss, modellkontakt, återgång, budget och nät-/lagringsisolering: [egna bevis](verification/244/README.md).
 Den historiska #235-beskrivningen gäller den tidigare modellen; #244 ersätter dess ankmoduler.
+
+## Exakt tillfällig terrängcache under uppstart, #246
+
+Selektiv originalkälla `59c6957a25442ef93d06e564b2082aee4a6a5159` (#1838):
+endast slutlig numerisk `src/startupcache.js` och relevanta wrapper-/finishprinciper,
+anpassade till publik bas `725dc63a3b5e48b3fa0e2216665be090454e8ea8`.
+Ingen hel original-main/config/surroundings kopieras. Inga personliga data, spelmoduler,
+lagringsnycklar, tjänster, SW, bundlerändringar eller beständig cache tillkommer.
+
+Tre byggfas-tabeller återanvänder riverAt-records, råterräng och emitterad mark.
+Högst 32 768 slots per tabell; hash väljer endast slot och originalets Float64-x/z
+verifieras med Object.is, inklusive signed zero. Inga sampelkoordinater avrundas.
+Objektvärden har en explicit klonfunktion och skalära null/undefined/icke-tal
+bevaras utan Float64-koercion. Tabellerna clearas/släpps med oförändrad fallback.
+
+Publicanpassning: dynamisk parkingPatch.top kontrolleras före råcachen, och
+walkingSupportHeight/walkingGroundY fortsätter vara separata levande stödfrågor.
+Båda terrängcachetyperna rensas vid alla tre faktiska övergångar i surroundings:
+parkingPatch-reset, byte från analytisk till emitterad triangelinterpolering och
+byte till parkeringspatchad interpolation. Detaljgrid, parkeringens kontakt,
+trapp-/bro-/deckregler och faktiska samplers returnerar samma värden.
+`finishStartupCaches` släpper tabellreferenser och stänger senare default-cacher
+före vanlig input/render; även init-fel släpper dem. Bara lokala summerade
+hit/miss/peak/releasefält finns i befintliga lundenViewer-diagnostiken.
+
+2/2 riktade komponentgrupper jämför exakta fallbacks/kollisioner/objekt/release
+och verkliga samplerbyten samt terrainGeo-position/index-bytehash och walkingSupport
+av/på. npm test/build är gröna. Frysta parade lokala byggda appbesök gav första
+aktiva presenterade bild 19,3%/18,9% snabbare i datorns kall/andra dokument och
+20,0%/19,0% snabbare i emulerad telefon. Båda kallstarter förbättrades i denna
+begränsade mätning; 30% nåddes inte. Ingen fysisk enhets- eller produktionsgaranti.
+[Metod, rådata, egna granskade före/efterbilder och begränsningar](verification/246/README.md).
