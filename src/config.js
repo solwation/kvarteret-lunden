@@ -3091,3 +3091,20 @@ export const OUTDOOR_CATS = {
       route: [[-70, 100], [-56, 98], [-60, 106], [-72, 108]] },
   ],
 };
+
+// Public #238: passive visual assumptions, fixed local seed; no population/catch service.
+export const RIVER_FISH = {
+  count: 18, seed: 1754, epoch: 1793491200, // (seed 1754: the first lives of the 18 include pike, trout, bream, perch and roach; 1752 had no pike)
+  species: [
+    { name: 'mört', len: 0.2, w: 0.035, h: 0.06, color: 0xa3aca8, weight: 5 },
+    { name: 'abborre', len: 0.25, w: 0.045, h: 0.075, color: 0x7a8a40, weight: 4 },
+    { name: 'braxen', len: 0.42, w: 0.05, h: 0.15, color: 0x9a8858, weight: 2.5 },
+    { name: 'gädda', len: 0.75, w: 0.08, h: 0.1, color: 0x5f7040, weight: 1.2 },
+    { name: 'öring', len: 0.45, w: 0.06, h: 0.1, color: 0x8c846c, weight: 1.2 },
+    { name: 'ål', len: 0.65, w: 0.035, h: 0.035, color: 0x403e2e, weight: 0.4 },
+  ],
+  ends: 15, range: [8, 22], periods: [90, 200], side: 0.85, edge: 0.35, depth: [0.12, 0.1], pierClear: 0.6,
+  rise: { every: [16, 36], chance: 0.6, up: 1.1, down: 0.9, show: 0.35 },
+  ring: { life: 3.2, r: [0.1, 1.5], second: 0.5, glow: 0.5, night: 0.15 },
+  drawDist: 45, wag: [0.14, 7.5], murk: 0.5, opacity: 0.85, look: { flat: 0.45, wide: 1.9, shade: 0.55, deepTone: 0.6 },
+};

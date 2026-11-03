@@ -1,0 +1,19 @@
+browsertest: no systemd user scope here, running without a memory ceiling
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+3 !== 2
+
+    at file:///home/devcontainers/orkester-olw-win10-gpt6-20261103/public-fish/tools/riverfish-view-check.mjs:11:640 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 3,
+  expected: 2,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.20.0

@@ -1,0 +1,13 @@
+{
+  "original": "578ecc09b02c7355e299fc58d0e0127b622ee85a",
+  "publicBase": "e4b858ece26d207aacf1c35ee66dde3bb1bc4489",
+  "sha256": {
+    "src/main.js": "6cbedea20a40a18f808ae46ae916aa4dc00c4bfd99b55ead5913b62bbf932087",
+    "src/config.js": "45d5e3534d7360a9a925b9fb68e63bba1496d4387c9d30df21d39615ace5b49f",
+    "src/riverfish.js": "b72e7759900aab7be49118f5ccfc02cf9d9b830b2bcf799746f7a30b4654ce33",
+    "src/riverfishswim.js": "fe3ba189cb7b400f928e21ea9f6983c2c35352bfa66e38a84b5246e09bbbc7dd",
+    "src/riverbridge.js": "52530221cc131a824ba7e0cdbfe04960fbfd8d1dbf00fa0f6cb0e43cd044da0f",
+    "tools/riverfish-check.mjs": "cfd3b73adcb73b14d7f2f6d6ee22f02ac68b258de38263c04bb3db0dc5215841",
+    "tools/riverfish-view-check.mjs": "fc302eddb4413a20430a62912c17304006952b83e18a21f8e0207030efb23f2c"
+  }
+}

@@ -2715,3 +2715,19 @@ Användarens uttryckliga beslut i publik #236 tillåter dessa generiska omgivnin
 `src/main.js` äger fristående `ambientCats`, använder publikens egna markhöjder och `lowMemory`, döljer dem vid inomhus-/trapphus-/garagevy och registrerar inga interaktions- eller kollisionsmål. Vintersäsongen följer publikens befintliga säsongshook. `?nocats` är en lokal avstängningsflagga. Originalets CatSpawner, near-promotion, kattnamn/etiketter, familjekatt, kattkort, klappa/bära/mata, fiskobjekt, ljud, tasspår, poäng, lagring, tidssynk, tjänster, privata tillgångar och git-historik importeras inte. Tillämplig källattribution finns kvar i de extraherade modulerna.
 
 Verifiering: `npm test`, `npm run build`, fyra rena rutttester, `tools/outdoorcats-check.mjs` (766 faktiska mark-/väg-/vattenpunkter, emitterad geometri, animation/determinism, LOD, årstids-/innegräns och publik källisolering) samt faktisk gårds-/parkvy på dator/telefon och fixed-time omladdning. Egna bilder, råa mätvärden och källhashar finns i [verifiering #236](verification/236/README.md).
+
+
+## Passiva fiskar och vattenringar i Höje å, #238
+
+Selektiv granskad originalkälla `578ecc09b02c7355e299fc58d0e0127b622ee85a` (original #1752).
+Användarens beslut i publik #238 tillåter generiska omgivningsfiskar som ett smalt undantag från karaktärsregeln. Bara `src/riverfish.js`, `src/riverfishswim.js` och ett eget `RIVER_FISH`-block har extraherats och anpassats. Inga originalbilder eller git-historik har importerats; källattribution finns i modulerna.
+
+Populationen använder fast lokalt seed 1754, 18 fiskar med id 0–17 och oföränderlig födelse 0. Rena fisk-/ringfunktioner får `Date.now()/1000 - epoch` från lokal klocka, utan rum, tidssynk eller sparad state. Sex generiska fiskarter, mått, vikter, sim-/uppstigningstider, färger och silhuettmått är originalets visuella antaganden, inte verifierad artförekomst i ån.
+
+Simgeometrin läser publikens fulla `riverPath`, inklusive #231:s fortsättning, och `riverAt` för kanalbredd. Originalets duplicerade fallformel ersätts av de lokala `waterYAt` och `riverGround` vid varje verkligt fisk-/ringläge. Botten, vatten, ändmarginaler och bropelare följer därför publikens befintliga data; inga mark-, bro- eller navigationsmått ändras. Hjälparna `waterAt`/`bedAt` använder också samma publika API.
+
+Originalets två instansbatcher behålls: fiskarnas tillplattade silhuetter ovanför ogenomskinligt vatten återfår höjd när de stiger, och tunna ringar expanderar över ytan. Båda saknar raycast/targets, textur, skugga och extra ljus. `forceSinglePass=true` på den genomskinliga tvåsidiga fisksilhuetten undviker Three.js dubbla bak-/framsidespass: fortfarande tvåsidig shader, men ett pass. Tillsammans blir fisk och ringar högst två ritanrop. Fiskgeometrin har 103 trianglar per instans, varje ring 64. Ringskenet använder den publika scenens vanliga dagsljus, utan import av originalets DayCycle.
+
+`main.js` har bara ett eget `ambientFish`-objekt och update-hook, döljer batcherna inomhus/i garage/trapphus och utanför 45 meter. `?noriverfish` är en lokal avstängning. Ingen hajkod, hajflagga, originalnyckel, RiverFishSync, rum/net-koppling, Worker/tjänst, fångst/onCaught/catchFish/catchCm, fiskespel/quest eller lagring följer med. Den publika applikationen läser inte originalets data; dess oberoende nät-/lagringsgränser behålls.
+
+Verifiering: `npm test`, `npm run build`, `tools/riverfish-check.mjs` (6 282 fisklägen, 827 ringar, kanal/vatten/botten/pelare, exakt state/matrisdeterminism, rit-/innegräns och publik källisolering) och faktisk åvy med fiskar/ringar samt omladdning vid samma tid. Egna granskade bilder, calls/tri, källhashar och begränsningar finns i [verifiering #238](verification/238/README.md).

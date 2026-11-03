@@ -32,6 +32,8 @@ Höje å och dess stränder fortsätter genom terrängkanterna tills dimman döl
 
 Fyra ankor simmar och går vid Höje å (#235). Flocken är enbart miljö utan ljud eller interaktion; placering, storlek och beteende är visuella antaganden.
 
+I Höje å syns passiva fiskar och ringar när de går upp till ytan (#238). Rörelsen följer ett fast lokalt seed och besökarens klocka; inget fiske eller klickmål finns. Fiskarna följer visningens egna vatten- och bottenhöjder, ritas inom 45 meter och kan döljas med `?noriverfish`. Antal, arter, storlek och rörelse är visuella antaganden.
+
 Sydplatåns mark är lokalt förankrad i tio granskade LM-markpunkter och två byggnadsaproner (#106). Källans 77 markhöjdsvar och attribution är bevarade. RH2000 minus 14,36 m är en relativ modellreferens; horisontell registrering, interpolation och apronmått är antaganden. Punkten mäter mark, inte ådjup eller lägenhetsgolv. Den ritade triangelytan approximerar den mjuka markmodellen.
 
 Uteplatshäckarnas åtta befintliga geometridelar ritas var för sig på datorn (#119). Telefonerna behåller originalets enda batch; lövform, färg, placering och gånghinder är oförändrade.
