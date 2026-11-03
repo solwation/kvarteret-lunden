@@ -11,6 +11,8 @@ import { installSiteInstanceBatch } from './siteinstancebatch.js';
 import { installPlaceShortcuts } from './place-shortcuts.js';
 import { Garage } from './garage.js';
 import { Ducks } from './ducks.js';
+
+import { OutdoorCats } from './outdoorcats.js';
 import { Paddock } from './paddock.js';
 import { visitSpot } from './paddockgeo.js';
 import { applySeason } from './seasons.js';
@@ -24,7 +26,7 @@ const $ = id => document.getElementById(id);
 const touch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
 document.body.classList.toggle('touch', touch);
 const touchLayout = setupTouchLayout({enabled: touch}); // own button/stick layout from the help dialog (#30, upstream 1af9b39)
-let renderer, camera, scene, world, navigation, core, garage, paddock, ducks;
+let renderer, camera, scene, world, navigation, core, garage, paddock, ducks, ambientCats;
 const debugParams = new URLSearchParams(location.search), paddockRain = Math.max(0, Math.min(1, Number(debugParams.get('paddockrain')) || 0));
 let active = false, ready = false, focus = null, measuring = false, firstPoint = null;
 const intervals = debugParams.has('perf') ? new FrameIntervals() : null;
@@ -180,6 +182,8 @@ async function init() {
   world = await buildWorldSliced(plan, (share) => loadingYield(0.2 + 0.6 * share)); scene.add(world.object);
   paddock = new URLSearchParams(location.search).has('nopaddock') ? null : new Paddock({ scene, camera, ground: (x, z) => (z > SITE.backgroundGround.z1 ? -3.01 : Math.max(groundY(x, z), renderedTerrainY(x, z))), trees: treeFeet }); // original #1280: the fenced pony paddock, scenery only
   ducks = new Ducks({scene,camera,ground:renderedTerrainY}); // #235: ambient only; use the actual drawn bank/riverbed
+
+  ambientCats = debugParams.has('nocats') ? null : new OutdoorCats({scene,camera,ground:(x,z)=>Math.max(groundY(x,z),renderedTerrainY(x,z)),lowMemory});
   const debugMonth = Number(debugParams.get('month')); if (debugMonth >= 1 && debugMonth <= 12) applySeason(Math.round(debugMonth)); // debug: show a month's season (snow months: white ground, ponies in the stable)
   await loadingStep('Bygger trapphus och garage', 0.82);
   garage = world.garage = new Garage();
@@ -221,7 +225,7 @@ async function init() {
   $('place-toggle').disabled = false;
   // Keep model access local for diagnostics, without a service connection.
   const siteInstances = lowMemory ? null : installSiteInstanceBatch(renderer, scene);
-  window.lundenViewer = {intervals, colorFrustum, siteInstances, phoneFrustum, paddock, ducks, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
+  window.lundenViewer = {intervals, colorFrustum, siteInstances, phoneFrustum, paddock, ducks, ambientCats, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
   window.kvarteretStartup?.finish();
   $('start').disabled = false; $('start').textContent = 'Börja utforska →';
   status('Dator och mobil · Ingen inloggning');
@@ -271,6 +275,8 @@ function frame() {
   garage.update(dt, navigation, camera);
   paddock?.update(dt, navigation.below, paddockRain); // no weather here: only the debug parameter ?paddockrain=0..1 (original #1316's rain input)
   ducks.update(dt,navigation.below);
+
+  ambientCats?.update(navigation.below || navigation.inCore || !navigation.outdoors);
   updateCameraNear();
   scene.updateMatrixWorld();
   if (active) {

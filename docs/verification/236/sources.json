@@ -1,0 +1,15 @@
+{
+  "upstream": "578ecc09b02c7355e299fc58d0e0127b622ee85a",
+  "publicBase": "e4b858ece26d207aacf1c35ee66dde3bb1bc4489",
+  "sha256": {
+    "src/config.js": "32cd71425cefd1c009cbea14d776e6ed72857937104b1dfebb53691455d957b4",
+    "src/main.js": "d421ddc3bc64ef3f6b86945aa7d16eeeba99e45cc96ace60866822ddd19cb1ba",
+    "src/catpuppet.js": "791dad227ace149f8bc3919d708517c50186c3855c2ebdd467226538f8d34974",
+    "src/outdoorcats.js": "51d5d8fa088ff1f6368c168d80be93868bbed90bcef2c520a782447b45785413",
+    "src/outdoorcatbrain.js": "f8f1f06eef55b103c2c60efec655e4830ceba49288265222b06d272757d6165e",
+    "src/outdoorcatroute.js": "709c4f2f0d65f919520a1e85adecb49464a904946fa785a756d4313f032bebd4",
+    "src/outdoorcatroute.test.mjs": "e71556141ee889e15116e1ca28382f1b51acff24da612f9ecb825786d299e4ef",
+    "tools/outdoorcats-check.mjs": "37738177ff1eff57e50c266875d2342bc88316348a5fe178dd2311e14043505a",
+    "tools/outdoorcats-view-check.mjs": "dcc5b2f4bb2d8866384a7ad697f230b0d42f02ad40453e078800d3b4f790d61f"
+  }
+}

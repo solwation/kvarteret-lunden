@@ -1,0 +1,346 @@
+{
+  "reports": [
+    {
+      "phone": false,
+      "views": [
+        {
+          "name": "courtyard",
+          "before": {
+            "calls": 695,
+            "triangles": 784995
+          },
+          "after": {
+            "calls": 696,
+            "triangles": 787035
+          },
+          "delta": {
+            "calls": 1,
+            "triangles": 2040
+          },
+          "near": true,
+          "draw": 32,
+          "states": [
+            {
+              "x": 1,
+              "z": 24.2,
+              "yaw": -1.4382447944982224,
+              "walking": false,
+              "activity": "wash",
+              "lap": -33303,
+              "leg": 3,
+              "restLeft": 21.930155216226837,
+              "y": 0,
+              "visible": true,
+              "near": true
+            },
+            {
+              "x": -39.791987597426605,
+              "z": 21.149944983298298,
+              "yaw": 1.4010180528265588,
+              "walking": true,
+              "activity": "walk",
+              "lap": -37584,
+              "leg": 0,
+              "restLeft": 0,
+              "y": 0,
+              "visible": false,
+              "near": false
+            },
+            {
+              "x": -67.19438300924558,
+              "z": 113.62253817810216,
+              "yaw": -1.396124127786657,
+              "walking": true,
+              "activity": "walk",
+              "lap": -22060,
+              "leg": 3,
+              "restLeft": 0,
+              "y": -3.1927838265600115,
+              "visible": false,
+              "near": false
+            },
+            {
+              "x": -57.71336509368741,
+              "z": 101.42673018737482,
+              "yaw": -0.4636476090008061,
+              "walking": true,
+              "activity": "walk",
+              "lap": -35895,
+              "leg": 1,
+              "restLeft": 0,
+              "y": -2.8001617340159473,
+              "visible": false,
+              "near": false
+            }
+          ],
+          "targets": false,
+          "clock": 1781517600000,
+          "camera": [
+            2.2,
+            0.7,
+            25.7
+          ]
+        },
+        {
+          "name": "park",
+          "before": {
+            "calls": 92,
+            "triangles": 585352
+          },
+          "after": {
+            "calls": 93,
+            "triangles": 587392
+          },
+          "delta": {
+            "calls": 1,
+            "triangles": 2040
+          },
+          "near": true,
+          "draw": 32,
+          "states": [
+            {
+              "x": 1,
+              "z": 24.2,
+              "yaw": -1.4382447944982224,
+              "walking": false,
+              "activity": "wash",
+              "lap": -33303,
+              "leg": 3,
+              "restLeft": 21.930155216226837,
+              "y": 0,
+              "visible": false,
+              "near": false
+            },
+            {
+              "x": -39.791987597426605,
+              "z": 21.149944983298298,
+              "yaw": 1.4010180528265588,
+              "walking": true,
+              "activity": "walk",
+              "lap": -37584,
+              "leg": 0,
+              "restLeft": 0,
+              "y": 0,
+              "visible": false,
+              "near": false
+            },
+            {
+              "x": -67.19438300924558,
+              "z": 113.62253817810216,
+              "yaw": -1.396124127786657,
+              "walking": true,
+              "activity": "walk",
+              "lap": -22060,
+              "leg": 3,
+              "restLeft": 0,
+              "y": -3.1927838265600115,
+              "visible": true,
+              "near": true
+            },
+            {
+              "x": -57.71336509368741,
+              "z": 101.42673018737482,
+              "yaw": -0.4636476090008061,
+              "walking": true,
+              "activity": "walk",
+              "lap": -35895,
+              "leg": 1,
+              "restLeft": 0,
+              "y": -2.8001617340159473,
+              "visible": true,
+              "near": false
+            }
+          ],
+          "targets": false,
+          "clock": 1781517600000,
+          "camera": [
+            -65.99438300924558,
+            -2.4927838265600117,
+            115.12253817810216
+          ]
+        }
+      ],
+      "reloadSame": true,
+      "storage": {
+        "local": {
+          "lunden.drawing": "untouched-original",
+          "lunden.cloud.queue": "untouched-original"
+        },
+        "session": "untouched-original"
+      },
+      "errors": [],
+      "external": []
+    },
+    {
+      "phone": true,
+      "views": [
+        {
+          "name": "courtyard",
+          "before": {
+            "calls": 284,
+            "triangles": 728517
+          },
+          "after": {
+            "calls": 285,
+            "triangles": 730557
+          },
+          "delta": {
+            "calls": 1,
+            "triangles": 2040
+          },
+          "near": true,
+          "draw": 18,
+          "states": [
+            {
+              "x": 1,
+              "z": 24.2,
+              "yaw": -1.4382447944982224,
+              "walking": false,
+              "activity": "wash",
+              "lap": -33303,
+              "leg": 3,
+              "restLeft": 21.930155216226837,
+              "y": 0,
+              "visible": true,
+              "near": true
+            },
+            {
+              "x": -39.791987597426605,
+              "z": 21.149944983298298,
+              "yaw": 1.4010180528265588,
+              "walking": true,
+              "activity": "walk",
+              "lap": -37584,
+              "leg": 0,
+              "restLeft": 0,
+              "y": 0,
+              "visible": false,
+              "near": false
+            },
+            {
+              "x": -67.19438300924558,
+              "z": 113.62253817810216,
+              "yaw": -1.396124127786657,
+              "walking": true,
+              "activity": "walk",
+              "lap": -22060,
+              "leg": 3,
+              "restLeft": 0,
+              "y": -3.1927838265600115,
+              "visible": false,
+              "near": false
+            },
+            {
+              "x": -57.71336509368741,
+              "z": 101.42673018737482,
+              "yaw": -0.4636476090008061,
+              "walking": true,
+              "activity": "walk",
+              "lap": -35895,
+              "leg": 1,
+              "restLeft": 0,
+              "y": -2.8001617340159473,
+              "visible": false,
+              "near": false
+            }
+          ],
+          "targets": false,
+          "clock": 1781517600000,
+          "camera": [
+            2.2,
+            0.7,
+            25.7
+          ]
+        },
+        {
+          "name": "park",
+          "before": {
+            "calls": 55,
+            "triangles": 536757
+          },
+          "after": {
+            "calls": 56,
+            "triangles": 538797
+          },
+          "delta": {
+            "calls": 1,
+            "triangles": 2040
+          },
+          "near": true,
+          "draw": 18,
+          "states": [
+            {
+              "x": 1,
+              "z": 24.2,
+              "yaw": -1.4382447944982224,
+              "walking": false,
+              "activity": "wash",
+              "lap": -33303,
+              "leg": 3,
+              "restLeft": 21.930155216226837,
+              "y": 0,
+              "visible": false,
+              "near": false
+            },
+            {
+              "x": -39.791987597426605,
+              "z": 21.149944983298298,
+              "yaw": 1.4010180528265588,
+              "walking": true,
+              "activity": "walk",
+              "lap": -37584,
+              "leg": 0,
+              "restLeft": 0,
+              "y": 0,
+              "visible": false,
+              "near": false
+            },
+            {
+              "x": -67.19438300924558,
+              "z": 113.62253817810216,
+              "yaw": -1.396124127786657,
+              "walking": true,
+              "activity": "walk",
+              "lap": -22060,
+              "leg": 3,
+              "restLeft": 0,
+              "y": -3.1927838265600115,
+              "visible": true,
+              "near": true
+            },
+            {
+              "x": -57.71336509368741,
+              "z": 101.42673018737482,
+              "yaw": -0.4636476090008061,
+              "walking": true,
+              "activity": "walk",
+              "lap": -35895,
+              "leg": 1,
+              "restLeft": 0,
+              "y": -2.8001617340159473,
+              "visible": true,
+              "near": false
+            }
+          ],
+          "targets": false,
+          "clock": 1781517600000,
+          "camera": [
+            -65.99438300924558,
+            -2.4927838265600117,
+            115.12253817810216
+          ]
+        }
+      ],
+      "reloadSame": null,
+      "storage": {
+        "local": {
+          "lunden.drawing": "untouched-original",
+          "lunden.cloud.queue": "untouched-original"
+        },
+        "session": "untouched-original"
+      },
+      "errors": [],
+      "external": []
+    }
+  ]
+}

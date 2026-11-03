@@ -1,0 +1,4 @@
+browsertest: waiting for /home/devcontainers/.local/state/orkester/browser.lock (another browser test is running)
+browsertest: no systemd user scope here, running without a memory ceiling
+desktop PASS
+phone PASS

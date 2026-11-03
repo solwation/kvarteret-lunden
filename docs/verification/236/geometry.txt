@@ -1,0 +1,1 @@
+{"ok":true,"routeSamples":766,"cats":4,"trianglesPerCat":2040,"drawsPerVisibleCat":1,"phoneDraw":18,"desktopDraw":32,"near":7,"checks":"terrain/roads/water; same-time scene+pose; animated rest; one mesh; no raycast/texture; desktop/phone cutoff; winter/hidden; isolated sources"}

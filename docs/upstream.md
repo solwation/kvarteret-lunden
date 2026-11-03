@@ -2699,3 +2699,19 @@ Verifiering: deterministiska 600-sekundersförlopp för fyra ankor och granskad 
 `npm test`, `npm run build` samt riktig publik åvy med rörelse, yt-/habitatkontroll,
 exakt ritdelta och oförändrade originalmarkörer i lagringen/inga externa nätanrop.
 [Egna bilder, källhashar, mätvärden och begränsningar](verification/235/README.md).
+
+
+## Generiska passiva utekatter, #236
+
+Granskad originalkälla `578ecc09b02c7355e299fc58d0e0127b622ee85a` (original #1767/#1772).
+Användarens uttryckliga beslut i publik #236 tillåter dessa generiska omgivningskatter som ett avgränsat undantag från karaktärsregeln. Inga andra originalkaraktärer följer med.
+
+`src/outdoorcatroute.js` och dess fyra rena kontrakttester är direkt selektivt överförda. De fyra kartlagda slingorna, restiderna, faserna, hastigheten .42 m/s samt 32 m/18 m ritgränser och 7 m närgräns finns i eget `OUTDOOR_CATS`-block i `src/config.js`. Samtliga individuella namn, rasetiketter, temperament och specialpälsar har tagits bort; alla fyra är generiska grå katter i originalets neutrala grundproportioner. Placering, storlek, former och tider är visuella antaganden, inga verifierade djur på plats.
+
+`src/outdoorcatbrain.js` är en neutral extraktion av bara konstruktorns routePlan och scheduled()-lager; den läser lokal `Date.now()` genom rendererns utbytbara klocka. Brainens besökarreaktioner, behov, bytesdjur, fjärilar, klättring och övriga utflykter väljs bort. Schemat räcker för gång, vila/tvätt/sömn och exakt omladdningsdeterminism; ekorrporten #237 är ingen förutsättning.
+
+`src/catpuppet.js` extraherar endast procedurgeometrin buildCat och createCatPuppet-idén samt sit/walk-pose/benrörelse från `src/cat.js`. Grundproportionerna och tvätt-/sömnposen från `src/outdoorcats.js` behålls. Segmenteringen minskas till 8×6 för sfärer, 6 för benens svarvning och 12×5 för svansen. Originalets många separata kroppsdelar blir en enda vertexfärgad mesh per katt: närposen skriver om befintliga positions-/normalbuffer, medan fjärrvyn använder cachade sitt-/gångposer. Ingen extra textur, skugga eller belysning krävs. Kostnaden är 2 040 trianglar och ett ritanrop per synlig katt även på telefon; all geometri är lokalt genererad och inga originalbilder följer med.
+
+`src/main.js` äger fristående `ambientCats`, använder publikens egna markhöjder och `lowMemory`, döljer dem vid inomhus-/trapphus-/garagevy och registrerar inga interaktions- eller kollisionsmål. Vintersäsongen följer publikens befintliga säsongshook. `?nocats` är en lokal avstängningsflagga. Originalets CatSpawner, near-promotion, kattnamn/etiketter, familjekatt, kattkort, klappa/bära/mata, fiskobjekt, ljud, tasspår, poäng, lagring, tidssynk, tjänster, privata tillgångar och git-historik importeras inte. Tillämplig källattribution finns kvar i de extraherade modulerna.
+
+Verifiering: `npm test`, `npm run build`, fyra rena rutttester, `tools/outdoorcats-check.mjs` (766 faktiska mark-/väg-/vattenpunkter, emitterad geometri, animation/determinism, LOD, årstids-/innegräns och publik källisolering) samt faktisk gårds-/parkvy på dator/telefon och fixed-time omladdning. Egna bilder, råa mätvärden och källhashar finns i [verifiering #236](verification/236/README.md).

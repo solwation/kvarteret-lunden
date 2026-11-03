@@ -3076,3 +3076,18 @@ export const DUCKS = Object.freeze({
     [[0,.58,.44],[.10,.035,.12],0xe2ad39], [[0,.33,-.36],[.1,.07,.17],0x3f3932]],
     paired: [[[.12,.65,.35],[.023,.025,.025],0x16130e],[[.12,.035,.04],[.075,.03,.13],0xd88c24]] },
 });
+
+// Public #236: source routes/phase/scale are visual assumptions, not a survey of real animals.
+export const OUTDOOR_CATS = {
+  epoch:1793491200,drawDist:32,drawDistPhone:18,near:7,speed:.42,
+  cats: [
+    { color: 0x7b8188, zone: 'innergården', phase: 0, rest: [50, 25, 80, 30, 70, 20],
+      route: [[-10, 21], [-4, 20.6], [2, 21.4], [7, 23.4], [1, 24.2], [-6, 24]] },
+    { color: 0x7b8188, zone: 'innergården', phase: 140, rest: [70, 30, 50, 90, 25],
+      route: [[-43, 20.6], [-39.5, 21.2], [-39.5, 28.4], [-43, 28.6], [-44, 24.5]] },
+    { color: 0x7b8188, zone: 'parken vid Höje å', phase: 60, rest: [75, 35, 90, 30, 60, 45],
+      route: [[-80, 95], [-62, 92], [-52, 100], [-58, 112], [-75, 115], [-85, 106]] },
+    { color: 0x7b8188, zone: 'parken vid Höje å', phase: 300, rest: [45, 80, 35, 70],
+      route: [[-70, 100], [-56, 98], [-60, 106], [-72, 108]] },
+  ],
+};

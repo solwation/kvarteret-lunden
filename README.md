@@ -26,6 +26,8 @@ På telefoner frigörs CPU-kopian av trapphusens färdigritade dörrskyltar när
 
 Vid Karpvägen visas tre passiva träredskap på en flisyta (#234). Placering, storlek och material är bildtolkade antaganden, inte verifierad utrustning på platsen. Redskapen är fast omgivning utan tränings- eller poängfunktion.
 
+Fyra generiska katter går fasta varv på gården och i åparken och vilar, tvättar sig eller sover (#236). Deras lokala klockschema ger samma läge vid samma tid efter omladdning. De är passiv omgivning utan namn, ljud eller klickfunktion. De ritas inom 32 meter på dator och 18 meter på telefon, med animerad närpose och sammanfogad fjärrpose; publikens vintersäsong döljer dem. Rutter och storlek är visuella antaganden. `?nocats` stänger av katterna.
+
 Höje å och dess stränder fortsätter genom terrängkanterna tills dimman döljer dem (#231). Planläget följer OSM; bankmått, fjärrvattennivå och den sista västliga fortsättningen är antaganden. Befintliga brohöjder och navigationsgränser behålls.
 
 Fyra ankor simmar och går vid Höje å (#235). Flocken är enbart miljö utan ljud eller interaktion; placering, storlek och beteende är visuella antaganden.
