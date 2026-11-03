@@ -1,0 +1,49 @@
+{
+  "ok": true,
+  "baseline": "47140cbdfc32fbd2fb75978092fa0787bfc25a7c",
+  "before": {
+    "calls": 927,
+    "triangles": 1061629,
+    "points": 0
+  },
+  "after": {
+    "calls": 928,
+    "triangles": 1065193,
+    "points": 0
+  },
+  "delta": {
+    "calls": 1,
+    "triangles": 3564
+  },
+  "checks": {
+    "batches": 4,
+    "triangles": 4404,
+    "lights": 0,
+    "solidPolygons": 58,
+    "pressHeight": 0.95,
+    "nonPicking": true,
+    "floorMin": 0.030561449321213296
+  },
+  "camera": {
+    "from": [
+      -166.33452377915606,
+      7.583004974451953,
+      35.121320343559645
+    ],
+    "look": [
+      -146.53553390593274,
+      1.4051351288051568,
+      35.121320343559645
+    ]
+  },
+  "minTree": 1.0710678118654755,
+  "storage": {
+    "local": {
+      "lunden.drawing": "untouched-original",
+      "lunden.cloud.queue": "untouched-original"
+    },
+    "session": "untouched-original"
+  },
+  "external": [],
+  "errors": []
+}

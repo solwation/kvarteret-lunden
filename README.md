@@ -24,7 +24,7 @@ Visningen ska vara statisk och fungera **utan Cloudflare-integration**. Original
 
 På telefoner frigörs CPU-kopian av trapphusens färdigritade dörrskyltar när bilden har laddats upp till grafiken. Skyltarnas upplösning och de uppdaterbara hissdisplayerna behålls.
 
-Vid Karpvägen visas tre passiva träredskap på en flisyta (#234). Placering, storlek och material är bildtolkade antaganden, inte verifierad utrustning på platsen. Redskapen är fast omgivning utan tränings- eller poängfunktion.
+Vid Karpvägen visas ett passivt utegym med trästationer, snedbänkar, parallellställning och en svart hinderbana med nät, stubbar och balansbalkar (#234/#243). Grusytan har låg stålkant; sittbänkar, papperskorg och lyktarmaturer hör till miljön. Pressstocken är fast. Placering, storlek och material är bildtolkade antaganden, inte verifierad utrustning på platsen. Redskapen är fast omgivning utan tränings- eller poängfunktion.
 
 Fyra generiska katter går fasta varv på gården och i åparken och vilar, tvättar sig eller sover (#236). Deras lokala klockschema ger samma läge vid samma tid efter omladdning. De är passiv omgivning utan namn, ljud eller klickfunktion. De ritas inom 32 meter på dator och 18 meter på telefon, med animerad närpose och sammanfogad fjärrpose; publikens vintersäsong döljer dem. Rutter och storlek är visuella antaganden. `?nocats` stänger av katterna.
 

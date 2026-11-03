@@ -2921,3 +2921,14 @@ fyra identiska PNG-hashar. Counter är orörd; instrumenteringen omfattar nu äv
 Alla andra konfigurationsvärden, precision och geometrier är identiska. npm test/build passerar.
 Ickevisuellt cap-only-undantag; inga nya produktbilder eller breda profilprov.
 [Full källledger](references/campus-budget/2026-11-03.json), [råbevis och begränsningar](verification/242/README.md).
+
+## Passivt utegymutseende #243
+
+`node tools/outdoorgymtest.mjs` kontrollerar 4 batcher / 4 404 tri, offentlig före-bas 3/840,
+12 inbäddade stationsstöd, terrängfrigång, samma 52 miljöfotavtryck från byggare och ren kollisionsplan
+samt totalt 58 polygoner/232 registrerade segment. Fast presshöjd 0,95 m, inga gameplay-/lagrings-/tjänstberoenden.
+`npm test` och `npm run build` är obligatoriska och gröna.
+`CHROME_PATH=… node tools/outdoorgym-view-check.mjs BASE docs/verification/243` kör den aktuella
+publika appen en gång, jämför gamla/nya passiva gruppen från samma kamera och kontrollerar ingen extern
+trafik samt orörda originallagringsmarkörer. `HOLD_GYM_VIEW=1` håller scenen till `/tmp/243-release`.
+[Egna bilder, källor och avgränsningar](verification/243/README.md).

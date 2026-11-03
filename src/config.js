@@ -3049,20 +3049,281 @@ export const EDGE_BACKDROP = {
   lowMemory: { houses: false, trees: false, ground: false }, // phones: the land mesh only, without the OSM ground polygons (viewlod.js's idea: far detail is the first to go)
 };
 
-// Public #234, selective geometry from original 52be76d1: passive timber park fittings.
-// Location by Karpvägen, dimensions, colours and clearances are image-interpreted assumptions, not a verified installation.
+// Public #243: passive fittings; dimensions, colours and placement are visual assumptions.
+// Original e21ca752 + static press height from 35738970. No exercise or personal data.
 export const OUTDOOR_GYM = {
-  at: [-143,33], yaw: -45, pad: [14,7.5], padStep: 1, padLift: .035,
-  wood: 0x9d714e, steel: 0x363d3e, chips: 0xb59c73, post: .085, bar: .03, board: .045,
-  bench: .52, logRadius: .11, pullHeight: 2.35, stepHeight: .42,
-  geometry: {
-    postSides: 8, logSides: 10,
-    pull: {postX: .85, topExtra: .12, braceDrop: .2, braceBack: .55},
-    press: {postX: .65, logY: 1.25, logZ: .4, logLength: 1.75, benchW: .7, benchD: 1.85,
-      footZ: .7, footX: .24, slatX: .22, slatW: .2, crossD: .18, halfW: .38, halfD: .95},
-    step: {footX: .5, footZ: .28, boardW: 1.3, boardD: .25, halfW: .68, halfD: .44},
+  "at": [
+    -143,
+    33
+  ],
+  "yaw": -45,
+  "pad": [
+    18,
+    12
+  ],
+  "padStep": 1,
+  "padLift": 0.035,
+  "wood": 13075526,
+  "steel": 10001817,
+  "chips": 8548956,
+  "post": 0.085,
+  "bar": 0.03,
+  "board": 0.045,
+  "bench": 0.52,
+  "logRadius": 0.16,
+  "pullHeight": 2.35,
+  "stepHeight": 0.42,
+  "geometry": {
+    "postSides": 8,
+    "logSides": 10,
+    "slatGap": 0.012,
+    "footPlate": [
+      0.23,
+      0.12,
+      0.035
+    ],
+    "plateOffset": 0.02,
+    "pull": {
+      "postX": 0.85,
+      "topExtra": 0.12,
+      "braceDrop": 0.2,
+      "braceBack": 0.55
+    },
+    "press": {
+      "postX": 0.65,
+      "logY": 0.95,
+      "logZ": 0.4,
+      "logLength": 1.75,
+      "benchW": 0.7,
+      "benchD": 1.85,
+      "footZ": 0.7,
+      "footX": 0.24,
+      "slatX": 0.22,
+      "slatW": 0.2,
+      "crossD": 0.18,
+      "halfW": 0.38,
+      "halfD": 0.95
+    },
+    "step": {
+      "footX": 0.85,
+      "footZ": 0.65,
+      "boardW": 2.2,
+      "boardD": 0.25,
+      "depth": 1.8,
+      "slats": 6,
+      "halfW": 1.15,
+      "halfD": 0.95
+    }
   },
-  stations: [{id:'pullup',x:-4.3,z:0},{id:'press',x:0,z:0},{id:'step',x:4.3,z:0}],
+  "landscape": {
+    "gravel": 11116686,
+    "corten": 8276015,
+    "black": 2434853,
+    "padded": 6834226,
+    "rope": 7830386,
+    "edgeHeight": 0.1,
+    "edgeWidth": 0.025,
+    "grainSize": 64,
+    "grainRepeat": 1.6,
+    "approach": {
+      "from": [
+        -9,
+        0
+      ],
+      "to": [
+        -15,
+        0
+      ],
+      "width": 2
+    },
+    "frame": 0.14,
+    "boltR": 0.025,
+    "bracket": [
+      0.2,
+      0.22,
+      0.035
+    ],
+    "inclines": [
+      [
+        -5,
+        2.4
+      ],
+      [
+        5,
+        2.7
+      ]
+    ],
+    "incline": {
+      "width": 0.75,
+      "run": 2.6,
+      "low": 0.3,
+      "high": 1.15,
+      "rails": 0.55,
+      "slats": 4
+    },
+    "parallel": {
+      "at": [
+        0,
+        -2.5
+      ],
+      "halfW": 0.9,
+      "halfD": 1.1,
+      "height": 1.05,
+      "padR": 0.16
+    },
+    "benches": [
+      [
+        -5,
+        -5
+      ],
+      [
+        4.5,
+        -5
+      ]
+    ],
+    "bench": {
+      "width": 3.2,
+      "rows": 2,
+      "rowDepth": 0.45,
+      "height": 0.38,
+      "rise": 0.22,
+      "slatW": 0.24,
+      "slatOffset": 0.13,
+      "legInset": 0.4
+    },
+    "bin": {
+      "at": [
+        -8,
+        3.8
+      ],
+      "width": 0.5,
+      "depth": 0.5,
+      "height": 0.95,
+      "overhang": 0.04,
+      "lid": 0.05
+    },
+    "lamps": {
+      "at": [
+        [
+          -8.7,
+          -5.5
+        ],
+        [
+          8.7,
+          5.5
+        ]
+      ],
+      "height": 3.2,
+      "radius": 0.045,
+      "arm": 0.55,
+      "head": [
+        0.25,
+        0.1,
+        0.14
+      ]
+    },
+    "course": {
+      "postR": 0.11,
+      "beamW": 0.16,
+      "patch": [
+        -3,
+        9.5,
+        6,
+        2.4
+      ],
+      "stumps": [
+        [
+          -5,
+          8.8,
+          0.28
+        ],
+        [
+          -4.2,
+          9.6,
+          0.45
+        ],
+        [
+          -3.2,
+          9.8,
+          0.65
+        ],
+        [
+          -2.2,
+          9.6,
+          0.4
+        ],
+        [
+          -1,
+          9.9,
+          0.55
+        ],
+        [
+          0.2,
+          10.2,
+          0.32
+        ]
+      ],
+      "portal": [
+        -2.5,
+        14,
+        2.2,
+        2.5
+      ],
+      "net": [
+        -4.5,
+        12,
+        2.1,
+        1.5
+      ],
+      "netRows": 4,
+      "netCols": 6,
+      "ropeR": 0.012,
+      "netBottom": 0.25,
+      "netInset": 0.15,
+      "netSag": 0.08,
+      "collisionStep": 0.4,
+      "balance": [
+        [
+          1,
+          9.6,
+          1,
+          13,
+          0.35
+        ],
+        [
+          1,
+          13,
+          4,
+          15,
+          0.45
+        ],
+        [
+          4,
+          15,
+          5.8,
+          12.2,
+          0.28
+        ]
+      ]
+    }
+  },
+  "stations": [
+    {
+      "id": "pullup",
+      "x": -5.2,
+      "z": -2.1
+    },
+    {
+      "id": "press",
+      "x": 0,
+      "z": 1.5
+    },
+    {
+      "id": "step",
+      "x": 5.1,
+      "z": -2.1
+    }
+  ]
 };
 
 // #1815: four local ducks; model dimensions, habitat, motion and timing are visual guesses.

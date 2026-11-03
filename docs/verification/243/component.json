@@ -1,0 +1,1 @@
+{"ok":true,"baseline":"47140cbdfc32fbd2fb75978092fa0787bfc25a7c","before":{"batches":3,"triangles":840},"after":{"batches":4,"triangles":4404},"delta":{"batches":1,"triangles":3564},"materials":4,"textureBytes":16384,"lights":0,"polygons":58,"segments":232,"minGravelGap":0.033818803790206076,"passiveOnly":true}

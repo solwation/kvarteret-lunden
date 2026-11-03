@@ -2850,3 +2850,33 @@ resursledgers samt identiska fyra när-/fjärr-PNG-hashar. npm test/build passer
 ickevisuellt undantag: inga nya produktbilder behövs. #240:s tidigare underkända siffror bevaras som
 historia, men den granskade budgetacceptansen är nu uppfylld och arkitekturbilderna är oförändrade.
 [Fullt käll-/mätunderlag](references/campus-budget/2026-11-03.json), [verifiering](verification/242/README.md).
+
+## Utegymmets passiva utseende, #243
+
+Selektivt granskat från originalets `e21ca752b49a129f3909019707898f2d7479ddf4` (#1835):
+`src/outdoorgymdecor.js`, enbart konstruktorns synliga geometri från `src/outdoorgym.js` och statiska
+`OUTDOOR_GYM`-mått/färger/placering. Enda senare tillägget är `geometry.press.logY = 0.95`
+från `357389701091efaec91a673bd0cc15f11904d7bb` (#1842); inga andra senare originaländringar används.
+Alla mått, material, placeringar och höjder är modellantaganden, inte verifierad standardutrustning.
+
+Publicens befintliga `buildOutdoorGym(renderedTerrainY)`-hook i surroundings och gymSegments-hook i
+farwalk behålls. Stationerna byggs med publik terräng, fyrkantiga träprofiler/stålplåtar och bredare stegplattform.
+Tillkommande passiv miljö är grus med låg stålkant/anslutningsremsa, två snedbänkar, parallellställning,
+sittbänkar, papperskorg, två lyktarmaturer och svart portal/nät/stubbar/balansbalkar. Inga nya ljus skapas.
+Fasta fotavtryck tillförs befintlig bucketkollision och kontrolleras mot byggarens egna fotavtryck;
+övrig navigation, terräng, säsong och LOD ändras inte. Den låga stålkanten är inte en gångbarriär.
+
+Den statiska modellen slås samman per material: fyra batcher/4 404 trianglar, jämfört med publikens
+tidigare tre/840. Originalets åtta synliga batcher blir fyra här genom att sammanfoga stationsträ med
+övrigt trä och den fasta stocken med vadderingen. Publicens tidigare plana trästil behålls; originalets
+woodgrain-modul importeras inte. Enda nya texturen är en lokal deterministisk 64×64 RGBA-grustextur
+(16 KiB före GPU-mipmap), ingen bildhämtning. Källans relevanta attribution/licens bevaras via befintliga
+projektkrediter och denna exakta källhänvisning. Inga referensfoton eller fotografnamn kopieras.
+
+Avvisat: GymEffort/Rest, övningar, tillstånd/update-loop, input/HUD, stockanimation, targets/pickables,
+IK/gx/avatarsynk, poäng/pump/räknare, nyare samlings-/bestiarie-registrering, personliga resurser,
+Workers/WebSockets/originalets lagring och tjänster. Ingen ny main-hook eller UI skapas.
+
+`npm test`, `npm run build`, riktad geometri-/budget-/fotavtryckskontroll och en faktisk publik gymvy
+med nät-/lagringsisolering: [egna bevis och mätmetod](verification/243/README.md).
+Den historiska #234-beskrivningen ovan avser dess dåvarande modell; #243 ersätter utseendet.
