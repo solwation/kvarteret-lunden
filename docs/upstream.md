@@ -2731,3 +2731,37 @@ Originalets två instansbatcher behålls: fiskarnas tillplattade silhuetter ovan
 `main.js` har bara ett eget `ambientFish`-objekt och update-hook, döljer batcherna inomhus/i garage/trapphus och utanför 45 meter. `?noriverfish` är en lokal avstängning. Ingen hajkod, hajflagga, originalnyckel, RiverFishSync, rum/net-koppling, Worker/tjänst, fångst/onCaught/catchFish/catchCm, fiskespel/quest eller lagring följer med. Den publika applikationen läser inte originalets data; dess oberoende nät-/lagringsgränser behålls.
 
 Verifiering: `npm test`, `npm run build`, `tools/riverfish-check.mjs` (6 282 fisklägen, 827 ringar, kanal/vatten/botten/pelare, exakt state/matrisdeterminism, rit-/innegräns och publik källisolering) och faktisk åvy med fiskar/ringar samt omladdning vid samma tid. Egna granskade bilder, calls/tri, källhashar och begränsningar finns i [verifiering #238](verification/238/README.md).
+
+## Passiva ekorrar i lokala träd, #237
+
+Exakt granskad originalkälla: `578ecc09b02c7355e299fc58d0e0127b622ee85a` (original #1672/#1686).
+Användarens uttryckliga miljödjursundantag i #235–238 gäller här; den allmänna policytexten
+levereras separat i #235 och ändras inte igen av denna port.
+
+Selektivt överförda delar: den pälsiga modellen med när-/fjärrgeometri, svans-/huvudmorpher
+från `src/squirrels.js`, `perchPoint`, `footPoint`, `climbPoint` och `clearPath` samt hoppets
+båge från `src/squirrelbrain.js`, utvalda färger/mått och rörelsevärden ur `SQUIRRELS`.
+En kompakt publik tillståndsmaskin behåller kronhopp, spiral på stammen, marklöpning,
+osynligt letande och flykt till ett nåbart träd. Fyra anonyma djur ersätter originalets
+namngivna population; en startpunkt är publicens faktiska hagträd. Antalet, placeringen
+och beteendedetaljerna är visuella produktantaganden.
+
+Publicens redan byggda `treeFeet` matchas mot dess befintliga `aoTrees`; arrayen exporteras
+nu utan ändrat innehåll. De redan byggda södra skogsträdens `y`, `h` och `r` finns i
+`southbackdrop.js` (`group.userData.trees/bigTrees`): stammarna ritas med dessa markhöjder
+och kronorna med centrum `y+h*.7` och radie `r`. Samma data förs nu vidare i `southTreeFeet`
+som `y/cy/r`. Inga nya träd, kronor, frön, geometrier, material, årstidsregler eller AO/skuggor
+ändras. Den avgränsade [metadata-diffen](verification/237/tree-metadata.diff) visar hela
+ändringen i surroundings.js. Ekorrarnas mark följer `renderedTerrainY`, med torra, vägfria
+fötter och samplade markvägar; den södra lunden hålls i en separat trädgrupp.
+
+Bortvalt: NutField/nötmodeller/glitter/holdables, E/matning/lockning, spelarrop, hearts,
+ljud, poäng/statistik, synk/ledare, tjänster, lagring och originalbilder. Den fulla privata
+AI:ns cache-/dag-/fjärrroaming ersätts av den mindre lokala miljöcykeln. Bortom 70 m stannar
+AI:n helt; bortom 100 m ritas inget. Befintliga seasons.js döljer och fryser djuren under
+snömånaderna. Ett djur är en mesh, utan ljus, textur eller skuggkastning.
+
+Verifiering: två riktade Node-test, npm test, npm run build och en faktisk publik browserturn
+vid ån och hagen med naturligt nådda rörelsetillstånd, vinter-/avståndsgrind, exakt ritdelta
+och oförändrade originallagringsmarkörer/inga externa anrop.
+[Egna granskade bilder, råresultat, källhashar och begränsningar](verification/237/README.md).

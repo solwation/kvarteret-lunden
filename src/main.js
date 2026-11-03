@@ -15,10 +15,12 @@ import { Ducks } from './ducks.js';
 import { OutdoorCats } from './outdoorcats.js';
 
 import { RiverFish } from './riverfish.js';
+
+import { Squirrels } from './squirrels.js';
 import { Paddock } from './paddock.js';
 import { visitSpot } from './paddockgeo.js';
 import { applySeason } from './seasons.js';
-import { groundY, renderedTerrainY, treeFeet } from './surroundings.js';
+import { groundY, renderedTerrainY, treeFeet, aoTrees, southTreeFeet } from './surroundings.js';
 import { Core } from './core.js';
 import { CoreHouse } from './corehouse.js';
 import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, LIGHTING, STARTUP, TOUCH, VIEW_NEAR, SITE } from './config.js';
@@ -28,7 +30,7 @@ const $ = id => document.getElementById(id);
 const touch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
 document.body.classList.toggle('touch', touch);
 const touchLayout = setupTouchLayout({enabled: touch}); // own button/stick layout from the help dialog (#30, upstream 1af9b39)
-let renderer, camera, scene, world, navigation, core, garage, paddock, ducks, ambientCats, ambientFish;
+let renderer, camera, scene, world, navigation, core, garage, paddock, ducks, ambientCats, ambientFish, squirrels;
 const debugParams = new URLSearchParams(location.search), paddockRain = Math.max(0, Math.min(1, Number(debugParams.get('paddockrain')) || 0));
 let active = false, ready = false, focus = null, measuring = false, firstPoint = null;
 const intervals = debugParams.has('perf') ? new FrameIntervals() : null;
@@ -188,6 +190,8 @@ async function init() {
   ambientCats = debugParams.has('nocats') ? null : new OutdoorCats({scene,camera,ground:(x,z)=>Math.max(groundY(x,z),renderedTerrainY(x,z)),lowMemory});
 
   ambientFish = debugParams.has('noriverfish') ? null : new RiverFish({scene,camera});
+
+  squirrels = new Squirrels({scene,camera,feet:treeFeet,crowns:aoTrees,southFeet:southTreeFeet,ground:renderedTerrainY});
   const debugMonth = Number(debugParams.get('month')); if (debugMonth >= 1 && debugMonth <= 12) applySeason(Math.round(debugMonth)); // debug: show a month's season (snow months: white ground, ponies in the stable)
   await loadingStep('Bygger trapphus och garage', 0.82);
   garage = world.garage = new Garage();
@@ -229,7 +233,7 @@ async function init() {
   $('place-toggle').disabled = false;
   // Keep model access local for diagnostics, without a service connection.
   const siteInstances = lowMemory ? null : installSiteInstanceBatch(renderer, scene);
-  window.lundenViewer = {intervals, colorFrustum, siteInstances, phoneFrustum, paddock, ducks, ambientCats, ambientFish, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
+  window.lundenViewer = {intervals, colorFrustum, siteInstances, phoneFrustum, paddock, ducks, ambientCats, ambientFish, squirrels, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
   window.kvarteretStartup?.finish();
   $('start').disabled = false; $('start').textContent = 'Börja utforska →';
   status('Dator och mobil · Ingen inloggning');
@@ -283,6 +287,8 @@ function frame() {
   ambientCats?.update(navigation.below || navigation.inCore || !navigation.outdoors);
 
   ambientFish?.update(dt, navigation.below || navigation.inCore || !navigation.outdoors);
+
+  squirrels.update(dt,navigation.below);
   updateCameraNear();
   scene.updateMatrixWorld();
   if (active) {

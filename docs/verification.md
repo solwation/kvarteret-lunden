@@ -2886,3 +2886,12 @@ begränsad hastighet och borttagna spel-/ljud-/lagringsberoenden. `tools/duckamb
 laddar den verkliga publika scenen vid ån, mäter samma vy med flocken synlig/dold,
 kontrollerar faktisk terrängkontakt och tar egna resultatbilder. `npm test` och
 `npm run build` passerar. [Resultat och omfattning](verification/235/README.md).
+
+## Passiva ekorrar, #237
+
+`node --test tools/squirrelambienttest.mjs` kontrollerar den lokala tillståndsmaskinens
+kronhopp, klättring, marklöpning/letande/flykt, vinter-/avståndsgräns och frånvaro av
+spel-/ljud-/lagringsberoenden. `tools/squirrelambient-check.mjs` laddar den riktiga publika
+scenen en gång och granskar å-/hagträdens metadata, naturliga markpauser, renderingens
+synlig/dold-delta samt vintersömn och isolering. npm test och bygge passerar.
+[Resultat och egna bilder](verification/237/README.md).

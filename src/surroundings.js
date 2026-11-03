@@ -1374,7 +1374,7 @@ export const treeFeet = [];
 /** #191 (upstream #1714): the south backdrop's woodland and hospital-grass trunks ([{ x, z, kind: 'tree' | 'big' }], not the edge rows) so the walkable south (WALK.z1 452) blocks on them like on `treeFeet`. */
 export const southTreeFeet = [];
 /** Every tree's crown as built: [{ x, z, r (m), y (its centre) }] (groundao.js, #1079). */
-const aoTrees = [];
+export const aoTrees = [];
 
 /** Upstream #1083: narrow a crown lobe (centre `pos`, instance `scale`) so its cards stay FOLIAGE.wallClearance outside every
  * SITE.blocks footprint its height overlaps; the trunk's position and the crown's height stay as placed. */
@@ -1927,7 +1927,7 @@ export function* surroundingsParts({ grass, husL = null }) {
   yield 0.55;
   backdrops.south = south;
   southTreeFeet.length = 0;
-  southTreeFeet.push(...(south.userData.trees ?? []).map((t) => ({ x: t.x, z: t.z, kind: 'tree' })), ...(south.userData.bigTrees ?? []).map((t) => ({ x: t.x, z: t.z, kind: 'big' })));
+  southTreeFeet.push(...(south.userData.trees ?? []).map((t) => ({ x: t.x, z: t.z, y:t.y, cy:t.y+t.h*.7, r:t.r, kind: 'tree' })), ...(south.userData.bigTrees ?? []).map((t) => ({ x: t.x, z: t.z, y:t.y, cy:t.y+t.h*.7, r:t.r, kind: 'big' })));
   // Kv. Lunden's own blocks and the old S:t Lars buildings: own façade texture and roof colour each,
   // plus a white cornice under the old roofs (#47)
   const modern = S.blocks.filter((b) => !b.style), oldB = S.blocks.filter((b) => b.style === 'old'), school = S.blocks.filter((b) => b.style === 'school');

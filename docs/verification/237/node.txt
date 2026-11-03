@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: deterministic ambient cycle hops crowns, climbs, runs/searches on land and flees to a trunk
+ok 1 - deterministic ambient cycle hops crowns, climbs, runs/searches on land and flees to a trunk
+  ---
+  duration_ms: 31.483956
+  type: 'test'
+  ...
+# Subtest: actual renderer host freezes/hides far and winter animals, follows seasons, keeps no interaction/dependency paths
+ok 2 - actual renderer host freezes/hides far and winter animals, follows seasons, keeps no interaction/dependency paths
+  ---
+  duration_ms: 93.770771
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 233.661378

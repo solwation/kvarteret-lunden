@@ -3108,3 +3108,18 @@ export const RIVER_FISH = {
   ring: { life: 3.2, r: [0.1, 1.5], second: 0.5, glow: 0.5, night: 0.15 },
   drawDist: 45, wag: [0.14, 7.5], murk: 0.5, opacity: 0.85, look: { flat: 0.45, wide: 1.9, shade: 0.55, deepTone: 0.6 },
 };
+
+// Public #237: selected original 578ecc09 motion/appearance; four anonymous local animals (visual guesses).
+export const SQUIRRELS = {
+ simDist:70, drawDist:100, leapRange:11, groundHop:22,
+ run:3.4, flee:6.5, climb:2.6, leap:5.5, perch:[3.5,8], forage:[16,36], search:[1.2,3.5],
+ maxStep:.1, forageRadius:4, leapChance:.5, look:{near:15}, roam:{valley:45,spiral:1.25},
+ starts:[[-150,215],[-30,128],[-170,247],[-28,328]],
+ south:[-55,-5,302,352],
+ animals:[
+  {scale:1.25, width:1, color:0x8a5632, belly:0xd9c3a0, tail:0x9a6338, tip:null, ground:0.88, shy:4, speed:1.0, perch:1},
+  {scale:1.0, width:1, color:0xa4673a, belly:0xe6d4b4, tail:0xb3733f, tip:0xf4f1e8, ground:0.55, shy:6.5, speed:1.15, perch:0.7},
+  {scale:0.92, width:0.78, color:0x4f3626, belly:0xb9a88c, tail:0x5c4130, tip:null, ground:0.35, shy:9, speed:1.3, perch:1.4},
+  {scale:1.25, width:1, color:0x8a5632, belly:0xd9c3a0, tail:0x9a6338, tip:null, ground:0.88, shy:4, speed:1.0, perch:1},
+ ],
+};

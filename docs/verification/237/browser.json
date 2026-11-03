@@ -1,0 +1,191 @@
+{
+  "habitat": {
+    "trees": 259,
+    "river": 253,
+    "south": 6,
+    "feet": 507,
+    "crowns": 507,
+    "southFeet": 93,
+    "animals": [
+      {
+        "tree": 16,
+        "tr": {
+          "x": -141.3371880018791,
+          "z": 200.26655523025735,
+          "y": -5.6865607207726026,
+          "cy": 6.3508568159952565,
+          "r": 8.142958921931198,
+          "g": "river",
+          "near": [
+            248
+          ]
+        },
+        "near": 3382,
+        "far": 1396
+      },
+      {
+        "tree": 51,
+        "tr": {
+          "x": -31.484647990430076,
+          "z": 128.87625433591953,
+          "y": -5.558039552736328,
+          "cy": 3.847691967378944,
+          "r": 6.3627007341956245,
+          "g": "river",
+          "near": [
+            30,
+            135,
+            144,
+            147,
+            226
+          ]
+        },
+        "near": 3382,
+        "far": 1396
+      },
+      {
+        "tree": 211,
+        "tr": {
+          "x": -170,
+          "z": 247,
+          "y": -3.0713394334566573,
+          "cy": 5.096663980259867,
+          "r": 5.52,
+          "g": "river",
+          "near": []
+        },
+        "near": 3382,
+        "far": 1396
+      },
+      {
+        "tree": 255,
+        "tr": {
+          "x": -21.49183781887025,
+          "z": 325.5309499863214,
+          "y": 2.8754392945242424,
+          "cy": 13.437199390898098,
+          "r": 7.929956968142631,
+          "g": "south",
+          "near": []
+        },
+        "near": 3382,
+        "far": 1396
+      }
+    ],
+    "lights": 4
+  },
+  "views": [
+    {
+      "name": "river",
+      "index": 0,
+      "seconds": 31.5,
+      "states": [
+        "perch",
+        "leap",
+        "down",
+        "forage",
+        "search"
+      ],
+      "brain": {
+        "x": -145.0632350411491,
+        "y": -5.4124154797003605,
+        "z": 193.25201640311383,
+        "state": "search"
+      },
+      "camera": {
+        "position": [
+          -142.6632350411491,
+          -3.8240025093979884,
+          193.25201640311383
+        ],
+        "target": [
+          -145.0632350411491,
+          -5.249915479700361,
+          193.25201640311383
+        ],
+        "angle": 0
+      },
+      "shown": {
+        "frame": 22,
+        "calls": 27,
+        "triangles": 362815,
+        "points": 0,
+        "lines": 732
+      },
+      "hidden": {
+        "frame": 23,
+        "calls": 26,
+        "triangles": 359433,
+        "points": 0,
+        "lines": 732
+      },
+      "deltaCalls": 1,
+      "deltaTriangles": 3382
+    },
+    {
+      "name": "paddock",
+      "index": 2,
+      "seconds": 11.350000000000001,
+      "states": [
+        "perch",
+        "down",
+        "forage",
+        "search"
+      ],
+      "brain": {
+        "x": -168.75411964676462,
+        "y": -3.0774079576932887,
+        "z": 246.96295115130954,
+        "state": "search"
+      },
+      "camera": {
+        "position": [
+          -166.35411964676462,
+          -1.4891892204266552,
+          246.96295115130954
+        ],
+        "target": [
+          -168.75411964676462,
+          -2.9578079576932885,
+          246.96295115130954
+        ],
+        "angle": 0
+      },
+      "shown": {
+        "frame": 25,
+        "calls": 27,
+        "triangles": 361323,
+        "points": 0,
+        "lines": 732
+      },
+      "hidden": {
+        "frame": 26,
+        "calls": 26,
+        "triangles": 357941,
+        "points": 0,
+        "lines": 732
+      },
+      "deltaCalls": 1,
+      "deltaTriangles": 3382
+    }
+  ],
+  "gates": {
+    "farHidden": true,
+    "farFrozen": true,
+    "winterHidden": true,
+    "winterFrozen": true,
+    "resumed": true,
+    "targets": "undefined",
+    "extraMesh": false,
+    "shadows": false
+  },
+  "storage": {
+    "local": {
+      "lunden.drawing": "original-sentinel"
+    },
+    "session": "original-session-sentinel"
+  },
+  "errors": [],
+  "external": [],
+  "limits": "Actual source app, desktop Chromium SwiftShader. Controlled visitor spawns and brain steps to natural states; no continuous walk or physical-phone/FPS claim."
+}

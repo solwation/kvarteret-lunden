@@ -1,0 +1,6 @@
+browsertest: no systemd user scope here, running without a memory ceiling
+PASS actual public World ready
+PASS actual local crowns and south grove 259
+PASS river 1 3382
+PASS paddock 1 3382
+PASS winter/far gates and public isolation; REVIEW_READY
