@@ -1,0 +1,16 @@
+{
+  "baseline": "a939dd593546690343a7e84b7722d4bcec95238f",
+  "original": "3d455f4cda94d4ec58b66704f87823000d7a859d",
+  "build": "e1fce9166ad54e9a59084329",
+  "sha256": {
+    "src/config.js": "93edd675277f5148c4a76148a2ff422952230999468a0b73903d812cc251b436",
+    "src/street.js": "ad2fb8c4baaa956ec1dfec373dd3aceff0479291722d4119011b8367516d2a4f",
+    "tools/busstop247-check.mjs": "5aef1a9939cb1a923cb153caa6d68d9ee8c0eafb67de7f7949bad34bff995250",
+    "tools/busstop247-view-check.mjs": "87340a07cfb142ade01723def3373832e10fb0d3d7ae4ec1b2dc2ec9b796963c",
+    "docs/verification/247/component.json": "e73b3bcf78efd55389c9e34828c1bdd56bd9f0e59e683ae6ac934ed37c3d85ce",
+    "docs/verification/247/browser.json": "5dc01e8d6b0e99c37cf9c3bb466c614ddfbafc5edf6c7295c327c060ccf5f02c",
+    "docs/verification/247/overview.png": "108466c44cbc5e64f9f1345710e55f28e07d7df2fb23ec08158e371720f61a13",
+    "docs/verification/247/near-name.png": "cd59aa65b4d7aa890ab3c6da93eb885dbf255b63e6d7bb311caee038c2688b60",
+    "docs/verification/247/far-name.png": "0b6ac618e441e060691289cf4c42b68ce86dd96b2d014a725d10428d72edf93e"
+  }
+}

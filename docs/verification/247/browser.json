@@ -1,0 +1,135 @@
+{
+  "ok": true,
+  "version": null,
+  "signs": [
+    {
+      "position": [
+        20.6,
+        2.3,
+        -28.66
+      ],
+      "label": "Lund S:t Lars Karpvägen",
+      "width": 0.42,
+      "height": 0.62
+    },
+    {
+      "position": [
+        20.6,
+        2.3,
+        -28.74
+      ],
+      "label": "Lund S:t Lars Karpvägen",
+      "width": 0.42,
+      "height": 0.62
+    },
+    {
+      "position": [
+        6.5,
+        2.3,
+        -23.71
+      ],
+      "label": "Lund S:t Lars Karpvägen",
+      "width": 0.42,
+      "height": 0.62
+    },
+    {
+      "position": [
+        6.5,
+        2.3,
+        -23.79
+      ],
+      "label": "Lund S:t Lars Karpvägen",
+      "width": 0.42,
+      "height": 0.62
+    }
+  ],
+  "sharedTexture": 1,
+  "streetMeshes": 24,
+  "streetTriangles": 85536,
+  "freeGround": [
+    {
+      "x": 8.6,
+      "z": -23.5,
+      "ground": 0
+    },
+    {
+      "x": 13.2,
+      "z": -23,
+      "ground": 0
+    },
+    {
+      "x": 10.6,
+      "z": -23.2,
+      "ground": 0
+    }
+  ],
+  "views": [
+    {
+      "name": "overview",
+      "eye": [
+        13,
+        9,
+        -10
+      ],
+      "target": [
+        13,
+        1.4,
+        -25
+      ],
+      "calls": 56,
+      "triangles": 455520
+    },
+    {
+      "name": "near-name",
+      "eye": [
+        6.5,
+        3,
+        -21.5
+      ],
+      "target": [
+        6.5,
+        2.3,
+        -23.75
+      ],
+      "calls": 52,
+      "triangles": 440100
+    },
+    {
+      "name": "far-name",
+      "eye": [
+        20.6,
+        3,
+        -26.45
+      ],
+      "target": [
+        20.6,
+        2.3,
+        -28.7
+      ],
+      "calls": 49,
+      "triangles": 439400
+    }
+  ],
+  "walk": {
+    "before": [
+      7,
+      0,
+      -22
+    ],
+    "after": [
+      7.8000000000000185,
+      0,
+      -22
+    ],
+    "distance": 0.8000000000000185
+  },
+  "storage": {
+    "local": {
+      "lunden.drawing": "untouched-original",
+      "lunden.cloud.queue": "untouched-original"
+    },
+    "session": "untouched-original"
+  },
+  "errors": [],
+  "external": []
+}

@@ -2966,3 +2966,23 @@ Actual public geometry validation sampled 6,361 ground points against emitted tr
 Rejected: original names/breeds/profiles, visitor needs, feeding/petting/carrying, promotion, catch/food objects, audio, score, cards/bestiary, personal content, original images, storage, sync, network services and Workers. Existing original-key sentinels remained unchanged and the app made no external requests. No continuous extra renderer or lights are added; the on/off cost of two already existing visible cat meshes plus the shared five-point heart pool measured +3 calls, +4,080 triangles, +5 points. At an equal visible cat count, only the heart effect adds one draw and five points; body triangle/draw cost is unchanged. Current public Nordic's raised parking underside is visible in the evidence and remains the separately tracked #249 geometry issue; original #1850's later lower surface is deliberately not mixed into this sampler.
 
 `npm test`, `npm run build`, the bounded plan/model check and one actual app turn passed. [Own reviewed images, raw results, source phases/hashes and limits](verification/245/README.md). No original screenshot or photographic asset was transferred.
+
+## Återställda vanliga hållplatstavlor, #247
+
+Selektiv originalkälla `3d455f4cda94d4ec58b66704f87823000d7a859d` (original #1843):
+endast SITE.street-fälten och motsvarande street.js-grenar. Det avslutade lokala
+vägarbetets signalvagn och två varningsstativ tas bort. De två befintliga stolpplatserna
+får delad procedurtextur med namnet **Lund S:t Lars Karpvägen**; röda Flyttad-tavlan
+ersätts. Tavlorna är 0,42×0,62 m med centrum 2,3 m över marken. Fram-/bakplanet ligger
+40 mm från stolpcentrum, alltså 10 mm utanför befintlig 30 mm radie. Detta är ett
+visuellt modellantagande, inte verifierade verkliga mått. Övriga skyltars 12 mm behålls.
+
+Vägar, övergångsställen, curbs, ljuspooler, refugens gula pollare, andra skyltar,
+bussar, navigation och åns separata hållplatsplattform är bevarade. Optional signal
+och tom svart batch fungerar. Fryst publik komponentbas `a939dd593546690343a7e84b7722d4bcec95238f`
+ger 28→24 meshes, 85 772→85 536 trianglar (−4/−236); ingen ny lampa eller texturhämtning.
+Inga originalbilder, personuppgifter, gameplay, tjänster eller lagringsnycklar överförs.
+Attribution och befintliga licenser gäller även den selektiva importen.
+
+`npm test`, `npm run build`, riktad komponentjämförelse och faktisk byggd publik vy med
+namnbilder, gång och nät-/lagringsisolering: [egna resultat och begränsningar](verification/247/README.md).

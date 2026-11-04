@@ -1,0 +1,76 @@
+{
+  "ok": true,
+  "baseline": "a939dd593546690343a7e84b7722d4bcec95238f",
+  "before": {
+    "meshes": 28,
+    "triangles": 85772
+  },
+  "after": {
+    "meshes": 24,
+    "triangles": 85536
+  },
+  "delta": {
+    "meshes": -4,
+    "triangles": -236
+  },
+  "labels": [
+    "Lund S:t Lars",
+    "Karpvägen",
+    "HEPCAT",
+    "Store",
+    "Välkommen in!",
+    "Lund S:t Lars",
+    "Karpvägen",
+    "HEPCAT",
+    "Store",
+    "Välkommen in!"
+  ],
+  "signs": [
+    {
+      "position": [
+        20.6,
+        2.3,
+        -28.66
+      ],
+      "label": "Lund S:t Lars Karpvägen"
+    },
+    {
+      "position": [
+        20.6,
+        2.3,
+        -28.74
+      ],
+      "label": "Lund S:t Lars Karpvägen"
+    },
+    {
+      "position": [
+        6.5,
+        2.3,
+        -23.71
+      ],
+      "label": "Lund S:t Lars Karpvägen"
+    },
+    {
+      "position": [
+        6.5,
+        2.3,
+        -23.79
+      ],
+      "label": "Lund S:t Lars Karpvägen"
+    }
+  ],
+  "sharedTexture": true,
+  "faceClearanceMetres": 0.01,
+  "retainedGeometryHashes": [
+    "01443ee4c61929e72219418c68d05cdca2a3a814ba214e7f1196e0e7650d8e21",
+    "9f35e28b661348a52e41c3f61d1dd2fd3abff2c72245f6bb462319dcea50989c",
+    "37fe71795b20e9e02fa204ef3b593102335e27a098c3a149de9bc073a9db5684",
+    "80a70899e4d670b4e44bfa7de033a5271635cb73d8cdfeb5f20937536547626a",
+    "b79f7d27ecbfff8675c58909db4b2c59ac7d28bbfbe623f612fa3faa52bb0733",
+    "372d92d599f129a41dd371b7b0a2b855c493a56eb2cf129f52d8f2edf175e7f6",
+    "52b034d19e3d9b84877cf2e62651019def8189a4d55bb40d37cb5d4c62a3561b"
+  ],
+  "collisionSHA256": "699cf3d682ed484f3cd40016dc3d03c57544698023ab1458aa88cb81d446101b",
+  "optionalSignal": true,
+  "noLights": true
+}
