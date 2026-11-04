@@ -1,0 +1,24 @@
+{
+  "ok": true,
+  "materialIsolation": true,
+  "fragmentHooks": true,
+  "publicSamples": 450,
+  "naturalPublicNear": 0.06,
+  "naturalPublicFar": 700,
+  "bits": 24,
+  "precisionProbe": {
+    "eye": [
+      -170,
+      18.5,
+      -39
+    ],
+    "target": [
+      -20,
+      -3,
+      7
+    ]
+  },
+  "equalDepthCodesBefore": 27,
+  "minimumCodeGapAfter": 2,
+  "scope": "Analytical model of own public mesh pairs; not physical GPU flicker or measured FPS."
+}

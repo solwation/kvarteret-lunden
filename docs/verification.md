@@ -2993,3 +2993,15 @@ kollisionsprov, nativeW, nät-/lagringsisolering och egna plats-/detaljbilder.
 `tools/football-placement-check.mjs` granskar kontinuerlig2Dfrigång till47befintliga
 väg-/access-/parkstråk och aktuell publik trädlokalisering från appkontrollen.
 [Exakta källor, råvärden och granskade bilder](verification/250/README.md).
+
+## Djuplager på Hus L:s långfasad, #253
+
+`node tools/facadebacking253-check.mjs` verifierar den verkliga materialfactoryn,
+isolerad delad vägg och bevarade fragmenthooks. Egen publik450-parexport räknas genom
+publikens near0.06/far700/24bitmodell. `tools/facadebacking253-view.mjs BASE` kör en
+faktisk publik värld med fryst publik före-exterior och byter endast bakmaterialet via
+aktuell produktionsfactory. Geometrihashar,146 rutor, draw/triangle/programbudget,
+originallagringsmarkörer och noll externa requests/WebSockets kontrolleras. Egna före/efter-
+och närbilder granskas. Kontrollerad bildnear0.05 är en konservativ prob, inte en ändring
+av publicens kamera. Ingen fysiskGPU-/FPS-/nativeflimmeråtergivning påstås.
+[Resultat och exakt metod](verification/253/README.md).

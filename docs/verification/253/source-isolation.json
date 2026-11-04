@@ -1,0 +1,33 @@
+{
+  "original": "7acb84d948cbb9f41b3fa8e9d60c929213074b02",
+  "publicBaseline": "63ba16656d931fc6313ac6129814f1454b88b1b4",
+  "factoryRegionExact": true,
+  "factorySHA256": "c92fc44fd49fa3aba181beb7d620a3cb97f21bc22522d5c6acffd3f06816bf59",
+  "geometryBuilderExactOutsideMaterialPatch": true,
+  "retained": [
+    {
+      "file": "src/config.js",
+      "sha256": "b30485fd098214dc64f0d64e4028c251bcf6afb3d8ea4a85015603a35122ef7f"
+    },
+    {
+      "file": "src/world.js",
+      "sha256": "e2d60bf790a6bfdd38ef3937032e5fa7e810f2f44ec27ccaea0fb311d0a6fad8"
+    },
+    {
+      "file": "src/corehouse.js",
+      "sha256": "16552524bf41e0e4220b67681ea3b0010be4769280351473b14e7368a52dbb6c"
+    },
+    {
+      "file": "src/surroundings.js",
+      "sha256": "4d090920ea97ebaa5eedeeb2b2f8b36066e4c1aaa060ae0e28eabbe8fecf0484"
+    },
+    {
+      "file": "src/navigation.js",
+      "sha256": "c2f9b55b6dc2f75518250228f62c1afa5decfdcc99ac3b82a9bfb2b7668efa40"
+    },
+    {
+      "file": "src/neighborglass.js",
+      "sha256": "b50b31c6c89770cc55ce37c25c3240c3284bf7f3a6c9b760b54da78e8e0d147a"
+    }
+  ]
+}

@@ -1,0 +1,374 @@
+{
+  "ok": true,
+  "baseline": "63ba16656d931fc6313ac6129814f1454b88b1b4",
+  "initial": {
+    "draw": {
+      "frame": 30,
+      "calls": 886,
+      "triangles": 967030,
+      "points": 0,
+      "lines": 12335
+    },
+    "programs": 37,
+    "oldMaterial": {
+      "polygonOffset": false,
+      "factor": 0,
+      "units": 0
+    },
+    "eye": [
+      -70,
+      23,
+      -20
+    ],
+    "near": 0.05,
+    "far": 700
+  },
+  "beforeDraw": {
+    "frame": 31,
+    "calls": 886,
+    "triangles": 967030,
+    "points": 0,
+    "lines": 12335
+  },
+  "afterDraw": {
+    "frame": 32,
+    "calls": 886,
+    "triangles": 967030,
+    "points": 0,
+    "lines": 12335
+  },
+  "beforePrograms": 37,
+  "afterPrograms": 37,
+  "isolated": true,
+  "positive": true,
+  "units": 2,
+  "factor": 1,
+  "originalWallUnchanged": true,
+  "otherSharedUsers": 6,
+  "fragmentHooksPreserved": true,
+  "appearancePreserved": true,
+  "geometryUnchanged": true,
+  "ledger": [
+    {
+      "i": 0,
+      "geometry": "fa91a1e2-b3ec-4d4a-a99a-f1b0e9f36e6b",
+      "position": "97a1469be111e2f4b64bf1268d90a6cb8fe733a2471af9f52988cefb1fabc1bb",
+      "normal": "325c8892c000c39dbb369e75955ebaf169fd9dc13a730ada802e2efde8b8e190",
+      "triangles": 1426
+    },
+    {
+      "i": 1,
+      "geometry": "ec03f719-1603-4c4a-b2bd-7229e2c23662",
+      "position": "3b312c6229548d7350583815f88d9282d9116ba18dac88119f31952d0c140e5a",
+      "normal": "3e848fcb0f5f4dee8165ba268eb447ff5388e4ede00d57de7949f01a4b2cc8af",
+      "triangles": 918
+    },
+    {
+      "i": 2,
+      "geometry": "d95a965e-8ccc-4385-956e-66102f45b112",
+      "position": "41ef933edcc5730cc4abf115719ee17ffe3c6c9d73041a287936ac32a58a2883",
+      "normal": "a5ba908d6de8d5881187d5bbf6f9b0a4c4fe21d6a891763536dc71e27488cb00",
+      "triangles": 120
+    },
+    {
+      "i": 3,
+      "geometry": "2db65f8b-b2ed-4028-9764-7ea2a96636e1",
+      "position": "5cde7d0e0a7d5cee0b986a0fa14c6950374bac62f3a756bee422026679a0aa2b",
+      "normal": "e360fb4a24906645edff5343eca9343152b4bd084fd8a379cfd4ec3a9c6e40f4",
+      "triangles": 5780
+    },
+    {
+      "i": 4,
+      "geometry": "3d6e1e0a-1d12-476d-ab43-b689f74c1f88",
+      "position": "ff3d8efdbf6830fb571ff998f6a27e174698d5aaad77081ff913834f5c95a3c2",
+      "normal": "49d8183c48a0afd768b1769c8c50ce3daf999d440973d342d7d7e92b24623ffc",
+      "triangles": 11868
+    },
+    {
+      "i": 5,
+      "geometry": "8cb61473-06d4-48c3-808b-a2cf9695b6c1",
+      "position": "1927f09b371f58473337566d9ba3c737270557e283c7a73988e4b3bc3e7cf193",
+      "normal": "5c820363b42139c6b85f204ad102cf2e910abfe92f0694750e46ab1621660437",
+      "triangles": 7008
+    },
+    {
+      "i": 6,
+      "geometry": "120abbc9-c5c7-4f53-8cf2-8182a444d6e5",
+      "position": "ca56f30e18f4a6ee1068a7337184f02cb3629eac1046f1a301ca617dfe071bea",
+      "normal": "3fda1c24bb89d2f58c95175e13a628cefed48a7eac847b3f7dda9f26842806a9",
+      "triangles": 972
+    },
+    {
+      "i": 7,
+      "geometry": "641f7d3d-47a4-464e-976a-6de49a8aa180",
+      "position": "3a2f43a164d0bab2a459454d625116ce9ae0d2b56067d9a9f86e113783c07a99",
+      "normal": "6a0bb7ad3239c65532e61b8a2567cb29b068c3e79f1b40166a3fb7a5ef57ff05",
+      "triangles": 272
+    },
+    {
+      "i": 8,
+      "geometry": "0bf6ea26-1ee2-4f8f-996e-d61b8e46ca54",
+      "position": "8fca4d9b29b2f60a97411d5e90b2f51c85de4a3507610011fae7df90a7fe930f",
+      "normal": "98ef98b4fea62071fff5510d1b2824bbb3e67d5a41fa0f16a2b146e22481e32e",
+      "triangles": 10276
+    },
+    {
+      "i": 9,
+      "geometry": "088ced9f-c29a-4761-8947-c83c260b704e",
+      "position": "f52b1a46568c1e6b556ec49c5f92c274916eabbaff2b9e4a5220393151b61248",
+      "normal": "c6d7c030d2d7e964ee6085c43280d1b084c14f36198bdfa8a1747fba34ed6f65",
+      "triangles": 1440
+    },
+    {
+      "i": 10,
+      "geometry": "47579c7b-d8b1-4398-9ee4-630c293f3c08",
+      "position": "74be9345acc764d691e8e7c3b48f681e25f6df46db483d78850115496c32ec04",
+      "normal": "671bbe649e174b6bc3bef6d93e27864dc9211e336dfbd990d1b89515f99a8771",
+      "triangles": 660
+    },
+    {
+      "i": 11,
+      "geometry": "bc5e2ab7-e333-48b4-94c8-9a6ad1a2775e",
+      "position": "edf2615f14ed6765a5611e0ed91f52ea4f667eb86ea2e4a5a947f05b082569d9",
+      "normal": "bfc65a3e3a53618b432313ae12235e81f90a97550736b10d8f80d1822bcbefb7",
+      "triangles": 624
+    },
+    {
+      "i": 12,
+      "geometry": "3ef858dd-90ea-4ddd-a71d-34445cc683b8",
+      "position": "2749586e629313cb323f0ca023aa83e90785f4c53fa72a405cc3fbed02ab2d12",
+      "normal": "bfc65a3e3a53618b432313ae12235e81f90a97550736b10d8f80d1822bcbefb7",
+      "triangles": 624
+    },
+    {
+      "i": 13,
+      "geometry": "aeb604e0-6432-4dc9-9c8f-91fafac40ba7",
+      "position": "f5dc28269151676a8d46f7d551f54e89e567b18503eb1ef3697c1678b2b371b2",
+      "normal": "ac3866df8649a04fd5a9dcba06708d206910ab5f28067ea71ff91896c2ccb145",
+      "triangles": 588
+    },
+    {
+      "i": 14,
+      "geometry": "a5e253b9-eeda-4292-9e1a-c2c83e644815",
+      "position": "761e81b47996d70d25a7c896e9f20daab9219ee17926f8dcae0d8e1283cc398e",
+      "normal": "ac3866df8649a04fd5a9dcba06708d206910ab5f28067ea71ff91896c2ccb145",
+      "triangles": 588
+    },
+    {
+      "i": 15,
+      "geometry": "e907327b-7297-45f8-a50e-88ec58d1a22f",
+      "position": "63111d4fbe8baa81df51e4b1d7a1950bb0abf9e801c3de8ca97bf4239b8628eb",
+      "normal": "bfc65a3e3a53618b432313ae12235e81f90a97550736b10d8f80d1822bcbefb7",
+      "triangles": 624
+    },
+    {
+      "i": 16,
+      "geometry": "cbc82c80-4c73-482f-8e8d-e24967daf2cd",
+      "position": "eafb91bbff06463d07915504c0b8f6f2d9d931321fe9fcb55c5cf84ea713aa5a",
+      "normal": "bfc65a3e3a53618b432313ae12235e81f90a97550736b10d8f80d1822bcbefb7",
+      "triangles": 624
+    },
+    {
+      "i": 17,
+      "geometry": "8dc30322-501e-4eb7-b742-54b9e5a0ea7a",
+      "position": "36e379d60843d11d3168e5439b597b5b7ff96b125716cbd451bd53df3f2a1d6e",
+      "normal": "bfc65a3e3a53618b432313ae12235e81f90a97550736b10d8f80d1822bcbefb7",
+      "triangles": 624
+    },
+    {
+      "i": 18,
+      "geometry": "1d46e987-ce55-4aac-82c4-ca4977b34051",
+      "position": "4b87a9dcdf8437258a5527dfe5dda1a223b97b491cfb4dc88623d29b3a1ccac4",
+      "normal": "671bbe649e174b6bc3bef6d93e27864dc9211e336dfbd990d1b89515f99a8771",
+      "triangles": 660
+    },
+    {
+      "i": 19,
+      "geometry": "c402502f-de79-470a-8857-e5e746069030",
+      "position": "54af6767c09bdd78c9e2b423df035c44c49e9691ea3b7f7d10642e335eeff7fd",
+      "normal": "50b66e1566fd1d5ac44c913fe7f958218a97c41ecb455924e31269016422e5ae",
+      "triangles": 204
+    },
+    {
+      "i": 20,
+      "geometry": "a9860d96-02c8-4b6c-a9e5-997f85aafacf",
+      "position": "d03cf857987f2c1d1128203245bc0d47659fcb2c34490c3d3d27c76d39c9535f",
+      "normal": "50b66e1566fd1d5ac44c913fe7f958218a97c41ecb455924e31269016422e5ae",
+      "triangles": 204
+    },
+    {
+      "i": 21,
+      "geometry": "1df5d97a-8253-4773-a80c-31acbc96d896",
+      "position": "90db06d2a78cca792f0119d4d815f84d4c27e71d1dfc5bd61039590aaf29df63",
+      "normal": "bfc65a3e3a53618b432313ae12235e81f90a97550736b10d8f80d1822bcbefb7",
+      "triangles": 624
+    },
+    {
+      "i": 22,
+      "geometry": "6d954614-8e07-4727-8ace-687d9428de00",
+      "position": "61d2f2fa6fec41e015cb26656d3058c38232772794b880faa1f6ddd1bb48afaa",
+      "normal": "bfc65a3e3a53618b432313ae12235e81f90a97550736b10d8f80d1822bcbefb7",
+      "triangles": 624
+    },
+    {
+      "i": 23,
+      "geometry": "08052e43-daf4-4b09-9ee5-a74830443137",
+      "position": "7d5f7ceec71d68ec27f870f0179228cc67fd8366d5d78f9ba38302273783f659",
+      "normal": "47801c66c0b0bf91730d061e69e11068f556f71cb20adb074cdbbde1453ab34c",
+      "triangles": 156
+    },
+    {
+      "i": 24,
+      "geometry": "43cc2203-f458-411a-b0d7-e8f1f0ae663f",
+      "position": "7e2c51f08488f476901895454080be2238dad3496d53ed82e2255cacffa7cc90",
+      "normal": "e40522fa3259077d11bf5e46709d62e3931ced9dde4ff15601858ee08ea1d1f7",
+      "triangles": 936
+    },
+    {
+      "i": 25,
+      "geometry": "7ef23c92-a3ff-44fb-9a45-25a521ffaf3a",
+      "position": "c517921d6c73bf431982df2b5773de1510c1fa5fa4eca40bd6b75a441142b4f6",
+      "normal": "bdc681139ca14e78801a49f8211051c729082aef654dcbbd064f6fd92915dae2",
+      "triangles": 68
+    },
+    {
+      "i": 26,
+      "geometry": "34137e79-c0ea-462f-b5c4-82006a9ced9e",
+      "position": "8ef08dd0f6995c4760a9e67584e6ac864354546687e5086bf355ba423a85bc75",
+      "normal": "4409149f300b8043bd10bcc49568c4df9635154e96489186d703a15313e4b9e7",
+      "triangles": 288
+    },
+    {
+      "i": 27,
+      "geometry": "4b77a16e-7f27-4474-80b4-cba734ad27e8",
+      "position": "7ae073bf53adfefb6f197c24343381a653d4f34fe541abda13a6688587c03f3f",
+      "normal": null,
+      "triangles": 126
+    },
+    {
+      "i": 28,
+      "geometry": "69c68adf-0e1e-4461-882a-22b744d99041",
+      "position": "82ab849a168b7514440cdd996f8057ee77a42b1fdf0086ed9ef0009ac24305c6",
+      "normal": null,
+      "triangles": 5460
+    },
+    {
+      "i": 29,
+      "geometry": "dae2327b-f579-4a1b-a9aa-ca0c9075c8ca",
+      "position": "14ac130855d1ebbb2682cec035767a4ab70e0b32844e49e5bd2d15942aae4ffb",
+      "normal": "5fc9808330790b11f772c86fdf76a71cf55b23762d3a6190037deee322ce4d9c",
+      "triangles": 2204
+    },
+    {
+      "i": 30,
+      "geometry": "d7a7844c-7eed-43e9-a31f-c637ff71804e",
+      "position": "6707cc570379da4f43fb2a8f29d074ea825af317131b4c279b23831d9b7ec133",
+      "normal": "3ac62fc1b9896240e8a32ae35cd33c5b3ee989f5df32067be46586d9efdf7fb4",
+      "triangles": 396
+    },
+    {
+      "i": 31,
+      "geometry": "61bc4f8a-21f1-43c9-acf5-73f658de0154",
+      "position": "4409423feeea66765223536976e6a517be09ce5c1bdb3d50edd93d61a6c4d217",
+      "normal": "d174ba6135d4f8094c51af6f15717d7e057345364fa143f156756a68670c3aa2",
+      "triangles": 32
+    },
+    {
+      "i": 32,
+      "geometry": "08891e65-0ceb-4d2c-af19-c9af2bdc72ad",
+      "position": "d8eac09d54fd15a930ed4ea888e2635786c119501d63f03574fca90d9ee6a689",
+      "normal": "e929c11416153a80c919f292752535694d810c974d1e86244397bc59a1668410",
+      "triangles": 24
+    },
+    {
+      "i": 33,
+      "geometry": "775b6ca0-26db-48a3-9099-feda8a979d7b",
+      "position": "67f4b8c68a6ebdf470be0fe1fef5c9f2b41d37bfad7a39e47c0f57823f6bfd2d",
+      "normal": "80aed46eaaf0a494ce42570b7ba36a07d2458c2ca7fb9fea154ab829aec54faf",
+      "triangles": 144
+    },
+    {
+      "i": 34,
+      "geometry": "6855aabd-a1d3-4c5c-814f-f87fc5dea5c0",
+      "position": "a94a05f2831b34cc5fc8ee32bff65009b2db991643efc29276030cb7f45e033b",
+      "normal": "5d7f95db6bd1eb89fb27437eb01965b1861ba6bc878266b479cb40145ca070f1",
+      "triangles": 192
+    },
+    {
+      "i": 35,
+      "geometry": "f639d702-35ab-4c78-b887-519214256d84",
+      "position": "37a105f41bdb3da316d160234d68ea4efeace95127f4811a63c2923a55ecf008",
+      "normal": "63823dfa723ea23e5382d0245efbf893cfa5b8754676959b835f5549f1f10389",
+      "triangles": 1556
+    },
+    {
+      "i": 36,
+      "geometry": "8b8b8985-274d-4000-9948-042ef85b0c31",
+      "position": "43280793ebfb68cfad511291cd19e651a4d77e45c9eae3f1431f70965792dc9a",
+      "normal": "06af4570608c027e754a4b3317e6c3259fa97c70fadaee0445754901992a7349",
+      "triangles": 1556
+    },
+    {
+      "i": 37,
+      "geometry": "a84d549f-e4c3-4859-8764-61c6cb6efc82",
+      "position": "2a24a6c4a016faadab847fb9c9382a08fec92a815a0d8d8701c07e25a84707d7",
+      "normal": "0b51e02af580a5c3b33edf73ec4caee85a67b250b307cc5e832984bce6709f0a",
+      "triangles": 1556
+    },
+    {
+      "i": 38,
+      "geometry": "3b76f58b-53e2-4d50-b8a6-0b68a8167a73",
+      "position": "22f950af4c6f9945c12ec11858b9d7f237b51906ab7da90bcdeb650fa73e9151",
+      "normal": "2b33db94d9ba06db874508d04ff855dd5ab785cb7ec81770e053312577929d43",
+      "triangles": 1556
+    },
+    {
+      "i": 39,
+      "geometry": "57b4bfa4-ebe2-4276-b178-cb2a6ed5e2fb",
+      "position": "90ad7d00a5adf9cb762b3b561fac978c9bfec9e82721bf7cfdb2cd58a9664ba2",
+      "normal": "299c8083d314ae65150cad10cfac689d75497da5c7c919f07f65567b269d6560",
+      "triangles": 1556
+    },
+    {
+      "i": 40,
+      "geometry": "c2f39a7e-c314-4863-82b4-87e642be3c25",
+      "position": "0eb983cdc6ef34f2f74fbcea0958ae084e33fe571401b234693ff815ee7475f5",
+      "normal": "a79ba251e79b1f7308098e1b7d948acc330ef14d5181ba32ad7e9610cbe608e0",
+      "triangles": 1556
+    },
+    {
+      "i": 41,
+      "geometry": "f374320f-581d-4c71-9930-ae311a94af10",
+      "position": "5790647a34c6e5f44133de7d79942bdc9ace9bd6b247eb8a8e580eb8ad4be31a",
+      "normal": "a07b63811ca360cbab2dbc8fcc809ca33bc10fd02cab55629dba5d61660470b7",
+      "triangles": 1556
+    },
+    {
+      "i": 42,
+      "geometry": "e22eb768-addb-4dd2-86f8-e34af6e839fc",
+      "position": "c17c10679fc0356ff1304a1fe8495d81e281c36979a8455cf4998f092f85756b",
+      "normal": "6f95060101e63b102e91e12bc499654ee650f56f013015d19caf944d5dc3bfff",
+      "triangles": 1556
+    },
+    {
+      "i": 43,
+      "geometry": "12b8cd17-68d1-4c00-a64a-f9b33380ee39",
+      "position": "23c8e16498facfd3cba47f291f4da7dd7fc1a4ea0f93e908017083eddeca9dd3",
+      "normal": "28d1bfa3c4e6f1480317416f0fd89e95a8876ef4ab731969788a6df65cabd803",
+      "triangles": 684
+    }
+  ],
+  "panes": 146,
+  "bad": 0,
+  "storage": {
+    "local": {
+      "lunden.drawing": "untouched-original",
+      "lunden.cloud.queue": "untouched-original"
+    },
+    "session": "untouched-original"
+  },
+  "errors": [],
+  "external": [],
+  "sockets": [],
+  "limits": "One public source app, desktop Chromium/SwiftShader; near .05 is a controlled precision probe. Does not reproduce native physical-GPU flicker."
+}

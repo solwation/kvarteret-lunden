@@ -3076,3 +3076,26 @@ som rena koordinatfunktioner i footballgeo; ingen fysikmodul blir beroende.
 Verifiering: komponentkontakt/segment/bounded support, faktisk publik emitterad mark,
 väg-/trädfrigång, Navigation/footprints, lokal on/off-ritkostnad, npm test/build och
 nät-/lagringsisolering. [Egna bilder, källhashar och begränsningar](verification/250/README.md).
+
+## Hus L:s långfasad och bakomliggande huskropp, #253
+
+Selektiv originalkälla `7acb84d948cbb9f41b3fa8e9d60c929213074b02`
+([original #1852](https://github.com/solwation/lunden-3d-apartment/issues/1852)). Endast
+`exteriorBackingMaterial`, importen av befintlig `DECAL_OFFSET` och anropet för `solids`
+i publicens egen `src/exterior.js` överförs. Den förenklade opaka husmassan ligger bara
+6mm bakom tegel-/putsskikten; en lokal väggmaterialklon med positiv depthbias håller
+bakmassan bakom fasaden vid begränsad djupprecision. Färg/karta/side/roughness och befintliga
+fragmentljus-/cachehooks bevaras; delat väggmaterial för riktiga väggar lämnas orört.
+
+Ingen geometri, husmått, nivå, hål, ruta, loftgång, trappa eller solpanel ändras. En lokal
+materialklon tillkommer; inga nya draws, shaderfunktioner, ljus, texturhämtningar, lagring
+eller tjänster. A/B/C använder separata aHouseParts/CoreHouse-ytor och har inte L:s6mm
+backingkonstruktion; deras källor är orörda. Originalets personliga bilder/data, spelkod,
+tjänster och changelog har inte kopierats. Befintlig attribution/licens bevaras.
+
+Egen publik mesh ger450par och27 djupkodskollisioner i en analytisk24bitmodell med
+publik near0.06/far700; efterbias minst2koders marginal. En faktisk publik app före/efter
+behåller samtliga exteriormeshers geometri,146 exponerade rutor och samma renderbudget,
+med nät-/lagringsgränser intakta. Originalets pixel/fysiskaGPUflimmer är inte reproducerat
+av denna SwiftShaderkontroll. npm test138moduler och build är gröna.
+[Egna bilder, rådata, källhashar och begränsningar](verification/253/README.md).

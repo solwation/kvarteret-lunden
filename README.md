@@ -8,6 +8,8 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+Hus L:s långfasad har ett skydd mot att den bakomliggande huskroppen slår igenom vid visning på långt håll (#253).
+
 På det norra gräsfältet finns en liten modellerad fotbollsplan med fasta mål,
 åskådarbänkar och fontän som passiv miljö, utan bollar eller spelinteraktioner (#250).
 
