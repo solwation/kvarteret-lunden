@@ -49,3 +49,7 @@ handoff, keeps ownership and preserves the checkout; no new queue/watch runs.
 2026-11-04 UTC: clone/source review and exact import about 12:40; public host
 reconciliation and provenance about 12:42; local mandatory checks and handoff about
 12:43. No broader verification was needed.
+
+## Conductor publication
+
+Published source `270b4135c32b0e2315ee4fdf59e9ec9a21181876`; [Pages41832708594](https://github.com/solwation/kvarteret-lunden/actions/runs/41832708594) succeeded. Live application version remains the verified unchanged fingerprint `d8c721a362655d988db2c9ec`. Root read the complete host diff, verified full release-tree/canonical equality and retained merge ancestry, and reused the worker's green mandatory test/build/link/scenario results without routine reruns. [Nonvisual completion evidence](https://github.com/solwation/kvarteret-lunden/issues/251#issuecomment-6631037042) was posted before closure. No original content or application code changed.
