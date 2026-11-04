@@ -2970,3 +2970,15 @@ Navigation från publik bas a939dd59 i samma renderade mark. Native W+Shift/S dr
 aktuella Navigatorn med kontrollerad dt0,05; resultatbilder, nät-/lagringsisolering och
 avgränsning finns i [verifiering248](verification/248/README.md). Ingen fysisk telefon-
 eller FPS/prestandaverifiering påstås.
+
+## Nordics parkeringskontakt, #249
+
+`node tools/nordicground249-check.mjs` bygger faktiska publika skirt-/Nordic-buffertar och
+strålprovar asfalt, målning, delad kattkontakt, grå grund och trappfötter. Ange
+`NORDIC_GYM_BEFORE=/absolut/fryst-publik-nordicgym.mjs` för bytejämförelsen av bevarade
+front-/tak-/hall-/glasdelar. `node tools/nordicgymtest.mjs` har kvar de elva arkitektur-/
+parkeringskontrakten, nu med den selektiva markändringens 2 860 komponenttrianglar.
+`tools/nordicground249-view.mjs BASE` håller en riktig publik värld och byter bara östgruppen
+och befintlig publik kattmarkcallback mellan fryst före och aktuell efter. Samma markbuffer,
+hela lågminnescampusbudgeten, egna före/efterbilder och lagrings-/nätisolering kontrolleras.
+[Metod, exakta källor, resultat och begränsningar](verification/249/README.md).

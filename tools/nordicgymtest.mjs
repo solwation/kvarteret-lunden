@@ -70,7 +70,7 @@ check(stripes.length === H.stalls + 1 && stripeHits === stripes.length, `all sev
 const triangles = Object.values(parts).flat().reduce((n, g) => n + g.attributes.position.count / 3, 0);
 // The original whole-campus baseline is not the public scene. Count the exact shared component here;
 // the actual public campus is measured separately by nordicgym-check.mjs.
-check(triangles === 2853, `reviewed final gym/Grenhuset contribution ${triangles} triangles`);
+check(triangles === 2860, `reviewed #249 ground-contact gym/Grenhuset contribution ${triangles} triangles`);
 const fingerprint = lists => { const hash = createHash('sha256'); for (const [name, geometries] of Object.entries(lists)) { hash.update(name); for (const g of geometries) for (const attr of ['position', 'normal', 'color']) hash.update(g.attributes[attr] ? Buffer.from(g.attributes[attr].array.buffer) : attr + ':absent'); } return hash.digest('hex'); };
 console.log(`geometry SHA256 ${fingerprint(parts)}`);
 if (process.env.NORDIC_GYM_COMPARE_MODULE && process.env.NORDIC_GYM_COMPARE_CONFIG) {

@@ -1,0 +1,16 @@
+[
+  {
+    "path": "src/nordicground.js",
+    "source": "edeff125c3645ee3ac0a0feee911713f140d08a5",
+    "comparedRegion": "full file",
+    "sha256": "24f60f47fb9702546e3562157c68563e1a7d5212e4d824c4098324a5017f57bf",
+    "exactSourceRegion": true
+  },
+  {
+    "path": "src/nordicgym.js",
+    "source": "edeff125c3645ee3ac0a0feee911713f140d08a5",
+    "comparedRegion": "body from const rgb onward; public attribution header retained",
+    "sha256": "7693e50c75e29bc4befc9a8e60174a9f6adb37d8a719336272d552a90042f071",
+    "exactSourceRegion": true
+  }
+]

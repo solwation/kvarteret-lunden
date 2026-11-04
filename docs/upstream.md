@@ -3002,3 +3002,28 @@ Tre riktade komponentgrupper visar negativ reproduktion, ändligt stöd/stopp oc
 backning, båda ramper/hela bron fram–åter med gång/sprint vid20/60fps samt väg-/GC-syskon.
 Befintligt sprintkontrakt, npm test/build och en verklig publik platskontroll dokumenteras
 med [egna bilder, källhashar och begränsningar](verification/248/README.md).
+
+## Nordics bakre parkering möter den ritade markremsan, #249
+
+Selektiv originalkälla `edeff125c3645ee3ac0a0feee911713f140d08a5` (original #1850):
+`nordicground.js`, enbart berörda `nordicgym.js`-hunkar och markkontakten i den befintliga
+publika `createAmbientCatGround`. Den senare behåller #245:s egen habitat-/väg-/vatten-/
+barriärlogik och all övrig katt-AI. Inga personliga kattprofiler eller spelberoenden överförs.
+
+Parkeringen norr om terrängrektangeln använder den redan ritade nordliga skirt-remsans
+källtrianglar i stället för att extrapolera den andra markfunktionen. Asfalt och målning
+klipps mot samma trianglar och den befintliga publika kattcallbacken samplar samma asfalt.
+Befintlig grå grund når remsan, planteringslådor följer sina markhörn och trappans två
+nedre stolpar möter lutningen. Byggnadens footprint/front/glasentré, vånings-/takdatum,
+trappdimensioner och material behålls. Djup, form och lutning är kontakt-/stödmursantaganden,
+inte uppmätta källardjup, verkliga parkeringsmått eller Peab-verifierad arkitektur.
+
+Ingen global terräng, väg, gånggräns, navigation, A/B/C/L-byggare, ny lampa, textur eller
+material tillkommer. Komponentbidraget ökar exakt sju trianglar; befintligt campusbudgets
+hela lågminnesomfattning och tak behålls. Ursprungliga attributioner/licenser gäller.
+Originalbilder och personlig historik har inte kopierats. Offentlig lagring/nätgräns är intakt.
+
+Riktad faktiskt-meshkontakt, bevarad arkitektur, npm test/build och en enda faktisk publik
+scen före/efter: [egna resultatbilder, rådata och begränsningar](verification/249/README.md).
+Historiska #240/#245-beskrivningar om den tidigare upphöjda parkeringen gäller före #249;
+den delade aktuella markkontaktbeskrivningen i detta avsnitt ersätter dem.

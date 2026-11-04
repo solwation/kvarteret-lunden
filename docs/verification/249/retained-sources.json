@@ -1,0 +1,52 @@
+[
+  {
+    "path": "src/world.js",
+    "sha256": "e2d60bf790a6bfdd38ef3937032e5fa7e810f2f44ec27ccaea0fb311d0a6fad8",
+    "unchanged": true
+  },
+  {
+    "path": "src/corehouse.js",
+    "sha256": "16552524bf41e0e4220b67681ea3b0010be4769280351473b14e7368a52dbb6c",
+    "unchanged": true
+  },
+  {
+    "path": "src/config.js",
+    "sha256": "5bdedd2cf625cfbe0ee655d2fb6a4f992c934e050773c109ee46389c7df680e9",
+    "unchanged": true
+  },
+  {
+    "path": "src/surroundings.js",
+    "sha256": "e69a69b125856f8c4f6760f7d844edf50265d87f865270ecaba9889ee1ff97ca",
+    "unchanged": true
+  },
+  {
+    "path": "src/sitebackdrop.js",
+    "sha256": "7c820bdcc0b5a22544d5789527826eb4cd20c599da06b018399c017b64f61b8c",
+    "unchanged": true
+  },
+  {
+    "path": "src/edgebackdrop.js",
+    "sha256": "7b490c65cc651088f787007b5de53b06a2dcce29f24bda1b024772bd09e4b90b",
+    "unchanged": true
+  },
+  {
+    "path": "src/navigation.js",
+    "sha256": "2951947bb0cfc6f9712a5b030478b9cc462c749f6bbafd07c4287dfd0b7ad782",
+    "unchanged": true
+  },
+  {
+    "path": "src/outdoorcats.js",
+    "sha256": "41ba34e8d4a109b364945b5e054718f1825ba3f25407d655b10a50493ee57035",
+    "unchanged": true
+  },
+  {
+    "path": "src/outdoorcatbrain.js",
+    "sha256": "34dc23f22b62976b086b5bbd632553ae9211e0e5d40ad2ab590e47fc0324731d",
+    "unchanged": true
+  },
+  {
+    "path": "src/catcontact.js",
+    "sha256": "4e491d4cb9cd9c57ad4e1aa431ae94fbd495b55747853c49a18e74fab3b97561",
+    "unchanged": true
+  }
+]

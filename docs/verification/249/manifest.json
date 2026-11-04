@@ -1,0 +1,23 @@
+{
+  "base": "a939dd593546690343a7e84b7722d4bcec95238f",
+  "original": "edeff125c3645ee3ac0a0feee911713f140d08a5",
+  "build": "3a8d1c1a988e617bf8052ace",
+  "sha256": {
+    "docs/verification/249/README.md": "584ea1ed26a2b1ec9db39349abe2fca05308912a24bdc8a29ba71f956658b8c2",
+    "docs/verification/249/after-low.png": "8f94959005168b8ef813fafa96b90422a5f8b33df299f5142629a27d40e86d32",
+    "docs/verification/249/after-rear.png": "c30cc9f7e171fd59f0ffa351d4e7bddc944f6f708269813b5fd76a3334b86457",
+    "docs/verification/249/before-low.png": "a45a30f6645413f3793fc14340f3572e9b2a05f544cf8dec6cd4b94a2fe61ac8",
+    "docs/verification/249/browser.json": "b7ff925d17df137d4fc09c725d16310aff5cc08c0ab8cc759818309c6ec1368c",
+    "docs/verification/249/component.txt": "09bd81e80f629833f37784f236f9edfa9b7e5c91c5840602394b1d8f9713475a",
+    "docs/verification/249/import-sources.json": "25cab07193b6048c0bdebb72b522b86137580563abda9442b33843860f666d4c",
+    "docs/verification/249/retained-architecture.txt": "13358dc7f8c6f21b546c975d7b996dbbda4cc5c194ad98ecbbe0e56d4c06730b",
+    "docs/verification/249/retained-sources.json": "d930d33914f961dce0f62011fd659618ec2d7d43ab35f23c33450047881f5252",
+    "src/cathabitat.js": "f0f9d16583008eb65e300361f406c0de8375ae9f021eccdbdf043cf6ca711384",
+    "src/nordicground.js": "24f60f47fb9702546e3562157c68563e1a7d5212e4d824c4098324a5017f57bf",
+    "src/nordicgym.js": "daa87d7a2479fa5365ac0d9fa0de45d6a92486e3d6ae01f5bab66b67ec4b31e6",
+    "tools/nordicground249-check.mjs": "112c7f600e7592648e714485f1044e9c9dd4fbd6ff7dca963cd0da795d372fc2",
+    "tools/nordicground249-scene.mjs": "dc88c0eeac5351b73758923b15e4c618079da4c233a90d4cab96f0cf091ed04b",
+    "tools/nordicground249-view.mjs": "50ce27ac9b70c5ef2bc4cc9156dc70c6d68bec1cdb33f9cb920acdee96c17da8",
+    "tools/nordicgymtest.mjs": "3eff0a2959d6df3d99170946eebf37b7c7925f8082fb2e640df7febc7550b79f"
+  }
+}
