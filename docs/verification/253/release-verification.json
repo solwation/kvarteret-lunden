@@ -1,0 +1,35 @@
+{
+  "live": {
+    "source": "555f5a3e48b44f0b5bffe55493034e8ed449a35b",
+    "pagesRun": 41812029522,
+    "url": "https://solwation.github.io/kvarteret-lunden/",
+    "version": "d8c721a362655d988db2c9ec",
+    "liveBuiltAt": 1793786849831,
+    "asset": "assets/viewer-d8c721a362655d988db2c9ec.js",
+    "liveAssetSHA256": "3b793d9894251a7d6121dc8b2e7a40395c4a9de79a0df3ddd7b99087db8958e6",
+    "normalizedAssetMatchesLocal": true,
+    "normalization": "Only the declared __BUILD_TIME__ timestamp differs between local and Pages builds.",
+    "checkedAt": "2026-11-04T10:08:37.126650+00:00"
+  },
+  "images": [
+    {
+      "url": "https://raw.githubusercontent.com/solwation/kvarteret-lunden/555f5a3e48b44f0b5bffe55493034e8ed449a35b/docs/verification/253/before.png",
+      "sha256": "e703b03949c39bc8f3e3aed236d69448cb6b721a090830c70d20604f1c88a8ce",
+      "bytes": 936166,
+      "status": 200
+    },
+    {
+      "url": "https://raw.githubusercontent.com/solwation/kvarteret-lunden/555f5a3e48b44f0b5bffe55493034e8ed449a35b/docs/verification/253/after.png",
+      "sha256": "ef846d2ae054c4c40d5392104a137f2c92a3e92fb22f7ce486792610d80b7599",
+      "bytes": 936826,
+      "status": 200
+    },
+    {
+      "url": "https://raw.githubusercontent.com/solwation/kvarteret-lunden/555f5a3e48b44f0b5bffe55493034e8ed449a35b/docs/verification/253/after-close.png",
+      "sha256": "ddc0bd54cde39dc59e88de62689dcbe34020b33f3a2682e034105476d0891f01",
+      "bytes": 441514,
+      "status": 200
+    }
+  ],
+  "imageComment": "https://github.com/solwation/kvarteret-lunden/issues/253#issuecomment-6628081804"
+}

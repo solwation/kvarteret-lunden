@@ -66,5 +66,10 @@ No expensive verification rerun was needed; the source tool's final console outp
 was tidied without changing assertions, app paths or evidence. Its first log's
 `pairs:146` field accidentally printed pane count; own public-pairs.json contains450
 pairs and is authoritative. The corrected tool omits that diagnostic console field.
-Publication, pinned accessible images before closure and actual Pages/live results
-are recorded below once verified.
+Source/images published as `555f5a3e48b44f0b5bffe55493034e8ed449a35b`; the three
+pinned raw URLs passed exact byte/SHA checks and were embedded in
+[comment6628081804](https://github.com/solwation/kvarteret-lunden/issues/253#issuecomment-6628081804)
+before closure. [Actual Pages41812029522](https://github.com/solwation/kvarteret-lunden/actions/runs/41812029522)
+passed test/build/deploy. Live version is `d8c721a362655d988db2c9ec`; its complete bundle
+matches the verified local bundle after normalizing only the declared build timestamp.
+[Release and image byte verification](release-verification.json).

@@ -3,7 +3,7 @@
   "publicBaseline": "63ba16656d931fc6313ac6129814f1454b88b1b4",
   "build": "d8c721a362655d988db2c9ec",
   "sha256": {
-    "docs/verification/253/README.md": "27aa61453234d400994d986c3e755bbb594e082a48026646243b989dbe371bcc",
+    "docs/verification/253/README.md": "e83df358f5228d07c52ef19d57ea40c7f883882a483bac7c199aec8787c8c9b8",
     "docs/verification/253/after-close.png": "ddc0bd54cde39dc59e88de62689dcbe34020b33f3a2682e034105476d0891f01",
     "docs/verification/253/after.png": "ef846d2ae054c4c40d5392104a137f2c92a3e92fb22f7ce486792610d80b7599",
     "docs/verification/253/before.png": "e703b03949c39bc8f3e3aed236d69448cb6b721a090830c70d20604f1c88a8ce",
@@ -13,6 +13,7 @@
     "docs/verification/253/source-isolation.json": "4c940fd681a46101dc674ea689ab0fa65b3587d355e3f1166b9d591ec714d82e",
     "src/exterior.js": "b819147f29d4b965ca8222b9b07827424ae841bb8915ae60af0edd5487f91d2a",
     "tools/facadebacking253-check.mjs": "3ef6a1204e7b580cd46ac8db546a7d901cdc26c7943a41257fb53ceadeaf2ca5",
-    "tools/facadebacking253-view.mjs": "10182c39ee589b6cd46555931f98d26394ade7b3815bc65d4eecb48de8759fcc"
+    "tools/facadebacking253-view.mjs": "10182c39ee589b6cd46555931f98d26394ade7b3815bc65d4eecb48de8759fcc",
+    "docs/verification/253/release-verification.json": "7afe537ff225f23f0dd4af0cb41edd6c2a25717a05c554f7ad4903a395e9592c"
   }
 }
