@@ -26,8 +26,10 @@ Read [AGENTS.md](AGENTS.md) for public-content, storage and service boundaries. 
   priorities by impact/urgency.
   Preserve explicit/existing priorities except automatic public-priority corrections above
   and ancestor ceilings below.
-  Remove all recognized work labels on pause, integration wait, closure or reopening;
-  reclaim only when actual work resumes. Owner labels are separate metadata.
+  A finished, checked handoff replaces `in-progress` with `integration-ready` and retains
+  its documented owner; waiting consumes no active slot. Active integration switches back
+  to `in-progress`; never carry both. Pause/backlog return, user question, closure and
+  reopening remove all recognized work labels and the own claim. Owner labels are separate metadata.
 - **Child priorities never exceed their parents (user, 2026-10-20).** New public child stories use low
   under the rule above. Original children normally inherit their parent's priority; an existing
   lower child priority is preserved. This applies to every child, including bugs,
@@ -44,9 +46,12 @@ Read [AGENTS.md](AGENTS.md) for public-content, storage and service boundaries. 
   and preserve ownership, active labels, dependencies and already lower priorities. Raising a parent does not
   automatically raise existing children. Fetch missing parents before deciding; do not guess at unresolved links.
 - Questions for the user go on the issue as a comment with the `user-question` label, never in chat; the issue is blocked until answered (user, 2026-10-17).
-- Read the current issue, all comments and labels before claiming it. Never take another agent's `in-progress` issue or active reservation.
-- Set `in-progress` **in this repository** when work actually starts. Keep it only while actively working. Remove it when finished, paused, released or reopened.
-- Verify the implementation, commit and publish. Link the commit and validation in this repository's issue, close it when the requested result is complete, and remove `in-progress`. Use `Fixes #N` only for this repository's issues; cross-repository work needs explicit links and verification in each affected issue.
+- Read the current issue, all comments and labels before claiming it. Never take another agent's active issue or reservation, or a documented `integration-ready`
+  handoff, even if its owner label is missing. Only its owner/integrator resumes it.
+- Set `in-progress` **in this repository** when work actually starts. Keep it only while actively working. Finished handoffs use
+  `integration-ready` with owner/checkout/revision/evidence/next action, retaining the session owner
+  even on session stop; pause/backlog return, release or reopening clears work labels and claim.
+- Verify the implementation, commit and publish. Link the commit and validation in this repository's issue, close it when the requested result is complete, and remove all recognized work labels and the own owner label. Use `Fixes #N` only for this repository's issues; cross-repository work needs explicit links and verification in each affected issue.
 - New issues discovered outside the task get their own issue; do not expand the task silently.
 
 ## Working and publishing

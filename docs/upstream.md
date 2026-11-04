@@ -6,6 +6,19 @@
 
 En GitHub-fork skulle inte heller uppdatera sig själv. Fördelen med denna struktur är att vi kan återanvända relevanta förbättringar utan att publicera originalets personliga historik här.
 
+## Orkester v0.8.0 och integrationsväntan, #251
+
+Granskad gemensam källa: `solwation/dirigenten-och-orkestern` v0.8.0,
+`6ee6dd23ed85e5a91641d1939d553e4f789027d4`, importerad direkt som squashsubtree
+med bevarad mergeancestry. Motsvarande originalinförande är
+[original #1861](https://github.com/solwation/lunden-3d-apartment/issues/1861),
+levererad instruktion `6378fa67` och avslut `c98270bb`.
+Publics egna hostinstruktioner har anpassats för bevarad integrationsägare, separat
+väntkö utan aktiv kapacitet samt korrigering/återhämtning. Ingen originalappkod,
+personligt innehåll, historik, lagring, gameplay eller tjänst har kopierats.
+Den medföljande ikonflytten ingår endast i den gemensamma instruktionsträdet.
+[Avgränsade kontroller och begränsningar](verification/251/README.md).
+
 ## Första importen
 
 1. Välj och dokumentera ett exakt commit-SHA i originalet.

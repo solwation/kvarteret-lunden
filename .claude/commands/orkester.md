@@ -10,4 +10,5 @@ Läs därefter den versionslåsta [kärnan](../../.orchestra/shared/ORCHESTRA.md
 [Issueflow-instruktionerna](../../.orchestra/shared/ISSUE-WORKFLOW.md) och
 [kösamordningen](../../.orchestra/shared/COORDINATION.md).
 Använd [arbetsagentens korta uppdrag](../../.orchestra/shared/WORKER.md) vid delegering.
+Följ projektets [integrationsöverlämning](../../.orchestra/project.md#integration-handoffs).
 Svara på svenska. Projektpolicyn anger båda köerna, behörigheter, ansvar och tidsgränser.

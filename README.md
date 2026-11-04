@@ -262,7 +262,7 @@ Med `?perf` kan långa bildintervall mätas lokalt och exporteras utan en teleme
 
 `/orkester` använder den modelloberoende kärnan i
 [dirigenten-och-orkestern](https://github.com/solwation/dirigenten-och-orkestern),
-versionslåst till **v0.6.1** (`432e1879`) som Git subtree i `.orchestra/shared`. Vanlig kloning räcker.
+versionslåst till **v0.8.0** (`6ee6dd23ed85e5a91641d1939d553e4f789027d4`) som Git subtree i `.orchestra/shared`. Vanlig kloning räcker.
 Vid start eller återupptagning kontrollerar dirigenten nya stabila releaser och
 versionstaggar, med högst ett dygns återanvändning av en lyckad kontroll. Nya
 stabila uppdateringar importeras automatiskt som lågprioriterat underhåll vid nästa
@@ -275,6 +275,9 @@ resurshushållning gäller när modellvalet är låst; verifieringskraven behål
 [Projektpolicy](.orchestra/project.md) anger Lundens köer och publiceringskrav samt
 projektets hooks per fas (planering till uppföljning);
 [Issueflow](.orchestra/shared/ISSUE-WORKFLOW.md) styr gemensamma etiketter och status.
+Färdiga, kontrollerade överlämningar använder `integration-ready` med bevarad ägare,
+revision och bevis utan aktiv slot. Aktiv integration byter till `in-progress`;
+publicering och verifiering krävs fortfarande före stängning.
 Andra agentverktyg kan läsa samma filer direkt. Gemensamma förbättringar görs i
 kärnans repo och införs här genom en granskad versionsuppdatering.
 
