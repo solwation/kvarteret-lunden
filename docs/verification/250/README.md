@@ -66,3 +66,6 @@ eller fysisk prestandagaranti. Fontänen och bänkarna ingår i samma fasta mesh
 Alla tre bilder är direkt inspekterade. Browsern och egen server8934 är stoppade.
 Dirigenten publicerar och länkar faktisk Pages/liveversion samt bäddar in permanenta
 bilder före stängning. Ingen push eller produktionskontroll har gjorts av arbetaren.
+
+
+Conductor delivery: exact appdelta bytes match accepted ed0772ee, including only the static field config/surroundings/farwalk modules. Previous249Nordic/catcontact,248Navigation,247street and252host-instructions are byte-identical to their published revisions. Only additive documentation needed union. Combined content fingerprinta58a23568bd2888dee5d4f8e. Actual Pages41797927160 test/build/deployment and live fingerprint passed; three pinned result images byte-verified in comment6626012314 before closure.
