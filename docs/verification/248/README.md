@@ -60,3 +60,6 @@ Bilderna är direkt granskade. Ingen originalbild eller personlig resurs importe
 
 [sources.json](sources.json) låser app-/kontroll-/bildkällor. Dirigenten publicerar,
 bäddar in permanenta bilder före stängning och verifierar faktisk Pages/liveversion.
+
+
+Published source070436ea23b9ed6e0e10649a361b53c3fa0740fd, actual Pages41796502656 test/build/deployment passed and live7626f9112654d6f22094386e verified before closing. Two pinned embedded images were byte-verified in comment6625805588. The integration preserves247 street/config and only changes Navigation.
