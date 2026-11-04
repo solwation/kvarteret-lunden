@@ -50,3 +50,6 @@ cirka 2 minuter, dokumentation/granskning cirka 2 minuter. Inga breda matrisomk�
 Manifestet binder produkt/testkällor och bilder till leveransen. Ett första försök att
 importera fryst komponent via data-URL behövde rätta bare importupplösning för Three;
 endast den berörda komponentkontrollen kördes om, ingen produktändring orsakades.
+
+
+Published source18370f94b843e8f04329e90b05e19667672ed4dd, actual Pages41795651394 passed test/build/deployment and live fingerprint e1fce9166ad54e9a59084329 was verified before closure. Permanent embedded images were byte-checked in issue comment6625679441. No post-publication browser rerun.
