@@ -38,7 +38,7 @@ git show <original-SHA> -- <relevanta-filer>
 
 Automatisk publicering till GitHub Pages är aktiverad vid varje push till detta repos `main`, efter godkända tester och bygge. Automatisk import från originalet är inte konfigurerad. Om uppdateringarna blir frekventa kan gemensam arkitektur och navigation brytas ut till en delad komponent, med en separat ändring och verifiering i båda projekten.
 
-## Lägsta prioritet för portningar, #109
+## Lägsta prioritet för portningar, #109 (historisk regel, ersatt av #252)
 
 Granskad källa: original `9a2dac315d328ca47dedbebe521bf5415ce0ffa4`
 ([originalärende #1422](https://github.com/solwation/lunden-3d-apartment/issues/1422)).
@@ -46,8 +46,8 @@ Enbart användarens arbetsflödesregel i `CLAUDE.md` och `.claude/commands/orkes
 har anpassats. Överföringar hit, även buggfixar och deras implementations-, test- och
 stödärenden, ska alltid ha `priority: low` om användaren inte uttryckligen anger annat.
 Originalets prioritet höjer inte portningen. Regeln tillämpas vid skapande och köval,
-med bevarat ägarskap, beroenden och föräldratak. Självständigt publicarbete som inte
-är en portning behåller vanlig prioritering. Befintliga öppna portningar har granskats
+med bevarat ägarskap, beroenden och föräldratak. Den historiska avgränsningen till portningar ersätts av #252 nedan:
+alla publika ärenden har nu låg prioritet. Befintliga öppna portningar har granskats
 och sänkts; ingen appkod, resurs, lagring, spelmekanik eller tjänst har importerats.
 Verifiering: granskad dokumentdiff, `git diff --check`, `npm test` och `npm run build`.
 
@@ -3027,3 +3027,27 @@ Riktad faktiskt-meshkontakt, bevarad arkitektur, npm test/build och en enda fakt
 scen före/efter: [egna resultatbilder, rådata och begränsningar](verification/249/README.md).
 Historiska #240/#245-beskrivningar om den tidigare upphöjda parkeringen gäller före #249;
 den delade aktuella markkontaktbeskrivningen i detta avsnitt ersätter dem.
+
+
+## Alla publika ärenden lågt och originalet först, #252
+
+Lokal värdpolicy anpassad från original `0931b84de82b48e1e435843676e4c7908aa551c6`
+([original #1860](https://github.com/solwation/lunden-3d-apartment/issues/1860)), enligt
+användarens förtydligande 2026-11-04. Detta ersätter #109:s smalare portregel och dess
+äldre undantag för självständigt publicarbete. **Alla** `solwation/kvarteret-lunden`-ärenden
+har exakt `priority: low`, inklusive buggar, självständiga förbättringar, under-/överordnade
+ärenden, tester, stöd, underhåll och samordning, om inte användaren senare uttryckligen
+beslutar ett undantag. Saknad publik prioritet rättas till low och högre prioritet sänks
+vid skapande och före köval/tomgångskontroll; ägarskap, aktiva etiketter och beroenden bevaras.
+Föräldrataket gäller fortfarande. Originalets prioritet höjer aldrig ett publikt ärende.
+
+Alla startbara originalärenden väljs före publika ärenden. Originalet har sin vanliga
+high→medium→low/äldst-först-ordning; publika ärenden är normalt alla low och äldst först.
+Ett senare uttryckligt undantag påverkar endast den interna publika ordningen.
+Redan pågående arbete får slutföras; ordningen gäller nästa val.
+
+Endast `AGENTS.md`, `CLAUDE.md`, `.orchestra/project.md` och denna lokala referens uppdateras.
+Den gemensamma versionslåsta subtree-kärnan, appkod, resurser, lagring och nät är orörda.
+Verifiering: diff, lokala länkar, motsägelsesökning och kontroll av öppna publika etiketter
+inklusive #4. Docs-only utan meningsfull produktbild eller changelog; ingen browser/testkörning.
+Faktiskt utlöst Pages verifieras av dirigenten före stängning.
