@@ -2958,3 +2958,15 @@ kvalitetsprofiler mot frysta byggda paket med verifierade 600 s HTTP-cacheheader
 Normal startknapp, faktisk Navigation-update och presenterad aktiv render används som
 spelbarhetsmarkör. `HOLD_STARTUP=1` håller sista scenen till `/tmp/246-release`.
 [Exakt metod, jämförelse, egna bilder och begränsningar](verification/246/README.md).
+
+## Solid jordkant vid träbron, #248
+
+`node --test tools/bridge-fill-check.mjs` använder faktisk Navigation med verkliga
+analytiska mark-/brofunktioner och minimal inomhusvärldsram. Negativ kontroll kopplar
+bara bort den nya fyllningsspärren. Testet täcker ändligt stöd/stopp/backning vid20/60fps,
+båda ramper/hela bron fram–åter med gång/sprint, väg-/GC-syskon och oförändrade farter.
+`tools/bridge-fill-view-check.mjs BASE` använder en faktisk publik värld och den gamla
+Navigation från publik bas a939dd59 i samma renderade mark. Native W+Shift/S driver den
+aktuella Navigatorn med kontrollerad dt0,05; resultatbilder, nät-/lagringsisolering och
+avgränsning finns i [verifiering248](verification/248/README.md). Ingen fysisk telefon-
+eller FPS/prestandaverifiering påstås.

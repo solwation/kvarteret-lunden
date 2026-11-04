@@ -270,3 +270,6 @@ projektets hooks per fas (planering till uppföljning);
 [Issueflow](.orchestra/shared/ISSUE-WORKFLOW.md) styr gemensamma etiketter och status.
 Andra agentverktyg kan läsa samma filer direkt. Gemensamma förbättringar görs i
 kärnans repo och införs här genom en granskad versionsuppdatering.
+
+Träbrons solida jordkanter stoppar gång mot en alltför hög fyllning, medan ramperna
+fortsätter vara gångbara i båda riktningar. [Riktad verifiering](docs/verification/248/README.md).

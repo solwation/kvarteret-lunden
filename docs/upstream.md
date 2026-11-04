@@ -2986,3 +2986,19 @@ Attribution och befintliga licenser gäller även den selektiva importen.
 
 `npm test`, `npm run build`, riktad komponentjämförelse och faktisk byggd publik vy med
 namnbilder, gång och nät-/lagringsisolering: [egna resultat och begränsningar](verification/247/README.md).
+
+## Träbrons solida jordkanter, #248
+
+Selektiv källa `a312a31de3158e10031ab0adb3059dff2d27dd24` (original #1849).
+Endast principen `blockedByBridgeFill` från originalets Player är anpassad till
+publikens befintliga `Navigation`/`BODY.stepUp=0.45`, tids-/distansdelsteg och
+`localStep`-kontroll. Befintlig `parkFillAt` används även för de två horisontella
+glidalternativen. Den separata lokala walkingSupport-lappen omfattar inte träbrons
+jordkant; den gamla verkliga Navigation kunde därför tappa sitt enda stöd och falla.
+Varken geometri, terräng, vatten, fart, analogvillkor eller andra stöd ändras.
+Inga Player-/avatar-/spel-/molnmoduler eller originalbilder importeras.
+
+Tre riktade komponentgrupper visar negativ reproduktion, ändligt stöd/stopp och
+backning, båda ramper/hela bron fram–åter med gång/sprint vid20/60fps samt väg-/GC-syskon.
+Befintligt sprintkontrakt, npm test/build och en verklig publik platskontroll dokumenteras
+med [egna bilder, källhashar och begränsningar](verification/248/README.md).

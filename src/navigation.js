@@ -2,6 +2,7 @@ import { Vector3 } from 'three';
 import * as config from './config.js';
 import { stairHeight, stairUnderside } from './stairs.js';
 import { walkingGroundY as groundY, walkingSupportHeight, groundBelowDeckY } from './surroundings.js';
+import {parkFillAt} from './riverpark.js';
 import { deckAt, upstreamRiverZone } from './riverbridge.js'; // #218 (original #1790): the upstream stretch's water guards north of z 60
 import { stileSurface, farWalls, waterBlocked, tooSteep, waterRescue, buildingRescue } from './farwalk.js'; // upstream #1236: walking beyond the block
 
@@ -142,6 +143,13 @@ export class Navigation {
       && under < feet + (this.crouched ? BODY.crouchEye + 0.2 : BODY.headroom);
   }
 
+  // Public #248, original a312a31d: a solid earth flank above step height is
+  // a horizontal barrier, even outside the separate walking-support patch.
+  blockedByBridgeFill(x, z, feet) {
+    const fill = parkFillAt(x, z);
+    return fill !== null && fill > feet + BODY.stepUp + 1e-6;
+  }
+
   /** Current physical leaves, including closed doors; never use isOpen to skip a leaf. */
   segments() {
     const y = this.pos.y, core = this.activeCore, u = this.unit;
@@ -241,7 +249,7 @@ export class Navigation {
       }
       const localStep = (x,z) => {
         const support=walkingSupportHeight(x,z);
-        return support!==null&&support>previous.y+BODY.stepUp+1e-6;
+        return this.blockedByBridgeFill(x,z,previous.y)||(support!==null&&support>previous.y+BODY.stepUp+1e-6);
       };
       if ((this.pos.z > 60 || upstreamRiverZone(this.pos.x, this.pos.z)) && !this.aloft && (waterBlocked(this.pos.x, this.pos.z, undefined, previous.y) || tooSteep(this.pos.x, this.pos.z, undefined, previous.y) || localStep(this.pos.x,this.pos.z))) {
         // The same local support owns ramp slope and reachable steps. A higher

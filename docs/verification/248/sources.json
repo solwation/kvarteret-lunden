@@ -1,0 +1,18 @@
+{
+  "issue": 248,
+  "publicBase": "a939dd593546690343a7e84b7722d4bcec95238f",
+  "originalSource": "a312a31de3158e10031ab0adb3059dff2d27dd24",
+  "adaptation": "Navigation fill guard only; all geometry/config/sampler sources unchanged",
+  "sha256": {
+    "src/navigation.js": "c2f9b55b6dc2f75518250228f62c1afa5decfdcc99ac3b82a9bfb2b7668efa40",
+    "src/config.js": "5bdedd2cf625cfbe0ee655d2fb6a4f992c934e050773c109ee46389c7df680e9",
+    "src/riverpark.js": "d12dc94ef537e3c2779720adef949ece1f2e33a02fca46f844ababd8a7a5a75d",
+    "src/surroundings.js": "e69a69b125856f8c4f6760f7d844edf50265d87f865270ecaba9889ee1ff97ca",
+    "src/farwalk.js": "0f286ec6d11393a2d8bf4779cf2283d3bd6dc7ef944838df7c1d9b05ee24278e",
+    "src/riverbridge.js": "a286298842d64c3f640c28234d004361ee4eaf719d8f4080c5c9745cf4515d45",
+    "tools/bridge-fill-check.mjs": "8255d4f5f2f149584180399f43d1e9a81218833e21a5ad8eef71ef0d9572dcc3",
+    "tools/bridge-fill-view-check.mjs": "0b3be9cb075082e19613db437dc2a167e49fcbc97c9ac8ce06e8b965e92d5248",
+    "docs/verification/248/bridge-location.png": "5a51e3cb42c80debba1a707b22826947687f01f01009345ce676e57fcd86e727",
+    "docs/verification/248/after-edge-stop.png": "bdc784fad2bc30782d506c8484dc79cababc0b1ca91054e0ce7e1b28cff4e6fc"
+  }
+}
