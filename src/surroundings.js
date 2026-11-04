@@ -1,3 +1,5 @@
+import {buildFootballSite} from './footballmodel.js';
+import {onFootballSite} from './footballgeo.js';
 import {createStartupPointCache} from './startupcache.js';
 import {buildOutdoorGym} from './outdoorgym.js';
 import { roadsidePockets, gradeParkingTerrain, constrainPocketPlane, setParkingPlane, parkingHull } from './roadsideparking.js';
@@ -115,7 +117,7 @@ export function walkingSupportHeight(x,z) {
   if(!walkingSupport||!walkingSupport.weight(x,z)||deckAt(x,z)!==null||parkDeckAt(x,z)!==null)return null;
   return walkingSupport.height(x,z,groundY(x,z));
 }
-export const walkingGroundY=(x,z)=>walkingSupportHeight(x,z)??groundY(x,z);
+export const walkingGroundY=(x,z)=>walkingSupportHeight(x,z)??(onFootballSite(x,z)?renderedTerrainY(x,z):groundY(x,z));
 export function walkingGroundSlope(x,z) {
   const c=walkingSupport?.core;
   return c&&x>=c.x0&&x<=c.x1&&z>=c.z0&&z<=c.z1&&deckAt(x,z)===null&&parkDeckAt(x,z)===null?walkingSupport.top(x,z,true):null;
@@ -1912,6 +1914,7 @@ export function* surroundingsParts({ grass, husL = null }) {
   group.add(buildRiverBridges(roadGround, connectPavement));
   yield 0.2;
   group.add(buildRiverPark(renderedTerrainY,renderedTerrainY, connectPavement));
+  group.add(buildFootballSite(renderedTerrainY).object); // Public #250: fixed field and fittings, no gameplay
   group.add(buildOutdoorGym(renderedTerrainY)); // Public #234: passive timber park fittings
   group.add(buildBusStop(renderedTerrainY)); // #71 (original #1301)
   yield 0.25;

@@ -1,0 +1,187 @@
+{
+  "ok": true,
+  "paint": 744,
+  "paintError": 3.4465789786747303e-7,
+  "contactError": 0,
+  "contacts": 17,
+  "routes": [
+    {
+      "sprint": false,
+      "dt": 0.05,
+      "steps": 896,
+      "maxGap": 0.0003867113275521916
+    },
+    {
+      "sprint": false,
+      "dt": 0.016666666666666666,
+      "steps": 2680,
+      "maxGap": 0.00038639252638672517
+    },
+    {
+      "sprint": true,
+      "dt": 0.05,
+      "steps": 300,
+      "maxGap": 0.006001647041732561
+    },
+    {
+      "sprint": true,
+      "dt": 0.016666666666666666,
+      "steps": 896,
+      "maxGap": 0.006001647041732561
+    }
+  ],
+  "barriers": [
+    {
+      "kind": "bench",
+      "local": [
+        11.509999999999991,
+        -5
+      ],
+      "center": [
+        12,
+        -5
+      ],
+      "stopped": true
+    },
+    {
+      "kind": "fountain",
+      "local": [
+        11.560000000000002,
+        9
+      ],
+      "center": [
+        12,
+        9
+      ],
+      "stopped": true
+    },
+    {
+      "kind": "goal-post",
+      "local": [
+        -1.7548444425143543,
+        -11.956728295486577
+      ],
+      "center": [
+        -1.5,
+        -12
+      ],
+      "stopped": true
+    }
+  ],
+  "supportMax": 0,
+  "supportSamples": 672,
+  "triangles": 968,
+  "nets": 76,
+  "batches": 2,
+  "nonPicking": true,
+  "native": {
+    "before": [
+      -262,
+      2.89976,
+      -21
+    ],
+    "after": [
+      -262,
+      2.934299999999996,
+      -21.799999999999912
+    ],
+    "keys": [
+      "KeyW"
+    ]
+  },
+  "views": [
+    {
+      "name": "field-overview",
+      "eye": [
+        -282,
+        19,
+        -1
+      ],
+      "target": [
+        -260,
+        3,
+        -21
+      ],
+      "on": {
+        "calls": 325,
+        "triangles": 687579,
+        "lines": 10302
+      },
+      "off": {
+        "calls": 323,
+        "triangles": 686611,
+        "lines": 10226
+      },
+      "delta": {
+        "calls": 2,
+        "triangles": 968,
+        "lines": 76
+      }
+    },
+    {
+      "name": "goals-and-lines",
+      "eye": [
+        -270,
+        6,
+        -12
+      ],
+      "target": [
+        -262,
+        4,
+        -31
+      ],
+      "on": {
+        "calls": 39,
+        "triangles": 443094,
+        "lines": 808
+      },
+      "off": {
+        "calls": 37,
+        "triangles": 442126,
+        "lines": 732
+      },
+      "delta": {
+        "calls": 2,
+        "triangles": 968,
+        "lines": 76
+      }
+    },
+    {
+      "name": "benches-and-fountain",
+      "eye": [
+        -244,
+        6,
+        -8
+      ],
+      "target": [
+        -250,
+        3.6,
+        -20
+      ],
+      "on": {
+        "calls": 31,
+        "triangles": 347190,
+        "lines": 808
+      },
+      "off": {
+        "calls": 29,
+        "triangles": 346222,
+        "lines": 732
+      },
+      "delta": {
+        "calls": 2,
+        "triangles": 968,
+        "lines": 76
+      }
+    }
+  ],
+  "storage": {
+    "local": {
+      "lunden.drawing": "untouched-original",
+      "lunden.cloud.queue": "untouched-original"
+    },
+    "session": "untouched-original"
+  },
+  "errors": [],
+  "external": []
+}

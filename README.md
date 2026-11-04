@@ -8,6 +8,9 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+På det norra gräsfältet finns en liten modellerad fotbollsplan med fasta mål,
+åskådarbänkar och fontän som passiv miljö, utan bollar eller spelinteraktioner (#250).
+
 De två hållplatsstolparna vid Sankt Lars väg visar Lund S:t Lars Karpvägen; det avslutade lokala vägarbetets signalvagn och varningsstativ är borttagna (#247).
 
 Nordics bakre parkering, grå grund och trappfötter möter den befintliga ritade grässluttningen; den antagna kontaktformen ändrar inte byggnadens vånings- eller takhöjd (#249).

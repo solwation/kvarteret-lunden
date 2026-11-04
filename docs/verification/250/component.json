@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "scope": "two fixed batches, no targets/lights/balls; curved contact, exact visible footprints and bounded site support",
+  "contacts": 17,
+  "footprints": 11,
+  "segments": 44,
+  "triangles": 886,
+  "maxContactError": 0
+}

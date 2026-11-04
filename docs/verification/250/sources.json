@@ -1,0 +1,39 @@
+{
+  "issue": 250,
+  "publicBase": "070436ea23b9ed6e0e10649a361b53c3fa0740fd",
+  "originalSource": "c10d16ad33e2eea5246127f4c22b80ade3381a6c",
+  "sha256": {
+    "src/footballgeo.js": "46e21a9207ab93cfc0438344f70727b6d47a7607e5fa85071571d2c96fc49b83",
+    "src/footballmodel.js": "df74a38b443a0785fc445b7447c12a8baeb14aa92799d919516bb69446d6213c",
+    "src/config.js": "b30485fd098214dc64f0d64e4028c251bcf6afb3d8ea4a85015603a35122ef7f",
+    "src/farwalk.js": "09533bd376244d3cc396732439bfa53e78427932ebc7dfe14ccc9d4bb752e6fc",
+    "src/surroundings.js": "4d090920ea97ebaa5eedeeb2b2f8b36066e4c1aaa060ae0e28eabbe8fecf0484",
+    "src/navigation.js": "c2f9b55b6dc2f75518250228f62c1afa5decfdcc99ac3b82a9bfb2b7668efa40",
+    "src/riverpark.js": "d12dc94ef537e3c2779720adef949ece1f2e33a02fca46f844ababd8a7a5a75d",
+    "src/riverbridge.js": "a286298842d64c3f640c28234d004361ee4eaf719d8f4080c5c9745cf4515d45",
+    "src/roads.js": "ef47ca91e59985be9e68753a721955426c221de92fa5387f98fa5a6c29849e65",
+    "src/walksupport.js": "74c09265dfc6556700bb589e4f9117effde031a259d937a7ae6497443ef0b1ae",
+    "tools/football-site-check.mjs": "c8f4d69bd2588a6e08488a19a6282014aa55c9ce3ef17aad5c78994f61d344b1",
+    "tools/football-site-view-check.mjs": "ce31dee382d236ee5b602d11919fea4ff5bb5d3b5eab969fc163b5dedfaf0889",
+    "tools/football-placement-check.mjs": "a626862a6c7eb270ba5b9dc312f0bfd7d6053793f1d4c9c9cd68e48f17811604",
+    "docs/verification/250/field-overview.png": "6056fe2277139065915a349230378093c1f83b399984116b6708d6bca3a252cb",
+    "docs/verification/250/goals-and-lines.png": "1bcb6ad7f5710e0a2681a96bf1edd67b24b8ea6b3ef927163a0b318abf37bdbe",
+    "docs/verification/250/benches-and-fountain.png": "cff1d52fed5aa99003d61854d25836458c4760c69de5ecc294c13c0ce68ea4a3"
+  },
+  "pinnedOriginalSHA256": {
+    "src/footballmodel.js": "737f18fd27dc16d7c63feb863a93d04104784151a279bcb3f2a1bf34455e8f6a",
+    "src/footballgeo.js": "d5e566bae085252b925d75d548c5d091cba85cd079e16a4605cf7de6a8d1b9d8",
+    "src/footballphysics.js": "2b3b894ede19793224fede18fa9c65719ae85ab30eb1322d6f1f6e5f96925d43",
+    "src/config.js": "3b367345c745bb32f7facb88c54be587ae6802b6e01deea9e8f5c1ba0fe68c50"
+  },
+  "originalSelection": "35 static config leaf values exactly equal pinned original; only two pure transform functions from physics, passive model geometry and footprints; all targets/streams/ball geometry removed",
+  "unchangedPublic": [
+    "src/navigation.js",
+    "src/riverpark.js",
+    "src/riverbridge.js",
+    "src/roads.js",
+    "src/walksupport.js"
+  ],
+  "configPreservation": "public config bytes preserved as prefix; FOOTBALL_SITE only appended",
+  "verifiedBuild": "b15fa315d88679d6b2cbfa7e"
+}

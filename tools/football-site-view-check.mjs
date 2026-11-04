@@ -1,0 +1,35 @@
+// Single actual public scene: fixed fittings, emitted-ground contact, Navigation and isolation.
+import {chromium} from 'playwright';
+import {mkdir,writeFile} from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const base=process.argv[2]??'http://localhost:8934',out='docs/verification/250';await mkdir(out,{recursive:true});
+const browser=await chromium.launch({executablePath:process.env.CHROME_PATH,args:['--no-sandbox','--enable-unsafe-swiftshader']});
+try{
+ const context=await browser.newContext({viewport:{width:1280,height:800}});
+ await context.addInitScript(()=>{localStorage.setItem('lunden.drawing','untouched-original');localStorage.setItem('lunden.cloud.queue','untouched-original');sessionStorage.setItem('lunden.session','untouched-original');});
+ const page=await context.newPage(),errors=[],external=[];page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{if(new URL(r.url()).origin!==new URL(base).origin)external.push(r.url());});await page.clock.setFixedTime(new Date('2026-06-15T10:00:00Z'));
+ await page.goto(base+'/?cloud=https://ignored.invalid&sync=debug',{waitUntil:'domcontentloaded',timeout:120000});await page.waitForFunction(()=>window.lundenViewer?.renderer.info.render.frame>0,null,{timeout:240000});
+ await page.evaluate(()=>{lundenViewer.renderer.setAnimationLoop(null);document.getElementById('start').click();document.exitPointerLock?.();document.querySelectorAll('.topbar,.locations,.bottom-bar,#crosshair').forEach(e=>e.hidden=true);document.getElementById('resume').style.setProperty('display','none','important');});
+ const result=await page.evaluate(async()=>{
+  const a=lundenViewer,T=await import('three'),S=await import('/src/surroundings.js'),{FOOTBALL_SITE:C,SITE}=await import('/src/config.js'),G=await import('/src/footballgeo.js'),{buildFootballSite}=await import('/src/footballmodel.js'),{Navigation}=await import('/src/navigation.js');
+  const object=a.scene.getObjectByName('football-site'),site=buildFootballSite(S.renderedTerrainY),mesh=object.getObjectByName('football-static'),p=mesh.geometry.attributes.position,c=mesh.geometry.attributes.color,white=new T.Color(C.colors.line);let paint=0,paintError=0,contactError=0;
+  for(let i=0;i<p.count;i++)if(Math.abs(c.getX(i)-white.r)<1e-5&&Math.abs(c.getY(i)-white.g)<1e-5&&Math.abs(c.getZ(i)-white.b)<1e-5){paint++;paintError=Math.max(paintError,Math.abs(p.getY(i)-S.renderedTerrainY(p.getX(i),p.getZ(i))-C.lineLift));}
+  for(const q of site.contacts)contactError=Math.max(contactError,Math.abs(q.point[1]-S.renderedTerrainY(q.point[0],q.point[2])));
+  const routes=[];for(const sprint of[false,true])for(const dt of[.05,1/60]){const n=new Navigation(a.world,new T.PerspectiveCamera()),pts=[[-7,-11],[7,-11],[7,11],[-7,11],[-7,-11]].map(q=>G.footballWorld(C,...q));n.teleport(pts[0][0],S.walkingGroundY(...pts[0]),pts[0][1]);n.keys=new Set(['KeyW',...(sprint?['ShiftLeft']:[])]);let steps=0,maxGap=0;
+   for(const[x,z]of pts.slice(1)){let count=0;while(Math.hypot(n.pos.x-x,n.pos.z-z)>.15){n.camera.rotation.y=Math.atan2(-(x-n.pos.x),-(z-n.pos.z));n.update(dt);maxGap=Math.max(maxGap,Math.abs(n.pos.y-S.renderedTerrainY(n.pos.x,n.pos.z)));if(!Number.isFinite(n.groundAt(n.pos.x,n.pos.z,n.pos.y))||++count>3000)throw Error('field route lost support/stuck');steps++;}}routes.push({sprint,dt,steps,maxGap});}
+  const barriers=[];for(const [kind,u,v]of[['bench',12,-5],['fountain',12,9],['goal-post',-C.goalWidth/2,-C.length/2]]){const n=new Navigation(a.world,new T.PerspectiveCamera()),start=G.footballWorld(C,u-1.2,v);n.teleport(start[0],S.walkingGroundY(...start),start[1]);n.camera.rotation.y=1.5*Math.PI;n.keys=new Set(['KeyW']);for(let i=0;i<120;i++)n.update(1/120);const local=G.footballLocal(C,n.pos.x,n.pos.z);barriers.push({kind,local,center:[u,v],stopped:local[0]<u-.20});}
+  const x=C.at[0],z=C.at[1];a.navigation.teleport(x,S.walkingGroundY(x,z),z);a.camera.rotation.set(0,0,0);
+  window.field250={a,S,C,G,object};const trees=[...S.treeFeet,...S.southTreeFeet].filter(t=>Math.hypot(t.x-x,t.z-z)<70).map(({x,z,kind})=>({x,z,kind}));
+  const buildings=[...SITE.west.buildings,...SITE.east.buildings,...SITE.north.buildings].filter(b=>b.polygon);
+  const support=[];for(let u=-10;u<=13;u+=1)for(let v=-14;v<=14;v+=1){const[x,z]=G.footballWorld(C,u,v);if(G.onFootballSite(x,z))support.push(Math.abs(S.walkingGroundY(x,z)-S.renderedTerrainY(x,z)));}
+  const triangles=p.count/3,nets=object.getObjectByName('football-nets').geometry.attributes.position.count/2;
+  for(const child of site.object.children){child.geometry.dispose();child.material.dispose();}
+  return{paint,paintError,contactError,contacts:site.contacts.length,routes,barriers,supportMax:Math.max(...support),supportSamples:support.length,triangles,nets,batches:object.children.length,nonPicking:object.children.every(o=>!o.userData.door&&!o.isLight),siteLocation:{trees,buildings}};
+ });
+ assert(result.paint>100&&result.paintError<.00001&&result.contactError<.000001);assert(result.supportMax<1e-10);assert(result.routes.every(r=>r.maxGap<.05));assert(result.barriers.every(r=>r.stopped));assert(result.nonPicking&&result.batches===2);
+ await page.keyboard.down('KeyW');result.native=await page.evaluate(()=>{const{a}=field250,before=a.navigation.pos.toArray();for(let i=0;i<60;i++)a.navigation.update(1/120);return{before,after:a.navigation.pos.toArray(),keys:[...a.navigation.keys]};});await page.keyboard.up('KeyW');assert(result.native.keys.includes('KeyW'));assert(result.native.after[2]<result.native.before[2]-.7);
+ const views=[['field-overview',[-282,19,-1],[-260,3,-21]],['goals-and-lines',[-270,6,-12],[-262,4,-31]],['benches-and-fountain',[-244,6,-8],[-250,3.6,-20]]];result.views=[];
+ for(const[name,eye,target]of views){const r=await page.evaluate(({eye,target})=>{const{a,object}=field250;a.camera.position.fromArray(eye);a.camera.lookAt(...target);a.camera.updateMatrixWorld(true);const draw=()=>{a.renderer.render(a.scene,a.camera);return{calls:a.renderer.info.render.calls,triangles:a.renderer.info.render.triangles,lines:a.renderer.info.render.lines};};const on=draw();object.visible=false;const off=draw();object.visible=true;draw();return{eye,target,on,off,delta:{calls:on.calls-off.calls,triangles:on.triangles-off.triangles,lines:on.lines-off.lines}};},{eye,target});result.views.push({name,...r});await page.screenshot({path:out+'/'+name+'.png'});}
+ result.storage=await page.evaluate(()=>({local:Object.fromEntries(Object.entries(localStorage).filter(([k])=>k.startsWith('lunden.'))),session:sessionStorage.getItem('lunden.session')}));assert.deepEqual(result.storage,{local:{'lunden.drawing':'untouched-original','lunden.cloud.queue':'untouched-original'},session:'untouched-original'});assert.deepEqual(errors,[]);assert.deepEqual(external,[]);
+ await writeFile(out+'/site-location.json',JSON.stringify(result.siteLocation,null,2));delete result.siteLocation;await writeFile(out+'/browser.json',JSON.stringify({ok:true,...result,errors,external},null,2));console.log(JSON.stringify({ok:true,...result,errors,external}));
+}finally{await browser.close();}

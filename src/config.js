@@ -3589,3 +3589,14 @@ export const SQUIRRELS = {
 export const BALLOON={center:{x:-30,z:30},radius:100,speed:3.5,floor:90,period:2400,window:2160,fadeIn:25,
   basketR:1.15,rim:.6,envR:8.5,envLow:5,stripes:14,far:400,
   rainbow:[0xe0302a,0xf2851c,0xf6d02a,0x3fa83c,0x2f6fd2,0x4a3aa0,0x8c3fb4]};
+
+// Public #250, original c10d16ad: passive fixed field/fittings only.
+// Placement, dimensions, heights and colours are visual guesses, not surveyed facts.
+export const FOOTBALL_SITE = {
+  at: [-262, -21], yaw: 0, width: 16, length: 24, runoff: 2, apron: 5, apronSpan: [-8, 12],
+  goalWidth: 3, goalHeight: 1.8, goalDepth: 1.3, postR: .035, netStep: .32,
+  lineWidth: .07, lineLift: .025, centerRadius: 2.5, circleSteps: 32, boxWidth: 7, boxDepth: 4,
+  bench: { side: 12, offsets: [-5, 5], length: 2.1, depth: .48, seat: .48, slat: .05, back: .4, leg: .065 },
+  fountain: { at: [12, 9], height: .9, base: .44, bowlR: .18 },
+  colors: { line: 0xf0efe6, frame: 0xe3e5e4, net: 0xc6ccc8, wood: 0x986b45, metal: 0x686e72 },
+};

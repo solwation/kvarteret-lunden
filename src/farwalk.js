@@ -1,3 +1,4 @@
+import {footballSegments} from './footballgeo.js';
 import {gymSegments} from './outdoorgym.js';
 // Upstream #1236 (5a3d3cd, e30ec5e, 49e897d), downstream #60: walking beyond the home block (OUTDOOR): collision for the mapped background buildings, the two river bridges' and
 // the timber footbridge's rails, and the river itself as an obstacle. Everything is derived from the data the backdrops are
@@ -54,6 +55,7 @@ export function farSegments() {
     out.push(...railSegs((ax + bx) / 2, (az + bz) / 2, (bx - ax) / len, (bz - az) / len, len, P.woodBridge.width / 2 - 0.03));
   }
   out.push(...fenceSegments(), ...stileWalls()); // original #1280/#1295: the pony paddock's fence, closed gate included (nothing is walkable through it); the stile's opening has side walls
+  out.push(...footballSegments()); // Public #250: fixed posts, benches and fountain
   out.push(...gymSegments()); // Public #234: fixed gym supports/boards, no interaction targets
   out.push(...busStopSegments()); // #71 (original #1301): the bus shelter's glass back and ends
   for (const p of pierBoxes()) {

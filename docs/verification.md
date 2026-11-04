@@ -2982,3 +2982,14 @@ parkeringskontrakten, nu med den selektiva markändringens 2 860 komponenttriang
 och befintlig publik kattmarkcallback mellan fryst före och aktuell efter. Samma markbuffer,
 hela lågminnescampusbudgeten, egna före/efterbilder och lagrings-/nätisolering kontrolleras.
 [Metod, exakta källor, resultat och begränsningar](verification/249/README.md).
+
+## Fast fotbollsplan utan spel, #250
+
+`node tools/football-site-check.mjs` kontrollerar ren fast modell, markkontakter,
+11fotavtryck/44segment, två batcher och avgränsad stödregion utan mål/interaktioner.
+`tools/football-site-view-check.mjs BASE` använder en faktisk publik värld för kontakt
+med emitterade trianglar, Navigation gång/sprint20/60fps över planen och fasta
+kollisionsprov, nativeW, nät-/lagringsisolering och egna plats-/detaljbilder.
+`tools/football-placement-check.mjs` granskar kontinuerlig2Dfrigång till47befintliga
+väg-/access-/parkstråk och aktuell publik trädlokalisering från appkontrollen.
+[Exakta källor, råvärden och granskade bilder](verification/250/README.md).

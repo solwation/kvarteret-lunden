@@ -3051,3 +3051,28 @@ Den gemensamma versionslåsta subtree-kärnan, appkod, resurser, lagring och nä
 Verifiering: diff, lokala länkar, motsägelsesökning och kontroll av öppna publika etiketter
 inklusive #4. Docs-only utan meningsfull produktbild eller changelog; ingen browser/testkörning.
 Faktiskt utlöst Pages verifieras av dirigenten före stängning.
+
+## Fast fotbollsplan, bänkar och fontän, #250
+
+Selektiv exakt originalkälla `c10d16ad33e2eea5246127f4c22b80ade3381a6c` (#1853).
+Den slutliga16×24m-planens linjer, två fasta mål/nät, två åskådarbänkar och en torr
+fontän återanvänds från footballmodel/footballgeo samt endast fasta FOOTBALL-parametrar.
+Placering(-262,−21), tvåmeters runoff, smal östra remsa, mått, material/färger och
+höjder är modellantaganden. Inga originalbilder eller privata resurser importeras;
+befintlig attribution och licenser bevaras.
+
+Publikens egna surroundings bygger modellen efter emitterad terräng. Linjer delas vid
+terrängtrianglarnas kanter och bänk-/målfötter följer samma mark. Endast den avgränsade
+plan-/runoff-/apronregionens walkingGroundY använder emitterad höjd efter det befintliga
+lokala walkingSupport-valet. Övrig terräng/deck/stöd och byggnadsnavigation bevaras.
+De11fasta fotavtrycken använder befintliga farWalls-buckets. Ingen väg eller något träd
+flyttas. Modellen har två statiska ritbatcher, inga nya ljus eller texturhämtningar.
+
+Bortvalt: bollar och bollgeometri, footballphysics/manager/wire/credit/Life/Rest,
+alla klick-/sitt-/drickmål och vattenström, animation, input/HUD, poäng/medaljer,
+persondata, lagring och Cloudflare/WebSockets. Transformerna world/local extraheras
+som rena koordinatfunktioner i footballgeo; ingen fysikmodul blir beroende.
+
+Verifiering: komponentkontakt/segment/bounded support, faktisk publik emitterad mark,
+väg-/trädfrigång, Navigation/footprints, lokal on/off-ritkostnad, npm test/build och
+nät-/lagringsisolering. [Egna bilder, källhashar och begränsningar](verification/250/README.md).
