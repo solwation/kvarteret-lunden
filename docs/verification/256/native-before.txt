@@ -1,0 +1,73 @@
+TAP version 13
+# Subtest: scaled and zero normals, sharing and untouched geometry payloads
+not ok 1 - scaled and zero normals, sharing and untouched geometry payloads
+  ---
+  duration_ms: 2.691412
+  type: 'test'
+  location: '/home/devcontainers/orkester-lunden-20261105b/public-integration/tools/normalpackingtest.mjs:8:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+
+      [
+        0,
+    +   12,
+    -   -127,
+        0,
+        0
+      ]
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 0
+    1: -127
+    2: 0
+    3: 0
+  actual:
+    0: 0
+    1: 12
+    2: 0
+    3: 0
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///home/devcontainers/orkester-lunden-20261105b/public-integration/tools/normalpackingtest.mjs:14:70)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: dynamic, keepCpu, skinned, morph and already-uploaded geometry retain floats
+ok 2 - dynamic, keepCpu, skinned, morph and already-uploaded geometry retain floats
+  ---
+  duration_ms: 1.241882
+  type: 'test'
+  ...
+# Subtest: public anonymous cat producer retains direction when the helper is explicitly invoked
+not ok 3 - public anonymous cat producer retains direction when the helper is explicitly invoked
+  ---
+  duration_ms: 11.399787
+  type: 'test'
+  location: '/home/devcontainers/orkester-lunden-20261105b/public-integration/tools/normalpackingtest.mjs:30:1'
+  failureType: 'testCodeFailure'
+  error: 'worst angular error 13.83158816452695'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///home/devcontainers/orkester-lunden-20261105b/public-integration/tools/normalpackingtest.mjs:35:33)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 1
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 93.62707

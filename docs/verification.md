@@ -18,6 +18,16 @@ konkret materiell risk; ta bara om felaktiga kamerapositioner. Befintliga snabba
 `npm test`/bygge och automatisk Pages-status kvarstår; dokument kräver ingen ny
 livebrowserkontroll av oförändrad app.
 
+## Förebyggande normalpackning, #256
+
+`node --test tools/normalpackingtest.mjs tools/lowmemcanarytest.mjs` kontrollerar
+skalade/nollnormaler, delning, byteformat, oförändrade payloads och befintliga undantag.
+Den egna anonyma kattproducentens obearbetade bengeometri används som verkligt exempel.
+`tools/normalpackingbrowser.mjs` följer befintliga browserprovs nät-/lagringsmarkörer,
+visar aktuell public i lågminnesläge och jämför två esbuild-paket med fasta versionsvärden.
+Global normalpackning har inget produktionsanrop; ingen ny renderförbättring påstås.
+[Egna bilder, råresultat, källa och begränsningar](verification/256/README.md).
+
 # Verifiering av första arkitekturimporten
 
 Källversion: `solwation/lunden-3d-apartment@c079371f6782225e29e9dac51518c509ed8c37e6`.

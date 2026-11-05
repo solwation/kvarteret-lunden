@@ -1,0 +1,47 @@
+TAP version 13
+# Subtest: freed attribute marked for update: no version bump, one console.error with names
+ok 1 - freed attribute marked for update: no version bump, one console.error with names
+  ---
+  duration_ms: 2.471395
+  type: 'test'
+  ...
+# Subtest: label falls back to the mesh name
+ok 2 - label falls back to the mesh name
+  ---
+  duration_ms: 0.524157
+  type: 'test'
+  ...
+# Subtest: three WebGLAttributes does not throw on a freed attribute marked for update
+ok 3 - three WebGLAttributes does not throw on a freed attribute marked for update
+  ---
+  duration_ms: 1.580268
+  type: 'test'
+  ...
+# {"publicProducer":"anonymous cat limb before mergedRig normalization","shortest":0.015020818844568394,"worst":0.29611956196656747,"vertices":63,"bytes":252}
+# Subtest: scaled and zero normals, sharing and untouched geometry payloads
+ok 4 - scaled and zero normals, sharing and untouched geometry payloads
+  ---
+  duration_ms: 3.315524
+  type: 'test'
+  ...
+# Subtest: dynamic, keepCpu, skinned, morph and already-uploaded geometry retain floats
+ok 5 - dynamic, keepCpu, skinned, morph and already-uploaded geometry retain floats
+  ---
+  duration_ms: 1.504375
+  type: 'test'
+  ...
+# Subtest: public anonymous cat producer retains direction when the helper is explicitly invoked
+ok 6 - public anonymous cat producer retains direction when the helper is explicitly invoked
+  ---
+  duration_ms: 15.131042
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 116.410621

@@ -1,0 +1,90 @@
+{
+  "bundle": {
+    "sameWithFixedMetadata": true,
+    "sha256": "0371fcd9529cd97fe6070a0665dd596b98d2fe92052083c5736f8e41103d63bd",
+    "bytes": 1520293
+  },
+  "runs": [
+    {
+      "phase": "before",
+      "errors": [],
+      "external": [],
+      "data": {
+        "scenePackCalls": 0,
+        "packCalls": 0,
+        "geometries": 1392,
+        "byteNormalGeometries": 0,
+        "calls": 549,
+        "triangles": 888275,
+        "sentinels": [
+          "unchanged",
+          "unchanged",
+          "unchanged"
+        ],
+        "localKeys": [
+          "lunden.cloud.queue",
+          "lunden.drawing"
+        ],
+        "sessionKeys": [
+          "lunden.session"
+        ]
+      },
+      "sourceSha256": "a01939b2636cc0e1de62d54ffc4299361b4a9c28c35a67631e74a14c3def1f22",
+      "browser": "156.0.8078.4"
+    },
+    {
+      "phase": "after",
+      "errors": [],
+      "external": [],
+      "data": {
+        "scenePackCalls": 0,
+        "packCalls": 0,
+        "geometries": 1392,
+        "byteNormalGeometries": 0,
+        "calls": 549,
+        "triangles": 888275,
+        "sentinels": [
+          "unchanged",
+          "unchanged",
+          "unchanged"
+        ],
+        "localKeys": [
+          "lunden.cloud.queue",
+          "lunden.drawing"
+        ],
+        "sessionKeys": [
+          "lunden.session"
+        ]
+      },
+      "sourceSha256": "f373368689564c202ad159e0c13df2b1e506a359ba1f748c57b7c4a05764328d",
+      "browser": "156.0.8078.4"
+    },
+    {
+      "phase": "built",
+      "errors": [],
+      "external": [],
+      "data": {
+        "scenePackCalls": 0,
+        "packCalls": 0,
+        "geometries": 1392,
+        "byteNormalGeometries": 0,
+        "calls": 549,
+        "triangles": 888275,
+        "sentinels": [
+          "unchanged",
+          "unchanged",
+          "unchanged"
+        ],
+        "localKeys": [
+          "lunden.cloud.queue",
+          "lunden.drawing"
+        ],
+        "sessionKeys": [
+          "lunden.session"
+        ]
+      },
+      "sourceSha256": "f373368689564c202ad159e0c13df2b1e506a359ba1f748c57b7c4a05764328d",
+      "browser": "156.0.8078.4"
+    }
+  ]
+}

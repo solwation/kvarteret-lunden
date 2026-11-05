@@ -6,6 +6,25 @@
 
 En GitHub-fork skulle inte heller uppdatera sig själv. Fördelen med denna struktur är att vi kan återanvända relevanta förbättringar utan att publicera originalets personliga historik här.
 
+## Normalriktning före bytepackning, #256
+
+Selektiv källa: `0f6ecb6a2acbb6c28d912471d3ff3e42d356820b`
+([original #1875](https://github.com/solwation/lunden-3d-apartment/issues/1875)).
+Endast normalisering av icke-nollvektorer före Int8×4-konvertering samt precisionskommentaren
+förs över till publicens befintliga `packNormals` i `src/lowmemory.js`. Nollnormaler,
+delning, undantag, positions-/UV-/indexdata och 4 byte per vertex behålls.
+Ingen ny biblioteksversion eller beroendekedja införs.
+
+Publicens `freeSceneGeometryCopies` har **inget produktionsanrop**. Detta är förebyggande
+underhåll av hjälpfunktionen; global packning aktiveras inte. De anonyma katternas
+befintliga `mergedRig` normaliserar redan sina normaler. Direkta prov använder endast
+generiska vektorer och den egna anonyma kattproducenten, utan originalets modeller eller
+bilder. Aktuell publik scen påstås inte få ny ljussättning eller prestandavinst.
+
+Egna lågminnesbilder, bygge med fasta versionsvärden, nät-/lagringsmarkörer, nativeprov,
+`npm test` och `npm run build` redovisas i [verifieringen](verification/256/README.md).
+Originalets personliga resurser, gameplay, changelog, historik och tjänster har inte importerats.
+
 ## Orkester v0.8.0 och integrationsväntan, #251
 
 Granskad gemensam källa: `solwation/dirigenten-och-orkestern` v0.8.0,

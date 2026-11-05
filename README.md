@@ -147,6 +147,10 @@ En öppen visning kontrollerar nya versioner varje minut och när fliken blir sy
 
 ## Verifiering
 
+Normalpackarens befintliga hjälpfunktion normaliserar nu riktningar före bytekonvertering (#256).
+Den har inget produktionsanrop i den publika visningen; ändringen aktiverar ingen ny packning
+eller synlig renderförändring. [Avgränsning och egna kontroller](docs/verification/256/README.md).
+
 Promenadytan sträcker sig ner till ån, över broarna och bland skolbyggnaderna till klocktornet (`WALK`, `src/farwalk.js`); `tools/farwalk-check.mjs` kontrollerar den. `node tools/riverat-check.mjs` jämför flod- och kollisionsresultat mot baslinjen och mäter kontrollernas kostnad.
 
 `npm test` granskar importkedjan, planunderlaget och frånvaro av privata referenser och originalets tjänster. `npm run build` skapar det statiska publiceringspaketet. Kör `CHROME_PATH=/sökväg/till/chrome node tools/browser-check.mjs http://localhost:8157` mot en server för `dist/` för integrationstest i Chromium, inklusive mobil layout, gång, dörranimation, ursprunglig lagring och nätverksanrop. `tools/touchcustom-check.mjs` kontrollerar på samma sätt den egna touchlayouten. `tools/startup-error-check.mjs` kontrollerar laddningsstegen, stoppmeddelandet och felkortet med steg och Försök igen när starten misslyckas.
