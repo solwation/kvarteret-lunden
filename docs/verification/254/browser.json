@@ -1,0 +1,18 @@
+{
+  "errors": [],
+  "external": [],
+  "probe": {
+    "calls": 3683,
+    "components": 685284,
+    "baselineMs": 464.80000011622906,
+    "backportMs": 363.600000038743,
+    "mismatches": 0
+  },
+  "storage": [
+    "unchanged",
+    "unchanged",
+    [
+      "lunden.drawing"
+    ]
+  ]
+}
