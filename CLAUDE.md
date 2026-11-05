@@ -67,6 +67,15 @@ Read [AGENTS.md](AGENTS.md) for public-content, storage and service boundaries. 
 - Every push to this repository's `main` triggers `.github/workflows/pages.yml`: tests, build, then GitHub Pages deployment. Verify the run; check changed app behaviour live when the scoped plan requires it. Docs-only changes do not require a new browser check of the unchanged app.
 - Original improvements are reviewed imports, never an automatic merge. Follow [docs/upstream.md](docs/upstream.md). A downstream-only change does not require an unrelated change in the original app's changelog.
 
+## Chat change requests
+
+Create or reuse one issue per independently reviewable requested change, then start or
+resume scoped orchestra work without waiting for `/orkester`, even when no run is active
+or its idle watch has ended. Reuse the active conductor, claims and preserved work;
+respect explicit deferral or discussion-only requests. A scoped request does not expand
+to the backlog or enable timers. Read
+[chat intake](.orchestra/shared/ORCHESTRA.md#turn-chat-requests-into-work) and the local policy.
+
 ## /orkester
 
 Read [.orchestra/project.md](.orchestra/project.md) and its versioned, model-independent

@@ -3129,3 +3129,28 @@ behåller samtliga exteriormeshers geometri,146 exponerade rutor och samma rende
 med nät-/lagringsgränser intakta. Originalets pixel/fysiskaGPUflimmer är inte reproducerat
 av denna SwiftShaderkontroll. npm test138moduler och build är gröna.
 [Egna bilder, rådata, källhashar och begränsningar](verification/253/README.md).
+
+
+## Avgränsat chattintag i orkestern v0.8.1, #255
+
+Selektiv instruktionsjämförelse: original `d01f9af2ecdd42e0f5f0b9cfd7f0dd2848e1978e`
+([original #1874](https://github.com/solwation/lunden-3d-apartment/issues/1874)).
+Endast motsvarande lokala chattintag, agentingångar och versionsreferenser anpassas.
+Ingen originalhistorik eller appkod kopieras. Den gemensamma kärnan importeras direkt
+från den officiella releasen v0.8.1, `264e867d17b4f938b09cdb01794025e7b0113c5d`,
+med publicens egen bevarade squashsubtree-ancestry/trailers. Hela diffen från tidigare
+v0.8.0 `6ee6dd23ed85e5a91641d1939d553e4f789027d4` är granskad: chattintagsregel i
+ORCHESTRA/COORDINATION och samordnad AI/README/INSTALL/CHANGELOG, inga andra ändringar.
+
+Ändringsönskemål skapar/återanvänder ärenden och startar/återupptar avgränsat arbete
+även utan aktiv orkester och efter avslutad tomgångsvakt. Aktiv dirigent återanvänds;
+explicit uppskjutning gäller. Enbart läsning startar inget arbete. En avgränsad
+chattönskan öppnar inte hela backloggen eller nya kötimers. Uttryckligt `/orkester`
+behåller kösessionen. Original före public, public low, ägarskap, två arbetare,
+300s-köpoll, 60min-bevakning och publiceringskrav bevaras.
+
+Ingen personlig data, gameplay, originalets lagring, Cloudflare eller tjänst har
+införts. Dokumentarbete utan meningsfullt visuellt resultat: ingen browserbild eller
+spelarnyhet behövs. Verifiering omfattar full dokumentdiff, relativa länkar/ankare,
+regelmotsägelser samt obligatoriska `npm test` och `npm run build`. Faktisk Pages-körning
+verifieras av dirigenten efter publicering före stängning.

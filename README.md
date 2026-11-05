@@ -262,7 +262,12 @@ Med `?perf` kan långa bildintervall mätas lokalt och exporteras utan en teleme
 
 `/orkester` använder den modelloberoende kärnan i
 [dirigenten-och-orkestern](https://github.com/solwation/dirigenten-och-orkestern),
-versionslåst till **v0.8.0** (`6ee6dd23ed85e5a91641d1939d553e4f789027d4`) som Git subtree i `.orchestra/shared`. Vanlig kloning räcker.
+versionslåst till **v0.8.1** (`264e867d17b4f938b09cdb01794025e7b0113c5d`) som Git subtree i `.orchestra/shared`. Vanlig kloning räcker.
+En ändringsönskan i chatten skapar eller uppdaterar motsvarande ärende och startar
+eller återupptar avgränsat arbete, även utan aktiv orkester eller efter avslutad
+tomgångsvakt. Uttryckliga uppskjutningar respekteras; en aktiv dirigent återanvänds.
+Avgränsat chattarbete öppnar inte hela kön eller nya timers. Se
+[chattintaget](.orchestra/shared/ORCHESTRA.md#turn-chat-requests-into-work).
 Vid start eller återupptagning kontrollerar dirigenten nya stabila releaser och
 versionstaggar, med högst ett dygns återanvändning av en lyckad kontroll. Nya
 stabila uppdateringar importeras automatiskt som lågprioriterat underhåll vid nästa
