@@ -19,6 +19,23 @@ personligt innehåll, historik, lagring, gameplay eller tjänst har kopierats.
 Den medföljande ikonflytten ingår endast i den gemensamma instruktionsträdet.
 [Avgränsade kontroller och begränsningar](verification/251/README.md).
 
+## Snabbare kantlinjeberäkning, #254
+
+Selektiv källa `b01c076c0e607cf2dbd8b5977cdf33b921d22f89`
+([original #1871](https://github.com/solwation/lunden-3d-apartment/issues/1871)).
+Endast den MIT-licensierade `src/vendor/three/EdgesGeometry.js` från Three.js r187
+samt licensen återanvänds. Importbytet anpassas i publicens båda egna moduler
+`architectureedges.js` (hus/interiör) och `architectural-edges.js` (garage/kärnhus).
+Det nya Map-uppslaget behåller kantordning, trösklar och geometri exakt. Renderer
+förblir Three.js 0.170.0/WebGL; detta aktiverar inte meshlets eller automatisk LOD.
+Ta bort den lokala hjälparen efter en verifierad r187+-uppgradering.
+
+Licensen läggs också i den publicerade `THIRD_PARTY_LICENSES.txt` så att den följer
+med bundlad kod. Inga originalbilder, personliga resurser, spelmoment, lagring eller
+externa tjänster har kopierats. Egna komponent-/browserprov jämför verklig publik
+bygggeometri mot r170, med originalets lagringsnycklar som orörda kontrollvärden.
+[Egna resultatbilder, mätgränser och verifiering](verification/254/README.md).
+
 ## Första importen
 
 1. Välj och dokumentera ett exakt commit-SHA i originalet.
