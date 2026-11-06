@@ -6,6 +6,16 @@
 
 En GitHub-fork skulle inte heller uppdatera sig själv. Fördelen med denna struktur är att vi kan återanvända relevanta förbättringar utan att publicera originalets personliga historik här.
 
+## Unik uppdateringsadress vid versionsomladdning, #258
+
+Källa: `d01728d6c77bb6896c1488c5ef54589d985a974b`
+([original #1878](https://github.com/solwation/lunden-3d-apartment/issues/1878)).
+När en ny version laddas om via `src/updates.js` förses navigations-URL:en med en
+unik `_update`-parameter utöver `?v=<version>`. Webbläsarens och CDN:ens HTTP-dokumentcache
+(`max-age=600`) förbigås därmed vid sidomladdningen, så att ett äldre cachat HTML-skal inte
+återanvänds. Publicens befintliga HTML-tillgänglighetskontroll och builtAt-skydd behålls.
+Ingen originalappkod, personlig historik, gameplay, lagringsnycklar eller tjänster importeras.
+
 ## Normalriktning före bytepackning, #256
 
 Selektiv källa: `0f6ecb6a2acbb6c28d912471d3ff3e42d356820b`

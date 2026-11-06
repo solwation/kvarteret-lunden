@@ -68,6 +68,7 @@ export function watchUpdates({snapshot, busy, notice, reload = url => location.r
         reloading = false; countdown = 0; return;
       }
       saveResume(snapshot(), pending.version);
+      url.searchParams.set('_update', Date.now());
       reload(url.href);
     } catch {
       reloading = false; countdown = 0; retryAt = performance.now() + 60_000;
