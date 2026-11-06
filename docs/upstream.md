@@ -25,6 +25,22 @@ Egna lågminnesbilder, bygge med fasta versionsvärden, nät-/lagringsmarkörer,
 `npm test` och `npm run build` redovisas i [verifieringen](verification/256/README.md).
 Originalets personliga resurser, gameplay, changelog, historik och tjänster har inte importerats.
 
+## Kortare orkesterinstruktioner och rättad länkkontroll, #257
+
+Den gemensamma kärnan importeras direkt från den officiella releasen v0.8.2,
+`5a67f022cea5ec2a81fcadb99b727d9f3482e26a`, med publicens egen squashsubtree
+och bevarade mergeföräldrar/trailers. Motsvarande originalunderhåll spåras i
+[original #1877](https://github.com/solwation/lunden-3d-apartment/issues/1877);
+ingen originalappkod, personlig historik, gameplay, lagring eller tjänst kopieras.
+
+Hela diffen från v0.8.1 `264e867d17b4f938b09cdb01794025e7b0113c5d` är granskad.
+Den kortar upprepade instruktioner med länkar till auktoritativa avsnitt, skiljer
+sessionsläsning från fasläsning och rättar länkkontrollen för nästlade kodstaket,
+infotext på avslut och kolliderande rubrikankare. Tio regressionstester följer med.
+Projektets köordning, låga publicprioritet, ägarskap, timers, bildkrav och
+publiceringsgrindar består; ingen migrering eller ny behörighet införs.
+[Avgränsade kontroller och dokumentundantag](verification/257/README.md).
+
 ## Orkester v0.8.0 och integrationsväntan, #251
 
 Granskad gemensam källa: `solwation/dirigenten-och-orkestern` v0.8.0,
