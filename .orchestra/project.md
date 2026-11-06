@@ -233,15 +233,15 @@ These follow [COORDINATION.md](shared/COORDINATION.md), not the phase hooks.
 
 ## Shared version and maintenance
 
-Shared release: **v0.8.2**, commit **5a67f022cea5ec2a81fcadb99b727d9f3482e26a**. Imported directly from the official release
-with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git 5a67f022cea5ec2a81fcadb99b727d9f3482e26a --squash`
-in [#257](https://github.com/solwation/kvarteret-lunden/issues/257), matching
-[original #1877](https://github.com/solwation/lunden-3d-apartment/issues/1877). The complete
-v0.8.1..v0.8.2 diff shortens repeated instructions, separates session and phase reading,
-and fixes Markdown link checking with ten regression tests. Existing gates and anchors,
+Shared release: **v0.9.0**, commit **070ebf43e25c2bc7885e387712edd18a2e97da1c**. Imported directly from the official release
+with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git 070ebf43e25c2bc7885e387712edd18a2e97da1c --squash`
+in [#259](https://github.com/solwation/kvarteret-lunden/issues/259), matching
+[original #1880](https://github.com/solwation/lunden-3d-apartment/issues/1880). The complete
+v0.8.2..v0.9.0 diff keeps checkouts stable during verification, feeds material review findings back into instructions before starting similar tasks, clarifies worker test setup with dedicated checkout verification, adds optional host context maps and provides upstream field report links. Existing gates and anchors,
 fresh queue/claim checks and every host override remain; no lifecycle, priority, timer,
-permission or publication migration applies. [Scoped evidence](../docs/verification/257/README.md).
-The previous v0.8.1 import is recorded in public #255 and original #1874; v0.8.0 in
+permission or publication migration applies.
+The previous v0.8.2 import is recorded in public #257 and original #1877; v0.8.1 in
+public #255 and original #1874; v0.8.0 in
 public #251 and original #1861. Preserve merge ancestry and subtree trailers.
 The canonical Issueflow snapshot is byte-identical to revision `0e712c346c7689dd3e00db04fbe00d86090d5908`.
 The earlier v0.7.1 import remains recorded in #229 and original #1816. The earlier v0.7.0 import from v0.6.1 remains recorded
