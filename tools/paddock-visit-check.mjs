@@ -13,7 +13,7 @@ try{
   const page=await browser.newPage({viewport:vp});page.on('pageerror',e=>errors.push(e.message));
   await page.goto(base);await page.waitForFunction(()=>window.lundenViewer?.renderer.info.render.frame>0,null,{timeout:300000});
   await page.locator('#start').click({timeout:120000});await page.evaluate(()=>document.exitPointerLock?.());
-  if(name==='mobile'){await page.locator('#place-toggle').click();await page.locator('#place-menu [data-place="paddock"]').click();}else await page.keyboard.press('Digit8');
+  if(name==='mobile'){await page.locator('#place-toggle').click();await page.locator('#place-menu [data-place="paddock"]').click();}else await page.locator('[data-place="paddock"]').click();
   await page.waitForTimeout(800);await page.screenshot({path:`${out}/${name}.png`});
   const r=await page.evaluate(async()=>{
    const geo=await import(new URL('/src/paddockgeo.js',location.origin)),{treeFeet,groundY}=await import(new URL('/src/surroundings.js',location.origin)),fw=await import(new URL('/src/farwalk.js',location.origin));

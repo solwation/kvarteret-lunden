@@ -45,8 +45,8 @@ async function openApp(options, resume) {
   assert.equal(await page.locator('nav.locations div#place-menu.place-buttons').count(), 1);
   assert.equal(await page.locator('#place-menu [data-place]').count(), 12);
   assert.equal(await page.locator('[role="menu"], [role="menuitem"]').count(), 0, 'ordinary disclosure buttons');
-  assert.deepEqual(await page.locator('[data-place]').evaluateAll(bs => bs.map(b => b.textContent.trim()[0])),
-    ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'N', 'B']);
+  assert.deepEqual(await page.locator('[data-place]').evaluateAll(bs => bs.filter(b => /^[0-9]\s*·/.test(b.textContent.trim()) || b.hasAttribute('aria-keyshortcuts')).length),
+    0, '#261: no digit prefixes or digit shortcuts');
   await disclosure(page, false, 'startup');
   return {context, page, toggle};
 }
@@ -64,7 +64,7 @@ async function destination(page, id, label) {
   const actual = await state(page);
   const expected = await page.evaluate(id => {
     const p = window.lundenViewer.locations[id];
-    const label = document.querySelector(`[data-place="${id}"]`).textContent.trim().replace(/^[0-9]\s*·\s*/, '');
+    const label = document.querySelector(`[data-place="${id}"]`).textContent.trim();
     return {position: [p.x, p.y, p.z], name: p.name, label};
   }, id);
   assert.deepEqual(actual.position, expected.position, `${label}: actual navigation.pos for ${id}`);
@@ -275,13 +275,16 @@ try {
   await layout(d, 650, 800, 'return to disclosure for shortcuts');
   await screenshot(d, 'desktop-650-keyboard-after');
 
-  for (const prefix of ['Digit', 'Numpad']) {
-    for (const [index, id] of ids.slice(0, 10).entries()) { // keys 1-9 and 0; the last two places are menu-only
-      await openMenu(d);
-      await d.keyboard.press(`${prefix}${(index + 1) % 10}`);
-      await destination(d, id, `${prefix} closes open menu`);
-    }
-  }
+  // #261: digit keys no longer pick places; Tab inside the open menu keeps ordinary focus navigation.
+  await openMenu(d);
+  await d.locator('#place-menu [data-place="clocktower"]').click();
+  await destination(d, 'clocktower', 'menu click picks the tenth place');
+  const beforeKeys = await state(d);
+  await openMenu(d);
+  for (const prefix of ['Digit', 'Numpad']) for (let key = 0; key <= 9; key++) await d.keyboard.press(`${prefix}${key}`);
+  await d.keyboard.press('Tab');
+  assert.deepEqual(await state(d), beforeKeys, 'digits and Tab in the open menu do not move the visitor');
+  await d.keyboard.press('Escape');
   await layout(d, 1280, 800, 'resize back to desktop');
   await destination(d, 'clocktower', 'resize back preserves selection');
   await screenshot(d, 'desktop-resized-after');
@@ -290,7 +293,7 @@ try {
   assert.deepEqual(report.external, [], 'no external requests');
   assert.equal((await (await fetch(new URL('version.json', base))).json()).version, report.version, 'build unchanged throughout check');
   report.pass = true;
-  console.log(`PASS: button disclosure, twelve actual destinations, touch 390/320/landscape, 650/960/961/1280, Tab/Enter/Space/Escape/outside, resize, Digit/Numpad and takeResume; ${out}`);
+  console.log(`PASS: button disclosure, twelve actual destinations, touch 390/320/landscape, 650/960/961/1280, Tab/Enter/Space/Escape/outside, resize, no digit shortcuts and takeResume; ${out}`);
 } catch (error) {
   report.pass = false;
   report.failure = error.stack;

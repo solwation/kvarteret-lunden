@@ -9,7 +9,7 @@ import { VERSION, takeResume, watchUpdates, saveResume, claimContextReload } fro
 import { reloadOnContextRestore, lowMemory } from './lowmemory.js';
 import { installTightFrustum } from './tightfrustum.js';
 import { installSiteInstanceBatch } from './siteinstancebatch.js';
-import { installPlaceShortcuts } from './place-shortcuts.js';
+import { installPlaceCycle } from './place-cycle.js';
 import { Garage } from './garage.js';
 import { Balloon } from './balloon.js';
 import { Ducks } from './ducks.js';
@@ -380,7 +380,9 @@ placeNav.addEventListener('focusout', event => {
   if (event.relatedTarget && !placeNav.contains(event.relatedTarget)) closePlaceMenu();
 });
 compactPlaces.addEventListener('change', () => closePlaceMenu());
-installPlaceShortcuts({buttons:placeButtons, canNavigate:() => ready && active, moveTo});
+// #261: Tab cycles places only while looking (pointer lock); with a free mouse Tab moves focus as usual.
+installPlaceCycle({buttons:placeButtons, canNavigate:() => ready && active,
+  isLooking:() => !!renderer && document.pointerLockElement === renderer.domElement, moveTo});
 addEventListener('resize', () => { fit(); closePlaceMenu(); });
 addEventListener('blur', release);
 document.addEventListener('visibilitychange', () => { if (document.hidden) release(); });
