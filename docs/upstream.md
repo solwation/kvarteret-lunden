@@ -2792,6 +2792,14 @@ Användarens uttryckliga beslut i publik #236 tillåter dessa generiska omgivnin
 Verifiering: `npm test`, `npm run build`, fyra rena rutttester, `tools/outdoorcats-check.mjs` (766 faktiska mark-/väg-/vattenpunkter, emitterad geometri, animation/determinism, LOD, årstids-/innegräns och publik källisolering) samt faktisk gårds-/parkvy på dator/telefon och fixed-time omladdning. Egna bilder, råa mätvärden och källhashar finns i [verifiering #236](verification/236/README.md).
 
 
+## Åtta anonyma slingkatter, #260
+
+Granskad originalkälla `f4038daae71cb0ac1c9ca1faeabc6d657f3ac223` (original #1882). Undantaget i #235–238 gäller fortfarande; inga namn, raser, temperament, pärmsidor eller bestiariedata följer med.
+
+`src/outdoorcatroute.js` får originalets #1840-varv: `routePlan(..., vary)` med omvänd riktning, `lapPlan` och konstanta tidsluckor; utan `vary` är beteendet oförändrat. Åtta slingor (`route`, `rest`, `phase`, `vary`) ligger i ett eget `OUTDOOR_CATS.loops`, så de fyra utforskande katterna (#245) och deras id/hem är orörda. `OutdoorCatBrain` använder slingan när specen har `route` (ingen klättring/sittplats); vila, tvätt, sömn, nosmöte och återgång fungerar som förut. Varje katt har en enda generisk pälsfärg ungefär efter originalets päls (*guess*). Rit-/telefon-/närgränser (32/18/7 m) och 2 040 trianglar per katt är oförändrade.
+
+Kontroll mot den publika scenen (`tools/outdoorcats260-check.mjs`, produktionens `createCatClear` per ben samt mark/vatten/steg; `tools/outdoorcats-check.mjs` för slutna, deterministiska tvåriktningsvarv, byggnader, vägar och hagen): sex slingor (klocktornsparken, skolgården, hästhagen, ån västerut/österut, södra åstranden) är oförändrade. Gräsmattan mellan Hus A/B fick tre böjar med vilotid 0 runt publikens stammar vid (−18,5; 35,5), (−14,8; 38,9) och (−21; 44,4). Slingan bland träden vid Sankt Lars väg korsade publikens södra körbanor (väg 189432572 och de äldre parkeringsövergångarna) och ersattes av en mindre slinga på gräset mellan dem (*guess*). Ingen slinga utgick. Originalets pärm-/bestiarieändringar, täckningstest mot fångad originalscen, verifieringsfiler och ändringslogg importeras inte.
+
 ## Passiva fiskar och vattenringar i Höje å, #238
 
 Selektiv granskad originalkälla `578ecc09b02c7355e299fc58d0e0127b622ee85a` (original #1752).

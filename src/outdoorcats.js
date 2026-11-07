@@ -1,6 +1,6 @@
 // Neutral adaptation of outdoorcats.js/createCatPuppet at original 578ecc09b02c7355e299fc58d0e0127b622ee85a.
 // Exploration and internal contact selectively adapted from 131b5d9d9c11a5853320d7b36b4bf61409367f39.
-// Four local-clock scenery animals. No targets, storage, audio, feeding or near-cat promotion.
+// Four exploring plus eight looping (#260) local-clock scenery animals. No targets, storage, audio, feeding or near-cat promotion.
 import * as THREE from 'three';
 import { OUTDOOR_CATS as C, SEASON } from './config.js';
 import { createCatPuppet } from './catpuppet.js';
@@ -41,7 +41,7 @@ function pose(p,s,t){
 export class OutdoorCats{
  constructor({scene,camera,ground,barriers=[],trunks=[],lowMemory=false,now=()=>Date.now()/1000}){
   Object.assign(this,{scene,camera,ground,now,drawDist:lowMemory?C.drawDistPhone:C.drawDist,winter:false,lastTime:now(),hidden:false});
-  this.cats=C.cats.map((spec,id)=>{const brain=new OutdoorCatBrain(spec,id,()=>this.now()),p=createCatPuppet(spec.color);
+  this.cats=[...C.cats,...C.loops].map((spec,id)=>{const brain=new OutdoorCatBrain(spec,id,()=>this.now()),p=createCatPuppet(spec.color);
    pose(p,{walking:false,activity:'look'},0);const sit=mergedRig(p).geometry;
    pose(p,{walking:true,activity:'walk'},0);const walk=mergedRig(p).geometry;
    const nuzzleShape=noseShape(p),climbContact=pawContact(p),rig=mergedRig(p),mesh=new THREE.Mesh(rig.geometry,material);mesh.name=`ambient-cat-${id}`;mesh.visible=false;mesh.raycast=()=>{};mesh.userData.noDetail=true;scene.add(mesh);

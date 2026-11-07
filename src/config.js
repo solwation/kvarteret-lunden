@@ -3550,6 +3550,22 @@ export const OUTDOOR_CATS = {
  lazyGoalReduction:.6,curiosityBase:.4,repeatNovelty:.08,noise:.9,specialWeight:.25,homeLazyWeight:.25,seatReserve:2,cachePlans:12,footRadius:.12,roadMargin:.2,sampleStep:.25,maxDrop:.22,waterClear:.3,barrierCell:10,climbPitch:1.15,climbContactBlend:.3,climbMaxOffset:.5,climbPawInset:.005},
  nuzzle:{scan:3,chance:.65,cooldown:150,reach:5,minDistance:.7,speed:.32,turn:2.5,face:.12,arrive:.008,settle:.8,duration:3,timeout:25,maxHeadShift:.14,maxStep:.1,rub:.06,rubHz:[3,2],heartLift:.08,hearts:5,heartScale:2.5},
  cats:[{color:0x7b8188,zone:0,phase:0},{color:0x7b8188,zone:0,phase:140},{color:0x7b8188,zone:1,phase:60},{color:0x7b8188,zone:1,phase:300}],
+ // Public #260: eight more anonymous loop cats from original f4038daae71cb0ac1c9ca1faeabc6d657f3ac223 (#1882). Routes, rests and phases
+ // are the original's *guess* loops (each lap clockwise or anticlockwise by a clock hash, `vary`); names, breeds and personalities are
+ // dropped and each body is one generic solid colour (*guess*). The loops are rechecked on the public scene by tools/outdoorcats260-check.mjs.
+ loops:[
+  // Lawn between Hus A/B: three bends (zero rest) keep the original loop clear of the public courtyard trunks at (-18.5,35.5), (-14.8,38.9), (-21,44.4).
+  {color:0x7f8b97,phase:420,rest:[0,0,40,90,35,70,0,60,0,80],route:[[-20,34],[-17.6,34.4],[-13.6,38.6],[-14,40],[-14,57],[-6,61],[-25,61],[-22,57],[-21,48],[-20.1,44.5]]},
+  {color:0xe6d9c2,phase:90,rest:[0,60,0,30,70,45,55,40],route:[[15,-170],[56,-170],[60,-168],[106,-168],[110,-170],[112,-193],[60,-196],[15,-193]]},
+  {color:0x7b8188,phase:510,rest:[30,70,40,60,35,45,50],route:[[-100,-60],[-76,-66],[-70,-100],[-85,-115],[-95,-145],[-105,-140],[-105,-90]]},
+  {color:0x6e5640,phase:200,rest:[60,30,75,40,0,50,35],route:[[-104,216],[-70,212],[-62,240],[-80,262],[-104,256],[-106,248],[-108,235]]},
+  {color:0xf2f0ea,phase:330,rest:[0,45,80,35,70,50,40,60],route:[[-166,194],[-196,198],[-200,200],[-235,215],[-250,200],[-230,170],[-190,165],[-160,180]]},
+  {color:0x17181a,phase:30,rest:[0,45,25,60,35,50,40,30],route:[[45,100],[79,105],[80,106],[108,104],[118,78],[100,74],[70,76],[48,80]]},
+  // South of the river: the original loop crosses the public south carriageways (way 189432572 and the legacy parking crossings), so it is
+  // replaced by a smaller loop on the grass between them (*guess*, checked on the public scene).
+  {color:0xe8d8b8,phase:600,rest:[90,150,80,110,100,120],route:[[-20,346],[-9,345],[-8,354],[-12,361],[-18,360],[-21,352]]},
+  {color:0x2a2b2e,phase:250,rest:[70,35,60,50,40,45],route:[[-35,170],[0,175],[5,215],[-20,235],[-55,225],[-60,190]]},
+ ].map(c=>({...c,vary:true})),
 };
 
 // Public #238: passive visual assumptions, fixed local seed; no population/catch service.
