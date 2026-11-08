@@ -186,8 +186,20 @@ Use existing local Git objects to avoid repeated full clones; give each worker i
 port/evidence directory. In WSL, explicitly choose the ext4 worktree path rather than
 assuming a tool's default isolation path. Use installed Chromium/Playwright and the
 repository's local server guide. Cloud egress may require REST `gh api` instead of
-GraphQL; do not assume a failed CLI means GitHub is unavailable. Clean only own stopped
-processes and completed clean worktrees; preserve uncommitted or unpublished work.
+GraphQL; do not assume a failed CLI means GitHub is unavailable. Stop only own processes;
+preserve uncommitted or unpublished work.
+
+Worktree root and cleanup: session checkouts live in the host's ext4 worktree root
+(for example `~/wt/<repo-short>-<issue>`), never under `/mnt/c`. The integration owner
+removes an issue's checkout and work branch after closure; the session review and the
+next startup prune the whole root with
+[`scripts/prune-worktrees.sh`](shared/scripts/prune-worktrees.sh) under the core
+[cleanup rules](shared/ORCHESTRA.md#clean-up-checkouts) (dry run first, then `--apply`).
+The root also holds checkouts of the original repository; the script classifies each by
+its own remote and never removes one whose issue is open. Archive unproven work with
+`--archive` to a private directory outside every checkout (next to the private session
+state), never into a repository. Protect the shared `/mnt/c` clone and any ext4 mirror
+with `--protect` when they lie under a scanned root.
 
 Fetch/rebase before each issue and before publishing. Push directly to `main`, no PRs
 or feature branches, no force push. For unpublished subtree merges preserve ancestry
@@ -233,14 +245,19 @@ These follow [COORDINATION.md](shared/COORDINATION.md), not the phase hooks.
 
 ## Shared version and maintenance
 
-Shared release: **v0.9.0**, commit **070ebf43e25c2bc7885e387712edd18a2e97da1c**. Imported directly from the official release
-with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git 070ebf43e25c2bc7885e387712edd18a2e97da1c --squash`
-in [#259](https://github.com/solwation/kvarteret-lunden/issues/259), matching
-[original #1880](https://github.com/solwation/lunden-3d-apartment/issues/1880). The complete
-v0.8.2..v0.9.0 diff keeps checkouts stable during verification, feeds material review findings back into instructions before starting similar tasks, clarifies worker test setup with dedicated checkout verification, adds optional host context maps and provides upstream field report links. Existing gates and anchors,
-fresh queue/claim checks and every host override remain; no lifecycle, priority, timer,
-permission or publication migration applies.
-The previous v0.8.2 import is recorded in public #257 and original #1877; v0.8.1 in
+Shared release: **v0.10.0**, commit **358c01f2d3a187c17e1b1c180bff7ecb06cb51a8**. Imported directly from the official release
+with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git 358c01f2d3a187c17e1b1c180bff7ecb06cb51a8 --squash`
+in [#262](https://github.com/solwation/kvarteret-lunden/issues/262), matching
+[original #1890](https://github.com/solwation/lunden-3d-apartment/issues/1890). The complete
+v0.9.0..v0.10.0 diff removes worker checkouts once their work is proven on main (adds
+`scripts/prune-worktrees.sh` and a host setting for worktree root and archive, set under
+*Workspace and delivery* above), fast-forwards a clean integration checkout to the remote
+main branch at start and confirms `git cherry` leftovers with a content comparison, and
+turns messages arriving during a run into issues while separating operational actions.
+Existing gates and anchors, fresh queue/claim checks and every host override remain; no
+lifecycle, priority, timer, permission or publication migration applies.
+The previous v0.9.0 import (`070ebf43e25c2bc7885e387712edd18a2e97da1c`) is recorded in
+public #259 and original #1880; v0.8.2 in public #257 and original #1877; v0.8.1 in
 public #255 and original #1874; v0.8.0 in
 public #251 and original #1861. Preserve merge ancestry and subtree trailers.
 The canonical Issueflow snapshot is byte-identical to revision `0e712c346c7689dd3e00db04fbe00d86090d5908`.
