@@ -195,6 +195,10 @@ removes an issue's checkout and work branch after closure; the session review an
 next startup prune the whole root with
 [`scripts/prune-worktrees.sh`](shared/scripts/prune-worktrees.sh) under the core
 [cleanup rules](shared/ORCHESTRA.md#clean-up-checkouts) (dry run first, then `--apply`).
+Whoever creates a writing checkout (a worker, or the conductor for a worker or for itself)
+first writes `issue=owner/repo#N` and `session=<session id>` to `orchestra-claim` in its git
+directory (`git rev-parse --git-dir`, outside the working tree), so the prune script counts it
+as active before its first commit (core v0.11.0); the marker leaves with the checkout.
 The root also holds checkouts of the original repository; the script classifies each by
 its own remote and never removes one whose issue is open. Archive unproven work with
 `--archive` to a private directory outside every checkout (next to the private session
@@ -245,18 +249,20 @@ These follow [COORDINATION.md](shared/COORDINATION.md), not the phase hooks.
 
 ## Shared version and maintenance
 
-Shared release: **v0.10.0**, commit **358c01f2d3a187c17e1b1c180bff7ecb06cb51a8**. Imported directly from the official release
-with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git 358c01f2d3a187c17e1b1c180bff7ecb06cb51a8 --squash`
-in [#262](https://github.com/solwation/kvarteret-lunden/issues/262), matching
-[original #1890](https://github.com/solwation/lunden-3d-apartment/issues/1890). The complete
-v0.9.0..v0.10.0 diff removes worker checkouts once their work is proven on main (adds
-`scripts/prune-worktrees.sh` and a host setting for worktree root and archive, set under
-*Workspace and delivery* above), fast-forwards a clean integration checkout to the remote
-main branch at start and confirms `git cherry` leftovers with a content comparison, and
-turns messages arriving during a run into issues while separating operational actions.
+Shared release: **v0.11.1**, commit **e1842f5b41cc92272eb870bca1070e46f511505c**. Imported directly from the official release
+with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git e1842f5b41cc92272eb870bca1070e46f511505c --squash`
+in [#263](https://github.com/solwation/kvarteret-lunden/issues/263), matching
+[original #1891](https://github.com/solwation/lunden-3d-apartment/issues/1891). The complete
+[v0.10.0..v0.11.1 diff](https://github.com/solwation/dirigenten-och-orkestern/compare/358c01f2d3a187c17e1b1c180bff7ecb06cb51a8...e1842f5b41cc92272eb870bca1070e46f511505c)
+adds the `orchestra-claim` marker that whoever creates a writing checkout writes to its git
+directory (see *Workspace and delivery* above), makes `scripts/prune-worktrees.sh` treat a marked
+checkout whose issue is not shown closed, and a commit-less checkout whose HEAD changed within
+`--min-age` (default 120 minutes), as active, stops the script from reporting the current directory
+as a checkout when a root holds none (v0.11.1), and adds `scripts/test_prune_worktrees.py`.
 Existing gates and anchors, fresh queue/claim checks and every host override remain; no
 lifecycle, priority, timer, permission or publication migration applies.
-The previous v0.9.0 import (`070ebf43e25c2bc7885e387712edd18a2e97da1c`) is recorded in
+The previous v0.10.0 import (`358c01f2d3a187c17e1b1c180bff7ecb06cb51a8`) is recorded in
+public #262 and original #1890; the earlier v0.9.0 import (`070ebf43e25c2bc7885e387712edd18a2e97da1c`) in
 public #259 and original #1880; v0.8.2 in public #257 and original #1877; v0.8.1 in
 public #255 and original #1874; v0.8.0 in
 public #251 and original #1861. Preserve merge ancestry and subtree trailers.
