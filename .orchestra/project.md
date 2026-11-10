@@ -249,19 +249,20 @@ These follow [COORDINATION.md](shared/COORDINATION.md), not the phase hooks.
 
 ## Shared version and maintenance
 
-Shared release: **v0.11.1**, commit **e1842f5b41cc92272eb870bca1070e46f511505c**. Imported directly from the official release
-with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git e1842f5b41cc92272eb870bca1070e46f511505c --squash`
-in [#263](https://github.com/solwation/kvarteret-lunden/issues/263), matching
-[original #1891](https://github.com/solwation/lunden-3d-apartment/issues/1891). The complete
-[v0.10.0..v0.11.1 diff](https://github.com/solwation/dirigenten-och-orkestern/compare/358c01f2d3a187c17e1b1c180bff7ecb06cb51a8...e1842f5b41cc92272eb870bca1070e46f511505c)
-adds the `orchestra-claim` marker that whoever creates a writing checkout writes to its git
-directory (see *Workspace and delivery* above), makes `scripts/prune-worktrees.sh` treat a marked
-checkout whose issue is not shown closed, and a commit-less checkout whose HEAD changed within
-`--min-age` (default 120 minutes), as active, stops the script from reporting the current directory
-as a checkout when a root holds none (v0.11.1), and adds `scripts/test_prune_worktrees.py`.
+Shared release: **v0.11.2**, commit **6151b2e887ce4587285271708affc07af09fddb6**. Imported directly from the official release
+with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git 6151b2e887ce4587285271708affc07af09fddb6 --squash`
+in [#264](https://github.com/solwation/kvarteret-lunden/issues/264), matching
+[original #1893](https://github.com/solwation/lunden-3d-apartment/issues/1893). The complete
+[v0.11.1..v0.11.2 diff](https://github.com/solwation/dirigenten-och-orkestern/compare/e1842f5b41cc92272eb870bca1070e46f511505c...6151b2e887ce4587285271708affc07af09fddb6)
+prefers directly visible images (attached or embedded via fully-qualified URLs) in completion
+comments for visual acceptance (#61), explicitly requires the conductor to resume active orchestration
+in the same turn after answering user questions, providing status, or executing operational actions
+mid-run rather than pausing (#60), and adds a GitHub Pages landing site in `docs/index.html` while
+streamlining `README.md` (#59).
 Existing gates and anchors, fresh queue/claim checks and every host override remain; no
 lifecycle, priority, timer, permission or publication migration applies.
-The previous v0.10.0 import (`358c01f2d3a187c17e1b1c180bff7ecb06cb51a8`) is recorded in
+The previous v0.11.1 import (`e1842f5b41cc92272eb870bca1070e46f511505c`) is recorded in
+public #263 and original #1891; v0.11.0 in public #263 and original #1891; the previous v0.10.0 import (`358c01f2d3a187c17e1b1c180bff7ecb06cb51a8`) is recorded in
 public #262 and original #1890; the earlier v0.9.0 import (`070ebf43e25c2bc7885e387712edd18a2e97da1c`) in
 public #259 and original #1880; v0.8.2 in public #257 and original #1877; v0.8.1 in
 public #255 and original #1874; v0.8.0 in
