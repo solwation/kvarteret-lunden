@@ -1,0 +1,34 @@
+{
+  "result": {
+    "birds": [
+      {
+        "female": true,
+        "triangles": 896,
+        "visible": true
+      },
+      {
+        "female": false,
+        "triangles": 960,
+        "visible": true
+      },
+      {
+        "female": true,
+        "triangles": 896,
+        "visible": true
+      },
+      {
+        "female": false,
+        "triangles": 960,
+        "visible": true
+      }
+    ],
+    "materials": 1,
+    "geometries": 2,
+    "storage": {
+      "original": "source-sentinel",
+      "session": "source-session"
+    }
+  },
+  "errors": [],
+  "external": []
+}

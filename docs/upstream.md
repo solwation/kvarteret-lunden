@@ -1,5 +1,16 @@
 # Förbättringar från originalet
 
+## Tydligare generiska gräsänder, #266
+
+Selektiv originalkälla `2482f29e1e624e9948b6055e4efdc1a0328569e0` (#1909).
+Enbart mindre ögon, avsmalnande låg svans, hoplagda vingar/vingspegel, korta ben
+samt hanens vita halsring/bruna bröst anpassas till publikens procedurala duckModel.
+Hona/hane, exakta näbbmått och passiv social gång/simning består; inga GLB, personliga
+resurser, spelinteraktioner, ljud, lagring eller tjänster importeras. Fyra kroppars
+budget är nu3712tri (tidigare2560), fortfarande fyra draws/två könsgeometrier/ett material.
+Detta ersätter #244:s historiska lika-topologi/2560-beskrivning, inte dess beteende.
+[Egna hela bilder, riktig publik scen och kontroller](verification/266/README.md).
+
 ## Princip
 
 `lunden-3d-apartment` är källan till gemensamma förbättringar. `kvarteret-lunden` behåller en ren historik och ett mindre innehåll. Originalets ändringar ska föras över löpande efter granskning, inte genom en blind merge eller en automatisk kopiering av hela projektet.
