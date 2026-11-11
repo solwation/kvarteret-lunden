@@ -32,3 +32,10 @@ low-poly mallards, now with the requested visible details. Actual scene includes
 both sexes beside the river bank. Isolated whole views clarify the full silhouette.
 No physical phone or global navigation claim. Logs and browser.json are retained.
 Actual Pages run/version acceptance is recorded on the issue after Refs publication.
+
+Production acceptance: Pages run43033915814 completed successfully for
+`6e557479b32e632e75809711d7e950c213bfa6df`. Actual HTTPS version and loaded bundle are
+`638e3cad03acf19964975e85`; Chromium started that real published scene and found
+896/960/896/960 bird triangles, preserved original storage sentinels, no page
+errors and no external requests. [Live result](pages-live.json). Images were
+published and embedded on #266 at the source SHA before this closing commit.

@@ -1,0 +1,19 @@
+{
+  "data": {
+    "triangles": [
+      896,
+      960,
+      896,
+      960
+    ],
+    "storage": [
+      "source-sentinel",
+      "source-session"
+    ],
+    "assets": [
+      "https://solwation.github.io/kvarteret-lunden/assets/viewer-638e3cad03acf19964975e85.js"
+    ]
+  },
+  "errors": [],
+  "external": []
+}
