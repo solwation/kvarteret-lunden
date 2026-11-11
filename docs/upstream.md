@@ -6,6 +6,22 @@
 
 En GitHub-fork skulle inte heller uppdatera sig själv. Fördelen med denna struktur är att vi kan återanvända relevanta förbättringar utan att publicera originalets personliga historik här.
 
+## Orkesterinstruktioner v0.12.0, #265
+
+Den gemensamma kärnan importeras direkt från den officiella stabila releasen v0.12.0,
+`9e7c6e388df0ebdd25c0ba76d3debc73de3c41fa`, med publicens egen squashsubtree och
+bevarade mergeföräldrar/trailers. Motsvarande originalunderhåll spåras i
+[original #1904](https://github.com/solwation/lunden-3d-apartment/issues/1904).
+Hela diffen från v0.11.2 `6151b2e887ce4587285271708affc07af09fddb6` är granskad:
+generella bildhostingsexempel, HTTPS/Markdown med bild i eget stycke samt en valfri
+expertpanel vid avslut. Hostingsexemplen ändrar inte värdens befintliga bildpolicy
+eller behörighet; alternativa resursgrenar införs inte. Panelen blir inget nytt krav.
+
+Original före public, public low, ägarskap, tvåarbetarkapacitet, timers och
+publicerings-/stängningsgrindar består. Ingen originalappkod, personlig historik,
+lagring, gameplay eller tjänst kopieras. Dokumentarbete utan produktbild eller
+spelarnyhet; [källor, kontroller och begränsningar](verification/265/README.md).
+
 ## Unik uppdateringsadress vid versionsomladdning, #258
 
 Källa: `d01728d6c77bb6896c1488c5ef54589d985a974b`

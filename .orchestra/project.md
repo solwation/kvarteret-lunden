@@ -249,18 +249,23 @@ These follow [COORDINATION.md](shared/COORDINATION.md), not the phase hooks.
 
 ## Shared version and maintenance
 
-Shared release: **v0.11.2**, commit **6151b2e887ce4587285271708affc07af09fddb6**. Imported directly from the official release
-with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git 6151b2e887ce4587285271708affc07af09fddb6 --squash`
-in [#264](https://github.com/solwation/kvarteret-lunden/issues/264), matching
-[original #1893](https://github.com/solwation/lunden-3d-apartment/issues/1893). The complete
-[v0.11.1..v0.11.2 diff](https://github.com/solwation/dirigenten-och-orkestern/compare/e1842f5b41cc92272eb870bca1070e46f511505c...6151b2e887ce4587285271708affc07af09fddb6)
-prefers directly visible images (attached or embedded via fully-qualified URLs) in completion
-comments for visual acceptance (#61), explicitly requires the conductor to resume active orchestration
-in the same turn after answering user questions, providing status, or executing operational actions
-mid-run rather than pausing (#60), and adds a GitHub Pages landing site in `docs/index.html` while
-streamlining `README.md` (#59).
+Shared release: **v0.12.0**, commit **9e7c6e388df0ebdd25c0ba76d3debc73de3c41fa**. Imported directly from the official release
+with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git 9e7c6e388df0ebdd25c0ba76d3debc73de3c41fa --squash`
+in [#265](https://github.com/solwation/kvarteret-lunden/issues/265), matching
+[original #1904](https://github.com/solwation/lunden-3d-apartment/issues/1904). The complete
+[v0.11.2..v0.12.0 diff](https://github.com/solwation/dirigenten-och-orkestern/compare/6151b2e887ce4587285271708affc07af09fddb6...9e7c6e388df0ebdd25c0ba76d3debc73de3c41fa)
+includes v0.11.3's generic image-hosting examples, v0.11.4's HTTPS/Markdown standalone
+image paragraphs for dashboard compatibility, and v0.12.0's optional expert-panel review
+hook. These examples do not authorize asset branches, external storage or a change to this
+host's existing evidence/retention rules; direct publication to main and the required
+completion/publication gates still apply. The expert panel remains optional and is not
+enabled as a required hook here; the existing session review and two-worker cap remain.
+No application code, personal content, gameplay, original storage or services are imported.
 Existing gates and anchors, fresh queue/claim checks and every host override remain; no
 lifecycle, priority, timer, permission or publication migration applies.
+The previous v0.11.2 import (`6151b2e887ce4587285271708affc07af09fddb6`) is recorded in
+public #264 and original #1893; it added directly visible result images, continued active
+orchestration after interjections and the shared landing page.
 The previous v0.11.1 import (`e1842f5b41cc92272eb870bca1070e46f511505c`) is recorded in
 public #263 and original #1891; v0.11.0 in public #263 and original #1891; the previous v0.10.0 import (`358c01f2d3a187c17e1b1c180bff7ecb06cb51a8`) is recorded in
 public #262 and original #1890; the earlier v0.9.0 import (`070ebf43e25c2bc7885e387712edd18a2e97da1c`) in
