@@ -8,6 +8,8 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+Åfiskarnas gemensamma neutrala form har ögon, gälar och tydligare fenor (#267); befintliga färger, storlekar och lokala simrörelser behålls.
+
 Hus L:s långfasad har ett skydd mot att den bakomliggande huskroppen slår igenom vid visning på långt håll (#253).
 
 På det norra gräsfältet finns en liten modellerad fotbollsplan med fasta mål,

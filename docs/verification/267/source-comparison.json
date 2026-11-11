@@ -1,0 +1,27 @@
+{
+  "source": "e300a2bd5136a43434d7042771651a3f5b17284c",
+  "recipeSource": "e76603a7f42c255b90020799ccfdd4258854d1ad",
+  "attributes": {
+    "position": {
+      "values": 747,
+      "maxDelta": 0,
+      "publicSHA256": "f3a18e5153a12f572a94c816f4215625bffb391266b0bd85fabeabc66fd65ff4",
+      "referenceSHA256": "f3a18e5153a12f572a94c816f4215625bffb391266b0bd85fabeabc66fd65ff4"
+    },
+    "normal": {
+      "values": 747,
+      "maxDelta": 0,
+      "publicSHA256": "1fdcf58f856867b60b24fed1c9b0bbea882f6abd72557f3448fe42046208eca7",
+      "referenceSHA256": "1fdcf58f856867b60b24fed1c9b0bbea882f6abd72557f3448fe42046208eca7"
+    },
+    "color": {
+      "values": 747,
+      "maxDelta": 5.960464477539063e-8,
+      "publicSHA256": "13d4006755bb2b751fdc36da016398167292ffa183e5ce96d30deccaead0f62d",
+      "referenceSHA256": "1cfa19160f1c26ede236c873608b90d0c311477487646bde996cc1c266c91d21"
+    }
+  },
+  "triangleCount": 433,
+  "triangleMultisetEqual": true,
+  "scope": "Diagnostic comparison with existing neutral original source; no source import/dependency retained"
+}

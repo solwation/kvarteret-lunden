@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { riverFishGeometry } from './riverfishmodel.js';
 import { RIVER_FISH as C, COLORS } from './config.js';
 import { fishSpec, fishAt, ringsAt, riverProject, fishTime } from './riverfishswim.js';
 
@@ -11,18 +11,8 @@ import { fishSpec, fishAt, ringsAt, riverProject, fishTime } from './riverfishsw
 const M = new THREE.Matrix4(), Q = new THREE.Quaternion(), P = new THREE.Vector3(), S = new THREE.Vector3(), UP = new THREE.Vector3(0, 1, 0);
 const tint = new THREE.Color(), white = new THREE.Color(1, 1, 1), deepTone = new THREE.Color(COLORS.water).multiplyScalar(C.look.deepTone);
 
-/** A fish 1 m long, 1 m wide and 1 m high along +z (scaled per species): body, tail and a dorsal fin, darker back over a lighter belly. */
-export function fishGeometry() {
-  const body = new THREE.SphereGeometry(0.5, 10, 6).scale(1, 1, 0.82).translate(0, 0, 0.09);
-  const tail = new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute([0, 0, -0.26, 0, 0.36, -0.5, 0, 0.05, -0.42, 0, 0, -0.26, 0, -0.05, -0.42, 0, -0.36, -0.5], 3));
-  const fin = new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute([0, 0.42, 0.18, 0, 0.42, -0.12, 0, 0.66, -0.06], 3));
-  for (const g of [tail, fin]) g.computeVertexNormals();
-  const geo = mergeGeometries([body.toNonIndexed(), tail, fin].map((g) => { g.deleteAttribute('uv'); return g; }));
-  const pos = geo.attributes.position, col = new Float32Array(pos.count * 3);
-  for (let i = 0; i < pos.count; i++) { const y = pos.getY(i), k = y > 0.05 ? 0.62 : y < -0.15 ? 1.25 : 0.95; col.set([k, k, k], i * 3); }
-  geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
-  return geo;
-}
+/** One normalized neutral silhouette, scaled only by the existing instance matrix. */
+export const fishGeometry = riverFishGeometry;
 
 export class RiverFish {
   /** Local clock can be fixed by a diagnostic fixture. */

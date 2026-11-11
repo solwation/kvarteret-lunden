@@ -1,0 +1,10 @@
+{
+  "src/riverfishmodel.js": "c1f5b3c70acce8cf6a5f18bff06140fe063dbb0e9e8715880a7d1f202ba38b34",
+  "src/riverfish.js": "bd91b408ed31c93d62e24f823a34573dae462a6c49edb518e564a4c5d3e187ae",
+  "src/riverfishswim.js": "fe3ba189cb7b400f928e21ea9f6983c2c35352bfa66e38a84b5246e09bbbc7dd",
+  "src/config.js": "774f75f6c9196fb3b6e924fd329ac74cb47fc02686770e7533d8ad7cb9361523",
+  "tools/riverfish-check.mjs": "111e72c890d0ad3a2ea81d58d352cab4ac83d249387cac1fcd62806fa2827cfd",
+  "tools/riverfish-shape-check.mjs": "b46039ba6debfad342d337829da72ff8defd2bcf11dc7f754780430894e37ed5",
+  "tools/riverfishappearance-check.mjs": "48b14921d5a049b2874e6af69177701144687afa2d8d685719a52e4e7552d363",
+  "tools/riverfishappearance.html": "1264d710d08bf4106b977c070f3a0905581db18b85194b4960cbf2de86268099"
+}

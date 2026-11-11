@@ -2836,7 +2836,7 @@ Populationen använder fast lokalt seed 1754, 18 fiskar med id 0–17 och oför�
 
 Simgeometrin läser publikens fulla `riverPath`, inklusive #231:s fortsättning, och `riverAt` för kanalbredd. Originalets duplicerade fallformel ersätts av de lokala `waterYAt` och `riverGround` vid varje verkligt fisk-/ringläge. Botten, vatten, ändmarginaler och bropelare följer därför publikens befintliga data; inga mark-, bro- eller navigationsmått ändras. Hjälparna `waterAt`/`bedAt` använder också samma publika API.
 
-Originalets två instansbatcher behålls: fiskarnas tillplattade silhuetter ovanför ogenomskinligt vatten återfår höjd när de stiger, och tunna ringar expanderar över ytan. Båda saknar raycast/targets, textur, skugga och extra ljus. `forceSinglePass=true` på den genomskinliga tvåsidiga fisksilhuetten undviker Three.js dubbla bak-/framsidespass: fortfarande tvåsidig shader, men ett pass. Tillsammans blir fisk och ringar högst två ritanrop. Fiskgeometrin har 103 trianglar per instans, varje ring 64. Ringskenet använder den publika scenens vanliga dagsljus, utan import av originalets DayCycle.
+Originalets två instansbatcher behålls: fiskarnas tillplattade silhuetter ovanför ogenomskinligt vatten återfår höjd när de stiger, och tunna ringar expanderar över ytan. Båda saknar raycast/targets, textur, skugga och extra ljus. `forceSinglePass=true` på den genomskinliga tvåsidiga fisksilhuetten undviker Three.js dubbla bak-/framsidespass: fortfarande tvåsidig shader, men ett pass. Tillsammans blir fisk och ringar högst två ritanrop. Vid #238 hade fiskgeometrin 103 trianglar per instans; den neutrala formen i #267 har 433, medan varje ring fortsatt har 64. Ringskenet använder den publika scenens vanliga dagsljus, utan import av originalets DayCycle.
 
 `main.js` har bara ett eget `ambientFish`-objekt och update-hook, döljer batcherna inomhus/i garage/trapphus och utanför 45 meter. `?noriverfish` är en lokal avstängning. Ingen hajkod, hajflagga, originalnyckel, RiverFishSync, rum/net-koppling, Worker/tjänst, fångst/onCaught/catchFish/catchCm, fiskespel/quest eller lagring följer med. Den publika applikationen läser inte originalets data; dess oberoende nät-/lagringsgränser behålls.
 
@@ -3234,3 +3234,25 @@ införts. Dokumentarbete utan meningsfullt visuellt resultat: ingen browserbild 
 spelarnyhet behövs. Verifiering omfattar full dokumentdiff, relativa länkar/ankare,
 regelmotsägelser samt obligatoriska `npm test` och `npm run build`. Faktisk Pages-körning
 verifieras av dirigenten efter publicering före stängning.
+
+
+## Neutral åfiskform och enhetsmått, #267
+
+Selektiv originalkälla: `e76603a7f42c255b90020799ccfdd4258854d1ad` / verifierad
+neutral normalisering i `e300a2bd5136a43434d7042771651a3f5b17284c` (original #1911).
+`src/riverfishmodel.js` är ett eget minimalt recept med bara Three.js som beroende:
+den befintliga mörtloftens kropp, stjärtfena, rygg-/buk-/parfenor, ögon, gälband och
+mörk munspets. Receptet reduceras till neutral gråton och exakt centrerade 1×1×1-mått.
+En enda generisk form används fortfarande för alla sex befintliga färg-/storleksvarianter;
+detta påstår inte artspecifik anatomi eller verifierad artförekomst i ån.
+
+`riverfish.js` byter endast geometrikälla. Den fristående klockan, simning/ringar,
+18 instanser, färger, artmått som appliceras en gång, genomskinlighet,45m-gräns och
+inne-/garage-/trapphusdöljning är kvar. Fisk och ringar förblir två instansbatcher.
+Budget: 433 trianglar/fisk (tidigare 103), fortfarande högst två ritanrop; ingen
+FPS-/minnesvinst hävdas. Positioner/normaler och trianglar matchar den granskade
+neutraliserade originalformen; färgskillnaden är högst 5,97e-8 från Float32-avrundning.
+
+Ingen originalmodul för fångad fisk eller bestiarium, original-config, fiske, haj,
+GLB/laddare, animationssystem, bild, tjänst eller lagring kopieras. Originalets historik
+sammanfogas inte. [Kontroller, budget och egna bilder](verification/267/README.md).

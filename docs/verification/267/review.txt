@@ -1,0 +1,7 @@
+App diff: one neutral geometry module (Three.js only), geometry import/alias only in renderer.
+No configuration/simulation/matrix/visibility/storage/service changes.
+Source comparison: exact positions/normals and triangle multiset; max grayscale float delta5.97e-8.
+Root and worker opened all five whole/actual images; only detail camera retaken after initial crop.
+8 new evidence links exist; source manifest records eight exact input hashes.
+Late changes after green npm/build: documentation and browser diagnostics only; no app-source change.
+Live actual rise frame and exact Pages result remain delivery checks.

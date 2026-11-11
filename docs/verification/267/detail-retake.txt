@@ -1,0 +1,2 @@
+browsertest: no systemd user scope here, running without a memory ceiling
+PASS actual public river/detail: 433 triangles/fish, two batch draws, exact rendered budget, original storage untouched, zero external requests/page errors.

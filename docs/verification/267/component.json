@@ -1,0 +1,32 @@
+{
+  "ok": true,
+  "samples": 6282,
+  "rings": 827,
+  "riverLength": 813.8754361087917,
+  "trianglesPerFish": 433,
+  "trianglesPerRing": 64,
+  "maxDraws": 2,
+  "drawDist": 45,
+  "fixture": {
+    "t": -360,
+    "id": 5,
+    "x": -120.00635017425067,
+    "z": 204.05303542898557,
+    "water": -7.157104423208176
+  },
+  "isoTime": "2026-10-31T23:54:00.000Z",
+  "checks": "channel/height/bed/piers; deterministic pure functions+matrices; extended river; fixed birth0; two non-pickable textureless meshes; hidden/distance gates; public boundary",
+  "bank": [
+    -0.3109768937457982,
+    -0.950417472249019,
+    3.066995475384029
+  ],
+  "bankCentre": [
+    -119.96221488025485,
+    205.6106617205515
+  ],
+  "bankY": {
+    "river": -5.658554039452136,
+    "detail": -7.6105820561279005
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "views": [
+    {
+      "mode": "river",
+      "camera": [
+        -121.69342184068668,
+        -4.258554039452136,
+        200.31969195281528
+      ],
+      "look": [
+        -120.00635017425067,
+        -7.157104423208176,
+        204.05303542898557
+      ],
+      "state": {
+        "t": -360,
+        "fish": [
+          {
+            "id": 5,
+            "born": 0,
+            "species": "braxen",
+            "x": -121.31902781467289,
+            "y": -7.260500745856328,
+            "z": 204.09966342190606,
+            "rise": 0,
+            "drawnY": -7.112559007496436
+          },
+          {
+            "id": 12,
+            "born": 0,
+            "species": "g\u00e4dda",
+            "x": -87.33603274383232,
+            "y": -7.533233703057623,
+            "z": 182.33592010229003,
+            "rise": 0,
+            "drawnY": -7.083626747956454
+          }
+        ],
+        "rings": [
+          {
+            "x": -120.00635017425067,
+            "z": 204.05303542898557,
+            "y": -7.157104423208176,
+            "age": 2.0609615041288407,
+            "id": 5,
+            "born": 0
+          },
+          {
+            "x": -120.00635017425067,
+            "z": 204.05303542898557,
+            "y": -7.157104423208176,
+            "age": 1.5609615041288407,
+            "id": 5,
+            "born": 0
+          }
+        ],
+        "drawn": 2,
+        "ringsDrawn": 2
+      },
+      "geometryTriangles": 433,
+      "geometryBounds": {
+        "min": [
+          -0.5,
+          -0.5,
+          -0.5
+        ],
+        "max": [
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "delta": {
+        "calls": 2,
+        "triangles": 994
+      },
+      "storage": {
+        "original": "source-sentinel",
+        "session": "source-session"
+      }
+    },
+    {
+      "mode": "detail",
+      "look": [
+        -121.31903076171875,
+        -7.112558841705322,
+        204.09967041015625
+      ],
+      "state": {
+        "t": -360,
+        "fish": [
+          {
+            "id": 5,
+            "born": 0,
+            "species": "braxen",
+            "x": -121.31902781467289,
+            "y": -7.260500745856328,
+            "z": 204.09966342190606,
+            "rise": 0,
+            "drawnY": -7.112559007496436
+          },
+          {
+            "id": 12,
+            "born": 0,
+            "species": "g\u00e4dda",
+            "x": -87.33603274383232,
+            "y": -7.533233703057623,
+            "z": 182.33592010229003,
+            "rise": 0,
+            "drawnY": -7.083626747956454
+          }
+        ],
+        "rings": [
+          {
+            "x": -120.00635017425067,
+            "z": 204.05303542898557,
+            "y": -7.157104423208176,
+            "age": 2.0609615041288407,
+            "id": 5,
+            "born": 0
+          },
+          {
+            "x": -120.00635017425067,
+            "z": 204.05303542898557,
+            "y": -7.157104423208176,
+            "age": 1.5609615041288407,
+            "id": 5,
+            "born": 0
+          }
+        ],
+        "drawn": 2,
+        "ringsDrawn": 2
+      },
+      "geometryTriangles": 433,
+      "geometryBounds": {
+        "min": [
+          -0.5,
+          -0.5,
+          -0.5
+        ],
+        "max": [
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "delta": {
+        "calls": 2,
+        "triangles": 994
+      },
+      "storage": {
+        "original": "source-sentinel",
+        "session": "source-session"
+      },
+      "initialBankCamera": [
+        -120.99372382975864,
+        -7.010582056127901,
+        202.45813126537556
+      ],
+      "cameraSetup": {
+        "position": [
+          -121.81659379171202,
+          -6.212558841705322,
+          202.5790024545578
+        ],
+        "source": "derived from recorded actual matrix target + deterministic camera-only offset, not a second render measurement"
+      }
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "cameraOnlyDetailRetake": true,
+  "scope": "Actual built public scene, fixed local clock, real fish/ring batches; no service/storage integration"
+}
