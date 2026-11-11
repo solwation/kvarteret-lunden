@@ -3256,3 +3256,10 @@ neutraliserade originalformen; färgskillnaden är högst 5,97e-8 från Float32-
 Ingen originalmodul för fångad fisk eller bestiarium, original-config, fiske, haj,
 GLB/laddare, animationssystem, bild, tjänst eller lagring kopieras. Originalets historik
 sammanfogas inte. [Kontroller, budget och egna bilder](verification/267/README.md).
+
+
+Leverans #267: Refs `74647c132e145dccc36bd4110487b93a7be48eec`, exakt
+[Pagesrun43035998233](https://github.com/solwation/kvarteret-lunden/actions/runs/43035998233)
+success, livefingeravtryck `22479ab72209111eede30c4b`. Faktisk publicerad å-/närvy,
+uppstigningssample, budget samt oberoende nät-/lagringsgräns är gröna. Fem egna
+SHA-pinnade bilder är granskade/publicerade före stängning; [leveransbevis](verification/267/README.md#faktisk-pagesleverans).

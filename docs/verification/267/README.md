@@ -55,3 +55,25 @@ ordinarie fisk/ringbatcher. `actual-detail.png` visar hela den faktiska fiskinst
 Ingen originalbild kopieras. Permanenta SHA-pinnade bildlänkar publiceras i #267 före
 någon stängande push. Exakt Pagesbygge och verkligt berört beteende kontrolleras efter
 Refs-publicering; lokal verifiering är inte påstått produktionsbevis.
+
+
+## Faktisk Pagesleverans
+
+Produktionsrevision **`74647c132e145dccc36bd4110487b93a7be48eec`**, exakt
+[Pagesrun43035998233](https://github.com/solwation/kvarteret-lunden/actions/runs/43035998233)
+**success**; [runrecord](pages-run.json). Verklig `version.json` visar samma
+byggfingeravtryck som lokalt: **`22479ab72209111eede30c4b`** ([version](pages-version.json)).
+Den riktiga publicerade appens å-/närvy har exakt två batchanrop och433 trianglar per
+fisk plus64 per ring. Samma browser och app renderade en faktisk lokal uppstigningsframe:
+id12, befintlig gäddavariant, `rise=0.9944006` vid `t=-344.85`, riktad mot aktuell
+instansposition. Originalets lagringssentineler består; noll externa anrop och sidfel.
+[Verkligt liveresultat](pages-live.json), [logg](pages-live.txt). Ingen ytterligare
+form-/bildserie eller rutinmässig kontrollrunda kördes.
+
+Alla fem bilder publicerades med Refs och granskades före stängning; deras permanenta
+SHA-pinnade HTTPS-adresser gav200/exakta bytes och bäddades in i
+[ärendekommentaren](https://github.com/solwation/kvarteret-lunden/issues/267#issuecomment-6798100053).
+Dirigenten granskade både källscope och samtliga bilder, inklusive den enda korrigerade
+detaljkameran. Endast denna dokumentation ändras i avslutningsrevisionen; appens källor,
+byggfingeravtryck och giltiga källbundna kontroller består. Ingen originaländring eller
+ytterligare publik överföring behövs. Egen server/browser avslutad; checkout behålls ren.
