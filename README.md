@@ -8,7 +8,7 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
-Åfiskarnas gemensamma neutrala form har ögon, gälar och tydligare fenor (#267); befintliga färger, storlekar och lokala simrörelser behålls.
+Åfiskarnas sex befintliga artformer har egna huvud-, fen- och stjärtprofiler, med smal ål, flatare gäddhuvud och djupare braxen (#274). Befintliga färger, storlekar och lokala simrörelser behålls.
 
 Hus L:s långfasad har ett skydd mot att den bakomliggande huskroppen slår igenom vid visning på långt håll (#253).
 

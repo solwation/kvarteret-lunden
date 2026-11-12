@@ -1,0 +1,264 @@
+{
+  "models": {
+    "fish": {
+      "triangles": 411,
+      "views": {
+        "position": {
+          "type": "Float32Array",
+          "bytes": 3276,
+          "count": 273,
+          "itemSize": 3,
+          "normalized": false,
+          "hash": "60dd77c49d271aab74fb2d33d60edf114e2f01efd1f57c380d44172429c2d33b"
+        },
+        "color": {
+          "type": "Uint8Array",
+          "bytes": 819,
+          "count": 273,
+          "itemSize": 3,
+          "normalized": true,
+          "hash": "78a097e5adfd4670e4e1b09a5e1503c9b97da065b361b4d08c9e18e04ca9a71e"
+        },
+        "fishOct": {
+          "type": "Int8Array",
+          "bytes": 546,
+          "count": 273,
+          "itemSize": 2,
+          "normalized": true,
+          "hash": "579d7f20fb9a42539affc5750b76c16b980d17304f64df82f09b978af747d61f"
+        },
+        "fishForm1": {
+          "type": "Uint16Array",
+          "bytes": 2184,
+          "count": 273,
+          "itemSize": 4,
+          "normalized": false,
+          "hash": "653e62fea35e69ee9dd792f6fcb902828dfdbfc07b42c177f86cb12b5e9367aa"
+        },
+        "fishForm2": {
+          "type": "Uint16Array",
+          "bytes": 2184,
+          "count": 273,
+          "itemSize": 4,
+          "normalized": false,
+          "hash": "fe41dc14b94d756713eb50ca2606169fad68253fb768826122e4726c8a3d8757"
+        },
+        "fishForm3": {
+          "type": "Uint16Array",
+          "bytes": 2184,
+          "count": 273,
+          "itemSize": 4,
+          "normalized": false,
+          "hash": "10612a30eae8e8c23da18e67f818a3232778342e29b8bcea06dda0e88e6d14a6"
+        },
+        "fishForm4": {
+          "type": "Uint16Array",
+          "bytes": 2184,
+          "count": 273,
+          "itemSize": 4,
+          "normalized": false,
+          "hash": "56f5a86c0ba94ea0660cca38639337a36acb194212a13dbca5cc91f434118b28"
+        },
+        "fishForm5": {
+          "type": "Uint16Array",
+          "bytes": 2184,
+          "count": 273,
+          "itemSize": 4,
+          "normalized": false,
+          "hash": "be6edbd7e8032b711a510b420742978dbfd25e0b92801f98db837756e0b2e913"
+        },
+        "fishKind": {
+          "type": "Float32Array",
+          "bytes": 144,
+          "count": 18,
+          "itemSize": 2,
+          "normalized": false,
+          "hash": "81c611f35bff79491538b2f7cf201c7597a661a5c549633541c62bdc8af1613f"
+        },
+        "index": {
+          "type": "Uint16Array",
+          "bytes": 2466,
+          "count": 1233,
+          "itemSize": 1,
+          "normalized": false,
+          "hash": "8470655755f140e26c22784204adaafd63696f9c0ebdc89677c84459c35baa92"
+        },
+        "instanceMatrix": {
+          "type": "Float32Array",
+          "bytes": 1152,
+          "count": 18,
+          "itemSize": 16,
+          "normalized": false,
+          "hash": "98e0d1e38fef085aad962bb77d4ae973e8877f9d72fbc5a9e47e112746198ae7"
+        },
+        "instanceColor": {
+          "type": "Float32Array",
+          "bytes": 216,
+          "count": 18,
+          "itemSize": 3,
+          "normalized": false,
+          "hash": "624ca9ed8543b4eda972ee151b19948a4104b8c8f44e659c561822e98d9ea2fa"
+        }
+      },
+      "forceSinglePass": true,
+      "side": 2
+    },
+    "rings": {
+      "triangles": 64,
+      "views": {
+        "position": {
+          "type": "Float32Array",
+          "bytes": 792,
+          "count": 66,
+          "itemSize": 3,
+          "normalized": false,
+          "hash": "be4fcb6fbb36f0f808018fdbb9174719ec9effc003be8789b553dca65f5f2e96"
+        },
+        "normal": {
+          "type": "Float32Array",
+          "bytes": 792,
+          "count": 66,
+          "itemSize": 3,
+          "normalized": false,
+          "hash": "f8448589459917f3742b13eeea027a5825bc814746abcc897b1426ee246ea45e"
+        },
+        "index": {
+          "type": "Uint16Array",
+          "bytes": 384,
+          "count": 192,
+          "itemSize": 1,
+          "normalized": false,
+          "hash": "f8e01e6d1cea157c144251361980273ce16fd4b0e3fd408c4ee6f0e53b0437fe"
+        },
+        "instanceMatrix": {
+          "type": "Float32Array",
+          "bytes": 4608,
+          "count": 72,
+          "itemSize": 16,
+          "normalized": false,
+          "hash": "f8cdb8420c7e8b01b04f6c773fcd3da2f223023184ed9da9a361028d4fde41c1"
+        },
+        "instanceColor": {
+          "type": "Float32Array",
+          "bytes": 864,
+          "count": 72,
+          "itemSize": 3,
+          "normalized": false,
+          "hash": "ca48e061dc40e5634b82d094c316b6f755bb74dac28dd675642c7f8894865406"
+        }
+      },
+      "forceSinglePass": false,
+      "side": 0
+    }
+  },
+  "uniqueBackingBuffers": [
+    {
+      "bytes": 3276,
+      "views": [
+        "fish.position"
+      ]
+    },
+    {
+      "bytes": 819,
+      "views": [
+        "fish.color"
+      ]
+    },
+    {
+      "bytes": 546,
+      "views": [
+        "fish.fishOct"
+      ]
+    },
+    {
+      "bytes": 2184,
+      "views": [
+        "fish.fishForm1"
+      ]
+    },
+    {
+      "bytes": 2184,
+      "views": [
+        "fish.fishForm2"
+      ]
+    },
+    {
+      "bytes": 2184,
+      "views": [
+        "fish.fishForm3"
+      ]
+    },
+    {
+      "bytes": 2184,
+      "views": [
+        "fish.fishForm4"
+      ]
+    },
+    {
+      "bytes": 2184,
+      "views": [
+        "fish.fishForm5"
+      ]
+    },
+    {
+      "bytes": 144,
+      "views": [
+        "fish.fishKind"
+      ]
+    },
+    {
+      "bytes": 2466,
+      "views": [
+        "fish.index"
+      ]
+    },
+    {
+      "bytes": 1152,
+      "views": [
+        "fish.instanceMatrix"
+      ]
+    },
+    {
+      "bytes": 216,
+      "views": [
+        "fish.instanceColor"
+      ]
+    },
+    {
+      "bytes": 792,
+      "views": [
+        "rings.position"
+      ]
+    },
+    {
+      "bytes": 792,
+      "views": [
+        "rings.normal"
+      ]
+    },
+    {
+      "bytes": 384,
+      "views": [
+        "rings.index"
+      ]
+    },
+    {
+      "bytes": 4608,
+      "views": [
+        "rings.instanceMatrix"
+      ]
+    },
+    {
+      "bytes": 864,
+      "views": [
+        "rings.instanceColor"
+      ]
+    }
+  ],
+  "totalUniqueBackingBytes": 26979,
+  "budget": 30555,
+  "materials": 2,
+  "textures": 0,
+  "assets": 0,
+  "notes": "All production base, index, five packed targets, base oct normal, vertex colour, species/phase, fish/ring matrix/colour and ring geometry buffers. Temporary six full source geometries and the frozen test baseline are not retained by production. No Float32 normal attribute or full-species cache survives."
+}

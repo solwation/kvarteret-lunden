@@ -1,0 +1,53 @@
+{
+  "MAX_VERTEX_ATTRIBS": 16,
+  "calls": 2,
+  "triangles": 994,
+  "count": 2,
+  "rings": 2,
+  "fishPass": true,
+  "programs": [
+    {
+      "name": "",
+      "attributes": {
+        "instanceMatrix": {
+          "location": 0,
+          "locationSize": 4
+        },
+        "instanceColor": {
+          "location": 4,
+          "locationSize": 1
+        },
+        "position": {
+          "location": 5,
+          "locationSize": 1
+        },
+        "normal": {
+          "location": 6,
+          "locationSize": 1
+        },
+        "color": {
+          "location": 8,
+          "locationSize": 1
+        }
+      }
+    },
+    {
+      "name": "",
+      "attributes": {
+        "instanceMatrix": {
+          "location": 0,
+          "locationSize": 4
+        },
+        "instanceColor": {
+          "location": 4,
+          "locationSize": 1
+        },
+        "position": {
+          "location": 5,
+          "locationSize": 1
+        }
+      }
+    }
+  ],
+  "errors": []
+}

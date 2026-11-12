@@ -1,0 +1,19 @@
+{
+  "publicBase": "75270c1bdb2f1ab96f3d720ea9a8a2f8ad682222",
+  "selectedOriginal": "8743e7d07e6a2e6b743710f27bd06d6027bd287d",
+  "unchangedHashes": {
+    "src/riverfishswim.js": "fe3ba189cb7b400f928e21ea9f6983c2c35352bfa66e38a84b5246e09bbbc7dd",
+    "src/main.js": "f3e2b5490a4812476700b57b24c513e0ef45eae1acf6996f5df93bf3fe60ee4f",
+    "src/riverbridge.js": "a286298842d64c3f640c28234d004361ee4eaf719d8f4080c5c9745cf4515d45",
+    "src/surroundings.js": "4d090920ea97ebaa5eedeeb2b2f8b36066e4c1aaa060ae0e28eabbe8fecf0484",
+    "package-lock.json": "7592e73bba4f5cc035060d139343f6fb2ed300113fddf4b54227ba1d0a3b692a",
+    "THIRD_PARTY_LICENSES.txt": "1f6214752de5358e70816bc75813dc6a916557a34d3d5d44855546006cc3c285"
+  },
+  "oldPublicConfigBytePrefixUnchanged": true,
+  "frozenModelByteIdentical": true,
+  "frozenConsumerByteIdenticalExceptRelativeImportPaths": true,
+  "allMeasuredAppArtShaderAndFixtureHashesStillExact": true,
+  "galleryRouteAdaptation": "Measured tools/riverfish274.html renderer moved unchanged into existing tools/riverfishappearance.html, with only an added legacy fishAppearance alias. Same camera/light/shader/instance input; form script URL updated. No recapture after this route consolidation.",
+  "legacyToolAdaptation": "Existing appearance CLI intentional433tri assumption changed to411 and existing gallery now uses the actual packed instanced consumer; no historical broad CLI rerun.",
+  "noriverfishGate": "Existing unchanged main.js debugParams.has(noriverfish) conditional, no top-level model build/cache. Source review, no second full app reload."
+}

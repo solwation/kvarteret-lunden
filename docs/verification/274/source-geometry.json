@@ -1,0 +1,78 @@
+{
+  "source": "8743e7d07e6a2e6b743710f27bd06d6027bd287d",
+  "sourceDefaultLiveRecipeByteIdenticalBeforeNormalization": true,
+  "rows": [
+    {
+      "name": "mört",
+      "sourceAttributeHashes": {
+        "position": "686fe29b113c448f0fbb52090f6de11d85870b8e1c5138f2b502b392a1531cab",
+        "color": "b5c51c2849d427fe95132a590b3027640e1488c5fb22c6b587232e7d9e27b75c",
+        "normal": "4ad1476bb7d32248cddfca130436f1fb2b65dc9daa762ed0ec49ce25f8b0428d"
+      },
+      "indexHash": "8470655755f140e26c22784204adaafd63696f9c0ebdc89677c84459c35baa92",
+      "maxNormalizedPositionError": 0,
+      "maxNormalAngleRadians": 0.014293618130030494,
+      "collapsedFinVertices": 48
+    },
+    {
+      "name": "abborre",
+      "sourceAttributeHashes": {
+        "position": "2f4110a1dabf83af052d181c1eefa1ddd767b5781c89d05b6c1ecb4a0532baf8",
+        "color": "3b78ca52390602d669703c448f0daae699b7c77f3eaa5a103575ef53e95fe2d0",
+        "normal": "32999546e8e1c3472a0a8b84f012e7fb6a6dd15a9b5d8002b90da54a2d92b758"
+      },
+      "indexHash": "8470655755f140e26c22784204adaafd63696f9c0ebdc89677c84459c35baa92",
+      "maxNormalizedPositionError": 0.000007629510948348184,
+      "maxNormalAngleRadians": 0.014530129873227738,
+      "collapsedFinVertices": 36
+    },
+    {
+      "name": "braxen",
+      "sourceAttributeHashes": {
+        "position": "254abaa202a19c0bdb82f8d504780978100978a66542eabea5043ff6f3885a18",
+        "color": "a5fbc3d839ddcf60d7c2ceb160b452bb0807fff2973197f6675252c03f36f82f",
+        "normal": "8b0b1f214951bd0d1de9cd331da30be24f49dff38324646e9663876317e100c6"
+      },
+      "indexHash": "8470655755f140e26c22784204adaafd63696f9c0ebdc89677c84459c35baa92",
+      "maxNormalizedPositionError": 0.000007629510948348184,
+      "maxNormalAngleRadians": 0.015295758437080828,
+      "collapsedFinVertices": 48
+    },
+    {
+      "name": "gädda",
+      "sourceAttributeHashes": {
+        "position": "5924bee9da895644db61c7c0b78f429179ac417201aaa4b7c134b15fcb11e810",
+        "color": "8b09cfe108715434d89a7f5068d5d5beeaa8611662cba30edd923ba65079bd5c",
+        "normal": "ac82694c5a6a3dc7b9560126dbeb75631eb72fe51a30fa888a75101216a1c865"
+      },
+      "indexHash": "8470655755f140e26c22784204adaafd63696f9c0ebdc89677c84459c35baa92",
+      "maxNormalizedPositionError": 0.000007629510948348184,
+      "maxNormalAngleRadians": 0.013675293436913337,
+      "collapsedFinVertices": 48
+    },
+    {
+      "name": "öring",
+      "sourceAttributeHashes": {
+        "position": "64cc21f9fdc348a22e6d337649580fd8e9b0b4709249c956fe01789f1a50e459",
+        "color": "6d26cce65d81bc9c774bfab7a0e7d2d427830e3d34faaf8f02e15163504a97a3",
+        "normal": "29d76aa4a0ae25cb1cfa4d41453543e102bc9146f0f94629c3ecc9346a671fc5"
+      },
+      "indexHash": "8470655755f140e26c22784204adaafd63696f9c0ebdc89677c84459c35baa92",
+      "maxNormalizedPositionError": 0.000007629510948348184,
+      "maxNormalAngleRadians": 0.015404025462189268,
+      "collapsedFinVertices": 36
+    },
+    {
+      "name": "ål",
+      "sourceAttributeHashes": {
+        "position": "e43cddfac7d32adaf85ffa0f9878d680b191cec61451b198d805ce644349fa97",
+        "color": "2d8f962665da0ed9f1bbe0bfff44233ee228bd310f37711c533f7a14d5f5ea27",
+        "normal": "fc99f35a85e22081237e1aa9f8a541d03a121de18638b44fbb8d034b8bbefd1e"
+      },
+      "indexHash": "8470655755f140e26c22784204adaafd63696f9c0ebdc89677c84459c35baa92",
+      "maxNormalizedPositionError": 0.000007629510948348184,
+      "maxNormalAngleRadians": 0.012702181278706613,
+      "collapsedFinVertices": 61
+    }
+  ]
+}

@@ -3672,3 +3672,57 @@ export const DUCK_SURFACE = {
   colors: { breast: 0x684337, flank: 0xa39b89, back: 0x665b48, female: 0x8b7655, dark: 0x493d2d, green: 0x245b3a, black: 0x1b1b13, collar: 0xe7dfcc, bill: 0xd5a33b, foot: 0xc98b35 },
   plumage: { rows: 24, columns: 36, contrast: .4, rowOffset: .5, maleContrast: .35, breastZ: .17, backY: .4, stripeZ: .22, stripeY: [.625,.657], collar: [.465,.48], speculumZ: [-.25,-.10], speculumY: [.34,.40] },
 };
+
+// Public #274: neutral anatomical/appearance assumptions selected from original 8743e7d07e6a2e6b743710f27bd06d6027bd287d.
+// No held, collection, export, service or interaction configuration.
+export const FISH_ANATOMY = {
+  pupil: 0x0c0c0c, gill: 0.62, mouth: 0x2a2018, // the pupil; the gill line darkens the side by this factor; the mouth (nose tip)
+  species: {
+    mört: { depth: 0.27, width: 0.12, peak: 0.6, ped: 0.3, top: 0.55, head: 0.23, nose: [2, 2], tail: 0.17, fork: 0.55, spread: 0.11,
+      dorsal: [0.5, 0.64, 0.13, 0.04], anal: [0.22, 0.34, 0.08, 0.03], pec: [0.74, 0.08], pelvic: [0.5, 0.07], eye: [0.9, 0.032],
+      back: 0x34463f, side: 0xc4c9c3, belly: 0xf0efe8, fins: { dorsal: 0x7a5a4c, tail: 0x8c5a48, paired: 0xc8462a, lower: 0xc8462a }, iris: 0xd0261a },
+    abborre: { depth: 0.28, width: 0.13, peak: 0.6, ped: 0.28, top: 0.6, head: 0.27, nose: [1.6, 2], tail: 0.16, fork: 0.3, spread: 0.1,
+      dorsal: [0.6, 0.86, 0.12, 0.05], spiny: 6, dorsal2: [0.3, 0.52, 0.09, 0.04], anal: [0.22, 0.34, 0.08, 0.03], pec: [0.7, 0.08], pelvic: [0.68, 0.08], eye: [0.88, 0.036],
+      back: 0x2e3a18, side: 0x98a03c, belly: 0xe6dfbc, fins: { dorsal: 0x4c4c34, tail: 0xb4602c, paired: 0xdc4c1c, lower: 0xdc4c1c }, iris: 0xd8a01c,
+      bars: [6, 0.14, 0.78, 0x1c220e] },
+    braxen: { depth: 0.36, width: 0.09, peak: 0.6, ped: 0.22, top: 0.6, head: 0.2, nose: [1.6, 1.6], tail: 0.17, fork: 0.65, spread: 0.13,
+      dorsal: [0.56, 0.66, 0.15, 0.03], anal: [0.08, 0.46, 0.09, 0.04], pec: [0.76, 0.08], pelvic: [0.56, 0.07], eye: [0.9, 0.03],
+      back: 0x3a3524, side: 0xa48646, belly: 0xd8c69c, fins: { dorsal: 0x3e3a30, tail: 0x3e3a30, paired: 0x5a4c3a, lower: 0x4a4436 }, iris: 0xc8b88c },
+    gädda: { depth: 0.14, width: 0.11, peak: 0.45, ped: 0.45, top: 0.5, head: 0.3, nose: [1.1, 3.5], tail: 0.14, fork: 0.35, spread: 0.08,
+      dorsal: [0.06, 0.22, 0.08, 0.05], anal: [0.05, 0.2, 0.07, 0.04], pec: [0.68, 0.06], pelvic: [0.44, 0.05], eye: [0.84, 0.024],
+      back: 0x27321a, side: 0x667438, belly: 0xe2dbbf, fins: { dorsal: 0x7c6236, tail: 0x7c6236, paired: 0x9a7038, lower: 0x8a6634 }, iris: 0xd8b02c },
+    öring: { depth: 0.22, width: 0.12, peak: 0.55, ped: 0.34, top: 0.52, head: 0.24, nose: [1.7, 2], tail: 0.15, fork: 0.15, spread: 0.1,
+      dorsal: [0.46, 0.62, 0.11, 0.04], adipose: [0.12, 0.18, 0.035, 0.01], anal: [0.18, 0.3, 0.07, 0.03], pec: [0.72, 0.07], pelvic: [0.46, 0.06], eye: [0.88, 0.03],
+      back: 0x44463a, side: 0xb4a98a, belly: 0xefe9da, fins: { dorsal: 0x6c6250, tail: 0x6c6250, paired: 0x9a8a6a, lower: 0x9a8a6a }, iris: 0xccbc80 },
+    ål: { depth: 0.065, width: 0.06, peak: 0.62, ped: 0.3, top: 0.5, head: 0.13, nose: [1.8, 2.2], tail: 0.04, fork: -0.6, spread: 0.035,
+      long: [0.62, 0.42, 0.035], pec: [0.85, 0.03], eye: [0.955, 0.012],
+      back: 0x2b2d1e, side: 0x5a5634, belly: 0xd6c682, fins: { dorsal: 0x5c5836, tail: 0x5c5836, paired: 0x6c6640, lower: 0x6a6440 }, iris: 0xd0c49a },
+  },
+};
+
+export const RIVER_FISH_SURFACE = {
+  density: { rings: 14, around: 10, finSegments: 3, eyeSegments: 6 },
+  fin: { rows: 3, camber: .0025, root: .9, sweep: .32, shade: .82, ray: .12, spineNotch: .72, colorRoot: .55 },
+  tailSegments: 6,
+  paired: { spread: .3, drop: .45, backStart: .2, backRange: .8, segments: 4 },
+  pattern: { bars: .65, spotOffset: .35, spotPhase: 17.3 },
+  eel: { peduncle: .1, tailSpread: .25 },
+  eye: { lift: .0018, pupil: .52, angle: .4, scale: .72 },
+  gill: { width: .035, shade: .78 },
+  mouth: { from: .94, band: .15, shade: .48 },
+  flex: { amplitude: .14, eel: .75, waves: 7, frequency: 5.5 },
+  // Retained #1765 pigment/attachment values, now shared by both densities.
+  skin: { backStart: .2, backEnd: .85, bellyStart: .2, bellyEnd: .75 },
+  peduncleWidth: .75, pairedAngles: [-.4,-1.35], spotLift: .0015, longFinRoot: .004,
+  normalStep: [.005,.02], // numerical surface-frame differences, not anatomy dimensions
+  // u, relative half-width / height, centre-y as a share of body depth.
+  // The small closed mouth cap keeps the +.5 nose plane; pike has a broad flat beak.
+  heads: {
+    mört: [[.76,.9165,.9165,0],[.9,.62,.58,0],[.97,.3,.26,0],[1,.12,.1,0]],
+    abborre: [[.76,.9165,.8487,0],[.9,.59,.51,0],[.97,.26,.22,0],[1,.1,.08,0]],
+    braxen: [[.76,.8487,.8487,0],[.9,.48,.44,-.015],[.97,.23,.19,-.02],[1,.09,.08,-.02]],
+    gädda: [[.72,.9756,.5738,0],[.86,.82,.3,-.01],[.96,.6,.17,-.015],[1,.45,.12,-.015]],
+    öring: [[.76,.8844,.8285,0],[.9,.6,.53,0],[.97,.3,.25,0],[1,.14,.11,0]],
+    ål: [[.87,.794,.7023,0],[.94,.75,.65,0],[.98,.55,.46,0],[1,.38,.3,0]],
+  },
+};

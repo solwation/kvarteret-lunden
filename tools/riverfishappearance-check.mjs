@@ -37,7 +37,7 @@ try{
    F.hide();const before=render();F.update(0,false);const after=render();
    return{mode,camera:a.camera.position.toArray(),look:target,state:F.state(),geometryTriangles:F.fish.geometry.index.count/3,geometryBounds:{min:F.fish.geometry.boundingBox.min.toArray(),max:F.fish.geometry.boundingBox.max.toArray()},delta:{calls:after.calls-before.calls,triangles:after.triangles-before.triangles},storage:{original:localStorage.getItem('lunden.drawing'),session:sessionStorage.getItem('lunden.session')}};
   },{fixture,mode});
-  assert(result.state.drawn>0&&result.state.ringsDrawn>0);assert.equal(result.geometryTriangles,433);assert.equal(result.delta.calls,2);assert.equal(result.delta.triangles,result.state.drawn*433+result.state.ringsDrawn*64);assert.deepEqual(result.storage,{original:'source-sentinel',session:'source-session'});
+  assert(result.state.drawn>0&&result.state.ringsDrawn>0);assert.equal(result.geometryTriangles,411);assert.equal(result.delta.calls,2);assert.equal(result.delta.triangles,result.state.drawn*411+result.state.ringsDrawn*64);assert.deepEqual(result.storage,{original:'source-sentinel',session:'source-session'});
   if(!live)await page.screenshot({path:out+'/actual-'+mode+'.png'});views.push(result);
  }
  let rising=null;
@@ -52,5 +52,5 @@ try{
  assert.deepEqual(errors,[]);assert.deepEqual(external,[]);
  if(detailOnly){const previous=JSON.parse(await readFile(out+'/browser.json','utf8'));views.unshift(previous.views.find(v=>v.mode==='river'));}
  await writeFile(out+(live?'/pages-live.json':'/browser.json'),JSON.stringify({views,rising,errors,external,cameraOnlyDetailRetake:detailOnly,scope:'Actual built public scene, fixed local clock, real fish/ring batches; no service/storage integration'},null,2)+'\n');
- console.log('PASS actual public river/detail: 433 triangles/fish, two batch draws, exact rendered budget, original storage untouched, zero external requests/page errors.');
+ console.log('PASS actual public river/detail: 411 triangles/fish, two batch draws, exact rendered budget, original storage untouched, zero external requests/page errors.');
 }finally{await browser.close();}

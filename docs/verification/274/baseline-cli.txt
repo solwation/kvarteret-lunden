@@ -1,0 +1,13 @@
+browsertest: no systemd user scope here, running without a memory ceiling
+{
+  MAX_VERTEX_ATTRIBS: 16,
+  calls: 2,
+  triangles: 994,
+  count: 2,
+  rings: 2,
+  fishPass: true,
+  programs: [
+    { name: '', attributes: [Object] },
+    { name: '', attributes: [Object] }
+  ]
+}

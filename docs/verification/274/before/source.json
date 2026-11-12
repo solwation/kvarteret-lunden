@@ -1,0 +1,9 @@
+{
+  "base": "75270c1bdb2f1ab96f3d720ea9a8a2f8ad682222",
+  "hashes": {
+    "src/riverfish.js": "bd91b408ed31c93d62e24f823a34573dae462a6c49edb518e564a4c5d3e187ae",
+    "src/riverfishmodel.js": "c1f5b3c70acce8cf6a5f18bff06140fe063dbb0e9e8715880a7d1f202ba38b34",
+    "src/riverfishswim.js": "fe3ba189cb7b400f928e21ea9f6983c2c35352bfa66e38a84b5246e09bbbc7dd",
+    "src/config.js": "335462bfe188a6c122ddefb1f12742233db0457dd3a011c89c1ff27c0d16c2fa"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "at": "2026-11-12T12:32:17.060221+00:00",
+  "integratedBase": "172d48643a2eac914713e188fa31a64f77ffa734",
+  "worker": "24a8e1593294dac03212486d7bfa05518c48e567",
+  "selectedOriginal": "8743e7d07e6a2e6b743710f27bd06d6027bd287d",
+  "sharedTree": "bf90a2005753ab809666852b6b15ed679c749751",
+  "workerSourceToolsImagesRawEvidenceExactAfterRebase": true,
+  "appSourceHashesAllMatch": true,
+  "entirePreviousConfigPrefixExact": true,
+  "272273InstructionEntriesExact": true,
+  "independentReview": "model_evidence_docs neutral live source/central data/buffers/shader green, no blockers",
+  "openedByRoot": [
+    "before/six-side.png",
+    "after/six-side.png",
+    "after/six-front.png",
+    "after/six-quarter.png",
+    "before/actual-normal.png",
+    "after/actual-normal.png",
+    "after/actual-detail.png",
+    "after/actual-rise.png"
+  ],
+  "formLocked": true,
+  "checksReused": "source/input/quality bound native geometry/all6GPU/app/isolation/motion/warm results, no product change after them",
+  "scopeLimits": "raw retained buffers not total/GPU memory; coarse isolated SwiftShader timing not hardware/mobile FPS; actual source app and separate build/Pages",
+  "changedAfterWorker": "rebase docs over272/273, upstream material wording clarified, appended integration evidence only",
+  "currentLocalLinksAndAnchorsChecked": 436,
+  "npmTest": "142 modules PASS after rebase",
+  "buildFingerprint": "6ad9f651374d3900a24b9962"
+}

@@ -1,0 +1,2 @@
+browsertest: no systemd user scope here, running without a memory ceiling
+{"before":{"count":2,"rings":2,"calls":2,"triangles":994,"update":[0.09999999776482582,0.20000000298023224],"render":[0.10000000149011612,0.30000000074505806]},"after":{"count":2,"rings":2,"calls":2,"triangles":950,"update":[0.09999999776482582,0.5],"render":[0.10000000149011612,0.20000000298023224]}}

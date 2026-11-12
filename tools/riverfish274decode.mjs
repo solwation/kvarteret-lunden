@@ -1,0 +1,6 @@
+// Verification-only evaluation of the actual packed attributes and shader deformation.
+import*as T from'three';import{RIVER_FISH_SURFACE as F}from'../src/config.js';
+export function decodedFish(g,kind,phase=0,wag=0){const position=g.attributes.position,normals=[],positions=[],box=new T.Box3(),v=new T.Vector3;for(let i=0;i<position.count;i++){
+ let x,y,z,ox,oy;if(kind===0){x=position.getX(i);y=position.getY(i);z=position.getZ(i);ox=g.attributes.fishOct.getX(i);oy=g.attributes.fishOct.getY(i)}else{const a=g.attributes['fishForm'+kind],bits=a.getW(i);x=a.getX(i)/65535-.5;y=a.getY(i)/65535-.5;z=a.getZ(i)/65535-.5;ox=(bits%256)/255*2-1;oy=Math.floor(bits/256)/255*2-1}
+ let nx=ox,ny=oy,nz=1-Math.abs(ox)-Math.abs(oy);if(nz<0){nx=(1-Math.abs(oy))*Math.sign(ox+.000001);ny=(1-Math.abs(ox))*Math.sign(oy+.000001)}const normal=new T.Vector3(nx,ny,nz).normalize(),tail=T.MathUtils.clamp(.5-z,0,1),amp=kind===5?F.flex.eel:F.flex.amplitude,angle=phase+wag-tail*F.flex.waves,slope=amp*(-2*tail*Math.sin(angle)+tail*tail*F.flex.waves*Math.cos(angle));normal.z-=slope*normal.x;normal.normalize();v.set(x+amp*tail*tail*Math.sin(angle),y,z);positions.push(...v);normals.push(...normal);box.expandByPoint(v)
+}return{positions,normals,box}}

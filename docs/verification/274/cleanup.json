@@ -1,0 +1,13 @@
+{
+  "ownedServer": {
+    "pid": 1842945,
+    "command": "python3 -m http.server 8305",
+    "cwd": "/home/devcontainers/lunden-wt/public-274-fish",
+    "stopped": true,
+    "port8305Unreachable": true
+  },
+  "ownedRiverfish274NodeJobsRemaining": [],
+  "browserJobs": "All completed with browser.close and wrapper CLI0; no shared browser process was killed.",
+  "borrowedNodeModulesSymlinkRemoved": true,
+  "installsRun": false
+}

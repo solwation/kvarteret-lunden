@@ -1,5 +1,28 @@
 # Förbättringar från originalet
 
+## Sex passiva åfiskformer i en instansbatch, #274
+
+Selektiv neutral livekälla `8743e7d07e6a2e6b743710f27bd06d6027bd287d` (original #1922).
+Endast `fishsurface.js` och relevanta generiska anatomi-/formdata anpassas till egna
+`riverfishsurface`/`riverfishmodel` och publicens befintliga instansrenderer. Fem packade
+artmål, basposition/okt-normal och art/fas ger 14 aktiva attributplatser av uppmätta 16.
+Alla sex liveytors buffertar är källidentiska före normalisering/kvantisering;
+nuvarande 18 fiskar/6 arter, mått/färger/seed/rörelse/ringar/vatten och 45 m-gate består.
+
+En fiskbatch och en ringbatch består: publicens befintliga `forceSinglePass=true`
+ger en transparent fiskpass plus en ringpass, före och efter. Originalets två
+fiskpass är inte importerade och ingen passbesparing påstås. Fiskens 433 trianglar
+blir 411; hela unika retainedunionen inklusive artmål och fisk/ring-instansdata
+blir 26 979 B från 20 370 B, under låsta 30 555 B. Befintliga två material består; inga
+texturer, ljus eller externa modellassets tillkommer. Ingen per-framegeometri byggs.
+
+Bortvalt: originalets hela RiverFish/config/targetshader, GLB/loader, fångad/hållen/
+kokt fisk, ghost, haj, fiske/poäng/ljud/personresurser, pärm/cache, lagring,
+Cloudflare/tjänster och historik. Den egna avgränsade materialpatchen väljer art,
+billig flex och dess normal inom befintlig batching/ytpolicy. Befintlig attribution
+och Three.js MIT-licens bevaras; inga nya externa licenser.
+[Egna hela arter, faktisk publik vatten-/uppstigningsvy, resurser och kontroller](verification/274/README.md).
+
 ## Sammanhängande neutrala gräsandsytor, #270
 
 Selektiv originalkälla `a963287ffaacad8fa405f91c086752255aefcb2d` (#1921).

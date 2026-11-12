@@ -3073,3 +3073,21 @@ ankor och nät-/lagringssentineller ingår. `tools/duckcost270-check.mjs BASE OU
 mäter 30 varma matchade update/render+finish-sampel i isolerad faktisk fyrflock;
 SwiftShaderdata är inga hårdvaru-FPS-löften. npm test/build är obligatoriska.
 [Exakta källor, resursunion, användbara granskade bilder och begränsningar](verification/270/README.md).
+
+
+## Sex packade passiva åfiskformer #274
+
+`node tools/riverfish-check.mjs` behåller 6 282 rörelse-/å-/botten-/pelarprov och
+827 ringar samt deterministiska instanser/gates och offentlig importgräns.
+`node tools/riverfish-shape-check.mjs` kontrollerar alla sex enhetsformer, 18 verkliga
+måttmatriser och 13 104 deformerade vertex-/normal-/projektionsfall i flat/full form.
+`tools/riverfish274-form-check.mjs BASE OUT` använder befintliga instansgalleriet
+med sex artindex i en faktisk fiskpass och matchade kameror/ljus/matriser.
+`tools/riverfish274-app-check.mjs BASE OUT` jämför fryst publicföre och faktisk
+nuvarande RiverFish i en enda publik scen: normal/närvy/naturlig uppstigning,
+explicita avsedda instanspixlar genom opakt vatten, fulla finita deformerade data,
+1 fiskpass + befintlig ringpass, seed/state/instans-/färgparitet, hidden/far och
+nät-/lagringssentineller. `tools/riverfish274-warm-check.mjs BASE OUT` mäter samma
+18-fiskpopulation och lika lokala drawantal i en kort isolerad komponent, utan
+hårdvaru-FPS-slutsats. npm test/build är gröna.
+[Exakta källor, attribut/MAX, resursunion, öppnade bilder och begränsningar](verification/274/README.md).

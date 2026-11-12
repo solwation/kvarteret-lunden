@@ -1,0 +1,5 @@
+browsertest: no systemd user scope here, running without a memory ceiling
+PASS matched actual public normal with intended fish pixels
+PASS matched actual public detail with intended fish pixels
+PASS matched actual public rise with intended fish pixels
+PASS actual public seed/instances/colors/rise/water/passes/gates/isolation

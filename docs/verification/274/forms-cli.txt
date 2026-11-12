@@ -1,0 +1,2 @@
+browsertest: no systemd user scope here, running without a memory ceiling
+PASS six actual packed forms; before/after identical full camera/instance matrices, one fish pass, linked shader attributes

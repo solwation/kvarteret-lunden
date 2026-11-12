@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { riverFishGeometry } from './riverfishmodel.js';
+import { riverFishGeometry, fishSpeciesMaterial, fishVisualPhase } from './riverfishmodel.js';
 import { RIVER_FISH as C, COLORS } from './config.js';
 import { fishSpec, fishAt, ringsAt, riverProject, fishTime } from './riverfishswim.js';
 
@@ -11,7 +11,7 @@ import { fishSpec, fishAt, ringsAt, riverProject, fishTime } from './riverfishsw
 const M = new THREE.Matrix4(), Q = new THREE.Quaternion(), P = new THREE.Vector3(), S = new THREE.Vector3(), UP = new THREE.Vector3(0, 1, 0);
 const tint = new THREE.Color(), white = new THREE.Color(1, 1, 1), deepTone = new THREE.Color(COLORS.water).multiplyScalar(C.look.deepTone);
 
-/** One normalized neutral silhouette, scaled only by the existing instance matrix. */
+/** One packed six-form batch; the existing instance matrix scales each selected unit form once. */
 export const fishGeometry = riverFishGeometry;
 
 export class RiverFish {
@@ -20,7 +20,8 @@ export class RiverFish {
     Object.assign(this, {scene,camera,now,shown:[],ringList:[],t:0});
     const fishMat = new THREE.MeshLambertMaterial({ vertexColors: true, transparent: true, opacity: C.opacity, depthWrite: false, side: THREE.DoubleSide, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 });
     fishMat.forceSinglePass = true; // thin surface silhouettes need one two-sided pass, not back/front passes
-    this.fish = new THREE.InstancedMesh(fishGeometry(), fishMat, C.count);
+    this.fish = new THREE.InstancedMesh(fishGeometry(), fishSpeciesMaterial(fishMat), C.count);
+    this.fish.geometry.setAttribute('fishKind',new THREE.InstancedBufferAttribute(new Float32Array(C.count*2),2).setUsage(THREE.DynamicDrawUsage));
     const ringGeo = new THREE.RingGeometry(0.88, 1, 32, 1).rotateX(-Math.PI / 2);
     ringGeo.deleteAttribute('uv');
     const ringMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, fog: true });
@@ -39,6 +40,7 @@ export class RiverFish {
     const close = !hidden && q.abs < C.drawDist;
     if (!close) { if (this.fish.visible || this.rings.visible) this.hide(); return; }
     const t = this.t = fishTime(this.now()), seed = C.seed, o = this.o ??= {}, rings = this.ringList;
+    this.fish.material.userData.fishTime.value=fishVisualPhase(t);
     let n = 0; this.shown.length = 0; rings.length = 0;
     for (let id = 0; id < C.count; id++) {
       const f = fishSpec(id, 0, seed);
@@ -51,11 +53,13 @@ export class RiverFish {
       this.fish.setMatrixAt(n, M.compose(P, Q, S));
       tint.setHex(sp.color).multiplyScalar(C.look.shade + (1 - C.look.shade) * up).lerp(deepTone, C.murk * Math.max(0, deep) * (1 - up));
       this.fish.setColorAt(n, tint);
+      this.fish.geometry.attributes.fishKind.setXY(n,f.species,f.wag);
       this.shown.push({ id, born: f.born, species: sp.name, x: o.x, y: o.y, z: o.z, rise: up, drawnY: P.y });
       n++;
       ringsAt(f, t, rings, seed);
     }
     this.fish.count = n; this.fish.visible = n > 0;
+    this.fish.geometry.attributes.fishKind.needsUpdate = true;
     this.fish.instanceMatrix.needsUpdate = true; this.fish.instanceColor.needsUpdate = true;
     const glow = C.ring.glow * (C.ring.night + (1 - C.ring.night) * Math.max(0, Math.min(1, daylight)));
     let k = 0;

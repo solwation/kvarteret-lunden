@@ -1,0 +1,107 @@
+{
+  "rows": {
+    "fish": {
+      "triangles": 433,
+      "vertices": 249,
+      "views": {
+        "position": {
+          "type": "Float32Array",
+          "itemSize": 3,
+          "count": 249,
+          "bytes": 2988,
+          "normalized": false
+        },
+        "normal": {
+          "type": "Float32Array",
+          "itemSize": 3,
+          "count": 249,
+          "bytes": 2988,
+          "normalized": false
+        },
+        "color": {
+          "type": "Float32Array",
+          "itemSize": 3,
+          "count": 249,
+          "bytes": 2988,
+          "normalized": false
+        },
+        "index": {
+          "type": "Uint16Array",
+          "itemSize": 1,
+          "count": 1299,
+          "bytes": 2598,
+          "normalized": false
+        },
+        "instanceMatrix": {
+          "type": "Float32Array",
+          "itemSize": 16,
+          "count": 18,
+          "bytes": 1152,
+          "normalized": false
+        },
+        "instanceColor": {
+          "type": "Float32Array",
+          "itemSize": 3,
+          "count": 18,
+          "bytes": 216,
+          "normalized": false
+        }
+      },
+      "transparent": true,
+      "forceSinglePass": true,
+      "side": 2,
+      "capacity": 18
+    },
+    "rings": {
+      "triangles": 64,
+      "vertices": 66,
+      "views": {
+        "position": {
+          "type": "Float32Array",
+          "itemSize": 3,
+          "count": 66,
+          "bytes": 792,
+          "normalized": false
+        },
+        "normal": {
+          "type": "Float32Array",
+          "itemSize": 3,
+          "count": 66,
+          "bytes": 792,
+          "normalized": false
+        },
+        "index": {
+          "type": "Uint16Array",
+          "itemSize": 1,
+          "count": 192,
+          "bytes": 384,
+          "normalized": false
+        },
+        "instanceMatrix": {
+          "type": "Float32Array",
+          "itemSize": 16,
+          "count": 72,
+          "bytes": 4608,
+          "normalized": false
+        },
+        "instanceColor": {
+          "type": "Float32Array",
+          "itemSize": 3,
+          "count": 72,
+          "bytes": 864,
+          "normalized": false
+        }
+      },
+      "transparent": true,
+      "forceSinglePass": false,
+      "side": 0,
+      "capacity": 72
+    }
+  },
+  "allUniqueRetainedBackingBytes": 20370,
+  "maxFishTriangles": 7794,
+  "maxRingTriangles": 4608,
+  "materials": 2,
+  "textures": 0,
+  "assets": 0
+}

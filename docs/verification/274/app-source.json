@@ -1,0 +1,9 @@
+{
+  "src/riverfish.js": "a9a6df1c68b308300d24d3c7a0b4b70ad30b5bcfc8000d34fd6572ff135ad525",
+  "src/riverfishmodel.js": "19cd29f79fa8c4b30f4369a4668d92d7dc41dda0a86fc0405bb4ca7ad75c8bf6",
+  "src/riverfishsurface.js": "d38cc63bdfffb6552c8e4502a6859da20b776a86931b17c8a0ba35909828ef5f",
+  "src/riverfishswim.js": "fe3ba189cb7b400f928e21ea9f6983c2c35352bfa66e38a84b5246e09bbbc7dd",
+  "src/config.js": "9ae75e61013ea95f87b96a5a03638a009a6b49a7b627bbed953ba5683c5f838c",
+  "tools/riverfish274-app-check.mjs": "f5340deb724981eb71b8a4421ffeabce6242ce2b8af680589c61aaa85fd28bfb",
+  "tools/riverfish274decode.mjs": "feec9a68c3411d4cddce752092b836f5394a004a5194bcb683cbd2e99ad60188"
+}

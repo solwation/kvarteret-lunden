@@ -1,0 +1,11 @@
+{
+  "baselineWrapper": 0,
+  "nativeRiverfishMotion": 0,
+  "nativeShapeDecodedNormals": 0,
+  "sixFormShaderWrapper": 0,
+  "actualPublicConsumerWrapper": 0,
+  "boundedWarmWrapper": 0,
+  "npmTest": 0,
+  "npmBuild": 0,
+  "note": "Actual observed tool/CLI exit codes; not inferred from a zero-fail JSON. A new fixture favicon404 and a shape-check edit typo were corrected before these final runs; no product changes for those harness issues."
+}
