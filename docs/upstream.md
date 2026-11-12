@@ -3263,3 +3263,23 @@ Leverans #267: Refs `74647c132e145dccc36bd4110487b93a7be48eec`, exakt
 success, livefingeravtryck `22479ab72209111eede30c4b`. Faktisk publicerad å-/närvy,
 uppstigningssample, budget samt oberoende nät-/lagringsgräns är gröna. Fem egna
 SHA-pinnade bilder är granskade/publicerade före stängning; [leveransbevis](verification/267/README.md#faktisk-pagesleverans).
+
+
+## Sammanhängande ekorrform, #271
+
+Selektiv källa är original #1920, `c6ac53418862497c131efba43097d806b3af95e1`.
+Endast rena geometri-/färgreceptet med kropp, avsmalnande huvud, insetögon,
+sluten böjd svans och de tre redan befintliga morpherna samt `SQUIRREL_SURFACE`
+överförs. De nya centrala måtten är visuella antaganden, inte uppmätta djur.
+Riggmarkörer och oanvända rigglokaler tas bort, fabriken exporteras och tre
+kommentarer anpassas; receptet är i övrigt byteidentiskt med den valda källan.
+De gamla publika rörelseinställningarna, fyra anonyma djur/tre utseenden,
+controller, brain och habitat är byteidentiska med public `11d67b945daccf36f90e27cd4420b19b2ec1903f`.
+
+Ingen GLB, loader, skinnad rigg, djurmetadata, personnamn, nötter, interaktion,
+ljud, originalets lagring, tjänst eller apphistorik följer med. Publicens egen
+morph-/LOD-rendering behåller en draw per synligt djur, samma material och inga
+texturer/lampor. Alla sex kvarhållna LOD-geometrier använder tillsammans
+1 610 748 → 976 320 B unika råbuffertar (−39,4 %); detta är inte totalminne.
+Befintliga licensvillkor gäller för den selektivt överförda koden.
+[Granskade egna resultat och källbindning](verification/271/README.md).

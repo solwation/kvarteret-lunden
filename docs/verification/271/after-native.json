@@ -1,0 +1,102 @@
+{
+  "rows": [
+    {
+      "i": 0,
+      "far": false,
+      "triangles": 3062,
+      "rawBytes": 223788,
+      "morphs": {
+        "position": 3,
+        "normal": 3
+      },
+      "minY": 3.8743019903364484e-10
+    },
+    {
+      "i": 0,
+      "far": true,
+      "triangles": 1228,
+      "rawBytes": 101652,
+      "morphs": {
+        "position": 3,
+        "normal": 3
+      },
+      "minY": 3.8743019903364484e-10
+    },
+    {
+      "i": 1,
+      "far": false,
+      "triangles": 3062,
+      "rawBytes": 223788,
+      "morphs": {
+        "position": 3,
+        "normal": 3
+      },
+      "minY": 3.8743019903364484e-10
+    },
+    {
+      "i": 1,
+      "far": true,
+      "triangles": 1228,
+      "rawBytes": 101652,
+      "morphs": {
+        "position": 3,
+        "normal": 3
+      },
+      "minY": 3.8743019903364484e-10
+    },
+    {
+      "i": 2,
+      "far": false,
+      "triangles": 3062,
+      "rawBytes": 223788,
+      "morphs": {
+        "position": 3,
+        "normal": 3
+      },
+      "minY": 3.8743019903364484e-10
+    },
+    {
+      "i": 2,
+      "far": true,
+      "triangles": 1228,
+      "rawBytes": 101652,
+      "morphs": {
+        "position": 3,
+        "normal": 3
+      },
+      "minY": 3.8743019903364484e-10
+    },
+    {
+      "i": 3,
+      "far": false,
+      "triangles": 3062,
+      "rawBytes": 223788,
+      "morphs": {
+        "position": 3,
+        "normal": 3
+      },
+      "minY": 3.8743019903364484e-10
+    },
+    {
+      "i": 3,
+      "far": true,
+      "triangles": 1228,
+      "rawBytes": 101652,
+      "morphs": {
+        "position": 3,
+        "normal": 3
+      },
+      "minY": 3.8743019903364484e-10
+    }
+  ],
+  "uniqueGeometries": 6,
+  "uniqueBuffers": 60,
+  "rawBytes": 976320,
+  "sources": {
+    "src/squirrelmodel.js": "d49ff7fcc2f940a9ccddffd6c65ce9641035e4024188365d467e7d826111b382",
+    "src/config.js": "28037f7a28577708f500e84c8ad99a54ade76491a0a05486306bcc450437ed91",
+    "src/squirrels.js": "65221b6549b7108e82f965a4841054b383047851cff404ec83fff998010f32b4",
+    "src/squirrelbrain.js": "01c1caa86cbc2ce7e8191275b1be503b06412c9146ef1dfa785a81fe6d61441e",
+    "src/squirrelhabitat.js": "f51f06d5861bc8d7159a133327f1eeb1366f771515b5c3a683c944b136eb8902"
+  }
+}

@@ -3015,3 +3015,18 @@ originallagringsmarkörer och noll externa requests/WebSockets kontrolleras. Egn
 och närbilder granskas. Kontrollerad bildnear0.05 är en konservativ prob, inte en ändring
 av publicens kamera. Ingen fysiskGPU-/FPS-/nativeflimmeråtergivning påstås.
 [Resultat och exakt metod](verification/253/README.md).
+
+
+## Sammanhängande publik ekorrform, #271
+
+`node tools/squirrelsurface271-native.mjs` mäter de verkliga produktionsfabrikerna,
+alla tre utseendecacher/båda LOD och alla finita morpher, fötternas stödhöjd och
+unik backing-bufferunion. Befintliga `node --test tools/squirrelambienttest.mjs`
+passerar med oförändrade rörelseregler. `tools/squirrelsurface271-check.mjs`
+laddar en faktisk publik app, växlar endast föregående/nuvarande geometri på
+samma riktiga djur och kontrollerar fulla modell-/kameramatriser, alla projicerade
+vertices, synliga avsedda pixlar samt en draw per djur. Separata neutrala
+hel/front/sidobilder används enbart för formgranskning. Nära/fjärr-LOD, vinter,
+hidden och avståndsfrys samt publik nät-/lagringsisolering ingår. npm test/build
+passerar. Ingen fysisk mobil, FPS eller bred World-profil påstås.
+[Egna granskade bilder, rådata och begränsningar](verification/271/README.md).

@@ -51,7 +51,7 @@ Fyra anonyma ankor simmar och går vid Höje å som två stabila hona–hane-par
 
 I Höje å syns passiva fiskar och ringar när de går upp till ytan (#238). Rörelsen följer ett fast lokalt seed och besökarens klocka; inget fiske eller klickmål finns. Fiskarna följer visningens egna vatten- och bottenhöjder, ritas inom 45 meter och kan döljas med `?noriverfish`. Antal, arter, storlek och rörelse är visuella antaganden.
 
-Fyra anonyma ekorrar hoppar mellan trädkronor, klättrar och letar på marken vid ån, hagen och en sydlig lund (#237). De är enbart miljö, utan nötter, matning eller interaktion, och döljs vintertid.
+Fyra anonyma ekorrar hoppar mellan trädkronor, klättrar och letar på marken vid ån, hagen och en sydlig lund (#237). De är enbart miljö, utan nötter, matning eller interaktion, och döljs vintertid. Den sammanhängande kroppen, smalare ansiktet och böjda svansplymen (#271) behåller samma passiva rörelser och en mesh per djur.
 
 Nordic Wellness vid Sankt Lars väg har tegelfront med varma bottenfönster, grön glasentré med synlig trappa, grön hall och terrängföljande parkering (#240). Fasadskylten är självritad och innebär inget samarbete; mått och material är visuella antaganden. Den separata mobilbudgetavvikelsen följs i #242.
 

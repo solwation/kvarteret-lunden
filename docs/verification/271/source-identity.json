@@ -1,0 +1,12 @@
+{
+  "originalSource": "c6ac53418862497c131efba43097d806b3af95e1",
+  "publicBaseline": "11d67b945daccf36f90e27cd4420b19b2ec1903f",
+  "geometryRecipe": "byte-identical after export, rig-only tags/unused rig locals removal and three public-only comments",
+  "centralSurface": "byte-identical",
+  "existingConfig": "byte-identical after removing new surface declaration/comment",
+  "unchanged": {
+    "src/squirrels.js": "65221b6549b7108e82f965a4841054b383047851cff404ec83fff998010f32b4",
+    "src/squirrelbrain.js": "01c1caa86cbc2ce7e8191275b1be503b06412c9146ef1dfa785a81fe6d61441e",
+    "src/squirrelhabitat.js": "f51f06d5861bc8d7159a133327f1eeb1366f771515b5c3a683c944b136eb8902"
+  }
+}

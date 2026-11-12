@@ -1,0 +1,35 @@
+{
+  "originalSource": "c6ac53418862497c131efba43097d806b3af95e1",
+  "publicBaseline": "11d67b945daccf36f90e27cd4420b19b2ec1903f",
+  "files": {
+    "src/squirrelmodel.js": "d49ff7fcc2f940a9ccddffd6c65ce9641035e4024188365d467e7d826111b382",
+    "src/config.js": "28037f7a28577708f500e84c8ad99a54ade76491a0a05486306bcc450437ed91",
+    "src/squirrels.js": "65221b6549b7108e82f965a4841054b383047851cff404ec83fff998010f32b4",
+    "src/squirrelbrain.js": "01c1caa86cbc2ce7e8191275b1be503b06412c9146ef1dfa785a81fe6d61441e",
+    "src/squirrelhabitat.js": "f51f06d5861bc8d7159a133327f1eeb1366f771515b5c3a683c944b136eb8902",
+    "tools/squirrelsurface271-check.mjs": "b56cd95e76b1e0553ccd50aefdea3c8bf2430f72841ac39cdc48ff8be2f16303",
+    "tools/squirrelsurface271-native.mjs": "e839c7b84d2708d3a7f86aaf7b1c8c3e29edaec37d756fc9a0994ee2e9b0d963",
+    "tools/squirrelambienttest.mjs": "1de99de391cb0b2fd249a0f901e28dbe9e247c887247c48f32f718099ce33a98"
+  },
+  "images": {
+    "docs/verification/271/after-river-normal.png": "0607f972144bfc22abece9ea65013458f2bc1ba9b1ac3865e3f3a8aca01e5eb7",
+    "docs/verification/271/after-trunk-normal.png": "b46bf11674095fb487fd0d1c10b13ca537dcd376ba24030d469aca91c566d775",
+    "docs/verification/271/after-whole-front.png": "f3911e5bc680f3658d2480c67f16231f8f7f0ab64ef9bd61799ffac9e866a0e2",
+    "docs/verification/271/after-whole-quarter.png": "36fb42cd5e68553431b307ead9fa5ff1011180b3e68bde2aeec6c053cab03003",
+    "docs/verification/271/after-whole-side.png": "07789b2547598ea2df850b333b6cbb2c8c45be9f015c90784f454fd4ea6caa39",
+    "docs/verification/271/before-river-normal.png": "4f6856e53379b8d465f9a4486da0ce314af4f33c69c54c0e21038541e85bd8f7",
+    "docs/verification/271/before-trunk-normal.png": "98a3db4066c36066a5cef610986cedba2ccb767add494712592f2b02c13977b5",
+    "docs/verification/271/before-whole-front.png": "35a631753d0c19f24cff92e232a38f2306185c6a234d63c68a3a922fbbc12318",
+    "docs/verification/271/before-whole-quarter.png": "d3f45c38daca7a995a2ea3573c91aeebecc8ed3763a9a2e6287c0238dd4f71f9",
+    "docs/verification/271/before-whole-side.png": "f9f7b4928516d061cd1a224265b1c5541a62aeaaa30bf4c68dffb6cd478132a4"
+  },
+  "artifacts": {
+    "docs/verification/271/after-native.json": "db03f010294d2fcbb260b65ef268c91c396850db1f9025aa6f4d781b2752ec3b",
+    "docs/verification/271/before-native.json": "c94fd39fc3eb7c98c5fd31fa9156705dac93f0621f0218d89f461e47c3afb3eb",
+    "docs/verification/271/browser.json": "bb5fdeab7b64c8c9d90172aa0a4c542926e63ceba4ada3b38d9fbb0501718b59",
+    "docs/verification/271/source-identity.json": "68536b5ca405dada4abda53b8b9976bcecc5eb075d787bee922a710918e2babb"
+  },
+  "successfulBrowserRun": "12873; all three real states and full form diagnostics passed; temporary stricter camera probe failed before measurements and its only change was fully reverted to this successful harness",
+  "build": "6461d47fe54a68ce76e88bc8",
+  "review": "Root opened complete front/side/quarter plus actual river/trunk; independent read-only helper confirmed exact recipe, unchanged feet/config/controllers and full unique resource union. No extra product changes."
+}
