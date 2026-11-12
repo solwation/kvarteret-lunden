@@ -22,12 +22,12 @@ höjd-/breddmått. Det är en uttrycklig sexartsdiagnostik, inte en ändrad popu
 
 | Vy | Före | Efter |
 | --- | --- | --- |
-| Sex arter, sida | [Bild](before/six-side.png) | [Bild](after/six-side.png) |
-| Sex arter, framifrån | [Bild](before/six-front.png) | [Bild](after/six-front.png) |
-| Sex arter, snett | [Bild](before/six-quarter.png) | [Bild](after/six-quarter.png) |
-| Verklig publik normalvy | [Bild](before/actual-normal.png) | [Bild](after/actual-normal.png) |
-| Samma å, närmare kamera | [Bild](before/actual-detail.png) | [Bild](after/actual-detail.png) |
-| Naturlig uppstigning | [Bild](before/actual-rise.png) | [Bild](after/actual-rise.png) |
+| Sex arter, sida | [Bild](https://raw.githubusercontent.com/solwation/kvarteret-lunden/751001ba89641a390b1dfb9b480738cf5c2093cb/docs/verification/274/before/six-side.png) | [Bild](after/six-side.png) |
+| Sex arter, framifrån | [Bild](https://raw.githubusercontent.com/solwation/kvarteret-lunden/751001ba89641a390b1dfb9b480738cf5c2093cb/docs/verification/274/before/six-front.png) | [Bild](after/six-front.png) |
+| Sex arter, snett | [Bild](https://raw.githubusercontent.com/solwation/kvarteret-lunden/751001ba89641a390b1dfb9b480738cf5c2093cb/docs/verification/274/before/six-quarter.png) | [Bild](after/six-quarter.png) |
+| Verklig publik normalvy | [Bild](https://raw.githubusercontent.com/solwation/kvarteret-lunden/751001ba89641a390b1dfb9b480738cf5c2093cb/docs/verification/274/before/actual-normal.png) | [Bild](after/actual-normal.png) |
+| Samma å, närmare kamera | [Bild](https://raw.githubusercontent.com/solwation/kvarteret-lunden/751001ba89641a390b1dfb9b480738cf5c2093cb/docs/verification/274/before/actual-detail.png) | [Bild](after/actual-detail.png) |
+| Naturlig uppstigning | [Bild](https://raw.githubusercontent.com/solwation/kvarteret-lunden/751001ba89641a390b1dfb9b480738cf5c2093cb/docs/verification/274/before/actual-rise.png) | [Bild](after/actual-rise.png) |
 
 Bilderna är öppnade och granskade lokalt. Root har dessutom granskat artformerna
 och den verkliga normal-/vatten-/uppstigningsvyn och låst formen. Fiskarna är små
@@ -147,3 +147,5 @@ gallring av egna förebilder.
 ## Slutlig integration
 
 Återbaserad på levererade #272/#273, `172d48643a2eac914713e188fa31a64f77ffa734`. Root kontrollerade att samtliga worker-produkt-/verktygs-/bild- och råresultatfiler är exakta efter rebase, att appens uppmätta källhashar stämmer och att tidigare config samt nya instruktionsingångar/shared-träd består. Modell-, konsument- och timingresultat återbrukas eftersom deras källor/indata/kvalitet är oförändrade. Den oberoende läsande käll-/buffert-/shadergranskningen är grön. [Integrationsidentitet](integration.json), `integrated-test.log` och `integrated-build.log` redovisar slutlig snabbkontroll. Enbart upstreamformuleringen förtydligades till att två befintliga material består; inga nya tillkommer.
+
+Efter HTTP200/bildtyp för alla 12 pinnade bilder och inbäddade resultat i [ärendekommentaren](https://github.com/solwation/kvarteret-lunden/issues/274#issuecomment-6823738078) gallras alla 6 egna förebilder från main. De finns kvar i publicerad revision `751001ba89641a390b1dfb9b480738cf5c2093cb`; länkar är pinnade och [bildmappningen](hosted.json) bevaras. Resultatbilder följer 30-dagarspolicyn. Ingen produkt- eller kontrollkod ändras i gallringen.
