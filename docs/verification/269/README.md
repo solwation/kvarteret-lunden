@@ -26,8 +26,8 @@ Hästhagen-knappen och behåller grindens partiella ocklusion. Regn är appens
 befintliga regninmatning (ingen visuell regnsimulering); vinter startas med `?month=1`.
 De byggda skyddsvyerna riktar bara kameran mot befintligt skjul.
 
-Matchade före: [hela](before-whole.png), [front](before-front.png),
-[sida](before-side.png), [ankomst](before-normal.png).
+Matchade före: [hela](https://raw.githubusercontent.com/solwation/kvarteret-lunden/01a9a8a31855f1ab00432eebe616dc6a371cac7c/docs/verification/269/before-whole.png), [front](https://raw.githubusercontent.com/solwation/kvarteret-lunden/01a9a8a31855f1ab00432eebe616dc6a371cac7c/docs/verification/269/before-front.png),
+[sida](https://raw.githubusercontent.com/solwation/kvarteret-lunden/01a9a8a31855f1ab00432eebe616dc6a371cac7c/docs/verification/269/before-side.png), [ankomst](https://raw.githubusercontent.com/solwation/kvarteret-lunden/01a9a8a31855f1ab00432eebe616dc6a371cac7c/docs/verification/269/before-normal.png).
 Motsvarande källefter [ankomst](after-normal.png). Hela kameror, poser, skala och
 plats är exakt lika före/efter i `before.json`/`after.json`.
 
@@ -94,3 +94,5 @@ SHA-pinnade HTTP200-resultatbilder, issuekommentar och stängning. Förebilder �
 jämförelsebevis och kan gallras först efter den avslutsgrinden.
 
 Root granskade hela produkt-/fixturdiffen och öppnade hel/front/sida/normal samt byggd ankomst/regn/vinter. [Integrationsmappningen](integration.json) bevisar alla körda källor/17 bevisfiler exakta, PONY_SURFACE exakt vald originalkälla och hela tidigare config orörd; tidigare katt-/ekorrportar och båda befintliga dokument bevaras. Två rena append-konflikter löstes med exakt main-prefix och exakt workerbilaga. Käll-/input-/kvalitetsbundna gröna bild-/konsumentprov återbrukas, utan extra formpass eller bred browser-/prestandakedja.
+
+Efter HTTP200/bildtyp för alla 11 pinnade bilder och inbäddade resultat i [ärendekommentaren](https://github.com/solwation/kvarteret-lunden/issues/269#issuecomment-6822974208) gallras alla 4 egna förebilder från main. De finns kvar i publicerad revision `01a9a8a31855f1ab00432eebe616dc6a371cac7c`; länkar är pinnade och [bildmappningen](hosted.json) bevaras. Resultatbilder följer 30-dagarspolicyn. Ingen produkt- eller kontrollkod ändras i gallringen.
