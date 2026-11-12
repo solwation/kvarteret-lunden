@@ -1,13 +1,17 @@
 # Lunden orchestra policy
 
 Read the repository's AGENTS.md and CLAUDE.md, then [the shared core](shared/ORCHESTRA.md).
-For `/orkester` also read [queue coordination](shared/COORDINATION.md). The same files
+For queue sessions, including automatic issue intake, also read
+[queue coordination](shared/COORDINATION.md). The same files
 can be invoked in any file-reading agent; the slash command is only an adapter.
-Reading the instructions alone starts no work. A chat request for changes, including
-a request to improve these instructions, creates/reuses issues and starts/resumes
-scoped work under [chat intake](shared/ORCHESTRA.md#turn-chat-requests-into-work), even
-after an idle watch ends or before the first run. Respect explicit deferral and reuse
-an active conductor; a scoped request does not expand to the backlog or enable timers.
+Reading the instructions alone starts no work. Chat change requests, including
+changes to these instructions, and agent-created/added work issues follow
+[chat intake](shared/ORCHESTRA.md#turn-chat-requests-into-work) and the
+[local intake mode](#scope-queue-and-ownership). Registering an issue alone is not
+completion: start the queue session when none is active, including after an idle
+watch ends, or reuse the active conductor. Explicit scope, mode, deferral and stop
+instructions take precedence. This operates within an active agent session, not
+through an external daemon that starts a new agent from GitHub issue events.
 
 ## Shared issue workflow
 
@@ -73,11 +77,21 @@ source `0931b84de82b48e1e435843676e4c7908aa551c6`; this public adaptation is #25
 `/orkester` in this project, with or without an argument, starts an explicit queue
 session with the polling, idle watch and heartbeat above; the core's bounded pass
 (no polling or watch) applies only when the user explicitly asks for a single pass.
-An ordinary chat change request starts/resumes a scoped task without queue polling or
-an idle watch unless those were requested. An already active queue session retains
-its conductor, scope/selection rules and idle-deadline rules; a new request alone does
-not reset the deadline. Both modes stay unattended: user-only questions go on the issue
-(`user-question`), never chat.
+The same queue-session mode applies when the agent creates/adds a work issue and
+no orchestra is active (user, 2026-11-12), including before the first run or after a
+completed idle watch. No separate `/orkester` is needed. "Create an issue" alone
+does not mean "register only; do not start work". Reuse an active conductor rather
+than starting a competing run; the issue joins ordinary selection, not an immediate
+priority bypass. An existing queue session keeps its scope/selection and
+idle-deadline rules; adding an issue alone does not reset its deadline.
+
+Explicit scope bounds the queue; an explicit single scoped task, bounded pass,
+registration-only/no-execution instruction, deferral, discussion-only request or
+prior stop overrides automatic queue startup. A single scoped task enables no new
+queue timers. Preserve paused/unclaimed work when execution is deferred. Both modes
+stay unattended: user-only questions go on the issue (`user-question`), never chat.
+The trigger is handled by the current agent session; no GitHub webhook or background
+service is installed to launch an agent when no agent session is running.
 
 Default scope is both repositories. Explicit scope limits implementation, never visibility
 of the other queue. Fetch all open pages in both before each selection, claim,
@@ -249,20 +263,33 @@ These follow [COORDINATION.md](shared/COORDINATION.md), not the phase hooks.
 
 ## Shared version and maintenance
 
-Shared release: **v0.12.0**, commit **9e7c6e388df0ebdd25c0ba76d3debc73de3c41fa**. Imported directly from the official release
-with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git 9e7c6e388df0ebdd25c0ba76d3debc73de3c41fa --squash`
-in [#265](https://github.com/solwation/kvarteret-lunden/issues/265), matching
-[original #1904](https://github.com/solwation/lunden-3d-apartment/issues/1904). The complete
-[v0.11.2..v0.12.0 diff](https://github.com/solwation/dirigenten-och-orkestern/compare/6151b2e887ce4587285271708affc07af09fddb6...9e7c6e388df0ebdd25c0ba76d3debc73de3c41fa)
-includes v0.11.3's generic image-hosting examples, v0.11.4's HTTPS/Markdown standalone
-image paragraphs for dashboard compatibility, and v0.12.0's optional expert-panel review
-hook. These examples do not authorize asset branches, external storage or a change to this
-host's existing evidence/retention rules; direct publication to main and the required
-completion/publication gates still apply. The expert panel remains optional and is not
-enabled as a required hook here; the existing session review and two-worker cap remain.
+Shared release: **v0.13.1**, commit **78fb119b8b37e645a303f40b86551815fd5e095b**. Imported directly from the official release
+with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git 78fb119b8b37e645a303f40b86551815fd5e095b --squash`
+in [#272](https://github.com/solwation/kvarteret-lunden/issues/272), matching
+[original #1934](https://github.com/solwation/lunden-3d-apartment/issues/1934).
+The complete [v0.12.0..v0.13.1 diff](https://github.com/solwation/dirigenten-och-orkestern/compare/9e7c6e388df0ebdd25c0ba76d3debc73de3c41fa...78fb119b8b37e645a303f40b86551815fd5e095b)
+was reviewed: private-image/dashboard token permissions (#65), dynamic capacity
+and integration-throughput guidance (#66), and automatic issue intake under the
+host's documented mode (#67). Both official stable releases and version tags were
+checked on 2026-11-12; v0.13.1 resolves to the exact commit above.
+
+This host chooses the queue-session intake mode above; explicit scope, single-task
+mode, deferral and stop take precedence. Local capacity adaptation is tracked in
+[#273](https://github.com/solwation/kvarteret-lunden/issues/273), matching
+[original #1935](https://github.com/solwation/lunden-3d-apartment/issues/1935).
+The local Capacity policy governs runtime limits; this release summary imposes no
+fixed worker count. Original-first/public-low ordering, claims, integration owners,
+publication gates and configured 300-second polling, 60-minute watch and heartbeats
+remain. The import changes neither public content permissions nor the release gates.
+
+The generic image examples authorize no asset branch, external storage or new public
+hosting; main, revision-pinned repository URLs, standalone HTTPS Markdown embeds and
+retention remain the host rules. Private token guidance does not require tokens for
+this public repository's public images. The expert-panel hook stays optional.
 No application code, personal content, gameplay, original storage or services are imported.
-Existing gates and anchors, fresh queue/claim checks and every host override remain; no
-lifecycle, priority, timer, permission or publication migration applies.
+The previous v0.12.0 import is recorded in
+[#265](https://github.com/solwation/kvarteret-lunden/issues/265) and
+[original #1904](https://github.com/solwation/lunden-3d-apartment/issues/1904).
 The previous v0.11.2 import (`6151b2e887ce4587285271708affc07af09fddb6`) is recorded in
 public #264 and original #1893; it added directly visible result images, continued active
 orchestration after interjections and the shared landing page.

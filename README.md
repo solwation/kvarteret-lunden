@@ -270,12 +270,16 @@ Med `?perf` kan långa bildintervall mätas lokalt och exporteras utan en teleme
 
 `/orkester` använder den modelloberoende kärnan i
 [dirigenten-och-orkestern](https://github.com/solwation/dirigenten-och-orkestern),
-versionslåst till **v0.8.2** (`5a67f022cea5ec2a81fcadb99b727d9f3482e26a`) som Git subtree i `.orchestra/shared`. Vanlig kloning räcker.
-En ändringsönskan i chatten skapar eller uppdaterar motsvarande ärende och startar
-eller återupptar avgränsat arbete, även utan aktiv orkester eller efter avslutad
-tomgångsvakt. Uttryckliga uppskjutningar respekteras; en aktiv dirigent återanvänds.
-Avgränsat chattarbete öppnar inte hela kön eller nya timers. Se
-[chattintaget](.orchestra/shared/ORCHESTRA.md#turn-chat-requests-into-work).
+versionslåst till **v0.13.1** (`78fb119b8b37e645a303f40b86551815fd5e095b`) som Git subtree i `.orchestra/shared`. Vanlig kloning räcker.
+En ändringsönskan skapar eller uppdaterar motsvarande ärende. När agenten registrerar
+eller lägger till ett arbetsärende startas värdens kösession om ingen orkester kör,
+även efter avslutad tomgångsvakt; annars återanvänds den aktiva dirigenten.
+”Skapa issue” ensam är inte uppskov. Uttryckligt scope, avgränsat uppdrag/pass,
+registrera-bara/börja-inte, diskussion, uppskov och stopp går före; ett uttryckligt
+avgränsat uppdrag aktiverar inga nya kötimers. Detta sker inom en aktiv agentsession,
+inte via en extern daemon. Se
+[chattintaget](.orchestra/shared/ORCHESTRA.md#turn-chat-requests-into-work) och
+[lokalt intagsläge](.orchestra/project.md#scope-queue-and-ownership).
 Vid start eller återupptagning kontrollerar dirigenten nya stabila releaser och
 versionstaggar, med högst ett dygns återanvändning av en lyckad kontroll. Nya
 stabila uppdateringar importeras automatiskt som lågprioriterat underhåll vid nästa

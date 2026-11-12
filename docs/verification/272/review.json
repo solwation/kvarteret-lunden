@@ -1,0 +1,261 @@
+{
+  "installed": "v0.12.0/9e7c6e388df0ebdd25c0ba76d3debc73de3c41fa",
+  "target": "v0.13.1/78fb119b8b37e645a303f40b86551815fd5e095b",
+  "originalSelectedInstructions": "94b8963a854a2e356d208a2100effb1f034b1d11",
+  "checkedAtUTC": "2026-11-12T12:07:00Z",
+  "discovery": "Both full official stable releases and tags; v0.13.1 newest by semantic version; exact tag commit matched reviewed stable release",
+  "fullInterveningDiff": "0.12.1private-imagepermissions/0.13.0dynamiccapacity/0.13.1agentissueintake; all6changedcorefiles read",
+  "sharedTree": "bf90a2005753ab809666852b6b15ed679c749751",
+  "subtreeMerge": "a8d521c0895256490fafcf3d3f782cfd4aeb089c",
+  "squashCommit": "d9711b9b77608fe635d237b6ec8d42986c61fc15",
+  "subtreeTrailers": "Squashed '.orchestra/shared/' changes from 9e7c6e3..78fb119\n\n78fb119 Release v0.13.1\na9b6106 Clarify orchestra intake for agent-created work issues (Refs #67)\n1c3a229 Release v0.13.0\n1186ff6 Continuous capacity evaluation and dynamic worker scaling (#66)\naf959ff Release v0.12.1\nfc580fc Clarify image rules and dashboard compatibility for private repositories (#65)\n\ngit-subtree-dir: .orchestra/shared\ngit-subtree-split: 78fb119b8b37e645a303f40b86551815fd5e095b",
+  "localEntryLinks": [
+    [
+      "AGENTS.md",
+      "CLAUDE.md"
+    ],
+    [
+      "AGENTS.md",
+      ".claude/commands/orkester.md"
+    ],
+    [
+      "AGENTS.md",
+      "CLAUDE.md"
+    ],
+    [
+      "AGENTS.md",
+      ".orchestra/project.md"
+    ],
+    [
+      "AGENTS.md",
+      ".orchestra/shared/ISSUE-WORKFLOW.md"
+    ],
+    [
+      "AGENTS.md",
+      ".orchestra/project.md"
+    ],
+    [
+      "AGENTS.md",
+      ".orchestra/shared/ORCHESTRA.md"
+    ],
+    [
+      "AGENTS.md",
+      ".orchestra/project.md"
+    ],
+    [
+      "AGENTS.md",
+      ".orchestra/project.md"
+    ],
+    [
+      "CLAUDE.md",
+      "AGENTS.md"
+    ],
+    [
+      "CLAUDE.md",
+      ".orchestra/shared/ISSUE-WORKFLOW.md"
+    ],
+    [
+      "CLAUDE.md",
+      ".orchestra/shared/ORCHESTRA.md"
+    ],
+    [
+      "CLAUDE.md",
+      "docs/verification.md"
+    ],
+    [
+      "CLAUDE.md",
+      "docs/upstream.md"
+    ],
+    [
+      "CLAUDE.md",
+      ".orchestra/shared/ORCHESTRA.md"
+    ],
+    [
+      "CLAUDE.md",
+      ".orchestra/project.md"
+    ],
+    [
+      "CLAUDE.md",
+      ".orchestra/project.md"
+    ],
+    [
+      "CLAUDE.md",
+      ".claude/commands/orkester.md"
+    ],
+    [
+      ".claude/commands/orkester.md",
+      "../../.orchestra/project.md"
+    ],
+    [
+      ".claude/commands/orkester.md",
+      "../../.orchestra/shared/ORCHESTRA.md"
+    ],
+    [
+      ".claude/commands/orkester.md",
+      "../../.orchestra/shared/ISSUE-WORKFLOW.md"
+    ],
+    [
+      ".claude/commands/orkester.md",
+      "../../.orchestra/shared/COORDINATION.md"
+    ],
+    [
+      ".claude/commands/orkester.md",
+      "../../.orchestra/shared/WORKER.md"
+    ],
+    [
+      ".claude/commands/orkester.md",
+      "../../.orchestra/project.md"
+    ],
+    [
+      ".claude/commands/orkester.md",
+      "../../.orchestra/shared/ORCHESTRA.md"
+    ],
+    [
+      ".orchestra/project.md",
+      "shared/ORCHESTRA.md"
+    ],
+    [
+      ".orchestra/project.md",
+      "shared/COORDINATION.md"
+    ],
+    [
+      ".orchestra/project.md",
+      "shared/ORCHESTRA.md"
+    ],
+    [
+      ".orchestra/project.md",
+      ""
+    ],
+    [
+      ".orchestra/project.md",
+      "shared/ISSUE-WORKFLOW.md"
+    ],
+    [
+      ".orchestra/project.md",
+      ""
+    ],
+    [
+      ".orchestra/project.md",
+      ""
+    ],
+    [
+      ".orchestra/project.md",
+      "shared/ORCHESTRA.md"
+    ],
+    [
+      ".orchestra/project.md",
+      ""
+    ],
+    [
+      ".orchestra/project.md",
+      "shared/ORCHESTRA.md"
+    ],
+    [
+      ".orchestra/project.md",
+      "shared/scripts/prune-worktrees.sh"
+    ],
+    [
+      ".orchestra/project.md",
+      "shared/ORCHESTRA.md"
+    ],
+    [
+      ".orchestra/project.md",
+      ""
+    ],
+    [
+      ".orchestra/project.md",
+      "shared/ORCHESTRA.md"
+    ],
+    [
+      ".orchestra/project.md",
+      "../AGENTS.md"
+    ],
+    [
+      ".orchestra/project.md",
+      "../CLAUDE.md"
+    ],
+    [
+      ".orchestra/project.md",
+      "../README.md"
+    ],
+    [
+      ".orchestra/project.md",
+      "../docs/upstream.md"
+    ],
+    [
+      ".orchestra/project.md",
+      "../docs/verification.md"
+    ],
+    [
+      ".orchestra/project.md",
+      "shared/COORDINATION.md"
+    ],
+    [
+      ".orchestra/project.md",
+      "shared/INSTALL.md"
+    ],
+    [
+      ".orchestra/project.md",
+      "shared/CONTRIBUTING.md"
+    ],
+    [
+      ".orchestra/project.md",
+      "shared/INSTALL.md"
+    ]
+  ],
+  "scenarios": [
+    {
+      "input": "Agent adds issue; no orchestra",
+      "expected": "Start host queue mode under configured300s/60min/heartbeat; ordinary original-first/public-low selection"
+    },
+    {
+      "input": "Active conductor",
+      "expected": "Reuse conductor/claims/scope/deadline, no second orchestra or deadline reset merely for intake"
+    },
+    {
+      "input": "Previous idle watch ended",
+      "expected": "Start host queue mode again inside active agent session"
+    },
+    {
+      "input": "Explicit issue scope",
+      "expected": "Preserve scope, never silently expand to whole backlog"
+    },
+    {
+      "input": "Explicit single-task/bounded pass",
+      "expected": "Scoped mode, no new queue timers"
+    },
+    {
+      "input": "Only create an issue",
+      "expected": "Registration alone is not deferral; execute under host mode"
+    },
+    {
+      "input": "Register only; do not start / discuss / prior stop",
+      "expected": "No execution, preserve deferred unclaimed work"
+    },
+    {
+      "input": "No active agent session/external GitHub event",
+      "expected": "No daemon/webhook/agent startup installed"
+    },
+    {
+      "input": "Core suggests public image hosting or extra expert panel",
+      "expected": "Existing content/evidence/permissions and optional panel remain; no new storage/services"
+    }
+  ],
+  "publicBoundary": "Only neutral instructions; no original application tree/history, personal content, gameplay, storage or services",
+  "capacityOwnership": "Shared generic capacity comes from exact official release; public273 owns local capacity paragraphs; root272 removes its old version-summary fixed2 claim only.",
+  "hostSourceHashes": {
+    "AGENTS.md": "8307f0b2ace37505cbb2255dd49f00939ad72c81dea8a1962f6e684aa081a6d6",
+    "CLAUDE.md": "e80d983e13c15401079eed5a2539be97832c9b4c8bdb062dc920f263d5170510",
+    ".orchestra/project.md": "42de3ede0f9ab89732f25f2189a131cf2bb790087f3bad82543886f026cb2c61",
+    ".claude/commands/orkester.md": "127de33d278f196e633c34b47307699e8246a130af2a628378401ff4bb9951c6",
+    "README.md": "526b6f4a5de8de5687a7c4eedcd02edd0a13cd1632c79dc69469018309f404b9"
+  },
+  "independentReview": {
+    "localLinks": 50,
+    "explicitAnchors": 20,
+    "allPassed": true,
+    "ruleConsistency": "Four agent entries consistent on startup/reuse/idle/explicit scope/pass/deferral/stop/current agent only",
+    "finding": "README orchestra section retained obsolete v0.8.2 pin and scoped-only summary",
+    "correction": "Only README orchestra paragraph updated to exactv0.13.1 and same host intake/exception rules; no product change"
+  }
+}

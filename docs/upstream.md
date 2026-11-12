@@ -3342,3 +3342,27 @@ Budgeten mättes i public före arbetet: 1080tri/168480B per delad geometri,
 nu2652tri/413712B (2,456×); en flockdraw med två instanser ger5304tri.
 Det ersätter #76:s historiskt felaktiga540tri-beskrivning. Inga texturer eller
 ljus tillkommer. [Matchade egna bilder, resursinventering och byggda konsumenter](verification/269/README.md).
+
+
+## Automatisk orkesterstart och granskad kärna v0.13.1, #272
+
+Neutral instruktionskälla: original #1934, `94b8963a854a2e356d208a2100effb1f034b1d11`.
+Endast motsvarande lokala agentingångar/chattintag anpassas. Själva kärnan importeras
+direkt från officiella v0.13.1, `78fb119b8b37e645a303f40b86551815fd5e095b`, med
+publicens egen bevarade squashsubtree-ancestry/trailers; ingen originalhistorik/app
+kopieras. Hela v0.12.0..v0.13.1-diffen är granskad: bildbehörigheter (#65), dynamisk
+kapacitet/integrationsflöde (#66) och värdstyrt intag av agentregistrerade ärenden (#67).
+
+När en aktiv agent skapar/lägger till ett arbetsärende startar den värdens kösession
+om ingen orkester kör, även efter avslutad tomgångsvakt; annars återanvänds dirigenten.
+Enbart ”skapa issue” är inte uppskov. Explicit scope, avgränsat uppdrag/pass,
+registrera-bara/börja-inte, diskussion och stopp respekteras. Ingen extern daemon
+installeras. Detta ersätter scoped-only-intaget från den historiska #255/v0.8.1-notisen;
+dåtidens regel är inte en aktuell instruktion att stanna efter ärenderegistrering.
+
+Köordning original före public/public low, ägarskap/handoffs, en integrator och
+värdens timers består. Lokalt dynamiskt agentantal följer kapacitetspolicyn/#273,
+inte en fast siffra i denna releasebeskrivning. Generiska privata bildbehörigheter
+ändrar inga publicerings-/innehållsgränser; inga persondata, gameplay, originalets
+lagring eller tjänster införs. Dokumentarbete utan browser/produktbild/changelog.
+[Exakt import, länkar, scenarier och verifiering](verification/272/README.md).
