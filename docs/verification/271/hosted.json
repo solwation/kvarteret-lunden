@@ -1,0 +1,65 @@
+{
+  "sha": "dacb8a060d267d4bee112ebb5c2367d95dc4b31a",
+  "images": [
+    {
+      "path": "docs/verification/271/after-river-normal.png",
+      "url": "https://raw.githubusercontent.com/solwation/kvarteret-lunden/dacb8a060d267d4bee112ebb5c2367d95dc4b31a/docs/verification/271/after-river-normal.png",
+      "status": 200,
+      "type": "image/png"
+    },
+    {
+      "path": "docs/verification/271/after-trunk-normal.png",
+      "url": "https://raw.githubusercontent.com/solwation/kvarteret-lunden/dacb8a060d267d4bee112ebb5c2367d95dc4b31a/docs/verification/271/after-trunk-normal.png",
+      "status": 200,
+      "type": "image/png"
+    },
+    {
+      "path": "docs/verification/271/after-whole-front.png",
+      "url": "https://raw.githubusercontent.com/solwation/kvarteret-lunden/dacb8a060d267d4bee112ebb5c2367d95dc4b31a/docs/verification/271/after-whole-front.png",
+      "status": 200,
+      "type": "image/png"
+    },
+    {
+      "path": "docs/verification/271/after-whole-quarter.png",
+      "url": "https://raw.githubusercontent.com/solwation/kvarteret-lunden/dacb8a060d267d4bee112ebb5c2367d95dc4b31a/docs/verification/271/after-whole-quarter.png",
+      "status": 200,
+      "type": "image/png"
+    },
+    {
+      "path": "docs/verification/271/after-whole-side.png",
+      "url": "https://raw.githubusercontent.com/solwation/kvarteret-lunden/dacb8a060d267d4bee112ebb5c2367d95dc4b31a/docs/verification/271/after-whole-side.png",
+      "status": 200,
+      "type": "image/png"
+    },
+    {
+      "path": "docs/verification/271/before-river-normal.png",
+      "url": "https://raw.githubusercontent.com/solwation/kvarteret-lunden/dacb8a060d267d4bee112ebb5c2367d95dc4b31a/docs/verification/271/before-river-normal.png",
+      "status": 200,
+      "type": "image/png"
+    },
+    {
+      "path": "docs/verification/271/before-trunk-normal.png",
+      "url": "https://raw.githubusercontent.com/solwation/kvarteret-lunden/dacb8a060d267d4bee112ebb5c2367d95dc4b31a/docs/verification/271/before-trunk-normal.png",
+      "status": 200,
+      "type": "image/png"
+    },
+    {
+      "path": "docs/verification/271/before-whole-front.png",
+      "url": "https://raw.githubusercontent.com/solwation/kvarteret-lunden/dacb8a060d267d4bee112ebb5c2367d95dc4b31a/docs/verification/271/before-whole-front.png",
+      "status": 200,
+      "type": "image/png"
+    },
+    {
+      "path": "docs/verification/271/before-whole-quarter.png",
+      "url": "https://raw.githubusercontent.com/solwation/kvarteret-lunden/dacb8a060d267d4bee112ebb5c2367d95dc4b31a/docs/verification/271/before-whole-quarter.png",
+      "status": 200,
+      "type": "image/png"
+    },
+    {
+      "path": "docs/verification/271/before-whole-side.png",
+      "url": "https://raw.githubusercontent.com/solwation/kvarteret-lunden/dacb8a060d267d4bee112ebb5c2367d95dc4b31a/docs/verification/271/before-whole-side.png",
+      "status": 200,
+      "type": "image/png"
+    }
+  ]
+}

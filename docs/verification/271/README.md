@@ -78,3 +78,5 @@ Ingen produktkod ändrades för dessa bildbegränsningar och ingen bred omkörni
 ![Verklig klättring mot stammen](after-trunk-normal.png)
 
 [Slutmanifestet](manifest.json) binder alla använda produkt-/kontrollkällor, rådata och tio egna bilder. Oberoende read-only granskning bekräftade källselektion, exakt fotrecept och hela buffertunionen.
+
+Efter att tio pinnade bilder gett HTTP200/bildtyp och sju bäddats in i [ärendekommentaren](https://github.com/solwation/kvarteret-lunden/issues/271#issuecomment-6822727531) prunas de fem egna förebilderna. De finns kvar på publicerad källrevision `dacb8a060d267d4bee112ebb5c2367d95dc4b31a` enligt [bildmappningen](hosted.json). Resultatbilderna behålls enligt 30-dagarspolicyn; inga app-/kontrollkällor ändras av gallringen.
