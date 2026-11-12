@@ -1,0 +1,76 @@
+{
+  "label": "before",
+  "sources": {
+    "src/config.js": "774f75f6c9196fb3b6e924fd329ac74cb47fc02686770e7533d8ad7cb9361523",
+    "src/paddock.js": "df5ae0d0c59cfc5154eb2c77c5fa29376526ffef473ead3195b9bb831c5d6b18",
+    "tools/pony-surface-check.mjs": "9ce3dbb0b75f15632dfbfd9791b566a3e36ecfff66d2a1e9504802a2e9b4b7d5"
+  },
+  "fixtureRandomParityCalls": 16,
+  "normal": {
+    "camera": [
+      -114.21413928702347,
+      -3.156847642095438,
+      219.95615112037004
+    ],
+    "quaternion": [
+      0,
+      0.9023499363382045,
+      0,
+      0.43100416748616044
+    ],
+    "ponies": [
+      {
+        "x": -120,
+        "y": -3.1700532202463574,
+        "z": 225,
+        "yaw": 2.287785086852679,
+        "scale": 1,
+        "state": "watch",
+        "neck": 1.2
+      },
+      {
+        "x": -125,
+        "y": -3.189893385080914,
+        "z": 225,
+        "yaw": 2.0082185767303975,
+        "scale": 1,
+        "state": "watch",
+        "neck": 1.2
+      }
+    ],
+    "location": {
+      "name": "Hästhagen",
+      "x": -114.21413928702347,
+      "y": -4.776847642095438,
+      "z": 219.95615112037004,
+      "yaw": 2.2503820184810905
+    }
+  },
+  "cost": {
+    "triangles": 1080,
+    "geometryBytes": 168480,
+    "retainedMeshBytes": 168728,
+    "attrs": [
+      "position",
+      "normal",
+      "color",
+      "aPart",
+      "aPivot",
+      "aCoat",
+      "aMark",
+      "aAccent",
+      "aAnim",
+      "aAnim2"
+    ],
+    "instances": 2,
+    "materials": 1,
+    "textures": 0
+  },
+  "errors": [],
+  "external": [],
+  "sockets": [],
+  "sentinels": [
+    "269-original-sentinel",
+    "269-original-grass"
+  ]
+}

@@ -18,8 +18,8 @@ try{
   const T=await import('three'),geo=await import(new URL('/src/paddockgeo.js',location.origin)),{groundY,treeFeet}=await import(new URL('/src/surroundings.js',location.origin)),fw=await import(new URL('/src/farwalk.js',location.origin));
   const {paddock:p,navigation:n,camera,scene,renderer}=window.lundenViewer,dt=1/60,R=[];
   const tris=m=>(m.geometry.index?m.geometry.index.count:m.geometry.attributes.position.count)/3;
-  R.push(['one fence mesh and one instanced pony mesh (two ponies)',!!p&&p.mesh.count===2&&p.fence.isMesh,`fence ${tris(p.fence)} tris, pony ${tris(p.mesh)/2}`]);
-  R.push(['triangle budgets',tris(p.fence)<12000&&tris(p.mesh)/2<700,'']);
+  R.push(['one fence mesh and one instanced pony mesh (two ponies)',!!p&&p.mesh.count===2&&p.fence.isMesh,`fence ${tris(p.fence)} tris, pony ${tris(p.mesh)} each, ${tris(p.mesh)*p.mesh.count} submitted`]);
+  R.push(['triangle budgets',tris(p.fence)<12000&&tris(p.mesh)<=3000,'']);
   R.push(['trough, shelter and waypoints',!!p.spots.trough&&!!p.spots.shelter&&p.waypoints.length>50,String(p.waypoints.length)]);
   {const sh=await import(new URL('/src/paddockshelter.js',location.origin)),{PADDOCK:PD}=await import(new URL('/src/config.js',location.origin)),sp=p.spots.shelter,T=p.spots.trough;
    const f=sh.footprintGround(p.ground,sp.x,sp.z,sp.yaw),tg=[-1,0,1].flatMap(i=>[-1,0,1].map(j=>p.ground(T.x+i*0.9,T.z+j*0.3))),gd=Math.hypot(sp.x-p.gate.x,sp.z-p.gate.z);

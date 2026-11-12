@@ -1,0 +1,38 @@
+{
+  "whole": {
+    "changedBounds": [
+      542,
+      310,
+      736,
+      504
+    ],
+    "changedPixels": 17223
+  },
+  "front": {
+    "changedBounds": [
+      606,
+      286,
+      673,
+      523
+    ],
+    "changedPixels": 10179
+  },
+  "side": {
+    "changedBounds": [
+      499,
+      270,
+      813,
+      522
+    ],
+    "changedPixels": 30911
+  },
+  "normal": {
+    "changedBounds": [
+      594,
+      276,
+      806,
+      402
+    ],
+    "changedPixels": 2931
+  }
+}

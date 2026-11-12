@@ -3303,3 +3303,25 @@ texturer/lampor. Alla sex kvarhållna LOD-geometrier använder tillsammans
 1 610 748 → 976 320 B unika råbuffertar (−39,4 %); detta är inte totalminne.
 Befintliga licensvillkor gäller för den selektivt överförda koden.
 [Granskade egna resultat och källbindning](verification/271/README.md).
+
+
+## Neutral ponnyform i den publika batchen, #269
+
+Granskad originalkälla: `5d19eaeeaebb31109f5b0167c2b4786b24c04176` (#1919).
+Enbart `PONY_SURFACE`, avrundad/interpolerad `Soup.tube`, hals/mule/öron,
+grunda ögon/näsborrar, separata man-/pannlugg-/svansstrån och sammanslagna
+ytnormaler anpassas till publicens egen `ponyGeometry`. Måtten är modelleringsantaganden.
+De två anonyma pälsfärgerna och pannmärket använder fortsatt publicens befintliga
+vertexkoder och enda instansshader. Alla part-/pivotvärden, 1,32m-ramen,
+animationer, bete, egen lagringsnyckel, gräs, regnskydd, vintertäcken och culling består.
+
+Ingen hel original-config/Paddock, GLB/laddare, atlas, personlig bild/namn,
+interaktion, ljud, gameplay, originalets lagring, tjänst eller historik har kopierats.
+Det valda procedurala receptet är projektets egen kod; inga externa konstresurser
+eller nya licensberoenden införs. Three.js befintliga MIT-attribution i
+`THIRD_PARTY_LICENSES.txt` består.
+
+Budgeten mättes i public före arbetet: 1080tri/168480B per delad geometri,
+nu2652tri/413712B (2,456×); en flockdraw med två instanser ger5304tri.
+Det ersätter #76:s historiskt felaktiga540tri-beskrivning. Inga texturer eller
+ljus tillkommer. [Matchade egna bilder, resursinventering och byggda konsumenter](verification/269/README.md).

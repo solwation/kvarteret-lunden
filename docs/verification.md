@@ -3044,3 +3044,18 @@ hel/front/sidobilder används enbart för formgranskning. Nära/fjärr-LOD, vint
 hidden och avståndsfrys samt publik nät-/lagringsisolering ingår. npm test/build
 passerar. Ingen fysisk mobil, FPS eller bred World-profil påstås.
 [Egna granskade bilder, rådata och begränsningar](verification/271/README.md).
+
+
+## Neutral ponnyyta, #269
+
+Tre avgränsade kontrollgrupper: `npm test`/`npm run build`,
+`node tools/pony-surface-invariants.mjs` (verklig Paddock, budget/part/pivots,
+fulla deformerade projektioner, regn/vinter/täcken/mark/gräs/culling och
+resursinventering) och `tools/pony-surface-check.mjs` plus
+`tools/pony-surface-consumers.mjs` under det gemensamma browserlåset.
+Bildkontrollen använder källappen med fryst före-modul; konsumentkontrollen
+använder den byggda riktiga visningen i `dist/` för ankomst, regnskydd och vinter.
+`tools/paddock-check.mjs` räknar nu geometritrianglar korrekt utan att dividera
+en redan delad geometri med instansantalet och använder den låsta3000tri-gränsen.
+Den äldre breda tiominuterskedjan behövde inte upprepas för detta ytrecept.
+[Exakta källor, bilder, kommandon, gränser och resultat](verification/269/README.md).

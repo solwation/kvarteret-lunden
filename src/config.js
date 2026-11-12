@@ -2621,6 +2621,23 @@ export const DECAL_OFFSET = { factor: -1, units: -2 };
 // `curious` m (never nearer than `keep` m to the fence line); `viewDist` m from the paddock centre beyond which the ponies are
 // neither simulated nor drawn; `waypoint` m grid of places they walk between (flat, clear of trees, the river and the fence).
 // `track` m wide worn ribbon inside the fence. Two anonymous ponies: one light grey, one bay with a star.
+// #269: neutral surface estimates adapted from original #1919; retained 1.32 m rig/rug frame.
+export const PONY_SURFACE = {
+  radialSegments: 12, longitudinalSteps: 2, legSteps: 1, splineTension: .5,
+  // t along the retained neck/head axes, crest offset, half-width, half-depth.
+  neck: [[-.14,.01,.15,.20],[.08,-.015,.18,.27],[.26,-.005,.145,.21],[.46,.02,.115,.16],[.62,.02,.1,.13],[.74,0,.09,.115]],
+  head: [[-.04,0,.082,.10],[.08,-.008,.097,.118],[.18,-.02,.087,.105],[.34,-.012,.061,.074],[.46,-.006,.066,.070],[.54,0,.072,.064],[.58,0,.045,.035]],
+  star: [[.20,.082,.012,.006],[.245,.075,.024,.007],[.285,.067,.010,.006]],
+  eyes: { at: [.14,.035,.092], scale: [.006,.020,.029] },
+  nostrils: { at: [.505,.005,.067], scale: [.005,.017,.023] },
+  faceSegments: [6,4],
+  hair: { radial: 6, steps: 1, offsets: [-.024,0,.024], width: .012, depth: .04,
+    mane: [[0,.22],[.25,.22],[.5,.21],[.78,.16]],
+    forelock: [[-.025,.125],[.05,.145],[.17,.11]],
+    tail: [[1.2,-.72,.025,.035],[1.1,-.85,.028,.035],[.75,-.92,.025,.025],[.2,-.9,.006,.006]] },
+  ears: [[0,.024,.015],[.055,.035,.018],[.115,.020,.009],[.155,.002,.002]],
+};
+
 export const PADDOCK = {
   field: '237019759', inset: 1.2, postStep: 3, post: { w: 0.13, h: 1.3 }, rails: [0.55, 0.95, 1.25], rail: { w: 0.06, h: 0.12 },
   gate: { w: 3.2, near: [-116.2, 219.98] }, visit: { out: 5, aim: 14, near: [7, 14, 9], cone: 0.3 }, // the 'Hästhagen' menu destination (#83, *guess*): `out` m outside the gate along its normal, looking at the point `aim` m inside it; #88: the ponies are placed

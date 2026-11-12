@@ -1,0 +1,22 @@
+{
+  "worker": "4a3b82f1ab3262a9bc892890d962d9ec00efec5c",
+  "integratedBase": "76905e5f870f55276499b1f9b3265fb3164b17ab",
+  "exactScopedSources": {
+    "PONY_SURFACE": "0763e2cd85e15bfe6c1a58064c70a39603eaaac9897e7456f7fa116a7b003721",
+    "src/paddock.js": "2db0b2e1ea5f600dbbba7ed0d2e444312b73405b5eb7bb39dbee0d8d09fe632a",
+    "src/ponyblanket.js": "869b43af71a08e0440bda0739e69a21ea7491ab90a6c3eebd134b66980948b5c",
+    "tools/paddock-check.mjs": "7e28024ae7325a168ffe42544fed7dc46767d152aefb67439b9dc8610765259e",
+    "tools/pony-surface-check.mjs": "9ce3dbb0b75f15632dfbfd9791b566a3e36ecfff66d2a1e9504802a2e9b4b7d5",
+    "tools/pony-surface-check.css": "a4ad43c27a410f3d856aeaa2f2e8f42f12949e8c97d65dfdadee8a9c1ba23a0a",
+    "tools/pony-surface-consumers.mjs": "6b34e91c7fd4ea7d5bfe8909fc621d54cc751a737ca73a187008ab8f17dbd2b7",
+    "tools/pony-surface-invariants.mjs": "2567ce1b973fff4dd0ddcd42c823a749194d425a9d4b54a384e221e622238aba"
+  },
+  "all17WorkerEvidenceFilesExact": true,
+  "currentCatsAndSquirrelsPreserved": true,
+  "appendConflicts": "Both existing documents byte-preserved as exact main prefix plus the exact worker appendix.",
+  "reuse": "Source/input/quality-bound scoped green images/tests retained; no product changes on integration.",
+  "centralSurfaceExactOriginal": true,
+  "preExistingConfigExact": true,
+  "allNumericEvidenceFinite": true,
+  "combinedBuild": "63a7063a85a12b1eafade792"
+}

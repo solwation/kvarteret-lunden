@@ -1,0 +1,2 @@
+/* Verification framing only: retain the actual scene and hide the menu. */
+body > :not(#viewer){visibility:hidden!important}

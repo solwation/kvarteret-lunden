@@ -1,0 +1,37 @@
+{
+  "originalSource": "5d19eaeeaebb31109f5b0167c2b4786b24c04176",
+  "publicBaseline": "11d67b945daccf36f90e27cd4420b19b2ec1903f",
+  "build": "4f76a5cf50b51de7c80abda0",
+  "sources": {
+    "src/config.js": "00e95081f4049164a5a9f33ffc1388e4050855b9d899bb92dbb922c3d0186fd1",
+    "src/paddock.js": "2db0b2e1ea5f600dbbba7ed0d2e444312b73405b5eb7bb39dbee0d8d09fe632a",
+    "src/ponyblanket.js": "869b43af71a08e0440bda0739e69a21ea7491ab90a6c3eebd134b66980948b5c",
+    "README.md": "9f1483c3e127b8f53ca39617bacc4b72a61d9eaedb1620ce2354b2f26c2f075d",
+    "docs/upstream.md": "94298d32df1f991694a05187d9bc25b406f241086151cf7d1b77182586a93f25",
+    "docs/verification.md": "8e503914fc339076525bd9b20bea47d2f9f066f34d46f9a603af76e4dff825d1",
+    "tools/paddock-check.mjs": "7e28024ae7325a168ffe42544fed7dc46767d152aefb67439b9dc8610765259e",
+    "tools/pony-surface-check.mjs": "9ce3dbb0b75f15632dfbfd9791b566a3e36ecfff66d2a1e9504802a2e9b4b7d5",
+    "tools/pony-surface-check.css": "a4ad43c27a410f3d856aeaa2f2e8f42f12949e8c97d65dfdadee8a9c1ba23a0a",
+    "tools/pony-surface-consumers.mjs": "6b34e91c7fd4ea7d5bfe8909fc621d54cc751a737ca73a187008ab8f17dbd2b7",
+    "tools/pony-surface-invariants.mjs": "2567ce1b973fff4dd0ddcd42c823a749194d425a9d4b54a384e221e622238aba"
+  },
+  "files": {
+    "README.md": "bfe3dd09a4d9b35d56e1d021bbc06e6ea9c66d2a5256b12b8c78e4ea76e735d3",
+    "after-front.png": "98dbcb74fe6de2ed9180a30c94c8dea015704e69b3f8cc7e01a6e0f2b10355a4",
+    "after-normal.png": "4b00fe476ad3db87e158df293fc502038e99a07ccacd6d774c989ac9efa1ded4",
+    "after-side.png": "fa40e28ca2687f4b6475b0efd201f36a9b4a9b5ff993bb50fffb60556b82f873",
+    "after-whole.png": "05aef0bd34ca2a1523ef8d33f63fe85b5e4a1ed67430ecbc19320c3065553e32",
+    "after.json": "7deafcbd122554bdf74ba47b9432facdf32e1c5fc77bdd6971c76dc3c6763375",
+    "before-front.png": "4325e9cb73d3c53a8547110447c0c5a9c5ade485ac90bc0b6a7ede176ca3ffac",
+    "before-normal.png": "48014a2fc069fbf0e7e724c4ca18c9f7048578c00d2f2419326bcd941674d6a3",
+    "before-side.png": "cadd1f0c5847ffc67718e690060c6afc8d3066c73c8a8b30673d8c6eaa77f7a1",
+    "before-whole.png": "a6369b662a59f6a79c30ab07f23804a50b5be28da17c11db704dc3e74712fc25",
+    "before.json": "6183c3e6661489995d8db6a2bf9f9196998101f926b37709516e0200dda22d70",
+    "built-arrival.png": "7312c34ebacd0244ca12dde0c008b233366c9a5a5b91c8b93ebad87782f889c0",
+    "built-rain.png": "3668bc12e05bf4e3b46bce1991363b08253044715f7a23d20bc9713a41f6d38c",
+    "built-winter.png": "825f7042e0c297824181540099bd4e1a16ec8637594c85a212bc4be11dfb4bfb",
+    "consumers.json": "19abd3a665548bbb4b9b18769486de4fff0ef9d2a29639d25675543df364c427",
+    "image-comparison.json": "96fea21b9bd9ad734d64a3b9e5492d047454b299b3e6b2e8b7cd9e8aac1fd79d",
+    "invariants.json": "90977fe50d56a55647d095a51cd5981ee6dac294af91e6724bd6287253d062d7"
+  }
+}
