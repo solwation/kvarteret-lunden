@@ -1,0 +1,173 @@
+{
+  "baseline": "11d67b945daccf36f90e27cd4420b19b2ec1903f",
+  "unchanged": [
+    "outdoorcats.js",
+    "outdoorcatbrain.js",
+    "outdoorcatroute.js",
+    "catexploration.js",
+    "catcontact.js",
+    "catnuzzle.js",
+    "main.js"
+  ],
+  "configEqual": true,
+  "before": {
+    "cats": 12,
+    "lod": {
+      "sit": {
+        "triangles": 2040,
+        "bytes": 220320
+      },
+      "walk": {
+        "triangles": 2040,
+        "bytes": 220320
+      },
+      "near": {
+        "triangles": 2040,
+        "bytes": 220320
+      }
+    },
+    "resources": {
+      "geometries": 348,
+      "buffers": 1356,
+      "sourceAndRenderMaterials": 133,
+      "moduleMaterialTemplates": 11,
+      "totalRetainedMaterials": 144,
+      "bytes": 8679360,
+      "finite": true,
+      "textures": 0
+    },
+    "gates": [
+      {
+        "distance": 6.9,
+        "visible": true,
+        "near": true
+      },
+      {
+        "distance": 7.1,
+        "visible": true,
+        "near": false
+      },
+      {
+        "distance": 31.9,
+        "visible": true,
+        "near": false
+      },
+      {
+        "distance": 32.1,
+        "visible": false,
+        "near": false
+      }
+    ],
+    "phone": [
+      17.9,
+      18.1
+    ],
+    "colors": [
+      8094088,
+      8094088,
+      8094088,
+      8094088,
+      8358807,
+      15129026,
+      8094088,
+      7231040,
+      15921386,
+      1513498,
+      15259832,
+      2763566
+    ],
+    "normalCPU": {
+      "samples": 100,
+      "median": 0.022899999999992815,
+      "p95": 0.029300000000034743
+    },
+    "oneWalkingNearCPU": {
+      "samples": 100,
+      "median": 0.3365990000000352,
+      "p95": 0.6352990000000318
+    }
+  },
+  "after": {
+    "cats": 12,
+    "lod": {
+      "sit": {
+        "triangles": 2728,
+        "bytes": 294624
+      },
+      "walk": {
+        "triangles": 2728,
+        "bytes": 294624
+      },
+      "near": {
+        "triangles": 2728,
+        "bytes": 294624
+      }
+    },
+    "resources": {
+      "geometries": 56,
+      "buffers": 188,
+      "sourceAndRenderMaterials": 133,
+      "moduleMaterialTemplates": 11,
+      "totalRetainedMaterials": 144,
+      "bytes": 10672712,
+      "finite": true,
+      "textures": 0
+    },
+    "gates": [
+      {
+        "distance": 6.9,
+        "visible": true,
+        "near": true
+      },
+      {
+        "distance": 7.1,
+        "visible": true,
+        "near": false
+      },
+      {
+        "distance": 31.9,
+        "visible": true,
+        "near": false
+      },
+      {
+        "distance": 32.1,
+        "visible": false,
+        "near": false
+      }
+    ],
+    "phone": [
+      17.9,
+      18.1
+    ],
+    "colors": [
+      8094088,
+      8094088,
+      8094088,
+      8094088,
+      8358807,
+      15129026,
+      8094088,
+      7231040,
+      15921386,
+      1513498,
+      15259832,
+      2763566
+    ],
+    "normalCPU": {
+      "samples": 100,
+      "median": 0.02230000000002974,
+      "p95": 0.06119899999998779
+    },
+    "oneWalkingNearCPU": {
+      "samples": 100,
+      "median": 0.4436990000000378,
+      "p95": 0.870997999999986
+    }
+  },
+  "limits": {
+    "triangles": 3060,
+    "bytesPerLOD": 330480,
+    "totalBytes": 13019040
+  },
+  "notes": "100 warm CPU update samples after 30 warmup; same process/inputs; no GPU or FPS claim. Retained source+sit+walk+near union counts backing buffers once."
+}

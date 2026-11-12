@@ -1,0 +1,23 @@
+{
+  "worker": "d2451d8b31ed717f78a9eb7aa3819514af6e7136",
+  "integratedBase": "2b17767156183bbac96c6634a91389ed27ca1add",
+  "exactScopedSources": {
+    "src/catpuppet.js": "dbd66dcb0aff5ab2fff3f8aa6745881f4fd60a43410de51317478c2e3ef7f3d0",
+    "src/catsurface.js": "1d910fb3b1b325f159abd538b2df5d4334514c9b7f5fd6b3fb33df1021017fd9",
+    "CAT_SURFACE": "b98ff8d9907b58def17587dbf8fa1c962178583c75f8d509b14d0e1fd3c9c1a4",
+    "src/outdoorcats.js": "053bcbab45d06ab2e616a084e3414e5146eb7cb2084a1af3da884dd6616eef83",
+    "tools/catshape268.html": "3f99e90eb58e3f7f5eb9392b9819bc34ea0f9e597a264abc88c8b809de949220",
+    "tools/catshape268-check.mjs": "ea38b80a2291f1ced7bee5e3e672413df2e86b6b5800607d6f71dc16318bea15",
+    "tools/catshape268-native.mjs": "a72bdc79a7af624c52e0475049b00b72660ee15bda6e4292239c6e41de0c1789",
+    "tools/catshape268-far.mjs": "4243fec21df878c0b11103b5005af1442b53bbe839664e8e685d6b90f1bae92b",
+    "tools/catshape-server.py": "aadd7b4cfd9a26a201e468a0c7154369d2279b10d15dcdc4530378b28c541a8f"
+  },
+  "allWorkerEvidenceExact": true,
+  "preservedSquirrelPort": true,
+  "actualAppMatchedFinite": true,
+  "actualAppPixels": [
+    3145,
+    2978
+  ],
+  "reuse": "Same cat source/input/quality; only independent squirrel surface and evidence changed in base. Scoped green checks reused."
+}

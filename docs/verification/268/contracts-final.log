@@ -1,0 +1,4 @@
+PASS 13 before/final component pairs: complete model/camera/projection identity, 1 draw, 2040→2728tri, nonzero intended pixels, finite retained geometry.
+PASS actual normal app: exact model/camera/projection/quality/clock/position/off-scene identity; 3145→2978pixels, 1draw/2040→2728tri.
+PASS original storage sentinels/zero operations, external requests, WebSockets and page errors.
+PASS final product/harness SHA256 binding. Corrected cached-walk pixels: 4009 4014

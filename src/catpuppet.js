@@ -1,12 +1,14 @@
 // Adapted from solwation/lunden-3d-apartment cat.js at 578ecc09b02c7355e299fc58d0e0127b622ee85a.
 // Generic procedural geometry and sit/walk pose only. No character or interaction state.
 import * as THREE from 'three';
+import {CAT_SURFACE as S} from './config.js';
+import {catSurface} from './catsurface.js';
 const CAT_WALK={rise:.3,stride:.3,swing:.4,knee:.6,bob:.006};
 const ROLE=Object.fromEntries(['coat','bib','paw','face','blaze','ear','tail','tip'].map(k=>[k,new THREE.MeshStandardMaterial({roughness:.8})]));
 const pink=new THREE.MeshStandardMaterial({color:0xd99a9a}),eyeMat=new THREE.MeshStandardMaterial({color:0x9bbf3a}),pupilMat=new THREE.MeshStandardMaterial({color:0x050505});
 const smooth=(a,b,t)=>{const x=THREE.MathUtils.clamp((t-a)/(b-a),0,1);return x*x*(3-2*x);};
-function blob(material, sx, sy, sz, x, y, z) {
-  const m = new THREE.Mesh(new THREE.SphereGeometry(1, 8, 6), material);
+function blob(material, sx, sy, sz, x, y, z, kind='sphere') {
+  const m = new THREE.Mesh(catSurface(kind), material);
   m.scale.set(sx, sy, sz);
   m.position.set(x, y, z);
   m.castShadow = true;
@@ -16,9 +18,7 @@ function blob(material, sx, sy, sz, x, y, z) {
 /** A leg hanging `len` down from its pivot (#241): turned, with a rounded top that sinks into the body, a fuller upper
  * part, a slimmer wrist and a rounded end in the paw; radius r at the middle. */
 function limb(material, r, len, x, y, z) {
-  const pts = [[0, -len], [0.7 * r, -len + 0.3 * r], [0.85 * r, -len + 0.9 * r], [0.8 * r, -0.62 * len], [0.95 * r, -0.42 * len],
-    [1.22 * r, -0.16 * len], [1.2 * r, 0], [0.75 * r, 0.75 * r], [0, r]];
-  const m = new THREE.Mesh(new THREE.LatheGeometry(pts.map(([a, b]) => new THREE.Vector2(a, b)), 6), material);
+  const m = new THREE.Mesh(catSurface('limb',r,len),material);
   m.position.set(x, y, z);
   m.castShadow = true;
   return m;
@@ -56,8 +56,9 @@ function buildCat() {
 
   // body + bib (in a torso group the breed can widen); their shape comes from `pose` (sitting ↔ standing, #224)
   const torso = new THREE.Group();
-  const body = blob(ROLE.coat, 1, 1, 1, 0, 0, 0);
+  const body = blob(ROLE.coat, 1, 1, 1, 0, 0, 0, 'body');
   const bib = blob(ROLE.bib, 1, 1, 1, 0, 0, 0);
+  bib.visible=false; // One continuous solid-colour torso, not an overlapping bib ball.
   torso.add(body, bib);
   cat.add(torso);
   // hind legs, each on a hip pivot: the haunch (thigh) and a hock pivot with the shin and the paw. Sitting, the shin
@@ -65,7 +66,7 @@ function buildCat() {
   const hips = [];
   for (const s of [-1, 1]) {
     const hip = new THREE.Group();
-    const thigh = blob(ROLE.coat, 1, 1, 1, 0, 0, 0);
+    const thigh = blob(ROLE.coat, 1, 1, 1, 0, 0, 0, 'body');
     const hock = new THREE.Group();
     const foot = blob(ROLE.paw, 1, 1, 1, 0, -HIND_SHIN, 0.015);
     hock.add(limb(ROLE.paw, 0.019, HIND_SHIN, 0, 0, 0), foot);
@@ -86,27 +87,29 @@ function buildCat() {
 
   // head
   const head = new THREE.Group();
-  head.add(blob(ROLE.coat, 0.072, 0.064, 0.068, 0, 0, 0));
-  const muzzle = blob(ROLE.face, 0.042, 0.032, 0.035, 0, -0.022, 0.05);
+  head.add(blob(ROLE.coat, 0.072, 0.064, 0.068, 0, 0, 0, 'head'));
+  const muzzle = blob(ROLE.face, 0.042, 0.032, 0.035, 0, -0.022, 0.05, 'muzzle');
   head.add(muzzle);
-  const nose=blob(pink,0.009,0.007,0.006,0,-0.008,0.083);nose.name='cat-nose';head.add(nose);           // nose
+  const nose=blob(pink,...S.nose.scale,0,S.nose.y,muzzle.position.z+.035*S.nose.muzzleDepth+S.nose.offset);nose.name='cat-nose';head.add(nose);           // nose
   const blaze = blob(ROLE.blaze, 0.016, 0.03, 0.01, 0, 0.03, 0.058);         // blaze
+  blaze.visible=false; // No separate forehead patch on the anonymous solid coat.
   head.add(blaze);
   const eyes = [], ears = [];
   for (const s of [-1, 1]) {
-    const ear = new THREE.Mesh(new THREE.ConeGeometry(0.03, 0.055, 4), ROLE.ear);
-    ear.position.set(s * 0.042, 0.063, -0.005);
-    ear.rotation.set(-0.15, Math.PI / 4, s * -0.3);
+    const ear = new THREE.Mesh(catSurface('ear'), ROLE.ear);
+    ear.position.set(s*S.ear.position[0],S.ear.position[1],S.ear.position[2]);
+    ear.rotation.set(S.ear.rotation[0],S.ear.rotation[1],s*S.ear.rotation[2]);
     ear.castShadow = true;
     head.add(ear);
     ears.push(ear);
     // eyes on a lid pivot so they can close (scale y → 0) while asleep
     const eye = new THREE.Group();
-    eye.position.set(s * 0.028, 0.012, 0.06);
-    eye.add(blob(eyeMat, 0.014, 0.012, 0.008, 0, 0, 0), blob(pupilMat, 0.004, 0.01, 0.004, 0, 0, 0.007));
+    eye.position.set(s*S.eyePosition[0],S.eyePosition[1],S.eyePosition[2]);
+    eye.rotation.y=s*S.eyeYaw;
+    eye.add(blob(eyeMat,...S.eye,0,0,0,'eye'),blob(pupilMat,...S.pupil,0,0,S.pupilDepth));
     head.add(eye);
     // closed eye: a thin dark line, shown instead
-    const shut = blob(pupilMat, 0.013, 0.0018, 0.004, s * 0.028, 0.01, 0.066);
+    const shut = blob(pupilMat,...S.shut.scale,s*S.eyePosition[0],S.shut.y,S.shut.z);
     shut.visible = false;
     head.add(shut);
     eyes.push({ eye, shut });

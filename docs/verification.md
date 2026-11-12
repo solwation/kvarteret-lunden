@@ -18,6 +18,20 @@ konkret materiell risk; ta bara om felaktiga kamerapositioner. Befintliga snabba
 `npm test`/bygge och automatisk Pages-status kvarstår; dokument kräver ingen ny
 livebrowserkontroll av oförändrad app.
 
+## Neutral kattform, #268
+
+`tools/catshape268-native.mjs` jämför faktisk publicbas mot aktuell komponent:
+alla unika kvarhållna source/sit/walk/near-buffertar, finitevärden, 12 färger,
+byteidentiska beteendekällor/OUTDOOR_CATS, LOD-gränser och kort matchad varm CPU.
+`tools/outdoorcats-check.mjs` behåller verkliga nos-/klätterkontakter och de
+befintliga begränsade plan-/loopkontrollerna. Normalpackningsprovet använder nu
+kattkällans enhetsnormaler; dess separata skalade/tiny-vektorprov består.
+`tools/catshape268-check.mjs` granskar hela modeller och en faktisk normal appvy
+mot fryst publicföre, med fulla modell-/kamera-/projektionsmatriser, pixelbidrag
+efter ocklusion samt nät-/lagringsisolering. Fjärrkamerans korrigerade lookAt
+omtas separat av `tools/catshape268-far.mjs`; detta är diagnostisk förstoring,
+inte vanlig markvy. [Rådata, egna bilder, reproduktion och gränser](verification/268/README.md).
+
 ## Förebyggande normalpackning, #256
 
 `node --test tools/normalpackingtest.mjs tools/lowmemcanarytest.mjs` kontrollerar

@@ -1,0 +1,220 @@
+{
+  "componentBounds": [
+    {
+      "phase": "before",
+      "pose": "sit",
+      "view": "quarter",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 67325
+    },
+    {
+      "phase": "before",
+      "pose": "sit",
+      "view": "front",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 77945
+    },
+    {
+      "phase": "before",
+      "pose": "sit",
+      "view": "side",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 94592
+    },
+    {
+      "phase": "before",
+      "pose": "walk",
+      "view": "quarter",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 60889
+    },
+    {
+      "phase": "before",
+      "pose": "walk",
+      "view": "front",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 48646
+    },
+    {
+      "phase": "before",
+      "pose": "walk",
+      "view": "side",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 90276
+    },
+    {
+      "phase": "before",
+      "pose": "sleep",
+      "view": "quarter",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 66512
+    },
+    {
+      "phase": "before",
+      "pose": "sleep",
+      "view": "front",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 77378
+    },
+    {
+      "phase": "before",
+      "pose": "sleep",
+      "view": "side",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 92384
+    },
+    {
+      "phase": "before",
+      "pose": "wash",
+      "view": "quarter",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 66200
+    },
+    {
+      "phase": "before",
+      "pose": "wash",
+      "view": "front",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 78908
+    },
+    {
+      "phase": "before",
+      "pose": "wash",
+      "view": "side",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 94736
+    },
+    {
+      "phase": "before",
+      "pose": "walk",
+      "view": "quarter",
+      "far": true,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 4009
+    },
+    {
+      "phase": "final",
+      "pose": "sit",
+      "view": "quarter",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 64994
+    },
+    {
+      "phase": "final",
+      "pose": "sit",
+      "view": "front",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 75280
+    },
+    {
+      "phase": "final",
+      "pose": "sit",
+      "view": "side",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 89201
+    },
+    {
+      "phase": "final",
+      "pose": "walk",
+      "view": "quarter",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 57511
+    },
+    {
+      "phase": "final",
+      "pose": "walk",
+      "view": "front",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 48281
+    },
+    {
+      "phase": "final",
+      "pose": "walk",
+      "view": "side",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 84068
+    },
+    {
+      "phase": "final",
+      "pose": "sleep",
+      "view": "quarter",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 63671
+    },
+    {
+      "phase": "final",
+      "pose": "sleep",
+      "view": "front",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 74844
+    },
+    {
+      "phase": "final",
+      "pose": "sleep",
+      "view": "side",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 87509
+    },
+    {
+      "phase": "final",
+      "pose": "wash",
+      "view": "quarter",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 64253
+    },
+    {
+      "phase": "final",
+      "pose": "wash",
+      "view": "front",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 77053
+    },
+    {
+      "phase": "final",
+      "pose": "wash",
+      "view": "side",
+      "far": false,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 92058
+    },
+    {
+      "phase": "final",
+      "pose": "walk",
+      "view": "quarter",
+      "far": true,
+      "allWorldAABBCornersInFrustum": true,
+      "pixels": 4014
+    }
+  ],
+  "actualApp": {
+    "source": "final.json current sources; exact recreated clock/model/camera/projection",
+    "modelExact": true,
+    "vertices": 8184,
+    "allProjectedInside": true,
+    "actualCapturedPixels": 2978
+  },
+  "limits": "Native projection reconstruction supplements the source-bound captured actual app; no new browser or changed pose/source."
+}

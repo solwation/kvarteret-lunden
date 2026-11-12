@@ -1,5 +1,25 @@
 # Förbättringar från originalet
 
+## Neutral sammanhängande kattform, #268
+
+Selektiv källa `8e226fa183ade3ccc1bfb638427bc75e2120d7b6`
+([original #1918](https://github.com/solwation/lunden-3d-apartment/issues/1918)),
+`src/catmodel.js` och `CAT_SURFACE` i `src/config.js`. Bara generiska kropps-/huvud-/
+mulprofiler, plattare ögon, kurvade öron och smalare ben anpassas till publicens
+`catpuppet`/`mergedRig`. Publika posepivoter och huvudskala behålls; bib-/blazebollar
+är dolda på den befintliga enfärgade pälsen. Nosens källbundna ankare följer den
+grundare mulen, medan kontaktens 6 mm radie och passiva sociala förlopp består.
+
+Inga originalprofiler, namn, GLB/loader, foton, metadata, gameplay eller tjänster
+överförs. Tolv färger/seeds, rutter, tider och 7/32/18-meters-/vinter-/nocatsgränser
+är oförändrade. En draw per katt består; varje faktisk near/sit/walk-geometri är
+nu 2 728 tri/294 624 råbyte (förr 2 040/220 320), inom det låsta 1,5×taket.
+Detta ersätter de äldre kattavsnittens geometribudget, inte deras daterade resultat.
+Geometrikällor cachelagras, men poser/renderbatcher förblir publicens egna.
+Källhänvisningar bevaras; ingen extern modell eller ny tredjepartslicens tillkommer.
+Befintlig Three.js r170/MIT och dess medföljande licenstext består.
+[Egna hela/vanliga vyer, verkliga kostnader och begränsningar](verification/268/README.md).
+
 ## Tydligare generiska gräsänder, #266
 
 Selektiv originalkälla `2482f29e1e624e9948b6055e4efdc1a0328569e0` (#1909).

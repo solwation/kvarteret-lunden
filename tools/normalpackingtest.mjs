@@ -32,6 +32,7 @@ test('public anonymous cat producer retains direction when the helper is explici
  p.object.traverse(o=>{if(!source&&o.geometry?.type==='LatheGeometry')source=o.geometry;});assert.ok(source);
  const g=source.clone(),n=g.attributes.normal.clone(),out=pack(g);let shortest=Infinity,worst=0;
  for(let i=0;i<n.count;i++){const v=new T.Vector3().fromBufferAttribute(n,i);if(v.length())shortest=Math.min(shortest,v.length());worst=Math.max(worst,angle(v,new T.Vector3(out.getX(i),out.getY(i),out.getZ(i))));}
- assert.ok(shortest<.05);assert.ok(worst<.4,`worst angular error ${worst}`);
+ // #268 normalizes the cached source surface; scaled/tiny input coverage remains in the first test.
+ assert.ok(Number.isFinite(shortest)&&shortest>0);assert.ok(worst<.4,`worst angular error ${worst}`);
  console.log(JSON.stringify({publicProducer:'anonymous cat limb before mergedRig normalization',shortest,worst,vertices:n.count,bytes:out.array.byteLength}));
 });

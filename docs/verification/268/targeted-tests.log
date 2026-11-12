@@ -1,0 +1,53 @@
+TAP version 13
+# Subtest: a lap is the walking time plus the rests
+ok 1 - a lap is the walking time plus the rests
+  ---
+  duration_ms: 1.102598
+  type: 'test'
+  ...
+# Subtest: the same clock gives the same place and activity (every client agrees)
+ok 2 - the same clock gives the same place and activity (every client agrees)
+  ---
+  duration_ms: 1.336198
+  type: 'test'
+  ...
+# Subtest: walking along a leg, resting at its end
+ok 3 - walking along a leg, resting at its end
+  ---
+  duration_ms: 0.233699
+  type: 'test'
+  ...
+# Subtest: it never leaves the loop
+ok 4 - it never leaves the loop
+  ---
+  duration_ms: 5.617191
+  type: 'test'
+  ...
+# {"publicProducer":"anonymous cat limb before mergedRig normalization","shortest":0.9999999730994673,"worst":0.26753772291868555,"vertices":81,"bytes":324}
+# Subtest: scaled and zero normals, sharing and untouched geometry payloads
+ok 5 - scaled and zero normals, sharing and untouched geometry payloads
+  ---
+  duration_ms: 2.392296
+  type: 'test'
+  ...
+# Subtest: dynamic, keepCpu, skinned, morph and already-uploaded geometry retain floats
+ok 6 - dynamic, keepCpu, skinned, morph and already-uploaded geometry retain floats
+  ---
+  duration_ms: 1.220798
+  type: 'test'
+  ...
+# Subtest: public anonymous cat producer retains direction when the helper is explicitly invoked
+ok 7 - public anonymous cat producer retains direction when the helper is explicitly invoked
+  ---
+  duration_ms: 37.041841
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 171.267026

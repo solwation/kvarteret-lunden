@@ -1,0 +1,37 @@
+{
+  "source": "11d67b945daccf36f90e27cd4420b19b2ec1903f",
+  "cats": 12,
+  "callsPerCat": 1,
+  "triangles": {
+    "sit": 2040,
+    "walk": 2040
+  },
+  "rigTriangles": 2040,
+  "geometries": 348,
+  "uniqueBuffers": 1356,
+  "retainedRawBytes": 8679360,
+  "colors": [
+    8094088,
+    8094088,
+    8094088,
+    8094088,
+    8358807,
+    15129026,
+    8094088,
+    7231040,
+    15921386,
+    1513498,
+    15259832,
+    2763566
+  ],
+  "gates": {
+    "draw": 32,
+    "phone": 18,
+    "near": 7
+  },
+  "warmUpdate": {
+    "samples": 100,
+    "median": 0.03920000000002233,
+    "p95": 0.06809999999998695
+  }
+}
