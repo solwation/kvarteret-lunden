@@ -1,0 +1,11 @@
+HISTORICAL worker evidence on b9b1a79d1b40f1bb9e6f2e2362e96d5095e1f36a before rebase; hashes and pending272 refer only to that tree. Current combined proof: integration.json and integrated-test/build.log.
+PASS exact Shared version and maintenance section preserved; shared/product/models/dependencies unchanged.
+PASS tracked scope: .orchestra/project.md, CLAUDE.md, docs/upstream.md + new docs/verification/273 evidence only.
+PASS 161 local relative links/anchors in the edited Markdown, using unchanged established checker scan/slug.
+PASS manually reviewed 11 scenario rows: headroom, CPU/memory/swap, API/spawn pressure, coupling, browser queue, integration queue, runtime2/4/unknown, reassessment, actual three roles/four runtime slots.
+PASS capacity/helper/CLAUDE summary agree; three old upstream capacity statements explicitly historical.
+LIMIT root-owned #272 Shared version section is intentionally unchanged here; its pending release/pin/autostart patch removes the remaining old two-cap statement before joint publication.
+PASS no browser/product-image/changelog run needed for instruction-only change; npm test/build are separately green.
+SHA256 .orchestra/project.md 1abaad700160bfc02ee6d829053ad445cff60b6e1187c430e9d138efe81a1798
+SHA256 CLAUDE.md e9caa4fd76086807bb9eace6486ad9127d0bf0a76aa235e3722068869f2296fa
+SHA256 docs/upstream.md d4b61c00815012434ba88a80779c813e55ed91636e01c32c19b4bfe83ef6a124

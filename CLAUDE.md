@@ -86,9 +86,12 @@ Read [chat intake](.orchestra/shared/ORCHESTRA.md#turn-chat-requests-into-work) 
 Read [.orchestra/project.md](.orchestra/project.md) and its versioned, model-independent
 core/coordination files. [.claude/commands/orkester.md](.claude/commands/orkester.md) is a
 thin adapter; other agent tools read the same files directly. The policy retains both
-queues, global ordering, ownership, two-worker capacity, 300-second polling, 60-minute
-idle watch, heartbeats, original-only intake and public-content boundaries. Use a short
-scope/risk plan, useful parallelism, one delivery for small issues and existing focused
+queues, global ordering, ownership, [autonomous load-based capacity](.orchestra/project.md#dynamic-active-capacity),
+300-second polling, 60-minute idle watch, heartbeats, original-only intake and public-content boundaries.
+Count the active conductor, workers, helpers and reviewers within actual runtime slots;
+reassess CPU/memory/swap, API pressure and browser/integration queues, and scale up or down
+without a routine user question. Finished integration-ready waits and parent summaries
+use no slot. Use a short scope/risk plan, useful parallelism, one delivery for small issues and existing focused
 verification. Keep local policy outside the imported subtree; improve shared behavior
 in its own repository and explicitly adopt a reviewed release here. Preserve subtree
 merge ancestry with `git rebase --rebase-merges` for unpublished subtree imports.

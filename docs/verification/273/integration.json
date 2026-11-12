@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-12T12:22:34.583440+00:00",
+  "integratedBase": "70734637b5edb7f3a16650fc1de016f8b558f403",
+  "workerCommit": "b9b1a79d1b40f1bb9e6f2e2362e96d5095e1f36a",
+  "selectedOriginalSource": "f464576038ded33b6ca8919c5ebb4699db7fcab5",
+  "preservedSharedTree": "bf90a2005753ab809666852b6b15ed679c749751",
+  "entryLinksAndAnchorsChecked": 214,
+  "preserved272EntryPoints": [
+    "AGENTS.md",
+    "README.md",
+    ".claude/commands/orkester.md",
+    "entire Shared version and maintenance section"
+  ],
+  "productChange": false,
+  "sourceHashes": {
+    "AGENTS.md": "8307f0b2ace37505cbb2255dd49f00939ad72c81dea8a1962f6e684aa081a6d6",
+    "README.md": "526b6f4a5de8de5687a7c4eedcd02edd0a13cd1632c79dc69469018309f404b9",
+    "CLAUDE.md": "aae1549ca9f2333a732849b604c62005cbb8404dd5fbca302b349f7e29632dc2",
+    ".claude/commands/orkester.md": "127de33d278f196e633c34b47307699e8246a130af2a628378401ff4bb9951c6",
+    ".orchestra/project.md": "e018272dd92cb2f74813815f33213cf716bdc7675e223a3c667560586f5dfd71",
+    "docs/upstream.md": "aa2f6918e07aabe47095359c7f7e546a7835663112016929c832068436377b38",
+    "docs/verification/273/README.md": "6d95c057d07352fc69fc25e2d4e13794a921025133fa9bc2dfd6c843719b70f6"
+  },
+  "checks": "all pass; original-first/public-low, autostart/reuse/explicit-scope precedence, dynamic capacity and single publisher retained",
+  "independentReview": "santa_realism: combined policy green, historical worker evidence explicitly marked after review",
+  "npmTest": "141 modules PASS after rebase",
+  "buildFingerprint": "0aadfeb6003f23b3cdf3b109"
+}

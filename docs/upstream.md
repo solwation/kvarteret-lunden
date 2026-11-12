@@ -37,6 +37,23 @@ Källhänvisningar bevaras; ingen extern modell eller ny tredjepartslicens tillk
 Befintlig Three.js r170/MIT och dess medföljande licenstext består.
 [Egna hela/vanliga vyer, verkliga kostnader och begränsningar](verification/268/README.md).
 
+## Laststyrd aktiv agentkapacitet, #273
+
+Selektiv lokal instruktionskälla `f464576038ded33b6ca8919c5ebb4699db7fcab5`
+([original #1935](https://github.com/solwation/lunden-3d-apartment/issues/1935)).
+Bara värdens aktiva kapacitetsregel förs över: dirigenten räknar aktiv root,
+implementerare, hjälpare och granskare, bedömer faktisk runtime, CPU/minne/swap,
+APItryck och browser-/integrationskö, och skalar autonomt upp eller ned.
+Färdiga integration-ready-överlämningar och föräldrasammanfattningar tar ingen
+aktiv slot. En integrator, serialiserad dyr browser och ordinarie prioritet/
+ägarregler består. Fyra runtimeslots är ett exempel, inte ett permanent tak.
+
+Den granskade gemensamma releaseimporten och chatt-/köautostart följer separat
+#272; denna ändring patchar inte shared, version eller proveniens. Ingen
+originalappkod, rapporttjänst, personlig data, gameplay eller lagring importeras.
+Befintlig instruktionsattribution består; ingen ny resurs eller licens tillkommer.
+[Scenarier, diff-/länkkontroll och avgränsning](verification/273/README.md).
+
 ## Tydligare generiska gräsänder, #266
 
 Selektiv originalkälla `2482f29e1e624e9948b6055e4efdc1a0328569e0` (#1909).
@@ -65,8 +82,9 @@ generella bildhostingsexempel, HTTPS/Markdown med bild i eget stycke samt en val
 expertpanel vid avslut. Hostingsexemplen ändrar inte värdens befintliga bildpolicy
 eller behörighet; alternativa resursgrenar införs inte. Panelen blir inget nytt krav.
 
-Original före public, public low, ägarskap, tvåarbetarkapacitet, timers och
-publicerings-/stängningsgrindar består. Ingen originalappkod, personlig historik,
+Vid införandet av v0.12.0 bestod original före public, public low, ägarskap,
+det dåvarande tvåarbetartaket, timers och publicerings-/stängningsgrindar.
+Kapaciteten ersätts senare av [#273:s laststyrda regel](../.orchestra/project.md#dynamic-active-capacity). Ingen originalappkod, personlig historik,
 lagring, gameplay eller tjänst kopieras. Dokumentarbete utan produktbild eller
 spelarnyhet; [källor, kontroller och begränsningar](verification/265/README.md).
 
@@ -2290,9 +2308,10 @@ men inga originalfiler eller någon originalhistorik importeras.
 0.6.0 prioriterar återupptagning av oavslutat lokalt arbete. En lokal kopia får
 tas bort först när innehållet bevisligen finns på main; synligt aktiva agenters
 arbete lämnas orört. Den blandade uppdateringens 0.5.0 ger sessions-id med värd
-och modell; befintliga id:n behöver inte byta namn. Köordning, två arbetare,
-300-sekunderspollning, 60-minutersbevakning, Issueflow och publicens innehålls-/
-tjänstegränser behålls. Originalets rapportintag körs bara i originalcheckouten.
+och modell; befintliga id:n behövde inte byta namn. Vid detta historiska införande
+behölls köordning, dåvarande tvåarbetartak, 300-sekunderspollning, 60-minutersbevakning,
+Issueflow och publicens innehålls-/tjänstegränser. Det gamla kapacitetstaket ersätts
+av [#273:s laststyrda regel](../.orchestra/project.md#dynamic-active-capacity). Originalets rapportintag körs bara i originalcheckouten.
 
 Användarens automatiska stabila uppdateringsbeslut i `5329b779` är bevarat i
 projektpolicyn; README är samstämmig med det. Inga appfiler, resurser, beroenden,
@@ -3263,8 +3282,10 @@ ORCHESTRA/COORDINATION och samordnad AI/README/INSTALL/CHANGELOG, inga andra än
 även utan aktiv orkester och efter avslutad tomgångsvakt. Aktiv dirigent återanvänds;
 explicit uppskjutning gäller. Enbart läsning startar inget arbete. En avgränsad
 chattönskan öppnar inte hela backloggen eller nya kötimers. Uttryckligt `/orkester`
-behåller kösessionen. Original före public, public low, ägarskap, två arbetare,
-300s-köpoll, 60min-bevakning och publiceringskrav bevaras.
+behåller kösessionen. Vid detta historiska införande bestod original före public,
+public low, ägarskap, dåvarande tvåarbetartak, 300s-köpoll, 60min-bevakning och
+publiceringskrav. Det gamla taket ersätts senare av
+[#273:s laststyrda regel](../.orchestra/project.md#dynamic-active-capacity).
 
 Ingen personlig data, gameplay, originalets lagring, Cloudflare eller tjänst har
 införts. Dokumentarbete utan meningsfullt visuellt resultat: ingen browserbild eller
