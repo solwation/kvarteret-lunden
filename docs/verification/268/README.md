@@ -33,7 +33,7 @@ The normal app has fixed epoch 1793491480, anonymous cat 4 at [−25,−3,61], e
 
 Actual normal view, before:
 
-![Public before normal app](before-app-normal.png)
+![Public before normal app](https://raw.githubusercontent.com/solwation/kvarteret-lunden/b21c2783846d364f5f8ee16fae207294b364e897/docs/verification/268/before-app-normal.png)
 
 Actual normal view, current:
 
@@ -54,3 +54,5 @@ Other own images: `before-{sit,walk,sleep,wash}-{quarter,front,side}.png`, match
 Use the identical lockfile-installed dependencies. Freeze a build of the exact public baseline before changing source; the worker stored it outside the checkout at `/home/devcontainers/.local/state/lunden-session-20261112/268-before`. Run `python3 tools/catshape-server.py --before FROZEN_PUBLIC_BUILD --baseline 11d67b945daccf36f90e27cd4420b19b2ec1903f --port 8301`, then `CHROME_PATH=CHROMIUM node tools/catshape268-check.mjs before` and `... final` under the shared browser lock. The corrected fixture now includes the far lookAt directly. The app/component checks close their own browser contexts. No broad World/performance suite or physical device run was needed. Final publication, actual green Pages, pinned HTTP200 image embeds and issue closure remain the integrator's steps; local evidence alone does not claim deployed acceptance.
 
 Root reviewed the combined patch, normal/whole/front/side plus walk/sleep/wash/cached pose images. [Integration mapping](integration.json) proves the exact scoped CAT_SURFACE, all executed cat sources/harnesses and worker evidence after the independent squirrel port; existing squirrel sources remain exact. [Projection review](projection-review.json) proves every corner of all 26 captured world AABBs inside the finite frustum, plus all 8184 actual normal-view vertices using a native reconstruction at the exact captured clock/model/camera/projection. The reconstructed model matrix matches the captured app exactly. Source/input/quality-bound browser, contracts and CPU samples are reused without a broad rerun.
+
+Efter HTTP200/bildtyp för alla 28 pinnade bilder och inbäddade resultat i [ärendekommentaren](https://github.com/solwation/kvarteret-lunden/issues/268#issuecomment-6822834048) gallras alla 14 egna förebilder från main. De finns kvar i publicerad revision `b21c2783846d364f5f8ee16fae207294b364e897`; länkar är pinnade och [bildmappningen](hosted.json) bevaras. Resultatbilder följer 30-dagarspolicyn. Ingen produkt- eller kontrollkod ändras i gallringen.
