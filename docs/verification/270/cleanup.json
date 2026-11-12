@@ -1,0 +1,14 @@
+{
+  "ownedServerPID": 1619284,
+  "serverCommand": [
+    "python3",
+    "-m",
+    "http.server",
+    "8303"
+  ],
+  "checkout": "/home/devcontainers/lunden-wt/public-270-ducks",
+  "serverStoppedByOwner": true,
+  "captureArtAndFixtureHashesStillExact": true,
+  "browserJobsCompletedAndClosed": true,
+  "remainingExactOwnedTestCommands": []
+}

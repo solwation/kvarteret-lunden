@@ -1,0 +1,91 @@
+{
+  "selectedOriginal": "a963287ffaacad8fa405f91c086752255aefcb2d",
+  "rows": [
+    {
+      "female": false,
+      "triangles": 1312,
+      "raw": 34296,
+      "buffers": {
+        "position": {
+          "bytes": 8808,
+          "hash": "705cf3480a87e55d3d040a82c604fc6a2828e594b0e49532f64db53a5510b15c",
+          "sameAsSelectedOriginal": true
+        },
+        "color": {
+          "bytes": 8808,
+          "hash": "afd9d7e361754c4f47ff68dc1f6d66868bcb346636d5d2b1ff0261de5ae63d0f",
+          "sameAsSelectedOriginal": true
+        },
+        "normal": {
+          "bytes": 8808,
+          "hash": "839247ca0f5c6cc0cbcc3dd0e45f543ea977158d8b6be91b7dff0f0a73dcf80e",
+          "sameAsSelectedOriginal": true
+        }
+      },
+      "index": {
+        "bytes": 7872,
+        "hash": "c253b9cbb8a1e7a33ec76095276babc0bce8cd04efb57e566e1b51b0c961b2a0"
+      },
+      "bounds": {
+        "min": [
+          -0.22499999403953552,
+          0.006000000052154064,
+          -0.5199999809265137
+        ],
+        "max": [
+          0.22499999403953552,
+          0.7329999804496765,
+          0.5541267991065979
+        ]
+      },
+      "bill": {
+        "z": 0.5541267991065979,
+        "y": 0.5800000131130219,
+        "halfY": 0.010815590620040894
+      }
+    },
+    {
+      "female": true,
+      "triangles": 1312,
+      "raw": 34296,
+      "buffers": {
+        "position": {
+          "bytes": 8808,
+          "hash": "705cf3480a87e55d3d040a82c604fc6a2828e594b0e49532f64db53a5510b15c",
+          "sameAsSelectedOriginal": true
+        },
+        "color": {
+          "bytes": 8808,
+          "hash": "ced96054d8d3c7bd353724672a7fdbcc968c81c999f8402b5ea42ba7f169c62b",
+          "sameAsSelectedOriginal": true
+        },
+        "normal": {
+          "bytes": 8808,
+          "hash": "839247ca0f5c6cc0cbcc3dd0e45f543ea977158d8b6be91b7dff0f0a73dcf80e",
+          "sameAsSelectedOriginal": true
+        }
+      },
+      "index": {
+        "bytes": 7872,
+        "hash": "c253b9cbb8a1e7a33ec76095276babc0bce8cd04efb57e566e1b51b0c961b2a0"
+      },
+      "bounds": {
+        "min": [
+          -0.22499999403953552,
+          0.006000000052154064,
+          -0.5199999809265137
+        ],
+        "max": [
+          0.22499999403953552,
+          0.7329999804496765,
+          0.5541267991065979
+        ]
+      },
+      "bill": {
+        "z": 0.5541267991065979,
+        "y": 0.5800000131130219,
+        "halfY": 0.010815590620040894
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+browsertest: no systemd user scope here, running without a memory ceiling
+{"before":{"calls":4,"triangles":3712,"updateMedian":0.30000000074505806,"updateP95":0.6999999992549419,"renderMedian":0.10000000149011612,"renderP95":0.19999999925494194},"after":{"calls":4,"triangles":5248,"updateMedian":0.29999999701976776,"updateP95":0.5999999977648258,"renderMedian":0.09999999776482582,"renderP95":0.20000000298023224}}

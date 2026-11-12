@@ -1,0 +1,18 @@
+{
+  "publicBase": "11d67b945daccf36f90e27cd4420b19b2ec1903f",
+  "selectedOriginal": "a963287ffaacad8fa405f91c086752255aefcb2d",
+  "unchangedHashes": {
+    "src/ducks.js": "ac063f5a0102ca0cb834d548ab1058f808fcb2510c965769c0cf8205a11f6cfa",
+    "src/duckbrain.js": "7fa80b7769cbae8bca83db69a9520e4ff9ee14e393c8028876359446ac651f84",
+    "src/duckkiss.js": "4a42a915a5780312f19be6e0837f99640d55505a6628398acce4f3334b1fee51",
+    "src/duckhabitat.js": "b4e7e601f687fa9ac439b8c00522ecbf58479cf12c4dc44efab1587f0ecb16f8",
+    "src/ambienthearts.js": "95c7c4cc722158e948e8b858a578e675755adce89590e1e91fced087a9fbbfb0",
+    "src/main.js": "f3e2b5490a4812476700b57b24c513e0ef45eae1acf6996f5df93bf3fe60ee4f",
+    "package-lock.json": "7592e73bba4f5cc035060d139343f6fb2ed300113fddf4b54227ba1d0a3b692a",
+    "THIRD_PARTY_LICENSES.txt": "1f6214752de5358e70816bc75813dc6a916557a34d3d5d44855546006cc3c285"
+  },
+  "existingConfigBytePrefixUnchanged": true,
+  "baselineRecipeEqualsPublicBaseExceptImportPath": true,
+  "publicModel": "Only neutral surface recipe; no rig/skin/cache/GLB or model-loader code.",
+  "baselineHasNoNoducksFlag": true
+}

@@ -1,0 +1,27 @@
+{
+  "newModelFiles": [],
+  "glbBytes": 0,
+  "bodyTextures": 0,
+  "bodyMaterials": 1,
+  "uniqueSexGeometries": 2,
+  "beforeUniqueGeometryBytes": 67512,
+  "afterUniqueGeometryBytes": 68592,
+  "deltaBytes": 1080,
+  "ratio": 1.0159971560611447,
+  "eachGeometry": {
+    "position": 8808,
+    "normal": 8808,
+    "color": 8808,
+    "index": 7872
+  },
+  "existingOptionalHearts": {
+    "pool": 5,
+    "geometryAttributesBytes": 120,
+    "canvasTextureRGBABytes": 16384,
+    "newForThisChange": false,
+    "materials": 1,
+    "textures": 1
+  },
+  "deliveredJSBundleBytes": 1529756,
+  "notes": "Geometry union counts each shared attribute/index ArrayBuffer once across all four birds. Excludes JS object/brain/matrix overhead, shader code, GPU driver allocations and any retained texture implementation copies. Optional existing hearts cost is separate. No baseline JS bundle byte claim."
+}

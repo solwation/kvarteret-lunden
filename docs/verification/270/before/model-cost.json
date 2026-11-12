@@ -1,0 +1,54 @@
+[
+  {
+    "female": false,
+    "triangles": 960,
+    "vertices": 810,
+    "attributes": {
+      "position": {
+        "bytes": 9720,
+        "itemSize": 3
+      },
+      "normal": {
+        "bytes": 9720,
+        "itemSize": 3
+      },
+      "color": {
+        "bytes": 9720,
+        "itemSize": 3
+      }
+    },
+    "indexBytes": 5760,
+    "rawBytes": 34920,
+    "bill": {
+      "z": 0.5541267991065979,
+      "y": 0.5800000131130219,
+      "halfY": 0.010815590620040894
+    }
+  },
+  {
+    "female": true,
+    "triangles": 896,
+    "vertices": 756,
+    "attributes": {
+      "position": {
+        "bytes": 9072,
+        "itemSize": 3
+      },
+      "normal": {
+        "bytes": 9072,
+        "itemSize": 3
+      },
+      "color": {
+        "bytes": 9072,
+        "itemSize": 3
+      }
+    },
+    "indexBytes": 5376,
+    "rawBytes": 32592,
+    "bill": {
+      "z": 0.5541267991065979,
+      "y": 0.5800000131130219,
+      "halfY": 0.010815590620040894
+    }
+  }
+]

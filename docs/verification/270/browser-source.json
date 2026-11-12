@@ -1,0 +1,11 @@
+{
+  "src/duckmodel.js": "b98fca1b4595546183d6b8cf693bfaeaac59d7cc0953046f25a2531a50424b9f",
+  "src/config.js": "c687859fd05154e0913057828c7d2b51e017759fbf51927e8ee2d7a3dcd7f92d",
+  "src/ducks.js": "ac063f5a0102ca0cb834d548ab1058f808fcb2510c965769c0cf8205a11f6cfa",
+  "src/duckbrain.js": "7fa80b7769cbae8bca83db69a9520e4ff9ee14e393c8028876359446ac651f84",
+  "src/duckkiss.js": "4a42a915a5780312f19be6e0837f99640d55505a6628398acce4f3334b1fee51",
+  "src/duckhabitat.js": "b4e7e601f687fa9ac439b8c00522ecbf58479cf12c4dc44efab1587f0ecb16f8",
+  "tools/ducksurface270-check.mjs": "5962a88bfaaf64ceb08e8bd9108b4b44eed2aae5fd9d573944655f19c9a0b34e",
+  "tools/duckappearance.html": "5b3a37a266bdebf0b7fc43ae4fbaea23f74a1bbc20882bd8e40a78ab7112e3d9",
+  "tools/fixtures/duckmodel-270-before.js": "18eca187124131ae4baf96c6e62449fdc56e9b39da991634b20a076576d52f7d"
+}

@@ -1,0 +1,4 @@
+browsertest: waiting for /home/devcontainers/.local/state/orkester/browser.lock (another browser test is running)
+browsertest: no systemd user scope here, running without a memory ceiling
+PREVIEW_READY: whole front/side/quarter + actual river-normal before/after
+PASS actual public ducks, matched poses/pixels, water/land/contact/return/budgets/gates/isolation

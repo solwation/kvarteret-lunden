@@ -1,5 +1,22 @@
 # Förbättringar från originalet
 
+## Sammanhängande neutrala gräsandsytor, #270
+
+Selektiv originalkälla `a963287ffaacad8fa405f91c086752255aefcb2d` (#1921).
+Enbart de neutrala loftytorna för kropp/hals/huvud/näbb, låga vingar/stjärt,
+simfötter och vertexfärgad könsdräkt anpassas till publicens egen `duckModel`.
+Nya visuella antaganden och tätheter ligger i `DUCK_SURFACE`; gamla `DUCKS`,
+fyra anonyma ankor, passiva par/seed/mark/vatten/gång/pussankare och culling är orörda.
+Originalets rigg/skin/mixer, GLB/loader, pärm/cache (#1931), spelinteraktion,
+ljud, namn/bilder, lagring och Cloudflare/tjänster/historik är bortvalda.
+
+Fyra kroppar är fortsatt fyra draws med två delade könsgeometrier/ett material.
+#266:s historiska 3 712 trianglar blir 5 248 (+1 536); unionen av kvarhållna rågeometribuffertar
+är 68 592 B (tidigare 67 512 B, +1 080 B/1,60 %). Exakta befintliga Float32-näbbankare består.
+Inga nya assets, texturer eller ljus tillkommer. Befintlig källattribution och
+Three.js MIT-licens i THIRD_PARTY_LICENSES.txt bevaras; inga nya externa licenser.
+[Egna hela former, faktisk å-/land-/kontakt-/returvy, kostnader och isolering](verification/270/README.md).
+
 ## Neutral sammanhängande kattform, #268
 
 Selektiv källa `8e226fa183ade3ccc1bfb638427bc75e2120d7b6`

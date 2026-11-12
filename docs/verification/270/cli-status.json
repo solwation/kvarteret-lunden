@@ -1,0 +1,9 @@
+{
+  "npmTest": 0,
+  "npmBuild": 0,
+  "nativeDuckAmbientTest": 0,
+  "actualSourcePublicBrowserWrapper": 0,
+  "boundedActualDucksWarmComponentWrapper": 0,
+  "initialDistFixtureImportAttempt": 1,
+  "notes": "Actual command exit statuses observed by exec, not inferred from JSON assertions. Initial dist fixture import failed before the baseline comparison because bundled HTML has no import map; final source entry uses its normal import map. No product change for that harness assumption."
+}

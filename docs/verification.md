@@ -3059,3 +3059,17 @@ använder den byggda riktiga visningen i `dist/` för ankomst, regnskydd och vin
 en redan delad geometri med instansantalet och använder den låsta3000tri-gränsen.
 Den äldre breda tiominuterskedjan behövde inte upprepas för detta ytrecept.
 [Exakta källor, bilder, kommandon, gränser och resultat](verification/269/README.md).
+
+
+## Sammanhängande generiska gräsandsytor #270
+
+`node --test tools/duckambienttest.mjs` bevarar seedade par, verklig mark/vatten,
+näbbkontakt/retur och offentlig importgräns; enbart det avsiktliga kroppstaket höjs
+från 4 000 till 5 248 trianglar. `tools/ducksurface270-check.mjs BASE OUT` jämför fryst publicföre
+med nuvarande modell i hela front/sida/snedvyer och samma faktiska publika Ducks
+vid naturlig vatten-/land-/näbbkontakt/återgång. Fulla ändliga modell-/kamera-/
+projektionsdata, avsedda pixlar genom verklig ocklusion, 4 draws/5 248 trianglar, dolda/fjärrfrysta
+ankor och nät-/lagringssentineller ingår. `tools/duckcost270-check.mjs BASE OUT`
+mäter 30 varma matchade update/render+finish-sampel i isolerad faktisk fyrflock;
+SwiftShaderdata är inga hårdvaru-FPS-löften. npm test/build är obligatoriska.
+[Exakta källor, resursunion, användbara granskade bilder och begränsningar](verification/270/README.md).
