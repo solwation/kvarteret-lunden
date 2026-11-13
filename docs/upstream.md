@@ -3425,7 +3425,7 @@ kontroll: diff, relativa länkar (`check-links.py`) och motsägelser mot värdre
 
 ## Granskad kärna v0.14.1, #277
 
-Neutral instruktionskälla: original #1941, `aa416377ff60d4ea2b6a5d27ac0a2db70f3cdd27`.
+Neutral instruktionskälla: original #1941, `aa41637787bcb359c31fb563acc3789956ca583d`.
 Kärnan importeras direkt från officiella v0.14.1, `412b663a134cd0198f6ca992f677b34de136cf1b`,
 som publicens egen squashsubtree; ingen originalhistorik/app kopieras. Hela
 v0.14.0..v0.14.1-diffen är granskad: en ren dokumentationsrelease som uppdaterar kärnans
