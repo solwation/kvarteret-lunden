@@ -312,16 +312,24 @@ These follow [COORDINATION.md](shared/COORDINATION.md), not the phase hooks.
 
 ## Shared version and maintenance
 
-Shared release: **v0.14.0**, commit **edb110b8fe5e761fea1d3bdb10b5457e5acacb95**. Imported directly from the official release
-with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git edb110b8fe5e761fea1d3bdb10b5457e5acacb95 --squash`
-in [#275](https://github.com/solwation/kvarteret-lunden/issues/275), matching
-[original #1939](https://github.com/solwation/lunden-3d-apartment/issues/1939).
-The complete [v0.13.1..v0.14.0 diff](https://github.com/solwation/dirigenten-och-orkestern/compare/78fb119b8b37e645a303f40b86551815fd5e095b...edb110b8fe5e761fea1d3bdb10b5457e5acacb95)
-was reviewed: a one-time read-only project review when a run starts with nothing
-startable (#69, adopted as the core default above) and a default `workingtree/`
-worktree root (#68, superseded by this host's named ext4 root). Stable releases and
-version tags were checked on 2026-11-13; v0.14.0 resolves to the exact commit above.
-No priority, ownership, publication, timer or issue migration.
+Shared release: **v0.14.1**, commit **412b663a134cd0198f6ca992f677b34de136cf1b**. Imported directly from the official release
+with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git 412b663a134cd0198f6ca992f677b34de136cf1b --squash`
+in [#277](https://github.com/solwation/kvarteret-lunden/issues/277), matching
+[original #1941](https://github.com/solwation/lunden-3d-apartment/issues/1941).
+The complete [v0.14.0..v0.14.1 diff](https://github.com/solwation/dirigenten-och-orkestern/compare/edb110b8fe5e761fea1d3bdb10b5457e5acacb95...412b663a134cd0198f6ca992f677b34de136cf1b)
+was reviewed: a documentation release that brings the core README and its Pages site up
+to date with the core (#70, #71) and makes the release checklist and
+`scripts/check-release.sh` cover both (#72). ORCHESTRA.md, COORDINATION.md, WORKER.md,
+ISSUE-WORKFLOW.md, the Issueflow snapshot and `scripts/prune-worktrees.sh` are unchanged.
+The README's default `workingtree/` root stays superseded by this host's named ext4 root.
+Stable releases and version tags were checked on 2026-11-13; v0.14.1 resolves to the exact
+commit above. No priority, ownership, publication, timer or issue migration.
+The previous v0.14.0 import (`edb110b8fe5e761fea1d3bdb10b5457e5acacb95`) is recorded in
+[#275](https://github.com/solwation/kvarteret-lunden/issues/275) and
+[original #1939](https://github.com/solwation/lunden-3d-apartment/issues/1939): it added the
+one-time read-only project review when a run starts with nothing startable (#69, adopted
+as the core default above) and the default `workingtree/` worktree root (#68, superseded
+by this host's named ext4 root).
 The previous v0.13.1 import (`78fb119b8b37e645a303f40b86551815fd5e095b`) is recorded in
 [#272](https://github.com/solwation/kvarteret-lunden/issues/272) and
 [original #1934](https://github.com/solwation/lunden-3d-apartment/issues/1934).
