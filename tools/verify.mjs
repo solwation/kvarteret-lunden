@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {readdir,readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
 import {build} from 'esbuild';
 // Personal-reference guard. The forbidden words are stored only as SHA-256 hashes of their
 // NFC-normalised, lowercased form, so the public source never spells them out. Like the former
@@ -54,11 +55,29 @@ for(const file of files.filter(f=>f.endsWith('.js'))){
   assert(!hasDeniedWord(source),`Disallowed personal reference in ${file}`);
   assert(!/\bplate:\s*['"`]/.test(source),`Personal name plate text in ${file}`);
 }
-// #276: the personal-reference guard also covers committed text outside src/ (docs, tools, data).
-// .orchestra/shared/** is the vendored upstream core and stays outside this project's guard.
-const textExt=/\.(?:md|txt|json|js|mjs|cjs|html|css|sh|py|ya?ml|csv|svg)$/i;
-const walk=async dir=>{const out=[];for(const entry of await readdir(dir,{withFileTypes:true})){const path=`${dir}/${entry.name}`;if(entry.isDirectory())out.push(...await walk(path));else if(textExt.test(entry.name)&&path!=='tools/private-denylist.txt')out.push(path);}return out;};
-for(const dir of ['docs','tools','data'])for(const path of await walk(dir))assert(!hasDeniedWord(await readFile(path,'utf8')),`Disallowed personal reference in ${path}`);
+// #276, #278: the personal-reference guard covers every committed text file, not only src/*.js.
+// Outside the guard: .orchestra/shared/** (the vendored upstream core), src/vendor/** and
+// THIRD_PARTY_LICENSES.txt (third-party authors must stay named) and package-lock.json
+// (generated; its integrity hashes are random letter runs).
+const textExt=/\.(?:md|txt|json|js|mjs|cjs|html|css|sh|py|ya?ml|csv|svg|webmanifest)$/i;
+const skipDirs=new Set(['.git','node_modules','dist','.orchestra/shared','src/vendor']);
+const skipFiles=new Set(['tools/private-denylist.txt','THIRD_PARTY_LICENSES.txt','package-lock.json']);
+const guarded=path=>textExt.test(path)&&!skipFiles.has(path)&&![...skipDirs].some(dir=>path===dir||path.startsWith(`${dir}/`));
+const walk=async dir=>{const out=[];for(const entry of await readdir(dir||'.',{withFileTypes:true})){const path=dir?`${dir}/${entry.name}`:entry.name;if(entry.isDirectory()){if(!skipDirs.has(path))out.push(...await walk(path));}else out.push(path);}return out;};
+// Committed and not-yet-committed files as git sees them, so ignored local output (artifacts/, dist/)
+// never fails a developer's run; without git (an unpacked archive) fall back to walking the tree.
+const listFiles=async()=>{try{return execFileSync('git',['ls-files','-z','--cached','--others','--exclude-standard'],{encoding:'utf8',stdio:['ignore','pipe','ignore']}).split('\0').filter(Boolean);}catch{return walk('');}};
+// #278: a personal home directory (/home/<name>/, /Users/<name>/, C:\Users\<name>\) names an account and
+// points at a private workspace no reader can reach. Generic container and CI users pass, and so do
+// placeholders (<name>, $HOME, ~), which this pattern never matches.
+const genericHomes=new Set(['devcontainers','runner','user']);
+const personalHome=source=>[...source.matchAll(/(?:\/home\/|\/Users\/|[A-Za-z]:\\+Users\\+)([A-Za-z0-9._-]+)/g)].find(match=>!genericHomes.has(match[1].toLowerCase()));
+for(const path of (await listFiles()).filter(guarded)){
+  let text;
+  try{text=await readFile(path,'utf8');}catch(error){if(error.code==='ENOENT')continue;throw error;} // deleted but not yet committed
+  assert(!hasDeniedWord(text),`Disallowed personal reference in ${path}`);
+  assert(!personalHome(text),`Personal home directory path in ${path}`);
+}
 const result=await build({entryPoints:['src/main.js'],bundle:true,write:false,format:'esm',target:'es2022',metafile:true,logLevel:'silent'});
 for(const file of Object.keys(result.metafile.inputs))assert(!/\/(cloud|ghosts|furniture|stuff|contents|basket|combat|avatar|posters|drawing|leaderboard|streetlife|cheats)\.js$/.test(file),`Disallowed import ${file}`);
 const plan=JSON.parse(await readFile('data/plan.json','utf8'));

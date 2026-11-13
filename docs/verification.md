@@ -50,7 +50,7 @@ Denna import innehåller områdesgeometri, fast inredning, garderober utan inneh
 
 ## Kontroller
 
-- `npm test`: granskar källfilerna för personliga namn, originalets tjänster och lagringsanrop; kontrollerar importkedjan och planunderlaget. Namnen lagras bara som SHA-256-hashar av normaliserade ord (även delord i identifierare fångas); fler ord kan läggas lokalt i den ej incheckade `tools/private-denylist.txt`, ett per rad.
+- `npm test`: granskar källfilerna för personliga namn, originalets tjänster och lagringsanrop; kontrollerar importkedjan och planunderlaget. Namnen lagras bara som SHA-256-hashar av normaliserade ord (även delord i identifierare fångas); fler ord kan läggas lokalt i den ej incheckade `tools/private-denylist.txt`, ett per rad. Namnvakten går över alla textfiler som git känner till (även rotfiler, `.claude/`, `.orchestra/project.md` och `artifacts/`), utom den vendorerade kärnan `.orchestra/shared/`, `src/vendor/`, `THIRD_PARTY_LICENSES.txt` och `package-lock.json`. Samma filer får inte innehålla personliga hemkataloger (`/home/<namn>/`, `/Users/<namn>/`, `C:\Users\<namn>\`); skriv `~/…` eller en platshållare. Generiska container-/CI-användare (`devcontainers`, `runner`, `user`) godtas (#278).
 - `npm run build`: paketerar en statisk visning med lokalt Three.js. Publiceringen behöver inga externa skript, Workers eller backend.
 - `tools/browser-check.mjs`: startar den faktiska publiceringsbyggnaden i Chromium med WebGL, kontrollerar förflyttning, dörranimation, E-interaktion, giltig mark vid alla fem platsval, hjälp och mätläge. Testar mobil layout och styrreglagets verkliga touchinmatning inklusive avbrott, dödzon och responskurva samt den utjämnade titta-dragningens totala vridning via CDP.
 - Webbläsartestet lägger in markörer under originalets lagringsnycklar och kontrollerar att de finns kvar och att inga nya lokala nycklar tillkommer. Försöker även ange gamla `cloud`- och `sync`-parametrar; de används inte av visningen.
@@ -338,7 +338,7 @@ Grov-grid-kandidaten underkändes för sjunkna mittpunkter; den slutliga opt-in
 surfaceGrid() använder terrängens riktiga undertrianglar. Andra grid-konsumenter bevaras.
 
 Efter återställningen sparas nya råloggar och bilder beständigt under
-`/home/olw/.local/state/lunden-orkester/codex-surface-20261020/public105-recovery`.
+`~/.local/state/lunden-orkester/codex-surface-20261020/public105-recovery` (privat arbetsyta utanför repot).
 `native16.log`, `npm-test.log`, `build.log` och `final/desktop.json`/`mobile.json`
 är återkörda slutbevis. Ett första serverförsök gav endast connection-refused;
 `world-retry.log` innehåller den riktiga körning som upptäckte #107:s ändrade nordbas.

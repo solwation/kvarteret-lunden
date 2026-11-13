@@ -1821,7 +1821,7 @@ Båda avkodade bildpar är pixelidentiska, utan browserfel eller externa anrop. 
 (`siteinstancebatchtest.mjs`, befintliga `tightfrustumtest.mjs`), `npm test` och `npm run build`
 passerar. En tidig kandidat tappade diagnostikreferensen före appstart; den stoppades före
 publicering och den färdiga byggda omkörningen är grön. Det är en ritanropsmätning, inte FPS
-på fysisk enhet. Råunderlag bevaras i `/home/olw/.local/state/lunden-issue1459-20261022/public-release/`.
+på fysisk enhet. Råunderlag bevaras i en privat arbetsyta utanför repot (`~/.local/state/lunden-issue1459-20261022/public-release/`).
 
 ## Begränsad callback-diagnostik (#140)
 
