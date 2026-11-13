@@ -25,8 +25,8 @@ originalbilder, personresurser, spelmoduler, tjänster, lagring eller git-histor
 Kör från projektroten med egen server på 8941:
 
 ```
-BROWSERTEST_LOCK=/tmp/lunden-intake-20261102/browser.lock BROWSERTEST_TIMEOUT=5m CHROME_PATH=/home/olof/.cache/ms-playwright/chromium-1248/chrome-linux64/chrome /tmp/lunden-orchestra-20261102/tools/browsertest.sh node tools/roadends-view-check.mjs http://localhost:8941 docs/verification/230 before
-BROWSERTEST_LOCK=/tmp/lunden-intake-20261102/browser.lock BROWSERTEST_TIMEOUT=5m CHROME_PATH=/home/olof/.cache/ms-playwright/chromium-1248/chrome-linux64/chrome /tmp/lunden-orchestra-20261102/tools/browsertest.sh node tools/roadends-view-check.mjs http://localhost:8941/dist docs/verification/230 after
+BROWSERTEST_LOCK=<state-dir>/browser.lock BROWSERTEST_TIMEOUT=5m CHROME_PATH=<playwright-chromium> <checkout>/tools/browsertest.sh node tools/roadends-view-check.mjs http://localhost:8941 docs/verification/230 before
+BROWSERTEST_LOCK=<state-dir>/browser.lock BROWSERTEST_TIMEOUT=5m CHROME_PATH=<playwright-chromium> <checkout>/tools/browsertest.sh node tools/roadends-view-check.mjs http://localhost:8941/dist docs/verification/230 after
 ```
 
 Egna bilder tagna och granskade vid 1280×800, juni, samma kamera

@@ -48,8 +48,8 @@ alla fyra slutbilder är inspekterade. Inga ogiltiga bilder används som resulta
 Kommandon från projektroten med egen källserver på8944:
 
 ```
-BROWSERTEST_LOCK=/tmp/lunden-intake-20261102/browser.lock BROWSERTEST_TIMEOUT=5m CHROME_PATH=/home/olof/.cache/ms-playwright/chromium-1248/chrome-linux64/chrome /tmp/lunden-orchestra-20261102/tools/browsertest.sh node tools/schoolgrass-check.mjs http://localhost:8944 docs/verification/233 before
-BROWSERTEST_LOCK=/tmp/lunden-intake-20261102/browser.lock BROWSERTEST_TIMEOUT=5m CHROME_PATH=/home/olof/.cache/ms-playwright/chromium-1248/chrome-linux64/chrome /tmp/lunden-orchestra-20261102/tools/browsertest.sh node tools/schoolgrass-check.mjs http://localhost:8944 docs/verification/233 after
+BROWSERTEST_LOCK=<state-dir>/browser.lock BROWSERTEST_TIMEOUT=5m CHROME_PATH=<playwright-chromium> <checkout>/tools/browsertest.sh node tools/schoolgrass-check.mjs http://localhost:8944 docs/verification/233 before
+BROWSERTEST_LOCK=<state-dir>/browser.lock BROWSERTEST_TIMEOUT=5m CHROME_PATH=<playwright-chromium> <checkout>/tools/browsertest.sh node tools/schoolgrass-check.mjs http://localhost:8944 docs/verification/233 after
 ```
 
 Chromium/SwiftShader, ingen fysisk telefon eller hårdvaruprestanda påstås.

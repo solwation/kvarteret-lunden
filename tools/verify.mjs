@@ -54,6 +54,11 @@ for(const file of files.filter(f=>f.endsWith('.js'))){
   assert(!hasDeniedWord(source),`Disallowed personal reference in ${file}`);
   assert(!/\bplate:\s*['"`]/.test(source),`Personal name plate text in ${file}`);
 }
+// #276: the personal-reference guard also covers committed text outside src/ (docs, tools, data).
+// .orchestra/shared/** is the vendored upstream core and stays outside this project's guard.
+const textExt=/\.(?:md|txt|json|js|mjs|cjs|html|css|sh|py|ya?ml|csv|svg)$/i;
+const walk=async dir=>{const out=[];for(const entry of await readdir(dir,{withFileTypes:true})){const path=`${dir}/${entry.name}`;if(entry.isDirectory())out.push(...await walk(path));else if(textExt.test(entry.name)&&path!=='tools/private-denylist.txt')out.push(path);}return out;};
+for(const dir of ['docs','tools','data'])for(const path of await walk(dir))assert(!hasDeniedWord(await readFile(path,'utf8')),`Disallowed personal reference in ${path}`);
 const result=await build({entryPoints:['src/main.js'],bundle:true,write:false,format:'esm',target:'es2022',metafile:true,logLevel:'silent'});
 for(const file of Object.keys(result.metafile.inputs))assert(!/\/(cloud|ghosts|furniture|stuff|contents|basket|combat|avatar|posters|drawing|leaderboard|streetlife|cheats)\.js$/.test(file),`Disallowed import ${file}`);
 const plan=JSON.parse(await readFile('data/plan.json','utf8'));

@@ -29,8 +29,8 @@ Ingen privat Player-kod, djur-/spelmekanik, bild, lagring, tjänst eller git-his
 Kommandon från projektroten, med egen källserver på port8943:
 
 ```
-BROWSERTEST_LOCK=/tmp/lunden-intake-20261102/browser.lock BROWSERTEST_TIMEOUT=5m CHROME_PATH=/home/olof/.cache/ms-playwright/chromium-1248/chrome-linux64/chrome /tmp/lunden-orchestra-20261102/tools/browsertest.sh node tools/westwalk-check.mjs http://localhost:8943 docs/verification/232 before
-BROWSERTEST_LOCK=/tmp/lunden-intake-20261102/browser.lock BROWSERTEST_TIMEOUT=5m CHROME_PATH=/home/olof/.cache/ms-playwright/chromium-1248/chrome-linux64/chrome /tmp/lunden-orchestra-20261102/tools/browsertest.sh node tools/westwalk-check.mjs http://localhost:8943 docs/verification/232 after
+BROWSERTEST_LOCK=<state-dir>/browser.lock BROWSERTEST_TIMEOUT=5m CHROME_PATH=<playwright-chromium> <checkout>/tools/browsertest.sh node tools/westwalk-check.mjs http://localhost:8943 docs/verification/232 before
+BROWSERTEST_LOCK=<state-dir>/browser.lock BROWSERTEST_TIMEOUT=5m CHROME_PATH=<playwright-chromium> <checkout>/tools/browsertest.sh node tools/westwalk-check.mjs http://localhost:8943 docs/verification/232 after
 ```
 
 ## Egna nådd-platsbilder och integrationsgräns
