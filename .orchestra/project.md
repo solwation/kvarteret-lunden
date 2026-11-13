@@ -71,7 +71,8 @@ source `0931b84de82b48e1e435843676e4c7908aa551c6`; this public adaptation is #25
 | Queue poll | Every 300 seconds during active work and idle; also before every new selection |
 | Wait mechanism | Interactive Claude Code: a background timer (Bash `run_in_background` with `sleep`, at most 60 s per wait) or Monitor; a finishing worker or user message also wakes the conductor. A runtime that cannot wait (`claude -p`, one-shot cloud runs) runs a bounded pass and says that no poll or idle watch ran |
 | Delivery mode | Direct to `main`, no PRs or feature branches ([workspace and delivery](#workspace-and-delivery)) |
-| Idle watch | 60 minutes after latest resolved implementation issue by this session in either repository, else from first idle entry |
+| Project review | Core default ([empty queue at start](shared/COORDINATION.md#review-the-project-on-an-empty-queue)): once per run, read-only, at most 5 findings, delivered by the same run; skipped for a scope naming specific issues |
+| Idle watch | 60 minutes after latest resolved implementation issue by this session in either repository, else from first idle entry (after any project review) |
 | Heartbeat | Swedish issue comment every 30 minutes, first at 25–30; done/current/remaining estimate |
 
 `/orkester` in this project, with or without an argument, starts an explicit queue
@@ -250,7 +251,9 @@ GraphQL; do not assume a failed CLI means GitHub is unavailable. Stop only own p
 preserve uncommitted or unpublished work.
 
 Worktree root and cleanup: session checkouts live in the host's ext4 worktree root
-(for example `~/wt/<repo-short>-<issue>`), never under `/mnt/c`. The integration owner
+(for example `~/wt/<repo-short>-<issue>`), never under `/mnt/c`. This host-named root
+replaces the core's default `workingtree/` root (core v0.14.0); never run `git clean -x`
+in a primary clone. The integration owner
 removes an issue's checkout and work branch after closure; the session review and the
 next startup prune the whole root with
 [`scripts/prune-worktrees.sh`](shared/scripts/prune-worktrees.sh) under the core
@@ -309,15 +312,19 @@ These follow [COORDINATION.md](shared/COORDINATION.md), not the phase hooks.
 
 ## Shared version and maintenance
 
-Shared release: **v0.13.1**, commit **78fb119b8b37e645a303f40b86551815fd5e095b**. Imported directly from the official release
-with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git 78fb119b8b37e645a303f40b86551815fd5e095b --squash`
-in [#272](https://github.com/solwation/kvarteret-lunden/issues/272), matching
+Shared release: **v0.14.0**, commit **edb110b8fe5e761fea1d3bdb10b5457e5acacb95**. Imported directly from the official release
+with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git edb110b8fe5e761fea1d3bdb10b5457e5acacb95 --squash`
+in [#275](https://github.com/solwation/kvarteret-lunden/issues/275), matching
+[original #1939](https://github.com/solwation/lunden-3d-apartment/issues/1939).
+The complete [v0.13.1..v0.14.0 diff](https://github.com/solwation/dirigenten-och-orkestern/compare/78fb119b8b37e645a303f40b86551815fd5e095b...edb110b8fe5e761fea1d3bdb10b5457e5acacb95)
+was reviewed: a one-time read-only project review when a run starts with nothing
+startable (#69, adopted as the core default above) and a default `workingtree/`
+worktree root (#68, superseded by this host's named ext4 root). Stable releases and
+version tags were checked on 2026-11-13; v0.14.0 resolves to the exact commit above.
+No priority, ownership, publication, timer or issue migration.
+The previous v0.13.1 import (`78fb119b8b37e645a303f40b86551815fd5e095b`) is recorded in
+[#272](https://github.com/solwation/kvarteret-lunden/issues/272) and
 [original #1934](https://github.com/solwation/lunden-3d-apartment/issues/1934).
-The complete [v0.12.0..v0.13.1 diff](https://github.com/solwation/dirigenten-och-orkestern/compare/9e7c6e388df0ebdd25c0ba76d3debc73de3c41fa...78fb119b8b37e645a303f40b86551815fd5e095b)
-was reviewed: private-image/dashboard token permissions (#65), dynamic capacity
-and integration-throughput guidance (#66), and automatic issue intake under the
-host's documented mode (#67). Both official stable releases and version tags were
-checked on 2026-11-12; v0.13.1 resolves to the exact commit above.
 
 This host chooses the queue-session intake mode above; explicit scope, single-task
 mode, deferral and stop take precedence. Local capacity adaptation is tracked in

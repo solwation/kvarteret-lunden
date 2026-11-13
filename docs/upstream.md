@@ -3410,3 +3410,15 @@ inte en fast siffra i denna releasebeskrivning. Generiska privata bildbehörighe
 ändrar inga publicerings-/innehållsgränser; inga persondata, gameplay, originalets
 lagring eller tjänster införs. Dokumentarbete utan browser/produktbild/changelog.
 [Exakt import, länkar, scenarier och verifiering](verification/272/README.md).
+
+## Granskad kärna v0.14.0, #275
+
+Neutral instruktionskälla: original #1939, `8583834301629c02f676e20f2bd2c4a944ca61a6`.
+Kärnan importeras direkt från officiella v0.14.0, `edb110b8fe5e761fea1d3bdb10b5457e5acacb95`,
+som publicens egen squashsubtree; ingen originalhistorik/app kopieras. Hela
+v0.13.1..v0.14.0-diffen är granskad: en engångs, läs-endast projektgranskning när en
+körning startar utan startbart arbete (#69, kärnans standard med högst 5 fynd som samma
+körning levererar) och standardroten `workingtree/` för worktrees (#68), som här ersätts
+av värdens namngivna ext4-rot. Köordning, prioritet low, ägarskap, timers och
+publiceringsgränser är oförändrade. Dokumentarbete utan browser/produktbild/changelog;
+kontroll: diff, relativa länkar (`check-links.py`) och motsägelser mot värdreglerna.

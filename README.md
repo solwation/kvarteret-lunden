@@ -270,7 +270,7 @@ Med `?perf` kan långa bildintervall mätas lokalt och exporteras utan en teleme
 
 `/orkester` använder den modelloberoende kärnan i
 [dirigenten-och-orkestern](https://github.com/solwation/dirigenten-och-orkestern),
-versionslåst till **v0.13.1** (`78fb119b8b37e645a303f40b86551815fd5e095b`) som Git subtree i `.orchestra/shared`. Vanlig kloning räcker.
+versionslåst till **v0.14.0** (`edb110b8fe5e761fea1d3bdb10b5457e5acacb95`) som Git subtree i `.orchestra/shared`. Vanlig kloning räcker.
 En ändringsönskan skapar eller uppdaterar motsvarande ärende. När agenten registrerar
 eller lägger till ett arbetsärende startas värdens kösession om ingen orkester kör,
 även efter avslutad tomgångsvakt; annars återanvänds den aktiva dirigenten.
