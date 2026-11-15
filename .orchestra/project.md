@@ -312,18 +312,26 @@ These follow [COORDINATION.md](shared/COORDINATION.md), not the phase hooks.
 
 ## Shared version and maintenance
 
-Shared release: **v0.14.1**, commit **412b663a134cd0198f6ca992f677b34de136cf1b**. Imported directly from the official release
-with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git 412b663a134cd0198f6ca992f677b34de136cf1b --squash`
-in [#277](https://github.com/solwation/kvarteret-lunden/issues/277), matching
-[original #1941](https://github.com/solwation/lunden-3d-apartment/issues/1941).
-The complete [v0.14.0..v0.14.1 diff](https://github.com/solwation/dirigenten-och-orkestern/compare/edb110b8fe5e761fea1d3bdb10b5457e5acacb95...412b663a134cd0198f6ca992f677b34de136cf1b)
-was reviewed: a documentation release that brings the core README and its Pages site up
-to date with the core (#70, #71) and makes the release checklist and
-`scripts/check-release.sh` cover both (#72). ORCHESTRA.md, COORDINATION.md, WORKER.md,
-ISSUE-WORKFLOW.md, the Issueflow snapshot and `scripts/prune-worktrees.sh` are unchanged.
-The README's default `workingtree/` root stays superseded by this host's named ext4 root.
-Stable releases and version tags were checked on 2026-11-13; v0.14.1 resolves to the exact
+Shared release: **v0.14.3**, commit **524cfb22db1cea96bf11028c0207348567fb61da**. Imported directly from the official release
+with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git 524cfb22db1cea96bf11028c0207348567fb61da --squash`
+in [#281](https://github.com/solwation/kvarteret-lunden/issues/281), matching
+[original #1955](https://github.com/solwation/lunden-3d-apartment/issues/1955).
+The complete [v0.14.1..v0.14.3 diff](https://github.com/solwation/dirigenten-och-orkestern/compare/412b663a134cd0198f6ca992f677b34de136cf1b...524cfb22db1cea96bf11028c0207348567fb61da)
+was reviewed: `scripts/prune-worktrees.sh` now treats a one-digit issue number ending a
+branch name as an issue reference (#73) and deletes the branch of an integrated worktree
+whose commits reached main as patches, as this host's direct-to-main delivery produces
+(#79); release-check tests, a consumer-inert `AGENTS.md`, `.claude/worktrees/` in the
+core's ignore list and Pages/INSTALL documentation (#74–#78). ORCHESTRA.md,
+COORDINATION.md, WORKER.md, ISSUE-WORKFLOW.md and the Issueflow snapshot are unchanged.
+This host's root `.gitignore` now also ignores `.claude/worktrees/`, where the Agent tool
+creates worker checkouts; they stay where the platform puts them and are pruned with the
+same script alongside the host's named ext4 root.
+Stable releases and version tags were checked on 2026-11-15; v0.14.3 resolves to the exact
 commit above. No priority, ownership, publication, timer or issue migration.
+The previous v0.14.1 import (`412b663a134cd0198f6ca992f677b34de136cf1b`) is recorded in
+[#277](https://github.com/solwation/kvarteret-lunden/issues/277) and
+[original #1941](https://github.com/solwation/lunden-3d-apartment/issues/1941): a
+documentation release for the core README and Pages site (#70–#72).
 The previous v0.14.0 import (`edb110b8fe5e761fea1d3bdb10b5457e5acacb95`) is recorded in
 [#275](https://github.com/solwation/kvarteret-lunden/issues/275) and
 [original #1939](https://github.com/solwation/lunden-3d-apartment/issues/1939): it added the

@@ -2,3 +2,4 @@ node_modules/
 dist/
 artifacts/
 tools/private-denylist.txt
+.claude/worktrees/
