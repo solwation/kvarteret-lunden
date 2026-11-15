@@ -3587,6 +3587,16 @@ export const OUTDOOR_CATS = {
 
 // Public #280 (reviewed import of original #1952, 661ba70f): pale flecks and an occasional leaf drifting downstream on Höje å, so the
 // water is seen to flow (src/riverdrift.js the pure rules, src/riverdriftview.js the mesh). Passive scenery; every value is a visual *guess*.
+// #282 (original #1956): water lilies on Höje å (src/riverflora.js places them, src/riverfloraview.js draws them). Everything is
+// *guess*: no survey of the river's plants. `ends`: m kept clear at both ends of the line; `range`: m up / downstream of the eye that is
+// filled in; `drawDist`: m from the centre line within which anything is drawn. A cluster every `every` m with chance `chance`, `pads`
+// leaves within `spread` m, radius `r`, between `bank` (shares of the half width) from the centre line; a `flower` share of the leaves
+// carries one. Leaves in the months `months`, flowers in `bloom`.
+export const RIVER_FLORA = {
+  seed: 1956, ends: 12, range: 55, drawDist: 80,
+  lilies: { every: 24, chance: 0.65, pads: [4, 9], spread: 2.2, r: [0.11, 0.2], bank: [0.45, 0.85], flower: 0.3, lift: 0.012, months: [5, 9], bloom: [6, 8],
+    pad: 0x3d7a35, petal: 0xf6f3ea, heart: 0xe8c23a },
+};
 export const RIVER_DRIFT = {
   speed: 0.35, // m/s downstream (*guess*: the original's assumed current; no measured flow)
   path: { step: 1, smooth: 5 }, // the centre line resampled every `step` m with its corners rounded over +-`smooth` m (*guess*: a 90° bend is cut by ~1.7 m)

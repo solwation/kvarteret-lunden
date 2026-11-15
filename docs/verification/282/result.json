@@ -1,0 +1,51 @@
+{
+ "leaves": {
+  "count": 92,
+  "flowers": 28,
+  "bad": []
+ },
+ "far": {
+  "riverDistance": 117.06820746897937,
+  "shown": false,
+  "calls": {
+   "on": 154,
+   "off": 154,
+   "delta": 0
+  }
+ },
+ "bank": {
+  "station": 70.64658233020492,
+  "cluster": 9,
+  "eye": [
+   274.31854821834105,
+   -3.864980586610151,
+   47.655531942485496
+  ],
+  "july": true,
+  "drawn": {
+   "lilies": 13,
+   "flowers": 5
+  },
+  "calls": {
+   "july": 2,
+   "may": 1,
+   "january": 0,
+   "hidden": 0
+  },
+  "may": true,
+  "jan": false,
+  "hid": false
+ },
+ "storage": {
+  "local": [],
+  "session": []
+ },
+ "noflora": {
+  "built": false,
+  "meshes": [
+   false,
+   false
+  ]
+ },
+ "ok": true
+}

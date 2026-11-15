@@ -1,5 +1,31 @@
 # Förbättringar från originalet
 
+## Näckrosor på Höje å, #282
+
+Selektiv källa `e311a070b0278c7d4851a5f54e19e732f76d1ddc`
+([original #1956](https://github.com/solwation/lunden-3d-apartment/issues/1956)).
+Överfört och anpassat: näckrosdelen av de rena placeringsreglerna som `lilyLayout`,
+`floraWindow` och `floraSeason` i `src/riverflora.js` med nodtestet
+`src/riverflora.test.mjs`, blad- och blomgeometrin samt en egen klass `RiverLilies` i
+`src/riverfloraview.js`, gruppen `RIVER_FLORA` (bara `lilies`) i `src/config.js` och en
+kroklinje i `src/main.js`: `riverLilies?.update(camera.position, navigation.below, floraMonth)`.
+`?noflora` följer publicens `debugParams`-mönster. Scenen är sommar om inte `?month=`
+anger annat, så bladen syns maj–september och blommorna juni–augusti enligt den månaden.
+
+Beroenden granskade mot publicens kod: `driftRiver()` (mittlinje, vattenlinje, pelarhinder)
+och `driftHash` finns redan från #280; inga nya exporter eller ådata behövdes. Originalets
+`swimBedY`/`swimWater` används inte: bladen läggs på vattenlinjen inom den öppna fåran och
+kontrolleras mot den ritade marken i `tools/riverflora-check.mjs`.
+
+Bortvalt: stenar och vattenväxter på botten, näckrosornas stjälkar och växternas vajande
+shader (syns bara för en dykare), simning, dykning och all annan spelinteraktion,
+originalets `tools/riverfloratest.cjs` med testkit/spelarstyrning, changelog och historik.
+Art, antal, storlek och färg är visuella antaganden (*guess*).
+
+Högst två extra ritanrop inom 80 m från åns mittlinje och inget längre bort eller under
+november–april: två instansierade nät (blad ~12 trianglar, blomma ~50), ingen textur,
+inget ljus, ingen skugga, ingen nedladdad resurs. Ingen lagring eller nätverksåtkomst.
+
 ## Drivande fläckar på Höje å, #280
 
 Selektiv källa `661ba70f06c0faac9fb6768a32877d42c44fc147`

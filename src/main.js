@@ -21,6 +21,7 @@ import { OutdoorCats } from './outdoorcats.js';
 
 import { RiverFish } from './riverfish.js';
 import { RiverDriftSurface } from './riverdriftview.js'; // #280: flecks drifting downstream on Höje å
+import { RiverLilies } from './riverfloraview.js'; // #282: water lilies near the banks of Höje å
 
 import { Squirrels } from './squirrels.js';
 import { Paddock } from './paddock.js';
@@ -36,7 +37,7 @@ const $ = id => document.getElementById(id);
 const touch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
 document.body.classList.toggle('touch', touch);
 const touchLayout = setupTouchLayout({enabled: touch}); // own button/stick layout from the help dialog (#30, upstream 1af9b39)
-let renderer, camera, scene, world, navigation, core, garage, paddock, ducks, ambientCats, ambientFish, riverDrift, squirrels, ambientBalloon;
+let renderer, camera, scene, world, navigation, core, garage, paddock, ducks, ambientCats, ambientFish, riverDrift, riverLilies, floraMonth = 7, squirrels, ambientBalloon;
 const debugParams = new URLSearchParams(location.search), paddockRain = Math.max(0, Math.min(1, Number(debugParams.get('paddockrain')) || 0));
 let active = false, ready = false, focus = null, measuring = false, firstPoint = null;
 const intervals = debugParams.has('perf') ? new FrameIntervals() : null;
@@ -197,11 +198,12 @@ async function init() {
 
   ambientFish = debugParams.has('noriverfish') ? null : new RiverFish({scene,camera});
   riverDrift = debugParams.has('nodrift') ? null : new RiverDriftSurface({scene}); // #280: one draw call, only near the river
+  riverLilies = debugParams.has('noflora') ? null : new RiverLilies({scene}); // #282: at most two draw calls, only near the river
 
   squirrels = new Squirrels({scene,camera,feet:treeFeet,crowns:aoTrees,southFeet:southTreeFeet,ground:renderedTerrainY});
 
   ambientBalloon = new Balloon({scene});
-  const debugMonth = Number(debugParams.get('month')); if (debugMonth >= 1 && debugMonth <= 12) applySeason(Math.round(debugMonth)); // debug: show a month's season (snow months: white ground, ponies in the stable)
+  const debugMonth = Number(debugParams.get('month')); if (debugMonth >= 1 && debugMonth <= 12) { applySeason(Math.round(debugMonth)); floraMonth = Math.round(debugMonth); } // debug: show a month's season (snow months: white ground, ponies in the stable)
   await loadingStep('Bygger trapphus och garage', 0.82);
   garage = world.garage = new Garage();
   for (const o of [garage.object, garage.blackout, garage.door?.object, garage.parkObject]) if (o) scene.add(o);
@@ -243,7 +245,7 @@ async function init() {
   $('place-toggle').disabled = false;
   // Keep model access local for diagnostics, without a service connection.
   const siteInstances = lowMemory ? null : installSiteInstanceBatch(renderer, scene);
-  window.lundenViewer = {startupCache,intervals, colorFrustum, siteInstances, phoneFrustum, paddock, ducks, ambientCats, ambientFish, riverDrift, squirrels, ambientBalloon, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
+  window.lundenViewer = {startupCache,intervals, colorFrustum, siteInstances, phoneFrustum, paddock, ducks, ambientCats, ambientFish, riverDrift, riverLilies, squirrels, ambientBalloon, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
   window.kvarteretStartup?.finish();
   $('start').disabled = false; $('start').textContent = 'Börja utforska →';
   status('Dator och mobil · Ingen inloggning');
@@ -298,6 +300,7 @@ function frame() {
 
   ambientFish?.update(dt, navigation.below || navigation.inCore || !navigation.outdoors);
   riverDrift?.update(dt, camera.position, navigation.below); // #280
+  riverLilies?.update(camera.position, navigation.below, floraMonth); // #282 (the scene is summer unless ?month= says otherwise)
 
   squirrels.update(dt,navigation.below);
 

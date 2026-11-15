@@ -18,6 +18,16 @@ konkret materiell risk; ta bara om felaktiga kamerapositioner. Befintliga snabba
 `npm test`/bygge och automatisk Pages-status kvarstår; dokument kräver ingen ny
 livebrowserkontroll av oförändrad app.
 
+## Näckrosor på Höje å, #282
+
+`node --test src/riverflora.test.mjs` kontrollerar de rena reglerna: samma blad varje gång,
+inom fåran och fria från ändarna, inga överlappande blad, inget där en pelare står, fönster
+och säsonger. `node tools/riverflora-check.mjs http://localhost:8160 docs/verification/282`
+körs mot källkoden på lokal server och kontrollerar den faktiska appen: varje blad längs hela
+ån ligger på vattenlinjen i öppet vatten under den ritade marken och utanför bropelarna, +0
+ritanrop på gården, exakt +2 vid en klunga i juli, +1 i maj, 0 i januari och under mark,
+`?noflora` samt nät-/lagringsisolering. [Resultat och bild](verification/282/result.json).
+
 ## Drivande fläckar på Höje å, #280
 
 `node --test src/riverdrift.test.mjs` kontrollerar de rena reglerna mot publicens ådata:
