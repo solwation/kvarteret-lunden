@@ -1,5 +1,32 @@
 # Förbättringar från originalet
 
+## Drivande fläckar på Höje å, #280
+
+Selektiv källa `661ba70f06c0faac9fb6768a32877d42c44fc147`
+([original #1952](https://github.com/solwation/lunden-3d-apartment/issues/1952)).
+Överfört och anpassat: de rena reglerna `src/riverdrift.js` med nodtestet
+`src/riverdrift.test.mjs`, ytdelen `RiverDriftSurface` med `driftRiver`/`dotTexture`
+i `src/riverdriftview.js`, gruppen `RIVER_DRIFT` i `src/config.js` och en egen
+kroklinje i `src/main.js`: `riverDrift?.update(dt, camera.position, navigation.below)`.
+`?nodrift` följer publicens befintliga `debugParams`-mönster.
+
+Beroenden granskade mot publicens kod: `SITE.river` (`upstream.boundary`, `widths`,
+`path`, `downstream.path`), `riverPath`, `waterYAt` och `pierBoxes` i
+`src/riverbridge.js` finns redan med samma form; inga nya exporter eller ådata behövdes.
+Farten är literalen 0,35 m/s i stället för originalets simström; fart, antal, storlek,
+färg, kantmarginal och pelaravstånd är fortsatt visuella antaganden (*guess*).
+
+Bortvalt: `RiverDriftUnder` och `RIVER_DRIFT.under` (undervattensdelen), hjälparen
+`driftDepth`, simning, dykning, musslor, fiskmatning, haj och all annan spelinteraktion,
+originalets `tools/riverdrifttest.cjs` med testkit/spelarstyrning samt lagring,
+Cloudflare/tjänster, changelog och historik. Publicen har ingen besökarchangelog.
+
+Högst ett extra ritanrop inom 75 m från åns mittlinje och inget längre bort: ett nät
+med 300 platta fyrhörningar (600 trianglar), en genererad 32 px-textur, inget ljus,
+ingen skugga och ingen nedladdad resurs. Ingen lagring eller nätverksåtkomst.
+Befintlig attribution och Three.js MIT-licens bevaras; inga nya externa licenser.
+[Egna bilder, uppmätta värden och begränsningar](verification/280/README.md).
+
 ## Sex passiva åfiskformer i en instansbatch, #274
 
 Selektiv neutral livekälla `8743e7d07e6a2e6b743710f27bd06d6027bd287d` (original #1922).

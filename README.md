@@ -49,6 +49,8 @@ Gräsänderna har tydliga hoplagda vingar, mindre ögon och hanens vita halsring
 
 Fyra anonyma ankor simmar och går vid Höje å som två stabila hona–hane-par (#235/#244). Kropp, hals och huvud har sammanhängande profiler, med låga vikta vingar och tydligare simfötter (#270). Honorna leder, paren kan bilda en tillfällig grupp och röra sig längs ett större åstråk. Ett synligt par kan ibland stanna för en kort näbbpuss med små hjärtan och sedan fortsätta. De är enbart miljö utan ljud eller spelarinteraktion; placering, storlek och beteende är visuella antaganden.
 
+På Höje ås yta driver små bleka fläckar och enstaka löv sakta nedströms, så att det syns åt vilket håll vattnet rinner (#280). De följer den synliga åfåran runt krökar och bropelare, är enbart miljö och ritas bara nära ån. Fart, antal, storlek och färg är visuella antaganden, inte uppmätt flöde. `?nodrift` stänger av dem.
+
 I Höje å syns passiva fiskar och ringar när de går upp till ytan (#238). Rörelsen följer ett fast lokalt seed och besökarens klocka; inget fiske eller klickmål finns. Fiskarna följer visningens egna vatten- och bottenhöjder, ritas inom 45 meter och kan döljas med `?noriverfish`. Antal, arter, storlek och rörelse är visuella antaganden.
 
 Fyra anonyma ekorrar hoppar mellan trädkronor, klättrar och letar på marken vid ån, hagen och en sydlig lund (#237). De är enbart miljö, utan nötter, matning eller interaktion, och döljs vintertid. Den sammanhängande kroppen, smalare ansiktet och böjda svansplymen (#271) behåller samma passiva rörelser och en mesh per djur.

@@ -1,0 +1,86 @@
+{
+  "far": {
+    "eye": [
+      -20,
+      1.6,
+      10
+    ],
+    "riverDistance": 117.06820746897937,
+    "shown": false,
+    "visible": false,
+    "calls": {
+      "withMesh": 154,
+      "without": 154,
+      "delta": 0
+    }
+  },
+  "hidden": {
+    "shown": false,
+    "visible": false
+  },
+  "bank": {
+    "station": 430,
+    "eye": [
+      -47.88301817110656,
+      -4.076893499143207,
+      145.6729795406075
+    ],
+    "calls": {
+      "on": 34,
+      "off": 33,
+      "delta": 1
+    },
+    "visibleFlecks": 292,
+    "tracked": 278,
+    "seconds": 3.9999999999999907,
+    "meanDownstream": 0.3483630172771,
+    "min": 0.326832759319428,
+    "max": 0.36860872417052587,
+    "meanAcross": 0.01504919574398493,
+    "speed": 0.35
+  },
+  "whole": {
+    "stations": 69,
+    "drawn": 19563,
+    "offChannel": [],
+    "overGround": [],
+    "pier": [],
+    "underDeck": 343,
+    "bends": 1129,
+    "lift": [
+      0.01400052795984319,
+      0.01564773959483201
+    ],
+    "edge": 0.6104481350312163,
+    "offChannelN": 0,
+    "overGroundN": 0,
+    "pathLength": 817
+  },
+  "bridge": {
+    "eye": [
+      28.09971524934498,
+      -1.4,
+      121.8060931765585
+    ],
+    "overWater": 5.6,
+    "shown": true,
+    "calls": {
+      "on": 42,
+      "off": 41,
+      "delta": 1
+    }
+  },
+  "isolation": {
+    "errors": [],
+    "external": [],
+    "storage": {
+      "local": [],
+      "session": []
+    }
+  },
+  "nodrift": {
+    "riverDrift": null,
+    "inScene": false
+  },
+  "ok": true
+}

@@ -3585,6 +3585,21 @@ export const OUTDOOR_CATS = {
  ].map(c=>({...c,vary:true})),
 };
 
+// Public #280 (reviewed import of original #1952, 661ba70f): pale flecks and an occasional leaf drifting downstream on Höje å, so the
+// water is seen to flow (src/riverdrift.js the pure rules, src/riverdriftview.js the mesh). Passive scenery; every value is a visual *guess*.
+export const RIVER_DRIFT = {
+  speed: 0.35, // m/s downstream (*guess*: the original's assumed current; no measured flow)
+  path: { step: 1, smooth: 5 }, // the centre line resampled every `step` m with its corners rounded over +-`smooth` m (*guess*: a 90° bend is cut by ~1.7 m)
+  pier: { clear: 0.3, bend: 3 }, // lanes pass a bridge pier `clear` m off its (askew) box, steering out over `bend` m up / downstream (*guess*)
+  // On the surface (one mesh of flat quads, one draw call): `count` things within `range` m up / downstream of the camera's station, drawn
+  // only while the camera is within `drawDist` m of the centre line. Lanes use `laneMax` of the channel's half width less `margin` m; things
+  // fade over `fade` m at the window's ends and `endFade` m at the river's ends. Flecks: half-width `size` m (min, max), `stretch` x as long
+  // along the flow, opacity `alpha` (min, max), lying `lift` m over the water. One in `leaf.share` is a leaf.
+  surface: { count: 300, range: 48, drawDist: 75, laneMax: 0.82, margin: 0.4, fade: 8, endFade: 10, lift: 0.015,
+    size: [0.035, 0.1], stretch: 1.7, alpha: [0.3, 0.8], color: 0xeef3ee,
+    leaf: { share: 0.05, size: [0.06, 0.09], stretch: 1.6, alpha: 0.95, colors: [0x9a7a2e, 0x7d5a27, 0x6f7f35] } },
+};
+
 // Public #238: passive visual assumptions, fixed local seed; no population/catch service.
 export const RIVER_FISH = {
   count: 18, seed: 1754, epoch: 1793491200, // (seed 1754: the first lives of the 18 include pike, trout, bream, perch and roach; 1752 had no pike)

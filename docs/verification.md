@@ -18,6 +18,18 @@ konkret materiell risk; ta bara om felaktiga kamerapositioner. Befintliga snabba
 `npm test`/bygge och automatisk Pages-status kvarstår; dokument kräver ingen ny
 livebrowserkontroll av oförändrad app.
 
+## Drivande fläckar på Höje å, #280
+
+`node --test src/riverdrift.test.mjs` kontrollerar de rena reglerna mot publicens ådata:
+allt ritat ligger i den öppna fåran och fritt från vägbrons pelare längs hela ån, rör sig
+nedströms med inställd fart, byter fönster utan synligt hopp och är en ren funktion av tiden.
+`node tools/riverdrift-check.mjs http://localhost:8160 docs/verification/280` körs mot
+källkoden på lokal server (`python3 -m http.server 8160` i reporoten) och kontrollerar den
+faktiska appen: inget ritas och +0 ritanrop på gården, exakt +1 vid ån, alla fläckar över
+vatten under den ritade marken vid 69 stationer, uppmätt fart mellan två bilder, `?nodrift`
+samt nät-/lagringsisolering. Renderingsloopen är stoppad; tiden stegas genom den riktiga
+`update`. [Bilder, råvärden och begränsningar](verification/280/README.md).
+
 ## Neutral kattform, #268
 
 `tools/catshape268-native.mjs` jämför faktisk publicbas mot aktuell komponent:

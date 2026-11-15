@@ -20,6 +20,7 @@ import { skirtTop } from './edgebackdrop.js';
 import { OutdoorCats } from './outdoorcats.js';
 
 import { RiverFish } from './riverfish.js';
+import { RiverDriftSurface } from './riverdriftview.js'; // #280: flecks drifting downstream on Höje å
 
 import { Squirrels } from './squirrels.js';
 import { Paddock } from './paddock.js';
@@ -35,7 +36,7 @@ const $ = id => document.getElementById(id);
 const touch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
 document.body.classList.toggle('touch', touch);
 const touchLayout = setupTouchLayout({enabled: touch}); // own button/stick layout from the help dialog (#30, upstream 1af9b39)
-let renderer, camera, scene, world, navigation, core, garage, paddock, ducks, ambientCats, ambientFish, squirrels, ambientBalloon;
+let renderer, camera, scene, world, navigation, core, garage, paddock, ducks, ambientCats, ambientFish, riverDrift, squirrels, ambientBalloon;
 const debugParams = new URLSearchParams(location.search), paddockRain = Math.max(0, Math.min(1, Number(debugParams.get('paddockrain')) || 0));
 let active = false, ready = false, focus = null, measuring = false, firstPoint = null;
 const intervals = debugParams.has('perf') ? new FrameIntervals() : null;
@@ -195,6 +196,7 @@ async function init() {
   ambientCats = debugParams.has('nocats') ? null : new OutdoorCats({scene,camera,ground:createAmbientCatGround((x,z)=>Math.max(groundY(x,z),renderedTerrainY(x,z)),renderedTerrainY,skirtTop,OUTDOOR,EDGE_BACKDROP.level),barriers:catPhysicalSegments([...world.levels[0].segments,...farSegments()]),trunks:[...treeFeet,...southTreeFeet],lowMemory});
 
   ambientFish = debugParams.has('noriverfish') ? null : new RiverFish({scene,camera});
+  riverDrift = debugParams.has('nodrift') ? null : new RiverDriftSurface({scene}); // #280: one draw call, only near the river
 
   squirrels = new Squirrels({scene,camera,feet:treeFeet,crowns:aoTrees,southFeet:southTreeFeet,ground:renderedTerrainY});
 
@@ -241,7 +243,7 @@ async function init() {
   $('place-toggle').disabled = false;
   // Keep model access local for diagnostics, without a service connection.
   const siteInstances = lowMemory ? null : installSiteInstanceBatch(renderer, scene);
-  window.lundenViewer = {startupCache,intervals, colorFrustum, siteInstances, phoneFrustum, paddock, ducks, ambientCats, ambientFish, squirrels, ambientBalloon, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
+  window.lundenViewer = {startupCache,intervals, colorFrustum, siteInstances, phoneFrustum, paddock, ducks, ambientCats, ambientFish, riverDrift, squirrels, ambientBalloon, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
   window.kvarteretStartup?.finish();
   $('start').disabled = false; $('start').textContent = 'Börja utforska →';
   status('Dator och mobil · Ingen inloggning');
@@ -295,6 +297,7 @@ function frame() {
   ambientCats?.update(navigation.below || navigation.inCore || !navigation.outdoors);
 
   ambientFish?.update(dt, navigation.below || navigation.inCore || !navigation.outdoors);
+  riverDrift?.update(dt, camera.position, navigation.below); // #280
 
   squirrels.update(dt,navigation.below);
 
