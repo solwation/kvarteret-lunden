@@ -58,11 +58,13 @@ export const lodCamera = { value: new THREE.Vector3() };
 /** A shared fade range uniform for the materials of one kind of thing. */
 export const lodRange = (start, end) => ({ value: new THREE.Vector2(start, end) });
 
-const VERT_DECL = 'uniform vec3 uLodCam;\nuniform vec2 uLodRange;\nvarying float vLodFade;\n';
+const VERT_DECL = 'uniform vec3 uLodCam;\nuniform vec3 uLodCentre;\nuniform vec2 uLodRange;\nvarying float vLodFade;\n';
 const VERT_BODY = `
 #ifdef USE_INSTANCING
   vec3 lodCentre = (modelMatrix * vec4(instanceMatrix[3].xyz, 1.0)).xyz;
   vLodFade = clamp((distance(lodCentre, uLodCam) - uLodRange.x) / max(uLodRange.y - uLodRange.x, 0.001), 0.0, 1.0);
+#elif defined(LOD_CENTRE)
+  vLodFade = clamp((distance(uLodCentre, uLodCam) - uLodRange.x) / max(uLodRange.y - uLodRange.x, 0.001), 0.0, 1.0);
 #else
   vLodFade = 0.0;
 #endif
@@ -89,8 +91,9 @@ const FRAG_BODY = `
 `;
 
 /** The shader edit itself (vertex: per-instance fade; fragment: the dither discard). Vertex positions are not touched. */
-function patchShader(shader, far, range) {
+function patchShader(shader, far, range, centre) {
   shader.uniforms.uLodCam = lodCamera;
+  shader.uniforms.uLodCentre = centre ?? NO_CENTRE;
   shader.uniforms.uLodRange = range;
   shader.uniforms.uLodFar = { value: far ? 1 : 0 };
   shader.vertexShader = shader.vertexShader
@@ -107,24 +110,26 @@ function patchShader(shader, far, range) {
  * fade (a plain mesh counts as fade 0: near drawn, far not). The edit keeps vertex positions, so tightfrustum and the
  * site instance batch (which audit `hasNativeVertexCompile`) still treat the material as native.
  */
-export function patchDitherLod(material, { far = false, range }) {
+export function patchDitherLod(material, { far = false, range, centre = null }) {
+  if (centre) (material.defines ??= {}).LOD_CENTRE = ''; // #1966: a single (skinned) mesh fades by the distance to `centre` ({ value: Vector3 }, world)
   const before = material.onBeforeCompile, key = material.customProgramCacheKey?.bind(material) ?? (() => '');
-  const patched = function (shader, renderer) { before.call(this, shader, renderer); patchShader(shader, far, range); };
+  const patched = function (shader, renderer) { before.call(this, shader, renderer); patchShader(shader, far, range, centre); };
   material.onBeforeCompile = patched;
-  material.customProgramCacheKey = () => `${key()}|dither-lod-v1`;
+  material.customProgramCacheKey = () => `${key()}|dither-lod-v1${centre ? 'c' : ''}`;
   rememberFragmentCompile(patched, before); // the edit leaves vertex positions alone (audited here)
   return material;
 }
 
 /** A depth material (shadow casters) that follows the same fade; `map`/`alphaTest` cut leaf cards out like three's own. */
-export function lodDepthMaterial({ far = false, range, map = null, alphaTest = 0, side = THREE.FrontSide }) {
+export function lodDepthMaterial({ far = false, range, map = null, alphaTest = 0, side = THREE.FrontSide, centre = null }) {
   const m = new THREE.MeshDepthMaterial({ depthPacking: THREE.RGBADepthPacking, map, alphaTest, side });
   m.name = far ? 'lod-depth-far' : 'lod-depth-near';
-  patchDitherLod(m, { far, range });
+  patchDitherLod(m, { far, range, centre });
   return m;
 }
 
 const sets = [];
+const NO_CENTRE = { value: new THREE.Vector3() };
 const NOWHERE = new THREE.Sphere(new THREE.Vector3(0, -1e6, 0), 0); // an emptied mesh is frustum-culled (no zero-instance draw call)
 const _sphere = new THREE.Sphere(), _centre = new THREE.Vector3();
 
@@ -240,7 +245,40 @@ export function updateInstanceLods(camera) {
   view.dir.set(0, 0, -1).transformDirection(camera.matrixWorld);
   view.frustum.setFromProjectionMatrix(_pv.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));
   for (const s of sets) s.update(cam, false, view);
+  for (const b of batches) b.update(cam);
 }
+
+/**
+ * #1969: two levels of ONE merged mesh (a batch of buildings): `near` (full detail) and `far` (a lighter geometry of the same
+ * things). The whole batch fades at once, by the distance from the camera to the batch's bounding box (so standing among its
+ * buildings is distance 0): the same dither as the instanced levels, through a centre uniform kept that far from the camera.
+ * Each level needs a material of its own (`material(far)` makes one; it is patched here) and gets a matching depth material when
+ * it casts shadows. Outside the zone only one level is visible.
+ */
+export class BatchLod {
+  constructor(near, far, { start, end, margin = 1, material }) {
+    Object.assign(this, { near, far, start, end, margin, enabled: true, d: 0 });
+    this.range = lodRange(start, end); this.centre = { value: new THREE.Vector3() };
+    for (const [mesh, isFar] of [[near, false], [far, true]]) {
+      mesh.material = patchDitherLod(material(isFar), { far: isFar, range: this.range, centre: this.centre });
+      if (mesh.castShadow) mesh.customDepthMaterial = lodDepthMaterial({ far: isFar, range: this.range, centre: this.centre, side: mesh.material.side });
+    }
+    near.geometry.boundingBox ?? near.geometry.computeBoundingBox();
+    near.updateWorldMatrix(true, false);
+    this.box = near.geometry.boundingBox.clone().applyMatrix4(near.matrixWorld);
+    far.visible = false; far.userData.lodFar = true; near.userData.batchLod = far.userData.batchLod = this;
+    batches.push(this);
+  }
+  update(cam) {
+    const d = this.d = this.enabled ? this.box.distanceToPoint(cam) : 0;
+    this.centre.value.set(cam.x + d, cam.y, cam.z); // (the shader only measures the distance)
+    this.near.visible = d < this.end + this.margin;
+    this.far.visible = d > this.start - this.margin;
+  }
+}
+const batches = [];
+/** For tests: the batch levels. */
+export const batchLods = () => batches;
 const view = { frustum: new THREE.Frustum(), dir: new THREE.Vector3() }, _pv = new THREE.Matrix4();
 
 /** For tests. */

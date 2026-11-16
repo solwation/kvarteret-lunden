@@ -1,5 +1,20 @@
 # Förbättringar från originalet
 
+## Östra campus byter till lätt geometri på håll, #285
+
+Granskad källa: `bf3002ec0cac708a2924d33927899c2f3e654ea0`
+([original #1969](https://github.com/solwation/lunden-3d-apartment/issues/1969)).
+Urval: `src/lod.js` som den ser ut i källcommiten – med `BatchLod` (två nivåer av ett
+sammanslaget nät, tonas som helhet efter avståndet till nätets begränsningsbox) och
+`centre`-läget i `patchDitherLod`/`lodDepthMaterial` som `BatchLod` bygger på (det kom
+med original #1966; dess användare, andra spelares figurer, finns inte här och ingår inte);
+i `src/sitebackdrop.js` byggs de tre detaljerade `east-modern*`-satserna en gång till med
+`lite` (CAMPUS_LOD) som fjärrnivå, bara på dator; `SITE.east.lod` (30–42 m) i
+`src/config.js`. `tools/campus-budget-counter.mjs` räknar bara närnivåerna (fjärrnivån ritas
+aldrig samtidigt med den fulla utanför övergångszonen; telefonläget bygger ingen fjärrnivå).
+Ny kontroll `tools/campuslod-check.mjs`. Originalets ändringslogg, bilder och HTML-prov
+ingår inte. Mätt i [verifieringen](verification.md#östra-campus-byter-till-lätt-geometri-på-håll-285).
+
 ## Ditherad LOD-övergång för träd på håll, #284
 
 Granskad källa: `af7da30696fd737fd1c1f99c715657d8d0775bfa`

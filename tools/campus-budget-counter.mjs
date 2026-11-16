@@ -4,7 +4,7 @@ export function campusBudget(root) {
   if(!root?.traverse)throw new TypeError('campus root with traverse required');
   const meshes=[];
   root.traverse(object=>{
-    if(!object.isMesh)return;
+    if(!object.isMesh||object.userData?.lodFar)return; // (#285: a batch's light far level is never drawn together with its full one outside the fade zone)
     const geometry=object.geometry,vertices=geometry.index?.count??geometry.attributes.position?.count;
     const instances=object.isInstancedMesh?object.count:1;
     if(!Number.isFinite(vertices)||!Number.isFinite(instances)||instances<0)throw new TypeError('invalid campus mesh count');

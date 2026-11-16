@@ -1,0 +1,86 @@
+{
+ "views": {
+  "yard": {
+   "full": {
+    "calls": 117,
+    "triangles": 555782,
+    "levels": [
+     "east-modern:0m:N",
+     "east-modern-2:0m:N",
+     "east-modern-3:0m:N"
+    ]
+   },
+   "lod": {
+    "calls": 117,
+    "triangles": 527622,
+    "levels": [
+     "east-modern:75m:F",
+     "east-modern-2:57m:F",
+     "east-modern-3:62m:F"
+    ]
+   }
+  },
+  "between": {
+   "full": {
+    "calls": 44,
+    "triangles": 446805,
+    "levels": [
+     "east-modern:0m:N",
+     "east-modern-2:0m:N",
+     "east-modern-3:0m:N"
+    ]
+   },
+   "lod": {
+    "calls": 46,
+    "triangles": 452163,
+    "levels": [
+     "east-modern:44m:F",
+     "east-modern-2:34m:NF",
+     "east-modern-3:32m:NF"
+    ]
+   }
+  },
+  "campus": {
+   "full": {
+    "calls": 37,
+    "triangles": 435361,
+    "levels": [
+     "east-modern:0m:N",
+     "east-modern-2:0m:N",
+     "east-modern-3:0m:N"
+    ]
+   },
+   "lod": {
+    "calls": 38,
+    "triangles": 439445,
+    "levels": [
+     "east-modern:12m:N",
+     "east-modern-2:31m:NF",
+     "east-modern-3:0m:N"
+    ]
+   }
+  }
+ },
+ "errors": [],
+ "external": [],
+ "sizes": [
+  {
+   "name": "east-modern",
+   "near": 16160,
+   "far": 5302,
+   "shadow": true
+  },
+  {
+   "name": "east-modern-2",
+   "near": 11784,
+   "far": 4084,
+   "shadow": true
+  },
+  {
+   "name": "east-modern-3",
+   "near": 21734,
+   "far": 12132,
+   "shadow": true
+  }
+ ]
+}

@@ -18,6 +18,25 @@ konkret materiell risk; ta bara om felaktiga kamerapositioner. Befintliga snabba
 `npm test`/bygge och automatisk Pages-status kvarstår; dokument kräver ingen ny
 livebrowserkontroll av oförändrad app.
 
+## Östra campus byter till lätt geometri på håll, #285
+
+`tools/campuslod-check.mjs` (ny): den riktiga appen på dator, Chromium/SwiftShader, 960 × 540, samma
+kamera med campus fjärrnivå avslagen (full detalj) och påslagen. De tre satserna: `east-modern`
+16 160 → 5 302, `east-modern-2` 11 784 → 4 084, `east-modern-3` 21 734 → 12 132 trianglar,
+skuggorna följer samma övergång.
+
+| Vy | Ritanrop | Trianglar | Nivåer |
+|---|---|---|---|
+| Från gården mot campus | 117 → 117 | 555 782 → 527 622 (−28 160) | alla tre lätta |
+| Mellanläge | 44 → 46 | 446 805 → 452 163 | två mitt i övergången |
+| Bland campusbyggnaderna | 37 → 38 | 435 361 → 439 445 | ingen enbart lätt |
+
+Inga sidfel, inga externa anrop. Bildpunkter som skiljer märkbart: 402 / 366 / 0. Bilder
+[full detalj](verification/285/yard-full.png) och [lätt nivå](verification/285/yard-lod.png)
+från gården; mätdata i [campuslod.json](verification/285/campuslod.json). Nodprov:
+`node --test tools/lodtest.mjs` (7 pass), `tools/campus-budget-counter-test.mjs` (pass).
+Inte prövat: tiden det tar att bygga campus två gånger vid start, rörelse genom zonen.
+
 ## Ditherad LOD-övergång för träd på håll, #284
 
 `tools/treelod-check.mjs` (ny): den riktiga appen i Chromium/SwiftShader, 960 × 540, juli kl. 10,
