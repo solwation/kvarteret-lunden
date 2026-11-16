@@ -1,0 +1,8 @@
+browsertest: no systemd user scope here, running without a memory ceiling
+PASS public measureAt/filter reproduces legacy back-wall points
+PASS public measureAt marks the visible merged surface with original hidden
+PASS public distance label measures actual one-metre front span
+PASS unchanged render submissions
+PASS near, mid hidden-original, shell, away and render-only line semantics preserved
+PASS existing public open-leaf full-detail guard preserved
+PASS no page/GLSL errors or external requests

@@ -1,0 +1,124 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "name": "public measureAt/filter reproduces legacy back-wall points"
+    },
+    {
+      "ok": true,
+      "name": "public measureAt marks the visible merged surface with original hidden"
+    },
+    {
+      "ok": true,
+      "name": "public distance label measures actual one-metre front span"
+    },
+    {
+      "ok": true,
+      "name": "unchanged render submissions"
+    },
+    {
+      "ok": true,
+      "name": "near, mid hidden-original, shell, away and render-only line semantics preserved"
+    },
+    {
+      "ok": true,
+      "name": "existing public open-leaf full-detail guard preserved"
+    },
+    {
+      "ok": true,
+      "name": "no page/GLSL errors or external requests"
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "source": {
+    "src/visitunit.js": "fbcd3a623bf0fe71883cd3863cdcfc5255733f64858c81e0bf2fa789b35a9918",
+    "src/main.js": "929d0af9377b64a2f39e6ac9a372478e40e11775c02bb66fc1fd3b7da2017cb3",
+    "src/lod.js": "994ecd57f18fa807456d81e1a8b4ddb8b06c9f8157491ce668b4b8154e9d5015",
+    "tools/visitmeasure289-fixture.mjs": "6fc90f8e8ed9fb91c2000ea2bf93556ea7b0384a62cede1a0a1d9cdf49b49e1b",
+    "tools/visitmeasure289.html": "91af69921a206cbffa1b177b95c59eb9c889f953f59b3b05f8797e2f3fa14f52",
+    "tools/visitmeasure289-check.mjs": "9b383b672de044b8f30abcec40ebb0f3c6fe92e3dde004f3aa554a95bc5408ca"
+  },
+  "extractedFunctionsSha256": "e5d7f24b02f100cb012d0e756c52a750f8d4d996c76be1ef8c3b27143dd584d0",
+  "before": {
+    "points": [
+      [
+        -0.6096774193067706,
+        1.4,
+        4.899999998509884
+      ],
+      [
+        0.6096774193067706,
+        1.4,
+        4.899999998509884
+      ]
+    ],
+    "label": "1,22 m · Ungefärligt modellmått. Välj två nya punkter för att mäta igen.",
+    "level": "mid",
+    "originalVisible": false,
+    "calls": 7,
+    "triangles": 306
+  },
+  "after": {
+    "points": [
+      [
+        -0.5000000000000001,
+        1.4,
+        1.5000000000000018
+      ],
+      [
+        0.5000000000000001,
+        1.4,
+        1.5000000000000018
+      ]
+    ],
+    "label": "1 m · Ungefärligt modellmått. Välj två nya punkter för att mäta igen.",
+    "level": "mid",
+    "originalVisible": false,
+    "calls": 7,
+    "triangles": 306
+  },
+  "states": {
+    "near": {
+      "points": [
+        [
+          0,
+          1.4,
+          1.5
+        ]
+      ],
+      "level": "all"
+    },
+    "mid": {
+      "points": [
+        [
+          0,
+          1.4,
+          1.5
+        ]
+      ],
+      "level": "mid"
+    },
+    "shell": {
+      "points": [
+        [
+          0,
+          1.4,
+          4.899999998509884
+        ]
+      ],
+      "level": "shell"
+    },
+    "away": {
+      "points": [],
+      "level": "none"
+    },
+    "lines": true
+  },
+  "leaf": {
+    "before": "mid",
+    "open": "all",
+    "closed": "mid"
+  },
+  "passed": true
+}
