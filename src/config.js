@@ -2397,6 +2397,8 @@ export const STANDARD = {
   // draw calls (#574, visitunit.js `cull`): farther than `detail` m from its footprint only its walls, floors, ceilings and
   // window frames are drawn (no doors, fittings, glass); from inside our flat or under the ground none of it (our pick)
   detail: 12,
+  // Public #288, original #1965: full parts near; merged inside until its dither fade ends. Visual distance guesses.
+  lod: { near: 5, hysteresis: 0.5, start: 24, end: 28, startPhone: 9, endPhone: 12 },
 };
 
 export const AO = {

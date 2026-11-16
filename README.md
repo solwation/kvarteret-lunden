@@ -8,6 +8,8 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+L1004 och L1201 ritas med färre delar på håll; insidan tonas mjukt bort före fjärrvyn. Nära besökaren, och medan en dörr eller ett fönster är öppet inom 12 meter, visas de rörliga delarna fullt (#288). Befintliga dörrar, fönster och förflyttning behålls.
+
 Åfiskarnas sex befintliga artformer har egna huvud-, fen- och stjärtprofiler, med smal ål, flatare gäddhuvud och djupare braxen (#274). Befintliga färger, storlekar och lokala simrörelser behålls.
 
 Hus L:s långfasad har ett skydd mot att den bakomliggande huskroppen slår igenom vid visning på långt håll (#253).

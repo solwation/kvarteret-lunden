@@ -18,6 +18,17 @@ konkret materiell risk; ta bara om felaktiga kamerapositioner. Befintliga snabba
 `npm test`/bygge och automatisk Pages-status kvarstår; dokument kräver ingen ny
 livebrowserkontroll av oförändrad app.
 
+## Besöksbara lägenheter enklare på håll, #288
+
+`tools/visitlod-check.mjs` använder den riktiga appen med dess befintliga frame,
+Navigation och lägenhetsgeometrier. Den mäter samma kameror framför L1004 med den
+tidigare ogallrade synligheten och med aktuellt gallringsanrop, kontrollerar
+när-/mellannivåns pixlar, dörr-/fönsteranimation samt besök i båda lägenheterna och
+att garaget döljer dem. Dator och framtvingad lowMemory i samma Chromium är separata
+avståndspolicyer; ingen fysisk telefon är mätt. Kör via värdens browserwrapper:
+`node tools/visitlod-check.mjs BASE docs/verification/288`.
+[Källhashar, exakta faser, mätningar och granskade bilder](verification/288/README.md).
+
 ## Pergolans ljusslingor enklare på håll, #287
 
 `tools/pergolalod-check.mjs` (ny): den riktiga appen på dator, 960 × 540, samma bildruta med

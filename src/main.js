@@ -306,6 +306,8 @@ function frame() {
   squirrels.update(dt,navigation.below);
 
   ambientBalloon.update(camera,navigation.below);
+  const away = (navigation.inFootprint() && !navigation.aloft) || navigation.below;
+  for (const u of world.units) u.cull(camera.position, away); // public #288, original #574: no interior behind the own flat/garage
   updateCameraNear();
   scene.updateMatrixWorld();
   if (active) {

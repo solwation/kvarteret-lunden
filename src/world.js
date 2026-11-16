@@ -1136,7 +1136,7 @@ function* worldParts(plan) {
   scene.userData.merged = merged;
   yield 0.97;
   for (const d of [...l0.doors, ...l1.doors,portikDoor]) mergeStatic(d.object, d.keep ?? [], () => '', { tagged: true }); // leaf + handles (not the letter flap)
-  for (const u of units) scene.add(u.object); // (merged on their own, #574)
+  for (const u of units) { u.buildMid(); scene.add(u.object); } // public #288: units are complete before the merged level is built
 
   const levels = [l0, l1];
   const platforms = []; // fixed courtyard seats and tables support standing

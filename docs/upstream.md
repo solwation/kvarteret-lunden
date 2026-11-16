@@ -1,5 +1,30 @@
 # Förbättringar från originalet
 
+## Besöksbara lägenheter enklare på håll, #288
+
+Granskade källor: `f61ad598d0e6d22eee8c16fa837ebe183edcf8df`
+([original #1965](https://github.com/solwation/lunden-3d-apartment/issues/1965))
+och gallringsanropet från `302a3c79e15a0337d18ff351d2b75e9975984724`
+([original #574](https://github.com/solwation/lunden-3d-apartment/issues/574)).
+Urval: `VisitUnit.buildMid`, dess hjälpfunktioner, cull-utökning och `STANDARD.lod`.
+Den publika World-byggaren anropar buildMid efter att lägenheten är färdig; main
+anropar cull varje bildruta. Publik Navigation ger samma away-villkor:
+`(inFootprint() && !aloft) || below`; besök i L1004/L1201 döljer inte den egna besökslägenheten.
+
+Insidan slås ihop per material/skuggflaggor i lägenhetens koordinater. Speglade
+trianglar vänds rätt; materialens egna shaderfunktioner delegeras; djupdither har
+samma centrum/räckvidd. Fulla delar inom 5 m, eller 12 m med öppet/rörligt blad;
+sammanslagen insida tonas bort över 24–28 m på dator, 9–12 m med lowMemory.
+`?nolod` behåller de gamla två nivåerna med det nu aktiva gallringsanropet.
+Avstånden är visuella antaganden.
+
+Anpassning: public saknar originalets smådetaljgallring, VisitLights/lampwash och
+interaktionskonturens materialsymbol. Dessa importeras inte; befintlig geometri
+och linjer behålls även i telefonpolicyn. Inga personliga resurser, originalets
+lagring, spel-/tjänstekod, teststyrning, ändringslogg eller historik förs över.
+Den publika visningen har ingen separat besökarändringslogg; README beskriver ändringen.
+Egen riktig appverifiering och begränsningar: [#288](verification/288/README.md).
+
 ## Pergolans ljusslingor enklare på håll, #287
 
 Granskad källa: `b9973faab2f376983f37707390855ee8fc09612e`
