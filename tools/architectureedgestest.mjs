@@ -40,3 +40,27 @@ for(const [name,architectureEdges] of [['apartment/standard builder',apartmentEd
   assert(c.getComponent(0,0)<=1);
  });
 }
+
+// Public #283 (original #1957, 27c217ba): the lines multiply what is drawn and fade with distance, in both builders.
+import { EDGE_LOOK } from '../src/config.js';
+for (const [name, architectureEdges] of [['apartment/standard builder', apartmentEdges], ['stair core/garage builder', coreEdges]]) {
+ test(`${name}: joints multiply the drawn surface (never lighter), no fog or tone mapping, fade with distance`, () => {
+  const root = new T.Group(); root.add(new T.Mesh(new T.BoxGeometry(1, 1, 1), new T.MeshBasicMaterial()));
+  const [batch] = architectureEdges(root), m = batch.material;
+  assert.equal(m.blending, T.CustomBlending); assert.equal(m.blendSrc, T.ZeroFactor); assert.equal(m.blendDst, T.SrcColorFactor);
+  assert.equal(m.blendSrcAlpha, T.ZeroFactor); assert.equal(m.blendDstAlpha, T.OneFactor);
+  assert(!m.fog && !m.toneMapped && !m.depthWrite && m.depthTest);
+  assert.equal(m.opacity, EDGE_LOOK.strength);
+  const sh = { uniforms: {}, vertexShader: '#include <project_vertex>', fragmentShader: '#include <color_fragment>' };
+  m.onBeforeCompile(sh);
+  assert.match(sh.fragmentShader, /edgeHue/); assert.match(sh.fragmentShader, /smoothstep\(2\.5, 10\.0, vEdgeEye\)/);
+  assert.match(sh.vertexShader, /vEdgeEye = length\(mvPosition\.xyz\)/);
+  assert.deepEqual(sh.uniforms, {}, 'no per-material uniform or closure');
+  const [other] = architectureEdges(root);
+  assert.equal(other.material.onBeforeCompile, m.onBeforeCompile, 'one shared program per builder');
+ });
+}
+test('EDGE_LOOK: a joint on white is a few per cent darker close up, less far away, never lighter', () => {
+  const near = 1 - EDGE_LOOK.strength * (1 - EDGE_LOOK.shade), far = 1 - EDGE_LOOK.strength * EDGE_LOOK.fadeMin * (1 - EDGE_LOOK.shade);
+  assert(near > 0.85 && near < 0.95 && far > near && far < 1, `${near} ${far}`);
+});

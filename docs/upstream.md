@@ -1,5 +1,22 @@
 # Förbättringar från originalet
 
+## Kantlinjer som mjuka skuggfogar, #283
+
+Granskad källa: `27c217ba89c96ffd1e5291aea9fea3c2389c24d2`
+([original #1957](https://github.com/solwation/lunden-3d-apartment/issues/1957)).
+Urval: shaderändringen och linjematerialets blandning i `src/architectureedges.js`,
+samma ändring i den lokala kopian `src/architectural-edges.js` (som behåller sin egen
+djupförskjutning utan 0,4 %-termen) och gruppen `EDGE_LOOK` i `src/config.js`.
+Linjerna multiplicerar det som redan är ritat (`CustomBlending`, destination × linjefaktor,
+utan dimma och tonmappning): en fog blir aldrig ljusare än sin yta – i L1007:s kök gav
+ytfärgen över de upplysta gröna luckorna ljusa konturer – och följer dag, natt och lampor
+av sig själv. Ytfärgen ger bara fogens nyans; mörkningen tonar från 2,5 m till 45 % vid
+10 m (`EDGE_LOOK`, visuella gissningar). Originalets ljusnivå-uniform från #1592
+(`setEdgeLight`, `LIGHTING.edgeRef`) fanns aldrig här, så inget behövde tas bort.
+Prov: nya fall i `tools/architectureedgestest.mjs` för båda byggarna. Originalets
+ändringslogg, bilder och HTML-prov ingår inte. Inga nya beroenden, material, ritanrop,
+trianglar eller linjer (mätt i tre vyer, se [verifieringen](verification.md#kantlinjer-som-mjuka-skuggfogar-283)).
+
 ## Näckrosor på Höje å, #282
 
 Selektiv källa `e311a070b0278c7d4851a5f54e19e732f76d1ddc`

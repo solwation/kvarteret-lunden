@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { EdgesGeometry } from './vendor/three/EdgesGeometry.js';
+import { EDGE_LOOK } from './config.js';
 
 // A small construction-only triangle tree keeps union probes cheap even for
 // fitted geometry baked into one large mesh. It is never used during frames.
@@ -229,19 +230,33 @@ function edgeSurfaceColors(geometry, edges, materials, darken) {
 // This and noRaycast are module level on purpose (#166, original #1590): a closure made inside architectureEdges() shares its
 // scope, so the live material and lines kept the construction-only solids, triangle trees and crease index all session.
 function noRaycast() {}
+// Original #1957 (public #283): the lines darken what is already drawn instead of painting a colour over it (multiplicative
+// blending, after the opaque pass): a joint can never come out lighter than its surface (the surface tint over a lit, darker
+// cabinet front drew light outlines), it follows the actual lighting by itself (day, night, lamps) and fog/tone mapping leave
+// the factor alone. The baked surface tint only gives the joint its hue (normalised, so white surfaces get a neutral grey
+// joint and coloured paint a slightly deeper shade of itself). One-pixel lines do not thin with distance, so the darkening
+// fades from EDGE_LOOK.fadeNear to fadeMin at fadeFar. Constants are baked into the one shared program (module level).
+const glslFloat = (x) => (Number.isInteger(x) ? x.toFixed(1) : String(x));
 function edgeDepthOffset(shader) {
-  shader.vertexShader = shader.vertexShader.replace('#include <project_vertex>', `#include <project_vertex>
-    gl_Position = projectionMatrix * vec4(mvPosition.xyz * max(0.0, 1.0 - 0.001 / max(length(mvPosition.xyz), 0.001) - 0.004), mvPosition.w);`);
+  shader.fragmentShader = 'varying float vEdgeEye;\n' + shader.fragmentShader.replace('#include <color_fragment>', `#include <color_fragment>
+      vec3 edgeHue = diffuseColor.rgb / max(max(diffuseColor.r, max(diffuseColor.g, diffuseColor.b)), 0.02);
+      float edgeAmount = diffuseColor.a * mix(1.0, ${glslFloat(EDGE_LOOK.fadeMin)}, smoothstep(${glslFloat(EDGE_LOOK.fadeNear)}, ${glslFloat(EDGE_LOOK.fadeFar)}, vEdgeEye));
+      diffuseColor = vec4(mix(vec3(1.0), edgeHue * ${glslFloat(EDGE_LOOK.shade)}, edgeAmount), 1.0);`);
+  shader.vertexShader = 'varying float vEdgeEye;\n' + shader.vertexShader.replace('#include <project_vertex>', `#include <project_vertex>
+    vEdgeEye = length(mvPosition.xyz);
+    gl_Position = projectionMatrix * vec4(mvPosition.xyz * max(0.0, 1.0 - 0.001 / max(vEdgeEye, 0.001) - 0.004), mvPosition.w);`);
 }
 
 // #474: only call on a construction-only scene, before furniture/decoration is added.
 // Bake sharp edges once, in the nearest animated fitting's frame (or a floor batch).
 // The 0.62 linear-light surface darkening is a visual guess (#1579).
-export function architectureEdges(root, { moving = [], exclude = [], floor = 3, opacity = 0.3, surfaceDarken = 0.62 } = {}) {
+export function architectureEdges(root, { moving = [], exclude = [], floor = 3, opacity = EDGE_LOOK.strength, surfaceDarken = 0.62 } = {}) {
   surfaceDarken = THREE.MathUtils.clamp(surfaceDarken, 0, 1);
   const anchors = new Set(moving.filter(Boolean)), skipped = new Set(exclude.filter(Boolean));
   const batches = new Map(), solids = new Map(), creases = new Map(), cache = new WeakMap(), point = new THREE.Vector3();
-  const material = new THREE.LineBasicMaterial({ color: 0xffffff, vertexColors: true, transparent: true, opacity, depthTest: true, depthWrite: false });
+  const material = new THREE.LineBasicMaterial({ color: 0xffffff, vertexColors: true, transparent: true, opacity, depthTest: true, depthWrite: false,
+    fog: false, toneMapped: false, blending: THREE.CustomBlending, blendEquation: THREE.AddEquation, blendSrc: THREE.ZeroFactor, blendDst: THREE.SrcColorFactor,
+    blendSrcAlpha: THREE.ZeroFactor, blendDstAlpha: THREE.OneFactor }); // destination × line factor (original #1957)
   material.onBeforeCompile = edgeDepthOffset;
   root.updateWorldMatrix(true, true);
   function visit(o, anchor = root) {

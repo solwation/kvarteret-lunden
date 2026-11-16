@@ -1,0 +1,33 @@
+{
+ "label": "after",
+ "views": {
+  "core": {
+   "calls": 192,
+   "triangles": 561764,
+   "lines": 3824,
+   "batches": 232,
+   "edgeVerts": 48092,
+   "colored": 232,
+   "allocated": 636
+  },
+  "home": {
+   "calls": 415,
+   "triangles": 853662,
+   "lines": 6280,
+   "batches": 232,
+   "edgeVerts": 48092,
+   "colored": 232,
+   "allocated": 636
+  },
+  "courtyard": {
+   "calls": 855,
+   "triangles": 815375,
+   "lines": 11919,
+   "batches": 232,
+   "edgeVerts": 48092,
+   "colored": 232,
+   "allocated": 844
+  }
+ },
+ "errors": []
+}

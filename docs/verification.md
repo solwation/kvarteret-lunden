@@ -18,6 +18,24 @@ konkret materiell risk; ta bara om felaktiga kamerapositioner. Befintliga snabba
 `npm test`/bygge och automatisk Pages-status kvarstår; dokument kräver ingen ny
 livebrowserkontroll av oförändrad app.
 
+## Kantlinjer som mjuka skuggfogar, #283
+
+Före (`origin/main` 1ed8b3a) och efter, samma webbläsarkörning med det befintliga skriptet
+`tools/architectureedges-check.mjs` (Chromium/SwiftShader, 960 × 540, kl. 10):
+
+| Vy | Ritanrop | Trianglar | Linjer | Linjebatcher |
+|---|---|---|---|---|
+| `core` | 192 → 192 | 561 764 → 561 764 | 3 824 → 3 824 | 232 → 232 |
+| `home` (L1007, köket) | 415 → 415 | 853 662 → 853 662 | 6 280 → 6 280 | 232 → 232 |
+| `courtyard` | 855 → 855 | 815 375 → 815 375 | 11 919 → 11 919 | 232 → 232 |
+
+Inga sidfel i någon körning. Bilder: [köket före/efter](verification/283/kok-fore-efter.png),
+[gården före](verification/283/before-courtyard.png) och [efter](verification/283/after-courtyard.png);
+mätdata i [before.json](verification/283/before.json) och [after.json](verification/283/after.json).
+Nodprov: `node --test tools/architectureedgestest.mjs` (13 pass, varav de nya: multiplikativ
+blandning, ingen dimma/tonmappning, avståndsfade, ett delat program per byggare).
+Inte prövat: natt, fysiska telefoner.
+
 ## Näckrosor på Höje å, #282
 
 `node --test src/riverflora.test.mjs` kontrollerar de rena reglerna: samma blad varje gång,

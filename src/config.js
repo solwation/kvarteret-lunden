@@ -3751,3 +3751,10 @@ export const RIVER_FISH_SURFACE = {
     ål: [[.87,.794,.7023,0],[.94,.75,.65,0],[.98,.55,.46,0],[1,.38,.3,0]],
   },
 };
+
+// Public #283 (original #1957, source 27c217ba): the look of the architectural edge lines (src/architectureedges.js,
+// src/architectural-edges.js). They multiply what is drawn, reading as shadow joints instead of drawn lines: close up a joint
+// darkens its surface towards `shade` × its hue by `strength` (white: 1 − 0.2 × 0.45 ≈ 9 % darker, never lighter); one-pixel
+// lines do not thin with distance, so beyond `fadeNear` m from the eye the darkening fades smoothly to `fadeMin` of that at
+// `fadeFar` m, where dense joints otherwise merge into ink. All *guesses* by eye (the original's before/after shots).
+export const EDGE_LOOK = { strength: 0.2, shade: 0.55, fadeNear: 2.5, fadeFar: 10, fadeMin: 0.45 };
