@@ -1,0 +1,89 @@
+{
+  "source": {
+    "src/visitunit.js": "a9a282bc7cd656eb59982a5b30020b13c783b6c47c6b4b3711cb07773161fe4e",
+    "src/main.js": "929d0af9377b64a2f39e6ac9a372478e40e11775c02bb66fc1fd3b7da2017cb3",
+    "src/world.js": "330562a688af5100dfd0e5075cb9553e9d7c2fc9438823475179ad3c8a2a1afc",
+    "src/config.js": "7d30fe4405eee34155337817ff4130a36088e9f73c40b39314b24542fa966278",
+    "src/lod.js": "994ecd57f18fa807456d81e1a8b4ddb8b06c9f8157491ce668b4b8154e9d5015"
+  },
+  "profiles": {
+    "desktop": {
+      "views": {
+        "28.1": {
+          "before": {
+            "calls": 896,
+            "triangles": 906055,
+            "flatCalls": 195,
+            "level": "before-hook",
+            "centreDistance": 52.37296875021672,
+            "fade": 1
+          },
+          "after": {
+            "calls": 585,
+            "triangles": 807373,
+            "flatCalls": 25,
+            "level": "shell",
+            "centreDistance": 52.37296875021672,
+            "fade": 1
+          }
+        }
+      },
+      "setup": {
+        "hookLevels": [
+          "mid",
+          "shell"
+        ],
+        "units": [
+          {
+            "id": "L1004",
+            "mid": true,
+            "merged": 37,
+            "pass": 4,
+            "start": 24,
+            "end": 28
+          },
+          {
+            "id": "L1201",
+            "mid": true,
+            "merged": 34,
+            "pass": 4,
+            "start": 24,
+            "end": 28
+          }
+        ],
+        "rest": true,
+        "box": {
+          "x0": -24.825,
+          "x1": -19.072,
+          "z0": 0,
+          "z1": 12.699
+        }
+      }
+    }
+  },
+  "checks": [
+    {
+      "ok": true,
+      "text": "both actual public units build a merged level: desktop"
+    },
+    {
+      "ok": true,
+      "text": "native phone/desktop fade range: desktop"
+    },
+    {
+      "ok": true,
+      "text": "desktop 28.1m: shell, calls 896 -> 585"
+    },
+    {
+      "ok": true,
+      "text": "no page/GLSL errors"
+    },
+    {
+      "ok": true,
+      "text": "no external requests"
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "passed": true
+}

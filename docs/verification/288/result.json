@@ -1,0 +1,510 @@
+{
+  "source": {
+    "src/visitunit.js": "a9a282bc7cd656eb59982a5b30020b13c783b6c47c6b4b3711cb07773161fe4e",
+    "src/main.js": "929d0af9377b64a2f39e6ac9a372478e40e11775c02bb66fc1fd3b7da2017cb3",
+    "src/world.js": "330562a688af5100dfd0e5075cb9553e9d7c2fc9438823475179ad3c8a2a1afc",
+    "src/config.js": "7d30fe4405eee34155337817ff4130a36088e9f73c40b39314b24542fa966278",
+    "src/lod.js": "994ecd57f18fa807456d81e1a8b4ddb8b06c9f8157491ce668b4b8154e9d5015"
+  },
+  "profiles": {
+    "desktop": {
+      "views": {
+        "4": {
+          "before": {
+            "calls": 389,
+            "triangles": 793377,
+            "flatCalls": 194,
+            "level": "before-hook",
+            "centreDistance": 50.47492303818974,
+            "fade": 0
+          },
+          "after": {
+            "calls": 382,
+            "triangles": 792597,
+            "flatCalls": 194,
+            "level": "all",
+            "centreDistance": 50.47492303818974,
+            "fade": 0
+          }
+        },
+        "7": {
+          "before": {
+            "calls": 430,
+            "triangles": 803251,
+            "flatCalls": 195,
+            "level": "before-hook",
+            "centreDistance": 50.087102688328635,
+            "fade": 0
+          },
+          "after": {
+            "calls": 298,
+            "triangles": 823335,
+            "flatCalls": 69,
+            "level": "mid",
+            "centreDistance": 7,
+            "fade": 0
+          }
+        },
+        "18": {
+          "before": {
+            "calls": 690,
+            "triangles": 890835,
+            "flatCalls": 195,
+            "level": "before-hook",
+            "centreDistance": 13.209844813622906,
+            "fade": 0
+          },
+          "after": {
+            "calls": 464,
+            "triangles": 890835,
+            "flatCalls": 69,
+            "level": "mid",
+            "centreDistance": 18,
+            "fade": 0
+          }
+        },
+        "26": {
+          "before": {
+            "calls": 896,
+            "triangles": 906075,
+            "flatCalls": 195,
+            "level": "before-hook",
+            "centreDistance": 19.697715603592208,
+            "fade": 0.5
+          },
+          "after": {
+            "calls": 629,
+            "triangles": 863915,
+            "flatCalls": 69,
+            "level": "mid",
+            "centreDistance": 26,
+            "fade": 0.5
+          }
+        },
+        "35": {
+          "before": {
+            "calls": 900,
+            "triangles": 907445,
+            "flatCalls": 195,
+            "level": "before-hook",
+            "centreDistance": 27.51363298439521,
+            "fade": 1
+          },
+          "after": {
+            "calls": 589,
+            "triangles": 808763,
+            "flatCalls": 25,
+            "level": "shell",
+            "centreDistance": 27.51363298439521,
+            "fade": 1
+          }
+        },
+        "11.5": {
+          "before": {
+            "calls": 552,
+            "triangles": 834973,
+            "flatCalls": 195,
+            "level": "before-hook",
+            "centreDistance": 8.32165848854662,
+            "fade": 0
+          },
+          "after": {
+            "calls": 340,
+            "triangles": 835813,
+            "flatCalls": 69,
+            "level": "mid",
+            "centreDistance": 11.5,
+            "fade": 0
+          }
+        }
+      },
+      "setup": {
+        "hookLevels": [
+          "mid",
+          "shell"
+        ],
+        "units": [
+          {
+            "id": "L1004",
+            "mid": true,
+            "merged": 37,
+            "pass": 4,
+            "start": 24,
+            "end": 28
+          },
+          {
+            "id": "L1201",
+            "mid": true,
+            "merged": 34,
+            "pass": 4,
+            "start": 24,
+            "end": 28
+          }
+        ],
+        "rest": true,
+        "box": {
+          "x0": -24.825,
+          "x1": -19.072,
+          "z0": 0,
+          "z1": 12.699
+        }
+      },
+      "pixels": {
+        "different": 0,
+        "pixels": 576000,
+        "fraction": 0
+      },
+      "moving": [
+        {
+          "name": "dörren",
+          "before": "mid",
+          "moving": {
+            "level": "all",
+            "t": 0.06
+          },
+          "opened": {
+            "level": "all",
+            "t": 1
+          },
+          "beyond": "mid",
+          "closed": {
+            "level": "mid",
+            "t": 0
+          }
+        },
+        {
+          "name": "fönstret",
+          "before": "mid",
+          "moving": {
+            "level": "all",
+            "t": 0.05333333333333334
+          },
+          "opened": {
+            "level": "all",
+            "t": 1
+          },
+          "beyond": "mid",
+          "closed": {
+            "level": "mid",
+            "t": 0
+          }
+        }
+      ],
+      "navigation": {
+        "l1004": {
+          "unit": "L1004",
+          "below": false,
+          "levels": [
+            "all",
+            "mid"
+          ]
+        },
+        "l1201": {
+          "unit": "L1201",
+          "below": false,
+          "levels": [
+            "mid",
+            "all"
+          ]
+        },
+        "garage": {
+          "below": true,
+          "levels": [
+            "none",
+            "none"
+          ]
+        }
+      }
+    },
+    "phone": {
+      "views": {
+        "4": {
+          "before": {
+            "calls": 377,
+            "triangles": 794533,
+            "flatCalls": 194,
+            "level": "before-hook",
+            "centreDistance": 1000001.6202488679,
+            "fade": 0
+          },
+          "after": {
+            "calls": 362,
+            "triangles": 791507,
+            "flatCalls": 194,
+            "level": "all",
+            "centreDistance": 1000001.6202488679,
+            "fade": 0
+          }
+        },
+        "7": {
+          "before": {
+            "calls": 417,
+            "triangles": 813933,
+            "flatCalls": 195,
+            "level": "before-hook",
+            "centreDistance": 1000001.6202653679,
+            "fade": 0
+          },
+          "after": {
+            "calls": 249,
+            "triangles": 792141,
+            "flatCalls": 69,
+            "level": "mid",
+            "centreDistance": 7,
+            "fade": 0
+          }
+        },
+        "15": {
+          "before": {
+            "calls": 577,
+            "triangles": 866507,
+            "flatCalls": 195,
+            "level": "before-hook",
+            "centreDistance": 11.423659658795863,
+            "fade": 1
+          },
+          "after": {
+            "calls": 270,
+            "triangles": 767945,
+            "flatCalls": 25,
+            "level": "shell",
+            "centreDistance": 11.423659658795863,
+            "fade": 1
+          }
+        },
+        "10.5": {
+          "before": {
+            "calls": 525,
+            "triangles": 842005,
+            "flatCalls": 195,
+            "level": "before-hook",
+            "centreDistance": 7.826237921249264,
+            "fade": 0.5
+          },
+          "after": {
+            "calls": 278,
+            "triangles": 801177,
+            "flatCalls": 69,
+            "level": "mid",
+            "centreDistance": 10.5,
+            "fade": 0.5
+          }
+        }
+      },
+      "setup": {
+        "hookLevels": [
+          "shell",
+          "shell"
+        ],
+        "units": [
+          {
+            "id": "L1004",
+            "mid": true,
+            "merged": 37,
+            "pass": 4,
+            "start": 9,
+            "end": 12
+          },
+          {
+            "id": "L1201",
+            "mid": true,
+            "merged": 34,
+            "pass": 4,
+            "start": 9,
+            "end": 12
+          }
+        ],
+        "rest": true,
+        "box": {
+          "x0": -24.825,
+          "x1": -19.072,
+          "z0": 0,
+          "z1": 12.699
+        }
+      },
+      "pixels": {
+        "different": 0,
+        "pixels": 576000,
+        "fraction": 0
+      },
+      "moving": [
+        {
+          "name": "dörren",
+          "before": "mid",
+          "moving": {
+            "level": "all",
+            "t": 0.06
+          },
+          "opened": {
+            "level": "all",
+            "t": 1
+          },
+          "beyond": "shell",
+          "closed": {
+            "level": "mid",
+            "t": 0
+          }
+        },
+        {
+          "name": "fönstret",
+          "before": "mid",
+          "moving": {
+            "level": "all",
+            "t": 0.05333333333333334
+          },
+          "opened": {
+            "level": "all",
+            "t": 1
+          },
+          "beyond": "shell",
+          "closed": {
+            "level": "mid",
+            "t": 0
+          }
+        }
+      ],
+      "navigation": {
+        "l1004": {
+          "unit": "L1004",
+          "below": false,
+          "levels": [
+            "all",
+            "shell"
+          ]
+        },
+        "l1201": {
+          "unit": "L1201",
+          "below": false,
+          "levels": [
+            "shell",
+            "all"
+          ]
+        },
+        "garage": {
+          "below": true,
+          "levels": [
+            "none",
+            "none"
+          ]
+        }
+      }
+    }
+  },
+  "checks": [
+    {
+      "ok": true,
+      "text": "both actual public units build a merged level: desktop"
+    },
+    {
+      "ok": true,
+      "text": "native phone/desktop fade range: desktop"
+    },
+    {
+      "ok": true,
+      "text": "desktop 4m: all, calls 389 -> 382"
+    },
+    {
+      "ok": true,
+      "text": "desktop 7m: mid, calls 430 -> 298"
+    },
+    {
+      "ok": true,
+      "text": "desktop 7m: fade follows footprint distance"
+    },
+    {
+      "ok": true,
+      "text": "desktop 11.5m: mid, calls 552 -> 340"
+    },
+    {
+      "ok": true,
+      "text": "desktop 11.5m: fade follows footprint distance"
+    },
+    {
+      "ok": true,
+      "text": "desktop 18m: mid, calls 690 -> 464"
+    },
+    {
+      "ok": true,
+      "text": "desktop 18m: fade follows footprint distance"
+    },
+    {
+      "ok": true,
+      "text": "desktop 26m: mid, calls 896 -> 629"
+    },
+    {
+      "ok": true,
+      "text": "desktop 26m: fade follows footprint distance"
+    },
+    {
+      "ok": true,
+      "text": "desktop 35m: shell, calls 900 -> 589"
+    },
+    {
+      "ok": true,
+      "text": "desktop: near/mid pixel difference <=0.5% (0)"
+    },
+    {
+      "ok": true,
+      "text": "desktop: actual door/window animation retains full parts through 12m then restores mid"
+    },
+    {
+      "ok": true,
+      "text": "desktop: public apartment navigation and garage hiding preserved"
+    },
+    {
+      "ok": true,
+      "text": "both actual public units build a merged level: phone"
+    },
+    {
+      "ok": true,
+      "text": "native phone/desktop fade range: phone"
+    },
+    {
+      "ok": true,
+      "text": "phone 4m: all, calls 377 -> 362"
+    },
+    {
+      "ok": true,
+      "text": "phone 7m: mid, calls 417 -> 249"
+    },
+    {
+      "ok": true,
+      "text": "phone 7m: fade follows footprint distance"
+    },
+    {
+      "ok": true,
+      "text": "phone 10.5m: mid, calls 525 -> 278"
+    },
+    {
+      "ok": true,
+      "text": "phone 10.5m: fade follows footprint distance"
+    },
+    {
+      "ok": true,
+      "text": "phone 15m: shell, calls 577 -> 270"
+    },
+    {
+      "ok": true,
+      "text": "phone: near/mid pixel difference <=0.5% (0)"
+    },
+    {
+      "ok": true,
+      "text": "phone: actual door/window animation retains full parts through 12m then restores mid"
+    },
+    {
+      "ok": true,
+      "text": "phone: public apartment navigation and garage hiding preserved"
+    },
+    {
+      "ok": true,
+      "text": "no page/GLSL errors"
+    },
+    {
+      "ok": true,
+      "text": "no external requests"
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "passed": true
+}

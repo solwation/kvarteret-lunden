@@ -1,0 +1,29 @@
+browsertest: no systemd user scope here, running without a memory ceiling
+PASS both actual public units build a merged level: desktop
+PASS native phone/desktop fade range: desktop
+PASS desktop 4m: all, calls 389 -> 382
+PASS desktop 7m: mid, calls 430 -> 298
+PASS desktop 7m: fade follows footprint distance
+PASS desktop 11.5m: mid, calls 552 -> 340
+PASS desktop 11.5m: fade follows footprint distance
+PASS desktop 18m: mid, calls 690 -> 464
+PASS desktop 18m: fade follows footprint distance
+PASS desktop 26m: mid, calls 896 -> 629
+PASS desktop 26m: fade follows footprint distance
+PASS desktop 35m: shell, calls 900 -> 589
+PASS desktop: near/mid pixel difference <=0.5% (0)
+PASS desktop: actual door/window animation retains full parts through 12m then restores mid
+PASS desktop: public apartment navigation and garage hiding preserved
+PASS both actual public units build a merged level: phone
+PASS native phone/desktop fade range: phone
+PASS phone 4m: all, calls 377 -> 362
+PASS phone 7m: mid, calls 417 -> 249
+PASS phone 7m: fade follows footprint distance
+PASS phone 10.5m: mid, calls 525 -> 278
+PASS phone 10.5m: fade follows footprint distance
+PASS phone 15m: shell, calls 577 -> 270
+PASS phone: near/mid pixel difference <=0.5% (0)
+PASS phone: actual door/window animation retains full parts through 12m then restores mid
+PASS phone: public apartment navigation and garage hiding preserved
+PASS no page/GLSL errors
+PASS no external requests

@@ -1,0 +1,6 @@
+browsertest: no systemd user scope here, running without a memory ceiling
+PASS both actual public units build a merged level: desktop
+PASS native phone/desktop fade range: desktop
+PASS desktop 28.1m: shell, calls 896 -> 585
+PASS no page/GLSL errors
+PASS no external requests
