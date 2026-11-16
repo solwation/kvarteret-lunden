@@ -22,7 +22,7 @@ Båda bilderna har exakt **7 ritanrop / 306 trianglar**, inklusive golv, två pu
 
 ## Direkt granskade bilder
 
-[Före: mätpunkter bakom synlig inredning](before/mid.png), [efter: punkter på framsidan](after-mid.png). Båda granskades direkt. Den separata sidokameran gör punkternas fel/rätta placering tydlig; den väljer inte mätstrålarna. Rubriken anger komponentavgränsningen. Originalets före-/efterbilder kopieras inte.
+[Före: mätpunkter bakom synlig inredning](https://github.com/solwation/kvarteret-lunden/blob/6f27fb68a34da038648a807fd09b3ad3a698064a/docs/verification/289/before/mid.png?raw=true), [efter: punkter på framsidan](after-mid.png). Båda granskades direkt. Den separata sidokameran gör punkternas fel/rätta placering tydlig; den väljer inte mätstrålarna. Rubriken anger komponentavgränsningen. Originalets före-/efterbilder kopieras inte.
 
 ## Delad implementation och offentlig avgränsning
 

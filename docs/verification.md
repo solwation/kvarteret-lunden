@@ -18,6 +18,16 @@ konkret materiell risk; ta bara om felaktiga kamerapositioner. Befintliga snabba
 `npm test`/bygge och automatisk Pages-status kvarstår; dokument kräver ingen ny
 livebrowserkontroll av oförändrad app.
 
+## Mätbar mellannivå i besökslägenheter, #289
+
+`tools/visitmeasure289-check.mjs` renderar publik VisitUnit i en avgränsad komponent.
+Mätning och synlighetsfilter är oförändrade funktionstexter hämtade direkt ur aktuella
+main.js (`visible`, `surfaceVisible`, `clearMeasurement`, `measureAt`, `setMeasure`).
+Den använder inte originalets Measure och laddar ingen hel World. Före-/efterpunkter,
+full/mid/shell/away, dolda original, linjer, öppet-blad-gränsen och renderparitet
+kontrolleras med enkla uttryckligen syntetiska ytor. [Egen källa, loggar och granskade
+resultatbilder](verification/289/README.md). npm test och build körs också.
+
 ## Besöksbara lägenheter enklare på håll, #288
 
 `tools/visitlod-check.mjs` använder den riktiga appen med dess befintliga frame,

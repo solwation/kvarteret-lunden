@@ -1,5 +1,18 @@
 # Förbättringar från originalet
 
+## Mätbara lägenhetsytor i mellannivån, #289
+
+Granskad källa: `3f7c3d0b1983bec2cde7fd44855c1c0af19744ba`
+([original #1999](https://github.com/solwation/lunden-3d-apartment/issues/1999)).
+Endast raycast-raden i `VisitUnit.buildMid` överförs: synliga sammanslagna Mesh-ytor
+behåller native raycast, LineSegments förblir render-only. Publicens eget measureAt
+och synlighetsfilter används oförändrade; originalets Measure-klass importeras inte.
+Ingen geometri, detaljgräns, dörrlogik, lagring, tjänst eller spelkod ändras.
+L1004/L1201 delar implementationen; A/B/C/L:s Core/CoreHouse använder inte VisitUnit.
+Egen avgränsad publik browserkontroll använder exakt funktionstext ur main.js med
+syntetiska provytor, före-/efterpunkter och oförändrat renderantal; npm test/build.
+[Källhashar, resultat och begränsningar](verification/289/README.md).
+
 ## Besöksbara lägenheter enklare på håll, #288
 
 Granskade källor: `f61ad598d0e6d22eee8c16fa837ebe183edcf8df`
