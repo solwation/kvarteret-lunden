@@ -1,5 +1,17 @@
 # Förbättringar från originalet
 
+## Orkesterkärnan v0.14.4, #286
+
+Gemensamt underhåll med [original #1993](https://github.com/solwation/lunden-3d-apartment/issues/1993)
+(`fc052812005bf17519dc476f465c775698fc00a4`). Kärnan är hämtad direkt från sitt
+neutrala källrepo, inte kopierad från originalprojektet: exakt release
+[`91156fc91cdb0e065821f27baf1cd15458a5aadf`](https://github.com/solwation/dirigenten-och-orkestern/releases/tag/v0.14.4).
+Endast `.orchestra/shared/` och lokal pin/proveniens/städpolicy ändras. Plattformens
+checkoutmappar ska också ignoreras och ingå i städrötterna. Ingen applikationskod,
+lagring, personligt innehåll eller tjänsteintegration överförs; köregler och timers
+är bevarade. Verifiering: exakt Git-trädidentitet mot releasen, relativa länkar,
+diff/regelkonsekvens samt `npm test` och `npm run build`.
+
 ## Östra campus byter till lätt geometri på håll, #285
 
 Granskad källa: `bf3002ec0cac708a2924d33927899c2f3e654ea0`
