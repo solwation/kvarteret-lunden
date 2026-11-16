@@ -1,5 +1,16 @@
 # Förbättringar från originalet
 
+## Pergolans ljusslingor enklare på håll, #287
+
+Granskad källa: `b9973faab2f376983f37707390855ee8fc09612e`
+([original #1968](https://github.com/solwation/lunden-3d-apartment/issues/1968)).
+Urval: enbart pergoladelen i `src/courtyard.js` – lamporna blir ett sammanslaget nät per
+pergola, och på dator tonar hela pergolan med `BatchLod` (#285) till oktaedrar (8 i stället
+för 80 trianglar per lampa) mellan 18 och 24 m från pergolans box; tändningen går till alla
+lampmaterial – och `COURTYARD.bulbLod` i `src/config.js`. Telefonläget och `?nolod`
+behåller en nivå. Takterrassernas dekor och originalets ändring i `ceilingbatchgate.js`
+(som gällde terrasserna) ingår inte. Ny kontroll `tools/pergolalod-check.mjs`; mätt i
+[verifieringen](verification.md#pergolans-ljusslingor-enklare-på-håll-287).
 ## Orkesterkärnan v0.14.4, #286
 
 Gemensamt underhåll med [original #1993](https://github.com/solwation/lunden-3d-apartment/issues/1993)

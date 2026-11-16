@@ -1,0 +1,96 @@
+{
+ "views": {
+  "8m": {
+   "full": {
+    "calls": 848,
+    "triangles": 785093,
+    "levels": [
+     "0m:N",
+     "0m:N"
+    ]
+   },
+   "lod": {
+    "calls": 848,
+    "triangles": 785093,
+    "levels": [
+     "8m:N",
+     "42m:F"
+    ]
+   }
+  },
+  "21m": {
+   "full": {
+    "calls": 865,
+    "triangles": 794391,
+    "levels": [
+     "0m:N",
+     "0m:N"
+    ]
+   },
+   "lod": {
+    "calls": 866,
+    "triangles": 795607,
+    "levels": [
+     "21m:NF",
+     "41m:F"
+    ]
+   }
+  },
+  "40m": {
+   "full": {
+    "calls": 889,
+    "triangles": 811207,
+    "levels": [
+     "0m:N",
+     "0m:N"
+    ]
+   },
+   "lod": {
+    "calls": 889,
+    "triangles": 800263,
+    "levels": [
+     "40m:F",
+     "46m:F"
+    ]
+   }
+  }
+ },
+ "errors": [],
+ "external": [],
+ "pergolas": [
+  {
+   "bulbs": 152,
+   "near": 12160,
+   "far": 1216,
+   "box": [
+    [
+     -19.3,
+     2.4,
+     19.6
+    ],
+    [
+     -13.2,
+     2.8,
+     29.5
+    ]
+   ]
+  },
+  {
+   "bulbs": 120,
+   "near": 9600,
+   "far": 960,
+   "box": [
+    [
+     -63.2,
+     2.4,
+     42.1
+    ],
+    [
+     -57.7,
+     2.8,
+     48.7
+    ]
+   ]
+  }
+ ]
+}

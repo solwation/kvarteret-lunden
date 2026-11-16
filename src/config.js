@@ -1355,6 +1355,10 @@ export const GRASS = {
 };
 
 export const COURTYARD = {
+  // #287 (original #1968): the pergolas' string-light bulbs (spheres of r 0.03, 80 triangles) fade, a pergola at a time, into
+  // octahedra (`r`: about the same mean silhouette area, 8 triangles) between `start` and `end` m from the pergola's box, where a
+  // bulb is about two pixels (src/lod.js BatchLod; `margin` m of overlap; all *guess*, by eye at 1280 x 800). Desktop only.
+  bulbLod: { start: 18, end: 24, margin: 1, r: 0.04 },
   // #259: re-measured on the calibrated situation plan (upstream architectural reference; x = (px − 1805) ×
   // 0.06489 + 11.58, z = (py − 1117) × 0.06489, from Hus L's outline) — walks by their light paving, lawns vs gravel by colour
   // stone-paved walks

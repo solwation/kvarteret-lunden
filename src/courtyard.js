@@ -11,6 +11,8 @@ import { registerSnow, registerTrees } from './seasons.js';
 import { SEASON } from './config.js';
 import { groundY } from './surroundings.js';
 import { lobeGeometry, leafMaterial } from './foliage.js';
+import { BatchLod } from './lod.js';
+import { lowMemory } from './lowmemory.js';
 
 // The courtyard on the garage box (#80): stone walks, gravel round the playground (lawn elsewhere, #259), the Borggården's pergola
 // with a dining table and benches (pale timber, vines, string lights and herringbone brick: #149), a grill, sandboxes, a boule court, benches, raised beds,
@@ -401,18 +403,29 @@ export function buildCourtyard() {
   seeds.forEach((sd, i) => { vine.setMatrixAt(i, m.compose(sd.pos, sd.rot, sd.scale)); vine.setColorAt(i, col.setHSL(0.28, 0.45, 0.28)); });
   registerTrees(vine, seeds);
   vine.castShadow = true;
-  const bulbMat = new THREE.MeshBasicMaterial({ color: 0x2a2620, toneMapped: false });
-  const bulbGeo = new THREE.SphereGeometry(0.03, 8, 6);
+  // #287 (original #1968, b9973faa): from C.bulbLod.start m off a pergola's box its bulbs (a pixel or two by then) fade, the
+  // whole pergola at once (the dithered pixel fade of src/lod.js BatchLod), into octahedra of 8 triangles instead of the
+  // sphere's 80. Each pergola is one merged mesh per level behind its own ceiling gate. Desktop only (a phone keeps one level);
+  // `?nolod` keeps one level too (A/B).
+  const BL = C.bulbLod, bulbLod = !lowMemory && !(typeof location !== 'undefined' && /[?&]nolod\b/.test(location.search));
+  const bulbMats = [], bulbMaterial = () => { const mat = new THREE.MeshBasicMaterial({ color: 0x2a2620, toneMapped: false }); bulbMats.push(mat); return mat; };
+  const bulbMat = bulbMaterial(), bulbGeo = new THREE.SphereGeometry(0.03, 8, 6), bulbFarGeo = new THREE.OctahedronGeometry(BL.r, 0);
+  const strung = (geo, list) => mergeGeometries(list.map(([x, y, z]) => geo.clone().translate(x, y, z)));
+  const bulbLods = [];
   // #115, upstream 426f992: complete pergola bounds for the existing whole-box gate.
   group.add(vine);
   for (const [start, end] of bulbRanges) {
-    const bulb = new THREE.InstancedMesh(bulbGeo, bulbMat, end - start);
-    bulbs.slice(start, end).forEach(([x, y, z], i) => bulb.setMatrixAt(i, m.makeTranslation(x, y, z)));
-    bulb.name = 'courtyard-pergola-bulbs';
+    const list = bulbs.slice(start, end), bulb = new THREE.Mesh(strung(bulbGeo, list), bulbMat);
+    bulb.name = 'courtyard-pergola-bulbs'; bulb.userData.bulbs = list.length;
     group.add(new CeilingBatchGate([bulb]));
+    if (!bulbLod) continue;
+    const far = new THREE.Mesh(strung(bulbFarGeo, list), bulbMat);
+    far.name = 'courtyard-pergola-bulbs far';
+    group.add(new CeilingBatchGate([far]));
+    bulbLods.push(new BatchLod(bulb, far, { start: BL.start, end: BL.end, margin: BL.margin, material: bulbMaterial }));
   }
   const lit = new THREE.Color(0xffd08a), off = new THREE.Color(0x2a2620); const bollardOff = new THREE.Color(0x8d8b84);
-  return { object: group, segments, seats, targets, surfaces,
+  return { object: group, segments, seats, targets, surfaces, bulbLods,
     /** night 0 … 1 (with the window lights): the pergola's bulbs glow after dusk (no lights, colour only). */
-    update(night, power = true) { const on = night > 0.35 && power; bulbMat.color.copy(on ? lit : off); bollardGlow.color.copy(on ? lit : bollardOff); } }; // the bollards too (#112); power: not in a power cut (#604)
+    update(night, power = true) { const on = night > 0.35 && power; for (const mat of bulbMats) mat.color.copy(on ? lit : off); bollardGlow.color.copy(on ? lit : bollardOff); } }; // the bollards too (#112); power: not in a power cut (#604)
 }

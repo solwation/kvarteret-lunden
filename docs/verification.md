@@ -18,6 +18,23 @@ konkret materiell risk; ta bara om felaktiga kamerapositioner. Befintliga snabba
 `npm test`/bygge och automatisk Pages-status kvarstår; dokument kräver ingen ny
 livebrowserkontroll av oförändrad app.
 
+## Pergolans ljusslingor enklare på håll, #287
+
+`tools/pergolalod-check.mjs` (ny): den riktiga appen på dator, 960 × 540, samma bildruta med
+pergolornas fjärrnivå av och på, kameran rakt söder om den första pergolan. Pergolorna har 152
+och 120 lampor: 12 160 → 1 216 och 9 600 → 960 trianglar.
+
+| Avstånd | Ritanrop | Trianglar |
+|---|---|---|
+| 8 m | 848 → 848 | 785 093 → 785 093 |
+| 21 m (i zonen) | 865 → 866 | 794 391 → 795 607 |
+| 40 m | 889 → 889 | 811 207 → 800 263 (−10 944) |
+
+Inga sidfel, inga externa anrop; `tools/ceilingbatch-check.mjs` hittar närnäten under samma
+namn. Bilder: [40 m utan](verification/287/40m-full.png) och [med](verification/287/40m-lod.png),
+[21 m i zonen](verification/287/21m-lod.png); mätdata i [pergolalod.json](verification/287/pergolalod.json).
+Inte prövat: natt (tändningen går nu till båda nivåernas material, granskat i koden).
+
 ## Östra campus byter till lätt geometri på håll, #285
 
 `tools/campuslod-check.mjs` (ny): den riktiga appen på dator, Chromium/SwiftShader, 960 × 540, samma
