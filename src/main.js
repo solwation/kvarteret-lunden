@@ -30,6 +30,7 @@ import { applySeason } from './seasons.js';
 import { groundY, renderedTerrainY, treeFeet, aoTrees, southTreeFeet } from './surroundings.js';
 import { Core } from './core.js';
 import { CoreHouse } from './corehouse.js';
+import { updateInstanceLods } from './lod.js';
 import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, LIGHTING, STARTUP, TOUCH, VIEW_NEAR, SITE, OUTDOOR, EDGE_BACKDROP } from './config.js';
 import { region, stickMirrored, setupTouchLayout } from './touchlayout.js';
 
@@ -324,6 +325,7 @@ function frame() {
       $('place').textContent = `L1007 · ${world.roomAt(lv,navigation.pos.x,navigation.pos.z) ?? (lv ? 'Övre plan':'Entréplan')}`;
     }
   }
+  updateInstanceLods(camera); // public #284 (original #1958): trees beyond the dither zone use their far level
   const renderStart = measured ? performance.now() : 0;
   renderer.render(scene,camera);
   if (measured) {

@@ -1,0 +1,48 @@
+{
+ "views": {
+  "area": {
+   "nolod": {
+    "calls": 562,
+    "triangles": 891117,
+    "farInstances": 0,
+    "treeMeshes": 47
+   },
+   "lod": {
+    "calls": 564,
+    "triangles": 832169,
+    "farInstances": 2249,
+    "treeMeshes": 47
+   }
+  },
+  "courtyard": {
+   "nolod": {
+    "calls": 855,
+    "triangles": 815375,
+    "farInstances": 0,
+    "treeMeshes": 47
+   },
+   "lod": {
+    "calls": 857,
+    "triangles": 802295,
+    "farInstances": 617,
+    "treeMeshes": 47
+   }
+  },
+  "core": {
+   "nolod": {
+    "calls": 192,
+    "triangles": 561764,
+    "farInstances": 0,
+    "treeMeshes": 47
+   },
+   "lod": {
+    "calls": 194,
+    "triangles": 549822,
+    "farInstances": 514,
+    "treeMeshes": 47
+   }
+  }
+ },
+ "errors": [],
+ "external": []
+}

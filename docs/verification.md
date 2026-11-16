@@ -18,6 +18,24 @@ konkret materiell risk; ta bara om felaktiga kamerapositioner. Befintliga snabba
 `npm test`/bygge och automatisk Pages-status kvarstår; dokument kräver ingen ny
 livebrowserkontroll av oförändrad app.
 
+## Ditherad LOD-övergång för träd på håll, #284
+
+`tools/treelod-check.mjs` (ny): den riktiga appen i Chromium/SwiftShader, 960 × 540, juli kl. 10,
+samma vyer utan (`?nolod`) och med trädens LOD:
+
+| Vy | Ritanrop | Trianglar | Träd i fjärrnivån |
+|---|---|---|---|
+| `area` | 562 → 564 | 891 117 → 832 169 (−58 948) | 2 249 |
+| `courtyard` | 855 → 857 | 815 375 → 802 295 (−13 080) | 617 |
+| `core` | 192 → 194 | 561 764 → 549 822 (−11 942) | 514 |
+
+De två extra anropen är de två fjärrnäten (kronor, stammar). Inga sidfel, inga externa anrop.
+Bildpunkter som skiljer sig märkbart mellan lägena: 350 (`area`), 579 (`courtyard`), 0 (`core`),
+alla i de avlägsna träden. [Gården utan/med LOD, förstorat](verification/284/garden-utan-med-lod.png)
+(mitt i övergången syns ditherns pixelmönster på stammarna); mätdata i
+[treelod.json](verification/284/treelod.json). Nodprov: `node --test tools/lodtest.mjs` (7 pass).
+Inte prövat: telefonens tidigare zon (30–38 m) i en riktig telefon, rörelse genom zonen, vinter.
+
 ## Kantlinjer som mjuka skuggfogar, #283
 
 Före (`origin/main` 1ed8b3a) och efter, samma webbläsarkörning med det befintliga skriptet

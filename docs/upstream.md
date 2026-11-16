@@ -1,5 +1,23 @@
 # Förbättringar från originalet
 
+## Ditherad LOD-övergång för träd på håll, #284
+
+Granskad källa: `af7da30696fd737fd1c1f99c715657d8d0775bfa`
+([original #1958](https://github.com/solwation/lunden-3d-apartment/issues/1958)).
+Urval: det delade stödet `src/lod.js` och nodtestet `tools/lodtest.mjs` oförändrade från
+källcommiten; i `src/foliage.js` `makeLeafMaterial`, `lodLeafMaterial`, fjärrstammen i
+`trunkGeometry(far)`, `lodBarkMaterial` och `lodFarTrunkMaterial`; trädbygget i
+`src/surroundings.js` (`trees()`: varje cell behåller sitt fullständiga nät, ett fjärrnät per
+sort för kronor och stammar, `InstanceLod`); `crown.userData.lod?.sync()` i
+`src/seasons.js`; `FOLIAGE.lod` och `trunk.farSides` i `src/config.js`; och ett anrop
+`updateInstanceLods(camera)` före varje rendering i `src/main.js`.
+Övergången (Bayer 4×4-dither, komplementära nivåer, skuggor med samma fade) går mellan
+46 och 54 m på dator och 30–38 m på telefon (`lowMemory`); `?nolod` ger en nivå överallt.
+Originalets senare tillägg i `lod.js` (`centre` för andra spelare, #1966, och `BatchLod`
+för campus, #1969) ingår inte här; `BatchLod` kommer med #285. Originalets
+ändringslogg, bilder och `foliagetest.html`-ändring ingår inte (den testsidan finns inte här).
+Mätt i [verifieringen](verification.md#ditherad-lod-övergång-för-träd-på-håll-284).
+
 ## Kantlinjer som mjuka skuggfogar, #283
 
 Granskad källa: `27c217ba89c96ffd1e5291aea9fea3c2389c24d2`
