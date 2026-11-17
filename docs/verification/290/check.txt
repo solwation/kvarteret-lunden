@@ -1,0 +1,4 @@
+Hus A {"samples":10640,"worstTreadErrM":0,"nonStepSamples":0,"ofSamples":29112,"risers":16,"RISE":0.1875,"maxEyeFrameStepM":0.0612,"maxEyeFrameRampM":0.04}
+Hus B {"samples":9546,"worstTreadErrM":0,"nonStepSamples":0,"ofSamples":25968,"risers":16,"RISE":0.1875,"maxEyeFrameStepM":0.0561,"maxEyeFrameRampM":0.0363}
+Hus C {"samples":16218,"worstTreadErrM":0,"nonStepSamples":0,"ofSamples":35188,"risers":16,"RISE":0.1875,"maxEyeFrameStepM":0.0561,"maxEyeFrameRampM":0.0363}
+PASS

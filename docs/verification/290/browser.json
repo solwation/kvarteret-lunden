@@ -1,0 +1,39 @@
+{
+  "ok": true,
+  "result": {
+    "A": {
+      "samples": 32,
+      "maxFeetErrM": 0,
+      "maxEyeFrameM": 0.0511718800567893,
+      "end": {
+        "z": 44.30000000000022,
+        "y": -2.0625,
+        "climbed": 0.9375
+      },
+      "riseM": 0.1875
+    },
+    "B": {
+      "samples": 37,
+      "maxFeetErrM": 0,
+      "maxEyeFrameM": 0.04864309401921352,
+      "end": {
+        "z": 48.75333333333359,
+        "y": -2.0625,
+        "climbed": 0.9375
+      },
+      "riseM": 0.1875
+    },
+    "C": {
+      "samples": 37,
+      "maxFeetErrM": 0,
+      "maxEyeFrameM": 0.04864309401921352,
+      "end": {
+        "z": 29.42333333333316,
+        "y": 0.9375,
+        "climbed": 0.9375
+      },
+      "riseM": 0.1875
+    }
+  },
+  "errors": []
+}

@@ -8,6 +8,7 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+Gången i hus A/B/C:s trapphus följer de verkliga trappstegens ovansida i stället för en ramp (#290).
 Synliga fasta ytor i L1004/L1201 går att mäta även när lägenheternas insida visas sammanslagen på håll (#289).
 
 L1004 och L1201 ritas med färre delar på håll; insidan tonas mjukt bort före fjärrvyn. Nära besökaren, och medan en dörr eller ett fönster är öppet inom 12 meter, visas de rörliga delarna fullt (#288). Befintliga dörrar, fönster och förflyttning behålls.

@@ -1,5 +1,19 @@
 # Förbättringar från originalet
 
+## Trapporna i hus A/B/C går på stegen, #290
+
+Granskad källa: `314e8d246f6049c69e3b17f1644f3bd171918cfe`
+([original #2029](https://github.com/solwation/lunden-3d-apartment/issues/2029)).
+Endast gånghöjden i `CoreHouse.heights` överförs: de två `out.push`-raderna (raka steg,
+vinkel-/solfjäderstegen och hus C:s −1-lopp) ger nu stegets ovansida via
+`treadTop(y0, s) = y0 + RISE × (⌊s⌋ + 1)` i stället för ramplinjen (upp till ~9 cm fel).
+`stairY` och räcken behåller ramplinjen. Ögat jämnas redan ut i publika
+`Navigation.update` (exponentiell lutning, takt 14/s), så ingen ny utjämning behövs.
+Originalets avatarer/fot-IK, bilder och verktyg ingår inte.
+Egen kontroll `tools/stairtread290-check.mjs` (numerisk per hus + ögonspår) och
+`tools/stairtread290-view-check.mjs` (riktig Navigation i browsern):
+[verifiering](verification/290/README.md).
+
 ## Mätbara lägenhetsytor i mellannivån, #289
 
 Granskad källa: `3f7c3d0b1983bec2cde7fd44855c1c0af19744ba`
