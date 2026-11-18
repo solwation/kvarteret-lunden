@@ -41,3 +41,5 @@ morfmål 3 → 14 (relativa). Morftexturen ≈ 0,87 MB nära + 0,40 MB långt pe
 Publikens ekorre saknar ben: lederna är linjära morfmål (små vinklar, ±0,5 rad per led), svansens sidosväng är en tvåtermsanpassning
 och spetsleden har ingen punkt efter sig. Nötens vridning syns inte, och smulan är liten. Inga nötter, gömmor eller annat lämnas
 kvar på marken. Ingen mobilvy togs; telefonen använder samma mesh och program.
+
+Publicerad: `1870e5d`, Pages 44422179891 success.
