@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { SITE, SEASON, DECAL_OFFSET, PARKING_LOT } from './config.js';
+import { SITE, SEASON, DECAL_OFFSET, PARKING_LOT, GLASS_PANES } from './config.js';
 import { pathStrip, onRoad, onWalk, cutAtTerrain, vehicleTrim, isVehicleWay } from './roads.js';
 import { registerSnow, registerSeasonal } from './seasons.js';
 import { buildSchoolFacade, schoolTextures, schoolRoofTint } from './schoolfacade.js';
@@ -12,6 +12,7 @@ import { lowMemory } from './lowmemory.js';
 import { BatchLod } from './lod.js';
 import { schoolyardParts } from './schoolyard.js';
 import { grassMaterial, grassUV } from './grass.js';
+import { paneTints } from './glasspanes.js';
 import { TowerClock } from './towerclock.js';
 import { parkingLots, onEastRoad, onEastBuildingAt } from './parkinglayout.js';
 import { buildKarpFacade, karpBrickTexture } from './karpfacade.js';
@@ -152,7 +153,7 @@ const parts={facade:[],roof:[],glass:[],access:[],...(brick||W.buildings.some(b=
   else{const pl=drape(p.polygon,PAVE_LIFT);pl.userData.tint=surfColor;parts.access.push(pl);if(p.yard)parts.access.push(...schoolyardParts(p.yard,ground,drape));} // #1737: a yard's lawn, sand, hedges and play frames join the same batch
  }
  if(key==='east')eastLotParts(ground,parts.access,p=>p.color??(p.surface==='asphalt'?0x5f6164:p.surface==='gravel'?0xb5ac90:0xa7a397));
- const mats={facade:new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,roughness:.95,side:THREE.DoubleSide}),roof:new THREE.MeshStandardMaterial({color:W.roof,roughness:.85,side:THREE.DoubleSide}),glass:new THREE.MeshStandardMaterial({color:brick?0xffffff:W.glass,vertexColors:!!brick,roughness:.3,metalness:.25,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:DECAL_OFFSET.factor,polygonOffsetUnits:DECAL_OFFSET.units}),access:new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,roughness:1,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:DECAL_OFFSET.factor,polygonOffsetUnits:DECAL_OFFSET.units})}; // #1309: paths/asphalt wear the decal depth bias too, so a coarse sample cannot sink under a terrain crease as green slivers (same as kvarteret-lunden#70)
+ const mats={facade:new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,roughness:.95,side:THREE.DoubleSide}),roof:new THREE.MeshStandardMaterial({color:W.roof,roughness:.85,side:THREE.DoubleSide}),glass:new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,roughness:.3,metalness:.25,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:DECAL_OFFSET.factor,polygonOffsetUnits:DECAL_OFFSET.units}),access:new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,roughness:1,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:DECAL_OFFSET.factor,polygonOffsetUnits:DECAL_OFFSET.units})}; // #1309: paths/asphalt wear the decal depth bias too, so a coarse sample cannot sink under a terrain crease as green slivers (same as kvarteret-lunden#70)
  // #233 (original #1813): actual lawns share terrain grass detail, autumn tint and snow.
  // Keep the existing draped triangles/lifts; sand, play pads and static swing seats stay in access.
  const lawns=parts.access.filter(g=>g.userData.schoolLawn);
@@ -166,6 +167,9 @@ const parts={facade:[],roof:[],glass:[],access:[],...(brick||W.buildings.some(b=
   // Upstream #1679: snow-covered roofs stay white rather than taking the blue-grey roof tint.
   const roofMat=mats.schoolRoof;registerSeasonal(month=>{const colored=!SEASON.snowMonths.includes(month);if(roofMat.vertexColors!==colored){roofMat.vertexColors=colored;roofMat.needsUpdate=true;}});}
  registerSnow(mats.roof,SEASON.snow.roof);registerSnow(mats.access,SEASON.snow.paving);
+ // original #2087: window panes vary calmly per pane (vertex colour); tinted frames/units in the brick glass batch keep their colour
+ parts.glass=parts.glass.map(g=>brick&&(g.attributes.color||g.userData.tint!==undefined)?g:paneTints([g],W.glass,GLASS_PANES.far)[0]);
+ for(const k of ['schoolGlass','karpGlass'])if(parts[k])parts[k]=paneTints(parts[k]); // neighborGlass() multiplies the colour
  for(const [k,list]of Object.entries(parts)){if(['facade','modern','schoolBrick','schoolRoof','access'].includes(k)||k==='glass'&&brick)for(const g of k==='modern'&&lodOn?[...list,...farModern]:list)if(!g.attributes.color){const c=new THREE.Color(g.userData.tint??(k==='schoolRoof'?schoolRoofTint():k==='access'?0xa7a397:k==='glass'?W.glass:k==='schoolBrick'?0xffffff:W.facade)),cols=Array.from({length:g.attributes.position.count},()=>[c.r,c.g,c.b]).flat();g.setAttribute('color',new THREE.Float32BufferAttribute(cols,3));}if(!list.length)continue;for(const g of list)if(k==='schoolBrick'||k==='facade'&&brick){const uv=[],a=g.attributes.position,n=g.attributes.normal;for(let i=0;i<a.count;i++)uv.push((Math.abs(n.getX(i))>Math.abs(n.getZ(i))?a.getZ(i):a.getX(i))/2,a.getY(i)/2);g.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));}
   // Native per-camera/shadow frusta see complete source groups; phones retain the original master batch.
   const ends=key==='east'&&k==='modern'&&!lowMemory?[0,...modernEnds,list.length]:[0,list.length];

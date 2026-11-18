@@ -21,6 +21,7 @@ import { SITE as S, COLORS, SEASON, COURTYARD, GARAGE, CORE_A, CORE_B, CORE_C, N
 import { gridGround, southPointGround } from './elevation.js';
 import { glowMaterial, poolGeometry, washGeometry, fadeGlow } from './groundglow.js';
 import { neighborGlass } from './neighborglass.js';
+import { paneTints } from './glasspanes.js';
 import { registerTrees, registerSnow } from './seasons.js';
 import { asphaltMaterial, asphaltUV } from './asphaltsurface.js';
 import { lobeGeometry, leafMaterial, trunkGeometry, barkMaterial, lodLeafMaterial, lodBarkMaterial, lodFarTrunkMaterial } from './foliage.js';
@@ -2003,7 +2004,7 @@ export function* surroundingsParts({ grass, husL = null }) {
     lampGlass.color.copy(lampLit ? glassLit : glassOff);
   };
   mesh(bare(details.seals),new THREE.MeshStandardMaterial({color:O.gasketColor,roughness:O.gasketRoughness})).name='siteNeighborSeals';
-  mesh(bare([...lg.glass,...details.glass]),glassMaterial).name='siteNeighborGlass'; // glazing: loggia doors, windows, entrances
+  mesh(paneTints(bare([...lg.glass,...details.glass])),glassMaterial).name='siteNeighborGlass'; // glazing: loggia doors, windows, entrances
   mesh(lg.signs, new THREE.MeshStandardMaterial({ map: letterTexture(lg.letters), roughness: 0.6 })); // the house letters
   yield 0.7;
   // low hip roofs of roofing felt (#258; Peab's aerial render, Q&A) over the light metal edge, a few vent hoods along the ridge;

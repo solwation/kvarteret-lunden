@@ -1,0 +1,625 @@
+{
+ "baseline": "e2628344aa758b21bc8f3cf9f71dedd04196e1fb",
+ "viewport": [
+  1200,
+  800
+ ],
+ "views": {
+  "husL": [
+   -12,
+   -13,
+   3,
+   0.18
+  ],
+  "abc": [
+   9,
+   21,
+   0.8,
+   0.12
+  ],
+  "skola": [
+   20,
+   -35,
+   0.3,
+   0.08
+  ]
+ },
+ "phases": {
+  "before": {
+   "glass": {
+    "/neighborGlass": {
+     "vertices": 816,
+     "index": null,
+     "color": false,
+     "vertexColors": [
+      false
+     ],
+     "type": "MeshPhysicalMaterial",
+     "envMap": true,
+     "transparent": false,
+     "opacity": 1,
+     "bounds": [
+      [
+       -42,
+       0,
+       0
+      ],
+      [
+       12,
+       12,
+       13
+      ]
+     ]
+    },
+    "/neighborEntryGlass": {
+     "vertices": 468,
+     "index": null,
+     "color": false,
+     "vertexColors": [
+      false
+     ],
+     "type": "MeshPhysicalMaterial",
+     "envMap": true,
+     "transparent": false,
+     "opacity": 1,
+     "bounds": [
+      [
+       -40,
+       2,
+       0
+      ],
+      [
+       7,
+       9,
+       2
+      ]
+     ]
+    },
+    "/neighborLitGlass": {
+     "vertices": 96,
+     "index": null,
+     "color": false,
+     "vertexColors": [
+      false
+     ],
+     "type": "MeshPhysicalMaterial",
+     "envMap": true,
+     "transparent": false,
+     "opacity": 1,
+     "bounds": [
+      [
+       -35,
+       7,
+       11
+      ],
+      [
+       10,
+       12,
+       13
+      ]
+     ]
+    },
+    "west-backdrop/west-glass": {
+     "vertices": 1248,
+     "index": null,
+     "color": false,
+     "vertexColors": [
+      false
+     ],
+     "type": "MeshStandardMaterial",
+     "envMap": false,
+     "transparent": false,
+     "opacity": 1,
+     "bounds": [
+      [
+       -158,
+       1,
+       -10
+      ],
+      [
+       -94,
+       13,
+       86
+      ]
+     ]
+    },
+    "west-backdrop/west-karpGlass": {
+     "vertices": 1968,
+     "index": null,
+     "color": false,
+     "vertexColors": [
+      false
+     ],
+     "type": "MeshPhysicalMaterial",
+     "envMap": true,
+     "transparent": false,
+     "opacity": 1,
+     "bounds": [
+      [
+       -244,
+       -1,
+       33
+      ],
+      [
+       -104,
+       14,
+       124
+      ]
+     ]
+    },
+    "east-backdrop/east-glass": {
+     "vertices": 10788,
+     "index": null,
+     "color": true,
+     "vertexColors": [
+      true
+     ],
+     "type": "MeshStandardMaterial",
+     "envMap": false,
+     "transparent": false,
+     "opacity": 1,
+     "bounds": [
+      [
+       -207,
+       -3,
+       -382
+      ],
+      [
+       296,
+       19,
+       59
+      ]
+     ]
+    },
+    "east-backdrop/east-schoolGlass": {
+     "vertices": 13794,
+     "index": null,
+     "color": false,
+     "vertexColors": [
+      false
+     ],
+     "type": "MeshPhysicalMaterial",
+     "envMap": true,
+     "transparent": false,
+     "opacity": 1,
+     "bounds": [
+      [
+       -78,
+       0,
+       -154
+      ],
+      [
+       166,
+       18,
+       26
+      ]
+     ]
+    },
+    "north-backdrop/north-glass": {
+     "vertices": 5112,
+     "index": null,
+     "color": true,
+     "vertexColors": [
+      true
+     ],
+     "type": "MeshStandardMaterial",
+     "envMap": false,
+     "transparent": false,
+     "opacity": 1,
+     "bounds": [
+      [
+       -231,
+       5,
+       -188
+      ],
+      [
+       -33,
+       15,
+       -29
+      ]
+     ]
+    },
+    "south-backdrop/south-glass": {
+     "vertices": 16602,
+     "index": null,
+     "color": false,
+     "vertexColors": [
+      false
+     ],
+     "type": "MeshStandardMaterial",
+     "envMap": false,
+     "transparent": false,
+     "opacity": 1,
+     "bounds": [
+      [
+       -226,
+       -1,
+       164
+      ],
+      [
+       293,
+       21,
+       473
+      ]
+     ]
+    },
+    "/siteNeighborGlass": {
+     "vertices": 7470,
+     "index": null,
+     "color": false,
+     "vertexColors": [
+      false
+     ],
+     "type": "MeshPhysicalMaterial",
+     "envMap": true,
+     "transparent": false,
+     "opacity": 1,
+     "bounds": [
+      [
+       -71,
+       -3,
+       13
+      ],
+      [
+       9,
+       14,
+       57
+      ]
+     ]
+    }
+   },
+   "missing": [],
+   "meshes": 1361,
+   "clearGlass": [
+    "bus-stop-glass",
+    "park-door-glass",
+    "park-side-glass"
+   ],
+   "storage": "kept",
+   "loadMs": 44532,
+   "views": {
+    "husL-dag": {
+     "calls": 425,
+     "triangles": 880444,
+     "textures": 72,
+     "geometries": 615,
+     "programs": 56
+    },
+    "husL-natt": {
+     "calls": 433,
+     "triangles": 951234,
+     "textures": 73,
+     "geometries": 620,
+     "programs": 59
+    },
+    "abc-dag": {
+     "calls": 530,
+     "triangles": 687225,
+     "textures": 75,
+     "geometries": 647,
+     "programs": 61
+    },
+    "abc-natt": {
+     "calls": 538,
+     "triangles": 758015,
+     "textures": 75,
+     "geometries": 647,
+     "programs": 61
+    },
+    "skola-dag": {
+     "calls": 43,
+     "triangles": 423651,
+     "textures": 76,
+     "geometries": 651,
+     "programs": 63
+    },
+    "skola-natt": {
+     "calls": 45,
+     "triangles": 464571,
+     "textures": 76,
+     "geometries": 651,
+     "programs": 63
+    }
+   }
+  },
+  "after": {
+   "glass": {
+    "/neighborGlass": {
+     "vertices": 816,
+     "index": null,
+     "color": true,
+     "vertexColors": [
+      true
+     ],
+     "type": "MeshPhysicalMaterial",
+     "envMap": true,
+     "transparent": false,
+     "opacity": 1,
+     "bounds": [
+      [
+       -42,
+       0,
+       0
+      ],
+      [
+       12,
+       12,
+       13
+      ]
+     ]
+    },
+    "/neighborEntryGlass": {
+     "vertices": 468,
+     "index": null,
+     "color": true,
+     "vertexColors": [
+      true
+     ],
+     "type": "MeshPhysicalMaterial",
+     "envMap": true,
+     "transparent": false,
+     "opacity": 1,
+     "bounds": [
+      [
+       -40,
+       2,
+       0
+      ],
+      [
+       7,
+       9,
+       2
+      ]
+     ]
+    },
+    "/neighborLitGlass": {
+     "vertices": 96,
+     "index": null,
+     "color": true,
+     "vertexColors": [
+      true
+     ],
+     "type": "MeshPhysicalMaterial",
+     "envMap": true,
+     "transparent": false,
+     "opacity": 1,
+     "bounds": [
+      [
+       -35,
+       7,
+       11
+      ],
+      [
+       10,
+       12,
+       13
+      ]
+     ]
+    },
+    "west-backdrop/west-glass": {
+     "vertices": 1248,
+     "index": null,
+     "color": true,
+     "vertexColors": [
+      true
+     ],
+     "type": "MeshStandardMaterial",
+     "envMap": false,
+     "transparent": false,
+     "opacity": 1,
+     "bounds": [
+      [
+       -158,
+       1,
+       -10
+      ],
+      [
+       -94,
+       13,
+       86
+      ]
+     ]
+    },
+    "west-backdrop/west-karpGlass": {
+     "vertices": 1968,
+     "index": null,
+     "color": true,
+     "vertexColors": [
+      true
+     ],
+     "type": "MeshPhysicalMaterial",
+     "envMap": true,
+     "transparent": false,
+     "opacity": 1,
+     "bounds": [
+      [
+       -244,
+       -1,
+       33
+      ],
+      [
+       -104,
+       14,
+       124
+      ]
+     ]
+    },
+    "east-backdrop/east-glass": {
+     "vertices": 10788,
+     "index": null,
+     "color": true,
+     "vertexColors": [
+      true
+     ],
+     "type": "MeshStandardMaterial",
+     "envMap": false,
+     "transparent": false,
+     "opacity": 1,
+     "bounds": [
+      [
+       -207,
+       -3,
+       -382
+      ],
+      [
+       296,
+       19,
+       59
+      ]
+     ]
+    },
+    "east-backdrop/east-schoolGlass": {
+     "vertices": 13794,
+     "index": null,
+     "color": true,
+     "vertexColors": [
+      true
+     ],
+     "type": "MeshPhysicalMaterial",
+     "envMap": true,
+     "transparent": false,
+     "opacity": 1,
+     "bounds": [
+      [
+       -78,
+       0,
+       -154
+      ],
+      [
+       166,
+       18,
+       26
+      ]
+     ]
+    },
+    "north-backdrop/north-glass": {
+     "vertices": 5112,
+     "index": null,
+     "color": true,
+     "vertexColors": [
+      true
+     ],
+     "type": "MeshStandardMaterial",
+     "envMap": false,
+     "transparent": false,
+     "opacity": 1,
+     "bounds": [
+      [
+       -231,
+       5,
+       -188
+      ],
+      [
+       -33,
+       15,
+       -29
+      ]
+     ]
+    },
+    "south-backdrop/south-glass": {
+     "vertices": 16602,
+     "index": null,
+     "color": true,
+     "vertexColors": [
+      true
+     ],
+     "type": "MeshStandardMaterial",
+     "envMap": false,
+     "transparent": false,
+     "opacity": 1,
+     "bounds": [
+      [
+       -226,
+       -1,
+       164
+      ],
+      [
+       293,
+       21,
+       473
+      ]
+     ]
+    },
+    "/siteNeighborGlass": {
+     "vertices": 7470,
+     "index": null,
+     "color": true,
+     "vertexColors": [
+      true
+     ],
+     "type": "MeshPhysicalMaterial",
+     "envMap": true,
+     "transparent": false,
+     "opacity": 1,
+     "bounds": [
+      [
+       -71,
+       -3,
+       13
+      ],
+      [
+       9,
+       14,
+       57
+      ]
+     ]
+    }
+   },
+   "missing": [],
+   "meshes": 1361,
+   "clearGlass": [
+    "bus-stop-glass",
+    "park-door-glass",
+    "park-side-glass"
+   ],
+   "storage": "kept",
+   "loadMs": 40968,
+   "views": {
+    "husL-dag": {
+     "calls": 425,
+     "triangles": 880444,
+     "textures": 72,
+     "geometries": 615,
+     "programs": 56
+    },
+    "husL-natt": {
+     "calls": 433,
+     "triangles": 951234,
+     "textures": 73,
+     "geometries": 620,
+     "programs": 59
+    },
+    "abc-dag": {
+     "calls": 530,
+     "triangles": 687225,
+     "textures": 75,
+     "geometries": 647,
+     "programs": 61
+    },
+    "abc-natt": {
+     "calls": 538,
+     "triangles": 758015,
+     "textures": 75,
+     "geometries": 647,
+     "programs": 61
+    },
+    "skola-dag": {
+     "calls": 43,
+     "triangles": 423651,
+     "textures": 76,
+     "geometries": 651,
+     "programs": 63
+    },
+    "skola-natt": {
+     "calls": 45,
+     "triangles": 464571,
+     "textures": 76,
+     "geometries": 651,
+     "programs": 63
+    }
+   }
+  }
+ },
+ "errors": [],
+ "external": []
+}

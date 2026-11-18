@@ -9,6 +9,7 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 ## Omfattning
 
 Gräsmattorna har mjuka torrare och frodigare fläckar och små tuvor, och mönstret upprepas mindre på 10–20 m håll; medelfärgen på håll, säsonger och snö är oförändrade (#306). [Egna jämförelsebilder och kontroller](docs/verification/306/README.md).
+Fasadernas ogenomskinliga fönsterglas har en lugn himmelsreflex: varje ruta skiftar lite i ljushet och ton och är ljusare upptill. Genomsiktligt glas, karmar, nattfönster och renderbudget är oförändrade (#307). [Egna jämförelsebilder dag/natt och kontroller](docs/verification/307/README.md).
 
 Trädens löv har mjuk lokal färgtoning och diskreta sidonerver i den befintliga lövatlasen; effekten syns främst nära, med oförändrad lövform, säsonger och LOD (#305). [Egna jämförelsebilder och kontroller](docs/verification/305/README.md).
 

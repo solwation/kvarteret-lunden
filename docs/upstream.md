@@ -4041,3 +4041,22 @@ Cloudflare eller originalhistoria importeras.
 Egen verifiering: sex Node-test, npm test/build och en egen före/efter-browser av den riktiga publika appen
 (gångvy, 10–20 m innergård/park, fjärrvy, vinter) med oförändrade draws/texturer/program och medelfärg,
 pixelidentisk snö samt noll fel och externa anrop. [Egna bilder, kontroller och kostnad](verification/306/README.md).
+## Fönsterglasets rutvisa himmelsreflex, #307
+
+Granskad publicerad originalkälla `47d8827e694d7b62983db3b6943c44f054dd0bb0`
+(publicerat resultat `3e33c99`, [original #2087](https://github.com/solwation/lunden-3d-apartment/issues/2087)).
+Överfört: byteidentiska `src/glasspanes.js` (`paneTints`/`paneColor`), ett eget
+`GLASS_PANES`-block i `src/config.js` efter `NEIGHBOR_OPENINGS`, `vertexColors:true` på
+`neighborGlass()` och konsumentraderna i publicens motsvarande moduler: `exterior.js`
+(Hus L-grannarnas glas, entréglas, tända nattfönster), `surroundings.js` (ABC-glaset),
+`sitebackdrop.js` (fondglas samt skolans/campus- och Kärpvägens reflekterande glas) och
+`southbackdrop.js` (södra fondens glas, samma grundfärg `0x35444d`). Alla originalets
+konsumenter finns i publicen; inget är ej tillämpligt. Originalets ändring i
+`tools/depthprecisiontest.cjs` saknar publik motsvarighet. Node-testet anpassas; browserverktyget är eget.
+Ingen originalbild, ändringslogg, inredning, avatar, gameplay, lagring, tjänst, Cloudflare
+eller originalhistoria importeras.
+
+Egen verifiering: `node --test tools/glasspanestest.mjs` 3/3, npm test/build och en egen
+före/efter-browser i den riktiga publika appen (Hus L, ABC, skolan; dag och nattvägen) med
+oförändrade draws/texturer/program, oförändrat genomsiktligt glas och noll fel/externa
+anrop. [Egna bilder, kontroller och kostnad](verification/307/README.md).
