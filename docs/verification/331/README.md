@@ -41,3 +41,5 @@ LOD-ompackning längs kamerans väg. På GPU:n gör varje bladfragment två deri
 Kort sedda måttligt snett (|cos| över ca 0,3) ser fortfarande något utdragna ut (avsiktligt, så kronorna inte tunnas ut).
 Kronor bortom 30 m, fjärr-LOD och södra skogen är oförändrade. Gårdens planteringar och klängväxten delar materialet och får
 samma uttoning på nära håll men är inte fotograferade här. Mobilprofilen får samma fragmentsteg; inte mätt på en riktig telefon.
+
+Publicerad: `2c053c2`, Pages 44422955782 success.
