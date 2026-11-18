@@ -42,3 +42,5 @@ Publikens instansierade ponny har inga ben-/öron-/huvudben: inget vilande bakbe
 fluga), inget extra tuggnick och ingen hudryckning. Svansen är en stel del, så bara kedjans bas syns (originalets reservnät gör
 likadant). Manens förskjutning görs före halsens vridning, så med huvudet nere blir den delvis en vertikal rörelse. Ingen mobilvy
 togs; telefonen använder samma program.
+
+Publicerad: `7c82418`, Pages 44419744849 success.
