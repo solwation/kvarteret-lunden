@@ -4063,6 +4063,28 @@ export const RIVER_FISH = {
   drawDist: 45, wag: [0.14, 7.5], murk: 0.5, opacity: 0.85, look: { flat: 0.45, wide: 1.9, shade: 0.55, deepTone: 0.6 },
 };
 
+// Public #326 (original #2130, ef43316d): loose schools, still moments in cover and quick surface takes (src/riverfishschool.js), a local
+// drawing layer over the passive fish; values unchanged from the original. Every number is a *guess* by eye (roach and bream shoal loosely
+// in slow lowland streams, perch in small groups; pike, trout and eel keep to themselves), nothing measured in Höje å.
+//  kinds: species that school, by group name (roach and bream mix); homeGap: m between two fish's home stretches (same swim stretch) for one
+//    school; maxSize: fish per school. join / tight: m between a member's own seeded place and its leader's at which it starts to / fully keeps
+//    its slot. lag: s per rank a member follows its leader's path later (a turn runs through the school). spread: m beside the leader per pair of
+//    ranks (alternating sides); behind: m per rank downstream of the leader while it holds; wobble [m, rad/s]: slow drift in the slot.
+//  hold: per fish alone / school, one chance per `every` [min, max] s slot (`chance`) to stand still `dur` [min, max] s in the lee of the nearest
+//    cover within `reach` m (`clear` m behind it; in open water where none is), head against the current; it eases there and back at `back` m/s
+//    on average (never quicker than `ease` s); it ends early once its own seeded place is `far` m off. depth: share of the way from the bed to
+//    the surface it holds at behind a stone / a lily / in open water. (The public river has lily pads as cover, no stones.)
+//  take: per fish alone / school, one chance per `every` [min, max] s slot (`chance`): one fish darts up (`up` s) to the surface and goes down
+//    (`down` s); rings at `rings` s after the take, each living `life` s, radius `r` [start, end] m, strength `glow` (cf. RIVER_FISH.ring.glow).
+//  settle: m/s at most that a drawn offset follows a sudden change; minStone: m, the smallest stone that gives cover (unused without stones).
+export const RIVER_FISH_SCHOOL = {
+  kinds: { mört: 'vitfisk', braxen: 'vitfisk', abborre: 'abborre' }, homeGap: 30, maxSize: 6,
+  join: 14, tight: 6, lag: 0.45, spread: 0.45, behind: 0.5, wobble: [0.22, 0.11],
+  hold: { every: [35, 75], chance: 0.55, dur: [6, 11], reach: 5, far: 7, clear: 0.35, back: 1.2, ease: 2, depth: { stone: 0.25, lily: 0.75, open: 0.4 } },
+  take: { every: [60, 140], chance: 0.3, up: 0.35, down: 0.7, rings: [0, 0.3, 0.75], life: 2.8, r: [0.08, 1.9], glow: 0.85 },
+  settle: 5, minStone: 0.2,
+};
+
 // Public #237: selected original 578ecc09 motion/appearance; four anonymous local animals (visual guesses).
 // Public #271: neutral surface estimates from original #1920; existing movement settings follow.
 export const SQUIRREL_SURFACE = {

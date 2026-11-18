@@ -120,6 +120,8 @@ På Höje ås yta driver små bleka fläckar och enstaka löv sakta nedströms, 
 
 I Höje å syns passiva fiskar och ringar när de går upp till ytan (#238). Rörelsen följer ett fast lokalt seed och besökarens klocka; inget fiske eller klickmål finns. Fiskarna följer visningens egna vatten- och bottenhöjder, ritas inom 45 meter och kan döljas med `?noriverfish`. Antal, arter, storlek och rörelse är visuella antaganden.
 
+Fiskarna i ån simmar i lösa stim som vänder tillsammans (mört/braxen och abborre), står ibland stilla mot strömmen i lä bakom näckrosbladen och vakar då och då vid ytan så att större ringar sprids (#326). Det är passiv miljö utan fiske, matning eller ljud; inga nya draw calls, texturer eller lagring. [Egna före/efter-bilder och kontroller](docs/verification/326/README.md).
+
 Fyra anonyma ekorrar hoppar mellan trädkronor, klättrar och letar på marken vid ån, hagen och en sydlig lund (#237). De är enbart miljö, utan nötter, matning eller interaktion, och döljs vintertid. Den sammanhängande kroppen, smalare ansiktet och böjda svansplymen (#271) behåller samma passiva rörelser och en mesh per djur.
 
 Nordic Wellness vid Sankt Lars väg har tegelfront med varma bottenfönster, grön glasentré med synlig trappa, grön hall och terrängföljande parkering (#240). Fasadskylten är självritad och innebär inget samarbete; mått och material är visuella antaganden. Den separata mobilbudgetavvikelsen följs i #242.

@@ -4429,3 +4429,20 @@ lagring, tjänst, Cloudflare eller originalhistoria importeras.
 Egen verifiering: `node --test tools/treeformtest.mjs` 6/6 (originalets funktionstester), `tools/barksurfacetest.mjs` och
 `tools/lodtest.mjs` gröna, npm test/build och en egen före/efter-browser i den riktiga appen (sommar/vinter, nära/fjärran).
 [Egna bilder, kontroller och kostnad](verification/327/README.md).
+## Åfiskarnas stim, lä och ytvak, #326
+
+Granskad originalkälla `ef43316d16f16196f9ee826325713866b7641b47` ([original #2130](https://github.com/solwation/lunden-3d-apartment/issues/2130)).
+Överfört: `src/riverfishschool.js` (`schoolsOf`, `coverFrame`, `holdAt`, `takeAt`, `schoolContext`, `placeAt`, `presentAt`,
+`takeRings`, `moveRing`) med oförändrade funktionskroppar och endast filhuvudets kommentar neutraliserad; originalets
+`RIVER_FISH_SCHOOL`-värden i ett eget block direkt efter `RIVER_FISH` i `src/config.js`; konsumentrader i publikens egen
+`src/riverfish.js` (ritad plats via `presentAt` med `settle`-uppföljning, ytvakens ringar i samma ringbatch som nu rymmer
+`count × 5`, en uppgångs ringar flyttade dit fisken ritades, `schoolStep`, `state().school`), ett `cover` på publikens
+`RiverLilies` (näckrosbladen, bara när bladen finns) och en rad i `main.js` som kopplar `ambientFish.flora = riverLilies`.
+`shown[i].x/y/z` behåller den seedade platsen. Ej tillämpligt: originalets stenar som lä (publikens å har bara näckrosblad;
+`minStone` och `depth.stone` är oanvända), delade rum/synk, metspö, fångstkontroll, harpun, matnings-/skrämsellagret
+(`riverfishfeed.js`), dykarvyn, ljud och ändringslogg. Publikens vatten (#280/#303), färger, mått, ritavstånd och lagringsnamn
+är oförändrade. Ingen originalbild, inredning, avatar, gameplay, tjänst, Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: `node --test tools/riverfishschooltest.mjs` 7/7 (originalets fem funktionstester plus publikens
+näckroslä och `RiverFish`-konsumenten), npm test/build och en egen före/efter-browser i den riktiga appen
+(`tools/riverfishschool326browser.cjs`). [Egna bilder, kontroller och kostnad](verification/326/README.md).

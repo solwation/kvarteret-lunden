@@ -210,6 +210,7 @@ async function init() {
   ambientFish = debugParams.has('noriverfish') ? null : new RiverFish({scene,camera});
   riverDrift = debugParams.has('nodrift') ? null : new RiverDriftSurface({scene}); // #280: one draw call, only near the river
   riverLilies = debugParams.has('noflora') ? null : new RiverLilies({scene}); // #282: at most two draw calls, only near the river
+  if (ambientFish && riverLilies) ambientFish.flora = riverLilies; // #326: the lily pads a river fish may stand still behind
 
   squirrels = new Squirrels({scene,camera,feet:treeFeet,crowns:aoTrees,southFeet:southTreeFeet,ground:renderedTerrainY});
 

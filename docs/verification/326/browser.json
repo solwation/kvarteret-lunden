@@ -1,0 +1,909 @@
+{
+ "baseline": "10c4e3476c09ef2d8175ce0f8b8ac5bbdc25f5fb",
+ "viewport": [
+  1120,
+  800
+ ],
+ "plan": {
+  "T0": 1700000,
+  "seed": 1754,
+  "road": [
+   23.6,
+   122.9
+  ],
+  "cover": 92,
+  "school": {
+   "t": 1700045.5,
+   "lead": 0,
+   "members": [
+    0,
+    3,
+    10
+   ],
+   "s": 688.627398244065,
+   "d": -1.621210129173862
+  },
+  "take": {
+   "t": 1700083.1909953502,
+   "id": 16,
+   "x": 46.303812761443154,
+   "z": 120.33523809289473,
+   "y": -6.979004494784292
+  },
+  "hold": {
+   "t": 1700019,
+   "id": 8,
+   "size": 1,
+   "s": 47.1126108839526,
+   "d": -1.9698787671660938
+  },
+  "views": {
+   "school": {
+    "eye": [
+     -257.7155493902137,
+     null,
+     273.7759499928963
+    ],
+    "at": [
+     -259.8431812872369,
+     null,
+     272.3187816056997
+    ],
+    "up": 3.4
+   },
+   "hold": {
+    "eye": [
+     289.00466079688255,
+     null,
+     40.67602769950894
+    ],
+    "at": [
+     288.2966784544675,
+     null,
+     38.56126962446463
+    ],
+    "up": 3.2
+   },
+   "take": {
+    "eye": [
+     46.48341953106354,
+     null,
+     122.74296164887153
+    ],
+    "at": [
+     46.33332520743118,
+     null,
+     120.33418949702487
+    ],
+    "up": 3.4
+   }
+  }
+ },
+ "errors": [],
+ "external": [],
+ "phases": {
+  "before": {
+   "loadMs": 37501,
+   "setup": {
+    "sceneMeshes": 1349
+   },
+   "frames": [
+    {
+     "name": "school-0",
+     "t": 1700045.5,
+     "calls": 21,
+     "triangles": 325260,
+     "programs": 68,
+     "textures": 66,
+     "drawn": 4,
+     "rings": 2,
+     "school": null,
+     "fish": [
+      {
+       "id": 0,
+       "sp": "abborre",
+       "shared": [
+        -259.84,
+        272.32
+       ],
+       "drawn": [
+        -259.84,
+        272.32
+       ],
+       "hold": 0,
+       "take": 0
+      },
+      {
+       "id": 3,
+       "sp": "abborre",
+       "shared": [
+        -261.98,
+        269.92
+       ],
+       "drawn": [
+        -261.98,
+        269.92
+       ],
+       "hold": 0,
+       "take": 0
+      },
+      {
+       "id": 10,
+       "sp": "abborre",
+       "shared": [
+        -261.24,
+        273.38
+       ],
+       "drawn": [
+        -261.24,
+        273.38
+       ],
+       "hold": 0,
+       "take": 0
+      },
+      {
+       "id": 11,
+       "sp": "öring",
+       "shared": [
+        -268.75,
+        282.62
+       ],
+       "drawn": [
+        -268.75,
+        282.62
+       ],
+       "hold": 0,
+       "take": 0
+      }
+     ]
+    },
+    {
+     "name": "school-1",
+     "t": 1700047,
+     "calls": 20,
+     "triangles": 325132,
+     "programs": 68,
+     "textures": 66,
+     "drawn": 4,
+     "rings": 0,
+     "school": null,
+     "fish": [
+      {
+       "id": 0,
+       "sp": "abborre",
+       "shared": [
+        -259.43,
+        272.39
+       ],
+       "drawn": [
+        -259.43,
+        272.39
+       ],
+       "hold": 0,
+       "take": 0
+      },
+      {
+       "id": 3,
+       "sp": "abborre",
+       "shared": [
+        -261.17,
+        269.08
+       ],
+       "drawn": [
+        -261.17,
+        269.08
+       ],
+       "hold": 0,
+       "take": 0
+      },
+      {
+       "id": 10,
+       "sp": "abborre",
+       "shared": [
+        -260.42,
+        272
+       ],
+       "drawn": [
+        -260.42,
+        272
+       ],
+       "hold": 0,
+       "take": 0
+      },
+      {
+       "id": 11,
+       "sp": "öring",
+       "shared": [
+        -269.52,
+        284.04
+       ],
+       "drawn": [
+        -269.52,
+        284.04
+       ],
+       "hold": 0,
+       "take": 0
+      }
+     ]
+    },
+    {
+     "name": "school-2",
+     "t": 1700048.5,
+     "calls": 21,
+     "triangles": 325196,
+     "programs": 68,
+     "textures": 66,
+     "drawn": 4,
+     "rings": 1,
+     "school": null,
+     "fish": [
+      {
+       "id": 0,
+       "sp": "abborre",
+       "shared": [
+        -259.23,
+        272.34
+       ],
+       "drawn": [
+        -259.23,
+        272.34
+       ],
+       "hold": 0,
+       "take": 0
+      },
+      {
+       "id": 3,
+       "sp": "abborre",
+       "shared": [
+        -260.55,
+        268.14
+       ],
+       "drawn": [
+        -260.55,
+        268.14
+       ],
+       "hold": 0,
+       "take": 0
+      },
+      {
+       "id": 10,
+       "sp": "abborre",
+       "shared": [
+        -259.46,
+        270.57
+       ],
+       "drawn": [
+        -259.46,
+        270.57
+       ],
+       "hold": 0,
+       "take": 0
+      },
+      {
+       "id": 11,
+       "sp": "öring",
+       "shared": [
+        -270.19,
+        285.51
+       ],
+       "drawn": [
+        -270.19,
+        285.51
+       ],
+       "hold": 0,
+       "take": 0
+      }
+     ]
+    },
+    {
+     "name": "take-0",
+     "t": 1700083.0409953503,
+     "calls": 24,
+     "triangles": 393418,
+     "programs": 68,
+     "textures": 66,
+     "drawn": 1,
+     "rings": 0,
+     "school": null,
+     "fish": [
+      {
+       "id": 16,
+       "sp": "mört",
+       "shared": [
+        46.18,
+        120.3
+       ],
+       "drawn": [
+        46.18,
+        120.3
+       ],
+       "hold": 0,
+       "take": 0
+      }
+     ]
+    },
+    {
+     "name": "take-1",
+     "t": 1700083.7909953503,
+     "calls": 24,
+     "triangles": 393418,
+     "programs": 68,
+     "textures": 66,
+     "drawn": 1,
+     "rings": 0,
+     "school": null,
+     "fish": [
+      {
+       "id": 16,
+       "sp": "mört",
+       "shared": [
+        46.8,
+        120.47
+       ],
+       "drawn": [
+        46.8,
+        120.47
+       ],
+       "hold": 0,
+       "take": 0
+      }
+     ]
+    },
+    {
+     "name": "take-2",
+     "t": 1700084.7909953503,
+     "calls": 24,
+     "triangles": 393418,
+     "programs": 68,
+     "textures": 66,
+     "drawn": 1,
+     "rings": 0,
+     "school": null,
+     "fish": [
+      {
+       "id": 16,
+       "sp": "mört",
+       "shared": [
+        47.64,
+        120.67
+       ],
+       "drawn": [
+        47.64,
+        120.67
+       ],
+       "hold": 0,
+       "take": 0
+      }
+     ]
+    },
+    {
+     "name": "hold",
+     "t": 1700019,
+     "calls": 23,
+     "triangles": 380146,
+     "programs": 68,
+     "textures": 66,
+     "drawn": 1,
+     "rings": 0,
+     "school": null,
+     "fish": [
+      {
+       "id": 8,
+       "sp": "öring",
+       "shared": [
+        286.83,
+        35.73
+       ],
+       "drawn": [
+        286.83,
+        35.73
+       ],
+       "hold": 0,
+       "take": 0
+      }
+     ]
+    }
+   ],
+   "cpu": 0.21
+  },
+  "after": {
+   "loadMs": 37307,
+   "setup": {
+    "sceneMeshes": 1349
+   },
+   "frames": [
+    {
+     "name": "school-0",
+     "t": 1700045.5,
+     "calls": 21,
+     "triangles": 325260,
+     "programs": 68,
+     "textures": 66,
+     "drawn": 4,
+     "rings": 2,
+     "school": {
+      "groups": [
+       [
+        0,
+        3,
+        10
+       ],
+       [
+        1,
+        4,
+        9
+       ],
+       [
+        7,
+        17
+       ],
+       [
+        13,
+        16
+       ]
+      ],
+      "cover": 92,
+      "holding": 0,
+      "taking": 0,
+      "takeRings": 0
+     },
+     "fish": [
+      {
+       "id": 0,
+       "sp": "abborre",
+       "shared": [
+        -259.84,
+        272.32
+       ],
+       "drawn": [
+        -259.84,
+        272.32
+       ],
+       "hold": 0,
+       "take": 0
+      },
+      {
+       "id": 3,
+       "sp": "abborre",
+       "shared": [
+        -261.98,
+        269.92
+       ],
+       "drawn": [
+        -260.39,
+        271.88
+       ],
+       "hold": 0,
+       "take": 0
+      },
+      {
+       "id": 10,
+       "sp": "abborre",
+       "shared": [
+        -261.24,
+        273.38
+       ],
+       "drawn": [
+        -259.92,
+        272.33
+       ],
+       "hold": 0,
+       "take": 0
+      },
+      {
+       "id": 11,
+       "sp": "öring",
+       "shared": [
+        -268.75,
+        282.62
+       ],
+       "drawn": [
+        -268.75,
+        282.62
+       ],
+       "hold": 0,
+       "take": 0
+      }
+     ]
+    },
+    {
+     "name": "school-1",
+     "t": 1700047,
+     "calls": 20,
+     "triangles": 325132,
+     "programs": 68,
+     "textures": 66,
+     "drawn": 4,
+     "rings": 0,
+     "school": {
+      "groups": [
+       [
+        0,
+        3,
+        10
+       ],
+       [
+        1,
+        4,
+        9
+       ],
+       [
+        7,
+        17
+       ],
+       [
+        13,
+        16
+       ]
+      ],
+      "cover": 92,
+      "holding": 0,
+      "taking": 0,
+      "takeRings": 0
+     },
+     "fish": [
+      {
+       "id": 0,
+       "sp": "abborre",
+       "shared": [
+        -259.43,
+        272.39
+       ],
+       "drawn": [
+        -259.43,
+        272.39
+       ],
+       "hold": 0,
+       "take": 0
+      },
+      {
+       "id": 3,
+       "sp": "abborre",
+       "shared": [
+        -261.17,
+        269.08
+       ],
+       "drawn": [
+        -259.9,
+        272.01
+       ],
+       "hold": 0,
+       "take": 0
+      },
+      {
+       "id": 10,
+       "sp": "abborre",
+       "shared": [
+        -260.42,
+        272
+       ],
+       "drawn": [
+        -259.41,
+        272.42
+       ],
+       "hold": 0,
+       "take": 0
+      },
+      {
+       "id": 11,
+       "sp": "öring",
+       "shared": [
+        -269.52,
+        284.04
+       ],
+       "drawn": [
+        -269.52,
+        284.04
+       ],
+       "hold": 0,
+       "take": 0
+      }
+     ]
+    },
+    {
+     "name": "school-2",
+     "t": 1700048.5,
+     "calls": 21,
+     "triangles": 325196,
+     "programs": 68,
+     "textures": 66,
+     "drawn": 4,
+     "rings": 1,
+     "school": {
+      "groups": [
+       [
+        0,
+        3,
+        10
+       ],
+       [
+        1,
+        4,
+        9
+       ],
+       [
+        7,
+        17
+       ],
+       [
+        13,
+        16
+       ]
+      ],
+      "cover": 92,
+      "holding": 0,
+      "taking": 0,
+      "takeRings": 0
+     },
+     "fish": [
+      {
+       "id": 0,
+       "sp": "abborre",
+       "shared": [
+        -259.23,
+        272.34
+       ],
+       "drawn": [
+        -259.23,
+        272.34
+       ],
+       "hold": 0,
+       "take": 0
+      },
+      {
+       "id": 3,
+       "sp": "abborre",
+       "shared": [
+        -260.55,
+        268.14
+       ],
+       "drawn": [
+        -259.6,
+        272.04
+       ],
+       "hold": 0,
+       "take": 0
+      },
+      {
+       "id": 10,
+       "sp": "abborre",
+       "shared": [
+        -259.46,
+        270.57
+       ],
+       "drawn": [
+        -259.08,
+        272.43
+       ],
+       "hold": 0,
+       "take": 0
+      },
+      {
+       "id": 11,
+       "sp": "öring",
+       "shared": [
+        -270.19,
+        285.51
+       ],
+       "drawn": [
+        -270.19,
+        285.51
+       ],
+       "hold": 0,
+       "take": 0
+      }
+     ]
+    },
+    {
+     "name": "take-0",
+     "t": 1700083.0409953503,
+     "calls": 24,
+     "triangles": 393418,
+     "programs": 68,
+     "textures": 66,
+     "drawn": 1,
+     "rings": 0,
+     "school": {
+      "groups": [
+       [
+        0,
+        3,
+        10
+       ],
+       [
+        1,
+        4,
+        9
+       ],
+       [
+        7,
+        17
+       ],
+       [
+        13,
+        16
+       ]
+      ],
+      "cover": 92,
+      "holding": 0,
+      "taking": 1,
+      "takeRings": 0
+     },
+     "fish": [
+      {
+       "id": 16,
+       "sp": "mört",
+       "shared": [
+        46.18,
+        120.3
+       ],
+       "drawn": [
+        46.18,
+        120.3
+       ],
+       "hold": 0,
+       "take": 0.61
+      }
+     ]
+    },
+    {
+     "name": "take-1",
+     "t": 1700083.7909953503,
+     "calls": 25,
+     "triangles": 393546,
+     "programs": 68,
+     "textures": 66,
+     "drawn": 1,
+     "rings": 2,
+     "school": {
+      "groups": [
+       [
+        0,
+        3,
+        10
+       ],
+       [
+        1,
+        4,
+        9
+       ],
+       [
+        7,
+        17
+       ],
+       [
+        13,
+        16
+       ]
+      ],
+      "cover": 92,
+      "holding": 0,
+      "taking": 1,
+      "takeRings": 2
+     },
+     "fish": [
+      {
+       "id": 16,
+       "sp": "mört",
+       "shared": [
+        46.8,
+        120.47
+       ],
+       "drawn": [
+        46.8,
+        120.47
+       ],
+       "hold": 0,
+       "take": 0.06
+      }
+     ]
+    },
+    {
+     "name": "take-2",
+     "t": 1700084.7909953503,
+     "calls": 25,
+     "triangles": 393610,
+     "programs": 68,
+     "textures": 66,
+     "drawn": 1,
+     "rings": 3,
+     "school": {
+      "groups": [
+       [
+        0,
+        3,
+        10
+       ],
+       [
+        1,
+        4,
+        9
+       ],
+       [
+        7,
+        17
+       ],
+       [
+        13,
+        16
+       ]
+      ],
+      "cover": 92,
+      "holding": 0,
+      "taking": 0,
+      "takeRings": 3
+     },
+     "fish": [
+      {
+       "id": 16,
+       "sp": "mört",
+       "shared": [
+        47.64,
+        120.67
+       ],
+       "drawn": [
+        47.64,
+        120.67
+       ],
+       "hold": 0,
+       "take": 0
+      }
+     ]
+    },
+    {
+     "name": "hold",
+     "t": 1700019,
+     "calls": 23,
+     "triangles": 380146,
+     "programs": 68,
+     "textures": 66,
+     "drawn": 1,
+     "rings": 0,
+     "school": {
+      "groups": [
+       [
+        0,
+        3,
+        10
+       ],
+       [
+        1,
+        4,
+        9
+       ],
+       [
+        7,
+        17
+       ],
+       [
+        13,
+        16
+       ]
+      ],
+      "cover": 92,
+      "holding": 1,
+      "taking": 0,
+      "takeRings": 0
+     },
+     "fish": [
+      {
+       "id": 8,
+       "sp": "öring",
+       "shared": [
+        286.83,
+        35.73
+       ],
+       "drawn": [
+        288.3,
+        38.56
+       ],
+       "hold": 1,
+       "take": 0
+      }
+     ]
+    }
+   ],
+   "cpu": 0.307
+  }
+ }
+}

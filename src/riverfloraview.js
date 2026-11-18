@@ -90,6 +90,8 @@ export class RiverLilies {
       if (e.flower) { S.setScalar(e.r * 0.55); P.set(x + Math.cos(e.yaw) * e.r * 0.9, y, z + Math.sin(e.yaw) * e.r * 0.9); items.flowers.push({ s: e.s, x: P.x, y, z: P.z, m: new THREE.Matrix4().compose(P, Q, S) }); }
     }
     this.near = {}; this.at = -1e9;
+    // #326 (original #2130): where a river fish may stand still in the lee (src/riverfishschool.js): the lily pads while their leaves are out
+    this.cover = { stones: [], lilies: items.lilies.map((e) => ({ x: e.x, z: e.z, r: e.r, kind: 'lily' })), leaves: true };
     const leaf = new THREE.MeshLambertMaterial({ vertexColors: true, side: THREE.DoubleSide });
     const mesh = (name, geo, list) => {
       const m = new THREE.InstancedMesh(geo, leaf, Math.max(1, this.capacity(list)));
@@ -114,6 +116,7 @@ export class RiverLilies {
   /** Each frame. `eye`: the camera's world position; `hidden`: nothing is drawn (below ground); `month` 1 … 12. True while drawn. */
   update(eye, hidden = false, month = 7) {
     const m = this.meshes, near = this.near, season = floraSeason(month);
+    this.cover.leaves = season.leaves;
     const on = !hidden && season.leaves && this.river.path.nearest(eye.x, eye.z, near).d < F.drawDist;
     if (!on) { m.lilies.visible = m.flowers.visible = false; return false; }
     if (Math.abs(near.s - this.at) > 8) this.fill(near.s);
