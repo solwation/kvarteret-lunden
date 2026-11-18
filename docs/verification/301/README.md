@@ -114,3 +114,7 @@ README är publicens ändringsnotis; ingen originaländringslogg importeras.
 ## Integration review
 
 Root inspected report/transition pairs and reviewed all three worker-inspected images and green groups. Product helper/fixtures/tests match a3899215 exactly. Config changes only the named approach block and historical comment; all prior config bytes and upstream/README content are retained. Independent #300 pavement at z19–58 remains; the graded corridor begins z147. Original source-bound component totals above exclude that unrelated new strip. No duplicate browser/broad tests needed.
+
+## Publicering
+
+Kod/bilder `f8d1b798f082c41f193da7067b96c85eb6fdd395`; faktiska run-ID [44278805692] success på exakt revision. Alla bilder HTTP200 och inbäddade före stängning: https://github.com/solwation/kvarteret-lunden/issues/301#issuecomment-6974868709. Slutkvittot ändrar inte appkällan; dess separata Pages-run följs av dirigenten.
