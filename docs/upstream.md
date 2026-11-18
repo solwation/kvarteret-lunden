@@ -3613,3 +3613,31 @@ COORDINATION.md, WORKER.md, ISSUE-WORKFLOW.md och Issueflow-snapshoten är oför
 Köordning, prioritet low, ägarskap, timers och publiceringsgränser är oförändrade.
 Dokumentarbete utan browser/produktbild/changelog; kontroll: diff, relativa länkar
 (`check-links.py`) och motsägelser mot värdreglerna.
+
+
+## Finare parkettådring och mattlack, #291
+
+Granskad färdig originalkälla: `3515bf9981c0f3df79d84d66305a24a7f16ffe9c`
+([original #2069](https://github.com/solwation/lunden-3d-apartment/issues/2069)).
+Den rättade revisionen används; mellanrevision `785a5b90` ingår inte.
+
+Urvalet är enbart `src/parquet.js` (byteidentisk förutom kommentaren med publikt
+ärendenummer), `PARQUET_SURFACE`-blocket och inkopplingen av dess två kartor på
+publicens befintliga `M.floor` / `SM.floor` i `src/world.js`. Den gamla privata
+`plankTexture` ersätts av den neutrala modulen. Alla tidigare konfigurationsbytes,
+baspaletter, dimensioner, förskjutningar, en-/trestavsindelningar och befintliga
+roughness-tal är bevarade. Värdena för fibrer och lack är visuella antaganden.
+
+Ingen originalkonfiguration i övrigt, historik, personlig inredning/bild, namn,
+spel-/tjänstekod, lagring, avatar eller Cloudflare kopieras. De nya kartorna
+skapas lokalt en gång och har inga nät-/lagringsanrop. Publicens egna World,
+planer, material, rörelser, mätning och självständiga lagringsnamn behålls.
+
+Egen publik komponentkontroll använder faktiska `World`-material och befintliga
+`plate`/`buildLevel`, med lika kamera/ljus och egna matchade före/efter-bilder.
+Ingen originalbild återanvänds. Noll fel och externa anrop; samma geometri,
+begränsningslådor och ritanrop. `npm test` granskar 150 moduler och publicens
+nät-/innehållsgränser, `npm run build` passerar. Texturbudget: +864000
+RGBA8-basbytes / +1151172 nominella mipbytes över båda delade finisherna;
+Standard-shadern får sin vanliga roughness-sampling, ingen extra pass/draw/light.
+[Egna bilder, källhashar, exakta kontroller och begränsningar](verification/291/README.md).

@@ -18,6 +18,15 @@ konkret materiell risk; ta bara om felaktiga kamerapositioner. Befintliga snabba
 `npm test`/bygge och automatisk Pages-status kvarstår; dokument kräver ingen ny
 livebrowserkontroll av oförändrad app.
 
+## Finare parkettytor, #291
+
+`tools/parquet291-check.mjs BASE docs/verification/291` använder publicens riktiga
+World-material och produktionsbyggda våning med samma indata/kamera före/efter.
+Enstav och trestav visas i nära golvvy och normal rumsvy; rit-/triangelantal,
+begränsningslådor, texturstorlek/meterskala, cache, matt glans och inga externa
+anrop verifieras i samma körning. `npm test` och `npm run build` passerar.
+[Egna jämförelsebilder, exakta källor, bytebudget och begränsningar](verification/291/README.md).
+
 ## Mätbar mellannivå i besökslägenheter, #289
 
 `tools/visitmeasure289-check.mjs` renderar publik VisitUnit i en avgränsad komponent.

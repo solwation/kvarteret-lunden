@@ -1,0 +1,275 @@
+{
+  "sourceOriginal": "3515bf9981c0f3df79d84d66305a24a7f16ffe9c",
+  "baselinePublic": "f4afd632ae8eb9f4f8cc6c07164f00f4dc60e954",
+  "environment": "Chromium/SwiftShader,900×600,DPR1,MSAA,NeutralToneMapping;same public production builders,plan,camera,lights",
+  "source": {
+    "src/parquet.js": "79adfc9ff92b185e05e37b8bee2a67a8a8fce54bab40cbe9819fcce1b358bbfc",
+    "src/world.js": "b498e68e3d7d4025d307e5c30905040f4a53e9bf2baa6cd074545c9f0d78a1cb",
+    "src/config.js": "a17809567c81b2a18b321f869fc54ecdd39949e0c064198f449c19756900c27a",
+    "tools/parquet291.html": "5aaa857f3ea4bc54dcf9944129261ae12840df468a0e3fab610fd9908e82327d",
+    "tools/parquet291-check.mjs": "ec89323598dbe2ebeb16e4ea2c1d4800e731f625539c5fc18c4f32b172be3e06"
+  },
+  "errors": [],
+  "external": [],
+  "before": {
+    "views": {
+      "chalk-near": {
+        "calls": 1,
+        "renderTriangles": 2,
+        "geometryTriangles": 2,
+        "meshes": 1,
+        "bounds": [
+          [
+            0,
+            0.0020000000949949026,
+            0
+          ],
+          [
+            3,
+            0.0020000000949949026,
+            4
+          ]
+        ]
+      },
+      "chalk-room": {
+        "calls": 262,
+        "renderTriangles": 36228,
+        "geometryTriangles": 40052,
+        "meshes": 358,
+        "bounds": [
+          [
+            0,
+            -3.814697180359872e-8,
+            -0.06700000166892987
+          ],
+          [
+            5.7530999183654785,
+            3.000000002980232,
+            12.77059999690056
+          ]
+        ]
+      },
+      "standard-near": {
+        "calls": 1,
+        "renderTriangles": 2,
+        "geometryTriangles": 2,
+        "meshes": 1,
+        "bounds": [
+          [
+            0,
+            0.0020000000949949026,
+            0
+          ],
+          [
+            3,
+            0.0020000000949949026,
+            4
+          ]
+        ]
+      },
+      "standard-room": {
+        "calls": 185,
+        "renderTriangles": 28574,
+        "geometryTriangles": 30296,
+        "meshes": 258,
+        "bounds": [
+          [
+            0,
+            -3.814697180359872e-8,
+            -0.06700000166892987
+          ],
+          [
+            5.7530999183654785,
+            3.000000002980232,
+            12.77059999690056
+          ]
+        ]
+      }
+    },
+    "textures": [
+      {
+        "roughness": 0.7,
+        "maps": [
+          {
+            "width": 324,
+            "height": 1200,
+            "repeat": [
+              0.9259259259259258,
+              0.25
+            ],
+            "colorSpace": "srgb",
+            "baseBytes": 1555200,
+            "mippedBytes": 2073140
+          }
+        ],
+        "sameRoughUV": true
+      },
+      {
+        "roughness": 0.75,
+        "maps": [
+          {
+            "width": 360,
+            "height": 1320,
+            "repeat": [
+              0.8333333333333333,
+              0.22727272727272727
+            ],
+            "colorSpace": "srgb",
+            "baseBytes": 1900800,
+            "mippedBytes": 2534032
+          }
+        ],
+        "sameRoughUV": true
+      }
+    ]
+  },
+  "after": {
+    "views": {
+      "chalk-near": {
+        "calls": 1,
+        "renderTriangles": 2,
+        "geometryTriangles": 2,
+        "meshes": 1,
+        "bounds": [
+          [
+            0,
+            0.0020000000949949026,
+            0
+          ],
+          [
+            3,
+            0.0020000000949949026,
+            4
+          ]
+        ]
+      },
+      "chalk-room": {
+        "calls": 262,
+        "renderTriangles": 36228,
+        "geometryTriangles": 40052,
+        "meshes": 358,
+        "bounds": [
+          [
+            0,
+            -3.814697180359872e-8,
+            -0.06700000166892987
+          ],
+          [
+            5.7530999183654785,
+            3.000000002980232,
+            12.77059999690056
+          ]
+        ]
+      },
+      "standard-near": {
+        "calls": 1,
+        "renderTriangles": 2,
+        "geometryTriangles": 2,
+        "meshes": 1,
+        "bounds": [
+          [
+            0,
+            0.0020000000949949026,
+            0
+          ],
+          [
+            3,
+            0.0020000000949949026,
+            4
+          ]
+        ]
+      },
+      "standard-room": {
+        "calls": 185,
+        "renderTriangles": 28574,
+        "geometryTriangles": 30296,
+        "meshes": 258,
+        "bounds": [
+          [
+            0,
+            -3.814697180359872e-8,
+            -0.06700000166892987
+          ],
+          [
+            5.7530999183654785,
+            3.000000002980232,
+            12.77059999690056
+          ]
+        ]
+      }
+    },
+    "textures": [
+      {
+        "roughness": 0.7,
+        "maps": [
+          {
+            "width": 324,
+            "height": 1200,
+            "repeat": [
+              0.9259259259259258,
+              0.25
+            ],
+            "colorSpace": "srgb",
+            "baseBytes": 1555200,
+            "mippedBytes": 2073140
+          },
+          {
+            "width": 162,
+            "height": 600,
+            "repeat": [
+              0.9259259259259258,
+              0.25
+            ],
+            "colorSpace": "",
+            "baseBytes": 388800,
+            "mippedBytes": 517940
+          }
+        ],
+        "sameRoughUV": true
+      },
+      {
+        "roughness": 0.75,
+        "maps": [
+          {
+            "width": 360,
+            "height": 1320,
+            "repeat": [
+              0.8333333333333333,
+              0.22727272727272727
+            ],
+            "colorSpace": "srgb",
+            "baseBytes": 1900800,
+            "mippedBytes": 2534032
+          },
+          {
+            "width": 180,
+            "height": 660,
+            "repeat": [
+              0.8333333333333333,
+              0.22727272727272727
+            ],
+            "colorSpace": "",
+            "baseBytes": 475200,
+            "mippedBytes": 633232
+          }
+        ],
+        "sameRoughUV": true
+      }
+    ]
+  },
+  "textureChecks": [
+    {
+      "cached": true,
+      "opaque": true,
+      "roughMin": 234,
+      "roughMax": 255
+    },
+    {
+      "cached": true,
+      "opaque": true,
+      "roughMin": 236,
+      "roughMax": 255
+    }
+  ],
+  "passed": true
+}

@@ -2256,6 +2256,15 @@ export const COLORS = {
   solar: 0x1d2735,
 };
 
+// #291 (original #2069): visual timber/varnish assumptions, not measured oak finish data. Existing plank metres stay in FINISH/STANDARD.
+export const PARQUET_SURFACE = {
+  ppm: 300, boards: 6, lengths: 2, seed: 7, stagger: { one: .37, three: .53 }, anisotropy: 8,
+  fibresPerMetre: 220, wave: [7, .0038, 19, 1.7, .0009], pathStep: 12, lineWidth: .65,
+  dark: [120, 95, 70], light: [245, 229, 204], alpha: .14,
+  forkEvery: 7, forkLength: .26, forkWidth: .075, forkSteps: 12,
+  roughScale: .5, roughBase: 255, roughGrain: .012, roughWidth: 3.5,
+};
+
 export const FINISH = {
   // Parkettgolv Ek Chalk: white-stained oak. Colour from the swatch (avg 177/159/145, lifted
   // a little for the indoor lighting); 1-stav planks 18 × 200 cm (typical size — guess).

@@ -8,6 +8,8 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+Parkettgolvens enstavs- och trestavsytor har finare böjd träådring och lågmäld mattlacksglans, med befintliga kulörer, plankmått och gångytor kvar (#291).
+
 Gången i hus A/B/C:s trapphus följer de verkliga trappstegens ovansida i stället för en ramp (#290).
 Synliga fasta ytor i L1004/L1201 går att mäta även när lägenheternas insida visas sammanslagen på håll (#289).
 
