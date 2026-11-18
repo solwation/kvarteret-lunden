@@ -4023,3 +4023,21 @@ Egen verifiering: tre Node-test, npm test/build och en egen före/efter-browser 
 512/256 med exakt bevarade alfabytes, RNG, mipalfa, geometri, material, säsonger och LOD;
 noll fel och externa anrop. Ingen ny GPU-/per-framekostnad; atlasgenereringen tar några
 tiotal ms extra en gång. [Egna bilder, kontroller och kostnad](verification/305/README.md).
+
+
+## Fläckigare gräs och mindre upprepning, #306
+
+Granskade publicerade originalkällor `3ad5cc703dc87e825bd39072b16bad33acc1671e`
+([original #2086](https://github.com/solwation/lunden-3d-apartment/issues/2086), fläckar och tuvor) och
+`1c3c899bb49ceff207756912baa4d2ec55f035dc` ([original #2091](https://github.com/solwation/lunden-3d-apartment/issues/2091), vridet
+andra uppslag). `src/grassdetail.js` och `tools/grassdetailtest.mjs` är byteidentiska med `1c3c899bb49ceff207756912baa4d2ec55f035dc`;
+publicens `src/grass.js` får originalets tuvor/fläckar efter det oförändrade strålagret och
+`grassBlendGLSL` i stället för `<map_fragment>`. Publicens `grassTexture`/`grassMaterial` var före
+ändringen identiska med originalets bas utom originalets flodbäddsvariant (#1945), som saknas här och inte
+importeras. `GRASS.detailPatches`/`tufts`/`detailBlend` läggs till; publicens egna gräsfärger, säsonger,
+höstblandning och lagringsnamn är oförändrade. Ingen originalbild, inredning, avatar, gameplay, tjänst,
+Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: sex Node-test, npm test/build och en egen före/efter-browser av den riktiga publika appen
+(gångvy, 10–20 m innergård/park, fjärrvy, vinter) med oförändrade draws/texturer/program och medelfärg,
+pixelidentisk snö samt noll fel och externa anrop. [Egna bilder, kontroller och kostnad](verification/306/README.md).

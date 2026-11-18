@@ -1,0 +1,324 @@
+{
+ "baseline": "e262834",
+ "viewport": [
+  1280,
+  800
+ ],
+ "errors": [],
+ "external": [],
+ "phases": {
+  "before": {
+   "views": [
+    {
+     "name": "walk-summer",
+     "x": -4,
+     "z": 22.6,
+     "yaw": 95,
+     "pitch": -18,
+     "month": 6,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 222,
+     "triangles": 679496,
+     "textures": 68,
+     "geometries": 576,
+     "programs": 54,
+     "camera": [
+      -4,
+      1.62,
+      22.6
+     ],
+     "imageSHA256": "e14e824bb43e68834edf75f59d25750df73108d8ea692fa9dd7c58049afd645f"
+    },
+    {
+     "name": "court-mid",
+     "x": -4,
+     "z": 22.6,
+     "yaw": 95,
+     "pitch": -7,
+     "month": 6,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 233,
+     "triangles": 704678,
+     "textures": 68,
+     "geometries": 583,
+     "programs": 56,
+     "camera": [
+      -4,
+      1.62,
+      22.6
+     ],
+     "imageSHA256": "01e520c02187ef20359db5f0b8c5d2675d4d92540cb03ffe1791f06d510fdc1b"
+    },
+    {
+     "name": "park-mid",
+     "x": -8,
+     "z": 52,
+     "yaw": 200,
+     "pitch": -6,
+     "month": 6,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 70,
+     "triangles": 557507,
+     "textures": 70,
+     "geometries": 585,
+     "programs": 58,
+     "camera": [
+      -8,
+      -1.38,
+      52
+     ],
+     "imageSHA256": "be8044b351ba2eb17b6ba78e5245271ac68787aa336f2af286e1719ae0929cd2"
+    },
+    {
+     "name": "far-summer",
+     "x": -8,
+     "z": 52,
+     "yaw": 200,
+     "pitch": -16,
+     "feet": 22,
+     "month": 6,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 65,
+     "triangles": 547898,
+     "textures": 70,
+     "geometries": 585,
+     "programs": 58,
+     "camera": [
+      -8,
+      23.62,
+      52
+     ],
+     "imageSHA256": "7dc694796b80eb801cf424c8d0cc441cb3ee045bb390fc1a51b32eeb343f3ea2"
+    },
+    {
+     "name": "park-winter",
+     "x": -8,
+     "z": 52,
+     "yaw": 200,
+     "pitch": -6,
+     "month": 1,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 67,
+     "triangles": 517723,
+     "textures": 70,
+     "geometries": 585,
+     "programs": 60,
+     "camera": [
+      -8,
+      -1.38,
+      52
+     ],
+     "imageSHA256": "2bb6e451a621345ed93a155572b31ebab5a3b06d7574d557b00c28f37ef4ba21"
+    }
+   ],
+   "texture": {
+    "size": [
+     256,
+     256
+    ],
+    "seam": 25.13,
+    "interior": 23.9,
+    "blockLumSD": 0.42,
+    "mean": [
+     0.09319,
+     0.23944,
+     0.04383
+    ],
+    "genMs": [
+     24,
+     35,
+     19
+    ],
+    "wrap": 1000,
+    "repeat": 0.625
+   },
+   "storage": {
+    "sentinels": [
+     "original-drawing-sentinel",
+     "original-queue-sentinel",
+     "original-session-sentinel"
+    ],
+    "keys": [
+     "kvarteret-lunden.paddockGrass",
+     "lunden.cloud.queue",
+     "lunden.drawing"
+    ]
+   }
+  },
+  "after": {
+   "views": [
+    {
+     "name": "walk-summer",
+     "x": -4,
+     "z": 22.6,
+     "yaw": 95,
+     "pitch": -18,
+     "month": 6,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 222,
+     "triangles": 679496,
+     "textures": 68,
+     "geometries": 576,
+     "programs": 54,
+     "camera": [
+      -4,
+      1.62,
+      22.6
+     ],
+     "imageSHA256": "578e5a109eb16164c452f8d3914d5e22fb87d40645d2978f7887916505c8283d"
+    },
+    {
+     "name": "court-mid",
+     "x": -4,
+     "z": 22.6,
+     "yaw": 95,
+     "pitch": -7,
+     "month": 6,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 233,
+     "triangles": 704678,
+     "textures": 68,
+     "geometries": 583,
+     "programs": 56,
+     "camera": [
+      -4,
+      1.62,
+      22.6
+     ],
+     "imageSHA256": "d233d5ece2ece2392d862205e243d3b1bc8b4e747a9a2f454af08c81b796e681"
+    },
+    {
+     "name": "park-mid",
+     "x": -8,
+     "z": 52,
+     "yaw": 200,
+     "pitch": -6,
+     "month": 6,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 70,
+     "triangles": 557507,
+     "textures": 70,
+     "geometries": 585,
+     "programs": 58,
+     "camera": [
+      -8,
+      -1.38,
+      52
+     ],
+     "imageSHA256": "c15449d284c8645d8b01dabacd333e6557b987364f68de0f09962223fecaa5ab"
+    },
+    {
+     "name": "far-summer",
+     "x": -8,
+     "z": 52,
+     "yaw": 200,
+     "pitch": -16,
+     "feet": 22,
+     "month": 6,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 65,
+     "triangles": 547898,
+     "textures": 70,
+     "geometries": 585,
+     "programs": 58,
+     "camera": [
+      -8,
+      23.62,
+      52
+     ],
+     "imageSHA256": "b7ad39a3e827ba0168f62dbe294025979ed7841860f13836f52e8dd69813801d"
+    },
+    {
+     "name": "park-winter",
+     "x": -8,
+     "z": 52,
+     "yaw": 200,
+     "pitch": -6,
+     "month": 1,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 67,
+     "triangles": 517723,
+     "textures": 70,
+     "geometries": 585,
+     "programs": 60,
+     "camera": [
+      -8,
+      -1.38,
+      52
+     ],
+     "imageSHA256": "2bb6e451a621345ed93a155572b31ebab5a3b06d7574d557b00c28f37ef4ba21"
+    }
+   ],
+   "texture": {
+    "size": [
+     256,
+     256
+    ],
+    "seam": 23.7,
+    "interior": 24.32,
+    "blockLumSD": 4.16,
+    "mean": [
+     0.09319,
+     0.23944,
+     0.04383
+    ],
+    "genMs": [
+     47,
+     42,
+     27
+    ],
+    "wrap": 1000,
+    "repeat": 0.625
+   },
+   "storage": {
+    "sentinels": [
+     "original-drawing-sentinel",
+     "original-queue-sentinel",
+     "original-session-sentinel"
+    ],
+    "keys": [
+     "kvarteret-lunden.paddockGrass",
+     "lunden.cloud.queue",
+     "lunden.drawing"
+    ]
+   }
+  }
+ },
+ "source": {
+  "src/grass.js": "0a47de6f4866b528919f29bd495531c8c7bf5f8a85e81fb924f1ff3c177a50d7",
+  "src/grassdetail.js": "b8b6b908e08ad6018516947a3a7c00be232bc372a6ec4e77bbaf33fae52c6f51",
+  "src/config.js": "67cdc46f6bc9e49f456edbc4c7ce89cc5a21a365385744d13281e36f696168ba",
+  "tools/grassdetailtest.mjs": "28aec30fcb722ee4069470a0374b914b399f51822970b4fb37ba5edf5c7a35f3",
+  "tools/grass306browser.cjs": "acd9f2e14db980656ed719bf64174363a58741cafc1eb3246faa6c2822db522a"
+ }
+}
