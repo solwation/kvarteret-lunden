@@ -42,3 +42,5 @@ Kostnad: inga nya GPU-kartor, geometri, draws, sampling, ljus eller per-framearb
 (1 048 576/262 144 texturbytes oförändrade). Engångs-CPU för atlasen här: 512 cirka
 25–29 → 48–55 ms, 256 cirka 16–19 → 45–56 ms; största yieldsteg efter ≤ 9,2 ms.
 Tillfälligt en extra canvas av atlasens storlek under genereringen. Ingen enhetsgaranti.
+
+Publicering: Pages-körning [44311724478](https://github.com/solwation/kvarteret-lunden/actions/runs/44311724478) lyckades på `4290d271b4f7422baf4a2e1200683fd390a59e6d`; inbäddade bild-URL:er gav HTTP 200 före stängning.
