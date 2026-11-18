@@ -33,3 +33,5 @@ av närriggen). Avlägsna katter använder de cachade poserna oförändrat (enda
 Ingen öronvändning mot besökare, dörrar eller ljud, inget smygande mot byte (publikens katter är passiv miljö utan byte).
 Svansens vändningssväng syns bara när en nära katt vrider sig; ställningen hoppar som tidigare direkt mellan sitta och stå.
 Stretchen gäller vilor på marken på minst 20 s. Mobil (`lowMemory`) använder samma material; ingen separat mobilvy togs.
+
+Publicerad: `fd70e53`, Pages 44418079990 success.
