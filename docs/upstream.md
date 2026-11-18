@@ -4078,3 +4078,25 @@ jämförelser mot publik bas `345bce1` (även #2093:s test ingår där); browser
 Egen verifiering: `node --test tools/roofsurfacetest.mjs` 5/5, npm test/build och en egen före/efter-browser i den
 riktiga publika appen (Hus L och Å-husen ovanifrån sommar/vinter, gatuvy) med oförändrade draws/texturer/program och
 noll fel/externa anrop. [Egna bilder, kontroller och kostnad](verification/308/README.md).
+
+
+## Matt metall på räcken utomhus, #309
+
+Granskad publicerad originalkälla `da83c3a9610a284441ed8eac812d94df368f8525`
+([original #2089](https://github.com/solwation/lunden-3d-apartment/issues/2089)).
+Neutrala `src/railmetal.js` (byteidentisk; fragmentpatch med publicens befintliga
+`src/vertexcompile.js`, också identisk med originalets bas) och ett eget `RAIL_METAL`-block
+i `src/config.js` överförs, plus konsumentrader på samma platser som i originalet:
+`exterior.js` (loftgångens räcken, nu namngivna `loftRails`, och `terraceRailMaterial`),
+`surroundings.js` (`boxRails`, `boxSlats`, `loggiaRails`) och `busstop.js`
+(`bus-stop-furniture`, egen grovhet kvar; trä/papperskorg undantas av mättnadsmasken).
+Publicens räckesfunktioner var oförändrade mot originalets bas; färger, metallgrad, geometri,
+sammanslagning, skuggor, LOD och telefonbatchar behålls. Originalets `lampwash.js` finns inte här
+och patchen beror inte på den. Test- och browserverktyg anpassas till publik bas/port/katalog.
+Ingen originalbild, inredning, avatar, gameplay, lagring, tjänst, Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: tre Node-test, npm test/build och en egen före/efter-browser i den riktiga
+appen (loftgång, terrass, gård, busskur; dag och dämpad skymning) med samma kamera,
+oförändrade räckesmeshar/gränser, texturer och draws (±1 levande scen); noll fel och externa
+anrop. Ingen textur, draw, uniform eller per-framearbete; två extra shaderprogram (varianter).
+[Egna bilder, kontroller och kostnad](verification/309/README.md).

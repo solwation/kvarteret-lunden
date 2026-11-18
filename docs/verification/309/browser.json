@@ -1,0 +1,1035 @@
+{
+ "baseline": "345bce1ac6a776836eef86754398e137def29b1e",
+ "viewport": [
+  1200,
+  800
+ ],
+ "views": {
+  "loft": [
+   -8,
+   -10,
+   3,
+   0.28,
+   0
+  ],
+  "terrass": [
+   -8,
+   11.6,
+   -1.4,
+   -0.2,
+   9.8
+  ],
+  "gard": [
+   -20,
+   11.8,
+   3.14,
+   -0.32,
+   9.8
+  ],
+  "busshallplats": [
+   40.6,
+   186.4,
+   2.36,
+   0.02,
+   0.2
+  ]
+ },
+ "phases": {
+  "before": {
+   "meshes": 1361,
+   "railMetal": 0,
+   "rails": [
+    {
+     "name": "?",
+     "parent": "",
+     "vertices": 30828,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "8fa396",
+     "map": false,
+     "metal": 0.3,
+     "rough": 0.5,
+     "patched": false,
+     "castShadow": true,
+     "min": [
+      -44.9,
+      0,
+      -3.6
+     ],
+     "max": [
+      11.6,
+      7.5,
+      3.1
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 1980,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.45,
+     "patched": false,
+     "castShadow": true,
+     "min": [
+      -41.7,
+      9.8,
+      12.6
+     ],
+     "max": [
+      -35.9,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 1872,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.45,
+     "patched": false,
+     "castShadow": true,
+     "min": [
+      -35.8,
+      9.8,
+      12.6
+     ],
+     "max": [
+      -30.3,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 1872,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.45,
+     "patched": false,
+     "castShadow": true,
+     "min": [
+      -30.2,
+      9.8,
+      12.6
+     ],
+     "max": [
+      -24.8,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 1764,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.45,
+     "patched": false,
+     "castShadow": true,
+     "min": [
+      -24.7,
+      9.8,
+      12.6
+     ],
+     "max": [
+      -19.6,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 1764,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.45,
+     "patched": false,
+     "castShadow": true,
+     "min": [
+      -16.2,
+      9.8,
+      12.6
+     ],
+     "max": [
+      -11,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 1872,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.45,
+     "patched": false,
+     "castShadow": true,
+     "min": [
+      -11,
+      9.8,
+      12.6
+     ],
+     "max": [
+      -5.5,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 1872,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.45,
+     "patched": false,
+     "castShadow": true,
+     "min": [
+      -5.4,
+      9.8,
+      12.6
+     ],
+     "max": [
+      0.1,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 1872,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.45,
+     "patched": false,
+     "castShadow": true,
+     "min": [
+      0.1,
+      9.8,
+      12.6
+     ],
+     "max": [
+      5.6,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 1980,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.45,
+     "patched": false,
+     "castShadow": true,
+     "min": [
+      5.7,
+      9.8,
+      12.6
+     ],
+     "max": [
+      11.6,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 612,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.45,
+     "patched": false,
+     "castShadow": true,
+     "min": [
+      -41.7,
+      9.8,
+      10.8
+     ],
+     "max": [
+      -41.6,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 612,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.45,
+     "patched": false,
+     "castShadow": true,
+     "min": [
+      11.4,
+      9.8,
+      10.8
+     ],
+     "max": [
+      11.5,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "?",
+     "parent": "",
+     "vertices": 10188,
+     "index": null,
+     "attrs": "normal,position",
+     "color": "b9bdbd",
+     "map": false,
+     "metal": 0.3,
+     "rough": 0.5,
+     "patched": false,
+     "castShadow": false,
+     "min": [
+      -70.7,
+      -3,
+      10.4
+     ],
+     "max": [
+      13.6,
+      1.1,
+      58.6
+     ]
+    },
+    {
+     "name": "?",
+     "parent": "",
+     "vertices": 588,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "ffffff",
+     "map": true,
+     "metal": 0,
+     "rough": 0.6,
+     "patched": false,
+     "castShadow": false,
+     "min": [
+      -70.5,
+      -0.7,
+      10.6
+     ],
+     "max": [
+      13.4,
+      1,
+      52.5
+     ]
+    },
+    {
+     "name": "bus-stop-furniture",
+     "parent": "bus-stop",
+     "vertices": 684,
+     "index": null,
+     "attrs": "color,normal,position",
+     "color": "ffffff",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.6,
+     "patched": false,
+     "castShadow": true,
+     "min": [
+      34.8,
+      0,
+      188.2
+     ],
+     "max": [
+      60.5,
+      3,
+      199.9
+     ]
+    },
+    {
+     "name": "?",
+     "parent": "",
+     "vertices": 504,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "ffffff",
+     "map": true,
+     "metal": 0,
+     "rough": 0.6,
+     "patched": false,
+     "castShadow": false,
+     "min": [
+      -70.5,
+      0,
+      12.7
+     ],
+     "max": [
+      9.4,
+      13.1,
+      57.3
+     ]
+    },
+    {
+     "name": "?",
+     "parent": "",
+     "vertices": 816,
+     "index": 1224,
+     "attrs": "normal,position,uv",
+     "color": "c7cacb",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.45,
+     "patched": false,
+     "castShadow": false,
+     "min": [
+      -70.8,
+      -2,
+      12.4
+     ],
+     "max": [
+      9.6,
+      15.3,
+      57.5
+     ]
+    }
+   ],
+   "loadMs": 23580,
+   "storage": "kept",
+   "views": {
+    "loft-dag": {
+     "camera": [
+      -8,
+      1.62,
+      -10
+     ],
+     "calls": 403,
+     "triangles": 849074,
+     "textures": 68,
+     "geometries": 552,
+     "programs": 56
+    },
+    "loft-skymning": {
+     "camera": [
+      -8,
+      1.62,
+      -10
+     ],
+     "calls": 403,
+     "triangles": 849074,
+     "textures": 68,
+     "geometries": 552,
+     "programs": 56
+    },
+    "terrass-dag": {
+     "camera": [
+      -8,
+      11.42,
+      11.6
+     ],
+     "calls": 419,
+     "triangles": 706610,
+     "textures": 73,
+     "geometries": 569,
+     "programs": 57
+    },
+    "terrass-skymning": {
+     "camera": [
+      -8,
+      11.42,
+      11.6
+     ],
+     "calls": 419,
+     "triangles": 706610,
+     "textures": 73,
+     "geometries": 569,
+     "programs": 57
+    },
+    "gard-dag": {
+     "camera": [
+      -20,
+      11.42,
+      11.8
+     ],
+     "calls": 129,
+     "triangles": 691919,
+     "textures": 73,
+     "geometries": 572,
+     "programs": 59
+    },
+    "gard-skymning": {
+     "camera": [
+      -20,
+      11.42,
+      11.8
+     ],
+     "calls": 129,
+     "triangles": 691919,
+     "textures": 73,
+     "geometries": 572,
+     "programs": 59
+    },
+    "busshallplats-dag": {
+     "camera": [
+      40.6,
+      1.82,
+      186.4
+     ],
+     "calls": 38,
+     "triangles": 490046,
+     "textures": 74,
+     "geometries": 575,
+     "programs": 62
+    },
+    "busshallplats-skymning": {
+     "camera": [
+      40.6,
+      1.82,
+      186.4
+     ],
+     "calls": 38,
+     "triangles": 490046,
+     "textures": 74,
+     "geometries": 575,
+     "programs": 62
+    }
+   }
+  },
+  "after": {
+   "meshes": 1361,
+   "railMetal": 16,
+   "rails": [
+    {
+     "name": "loftRails",
+     "parent": "",
+     "vertices": 30828,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "8fa396",
+     "map": false,
+     "metal": 0.3,
+     "rough": 0.58,
+     "patched": true,
+     "castShadow": true,
+     "min": [
+      -44.9,
+      0,
+      -3.6
+     ],
+     "max": [
+      11.6,
+      7.5,
+      3.1
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 1980,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.58,
+     "patched": true,
+     "castShadow": true,
+     "min": [
+      -41.7,
+      9.8,
+      12.6
+     ],
+     "max": [
+      -35.9,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 1872,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.58,
+     "patched": true,
+     "castShadow": true,
+     "min": [
+      -35.8,
+      9.8,
+      12.6
+     ],
+     "max": [
+      -30.3,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 1872,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.58,
+     "patched": true,
+     "castShadow": true,
+     "min": [
+      -30.2,
+      9.8,
+      12.6
+     ],
+     "max": [
+      -24.8,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 1764,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.58,
+     "patched": true,
+     "castShadow": true,
+     "min": [
+      -24.7,
+      9.8,
+      12.6
+     ],
+     "max": [
+      -19.6,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 1764,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.58,
+     "patched": true,
+     "castShadow": true,
+     "min": [
+      -16.2,
+      9.8,
+      12.6
+     ],
+     "max": [
+      -11,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 1872,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.58,
+     "patched": true,
+     "castShadow": true,
+     "min": [
+      -11,
+      9.8,
+      12.6
+     ],
+     "max": [
+      -5.5,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 1872,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.58,
+     "patched": true,
+     "castShadow": true,
+     "min": [
+      -5.4,
+      9.8,
+      12.6
+     ],
+     "max": [
+      0.1,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 1872,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.58,
+     "patched": true,
+     "castShadow": true,
+     "min": [
+      0.1,
+      9.8,
+      12.6
+     ],
+     "max": [
+      5.6,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 1980,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.58,
+     "patched": true,
+     "castShadow": true,
+     "min": [
+      5.7,
+      9.8,
+      12.6
+     ],
+     "max": [
+      11.6,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 612,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.58,
+     "patched": true,
+     "castShadow": true,
+     "min": [
+      -41.7,
+      9.8,
+      10.8
+     ],
+     "max": [
+      -41.6,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "terraceRails",
+     "parent": "",
+     "vertices": 612,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "f4f4f1",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.58,
+     "patched": true,
+     "castShadow": true,
+     "min": [
+      11.4,
+      9.8,
+      10.8
+     ],
+     "max": [
+      11.5,
+      10.6,
+      12.6
+     ]
+    },
+    {
+     "name": "boxRails",
+     "parent": "",
+     "vertices": 10188,
+     "index": null,
+     "attrs": "normal,position",
+     "color": "b9bdbd",
+     "map": false,
+     "metal": 0.3,
+     "rough": 0.58,
+     "patched": true,
+     "castShadow": false,
+     "min": [
+      -70.7,
+      -3,
+      10.4
+     ],
+     "max": [
+      13.6,
+      1.1,
+      58.6
+     ]
+    },
+    {
+     "name": "boxSlats",
+     "parent": "",
+     "vertices": 588,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "ffffff",
+     "map": true,
+     "metal": 0,
+     "rough": 0.58,
+     "patched": true,
+     "castShadow": false,
+     "min": [
+      -70.5,
+      -0.7,
+      10.6
+     ],
+     "max": [
+      13.4,
+      1,
+      52.5
+     ]
+    },
+    {
+     "name": "bus-stop-furniture",
+     "parent": "bus-stop",
+     "vertices": 684,
+     "index": null,
+     "attrs": "color,normal,position",
+     "color": "ffffff",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.6,
+     "patched": true,
+     "castShadow": true,
+     "min": [
+      34.8,
+      0,
+      188.2
+     ],
+     "max": [
+      60.5,
+      3,
+      199.9
+     ]
+    },
+    {
+     "name": "loggiaRails",
+     "parent": "",
+     "vertices": 504,
+     "index": null,
+     "attrs": "normal,position,uv",
+     "color": "ffffff",
+     "map": true,
+     "metal": 0,
+     "rough": 0.58,
+     "patched": true,
+     "castShadow": false,
+     "min": [
+      -70.5,
+      0,
+      12.7
+     ],
+     "max": [
+      9.4,
+      13.1,
+      57.3
+     ]
+    },
+    {
+     "name": "?",
+     "parent": "",
+     "vertices": 816,
+     "index": 1224,
+     "attrs": "normal,position,uv",
+     "color": "c7cacb",
+     "map": false,
+     "metal": 0.2,
+     "rough": 0.45,
+     "patched": false,
+     "castShadow": false,
+     "min": [
+      -70.8,
+      -2,
+      12.4
+     ],
+     "max": [
+      9.6,
+      15.3,
+      57.5
+     ]
+    }
+   ],
+   "loadMs": 25226,
+   "storage": "kept",
+   "views": {
+    "loft-dag": {
+     "camera": [
+      -8,
+      1.62,
+      -10
+     ],
+     "calls": 403,
+     "triangles": 849074,
+     "textures": 68,
+     "geometries": 552,
+     "programs": 58
+    },
+    "loft-skymning": {
+     "camera": [
+      -8,
+      1.62,
+      -10
+     ],
+     "calls": 403,
+     "triangles": 849074,
+     "textures": 68,
+     "geometries": 552,
+     "programs": 58
+    },
+    "terrass-dag": {
+     "camera": [
+      -8,
+      11.42,
+      11.6
+     ],
+     "calls": 419,
+     "triangles": 706610,
+     "textures": 73,
+     "geometries": 569,
+     "programs": 59
+    },
+    "terrass-skymning": {
+     "camera": [
+      -8,
+      11.42,
+      11.6
+     ],
+     "calls": 419,
+     "triangles": 706610,
+     "textures": 73,
+     "geometries": 569,
+     "programs": 59
+    },
+    "gard-dag": {
+     "camera": [
+      -20,
+      11.42,
+      11.8
+     ],
+     "calls": 129,
+     "triangles": 691919,
+     "textures": 73,
+     "geometries": 572,
+     "programs": 61
+    },
+    "gard-skymning": {
+     "camera": [
+      -20,
+      11.42,
+      11.8
+     ],
+     "calls": 129,
+     "triangles": 691919,
+     "textures": 73,
+     "geometries": 572,
+     "programs": 61
+    },
+    "busshallplats-dag": {
+     "camera": [
+      40.6,
+      1.82,
+      186.4
+     ],
+     "calls": 38,
+     "triangles": 490042,
+     "textures": 74,
+     "geometries": 575,
+     "programs": 64
+    },
+    "busshallplats-skymning": {
+     "camera": [
+      40.6,
+      1.82,
+      186.4
+     ],
+     "calls": 38,
+     "triangles": 490042,
+     "textures": 74,
+     "geometries": 575,
+     "programs": 64
+    }
+   }
+  }
+ },
+ "errors": [],
+ "external": []
+}
