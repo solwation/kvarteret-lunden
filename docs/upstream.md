@@ -1,5 +1,31 @@
 # Förbättringar från originalet
 
+## Näckrosor med mjuka former, #295
+
+Granskad, publicerad originalkälla: `75a21fdbe599186d738ab414b88e4b4c2c8cd4f0`
+([original #2073](https://github.com/solwation/lunden-3d-apartment/issues/2073)).
+Urval: enbart `lilyPadGeometry` (här `lilyGeometry`), `lilyPetalGeometry`,
+`flowerGeometry` och formkonstanterna `LILY_SURFACE`. Bladen får låg kupning och tunna
+radiala nerver; de befintliga åtta + sex kronbladen blir rundade och överlappar.
+Originalets granskade hela `src/riverfloraview.js` har SHA-256
+`1354410306c12a8310c3b136e569a6691d06d5885e9a0871cee4dbd48b19d366` och
+`src/config.js` har `3cb371ea536db94f81a040dd9df31d501e44a30775be3b502b1166ecb38569c3`.
+
+Publicens hela klass `RiverLilies` är byteidentisk med basen
+`49af0d2c85eb75f7a45987481c3527c1b93981d9`: den behåller egen vattenlinjeplacering,
+likformig radieskalning, årstider, räckvidd, två batcher och inga stjälkar. Den använder
+inte originalets djupskalning. Därför är publik `cup` 0,025 och `veinHeight` 0,0025:
+bladkanten höjs bara 2,75–5 mm ovan befintligt 12 mm vattenlyft. Art/form är fortsatt
+konstnärliga antaganden. Alla färgkonstanter, radier och matrisplaceringar behålls.
+Inga stenar, bottenväxter, stjälkar, simning, spelkod, originaltjänster, lagring,
+Cloudflare eller personliga resurser förs över. Inga nya nätanrop eller beroenden.
+
+Egen publik kontroll: `npm test`, `npm run build`, sju geometri-/placerings-/årstidstest
+och en avgränsad browserkontroll av riktiga `RiverLilies` med tre jämförbara vyer.
+Originalets bilder återanvänds inte. Geometriökning +29 376 råbyte, samma två ritanrop;
+[egna bilder, källhashar, exakta budgetar och begränsningar](verification/295/README.md).
+Ingen separat publik besökarändringslogg finns; README beskriver förbättringen.
+
 ## Små stenkorn i den lokala asfalten, #294
 
 Selektiv originalkälla `a6bc5b371e52e8bf4d8cba500bcd2790ab9a8858`
@@ -216,7 +242,7 @@ originalets `tools/riverfloratest.cjs` med testkit/spelarstyrning, changelog och
 Art, antal, storlek och färg är visuella antaganden (*guess*).
 
 Högst två extra ritanrop inom 80 m från åns mittlinje och inget längre bort eller under
-november–april: två instansierade nät (blad ~12 trianglar, blomma ~50), ingen textur,
+november–april: två instansierade nät (ursprunglig form: blad 14 trianglar, blomma 50; uppdaterad i #295), ingen textur,
 inget ljus, ingen skugga, ingen nedladdad resurs. Ingen lagring eller nätverksåtkomst.
 
 ## Drivande fläckar på Höje å, #280

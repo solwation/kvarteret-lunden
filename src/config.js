@@ -3633,6 +3633,15 @@ export const OUTDOOR_CATS = {
 // filled in; `drawDist`: m from the centre line within which anything is drawn. A cluster every `every` m with chance `chance`, `pads`
 // leaves within `spread` m, radius `r`, between `bank` (shares of the half width) from the centre line; a `flower` share of the leaves
 // carries one. Leaves in the months `months`, flowers in `bloom`.
+// #295, original #2073: artistic shape assumptions, not a species survey.
+// Public leaves scale uniformly by radius: .025 raises their rim by only 2.75–5 mm.
+export const LILY_SURFACE = {
+  padSegments: 24, padRings: 2, notch: 0.22, cup: 0.025,
+  veins: 7, veinWidth: 0.014, veinHeight: 0.0025, veinShade: 0.09,
+  petalRows: 4, petalAcross: 2, petalCup: 0.06,
+  rings: [[8, 1, 0.35, 0, 0.32], [6, 0.7, 0.75, 0.4, 0.25]],
+};
+
 export const RIVER_FLORA = {
   seed: 1956, ends: 12, range: 55, drawDist: 80,
   lilies: { every: 24, chance: 0.65, pads: [4, 9], spread: 2.2, r: [0.11, 0.2], bank: [0.45, 0.85], flower: 0.3, lift: 0.012, months: [5, 9], bloom: [6, 8],

@@ -1,0 +1,15 @@
+✔ the same leaves every time, sorted along the river, inside the channel and clear of its ends (2.730746ms)
+✔ leaves do not overlap; some flower (0.723555ms)
+✔ nothing where a pier stands (0.473479ms)
+✔ the window and the seasons (0.32925ms)
+✔ pads stay at the waterline with a shallow rim, notch and narrow radial veins (6.050544ms)
+✔ petals round and cup across their width, overlap in the original two rings, and retain the radius/height envelope (4.046909ms)
+✔ public consumer retains waterline contact, two shared-material batches, seasons and stationary buffers (18.357673ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 132.825063
