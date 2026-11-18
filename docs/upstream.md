@@ -4251,3 +4251,18 @@ Egen verifiering: `node --test tools/streetweartest.mjs` 5/5, npm test/build och
 appen (Sankt Lars väg, korsningen med övergångsstället, ned mot övergångsstället, nära vägyta; dag) med samma meshantal,
 vägens och övergångsställets geometri/gränser/skuggor, draws och texturer, +6 trianglar (tre lagningar), +1 program och noll
 fel/externa anrop. [Egna bilder, kontroller och kostnad](verification/316/README.md).
+
+## Grannfönstrens kvällsvanor, #318 — granskad, inte tillämplig
+
+Granskad mot `a0ec49694935515ed8355ccdb00c083c0e2a106c` ([original #2120](https://github.com/solwation/lunden-3d-apartment/issues/2120)):
+`src/windowschedule.js` och `WINDOW_SCHEDULE` ger varje grannfönster en egen deterministisk kvällsvana (tidiga, kvälls-,
+sena och nattugglor), mjuk tändning/släckning, varierad ljusfärg och blått tv-flimmer i `buildWindowLights`. Publicens
+`buildWindowLights` motsvarar originalets bas (utan #1525:s markpölar), men publicen har ingen dygnscykel och inget
+nattläge: `src/main.js` anropar `world.windowLights.update(12, 0, true)` en gång vid start och aldrig igen. Vid kl. 12 och
+`night` 0 är alla fönsterquads svarta både med publicens nuvarande vanor (tidigaste tändning 15,5, senaste morgon 8,5,
+trapphallar 0,85 × 0) och med originalets schema (tidigaste tändning 15,5 − 0,1 h ramp, nattugglor släckta senast 4,5,
+morgnar senast 8,5 + 0,1). Nodkontroll av originalmodulen på 20 000 fönsternycklar vid kl. 11,9/12/12,1: högsta nivå 0;
+publicens regel: 0 tända. Tv-flimret kräver dessutom upprepade `update`-anrop som publicen inte gör. Överföringen skulle
+alltså inte ändra en enda pixel eller färg i appen, bara lägga till död kod och konfiguration; `windowschedule.js`,
+`WINDOW_SCHEDULE`, testerna och browserverktyget har inte förts över. Om publicen senare får en kvälls-/nattvy ska #2120
+föras över tillsammans med den. Publicens egna fönsterljus, renderbudget och lagring är oförändrade.
