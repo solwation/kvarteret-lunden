@@ -8,6 +8,7 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+De ljusa putsfasaderna (Hus L:s övre våningar och Å-husens loggior och entrénischer) har en fin putsstruktur och svaga smutsstrimmor under fönsterblecken och vid golven, med samma medelton, öppningar, glas, tak och renderbudget (#311). [Egna jämförelsebilder och kontroller](docs/verification/311/README.md).
 Taken har diskreta falsar/papplister och en lugn vädrad matthet längs fallinjen, med oförändrad medelfärg på håll, samma snö och renderbudget; Hus L:s ljusa plåtavtäckning är nu en list längs takkanten så att takpappen syns (#308). [Egna jämförelsebilder och kontroller](docs/verification/308/README.md).
 Räcken utomhus (Hus L:s loftgång och takterrasser, loggiorna och garagetakets räcken i kvarteret samt busskurens stål) har en matt, lätt borstad pulverlackerad metallyta med diskret kantljus som dämpas i skymning; färger, geometri, batchar och renderbudget är oförändrade (#309). [Egna jämförelsebilder dag/skymning och kontroller](docs/verification/309/README.md).
 Häckarna vid Hus L:s uteplatser har synliga bladklungor med mjuka mörka skrevor, mörkare inre nära marken och en svagt ljusare topp; detaljen tonar bort på håll, och form, färger, snö och renderbudget är oförändrade (#310). [Egna jämförelsebilder sommar/vinter och kontroller](docs/verification/310/README.md).

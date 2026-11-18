@@ -4186,3 +4186,21 @@ Egen verifiering: `node --test tools/aerialhazetest.mjs` 4/4, npm test/build, en
 appen (över parken från höjd, Sankt Lars väg i ögonhöjd) med samma dimma, draws, texturer och program och noll fel/externa
 anrop, samt en engångskompilering av alla 588 scenmaterial (89 program, 0 länkfel). Kostnad: inga nya draws, texturer,
 program eller per-framearbete. [Egna bilder, kontroller och kostnad](verification/314/README.md).
+
+
+## Fin putsstruktur och svaga smutsstrimmor på putsfasaderna, #311
+
+Granskad originalkälla `8fed7eca0c5f451040d8057d3aa921967daa948a`
+([original #2095](https://github.com/solwation/lunden-3d-apartment/issues/2095)). Överfört: byteidentisk
+`src/rendersurface.js` (packad bump/råhetskarta, albedokorn, `renderMaterial`, `renderUV`, `plainUV`, `dirtPatch`), ett eget
+`RENDER_SURFACE`-block i `src/config.js` efter `RAIL_METAL` och konsumentraderna i `exterior.js` (Hus L:s `renders`:
+strimmor under putsade smygars fönsterbleck, stänkband över loftgångens/terrassens golv, världs-UV och putsmaterial) och
+`surroundings.js` (Å-husen A/B/C:s vita loggia-/nischväggar och bjälklag, ramarna på neutral texel). Publicens funktioner
+var identiska med originalets bas, så patchen gäller rakt av; alla originalets konsumenter finns i publiken, inget är ej
+tillämpligt. Publicens färger behålls (färgen delas med albedokartans medel). Node-testet är originalets
+funktionsnivåtest mot publik bas `d3981b4`; browserverktyget är eget. Ingen originalbild, ändringslogg, inredning,
+avatar, gameplay, lagring, tjänst, Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: `node --test tools/rendersurfacetest.mjs` 6/6, npm test/build och en egen före/efter-browser i den
+riktiga appen (Hus L gata/loftgång/terrass, Hus A loggia, Hus C på avstånd, dag) med oförändrade draws, +2 små
+texturer, medelton per vy inom 0,3 % och noll fel/externa anrop. [Egna bilder, kontroller och kostnad](verification/311/README.md).

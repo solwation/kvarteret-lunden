@@ -1,0 +1,396 @@
+{
+ "baseline": "d3981b4",
+ "viewport": [
+  1280,
+  800
+ ],
+ "errors": [],
+ "external": [],
+ "phases": {
+  "before": {
+   "loadMs": 28182,
+   "views": [
+    {
+     "name": "husL-gata",
+     "x": 3,
+     "z": -14,
+     "yaw": 180,
+     "pitch": 14,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 541,
+     "triangles": 808926,
+     "textures": 63,
+     "geometries": 504,
+     "programs": 51,
+     "camera": [
+      3,
+      1.62,
+      -14
+     ],
+     "imageSHA256": "7d762a3190e477b50f63b08e8debd89de133b65c5b33edfd13b1d2103e53e34e"
+    },
+    {
+     "name": "husL-loftgang",
+     "x": -30,
+     "z": 0.2,
+     "yaw": 200,
+     "pitch": -15,
+     "feet": 6.4,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 230,
+     "triangles": 795485,
+     "textures": 70,
+     "geometries": 548,
+     "programs": 57,
+     "camera": [
+      -30,
+      8.02,
+      0.26
+     ],
+     "imageSHA256": "e81d2244f78810e148df44ff5bc24e1ee29d73792c5bf264f5dd93e7aea32ac5"
+    },
+    {
+     "name": "husL-terrass",
+     "x": 2,
+     "z": 12.3,
+     "yaw": 300,
+     "pitch": -5,
+     "feet": 9.46,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 105,
+     "triangles": 594158,
+     "textures": 74,
+     "geometries": 563,
+     "programs": 60,
+     "camera": [
+      2,
+      11.08,
+      12.3
+     ],
+     "imageSHA256": "e9c9368eff41136158da582c455aa491bc64eb8b39a4f8cfb8812f367d2e3602"
+    },
+    {
+     "name": "husA-loggia",
+     "x": -13.4,
+     "z": 24.6,
+     "yaw": -140,
+     "pitch": 12,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 99,
+     "triangles": 617247,
+     "textures": 74,
+     "geometries": 563,
+     "programs": 60,
+     "camera": [
+      -13.4,
+      1.62,
+      24.6
+     ],
+     "imageSHA256": "8793a5f6629e1ab4771bb0d4f25f6d4cb536c0667a458102641c74c68c60dd06"
+    },
+    {
+     "name": "husC-gata",
+     "x": -36,
+     "z": 23,
+     "yaw": 90,
+     "pitch": 12,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 106,
+     "triangles": 540322,
+     "textures": 76,
+     "geometries": 591,
+     "programs": 63,
+     "camera": [
+      -36,
+      1.62,
+      23
+     ],
+     "imageSHA256": "6f2b3a7b1887adbb81f10f82e7175095b0e9093394ee61a6cc84c473334bb23f"
+    }
+   ],
+   "renders": {
+    "meshes": 1349,
+    "found": {
+     "husL": [
+      {
+       "name": null,
+       "vertices": 2754,
+       "triangles": 918,
+       "dirtTriangles": 0,
+       "meanVertexColour": 1,
+       "uv": true,
+       "bump": false,
+       "roughness": 0.95,
+       "matColor": "f2efe7",
+       "map": null
+      }
+     ],
+     "aHouses": [
+      {
+       "name": null,
+       "vertices": 42084,
+       "triangles": 14028,
+       "dirtTriangles": 0,
+       "meanVertexColour": 1,
+       "uv": false,
+       "bump": false,
+       "roughness": 0.85,
+       "matColor": "f0efeb",
+       "map": null
+      }
+     ]
+    }
+   },
+   "storage": {
+    "sentinel": "kept",
+    "keys": [
+     "kvarteret-lunden.paddockGrass",
+     "kvarteret-lunden.sentinel"
+    ]
+   }
+  },
+  "after": {
+   "loadMs": 31834,
+   "views": [
+    {
+     "name": "husL-gata",
+     "x": 3,
+     "z": -14,
+     "yaw": 180,
+     "pitch": 14,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 541,
+     "triangles": 827774,
+     "textures": 65,
+     "geometries": 504,
+     "programs": 53,
+     "camera": [
+      3,
+      1.62,
+      -14
+     ],
+     "imageSHA256": "f694c491b3f8cbe435d31cb86a465c796da7b64aaab9d29e680a14dc5de2d8b8"
+    },
+    {
+     "name": "husL-loftgang",
+     "x": -30,
+     "z": 0.2,
+     "yaw": 200,
+     "pitch": -15,
+     "feet": 6.4,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 230,
+     "triangles": 814333,
+     "textures": 72,
+     "geometries": 548,
+     "programs": 59,
+     "camera": [
+      -30,
+      8.02,
+      0.26
+     ],
+     "imageSHA256": "d248a43b11015040a3f6b0c5cb569b7994f7c9367c139fb14ab4f00386e72a76"
+    },
+    {
+     "name": "husL-terrass",
+     "x": 2,
+     "z": 12.3,
+     "yaw": 300,
+     "pitch": -5,
+     "feet": 9.46,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 105,
+     "triangles": 613006,
+     "textures": 76,
+     "geometries": 563,
+     "programs": 62,
+     "camera": [
+      2,
+      11.08,
+      12.3
+     ],
+     "imageSHA256": "f1c7fca433c1eb3877494351e5602014cba9aa98a741d5d6174f5d7a852d91f2"
+    },
+    {
+     "name": "husA-loggia",
+     "x": -13.4,
+     "z": 24.6,
+     "yaw": -140,
+     "pitch": 12,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 99,
+     "triangles": 631671,
+     "textures": 76,
+     "geometries": 563,
+     "programs": 62,
+     "camera": [
+      -13.4,
+      1.62,
+      24.6
+     ],
+     "imageSHA256": "28eddc32d956561f12ec0e540bb9e9c9d4c49a71b64b4f64d031c318dc91a438"
+    },
+    {
+     "name": "husC-gata",
+     "x": -36,
+     "z": 23,
+     "yaw": 90,
+     "pitch": 12,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 106,
+     "triangles": 554746,
+     "textures": 78,
+     "geometries": 591,
+     "programs": 65,
+     "camera": [
+      -36,
+      1.62,
+      23
+     ],
+     "imageSHA256": "f969c10456ef389a76ed2589b4095a2e35e95f6c3cdbdcacd2c2f99c5ebca2fd"
+    }
+   ],
+   "renders": {
+    "meshes": 1349,
+    "found": {
+     "husL": [
+      {
+       "name": null,
+       "vertices": 16026,
+       "triangles": 5342,
+       "dirtTriangles": 4386,
+       "meanVertexColour": 0.99583,
+       "uv": true,
+       "bump": true,
+       "roughness": 1.1036,
+       "matColor": "fffffe",
+       "map": "render-albedo"
+      }
+     ],
+     "aHouses": [
+      {
+       "name": null,
+       "vertices": 85356,
+       "triangles": 28452,
+       "dirtTriangles": 14372,
+       "meanVertexColour": 0.99812,
+       "uv": true,
+       "bump": true,
+       "roughness": 0.9875,
+       "matColor": "ffffff",
+       "map": "render-albedo"
+      }
+     ]
+    }
+   },
+   "storage": {
+    "sentinel": "kept",
+    "keys": [
+     "kvarteret-lunden.paddockGrass",
+     "kvarteret-lunden.sentinel"
+    ]
+   },
+   "mapMs": 9
+  }
+ },
+ "source": {
+  "src/rendersurface.js": "6a313d082fdcd35ccb9418ce183f31b4ab261a92d1ccff617f8cb16177594227",
+  "src/config.js": "d9ea3d42dcb704852db5abc35e7712d581c3abad38fb33d687c51470afbc6039",
+  "src/exterior.js": "e697b13cc9727b8b3ac90565eb016644a3c9d6b75c735f8346a8aa91de460b51",
+  "src/surroundings.js": "15b3266a3e8f2e4aa7e53b5a64b90bd1937477633bc89cbe8badc74fdaad289a",
+  "tools/rendersurfacetest.mjs": "01f7399db6d0bd4b392b23ee55a7c315c7bc9822238893acddaa64711c284b9f",
+  "tools/rendersurface311browser.cjs": "869c144a0847410a2699dbd39525b5956bc9554d632c6b0c31224c78c14b0727"
+ },
+ "tone": {
+  "husL-gata": [
+   [
+    166.28,
+    155.59,
+    146.78
+   ],
+   [
+    166.24,
+    155.61,
+    146.72
+   ]
+  ],
+  "husL-loftgang": [
+   [
+    171.09,
+    161.12,
+    142.75
+   ],
+   [
+    170.77,
+    160.98,
+    142.34
+   ]
+  ],
+  "husL-terrass": [
+   [
+    210.83,
+    210.92,
+    192.73
+   ],
+   [
+    210.86,
+    210.82,
+    192.78
+   ]
+  ],
+  "husA-loggia": [
+   [
+    176.23,
+    170.1,
+    142.65
+   ],
+   [
+    176.24,
+    170.09,
+    142.65
+   ]
+  ],
+  "husC-gata": [
+   [
+    114.97,
+    131.32,
+    78.78
+   ],
+   [
+    114.96,
+    131.32,
+    78.78
+   ]
+  ]
+ }
+}
