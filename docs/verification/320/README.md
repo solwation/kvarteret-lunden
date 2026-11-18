@@ -50,3 +50,5 @@ en rubrikrad. Chromium/SwiftShader, fast klocka 2026-07-15, `?nocats&keepgeo`. O
   draws, texturer, ljus eller per-frame-arbete. Höjderna bakas en gång vid bygget.
 - Mossan är avsiktligt diskret och syns främst nära; på gatuavstånd bara som en svag ton vid foten.
 - Originalets `lampwash` (#2123-kedjan) och `snowCap` finns inte i publiken; kedjan här är tegel #293 / puts #311 → mossa.
+
+Publicering: Pages success på `23d5f6a`; inbäddade bild-URL:er HTTP 200 före stängning.
