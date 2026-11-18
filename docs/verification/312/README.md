@@ -34,3 +34,5 @@ Kontroller
 
 Begränsningar: skolgårdens bakgrundsytor och utegymmets grus behåller platt färg (som i originalet). Stenarna syns främst
 nära; på 10+ m håll är ytan medvetet nästan oförändrad.
+
+Publicering: Pages success på `a5fb99f`; inbäddade bild-URL:er HTTP 200 före stängning.
