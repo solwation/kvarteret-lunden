@@ -47,3 +47,5 @@ mobil 1–4). CPU: `treeForm` ≈ 9–18 ms för 504 träd vid uppstart (node), 
 Arterna är en deterministisk dragning per position, inte en inventering; alla formvärden är *guess*. Mobilprofilen är bara
 kontrollerad på funktionsnivå (lobtak och stamtrianglar), inte i en mobilbrowser. `treeForms`/`treeSkeleton` har ännu ingen
 konsument i publiken (#328). Bladkortens uttoning (#331) ingår inte.
+
+Publicerad: `1b3cbeb`, Pages 44421490371 success.
