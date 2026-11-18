@@ -45,3 +45,5 @@ före januari (basmodulerna), efter januari, efter juli. Chromium/SwiftShader, f
   material får en unik nyckel (`…|snowcap2123`); på telefon bara material som redan hade eget program.
 - Utanför snömånaderna hoppar shadern över steget (`if (uSnowCap > 0.0)`), så juli ser ut som före.
 - Locket följer normalen, inte verklig snöackumulering eller vind; mängden är en uppskattning (*guess*).
+
+Publicerad: `3e6e580`, Pages 44417714713 success.
