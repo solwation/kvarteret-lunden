@@ -11,6 +11,7 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 Gatorna har runda gjutjärnslock mitt i körbanan och dagvattengaller i rännstenen längs kantstenen, och gårdens gångar tre små galler; de ligger platt på ytan, fria från lagningar och övergångsställen, och döljs under snön (#319). [Egna jämförelsebilder och kontroller](docs/verification/319/README.md).
 
 Skuggiga norrväggar (Hus L:s tegel och Å-husens tegel, socklar och vita puts, stödmurarna och parktrappan) har diskreta fläckar av mossa och alger lågt ned och lite grönare fogar; söder-, öst- och västsidor, telefonprofilen och renderbudgeten är oförändrade (#320). [Egna jämförelsebilder och kontroller](docs/verification/320/README.md).
+På hösten ligger nedfallna löv i höstens färger glest på gräsmattor, grus, gångar, kantsten och gator, tätare under träden och längs kantstenen och fler ju senare på hösten det blir; sommar, vinter och vår är marken fri från löv, och gatans löv vid trottoaren glesnar på samma sätt. Månaden kommer från publikens årstider (`?month=10`); på mobil ritas bara den genomsnittliga lövtonen, utan nya draws (#317). [Egna jämförelsebilder och kontroller](docs/verification/317/README.md).
 
 De ljusa putsfasaderna (Hus L:s övre våningar och Å-husens loggior och entrénischer) har en fin putsstruktur och svaga smutsstrimmor under fönsterblecken och vid golven, med samma medelton, öppningar, glas, tak och renderbudget (#311). [Egna jämförelsebilder och kontroller](docs/verification/311/README.md).
 

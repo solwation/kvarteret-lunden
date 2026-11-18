@@ -2,6 +2,7 @@
 import * as THREE from 'three';
 import { PATIO, PAVING_SURFACE as S, SEASON } from './config.js';
 import { registerSeasonal } from './seasons.js';
+import { leafLitter } from './leaflitter.js';
 
 const edgeDistance = (p, span) => { const u = ((p % span) + span) % span; return Math.min(u, span - u); };
 
@@ -50,5 +51,6 @@ export function pavingMaterial(map, { snow = false } = {}) {
     material.roughness = covered ? S.snowRoughness : 1;
     material.needsUpdate = true;
   });
+  if (snow) leafLitter(material, 'paving'); // #317 (original #2105): exposed paving gets autumn leaves; the sheltered portik stays clean
   return material;
 }

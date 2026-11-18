@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { GRASS as G, SEASON } from './config.js';
 import { registerSeasonal, registerSnow } from './seasons.js';
+import { leafLitter } from './leaflitter.js';
 import { applyGrassPatches, grassBlendGLSL, grassTufts, linearMean } from './grassdetail.js';
 
 let texture;
@@ -90,6 +91,7 @@ export function grassMaterial(color = G.summer) {
         }`);
   };
   material.customProgramCacheKey = () => 'grass-patches-688';
+  leafLitter(material, 'grass'); // #317 (original #2105): fallen autumn leaves on the lawns
   registerSnow(material, SEASON.snow.ground); // seasons removes/reinstates the shared detail map under snow
   registerSeasonal((month) => {
     snow.value = SEASON.snowMonths.includes(month) ? 1 : 0;

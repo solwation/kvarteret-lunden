@@ -50,7 +50,7 @@ test('asphalt: #2072 aggregate, then wear; one copy, unique key; vertex position
   assert.equal((f.match(/vec2 wearTrack/g) || []).length, 1);
   assert.ok(f.indexOf('float wearRough') < f.indexOf('asphaltTone'), 'wear sits in the map section, inside USE_MAP');
   assert.ok(f.indexOf('float wearRough') < f.indexOf('roughnessFactor *= wearRough'), 'the polish feeds the roughness pipeline');
-  assert.match(m.customProgramCacheKey(), /^asphalt-surface-2072\|wear2103-asphalt$/);
+  assert.match(m.customProgramCacheKey(), /^asphalt-surface-2072\|wear2103-asphalt(\|litter2105-asphalt)?$/); // #317: litter key suffix
   assert.ok(hasNativeVertexCompile(m), 'audited: only varyings added');
   const stripped = s.vertexShader.replace(/\n\nattribute vec2 roadFrame;\nvarying vec2 vRoadFrame;\nvarying vec2 vWearXZ;/, '').replace(/\n\nvRoadFrame = roadFrame;\nvWearXZ = [^\n]*;/, '');
   assert.equal(stripped, THREE.ShaderLib.physical.vertexShader, 'nothing else in the vertex shader changes');
@@ -61,7 +61,7 @@ test('paint: own key; the patches lie on street-level asphalt clear of the old o
   const p = streetWear(new THREE.MeshStandardMaterial({ roughness: 0.7 }), 'paint');
   const s = physical(); p.onBeforeCompile(s, null);
   assert.ok(s.fragmentShader.includes('vec3(') && s.fragmentShader.includes('roughnessFactor *= wearRough'));
-  assert.match(p.customProgramCacheKey(), /\|wear2103-paint$/);
+  assert.match(p.customProgramCacheKey(), /\|wear2103-paint(\|litter2105-paint)?$/);
   assert.notEqual(p.customProgramCacheKey(), asphaltMaterial().customProgramCacheKey());
   assert.throws(() => streetWear(new THREE.MeshStandardMaterial(), 'gravel'));
   const rects = [...SITE.street.patches, ...SW.patches].map(([x, z, w, d]) => [x - w / 2, x + w / 2, z - d / 2, z + d / 2]), cr = SITE.street.crossing;

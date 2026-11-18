@@ -54,5 +54,5 @@ test('public consumers: courtyard gravel and park gravel paths only; boule stays
   assert.match(court, /registerSnow\(mats\.gravel, SEASON\.snow\.ground\)/);
   assert.match(park, /kind==='gravel'\?gravelMaterial\(P\.surfaces\[kind\]\.color,\{name:'park-gravel'\}\)/);
   assert.match(park, /if\(kind==='gravel'\)gravelUV\(merged\)/);
-  assert.match(park, /roughness:\.9\}\);registerSnow\(mat,SEASON\.snow\.paving\)/, 'asphalt material unchanged');
+  assert.match(park, /roughness:\.9\}\)(?:,'asphalt'\))?;registerSnow\(mat,SEASON\.snow\.paving\)/, 'asphalt material unchanged (#317 only wraps it in leafLitter)');
 });

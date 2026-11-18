@@ -4301,3 +4301,28 @@ Egen verifiering: `node --test tools/shademosstest.mjs` 7/7, npm test/build och 
 riktiga appen (Hus L nära och från gatan, Hus A/B/C:s norrsidor, dag) med samma meshantal, draws, trianglar och texturer,
 +4 program, medelton per vy inom 1,4 %, ingen mossa på telefon och noll fel/externa anrop.
 [Egna bilder, kontroller och kostnad](verification/320/README.md).
+## Nedfallna höstlöv på marken, #317
+
+Granskade originalkällor `9113aa3a517a0e78c03d4f282fb8c8ee84ac469b` och `44bc8ad827cec2fd8357c7d22e9b80258ddd5f94`
+([original #2105](https://github.com/solwation/lunden-3d-apartment/issues/2105)) samt mobilvarianten
+`dd9088d0fa549807b0c706afd64acb08ce216d96` ([original #2118](https://github.com/solwation/lunden-3d-apartment/issues/2118)).
+Överfört: byteidentisk `src/leaflitter.js` i #2118:s version (`litterAmount`, `litterColors`, `bakeLitterDensity`,
+`LeafLitter`, `litterGLSL`, `leafLitter(m, kind, mask, lite = lowMemory)`), ett eget `LEAF_LITTER`-block i `src/config.js`
+direkt efter `STREET_WEAR` (originalets värden utom `minLevel`) och konsumentraderna. Publiken saknar #2099:s blöta mark
+(`wetground.js`, endast original), så lövlagret kedjas direkt och sist på publikens egna markmaterial med unika
+programnycklar (`…|litter2105-<kind>`, på mobil `-lite`): gräsmattorna (`grass.js`, utan originalets flodbäddsmask som
+publiken saknar), asfalten (`asphaltsurface.js`, efter #294:s ballast och #316:s slitage), gruset (`gravelsurface.js`, #312),
+den exponerade uteplatsplattan (`pavingsurface.js` med `snow`, #296; portikens skyddade platta lämnas), gårdens plattor och
+tegel (`courtyard.js`), parkens icke-grusgångar (`riverpark.js`), bakgrundernas gångytor (`sitebackdrop.js`), trottoarer/gångar
+(`surroundings.js` `walkingPaving`) och gatans kantsten, lagningar, övergångsställe och kullersten (`street.js`). Gatans
+instansierade trottoarlöv glesnar med samma månadsandel (interfolierade ytor). `main.js` registrerar `LeafLitter` med
+`aoTrees` och vägarnas `samples` före `?month=`-säsongen; publikens årstider styr månaden (utan `?month=` är det sommar och
+inget ritas). Publiken har inga kvalitetsnivåer, så skrivbord ritar alltid lövformerna och mobil bara medeltonen (#2118).
+Ej tillämpligt: originalets `wetground.js`-kedja och regnvyn, kvalitetsknappen `leafLitter`, flodbäddens `grassBed`-mask,
+`surroundings.js` `sitePaving` (publikens motsvarighet är `walkingPaving`, patchad), ändringslogg. Node-testet är eget på
+funktionsnivå (originalets test med publikens konsumenter i stället för `wetGround`, plus #2118:s mobilkontroller); tidigare
+tester (`streetweartest`, `gravelsurfacetest`) godtar nu det nya nyckelsuffixet resp. omslaget. Ingen originalbild, inredning,
+avatar, gameplay, lagring, tjänst, Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: `node --test tools/leaflittertest.mjs` 5/5, npm test/build och en egen före/efter-browser i den riktiga
+appen (gård, park, gata; juli, september, oktober, november, januari). [Egna bilder, kontroller och kostnad](verification/317/README.md).

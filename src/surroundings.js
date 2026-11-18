@@ -26,6 +26,7 @@ import { railMetal } from './railmetal.js';
 import { registerTrees, registerSnow } from './seasons.js';
 import { asphaltMaterial, asphaltUV } from './asphaltsurface.js';
 import { addRoadFrame } from './streetwear.js';
+import { leafLitter } from './leaflitter.js';
 import { siteWindBounds } from './sitewind.js';
 import { lobeGeometry, leafMaterial, trunkGeometry, barkMaterial, lodLeafMaterial, lodBarkMaterial, lodFarTrunkMaterial } from './foliage.js';
 import { InstanceLod, lodRange } from './lod.js'; // public #284 (original #1958)
@@ -1950,6 +1951,7 @@ export function* surroundingsParts({ grass, husL = null }) {
   cutPavement = polygonCutter(pavementPieces, 8);
   const connectPavement = (g,width,support) => besidePavement(g,width,p=>[p[0],pavementJoinHeight(p[0],p[2],p[1],width,support),p[2]]);
   const walkingPaving=flat([...[...S.paving, ...S.basementPaving].map((r) => groundStrip(r.x0, r.x1, r.z0, r.z1, 0.008)), ...walks, ...facadeWalkGeometries(roadGround)], COLORS.paving, SEASON.snow.paving);
+  leafLitter(walkingPaving.material, 'paving'); // #317 (original #2105): autumn leaves on the pavements and paths
   yield 0.15;
   group.add(buildRiverBridges(roadGround, connectPavement));
   yield 0.2;

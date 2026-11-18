@@ -6,6 +6,7 @@ import { roadLampSpots, roadLampGround } from './roadlamps.js';
 import { registerSeasonal } from './seasons.js';
 import { streetWear, addRoadFrame } from './streetwear.js';
 import { asphaltTextures, asphaltUV } from './asphaltsurface.js';
+import { leafLitter, litterAmount } from './leaflitter.js';
 import { samples, onRoad, along, filletOutline, nearestS, pathStrip, vehicleTrim } from './roads.js';
 import { glowMaterial, poolGeometry, fadeGlow, fadeGlowWithFog } from './groundglow.js';
 import { schoolWallPlan } from './schoolwall.js';
@@ -190,13 +191,13 @@ function shelterPaving(groundY) {
 
 export function buildStreet(groundY, pathGround = groundY, trees = []) {
   const group = new THREE.Group(); group.name='street-details';
-  const grey = new THREE.MeshStandardMaterial({ color: 0xa9a7a2, roughness: 0.85 });
+  const grey = leafLitter(new THREE.MeshStandardMaterial({ color: 0xa9a7a2, roughness: 0.85 }), 'paving'); // #317 (original #2105): autumn leaves on kerbs and slabs
   const curbs = curbGeometries(groundY);
   const island = bridgeheadIsland(pathGround); // #1554: the road's own surface follows the rendered terrain (pathGround), not the analytic groundY
   group.add(merged([...curbs, ...shelterPaving(groundY), island.kerb], grey, false)); // #1534: the shelter's slabs, pillar and stones share the curbs' grey
   // patched asphalt: darker, smoother rectangles a hair above the road (#316/original #2103: with the asphalt's own aggregate, a few more)
   const patches = merged([...S.patches, ...STREET_WEAR.patches].map(([x, z, w, d]) => flatRect(x - w / 2, x + w / 2, z - d / 2, z + d / 2, 0.016)),
-    patchMaterial(), false);
+    leafLitter(patchMaterial(), 'asphalt'), false);
   asphaltUV(patches.geometry); patches.name = 'street-asphalt-patches';
   group.add(patches);
   // #319 (original #2121): manhole covers, gully grates by the kerbs and the courtyard's drain grates (one flat vertex-coloured mesh)
@@ -209,14 +210,14 @@ export function buildStreet(groundY, pathGround = groundY, trees = []) {
     const I = S.bridgehead.island;
     for (let x = c.x0 + 0.25; x + 0.5 <= c.x1 + 1e-9; x += 1.0) if (x + 0.5 <= I.x0 || x >= I.x1) bars.push(bridgeheadGroundRect(x, x + 0.5, c.z0, c.z1, 0.045, pathGround));
   }
-  const zebra = merged(bars, streetWear(new THREE.MeshStandardMaterial({ color: 0xeeeeea, roughness: 0.7 }), 'paint'), false);
+  const zebra = merged(bars, leafLitter(streetWear(new THREE.MeshStandardMaterial({ color: 0xeeeeea, roughness: 0.7 }), 'paint'), 'paint'), false);
   addRoadFrame(zebra.geometry); zebra.name = 'street-zebra'; // #316 (original #2103): the bars flake where the wheels run
   group.add(zebra);
   // cobbled corner
   const cb = S.cobbles;
   const cobbleGround = (x, z) => Math.max(groundY(x, z), pathGround(x, z));
   cobbleGround.grid = pathGround.grid;
-  const cob = new THREE.Mesh(cobbledCornerGeometry(cobbleGround, cb), new THREE.MeshStandardMaterial({ map: cobbleTexture(), roughness: 0.8 }));
+  const cob = new THREE.Mesh(cobbledCornerGeometry(cobbleGround, cb), leafLitter(new THREE.MeshStandardMaterial({ map: cobbleTexture(), roughness: 0.8 }), 'paving'));
   cob.name = 'street-cobbled-corner';
   cob.receiveShadow = true;
   group.add(cob);
@@ -338,9 +339,9 @@ export function buildStreet(groundY, pathGround = groundY, trees = []) {
   // fallen leaves on the pavements and verges in the autumn months (one instanced mesh)
   let seed = 9; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
   const leaf = new THREE.InstancedMesh(new THREE.CircleGeometry(0.045, 5).rotateX(-Math.PI / 2), new THREE.MeshStandardMaterial({ roughness: 0.9, side: THREE.DoubleSide }), S.leaves.n);
-  const per = S.leaves.n / S.leaves.areas.length, c = new THREE.Color();
+  const c = new THREE.Color();
   for (let i = 0; i < S.leaves.n; i++) {
-    const [x0, x1, z0, z1] = S.leaves.areas[Math.floor(i / per)];
+    const [x0, x1, z0, z1] = S.leaves.areas[i % S.leaves.areas.length]; // (#317, original #2105: interleaved, so a smaller count thins every area)
     const lx = x0 + rnd() * (x1 - x0), ly = 0.02 + rnd() * 0.004, lz = z0 + rnd() * (z1 - z0); // on the ground (#256)
     m.compose(new THREE.Vector3(lx, ly + groundY(lx, lz), lz), q.setFromAxisAngle(new THREE.Vector3(0, 1, 0), rnd() * 6.3), one.set(0.7 + rnd() * 0.7, 1, 0.5 + rnd() * 0.5));
     leaf.setMatrixAt(i, m);
@@ -348,7 +349,7 @@ export function buildStreet(groundY, pathGround = groundY, trees = []) {
   }
   leaf.receiveShadow = true;
   group.add(leaf);
-  registerSeasonal((month) => { leaf.visible = S.leaves.months.includes(month); });
+  registerSeasonal((month) => { leaf.count = Math.round(S.leaves.n * Math.min(1, litterAmount(month))); leaf.visible = S.leaves.months.includes(month) && leaf.count > 0; }); // #317 (original #2105): more towards late autumn
   let phase = 0, last = performance.now();
   return {
     object: group,

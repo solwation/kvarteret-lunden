@@ -4,6 +4,7 @@ import { ASPHALT_SURFACE as A, COLORS, SEASON } from './config.js';
 import { registerSeasonal } from './seasons.js';
 import { rememberFragmentCompile } from './vertexcompile.js';
 import { streetWear } from './streetwear.js';
+import { leafLitter } from './leaflitter.js';
 
 const wrap = (n, span) => ((n % span) + span) % span;
 const hash = (x, y, seed) => {
@@ -75,6 +76,7 @@ export function asphaltMaterial() {
   rememberFragmentCompile(material.onBeforeCompile);
   material.customProgramCacheKey = () => 'asphalt-surface-2072';
   streetWear(material, 'asphalt'); // #316 (original #2103): tracks, cracks, edge cracks (the geometry carries roadFrame)
+  leafLitter(material, 'asphalt'); // #317 (original #2105): autumn leaves, chained after the wear
   // registerSnow in the road's existing flat() caller still owns colour/map. Opt in only this new material's auxiliary channels.
   registerSeasonal(month => {
     const snow = SEASON.snowMonths.includes(month);

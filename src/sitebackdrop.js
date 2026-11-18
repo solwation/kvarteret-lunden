@@ -3,6 +3,7 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { SITE, SEASON, DECAL_OFFSET, PARKING_LOT, GLASS_PANES } from './config.js';
 import { pathStrip, onRoad, onWalk, cutAtTerrain, vehicleTrim, isVehicleWay } from './roads.js';
 import { registerSnow, registerSeasonal } from './seasons.js';
+import { leafLitter } from './leaflitter.js';
 import { buildSchoolFacade, schoolTextures, schoolRoofTint, SCHOOL_ROOF_LEVEL } from './schoolfacade.js';
 import { buildCampusFacade } from './campusfacades.js';
 import { buildRealgym20 } from './realgym20.js';
@@ -154,7 +155,7 @@ const parts={facade:[],roof:[],glass:[],access:[],...(brick||W.buildings.some(b=
   else{const pl=drape(p.polygon,PAVE_LIFT);pl.userData.tint=surfColor;parts.access.push(pl);if(p.yard)parts.access.push(...schoolyardParts(p.yard,ground,drape));} // #1737: a yard's lawn, sand, hedges and play frames join the same batch
  }
  if(key==='east')eastLotParts(ground,parts.access,p=>p.color??(p.surface==='asphalt'?0x5f6164:p.surface==='gravel'?0xb5ac90:0xa7a397));
- const mats={facade:new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,roughness:.95,side:THREE.DoubleSide}),roof:new THREE.MeshStandardMaterial({map:roofMap(),color:roofColor(W.roof),roughness:.85,side:THREE.DoubleSide}),glass:new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,roughness:.3,metalness:.25,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:DECAL_OFFSET.factor,polygonOffsetUnits:DECAL_OFFSET.units}),access:new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,roughness:1,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:DECAL_OFFSET.factor,polygonOffsetUnits:DECAL_OFFSET.units})}; // #1309: paths/asphalt wear the decal depth bias too, so a coarse sample cannot sink under a terrain crease as green slivers (same as kvarteret-lunden#70)
+ const mats={facade:new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,roughness:.95,side:THREE.DoubleSide}),roof:new THREE.MeshStandardMaterial({map:roofMap(),color:roofColor(W.roof),roughness:.85,side:THREE.DoubleSide}),glass:new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,roughness:.3,metalness:.25,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:DECAL_OFFSET.factor,polygonOffsetUnits:DECAL_OFFSET.units}),access:leafLitter(new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,roughness:1,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:DECAL_OFFSET.factor,polygonOffsetUnits:DECAL_OFFSET.units}),'paving')}; // #1309: paths/asphalt wear the decal depth bias too, so a coarse sample cannot sink under a terrain crease as green slivers (same as kvarteret-lunden#70)
  // #233 (original #1813): actual lawns share terrain grass detail, autumn tint and snow.
  // Keep the existing draped triangles/lifts; sand, play pads and static swing seats stay in access.
  const lawns=parts.access.filter(g=>g.userData.schoolLawn);

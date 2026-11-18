@@ -29,6 +29,8 @@ import { Squirrels } from './squirrels.js';
 import { Paddock } from './paddock.js';
 import { visitSpot } from './paddockgeo.js';
 import { applySeason } from './seasons.js';
+import { LeafLitter } from './leaflitter.js';
+import { samples as roadSamples } from './roads.js';
 import { groundY, renderedTerrainY, treeFeet, aoTrees, southTreeFeet } from './surroundings.js';
 import { Core } from './core.js';
 import { CoreHouse } from './corehouse.js';
@@ -212,6 +214,7 @@ async function init() {
   squirrels = new Squirrels({scene,camera,feet:treeFeet,crowns:aoTrees,southFeet:southTreeFeet,ground:renderedTerrainY});
 
   ambientBalloon = new Balloon({scene});
+  new LeafLitter({ trees: () => aoTrees, roads: () => SITE.roads.filter((r) => r.path || r.x1 !== undefined).map((r) => (r.path ? roadSamples(r) : [[r.x0, r.z0], [r.x1, r.z0], [r.x1, r.z1], [r.x0, r.z1], [r.x0, r.z0]].map(([x, z]) => ({ x, z, w: 0 })))) }).register(); // #317 (original #2105): fallen autumn leaves on the ground (month-driven shared uniforms; detail off on phones)
   const debugMonth = Number(debugParams.get('month')); if (debugMonth >= 1 && debugMonth <= 12) { applySeason(Math.round(debugMonth)); floraMonth = Math.round(debugMonth); } // debug: show a month's season (snow months: white ground, ponies in the stable)
   await loadingStep('Bygger trapphus och garage', 0.82);
   garage = world.garage = new Garage();

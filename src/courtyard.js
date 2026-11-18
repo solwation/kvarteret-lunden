@@ -10,6 +10,7 @@ import { pavingTexture } from './patio.js';
 import { registerSnow, registerTrees } from './seasons.js';
 import { SEASON } from './config.js';
 import { gravelMaterial } from './gravelsurface.js';
+import { leafLitter } from './leaflitter.js';
 import { benchSlat, benchWood, padBenchSlats } from './benchwood.js'; // #313 (original #2098): weathered bench slats
 import { groundY } from './surroundings.js';
 import { lobeGeometry, leafMaterial, windLeafMaterial } from './foliage.js';
@@ -364,6 +365,7 @@ export function buildCourtyard() {
     pergola: new THREE.MeshStandardMaterial({ color: 0xd8d0bf, roughness: 0.85 }),
     brick: new THREE.MeshStandardMaterial({ map: herringbone(), roughness: 0.9 }),
   };
+  leafLitter(mats.paving, 'paving'); leafLitter(mats.brick, 'paving'); // #317 (original #2105): autumn leaves (the gravel's own factory does it)
   registerSnow(mats.brick, SEASON.snow.paving);
   registerSnow(mats.paving, SEASON.snow.paving);
   registerSnow(mats.gravel, SEASON.snow.ground);

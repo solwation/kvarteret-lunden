@@ -1,0 +1,853 @@
+{
+ "baseline": "ea3d1f2fae22d90b5d733260c967b04ec8e93ded",
+ "viewport": [
+  1200,
+  800
+ ],
+ "errors": [],
+ "external": [],
+ "phases": {
+  "before": {
+   "loadMs": 35372,
+   "views": [
+    {
+     "view": "courtyard",
+     "month": 7,
+     "calls": 216,
+     "triangles": 694930,
+     "textures": 71,
+     "geometries": 569,
+     "programs": 63,
+     "camera": [
+      -4,
+      1.62,
+      22.6
+     ],
+     "seasonMs": 14,
+     "patched": 0,
+     "lite": 0,
+     "streetLeaves": {
+      "visible": false,
+      "count": 1400
+     },
+     "imageSHA256": "48016188da4b72e16a7603234426e3ebe48f3dea9f735a4aad2888f2b74ebfc3"
+    },
+    {
+     "view": "courtyard",
+     "month": 9,
+     "calls": 217,
+     "triangles": 701930,
+     "textures": 71,
+     "geometries": 569,
+     "programs": 63,
+     "camera": [
+      -4,
+      1.62,
+      22.6
+     ],
+     "seasonMs": 37,
+     "patched": 0,
+     "lite": 0,
+     "streetLeaves": {
+      "visible": true,
+      "count": 1400
+     },
+     "imageSHA256": "ae7f5da11c31c5f38754494c89f53fe50d0caa477f2fd80d1adf72e738f31708"
+    },
+    {
+     "view": "courtyard",
+     "month": 10,
+     "calls": 217,
+     "triangles": 701870,
+     "textures": 71,
+     "geometries": 569,
+     "programs": 63,
+     "camera": [
+      -4,
+      1.62,
+      22.6
+     ],
+     "seasonMs": 2,
+     "patched": 0,
+     "lite": 0,
+     "streetLeaves": {
+      "visible": true,
+      "count": 1400
+     },
+     "imageSHA256": "45fd4af46aaadb60a6508abeef2cc2657891bf99c0a741481ff5f9408878e239"
+    },
+    {
+     "view": "courtyard",
+     "month": 11,
+     "calls": 217,
+     "triangles": 701174,
+     "textures": 71,
+     "geometries": 569,
+     "programs": 63,
+     "camera": [
+      -4,
+      1.62,
+      22.6
+     ],
+     "seasonMs": 3,
+     "patched": 0,
+     "lite": 0,
+     "streetLeaves": {
+      "visible": true,
+      "count": 1400
+     },
+     "imageSHA256": "1cbd2b2decff5c0197f599da80696fede9dee3349632a8b7d0defc2a12327c49"
+    },
+    {
+     "view": "courtyard",
+     "month": 1,
+     "calls": 212,
+     "triangles": 650566,
+     "textures": 71,
+     "geometries": 569,
+     "programs": 67,
+     "camera": [
+      -4,
+      1.62,
+      22.6
+     ],
+     "seasonMs": 2,
+     "patched": 0,
+     "lite": 0,
+     "streetLeaves": {
+      "visible": false,
+      "count": 1400
+     },
+     "imageSHA256": "f7bd4f8940fc90e5c8c21d4fcd56849fa1f17ffe78a4a608ee4d640d3373e4a2"
+    },
+    {
+     "view": "park",
+     "month": 7,
+     "calls": 70,
+     "triangles": 569571,
+     "textures": 73,
+     "geometries": 571,
+     "programs": 69,
+     "camera": [
+      -8,
+      -1.38,
+      52
+     ],
+     "seasonMs": 6,
+     "patched": 0,
+     "lite": 0,
+     "streetLeaves": {
+      "visible": false,
+      "count": 1400
+     },
+     "imageSHA256": "97714c89304a38129dee4af80fd5a0b7330ea67c5db5d4630a1d725cabe0fd67"
+    },
+    {
+     "view": "park",
+     "month": 9,
+     "calls": 70,
+     "triangles": 569571,
+     "textures": 73,
+     "geometries": 571,
+     "programs": 69,
+     "camera": [
+      -8,
+      -1.38,
+      52
+     ],
+     "seasonMs": 7,
+     "patched": 0,
+     "lite": 0,
+     "streetLeaves": {
+      "visible": true,
+      "count": 1400
+     },
+     "imageSHA256": "d309815c3c047f1a89561338d7cc57baa2678a1dc7fef0770a06fa5d73448a5f"
+    },
+    {
+     "view": "park",
+     "month": 10,
+     "calls": 70,
+     "triangles": 569499,
+     "textures": 73,
+     "geometries": 571,
+     "programs": 69,
+     "camera": [
+      -8,
+      -1.38,
+      52
+     ],
+     "seasonMs": 3,
+     "patched": 0,
+     "lite": 0,
+     "streetLeaves": {
+      "visible": true,
+      "count": 1400
+     },
+     "imageSHA256": "0407b30b92268ced5a97dea782e6600dcc40660487165b4c7dfab0227bf67ebc"
+    },
+    {
+     "view": "park",
+     "month": 11,
+     "calls": 70,
+     "triangles": 568527,
+     "textures": 73,
+     "geometries": 571,
+     "programs": 69,
+     "camera": [
+      -8,
+      -1.38,
+      52
+     ],
+     "seasonMs": 3,
+     "patched": 0,
+     "lite": 0,
+     "streetLeaves": {
+      "visible": true,
+      "count": 1400
+     },
+     "imageSHA256": "4635015ca2a1ae163bd1525e04371bfc12bcedfe1f058cae405a3d72f5390d66"
+    },
+    {
+     "view": "park",
+     "month": 1,
+     "calls": 67,
+     "triangles": 531191,
+     "textures": 73,
+     "geometries": 571,
+     "programs": 69,
+     "camera": [
+      -8,
+      -1.38,
+      52
+     ],
+     "seasonMs": 2,
+     "patched": 0,
+     "lite": 0,
+     "streetLeaves": {
+      "visible": false,
+      "count": 1400
+     },
+     "imageSHA256": "c05e9501b20e938855c7ca871434c838345e5c9f9dc7f4bf7f605015eef2ba8b"
+    },
+    {
+     "view": "street",
+     "month": 7,
+     "calls": 121,
+     "triangles": 590903,
+     "textures": 73,
+     "geometries": 575,
+     "programs": 70,
+     "camera": [
+      -6,
+      1.62,
+      -28.6
+     ],
+     "seasonMs": 3,
+     "patched": 0,
+     "lite": 0,
+     "streetLeaves": {
+      "visible": false,
+      "count": 1400
+     },
+     "imageSHA256": "247ed0c253bb97539d598a9482af9da0c20377e18adbdcd0964ac07f478adafe"
+    },
+    {
+     "view": "street",
+     "month": 9,
+     "calls": 122,
+     "triangles": 597903,
+     "textures": 73,
+     "geometries": 575,
+     "programs": 70,
+     "camera": [
+      -6,
+      1.62,
+      -28.6
+     ],
+     "seasonMs": 2,
+     "patched": 0,
+     "lite": 0,
+     "streetLeaves": {
+      "visible": true,
+      "count": 1400
+     },
+     "imageSHA256": "9c6934c4819462d1285d722b477ad7f51dccf260021707d3b095763cdf5ea7aa"
+    },
+    {
+     "view": "street",
+     "month": 10,
+     "calls": 122,
+     "triangles": 597867,
+     "textures": 73,
+     "geometries": 575,
+     "programs": 70,
+     "camera": [
+      -6,
+      1.62,
+      -28.6
+     ],
+     "seasonMs": 2,
+     "patched": 0,
+     "lite": 0,
+     "streetLeaves": {
+      "visible": true,
+      "count": 1400
+     },
+     "imageSHA256": "acef7bff749d16df1653092944c6c7a75ad76adf219d14b96374b568e3508e9b"
+    },
+    {
+     "view": "street",
+     "month": 11,
+     "calls": 122,
+     "triangles": 597363,
+     "textures": 73,
+     "geometries": 575,
+     "programs": 70,
+     "camera": [
+      -6,
+      1.62,
+      -28.6
+     ],
+     "seasonMs": 2,
+     "patched": 0,
+     "lite": 0,
+     "streetLeaves": {
+      "visible": true,
+      "count": 1400
+     },
+     "imageSHA256": "c28ac3c08fae447aabf0a3784e28534814bf1c93a30452816945d477c0ebc71e"
+    },
+    {
+     "view": "street",
+     "month": 1,
+     "calls": 117,
+     "triangles": 553223,
+     "textures": 73,
+     "geometries": 575,
+     "programs": 70,
+     "camera": [
+      -6,
+      1.62,
+      -28.6
+     ],
+     "seasonMs": 2,
+     "patched": 0,
+     "lite": 0,
+     "streetLeaves": {
+      "visible": false,
+      "count": 1400
+     },
+     "imageSHA256": "446d8419894ff49a6bace40ca95539f5bc40ebac6c562d9af3f7c0282b6ac3a5"
+    }
+   ],
+   "storage": {
+    "sentinel": "kept",
+    "keys": [
+     "kvarteret-lunden.paddockGrass",
+     "lunden.sentinel"
+    ]
+   }
+  },
+  "after": {
+   "loadMs": 37004,
+   "views": [
+    {
+     "view": "courtyard",
+     "month": 7,
+     "calls": 216,
+     "triangles": 694930,
+     "textures": 72,
+     "geometries": 569,
+     "programs": 69,
+     "camera": [
+      -4,
+      1.62,
+      22.6
+     ],
+     "seasonMs": 5,
+     "patched": 21,
+     "lite": 0,
+     "litter": [
+      0,
+      1,
+      0
+     ],
+     "map": [
+      1,
+      1
+     ],
+     "streetLeaves": {
+      "visible": false,
+      "count": 0
+     },
+     "imageSHA256": "3a29564b88de4c76eff8a9663d197103e861066816f1da2cda85fa2501a018ff"
+    },
+    {
+     "view": "courtyard",
+     "month": 9,
+     "calls": 217,
+     "triangles": 696330,
+     "textures": 73,
+     "geometries": 569,
+     "programs": 69,
+     "camera": [
+      -4,
+      1.62,
+      22.6
+     ],
+     "seasonMs": 76,
+     "patched": 21,
+     "lite": 0,
+     "litter": [
+      0.2,
+      1,
+      0
+     ],
+     "map": [
+      605,
+      652
+     ],
+     "streetLeaves": {
+      "visible": true,
+      "count": 280
+     },
+     "imageSHA256": "0f4dba39820f979acc1e29c7bc3c44700afef747330ed08e71540f15d0d2c9d2"
+    },
+    {
+     "view": "courtyard",
+     "month": 10,
+     "calls": 217,
+     "triangles": 699070,
+     "textures": 73,
+     "geometries": 569,
+     "programs": 69,
+     "camera": [
+      -4,
+      1.62,
+      22.6
+     ],
+     "seasonMs": 3,
+     "patched": 21,
+     "lite": 0,
+     "litter": [
+      0.6,
+      1,
+      0
+     ],
+     "map": [
+      605,
+      652
+     ],
+     "streetLeaves": {
+      "visible": true,
+      "count": 840
+     },
+     "imageSHA256": "fc05d4823a79e35c017f3d4e574e401523efab50806829b5cd387e9acedad141"
+    },
+    {
+     "view": "courtyard",
+     "month": 11,
+     "calls": 217,
+     "triangles": 701174,
+     "textures": 73,
+     "geometries": 569,
+     "programs": 69,
+     "camera": [
+      -4,
+      1.62,
+      22.6
+     ],
+     "seasonMs": 2,
+     "patched": 21,
+     "lite": 0,
+     "litter": [
+      1,
+      1,
+      0
+     ],
+     "map": [
+      605,
+      652
+     ],
+     "streetLeaves": {
+      "visible": true,
+      "count": 1400
+     },
+     "imageSHA256": "57fa9d8207b5e84da813708d1a414f63bb4de6c577d83da3b92ff02e3ed512d4"
+    },
+    {
+     "view": "courtyard",
+     "month": 1,
+     "calls": 212,
+     "triangles": 650566,
+     "textures": 73,
+     "geometries": 569,
+     "programs": 73,
+     "camera": [
+      -4,
+      1.62,
+      22.6
+     ],
+     "seasonMs": 2,
+     "patched": 21,
+     "lite": 0,
+     "litter": [
+      0,
+      1,
+      0
+     ],
+     "map": [
+      605,
+      652
+     ],
+     "streetLeaves": {
+      "visible": false,
+      "count": 0
+     },
+     "imageSHA256": "f7bd4f8940fc90e5c8c21d4fcd56849fa1f17ffe78a4a608ee4d640d3373e4a2"
+    },
+    {
+     "view": "park",
+     "month": 7,
+     "calls": 70,
+     "triangles": 569571,
+     "textures": 75,
+     "geometries": 571,
+     "programs": 75,
+     "camera": [
+      -8,
+      -1.38,
+      52
+     ],
+     "seasonMs": 3,
+     "patched": 21,
+     "lite": 0,
+     "litter": [
+      0,
+      1,
+      0
+     ],
+     "map": [
+      605,
+      652
+     ],
+     "streetLeaves": {
+      "visible": false,
+      "count": 0
+     },
+     "imageSHA256": "baa97cb964e4ee03423eec50884cb7e22755195242293cb84a3e6d87744c3d5a"
+    },
+    {
+     "view": "park",
+     "month": 9,
+     "calls": 70,
+     "triangles": 569571,
+     "textures": 75,
+     "geometries": 571,
+     "programs": 75,
+     "camera": [
+      -8,
+      -1.38,
+      52
+     ],
+     "seasonMs": 5,
+     "patched": 21,
+     "lite": 0,
+     "litter": [
+      0.2,
+      1,
+      0
+     ],
+     "map": [
+      605,
+      652
+     ],
+     "streetLeaves": {
+      "visible": true,
+      "count": 280
+     },
+     "imageSHA256": "ae612370479a21fbedbce46ed05ff38a20e63824f2a106f3919540285630d63f"
+    },
+    {
+     "view": "park",
+     "month": 10,
+     "calls": 70,
+     "triangles": 569499,
+     "textures": 75,
+     "geometries": 571,
+     "programs": 75,
+     "camera": [
+      -8,
+      -1.38,
+      52
+     ],
+     "seasonMs": 3,
+     "patched": 21,
+     "lite": 0,
+     "litter": [
+      0.6,
+      1,
+      0
+     ],
+     "map": [
+      605,
+      652
+     ],
+     "streetLeaves": {
+      "visible": true,
+      "count": 840
+     },
+     "imageSHA256": "4eb4762153234d99cebfede7f6f6db49486a551dda211f1e18dad5340f85a542"
+    },
+    {
+     "view": "park",
+     "month": 11,
+     "calls": 70,
+     "triangles": 568527,
+     "textures": 75,
+     "geometries": 571,
+     "programs": 75,
+     "camera": [
+      -8,
+      -1.38,
+      52
+     ],
+     "seasonMs": 3,
+     "patched": 21,
+     "lite": 0,
+     "litter": [
+      1,
+      1,
+      0
+     ],
+     "map": [
+      605,
+      652
+     ],
+     "streetLeaves": {
+      "visible": true,
+      "count": 1400
+     },
+     "imageSHA256": "2b7d6e8aece2aefd1f24de98029e447d3d62a524b02a86d9e9b14599c6deea14"
+    },
+    {
+     "view": "park",
+     "month": 1,
+     "calls": 67,
+     "triangles": 531191,
+     "textures": 75,
+     "geometries": 571,
+     "programs": 75,
+     "camera": [
+      -8,
+      -1.38,
+      52
+     ],
+     "seasonMs": 3,
+     "patched": 21,
+     "lite": 0,
+     "litter": [
+      0,
+      1,
+      0
+     ],
+     "map": [
+      605,
+      652
+     ],
+     "streetLeaves": {
+      "visible": false,
+      "count": 0
+     },
+     "imageSHA256": "c05e9501b20e938855c7ca871434c838345e5c9f9dc7f4bf7f605015eef2ba8b"
+    },
+    {
+     "view": "street",
+     "month": 7,
+     "calls": 121,
+     "triangles": 590903,
+     "textures": 75,
+     "geometries": 575,
+     "programs": 76,
+     "camera": [
+      -6,
+      1.62,
+      -28.6
+     ],
+     "seasonMs": 3,
+     "patched": 21,
+     "lite": 0,
+     "litter": [
+      0,
+      1,
+      0
+     ],
+     "map": [
+      605,
+      652
+     ],
+     "streetLeaves": {
+      "visible": false,
+      "count": 0
+     },
+     "imageSHA256": "e10cefb3484270104780bf9b724278c4cd2995b113bef7fa5999ee6f703254a8"
+    },
+    {
+     "view": "street",
+     "month": 9,
+     "calls": 122,
+     "triangles": 592303,
+     "textures": 75,
+     "geometries": 575,
+     "programs": 76,
+     "camera": [
+      -6,
+      1.62,
+      -28.6
+     ],
+     "seasonMs": 1,
+     "patched": 21,
+     "lite": 0,
+     "litter": [
+      0.2,
+      1,
+      0
+     ],
+     "map": [
+      605,
+      652
+     ],
+     "streetLeaves": {
+      "visible": true,
+      "count": 280
+     },
+     "imageSHA256": "de7758b5aa2b564566bc65c911d53e76c9d94d68bdc99804598df9e8c0ec5a7e"
+    },
+    {
+     "view": "street",
+     "month": 10,
+     "calls": 122,
+     "triangles": 595067,
+     "textures": 75,
+     "geometries": 575,
+     "programs": 76,
+     "camera": [
+      -6,
+      1.62,
+      -28.6
+     ],
+     "seasonMs": 2,
+     "patched": 21,
+     "lite": 0,
+     "litter": [
+      0.6,
+      1,
+      0
+     ],
+     "map": [
+      605,
+      652
+     ],
+     "streetLeaves": {
+      "visible": true,
+      "count": 840
+     },
+     "imageSHA256": "6a5f416c177b9386a96edb287022a81752204cd45179320dd0e3f3c023cfcae2"
+    },
+    {
+     "view": "street",
+     "month": 11,
+     "calls": 122,
+     "triangles": 597363,
+     "textures": 75,
+     "geometries": 575,
+     "programs": 76,
+     "camera": [
+      -6,
+      1.62,
+      -28.6
+     ],
+     "seasonMs": 2,
+     "patched": 21,
+     "lite": 0,
+     "litter": [
+      1,
+      1,
+      0
+     ],
+     "map": [
+      605,
+      652
+     ],
+     "streetLeaves": {
+      "visible": true,
+      "count": 1400
+     },
+     "imageSHA256": "445a420cd61bb67b3922020c783282e3934ffdcd61960a86e9ba695aba65c9b3"
+    },
+    {
+     "view": "street",
+     "month": 1,
+     "calls": 117,
+     "triangles": 553223,
+     "textures": 75,
+     "geometries": 575,
+     "programs": 76,
+     "camera": [
+      -6,
+      1.62,
+      -28.6
+     ],
+     "seasonMs": 2,
+     "patched": 21,
+     "lite": 0,
+     "litter": [
+      0,
+      1,
+      0
+     ],
+     "map": [
+      605,
+      652
+     ],
+     "streetLeaves": {
+      "visible": false,
+      "count": 0
+     },
+     "imageSHA256": "446d8419894ff49a6bace40ca95539f5bc40ebac6c562d9af3f7c0282b6ac3a5"
+    }
+   ],
+   "storage": {
+    "sentinel": "kept",
+    "keys": [
+     "kvarteret-lunden.paddockGrass",
+     "lunden.sentinel"
+    ]
+   }
+  }
+ },
+ "diff": {
+  "courtyard-7": 0.16,
+  "courtyard-9": 3.08,
+  "courtyard-10": 13.74,
+  "courtyard-11": 41.49,
+  "courtyard-1": 0,
+  "park-7": 0.43,
+  "park-9": 0.92,
+  "park-10": 2,
+  "park-11": 2.12,
+  "park-1": 0,
+  "street-7": 0.43,
+  "street-9": 4.03,
+  "street-10": 20.31,
+  "street-11": 21.65,
+  "street-1": 0
+ },
+ "source": {
+  "src/leaflitter.js": "6ee948d1aa1a78617b6ee59ba25ed91d39f3adc9f4bab5e7a4ebd8875ca7f08d",
+  "src/config.js": "d28a078439d00e65a0d804c443fb80a7b8cf9aaa811b16c8b6457de6f2de7f80",
+  "tools/leaflittertest.mjs": "40b151c4f9579034cd51802de17836ce8912ddf23dece10da7e5a5f9da89e4c1",
+  "tools/leaflitter317browser.cjs": "e80103b984553d68d7c794051d61bdd7717de2427a968767cf7e1a19fd4c19c7"
+ }
+}
