@@ -1,0 +1,48 @@
+{
+  "sourceCommit": "e00cbbccac4728f29d7348faa90c35a2577532f4",
+  "publicBaseline": "49af0d2c85eb75f7a45987481c3527c1b93981d9",
+  "originalSource": "a6bc5b371e52e8bf4d8cba500bcd2790ab9a8858",
+  "originalPublishedEvidence": "f825773e60e33a7d8af2ba914336d61707ec0a5b",
+  "publicBuild": "a0706efab43a43fe7ffce1c7",
+  "sha256": {
+    "src/asphaltsurface.js": "a41a3d2f63024d705105889ccf82c20805b881fdd71476eba32a2596a432fbfe",
+    "src/config.js": "ba650893b84c9fdda87cd23536bddadbaae923f7cb79832b3c78bb1b94d79018",
+    "src/surroundings.js": "381d174ac61a3f3129ec06d207a642ce5f5e552ed8fdb5db39aaa700997b2e46",
+    "src/seasons.js": "40c3af85af4327527548f25d5754a89ee577e3bb3520a2de08f0a809c7dbcd70",
+    "src/vertexcompile.js": "3c05e3210ca47a780cc9433fa0939a7545a50bbd265a31f394793414d7eb7cbb",
+    "src/street.js": "ad2fb8c4baaa956ec1dfec373dd3aceff0479291722d4119011b8367516d2a4f",
+    "src/roads.js": "ef47ca91e59985be9e68753a721955426c221de92fa5387f98fa5a6c29849e65",
+    "src/roadends.js": "a92d94976e200967523dc439a10f0435732e4513e42e34e86c7061fe25f7e297",
+    "src/elevation.js": "8988d1b34850f3d317e3ad55b63ae615112332b9c0837c796f25e12bafa10afd",
+    "data/elevation.json": "4dcd25df84de6cb4ce55ad3cb094462d992124d67370a3aebb68d3dfc3f49ceb",
+    "tools/asphaltsurfacetest.mjs": "bfb9346f6a36a78024e5170f69396b1fe18190abd7efb9e6ce22ef47431e8d5b",
+    "tools/asphaltsurface294.html": "f6ee09147b594b604af4c1bed75b98d6cff15876f6bbfd4f047eb62532ec1663",
+    "tools/asphaltsurface294-check.cjs": "b31b2ac2c0a5fec57a791fa9b551f5c7f597425b7e1f9ed45ca8fe375c7ef3cf",
+    "tools/roadendstest.mjs": "abccabcd3f8e43eaf8016208a2e37e36e8393a79a0ffb1ce58bd71ced40d0327"
+  },
+  "byteIdenticalImports": [
+    "src/asphaltsurface.js",
+    "tools/asphaltsurfacetest.mjs"
+  ],
+  "images": {
+    "season-paired.png": {
+      "bytes": 933333,
+      "dimensions": [
+        2200,
+        1476
+      ],
+      "sha256": "dfeddfbc0cc015ca8edecc90fbfb1d5773869fac517a54220ef1db30780c2b50"
+    },
+    "aggregate-paired.png": {
+      "bytes": 2248540,
+      "dimensions": [
+        2200,
+        2196
+      ],
+      "sha256": "bbc02cb48d4b617028709d53413d340d4e67b281c8519ffb2a1d1495f67bd89e"
+    }
+  },
+  "capturedWorkerCommit": "db8d9f0c20e7a9794a760d7b47500c8d4a1fc9ee",
+  "integrationBuild": "824accf8ea510f58c1a37e46",
+  "integration": "Captured full config/build fingerprints historical after independent292/293 additions. All asphalt consumer/helper/fixtures/dependencies unchanged from captured source; every prior main config/README/upstream byte retained. npm test153modules/build green; source-bound browser reused."
+}

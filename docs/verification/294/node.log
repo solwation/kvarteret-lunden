@@ -1,0 +1,11 @@
+✔ aggregate is deterministic, shared and filtered at a fixed metre scale (368.67984ms)
+✔ metre UVs share phase across geometry without touching positions/normals/indices (1.063969ms)
+✔ existing snow colour/map boundary also hides new relief/roughness and restores the same maps in summer (0.77242ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 462.253667
