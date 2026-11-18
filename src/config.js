@@ -2256,6 +2256,9 @@ export const COLORS = {
   solar: 0x1d2735,
 };
 
+// #292 (upstream #2070): shallow ceramic relief; visual guesses in metres.
+export const TILE_SURFACE = { depth: 0.0008, bevel: 0.0012, minBevelPixels: 0.75, groutRoughness: 0.96 };
+
 // #291 (original #2069): visual timber/varnish assumptions, not measured oak finish data. Existing plank metres stay in FINISH/STANDARD.
 export const PARQUET_SURFACE = {
   ppm: 300, boards: 6, lengths: 2, seed: 7, stagger: { one: .37, three: .53 }, anisotropy: 8,

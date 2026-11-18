@@ -8,6 +8,8 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+Kakel och klinker i kök och våtrum har grunda fogar, mjuka plattkanter och mattare fogytor; befintliga färger och plattmått behålls (#292).
+
 Parkettgolvens enstavs- och trestavsytor har finare böjd träådring och lågmäld mattlacksglans, med befintliga kulörer, plankmått och gångytor kvar (#291).
 
 Gången i hus A/B/C:s trapphus följer de verkliga trappstegens ovansida i stället för en ramp (#290).

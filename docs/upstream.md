@@ -1,5 +1,38 @@
 # Förbättringar från originalet
 
+## Grunda kakelfogar och mattare fogytor, #292
+
+Selektiv exakt källa `0fd6db633ed861c1f8cf3d1f1829630b3b5963df`
+([original #2070](https://github.com/solwation/lunden-3d-apartment/issues/2070));
+produktkoden börjar i `d37b0be271ed7cb4dddd89167b524eaba4660b37`.
+Endast den neutrala `tilesurface.js`, dess tre strukturella tester, `TILE_SURFACE`
+och materialanropen i publicens egna interior/standardinterior överförs. Hjälpare och
+Node-test är byteidentiska med vald källa; inga originalfärger, planfiler, inredningsval,
+bilder, changelog, historik, personliga resurser, gameplay, lagring eller tjänster kopieras.
+Befintlig källattribution och licens gäller. README är publicens ändringsnotis.
+
+Publicens sju kakelmaterial behåller sina egna parametrar: palett, platt-/fogmått,
+förband, seed, marmorering, UV-repeat och nominell keramisk roughness. Färggeneratorn
+flyttas till hjälparen; dess kantkorrigering ritar även fogens andra halva på motsatta
+repeatkanten. Färgdata är därför avsiktligt inte byteidentiska just vid den kanten.
+En extra packad linjär RGBA-karta per material ger strukturell höjd i R och absolut
+roughness i G; bump/roughness delar samma karta, meterrepeat, upplösning och anisotropi.
+Höjden följer bara fog/förband, aldrig färgbrus. Canvas-/DataTexture-Y är registrerade
+även för halvförband. 0,8mm bump, 1,2mm mjuk plattkant (minst0,75texel) och fogroughness0,96
+är visuella antaganden, inte uppmätt materialprofil eller verifierade standardval.
+
+Ingen geometri, kollisionsyta, öppning, fast inredning, ny lampa, pass eller uppdatering
+per bildruta tillkommer. Sju extra kartor kostar 1 544 000 basbyte / 2 058 192 byte med
+alla mipnivåer; StandardMaterial bump/roughness ökar fragmentarbetet, utan FPS-påstående.
+L1007:s egen publika finish och L1004/L1201:s standardfinish bevaras. A/B/C använder
+andra fasta byggare; inga husmått eller motsvarande byggnadsgeometrier ändras.
+
+Egen kontroll: npm test/build, tre riktade strukturella Node-test och en matchad browser
+med publicens faktiska två inredningsbyggare, delade L1004-plan och L1201:s egen plan/fit.
+Nio vyer per fas, exakta geometribufferhashar, oförändrade draws/trianglar, ingen extern
+trafik och orörda lagringsmarkörer. Kontrollerad produktionskomponent, inte full World
+eller fysisk mobil. [Egna granskade bilder, källhashar, budget och begränsningar](verification/292/README.md).
+
 ## Trapporna i hus A/B/C går på stegen, #290
 
 Granskad källa: `314e8d246f6049c69e3b17f1644f3bd171918cfe`
