@@ -1,0 +1,52 @@
+{
+  "sourceCommit": "c5e11071f51537d12a95cebf4748f669ebc89592",
+  "baselineCommit": "1bcd30b6d34e11524838d16c1c7dc094725f5c6d",
+  "originalSourceCommit": "a95e1719379f73593c0b6e7ffeb8bfd3d9626484",
+  "sourceSha256": {
+    "src/screenwallsurface.js": "f628ad7209163468d6844e3fde449bab1dbf8212f1707f3b152f3fbf01fd4cf9",
+    "src/screenwall.js": "8c856e76437da4e9e22b8166128a53d6b9e24a5529dfd0bcc4bf657f46d5ece4",
+    "src/world.js": "1063bf509cb82b2e4bc15ce75c015760a2f3baafbcbbe593f92e2b0161f7ba10",
+    "src/config.js": "f2fda92307211006d308fb0f43a2b5ac3e03bf075ef20bebd1d20c47a1e57269",
+    "src/exterior.js": "350fb58cfbb29bc33764c9c6d79ac3cbc126f6e1b022240b2d8e427e051f52fa",
+    "data/plan.json": "5b76f14efff6287619f3ee4fd52aa3a4eb002599cad9d8bf29c92e1db030724b",
+    "tools/screenwallsurfacetest.mjs": "404c2516bc03964af52ddf614140a74f0ee6d9845960900d52d8a1c6aa9cff08",
+    "tools/screenwallsurface297.html": "b3fc6ff5da0b39325e3ab488a8cc391700ede414a055255568a3ba79e620357e",
+    "tools/screenwallsurface297browser.cjs": "b15385f5d3cbd26b9c903b680b1b769a15df37677bd64bc7214d89c28ff051f5"
+  },
+  "reviewedOriginalSha256": {
+    "src/screenwallsurface.js": "0ac17c55d9e0e8a796b0f89b49a07938fc6cb1d9c9985e5fd55348bc491a64b0",
+    "src/screenwall.js": "2622d2c3bc736f31900350891d17014b9e3051502d5e36a7c9db1a634c4295af",
+    "src/world.js": "f176a6459eb891772ab04ac9053467377dcb6723491758c2ada62f60e326d20b",
+    "src/config.js": "aef5d9e2fecfda74ef7d0e57549629a3a35df6058364804f11a699c6c99534d0",
+    "tools/screenwallsurfacetest.mjs": "404c2516bc03964af52ddf614140a74f0ee6d9845960900d52d8a1c6aa9cff08"
+  },
+  "evidenceSha256": {
+    "ground-paired.png": "3d73d704306b01d54e45535ab8f30e9593ef04e3a41f4dcdbbf3ace8c3df887f",
+    "preservation.json": "7e9b2f38f3cc40afe218366a124843f8bfd6bcef3cb0e635b94123b74f078383",
+    "browser.json": "dc1295d297b9bf1ed85fc8783c49f1548885f9405b51ba224e837bf1f368d991",
+    "roof-paired.png": "5e0f9bc3cfeabaff2eb6efb07f770d04a5bffd3fcfec976d46fe391ad6d4ede4"
+  },
+  "additionalTexture": {
+    "size": [
+      256,
+      512
+    ],
+    "format": "RGBA8",
+    "baseBytes": 524288,
+    "fullMipBytes": 699052,
+    "sharedFor": [
+      "bumpMap.R",
+      "roughnessMap.G"
+    ],
+    "perFrameUploads": 0
+  },
+  "buildFingerprint": "b65bd9f5e31e053abe5df1c2",
+  "checks": [
+    "three Node tests pass",
+    "npm test:154 modules, import graph, plans, network/storage/personal guards and app identity",
+    "npm run build passes",
+    "exact named config block stripping, World hook reversal, screenwall geometry suffix and entire exterior preservation",
+    "one own wrapped production-consumer browser:matched four views; no errors/external/storage calls"
+  ],
+  "limits": "Controlled actual component with fixed lighting, no full World/winter/device/FPS/Pages claim. Root verifies publication and Pages."
+}
