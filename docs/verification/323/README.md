@@ -38,3 +38,5 @@ fyra änder). Inga nya nätverks- eller lagringsfält.
 
 Begränsningar: publikens änder är en procedural mesh utan ben, så huvudnick, putsningens nackvridning, stjärtvickning och
 vingslag från originalets rigg syns inte; uppflygningen är ett lyft med lutning utan vingslag. Värdena är *guess*.
+
+Publicerad: `7f2bcc5`, Pages 44419411432 success.
