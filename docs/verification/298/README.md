@@ -110,3 +110,7 @@ HTTP-åtkomliga revisionsbundna bilder före stängningspush.
 ## Integrationsbindning
 
 Testad bridgehelper/builder/snapshot är byteidentiska med a65e0243. Gemensam config får enbart BRIDGE_CONCRETE ovanpå tidigare screen/pavingadditioner; alla äldre bytes och README/upstreamtexter bevaras. Källbundna gröna komponent/npmresultat återanvänds utan omtag efter oberoende tillägg.
+
+## Publicering
+
+Kod/bilder `e03e9627d5f3f3b15ce552f1ca98cbe06e7ed05f`; faktiska run-ID [44274075872] success på exakt revision. Alla bilder HTTP200 och inbäddade före stängning: https://github.com/solwation/kvarteret-lunden/issues/298#issuecomment-6974246225. Slutkvittot ändrar inte appkällan; dess separata Pages-run följs av dirigenten.
