@@ -120,3 +120,7 @@ efter körningen. Publicering, riktiga Pages-resultat och HTTP-bilder sköts av 
 ## Integrationsgranskning
 
 Dirigenten har öppnat samtliga tre egna slutark och granskat selektiv diff, bevarande och budget. Alla testade produkt-/fixturebytes utom fristående configtillägg är byteidentiska; accepterad config behåller bark/sol och får endast RIVER_SURFACE. Delade dokument är exakt tidigare accepterade bytes plus portens namngivna tillägg. Befintligt grönt källbundet underlag återanvänds utan nya breda tester/browseromtag.
+
+## Publicering
+
+Kod/bilder `f2100b24c2b4e87762933448c4c100cd25f95748`; faktiska run-ID [44284669385] success på exakt revision. Alla bilder HTTP200 och inbäddade före stängning: https://github.com/solwation/kvarteret-lunden/issues/303#issuecomment-6975712062. Slutkvittot ändrar inte appkällan; dess separata Pages-run följs av dirigenten.
