@@ -3802,3 +3802,36 @@ Ritanrop/trianglar är lika. En delad 512×512 RGBA8-karta tillkommer, 1048576 b
 shader får extra samplingar/UV-data, ingen extra pass, geometri, draw eller lampa.
 `npm test` (151 moduler) och `npm run build` passerar.
 [Egna bilder, exakta hashvärden, budget och begränsningar](verification/293/README.md).
+
+
+## Betongplattor med grunda fogar, #296
+
+Selektiv publicerad originalkälla: `b3905e33b2f986f8db11217bc357badadd364b4f`
+([original #2074](https://github.com/solwation/lunden-3d-apartment/issues/2074)).
+Urvalet är endast neutrala `src/pavingsurface.js` och dess tre Node-test (byteidentiska),
+ett eget `PAVING_SURFACE`-block samt import/materialanrop för publicens befintliga
+`World.M.patio` och exteriörens skyddade portik. Inga andra originalkonstanter,
+World-rader eller patio-byggare kopieras. Befintlig attribution och licens gäller.
+
+Publicens egna färgcanvas i `patio.js`, 40 cm-plattor, 8 mm nominella fog, halvförband,
+planer, meter-UV, geometri, paletter och materialindelning är bevarade. Höjden följer
+bara foglayout, aldrig färgbruset. En delad 384×384 linjär RGBA8-karta ger höjd(R) och
+absolut roughness(G). Ytdjup 1,5 mm, bevel 2 mm med minst 1,25 texlar vid 160 px/m och
+roughness 0,93/0,99 är visuella antaganden, inte uppmätta materialprofiler.
+
+Befintlig `registerSnow` äger fortsatt exponerad färg/map. Endast den nya exponerade
+materialvarianten tar bort auxiliary maps i snö och återställer samma cacheobjekt i
+sommar. Skyddade portiken saknar snöhook. `seasons.js` och dess övriga konsumenter
+ändras inte. A/B/C:s egna mark-/accessbyggare och alla befintliga navigationsytor består.
+Ingen personlig resurs, originalhistoria, möbel, familjereferens, spelkod, originalets
+lagring/tjänst, WebSocket eller Cloudflare införs. Hjälparen gör inga nät-/lagringsanrop.
+
+Egen publik verifiering: tre riktade Node-test, npm test/build och en enda matchad
+browser av verkliga `World.M.patio`/`plate` och `buildExterior`, med publicens egna
+plan/material. Uteplats nära/gånghöjd, takterrass, snö och sommaråterställning ingår;
+faktiskt emitterat portikgolv visas isolerat från början för fri sikt. Egna nya
+native-aspektbilder, inga originalbilder. Färgbytes/geometri/bounds/draws bevaras;
+nät-/lagringsisolering kontrolleras. Kartkostnad 589824 basbytes/786424 nominella mipbytes,
+plus CPU-array och föraroverhead; fragmentarbetet ökar genom native bump/roughness,
+ingen extra geometri, draw, pass eller lampa. Ingen FPS-/helvärldsprestanda påstås.
+[Egna bilder, källhashar, exakta budgetar och begränsningar](verification/296/README.md).

@@ -20,6 +20,7 @@ import { registerSnow } from './seasons.js';
 import { buildCourtyard } from './courtyard.js';
 import { grassMaterial } from './grass.js';
 import { pavingTexture } from './patio.js';
+import { pavingMaterial } from './pavingsurface.js';
 import { patioHedgeMaterial } from './patiohedge.js';
 import { screenWallParts, screenWallTexture } from './screenwall.js';
 import { screenWallSurface } from './screenwallsurface.js';
@@ -55,7 +56,7 @@ const M = {
   riser: mat(COLORS.riser, { roughness: 0.6 }), // stair risers and stringers (white)
   dark: mat(0x1d2023, { roughness: 0.3 }),
   grass: grassMaterial(),
-  patio: mat(0xffffff, { map: pavingTexture(), roughness: 0.95 }), // slab paving (PATIO.paving)
+  patio: pavingMaterial(pavingTexture(), { snow: true }), // same public colour/metres; exposed snow policy
   hedge: patioHedgeMaterial(),
   fence: mat(0xffffff, { map: screenWallTexture(), ...screenWallSurface() }), // #214: boards in a cream frame (SCREEN_WALL)
 };

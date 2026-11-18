@@ -1,0 +1,2 @@
+PASS: 154 modules audited, import graph bundles, two architectural floor plans, same-origin network policy.
+PASS: app identity/start/scope, Apple icon, PNG dimensions and Android icon declarations.

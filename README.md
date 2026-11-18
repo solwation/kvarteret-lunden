@@ -8,6 +8,8 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+Uteplatsernas betongplattor har grunda fogar och mjuka plattkanter som reagerar på ljuset; snöytan och den skyddade portikens plattläggning behålls (#296).
+
 Skärmväggarnas målade brädor har mjukare träådring, grunda fogar och svagt varierad matt yta; färger, ram och placering behålls (#297).
 
 Den lokala vägens asfalt har små stenkorn och svaga färgskiftningar som tonar ned på avstånd; vägens form och vinterutseende är kvar (#294).

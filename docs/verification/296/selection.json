@@ -1,0 +1,21 @@
+{
+  "originalSource": "b3905e33b2f986f8db11217bc357badadd364b4f",
+  "publicBaseline": "1bcd30b6d34e11524838d16c1c7dc094725f5c6d",
+  "selection": [
+    "byte-identical neutral pavingsurface helper and its three Node tests",
+    "one own PAVING_SURFACE block; all previous public config bytes unchanged",
+    "only pavingMaterial import/call in public World.M.patio and exterior portik factory",
+    "public patio.js/seasons.js/plans/surroundings.js unchanged; no other original files/history imported"
+  ],
+  "originalSHA256": {
+    "src/pavingsurface.js": "2e0461e62edeeb3eabe41620dc3d7cbbe00fcec90e26eb5b7c3a25ddbde12452",
+    "tools/pavingsurfacetest.mjs": "1e15cb89d7d0409b6e08a61289fd483eab184b3baa6e9950d733309f7c905ebf"
+  },
+  "publicUnchangedSHA256": {
+    "src/patio.js": "0ebabced0a2f7c61b826e115a430f40f9697e11f01ec95f20a466a0cd130445f",
+    "src/seasons.js": "40c3af85af4327527548f25d5754a89ee577e3bb3520a2de08f0a809c7dbcd70",
+    "data/plan.json": "5b76f14efff6287619f3ee4fd52aa3a4eb002599cad9d8bf29c92e1db030724b",
+    "src/l1201plan.js": "a88f3510ceecb3db3f9beb18e1f0fe24dca826fb42e1782f9dd08f3d935cbb45",
+    "src/surroundings.js": "381d174ac61a3f3129ec06d207a642ce5f5e552ed8fdb5db39aaa700997b2e46"
+  }
+}

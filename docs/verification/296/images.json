@@ -1,0 +1,26 @@
+{
+  "terrace-portik-paired.jpg": {
+    "bytes": 304505,
+    "sha256": "d01be00356692a8d8e275735074cc3ef213cd07e101d82b26e16ccc34a79d126",
+    "dimensions": [
+      2200,
+      1476
+    ]
+  },
+  "patio-paired.jpg": {
+    "bytes": 513294,
+    "sha256": "3d0d5c848ee68575d8e30464ab98d241424719f33f04d782ed4c625b10c6aa80",
+    "dimensions": [
+      2200,
+      1476
+    ]
+  },
+  "snow-paired.jpg": {
+    "bytes": 299646,
+    "sha256": "8c3b08094e57aa326f11b8aca725f503beb69a303ee8223ba6575ab8da3b1c26",
+    "dimensions": [
+      2200,
+      1476
+    ]
+  }
+}

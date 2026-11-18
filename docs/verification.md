@@ -3225,3 +3225,14 @@ av fyra vyer kontrollerar identiska mesh-/öppningshashar, 153 fria glaspaneler,
 ritbudget, den delade 512×512-kartans minne, inga externa anrop och bevarade
 lagringssentineller. Nya parade bilder visas i oförändrade bildproportioner.
 [Exakta källor, kontroller, bilder och avgränsning](verification/293/README.md).
+
+
+## Betongplattornas ljusreaktion #296
+
+`tools/pavingsurfacetest.mjs` kontrollerar halvförband/repeat/mjuk kant, färgoberoende
+höjd, delad linjär karta och verklig exposed/sheltered snöpolicy. Den egna publika
+`tools/pavingsurface296browser.cjs` använder actual World-material/plate och buildExterior,
+bevarar färgpixel-/geometrihashar/bounds/ritbudget, snö/sommaråterställning samt nät-/
+lagringsisolering. Portikgolvet inspekteras isolerat från början; övriga komponenter
+behåller sin arkitektur med dekor dold lika. npm test/build är obligatoriska.
+[Egna granskade bilder, källurval, minne och begränsningar](verification/296/README.md).
