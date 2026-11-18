@@ -1,13 +1,15 @@
 import * as THREE from 'three';
-import { PADDOCK as P, PONY_SURFACE as PS, SEASON } from './config.js';
+import { PADDOCK as P, PONY_SURFACE as PS, PONY_MOTION as PM, SEASON } from './config.js';
 import { outline, fenceLine, posts, gateSpan, stile, insideFence, insetRing, ringDist, centre } from './paddockgeo.js';
 import { stileBase } from './farwalk.js';
 import { riverAt } from './riverbridge.js';
-import { registerSeasonal } from './seasons.js';
+import { registerSeasonal, seasonState } from './seasons.js';
 import { cutAtTerrain } from './roads.js';
 import { shelterWinter } from './shelterwinter.js';
 import { ponyBlankets } from './ponyblanket.js';
 import { shelterSpots, snowCovered, RainWatch, footprintGround, shelterSite, relocateShelter } from './paddockshelter.js';
+import { siteWind } from './sitewind.js';
+import { newPonyMotion, stepPonyMotion, ponyWind, flySeason, grazeDrift } from './ponymotion.js';
 
 // Imported from the original's #1280/#1295 (see docs/upstream.md): the pony paddock on the kidney-shaped meadow south of the timber footbridge: a merged post-and-rail fence with a closed gate, a
 // water trough and a three-sided shelter (ONE mesh, vertex colours, no textures), two C ponies (one light grey, one bay) as ONE
@@ -226,7 +228,8 @@ export function ponyGeometry() {
 }
 
 /** The ponies' material: lit, vertex tones mixed per instance between a coat and an accent colour; `aAnim` = (leg phase, leg swing, neck pitch, tail sway),
- *  `aAnim2` = (ear flick, head turn, 0, 0), `aMark` = the star on the forehead (0 / 1). */
+ *  `aAnim2` = (ear flick, head turn, mane wind x, z in m), `aMark` = the star on the forehead (0 / 1). #324: the mane and forelock (the accent
+ *  hair of parts 1 and 2) shift by `aAnim2.zw` before the neck/head turns, more towards their free ends; same program, no new pass. */
 function ponyMaterial() {
   const m = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.92, metalness: 0 });
   m.onBeforeCompile = (sh) => {
@@ -243,6 +246,7 @@ function ponyMaterial() {
         vec3 animate(vec3 v, bool isPos) {
           float p = aPart;
           if (p < 0.5) return v;
+          if (isPos && p < 2.5 && color.r < 0.25) { float hw = p < 1.5 ? clamp(distance(v, uNeck) / 0.8, 0.0, 1.0) : 0.6; v.xz += aAnim2.zw * hw; v.y += hw * 0.25 * length(aAnim2.zw); } // #324
           if (p < 1.5) return about(about(v, uNeck, isPos, 0, aAnim.z), uNeck, isPos, 1, aAnim2.y * 0.4);
           if (p < 2.5 || p > 7.5) { // head and ears: counter-pitch and turn about the neck's top, then the neck's own movement
             vec3 q = v;
@@ -369,9 +373,10 @@ export class Paddock {
     const start = [near(gm[0] + nx * 14, gm[1] + nz * 14), near(gm[0] + nx * 18 + nz * 12, gm[1] + nz * 18 - nx * 12)];
     this.ponies = animals.map((a, i) => {
       const w = start[i] ?? this.waypoints[i] ?? [centre.x, centre.z], rnd = mulberry(a.seed * 1000 + 1280);
-      return { rnd, x: w[0], z: w[1], y: ground(w[0], w[1]), yaw: rnd() * 6.283, state: 'graze', left: 2 + rnd() * 8, target: null, goal: null, phase: rnd() * 6.283, amp: 0, neck: 1.2, tail: 0, tailT: rnd() * 6, chew: rnd() * 6, ear: 0, earP: -1, earT: 2 + rnd() * 6, headYaw: 0, scale: P.pony.withers / 1.32 };
+      return { rnd, x: w[0], z: w[1], y: ground(w[0], w[1]), yaw: rnd() * 6.283, state: 'graze', left: 2 + rnd() * 8, target: null, goal: null, phase: rnd() * 6.283, amp: 0, neck: 1.2, tail: 0, tailT: rnd() * 6, chew: rnd() * 6, ear: 0, earP: -1, earT: 2 + rnd() * 6, headYaw: 0, scale: P.pony.withers / 1.32, motion: newPonyMotion(a.seed), windL: { x: 0, z: 0, power: 0 }, drift: null, legSpeed: P.pony.speed }; // motion: #324
     });
     this.matrix = new THREE.Matrix4(); this.quat = new THREE.Quaternion(); this.pos = new THREE.Vector3(); this.scl = new THREE.Vector3(); this.up = new THREE.Vector3(0, 1, 0);
+    this.fwd = new THREE.Vector3(0, 0, 1); this.rollQ = new THREE.Quaternion(); // #324
     this.initGrass(scene, ground);
     this.initShelter();
     this.winterDecor = shelterWinter(ground, this.spots.shelter); scene.add(this.winterDecor); // original #1345
@@ -471,7 +476,8 @@ export class Paddock {
     this.shelterPlaces = shelterSpots(this.spots.shelter, (x, z) => insideFence(x, z, P.keep - 0.8));
     this.sheds = this.shelterPlaces.filter((q) => q.kind === 'shed');
     this.rainWatch = new RainWatch(); this.rainy = false; this.winter = false; this.winterSeen = false;
-    registerSeasonal((month) => { this.winter = snowCovered(month); });
+    this.month = seasonState().month > 0 ? seasonState().month : 7; this.rain = 0; // the public scene is summer unless ?month= says otherwise
+    registerSeasonal((month) => { this.winter = snowCovered(month); this.month = month; }); // #324: the fly months
     for (const p of this.ponies) { p.spot = null; p.seek = false; p.gone = false; }
   }
   stable(i) { return this.sheds.length ? this.sheds[i % this.sheds.length] : null; }
@@ -606,6 +612,8 @@ export class Paddock {
     }
     if (p.earP >= 0) { p.earP += dt / 0.35; if (p.earP > 1) p.earP = -1; } else { p.earT -= dt; if (p.earT <= 0) { p.earP = 0; p.earT = 3 + p.rnd() * 7; } }
     p.ear = p.earP >= 0 ? 0.6 * Math.sin(p.earP * Math.PI) : 0;
+    walking = this.driftPony(p, dt) || walking; // #324: grazing ponies step slowly on to the next bite
+    p.legSpeed = p.drift ? PM.drift.speed : R.speed;
     if (p.state !== 'walk' && p.left <= 0) this.decide(p, i);
     // Keep apart in the field. Assigned winter occupants stay in their
     // closer places under the roof (original #1352, public #87).
@@ -617,26 +625,52 @@ export class Paddock {
     p.y = this.ground(p.x, p.z);
     // poses: legs swing while walking (diagonal pairs); the neck is down while grazing; the tail swishes now and then
     const k = Math.min(1, dt * 4), moving = walking ? 1 : 0;
-    p.amp += (moving * 0.5 - p.amp) * k;
-    p.phase += dt * (walking ? (R.speed / 0.95) * 6.2832 : 0);
+    const legSpeed = walking ? Math.max(0.15, p.legSpeed ?? R.speed) : 0; // #324: a slow grazing step swings the legs less and slower
+    p.amp += (moving * 0.5 * Math.min(1, legSpeed / R.speed + 0.3) - p.amp) * k;
+    p.phase += dt * (legSpeed / 0.95) * 6.2832;
     const grazing = p.state === 'graze';
     const neckT = grazing ? 1.5 + Math.sin(p.chew * 6) * 0.04 : walking ? 0.12 : 0.08 + Math.sin(p.tailT * 0.8) * 0.03;
     p.neck += (neckT - p.neck) * Math.min(1, dt * (grazing ? 1.4 : 2.2));
     if (grazing && p.neck > 1.1) { const G = P.grass, e = G.reach * p.scale; this.eatAt(p.x + Math.sin(p.yaw) * e, p.z + Math.cos(p.yaw) * e, G.bite, G.rate * dt); } // the muzzle crops the grass in front of it (#1315)
     p.tail = Math.sin(p.tailT * 2.3) * Math.max(0, Math.sin(p.tailT * 0.45)) * 0.35;
+    // #324: weight shift, ears, wind in mane and tail, summer flies (bounded offsets on top of the pose above)
+    stepPonyMotion(p.motion, dt, { state: p.state, walking, headDown: p.neck > 1.1, wind: ponyWind(siteWind, p.x, p.z, p.yaw, p.windL), flies: flySeason(this.month, this.rain) && !this.winter });
+  }
+  /** #324 (original #2127): while grazing in the open (not in rain cover or the winter shed) on a cropped bite, every few seconds a slow
+   *  step, turning a little, head down; only where the way stays inside the fence and clear of trunks. Returns true while stepping. */
+  driftPony(p, dt) {
+    const grazing = p.state === 'graze' && !this.winter && !p.spot && p.neck > 1.1;
+    if (!grazing) { p.drift = null; grazeDrift(p.motion, dt, false); return false; }
+    if (!p.drift) {
+      const G = P.grass, e = G.reach * p.scale; // move on only once the bite under the muzzle is cropped short
+      const d = grazeDrift(p.motion, dt, this.grassAt(p.x + Math.sin(p.yaw) * e, p.z + Math.cos(p.yaw) * e) < G.hungry); if (!d) return false;
+      const yaw = p.yaw + d.turn, x = p.x + Math.sin(yaw) * d.dist, z = p.z + Math.cos(yaw) * d.dist;
+      if (!insideFence(x, z, P.keep - 0.8) || !this.clear(p.x, p.z, x, z)) return false;
+      p.drift = { left: d.dist, turn: d.turn };
+    }
+    const D = PM.drift, a = Math.max(-P.pony.turn * 0.5 * dt, Math.min(P.pony.turn * 0.5 * dt, p.drift.turn)), s = Math.min(p.drift.left, D.speed * dt);
+    p.yaw += a; p.drift.turn -= a;
+    const nx = p.x + Math.sin(p.yaw) * s, nz = p.z + Math.cos(p.yaw) * s;
+    if (!insideFence(nx, nz, P.keep - 1)) { p.drift = null; return false; }
+    p.x = nx; p.z = nz; p.drift.left -= s;
+    if (p.drift.left <= 1e-3) p.drift = null;
+    return true;
   }
   write() {
     const a = this.anim.array, b = this.anim2.array, e = this.mesh.instanceMatrix;
     this.ponies.forEach((p, i) => {
-      this.quat.setFromAxisAngle(this.up, p.yaw); this.pos.set(p.x, p.y, p.z); this.scl.setScalar(p.gone ? 0 : p.scale); // Winter occupants retain their normal scale (public #87).
+      const m = p.motion, roll = -m.lean * PM.shift.roll; // #324: the weight shift rolls the body about its ground line; the rug shares this matrix
+      this.quat.setFromAxisAngle(this.up, p.yaw).multiply(this.rollQ.setFromAxisAngle(this.fwd, roll)); this.pos.set(p.x, p.y, p.z); this.scl.setScalar(p.gone ? 0 : p.scale); // Winter occupants retain their normal scale (public #87).
       this.mesh.setMatrixAt(i, this.matrix.compose(this.pos, this.quat, this.scl));
-      a[i * 4] = p.phase; a[i * 4 + 1] = p.amp; a[i * 4 + 2] = p.neck; a[i * 4 + 3] = p.tail;
-      b[i * 4] = p.ear; b[i * 4 + 1] = p.headYaw;
+      a[i * 4] = p.phase; a[i * 4 + 1] = p.amp; a[i * 4 + 2] = p.neck; a[i * 4 + 3] = p.tail + m.tail[0].z; // #324: wind, sway and fly swats
+      b[i * 4] = p.ear + Math.max(m.ears[0].x, m.ears[1].x); b[i * 4 + 1] = p.headYaw; // #324: ears flatten back when a fly lands
+      b[i * 4 + 2] = m.mane.x + m.mane.ripple * Math.sin(m.t * 6.3); b[i * 4 + 3] = m.mane.z + m.mane.ripple * Math.cos(m.t * 4.7); // #324: mane in the wind
     });
     e.needsUpdate = true; this.anim.needsUpdate = true; this.anim2.needsUpdate = true;
   }
   /** Per frame: nothing is simulated or drawn beyond PADDOCK.viewDist m from the paddock, or underground. No allocations. */
   update(dt, hidden = false, rain = 0) {
+    this.rain = rain;
     const c = this.camera.position, show = !hidden && Math.hypot(c.x - centre.x, c.z - centre.z) < P.viewDist;
     this.shelterTick(dt, rain, show);
     this.winterDecor.visible = show && this.winter; // original #1345: same snow months and distance/underground culling as the ponies

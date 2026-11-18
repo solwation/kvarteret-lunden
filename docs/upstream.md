@@ -4387,3 +4387,25 @@ tjänst, Cloudflare eller originalhistoria importeras.
 Egen verifiering: `node tools/duckmotiontest.mjs` 7/7, `node tools/duckambienttest.mjs` 3/3, npm test/build och en egen
 före/efter-browser i den riktiga appen med matchad simsekvens och påtvingade beteenden.
 [Egna bilder, kontroller och kostnad](verification/323/README.md).
+
+## Ponnyernas sekundärrörelse, #324
+
+Granskad originalkälla `09d773af91396f626dfed510fbca122b9fcc2abb` (verifieringsposten `b040a13c`;
+[original #2127](https://github.com/solwation/lunden-3d-apartment/issues/2127)). Överfört: `src/ponymotion.js` (originalets
+modul; funktionskropparna byteidentiska, bara filhuvudets kommentar neutraliserad: inga riggade ben, ingen klappning, ingen
+väderkoppling), ett eget `PONY_MOTION`-block i `src/config.js` direkt före `PADDOCK` (originalets värden) och konsumentrader i
+publikens `src/paddock.js`: rörelsetillstånd per ponny, `driftPony` (originalets långsamma betessteg, staket-/stamkontrollerat),
+benfart efter stegfart, `stepPonyMotion` med `ponyWind(siteWind, …)` (publikens fasta bris från #315) och flugmånader via
+`registerSeasonal`/`seasonState` samt `?paddockrain`. Publikens ponnyer är ett instansierat nät med vertexshader i stället för
+originalets riggade GLB, så rörelsen läggs i befintliga kanaler: kroppens rullning i instansmatrisen (vintertäcket #103 delar
+den och följer med), svansens bas-led (vind, gungning, flugslag) adderas till `aAnim.w`, flugornas öronläggning till
+`aAnim2.x`, och manen/pannluggen (accenthåret i del 1 och 2) förskjuts av de tidigare oanvända `aAnim2.zw` i samma program.
+Ej tillämpligt: originalets benbens-/knä-/hovoffset för det vilande bakbenet, oberoende öronvridning, tuggande huvudnick och
+käkmalning (publikens befintliga betande halsgung behålls), hudryckningen (`uPonyTwitch`), `patchPonyMotion` på det riggade
+materialet, nätverksföljaren (#1644), klappning/ljud/hjärtan, namn och ändringslogg. Publikens färger, mått, ritavstånd,
+gräsmask och lagringsnamn är oförändrade. Ingen originalbild, inredning, avatar, gameplay, tjänst, Cloudflare eller
+originalhistoria importeras.
+
+Egen verifiering: `node --test tools/ponymotiontest.mjs` 9/9 (originalets sex funktionstester plus tre för publikens riktiga
+`Paddock`: rullning i delad instansmatris, begränsade och vinddrivna kanaler, betessteg innanför staketet med huvudet nere,
+shaderns hårrad), npm test/build och en egen före/efter-bildsekvens i den riktiga appen. [Egna bilder, kontroller och kostnad](verification/324/README.md).

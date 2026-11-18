@@ -1,0 +1,272 @@
+{
+ "phase": "before",
+ "errors": [],
+ "external": [],
+ "sockets": [],
+ "track": [
+  {
+   "t": 0,
+   "tail": [
+    0,
+    0.2069
+   ],
+   "ear": [
+    0.5196,
+    0.4691
+   ],
+   "mane": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "roll": [
+    0,
+    0
+   ],
+   "neck": 1.4975,
+   "states": [
+    "graze",
+    "idle"
+   ],
+   "rugShared": true
+  },
+  {
+   "t": 0.4,
+   "tail": [
+    0,
+    -0.0914
+   ],
+   "ear": [
+    0,
+    0
+   ],
+   "mane": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "roll": [
+    0,
+    0
+   ],
+   "neck": 1.5082,
+   "states": [
+    "graze",
+    "idle"
+   ],
+   "rugShared": true
+  },
+  {
+   "t": 0.8,
+   "tail": [
+    0,
+    -0.285
+   ],
+   "ear": [
+    0,
+    0
+   ],
+   "mane": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "roll": [
+    0,
+    0
+   ],
+   "neck": 1.491,
+   "states": [
+    "graze",
+    "idle"
+   ],
+   "rugShared": true
+  },
+  {
+   "t": 1.2,
+   "tail": [
+    0,
+    -0.2307
+   ],
+   "ear": [
+    0,
+    0
+   ],
+   "mane": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "roll": [
+    0,
+    0
+   ],
+   "neck": 1.5054,
+   "states": [
+    "graze",
+    "idle"
+   ],
+   "rugShared": true
+  },
+  {
+   "t": 1.6,
+   "tail": [
+    0,
+    -0.0231
+   ],
+   "ear": [
+    0,
+    0
+   ],
+   "mane": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "roll": [
+    0,
+    0
+   ],
+   "neck": 1.5012,
+   "states": [
+    "graze",
+    "idle"
+   ],
+   "rugShared": true
+  },
+  {
+   "t": 2,
+   "tail": [
+    0,
+    0.1275
+   ],
+   "ear": [
+    0,
+    0
+   ],
+   "mane": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "roll": [
+    0,
+    0
+   ],
+   "neck": 1.4929,
+   "states": [
+    "graze",
+    "idle"
+   ],
+   "rugShared": true
+  },
+  {
+   "t": 2.4,
+   "tail": [
+    0,
+    0.1161
+   ],
+   "ear": [
+    0,
+    0
+   ],
+   "mane": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "roll": [
+    0,
+    0
+   ],
+   "neck": 1.5093,
+   "states": [
+    "graze",
+    "idle"
+   ],
+   "rugShared": true
+  },
+  {
+   "t": 2.8,
+   "tail": [
+    0,
+    0.0264
+   ],
+   "ear": [
+    0,
+    0
+   ],
+   "mane": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "roll": [
+    0,
+    0
+   ],
+   "neck": 1.4934,
+   "states": [
+    "graze",
+    "idle"
+   ],
+   "rugShared": true
+  }
+ ],
+ "drift": null,
+ "calls": 17,
+ "triangles": 352021,
+ "programs": 67,
+ "textures": 68,
+ "wind": {
+  "power": 0.75,
+  "dir": [
+   0.7071067811865476,
+   -0.7071067811865476
+  ]
+ },
+ "storage": {
+  "kvarteret-lunden.paddockGrass": 12029,
+  "probe.unrelated": "unchanged"
+ }
+}

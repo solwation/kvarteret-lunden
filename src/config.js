@@ -2949,6 +2949,25 @@ export const PONY_SURFACE = {
   ears: [[0,.024,.015],[.055,.035,.018],[.115,.020,.009],[.155,.002,.002]],
 };
 
+// #324 (port of original #2127 09d773af; all *guess*, by eye; no measured horse data): the ponies' secondary motion in
+// src/ponymotion.js. `shift`: weight moves between the legs every `period` s (min, max) — the body rolls `roll` rad about its
+// ground line (the winter rug shares that matrix); `rest`/`toe`/`hip` belong to the original's rigged legs (unused by the public's
+// instanced pony). `chew` Hz and nod rad with the head down. `ears`: each ear turns up to `turn` rad on its own every `period` s,
+// `back` rad flattened by a fly. `tail`: a damped spring chain (`stiff`/`damp`, `lag` per joint) driven by the site wind (`wind` rad at
+// full power, `lift` for a tail wind) and the idle sway; `max` bounds every joint. `mane` m of hair displacement at full wind
+// (`ripple` m), at most `max` m. `flies`: in `months` (and dry weather) a fly lands every `interval` s: the skin twitches (`twitch`
+// m, `radius` m, `secs` s) and the tail swats that side (`swat` rad). `drift`: while grazing, once the bite under its muzzle is
+// short (PADDOCK.grass.hungry), the pony steps on `dist` m at `speed` m/s every `every` s, turning up to `turn` rad, head down.
+export const PONY_MOTION = {
+  shift: { roll: 0.024, period: [8, 22], ease: 0.5, rest: 0.22, toe: 0.3, hip: 0.05 },
+  chew: { hz: 1.5, nod: 0.05, grind: 0.025 },
+  ears: { turn: 0.55, back: 0.3, period: [1.5, 6], ease: 3 },
+  tail: { wind: 0.45, lift: 0.35, sway: 0.05, stiff: 26, damp: 7, lag: 0.55, max: 0.85, walk: 0.1 },
+  mane: { wind: 0.035, ripple: 0.012, max: 0.05 },
+  flies: { months: [6, 7, 8], interval: [3, 11], twitch: 0.012, radius: 0.16, secs: 0.45, swat: 0.7, swatSecs: 0.9 },
+  drift: { every: [5, 12], dist: [0.4, 0.9], speed: 0.28, turn: 0.35 },
+};
+
 export const PADDOCK = {
   field: '237019759', inset: 1.2, postStep: 3, post: { w: 0.13, h: 1.3 }, rails: [0.55, 0.95, 1.25], rail: { w: 0.06, h: 0.12 },
   gate: { w: 3.2, near: [-116.2, 219.98] }, visit: { out: 5, aim: 14, near: [7, 14, 9], cone: 0.3 }, // the 'Hästhagen' menu destination (#83, *guess*): `out` m outside the gate along its normal, looking at the point `aim` m inside it; #88: the ponies are placed
