@@ -10,6 +10,7 @@ import { VERSION, takeResume, watchUpdates, saveResume, claimContextReload } fro
 import { reloadOnContextRestore, lowMemory } from './lowmemory.js';
 import { installTightFrustum } from './tightfrustum.js';
 import { installSiteInstanceBatch } from './siteinstancebatch.js';
+import { SiteWind } from './sitewind.js';
 import { installPlaceCycle } from './place-cycle.js';
 import { Garage } from './garage.js';
 import { Balloon } from './balloon.js';
@@ -43,6 +44,10 @@ let renderer, camera, scene, world, navigation, core, garage, paddock, ducks, am
 const debugParams = new URLSearchParams(location.search), paddockRain = Math.max(0, Math.min(1, Number(debugParams.get('paddockrain')) || 0));
 let active = false, ready = false, focus = null, measuring = false, firstPoint = null;
 const intervals = debugParams.has('perf') ? new FrameIntervals() : null;
+// #315 (original #2101): trees, shrubs and reeds sway in a fixed light breeze (no weather here: SITE_WIND.calm);
+// &wind=power[,seconds] pins the power 0…1 and optionally holds the clock (repeatable frames)
+const [windForce, windTime] = (debugParams.get('wind') ?? '').split(',').map((v) => (v === '' ? NaN : Number(v)));
+const siteWind = new SiteWind(null, { force: windForce, time: windTime });
 const ray = new THREE.Raycaster(), centre = new THREE.Vector2();
 const points = new THREE.Group();
 const clock = new THREE.Clock();
@@ -299,6 +304,7 @@ function frame() {
   garage.update(dt, navigation, camera);
   paddock?.update(dt, navigation.below, paddockRain); // no weather here: only the debug parameter ?paddockrain=0..1 (original #1316's rain input)
   ducks.update(dt,navigation.below);
+  siteWind.update(dt); // #315: three uniforms, no per-instance work
 
   ambientCats?.update(navigation.below || navigation.inCore || !navigation.outdoors);
 

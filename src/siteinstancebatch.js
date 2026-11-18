@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { hasNativeVertexCompile } from './vertexcompile.js';
+import { vertexCompileSlack } from './vertexcompile.js';
 import { PHONE_FRUSTUM } from './config.js';
 
 // Only existing environment trees and fixed street lamps participate.
@@ -12,7 +12,7 @@ function native(source) {
       p.usage !== THREE.StaticDrawUsage || p.getX !== THREE.BufferAttribute.prototype.getX ||
       p.getY !== THREE.BufferAttribute.prototype.getY || p.getZ !== THREE.BufferAttribute.prototype.getZ ||
       Array.isArray(m) || !m || m.transparent || m.isShaderMaterial || m.isRawShaderMaterial || m.displacementMap ||
-      !hasNativeVertexCompile(m) || m.onBeforeRender !== THREE.Material.prototype.onBeforeRender || g.attributes.plantWind ||
+      !Number.isFinite(vertexCompileSlack(m)) || m.onBeforeRender !== THREE.Material.prototype.onBeforeRender || g.attributes.plantWind ||
       source.onBeforeRender !== THREE.Object3D.prototype.onBeforeRender || source.onAfterRender !== THREE.Object3D.prototype.onAfterRender ||
       source.getMatrixAt !== THREE.InstancedMesh.prototype.getMatrixAt || !(source.instanceMatrix.array instanceof Float32Array) ||
       !Number.isInteger(source.count) || source.count < 0 || source.count > source.instanceMatrix.count ||
@@ -74,12 +74,12 @@ export function installSiteInstanceBatch(renderer, scene) {
           entry = {p, array: p.array, version: p.version, count: p.count, box: new THREE.Box3().setFromBufferAttribute(p)};
           boxes.set(source.geometry, entry);
         }
-        const box = entry.box;
+        const box = entry.box, slack = vertexCompileSlack(source.material);
         if (box.isEmpty() || !finite(box)) continue;
         const start = n; let valid = true;
         for (let i = 0; i < source.count; i++) {
           source.getMatrixAt(i, matrix); world.multiplyMatrices(source.matrixWorld, matrix);
-          part.copy(box).applyMatrix4(world).expandByScalar(PHONE_FRUSTUM.pad);
+          part.copy(box).applyMatrix4(world).expandByScalar(PHONE_FRUSTUM.pad + slack); // #315 (original #2101): + a bounded vertex sway (world m)
           if (!finite(part)) { n = start; valid = false; break; }
           if (!frustum.intersectsBox(part)) continue;
           batch.setMatrixAt(n, matrix.multiplyMatrices(inverse, world));

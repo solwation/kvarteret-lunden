@@ -2822,6 +2822,22 @@ export const PATIO_DECOR = {
 };
 
 // Conservative Float32 transform guard, upstream43f6701c/original#1453; no distance/quality cutoff (#123).
+// #315 (original #2101, 314c2d93): outdoor vegetation sway (src/sitewind.js): tree crowns / shrubs (leaf-card lobes), courtyard
+// perennials, river reeds and bank tussocks. No measured wind exists: every number is a visual *guess* by eye. The public scene has
+// no weather, so SiteWind runs with no weather and keeps the clear-weather breeze `calm` (the overcast/rain/storm terms are the
+// original's and stay unused here). `dir`: downwind in x/z (a prevailing south-westerly blows towards the north-east, +x / −z).
+// `crown`: m of sway per m of lobe height (`amp`, the lobe's height capped at `maxSize`), `base` share at the lobe's foot (1 at its
+// top), `freq` rad/s, `flutter` m of extra card flutter from radius `cardFrom` out at `flutterFreq`. `bend`: m per m² of stalk
+// height. `lean` steady downwind lean, `side` crosswind share, `harmonic` second sine, `gust` slow downwind gust fronts (rad/s,
+// rad/m, depth), `phase` rad/m across the site. `maxDisplacement` m clamps every offset (and widens the culling boxes by as much).
+export const SITE_WIND = {
+  dir: [0.71, -0.71], calm: 0.12, overcast: 0.18, rain: 0.3, storm: 0.6, easeSeconds: 4,
+  crown: { amp: 0.06, maxSize: 4, base: 0.35, freq: 0.9, flutter: 0.03, flutterFreq: 5.3, cardFrom: 0.5 },
+  bend: { amp: 0.16, freq: 1.5 },
+  lean: 0.35, side: 0.3, harmonic: 0.35, gust: { freq: 0.31, wave: 0.06, depth: 0.45 }, phase: [0.23, 0.31],
+  maxDisplacement: 0.35,
+};
+
 export const PHONE_FRUSTUM = { pad: 0.01 };
 
 // Camera near plane (src/main.js `updateCameraNear`, from the original's #1276, dd9927ef): the 24-bit depth buffer resolves about

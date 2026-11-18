@@ -4188,6 +4188,31 @@ anrop, samt en engångskompilering av alla 588 scenmaterial (89 program, 0 länk
 program eller per-framearbete. [Egna bilder, kontroller och kostnad](verification/314/README.md).
 
 
+## Vind i träd, buskar och vass, #315
+
+Granskad originalkälla `314c2d93e6474c37a4d7fa2a99369c1b3385a33d` med verifieringen `b1a229b6e51a75e75e6bd9d22446a58ff4a77f71`
+([original #2101](https://github.com/solwation/lunden-3d-apartment/issues/2101)). Överfört: `src/sitewind.js` (originalets
+modul; bara kommentaren om en avatarkonsument är omskriven till en neutral mening och en publik notering tillagd),
+`src/vertexcompile.js` (byteidentisk: `rememberBoundedVertexCompile`/`vertexCompileSlack` registrerar en begränsad
+vertexförskjutning), ett eget `SITE_WIND`-block i `src/config.js` före `PHONE_FRUSTUM` (originalets värden), och
+konsumentraderna i `foliage.js` (båda LOD-nivåerna och deras skuggdjup, `windLeafMaterial`), `surroundings.js`
+(trädkronornas culling-sfärer vidgas), `courtyard.js` (gårdens perenner och deras skuggmaterial), `riverpark.js`
+(vass och strandtuvor med ett `siteWindBend`-attribut), `tightfrustum.js` och `siteinstancebatch.js` (boxarna vidgas med
+förskjutningen; publikens `PHONE_FRUSTUM.pad` i stället för originalets `PERF.frustumPad`, utan ocklusionsdelen som
+publiken saknar) samt `main.js`. Publicens funktioner var identiska med originalets bas.
+
+Publiken har inget väder: `main.js` skapar `SiteWind(null)`, så styrkan är originalets klarväderbris `SITE_WIND.calm`
+(0,12) hela tiden; termerna för mulet, regn och storm finns kvar i konfigurationen men används inte. `&wind=styrka[,sekunder]`
+finns kvar (låser styrkan och vid behov klockan för upprepbara bilder). Ej tillämpligt: väderkopplingen, originalets
+`foliagetest.html` (finns inte här) och lampskenet (#2090, finns inte här). Node-testet är originalets
+funktionsnivåtest (två kommentarer neutraliserade); browserverktyget är eget. Ingen originalbild, ändringslogg,
+inredning, avatar, gameplay, lagring, tjänst, Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: `node --test tools/sitewindtest.mjs` 7/7 (plus `lodtest`, `tightfrustumtest`, `siteinstancebatchtest`), npm
+test/build och en egen browser i den riktiga appen (parkträd, vass, gårdens perenner; still/bris/blåsigt vid två vindtider) med
+synlig rörelse, oförändrade draws/trianglar/texturer/program och noll fel/externa anrop. Kostnad: inga nya draws eller
+texturer, tre uniforms per bildruta. [Egna bilder, kontroller och kostnad](verification/315/README.md).
+
 ## Fin putsstruktur och svaga smutsstrimmor på putsfasaderna, #311
 
 Granskad originalkälla `8fed7eca0c5f451040d8057d3aa921967daa948a`

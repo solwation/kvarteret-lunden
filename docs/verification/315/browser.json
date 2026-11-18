@@ -1,0 +1,312 @@
+{
+ "viewport": [
+  1200,
+  800
+ ],
+ "views": [
+  {
+   "name": "park-trees",
+   "target": [
+    -20.166156768798828,
+    -5.734489440917969,
+    125.70308685302734
+   ],
+   "from": [
+    -29.38616484141685,
+    116.53840185348379
+   ],
+   "eyeY": -2.111207129330476,
+   "shots": {
+    "still": {
+     "power": 0,
+     "t": 0.8,
+     "calls": 39,
+     "triangles": 460154,
+     "textures": 68,
+     "programs": 58
+    },
+    "still-b": {
+     "power": 0,
+     "t": 2.3,
+     "calls": 39,
+     "triangles": 460154,
+     "textures": 68,
+     "programs": 58
+    },
+    "calm-a": {
+     "power": 0.12,
+     "t": 0.8,
+     "calls": 39,
+     "triangles": 460154,
+     "textures": 68,
+     "programs": 58
+    },
+    "calm-b": {
+     "power": 0.12,
+     "t": 2.3,
+     "calls": 39,
+     "triangles": 460154,
+     "textures": 68,
+     "programs": 58
+    },
+    "windy-a": {
+     "power": 1,
+     "t": 0.8,
+     "calls": 39,
+     "triangles": 460154,
+     "textures": 68,
+     "programs": 58
+    },
+    "windy-b": {
+     "power": 1,
+     "t": 2.3,
+     "calls": 39,
+     "triangles": 460154,
+     "textures": 68,
+     "programs": 58
+    }
+   },
+   "motion": {
+    "noise": {
+     "meanAbs": 0.004,
+     "changedPct": 0.02
+    },
+    "calm": {
+     "meanAbs": 1.214,
+     "changedPct": 2.87
+    },
+    "windy": {
+     "meanAbs": 4.424,
+     "changedPct": 11.76
+    },
+    "stillVsCalm": {
+     "meanAbs": 0.642,
+     "changedPct": 1.46
+    },
+    "stillVsWindy": {
+     "meanAbs": 3.252,
+     "changedPct": 8.01
+    }
+   }
+  },
+  {
+   "name": "river-reeds",
+   "target": [
+    -12.580577326775966,
+    -6.737756263928694,
+    132.44458313172544
+   ],
+   "from": [
+    -15.772118582682204,
+    129.27219217034497
+   ],
+   "eyeY": -6.036396040884556,
+   "shots": {
+    "still": {
+     "power": 0,
+     "t": 0.8,
+     "calls": 39,
+     "triangles": 448158,
+     "textures": 68,
+     "programs": 58
+    },
+    "still-b": {
+     "power": 0,
+     "t": 2.3,
+     "calls": 39,
+     "triangles": 448158,
+     "textures": 68,
+     "programs": 58
+    },
+    "calm-a": {
+     "power": 0.12,
+     "t": 0.8,
+     "calls": 39,
+     "triangles": 448158,
+     "textures": 68,
+     "programs": 58
+    },
+    "calm-b": {
+     "power": 0.12,
+     "t": 2.3,
+     "calls": 39,
+     "triangles": 448158,
+     "textures": 68,
+     "programs": 58
+    },
+    "windy-a": {
+     "power": 1,
+     "t": 0.8,
+     "calls": 39,
+     "triangles": 448158,
+     "textures": 68,
+     "programs": 58
+    },
+    "windy-b": {
+     "power": 1,
+     "t": 2.3,
+     "calls": 39,
+     "triangles": 448158,
+     "textures": 68,
+     "programs": 58
+    }
+   },
+   "motion": {
+    "noise": {
+     "meanAbs": 0.811,
+     "changedPct": 1.7
+    },
+    "calm": {
+     "meanAbs": 2.89,
+     "changedPct": 7.21
+    },
+    "windy": {
+     "meanAbs": 7.28,
+     "changedPct": 18.07
+    },
+    "stillVsCalm": {
+     "meanAbs": 2.704,
+     "changedPct": 6.6
+    },
+    "stillVsWindy": {
+     "meanAbs": 6.909,
+     "changedPct": 17.29
+    }
+   }
+  },
+  {
+   "name": "courtyard-shrubs",
+   "target": [
+    -17.11918067932129,
+    -2.5632805824279785,
+    36.41521453857422
+   ],
+   "from": [
+    -19.246874849925447,
+    34.300287230987244
+   ],
+   "eyeY": -1.4,
+   "shots": {
+    "still": {
+     "power": 0,
+     "t": 0.8,
+     "calls": 84,
+     "triangles": 594947,
+     "textures": 69,
+     "programs": 58
+    },
+    "still-b": {
+     "power": 0,
+     "t": 2.3,
+     "calls": 84,
+     "triangles": 594947,
+     "textures": 69,
+     "programs": 58
+    },
+    "calm-a": {
+     "power": 0.12,
+     "t": 0.8,
+     "calls": 84,
+     "triangles": 594947,
+     "textures": 69,
+     "programs": 58
+    },
+    "calm-b": {
+     "power": 0.12,
+     "t": 2.3,
+     "calls": 84,
+     "triangles": 594947,
+     "textures": 69,
+     "programs": 58
+    },
+    "windy-a": {
+     "power": 1,
+     "t": 0.8,
+     "calls": 84,
+     "triangles": 594947,
+     "textures": 69,
+     "programs": 58
+    },
+    "windy-b": {
+     "power": 1,
+     "t": 2.3,
+     "calls": 84,
+     "triangles": 594947,
+     "textures": 69,
+     "programs": 58
+    }
+   },
+   "motion": {
+    "noise": {
+     "meanAbs": 0,
+     "changedPct": 0
+    },
+    "calm": {
+     "meanAbs": 0.333,
+     "changedPct": 0.63
+    },
+    "windy": {
+     "meanAbs": 1.308,
+     "changedPct": 2.85
+    },
+    "stillVsCalm": {
+     "meanAbs": 0.26,
+     "changedPct": 0.52
+    },
+    "stillVsWindy": {
+     "meanAbs": 1.111,
+     "changedPct": 2.49
+    }
+   }
+  }
+ ],
+ "errors": [],
+ "external": [],
+ "loadMs": 30092,
+ "picked": [
+  {
+   "name": "park-trees",
+   "target": [
+    -20.166156768798828,
+    -5.734489440917969,
+    125.70308685302734
+   ],
+   "from": [
+    -29.38616484141685,
+    116.53840185348379
+   ],
+   "eyeY": -2.111207129330476
+  },
+  {
+   "name": "river-reeds",
+   "target": [
+    -12.580577326775966,
+    -6.737756263928694,
+    132.44458313172544
+   ],
+   "from": [
+    -15.772118582682204,
+    129.27219217034497
+   ],
+   "eyeY": -6.036396040884556
+  },
+  {
+   "name": "courtyard-shrubs",
+   "target": [
+    -17.11918067932129,
+    -2.5632805824279785,
+    36.41521453857422
+   ],
+   "from": [
+    -19.246874849925447,
+    34.300287230987244
+   ],
+   "eyeY": -1.4
+  }
+ ],
+ "programs": [
+  "haderobject, renderer */ ) {}|site-wind-bend-v1",
+  "133123,srgb,foliage-leaves-v1|site-wind-lobe-v1|dither-lod-v",
+  "133123,srgb,foliage-leaves-v1|site-wind-lobe-v1"
+ ]
+}

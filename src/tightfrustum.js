@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { PHONE_FRUSTUM } from './config.js';
-import { hasNativeVertexCompile } from './vertexcompile.js';
+import { vertexCompileSlack } from './vertexcompile.js';
 
 const positions = new WeakMap(), instances = new WeakMap();
 const finiteBox = box => Number.isFinite(box.min.x + box.min.y + box.min.z + box.max.x + box.max.y + box.max.z);
@@ -57,7 +57,8 @@ export function installTightFrustum(renderer) {
         for (let p = object; p; p = p.parent) if (p.isLOD) return;
         const materials = [object.material].flat();
         if (!materials.length || materials.some(m => !m || m.isShaderMaterial || m.isRawShaderMaterial ||
-            m.displacementMap || m.onBeforeRender !== THREE.Material.prototype.onBeforeRender || !hasNativeVertexCompile(m))) return;
+            m.displacementMap || m.onBeforeRender !== THREE.Material.prototype.onBeforeRender || !Number.isFinite(vertexCompileSlack(m)))) return;
+        const slack = Math.max(...materials.map(vertexCompileSlack)); // #315 (original #2101): a bounded vertex sway widens the box (world m)
         // Keep native sphere culling; only refine its false positives with the full actual vertex box.
         if (!frustum.intersectsObject(object)) return;
         const local = bounds(object.geometry); if (!local) return;
@@ -79,7 +80,7 @@ export function installTightFrustum(renderer) {
         box.applyMatrix4(object.matrixWorld);
         if (box.isEmpty() || !finiteBox(box)) return;
         // Numerical guard for Float32 shader transforms, independent of quality/distance/LOD.
-        box.expandByScalar(PHONE_FRUSTUM.pad);
+        box.expandByScalar(PHONE_FRUSTUM.pad + slack);
         if (!frustum.intersectsBox(box)) state.push({object, mask:object.layers.mask});
       });
       hide(state);
