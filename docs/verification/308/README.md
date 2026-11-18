@@ -48,3 +48,5 @@ Ingen fysisk enhet eller FPS mätt.
 
 Begränsningar: kanthöjder och listbredd är *guess* (ingen sektion i Peab-materialet). Hus L:s tak ser ovanifrån mörkare
 ut än före eftersom den ljusa helplattan försvann; själva färgerna (papp `0x4b5157`, ljus plåt) är publicens egna.
+
+Publicering: Pages success på `9e9338a`; inbäddade bild-URL:er HTTP 200 före stängning.
