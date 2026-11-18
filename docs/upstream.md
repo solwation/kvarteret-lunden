@@ -1,5 +1,39 @@
 # Förbättringar från originalet
 
+## Diskret betongyta på åbroarna, #298
+
+Granskad publicerad originalkälla:
+`bcbfbf27db9bd5785c36ec9845c915103f8ef5b9`
+([original #2076](https://github.com/solwation/lunden-3d-apartment/issues/2076)).
+Endast `src/bridgeconcrete.js` (byteidentisk hjälpare), exakt `BRIDGE_CONCRETE` och
+byggarens import-, betong-UV- och materialrader överförs. Originalkällans helper-SHA256:
+`d0d939e319bd861e0c30a36b7b81cfd845caa25331436ebf4000ff71471cf548`.
+Granskade hela originalfiler: `src/config.js`
+`374c2cd734ea05cb22ec1a17cf6de73fd549acbd936ba346518058dca0b8aed1`,
+`src/riverbridge.js`
+`c1b4ed0224449182fe1965783cec7d228f9f55ddc6c7b1854e0f8a95153ef3a8`.
+Hashar och exakt urval är redovisade i [egen verifiering](verification/298/README.md).
+
+En delad 128×128 linjär RGBA-karta ger låg betongporstruktur i R och en smal
+matthetsmultiplikator i G. Befintliga UV projiceras i lokala meter före brorotation.
+Granitkantstenarnas konstant-UV pekar på en flat del av samma karta, så reliefen är
+noll och ursprunglig roughness 0,95/kulör behålls. Båda road/GC-varianterna omfattas;
+A/B/C/L:s byggnadsytor omfattas inte. Materialvärden är konstnärliga antaganden.
+
+Publicens egna botten-/pelarmått, vattenbarriär, approachGround/trimApproach-hooks,
+broregister och queries bevaras; inga originalpoolmått, simning, spel-/tjänstekod,
+personliga resurser, full konfiguration eller historik importeras. Inga nya externa
+anrop, lagringsnycklar, ljus/pass eller per-frameuppladdningar. Geometri/buffertantal
+och fyra ritanrop behålls; en textur tillkommer: 65 536 CPU-byte och 87 380 nominella
+GPU-byte inklusive mippar, drivrutin oräknad. Standard bump/roughness ger fragmentarbete.
+Ingen FPS-förbättring eller kraftig bildskillnad påstås: yteffekten är mycket subtil.
+
+Egen kontroll: `npm test`, `npm run build`, 13 riktade geometri-/bro-/underpassfall och
+en avgränsad browserkörning av riktiga publika `buildRiverBridges` med egna oförminskade
+när-/gång-/helbilder och sourcehashar. Komponentfixturen använder produktionsformeln
+för approachGround men default identity för trimApproach; stora surroundings-ytans
+pavementjoin och fullvärld/navigation ingår inte. README är publicens ändringsnotis.
+
 ## Målad träyta på skärmväggar, #297
 
 Selektivt granskad, publicerad originalkälla:

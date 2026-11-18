@@ -1,0 +1,21 @@
+✔ one deterministic linear scalar texture has bounded pores/roughness and a flat unmodified-granite swatch (26.358343ms)
+✔ per-face UVs measure local metres without changing geometry; granite has zero UV derivatives (1.557554ms)
+✔ both real bridge variants keep four batches, deck clearance, piers and granite mask (82.14675ms)
+✔ the under-bridge path remains dry, with standing clearance and walkable in both directions (151.10791ms)
+✔ the bridge view has grounded water-margin reeds, hanging trees and understory clear of paths (486.529774ms)
+✔ #186: no park tree or shrub stands inside the pony paddock outline (283.0877ms)
+✔ interpreted relative fall is tied to the checked source and preserves the road-bridge datum (1.853196ms)
+✔ rendered water vertices follow the same continuous downstream level as the terrain and navigation (91.196222ms)
+✔ the reviewed bridge cross-section and existing mapped park paths retain their buffers (33.777172ms)
+✔ public recovery stays outside the wade barrier at every anchor (#91) and dry; outer terrain joins without a step (2.001388ms)
+✔ the timber deck and its ramp tops stay fixed while the front toes remain buried under the local shore (0.314417ms)
+✔ #91: the recovery from the bend at anchor14 (and every nearby start) lands outside the wade barrier (2.146079ms)
+✔ the water lies well under the bank crest along the whole river and the ribbon covers every submerged bank point (91.234728ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1133.116793

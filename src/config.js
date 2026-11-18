@@ -3648,6 +3648,12 @@ export const OUTDOOR_CATS = {
 // carries one. Leaves in the months `months`, flowers in `bloom`.
 // #295, original #2073: artistic shape assumptions, not a species survey.
 // Public leaves scale uniformly by radius: .025 raises their rim by only 2.75–5 mm.
+// Public #298, reviewed original #2076: artistic assumptions, not surveyed concrete properties.
+export const BRIDGE_CONCRETE = {
+  size: 128, tile: 0.32, seed: 2076, pores: 0.018, flat: 8,
+  bump: 0.0008, roughness: [0.94, 1], baseRoughness: 0.95,
+};
+
 export const LILY_SURFACE = {
   padSegments: 24, padRings: 2, notch: 0.22, cup: 0.025,
   veins: 7, veinWidth: 0.014, veinHeight: 0.0025, veinShade: 0.09,
