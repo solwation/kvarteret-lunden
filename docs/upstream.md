@@ -4060,3 +4060,21 @@ Egen verifiering: `node --test tools/glasspanestest.mjs` 3/3, npm test/build och
 före/efter-browser i den riktiga publika appen (Hus L, ABC, skolan; dag och nattvägen) med
 oförändrade draws/texturer/program, oförändrat genomsiktligt glas och noll fel/externa
 anrop. [Egna bilder, kontroller och kostnad](verification/307/README.md).
+## Takens falsar, papplister och vädrade matthet samt Hus L:s takkantslist, #308
+
+Granskad originalkälla `0c5f4a510866073739ca2e6ea1ce0fcd0127a563` ([original #2088](https://github.com/solwation/lunden-3d-apartment/issues/2088),
+publicerat resultat `fa2a12c`) och `9da798a2ef81f6a1c6e8e80a9c084c8af9448e9c` ([original #2093](https://github.com/solwation/lunden-3d-apartment/issues/2093),
+publicerat resultat `80b8ba4`). Överfört: byteidentisk `src/roofsurface.js` (`roofMap`/`roofUV`/`roofColor`), ett eget
+`ROOF_SURFACE`-block i `src/config.js` efter `GLASS_PANES`, `cappingWidth`/`cappingDrop` i `VERTICAL.roof` och
+konsumentraderna i publicens motsvarande moduler: `exterior.js` (Hus L:s papptak, `rectRing`-kantlisten i stället för
+helplattan), `surroundings.js` (Å-husen A/B/C, skolan, HepCat/längan, villan), `sitebackdrop.js` (fondtak, skolans/campus-
+tak via `SCHOOL_ROOF_LEVEL`, Kärpvägen) och `southbackdrop.js` (södra fonden), samt `schoolfacade.js` (den gamla 64 px-
+falsbilden ersätts av den delade kartan med samma medelnivå). Publicens Hus L hade samma helplatta som originalet, så #2093
+gäller. Alla originalets konsumenter finns i publicen; inget är ej tillämpligt. Publicens färger behålls (materialfärgen
+skalas med kartans linjära medel), gångytor, snöbyte och draws är oförändrade. Node-testet är anpassat till funktionsnivå-
+jämförelser mot publik bas `345bce1` (även #2093:s test ingår där); browserverktyget är eget. Ingen originalbild,
+ändringslogg, inredning, avatar, gameplay, lagring, tjänst, Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: `node --test tools/roofsurfacetest.mjs` 5/5, npm test/build och en egen före/efter-browser i den
+riktiga publika appen (Hus L och Å-husen ovanifrån sommar/vinter, gatuvy) med oförändrade draws/texturer/program och
+noll fel/externa anrop. [Egna bilder, kontroller och kostnad](verification/308/README.md).

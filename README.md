@@ -8,6 +8,7 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+Taken har diskreta falsar/papplister och en lugn vädrad matthet längs fallinjen, med oförändrad medelfärg på håll, samma snö och renderbudget; Hus L:s ljusa plåtavtäckning är nu en list längs takkanten så att takpappen syns (#308). [Egna jämförelsebilder och kontroller](docs/verification/308/README.md).
 Gräsmattorna har mjuka torrare och frodigare fläckar och små tuvor, och mönstret upprepas mindre på 10–20 m håll; medelfärgen på håll, säsonger och snö är oförändrade (#306). [Egna jämförelsebilder och kontroller](docs/verification/306/README.md).
 Fasadernas ogenomskinliga fönsterglas har en lugn himmelsreflex: varje ruta skiftar lite i ljushet och ton och är ljusare upptill. Genomsiktligt glas, karmar, nattfönster och renderbudget är oförändrade (#307). [Egna jämförelsebilder dag/natt och kontroller](docs/verification/307/README.md).
 

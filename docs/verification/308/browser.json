@@ -1,0 +1,671 @@
+{
+ "baseline": "345bce1",
+ "viewport": [
+  1280,
+  800
+ ],
+ "errors": [],
+ "external": [],
+ "phases": {
+  "before": {
+   "loadMs": 32077,
+   "views": [
+    {
+     "name": "tak-L-sommar",
+     "x": -6,
+     "z": -6,
+     "yaw": 200,
+     "pitch": -38,
+     "feet": 22,
+     "month": 6,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 533,
+     "triangles": 810589,
+     "textures": 65,
+     "geometries": 515,
+     "programs": 52,
+     "camera": [
+      -6,
+      23.55,
+      -6
+     ],
+     "imageSHA256": "063852cf141962d96f2d15620652ad105ac2499e4ae230f44258b29cf00c13c8"
+    },
+    {
+     "name": "tak-L-vinter",
+     "x": -6,
+     "z": -6,
+     "yaw": 200,
+     "pitch": -38,
+     "feet": 22,
+     "month": 1,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 529,
+     "triangles": 758905,
+     "textures": 67,
+     "geometries": 517,
+     "programs": 55,
+     "camera": [
+      -6,
+      23.54,
+      -6
+     ],
+     "imageSHA256": "fe3046b963e23522611ebe5b8516affe48cbd8c17d5b52c65446eaf54b0faa27"
+    },
+    {
+     "name": "tak-A-sommar",
+     "x": 0,
+     "z": 20,
+     "yaw": 180,
+     "pitch": -34,
+     "feet": 30,
+     "month": 6,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 97,
+     "triangles": 632333,
+     "textures": 67,
+     "geometries": 517,
+     "programs": 55,
+     "camera": [
+      0,
+      31.54,
+      20
+     ],
+     "imageSHA256": "4db117a96bbacc58655fef95e356f7e1ac68a424f3088f2e40e2082851a8199f"
+    },
+    {
+     "name": "tak-A-vinter",
+     "x": 0,
+     "z": 20,
+     "yaw": 180,
+     "pitch": -34,
+     "feet": 30,
+     "month": 1,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 93,
+     "triangles": 575837,
+     "textures": 67,
+     "geometries": 517,
+     "programs": 55,
+     "camera": [
+      0,
+      31.58,
+      20
+     ],
+     "imageSHA256": "76e5db0a16b5e7046d2e7625ff6bd85d39db889f51c63a2020d77dd747a0b1f9"
+    },
+    {
+     "name": "gata-sommar",
+     "x": -12,
+     "z": -13,
+     "yaw": 172,
+     "pitch": 10,
+     "month": 6,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 454,
+     "triangles": 887708,
+     "textures": 74,
+     "geometries": 622,
+     "programs": 59,
+     "camera": [
+      -12,
+      1.62,
+      -13
+     ],
+     "imageSHA256": "dfea04e20e6d62413b597b31da8e53bddc9f7252e4c39d5043e0db314087f363"
+    }
+   ],
+   "roofs": {
+    "meshes": 1349,
+    "list": [
+     {
+      "name": "?/?",
+      "vertices": 18,
+      "uv": true,
+      "map": null,
+      "vertexColors": false,
+      "box": [
+       [
+        -63,
+        8,
+        67
+       ],
+       [
+        -47,
+        13,
+        84
+       ]
+      ]
+     },
+     {
+      "name": "?/?",
+      "vertices": 72,
+      "uv": true,
+      "map": null,
+      "vertexColors": false,
+      "box": [
+       [
+        -42,
+        12,
+        1
+       ],
+       [
+        12,
+        13,
+        13
+       ]
+      ]
+     },
+     {
+      "name": "?/?",
+      "vertices": 594,
+      "uv": false,
+      "map": null,
+      "vertexColors": false,
+      "box": [
+       [
+        -71,
+        9,
+        12
+       ],
+       [
+        10,
+        17,
+        58
+       ]
+      ]
+     },
+     {
+      "name": "?/hepcat-roof",
+      "vertices": 1329,
+      "uv": true,
+      "map": null,
+      "vertexColors": false,
+      "box": [
+       [
+        28,
+        4,
+        -11
+       ],
+       [
+        37,
+        8,
+        10
+       ]
+      ]
+     },
+     {
+      "name": "east-backdrop/east-roof",
+      "vertices": 399,
+      "uv": false,
+      "map": null,
+      "vertexColors": false,
+      "box": [
+       [
+        -246,
+        -2,
+        -367
+       ],
+       [
+        296,
+        17,
+        68
+       ]
+      ]
+     },
+     {
+      "name": "east-backdrop/east-schoolRoof",
+      "vertices": 23370,
+      "uv": true,
+      "map": null,
+      "vertexColors": true,
+      "box": [
+       [
+        -78,
+        3,
+        -154
+       ],
+       [
+        166,
+        28,
+        26
+       ]
+      ]
+     },
+     {
+      "name": "north-backdrop/north-roof",
+      "vertices": 144,
+      "uv": false,
+      "map": null,
+      "vertexColors": false,
+      "box": [
+       [
+        -232,
+        13,
+        -188
+       ],
+       [
+        -33,
+        17,
+        -28
+       ]
+      ]
+     },
+     {
+      "name": "south-backdrop/south-roof",
+      "vertices": 5904,
+      "uv": false,
+      "map": null,
+      "vertexColors": true,
+      "box": [
+       [
+        -228,
+        1,
+        162
+       ],
+       [
+        296,
+        22,
+        535
+       ]
+      ]
+     },
+     {
+      "name": "west-backdrop/west-karpRoof",
+      "vertices": 48,
+      "uv": false,
+      "map": null,
+      "vertexColors": false,
+      "box": [
+       [
+        -245,
+        9,
+        33
+       ],
+       [
+        -102,
+        14,
+        124
+       ]
+      ]
+     },
+     {
+      "name": "west-backdrop/west-roof",
+      "vertices": 72,
+      "uv": false,
+      "map": null,
+      "vertexColors": false,
+      "box": [
+       [
+        -159,
+        3,
+        -11
+       ],
+       [
+        -93,
+        15,
+        88
+       ]
+      ]
+     }
+    ]
+   },
+   "storage": {
+    "sentinel": "kept",
+    "keys": [
+     "kvarteret-lunden.paddockGrass",
+     "kvarteret-lunden.sentinel"
+    ]
+   }
+  },
+  "after": {
+   "loadMs": 36971,
+   "views": [
+    {
+     "name": "tak-L-sommar",
+     "x": -6,
+     "z": -6,
+     "yaw": 200,
+     "pitch": -38,
+     "feet": 22,
+     "month": 6,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 533,
+     "triangles": 799321,
+     "textures": 65,
+     "geometries": 516,
+     "programs": 52,
+     "camera": [
+      -6,
+      23.52,
+      -6
+     ],
+     "imageSHA256": "c41610aa8cb803852eec327608be9d4e446070ed326de0e01015821166d09e54"
+    },
+    {
+     "name": "tak-L-vinter",
+     "x": -6,
+     "z": -6,
+     "yaw": 200,
+     "pitch": -38,
+     "feet": 22,
+     "month": 1,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 529,
+     "triangles": 758941,
+     "textures": 67,
+     "geometries": 517,
+     "programs": 55,
+     "camera": [
+      -6,
+      23.53,
+      -6
+     ],
+     "imageSHA256": "306be343534a256b54f5118fe60a71d83c3043938e76d20053fd111ee96a25c1"
+    },
+    {
+     "name": "tak-A-sommar",
+     "x": 0,
+     "z": 20,
+     "yaw": 180,
+     "pitch": -34,
+     "feet": 30,
+     "month": 6,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 97,
+     "triangles": 632333,
+     "textures": 67,
+     "geometries": 517,
+     "programs": 55,
+     "camera": [
+      0,
+      31.58,
+      20
+     ],
+     "imageSHA256": "e082040850d3ef9159d585f44d07438a5b5e1aa7f0a3ad228f10bdf667ce60ca"
+    },
+    {
+     "name": "tak-A-vinter",
+     "x": 0,
+     "z": 20,
+     "yaw": 180,
+     "pitch": -34,
+     "feet": 30,
+     "month": 1,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 93,
+     "triangles": 575837,
+     "textures": 67,
+     "geometries": 517,
+     "programs": 55,
+     "camera": [
+      0,
+      31.58,
+      20
+     ],
+     "imageSHA256": "7c1abe918090eea6b6ca96d3c2519c1e66634cb728be9b03f64d0e2334b320d1"
+    },
+    {
+     "name": "gata-sommar",
+     "x": -12,
+     "z": -13,
+     "yaw": 172,
+     "pitch": 10,
+     "month": 6,
+     "canvas": [
+      1280,
+      800
+     ],
+     "calls": 454,
+     "triangles": 887744,
+     "textures": 74,
+     "geometries": 622,
+     "programs": 59,
+     "camera": [
+      -12,
+      1.62,
+      -13
+     ],
+     "imageSHA256": "a55d084c60a49b4dd6fdc0e938c9802c8c74e1ee1ad2854740481ee334b18ea1"
+    }
+   ],
+   "roofs": {
+    "meshes": 1349,
+    "list": [
+     {
+      "name": "?/?",
+      "vertices": 18,
+      "uv": true,
+      "map": "roof-surface",
+      "vertexColors": false,
+      "box": [
+       [
+        -63,
+        8,
+        67
+       ],
+       [
+        -47,
+        13,
+        84
+       ]
+      ]
+     },
+     {
+      "name": "?/?",
+      "vertices": 72,
+      "uv": true,
+      "map": "roof-surface",
+      "vertexColors": false,
+      "box": [
+       [
+        -42,
+        12,
+        1
+       ],
+       [
+        12,
+        13,
+        13
+       ]
+      ]
+     },
+     {
+      "name": "?/?",
+      "vertices": 594,
+      "uv": true,
+      "map": "roof-surface",
+      "vertexColors": false,
+      "box": [
+       [
+        -71,
+        9,
+        12
+       ],
+       [
+        10,
+        17,
+        58
+       ]
+      ]
+     },
+     {
+      "name": "?/hepcat-roof",
+      "vertices": 1329,
+      "uv": true,
+      "map": "roof-surface",
+      "vertexColors": false,
+      "box": [
+       [
+        28,
+        4,
+        -11
+       ],
+       [
+        37,
+        8,
+        10
+       ]
+      ]
+     },
+     {
+      "name": "east-backdrop/east-roof",
+      "vertices": 399,
+      "uv": true,
+      "map": "roof-surface",
+      "vertexColors": false,
+      "box": [
+       [
+        -246,
+        -2,
+        -367
+       ],
+       [
+        296,
+        17,
+        68
+       ]
+      ]
+     },
+     {
+      "name": "east-backdrop/east-schoolRoof",
+      "vertices": 23370,
+      "uv": true,
+      "map": "roof-surface",
+      "vertexColors": true,
+      "box": [
+       [
+        -78,
+        3,
+        -154
+       ],
+       [
+        166,
+        28,
+        26
+       ]
+      ]
+     },
+     {
+      "name": "north-backdrop/north-roof",
+      "vertices": 144,
+      "uv": true,
+      "map": "roof-surface",
+      "vertexColors": false,
+      "box": [
+       [
+        -232,
+        13,
+        -188
+       ],
+       [
+        -33,
+        17,
+        -28
+       ]
+      ]
+     },
+     {
+      "name": "south-backdrop/south-roof",
+      "vertices": 5904,
+      "uv": true,
+      "map": "roof-surface",
+      "vertexColors": true,
+      "box": [
+       [
+        -228,
+        1,
+        162
+       ],
+       [
+        296,
+        22,
+        535
+       ]
+      ]
+     },
+     {
+      "name": "west-backdrop/west-karpRoof",
+      "vertices": 48,
+      "uv": true,
+      "map": "roof-surface",
+      "vertexColors": false,
+      "box": [
+       [
+        -245,
+        9,
+        33
+       ],
+       [
+        -102,
+        14,
+        124
+       ]
+      ]
+     },
+     {
+      "name": "west-backdrop/west-roof",
+      "vertices": 72,
+      "uv": true,
+      "map": "roof-surface",
+      "vertexColors": false,
+      "box": [
+       [
+        -159,
+        3,
+        -11
+       ],
+       [
+        -93,
+        15,
+        88
+       ]
+      ]
+     }
+    ]
+   },
+   "storage": {
+    "sentinel": "kept",
+    "keys": [
+     "kvarteret-lunden.paddockGrass",
+     "kvarteret-lunden.sentinel"
+    ]
+   },
+   "mapMs": 11
+  }
+ },
+ "source": {
+  "src/roofsurface.js": "9552de612eb6d5b48c3db403ddf079d372bb348e376230062f2590c7288fff98",
+  "src/config.js": "e6cf9c2c3e2b2dd6d65b910cab9515992b89570ce0cdc535935ff90998973c96",
+  "src/exterior.js": "567d3797cd92ae92c9831a2c59d4372a5bb32bb3fd983e6d98fe4758076b4b05",
+  "tools/roofsurfacetest.mjs": "68ea0297a3719130a3cc86b16461d5e146ba3d66ef0ee6875f0b6ba67da28230",
+  "tools/roofsurface308browser.cjs": "44e24b9dee4305813ef60c70d7cb64f3330d2c6d855ccbb28bbfa1ef33a6b53b"
+ }
+}

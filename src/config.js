@@ -17,7 +17,10 @@ export const VERTICAL = {
   // Hus L våning 3–4 (L1201–L1209): floor-to-floor per storey; no RH or section for them here (assumption)
   upper: { storeys: 2, floorToFloor: 3.0, source: 'assumption' },
   // the flat roof over våning 4: its build-up over våning 4's structure top + the sheet-metal capping (assumption)
-  roof: { buildUp: 0.3, capping: 0.05, source: 'assumption' },
+  // Original #2093 (9da798a): the capping is the light sheet-metal edge round the roof (#110: "takkant i ljus plåt"), not a
+  // cover over it: `cappingWidth` = its top flange inwards from the outer edge, `cappingDrop` = how far it folds down over
+  // the build-up's face (both *guess*: no section or detail drawing in docs/peab/). Inside the band the felt shows.
+  roof: { buildUp: 0.3, capping: 0.05, cappingWidth: 0.3, cappingDrop: 0.1, source: 'assumption' },
 };
 
 export const LEVELS = [];
@@ -2574,6 +2577,18 @@ export const GLASS_PANES = { paneMax: 4,
   near: { lightness: .14, tone: .06, gradient: .3, sky: .1, skyColor: 0xc4d8e4 },
   far: { lightness: .14, tone: .06, gradient: .3, sky: .22, skyColor: 0x9fb8c6 },
 };
+
+// Original #2088 (0c5f4a5): roof surface realism. One small shared neutral-grey map (`size` px square, `panels` roof strips
+// across it) multiplies every roof colour: a raised seam per strip (dark shadow line, light lip), slightly different strips,
+// low-frequency weathering mottle and faint rain streaks along the fall line. The materials' colour is scaled by 1 / the
+// map's linear mean, so a roof's average colour (and every far, mip-mapped view) stays what it was. `kinds`: m between seams
+// across the fall line and m of map along it. metal = standing-seam sheet (falsad plåt, the common 600 mm c/c; *guess*),
+// felt = roofing-felt strips (takpapp, 1 m rolls; the Å-husen and Hus L, Peab's Q&A: papp). Seams follow each face's fall
+// line (from its own normal); a face flatter than `flat` (horizontal normal share) has no known fall and lays its strips
+// along world x (*guess*). `anisotropy`: sampling of the grazing walk-view angle. Visual *guess* values (src/roofsurface.js).
+export const ROOF_SURFACE = { size: 128, panels: 8, seed: 2088, anisotropy: 4, flat: 0.01,
+  base: 206, strip: 10, seamShadow: 56, seamLip: 32, seamBack: 14, mottle: 20, mottleCells: 4, streak: 10, streakCells: 32,
+  kinds: { metal: { seam: 0.6, length: 6 }, felt: { seam: 1.0, length: 9 } } };
 
 // #1076: Hus L's façade windows sit in brick (or render) reveals with a sheet-metal sill flashing, as on Peab's
 // courtyard illustration (docs/peab/hus-l-gardsfasad-illustration.png, not dimensioned). `frame` = the window frame's

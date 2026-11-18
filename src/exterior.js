@@ -17,6 +17,7 @@ import { screenWallParts } from './screenwall.js';
 import { buildPatioDecor } from './patiodecor.js';
 import { portikPlan } from './portik.js';
 import { brickSurfaceTexture } from './bricksurface.js';
+import { roofMap, roofColor, roofUV } from './roofsurface.js';
 
 // Brick: 250 × 65 mm + 10 mm joints → 0.26 m per brick, 0.075 m per course.
 const TILE_W = 1.04, TILE_H = 0.6; // one texture tile = 4 bricks × 8 courses
@@ -122,6 +123,13 @@ function boxGeo(x0, x1, y0, y1, z0, z1) {
   return geo;
 }
 
+/** A band `w` wide just inside a rectangle's outline (#2093: Hus L's roof capping): four plan rects [x0, x1, z0, z1]
+ * that tile the outline minus its inner rectangle without overlapping (the x sides full length, the z sides between). */
+export function rectRing(x0, x1, z0, z1, w) {
+  w = Math.min(w, (x1 - x0) / 2, (z1 - z0) / 2);
+  return [[x0, x1, z0, z0 + w], [x0, x1, z1 - w, z1], [x0, x0 + w, z0 + w, z1 - w], [x1 - w, x1, z0 + w, z1 - w]];
+}
+
 /** Solar panel tilted up to the south sun: a slab hinged on its low south edge, the north edge raised by
  * HUS_L.solar.tilt degrees. `y` = the height of the low edge's underside; one box per panel, merged with the rest. */
 export function tiltedPanelGeo(xa, xb, y, za, zb) {
@@ -207,7 +215,7 @@ function spiralStair(t, top, steel, slabs) {
  *    the loftgång (their own street openings per flat type, HUS_L.street, #347) (grey-green railing, a light metal fascia, recessed green doors with a small high pane and lantern each, #111) on the
  *    north side; on the courtyard side (#337, HUS_L.court) våning 3 in brick, våning 4 set back behind roof terraces,
  *    the core's brick loft rising through them; spiral stairs in brick drums at both ends
- *  - flat roof with solar panels and a light metal capping
+ *  - flat felt roof with solar panels and a light metal capping round its edge
  */
 export function buildExterior({ W, D, roofTop, north, south, frame, wall, site, mats, visits = [] }) {
   const group = new THREE.Group();
@@ -533,7 +541,10 @@ export function buildExterior({ W, D, roofTop, north, south, frame, wall, site, 
   // flat roof over våning 4 with a parapet, solar panels
   const rb = VERTICAL.roof.buildUp, rc = rb + VERTICAL.roof.capping; // roof build-up + capping (assumption, #344)
   roofs.push(boxGeo(xw - 0.1, xe + 0.1, upperTop, upperTop + rb, loftD - 0.1, zs + 0.1));
-  const capping = [boxGeo(xw - 0.13, xe + 0.13, upperTop + rb, upperTop + rc, loftD - 0.13, zs + 0.13), ...copings]; // light sheet-metal capping on the parapets (#110)
+  // light sheet-metal capping round the roof's edge (#110), folded down over the build-up's face; the felt shows inside
+  // it (#2093: it used to be one slab over the whole roof). The walk surface stays at its top (5 cm, *guess*).
+  const capY0 = upperTop + rb - VERTICAL.roof.cappingDrop;
+  const capping = [...rectRing(xw - 0.13, xe + 0.13, loftD - 0.13, zs + 0.13, VERTICAL.roof.cappingWidth).map(([a, b, c, d]) => boxGeo(a, b, capY0, upperTop + rc, c, d)), ...copings];
   for (const [xa, xb] of H.solar.x) for (const [za, zb] of H.solar.z) panels.push(tiltedPanelGeo(xa, xb, upperTop + rc + H.solar.lift, za, zb));
 
   // loftgång deck from the west drum to the east end, plus the landing to the east drum
@@ -731,9 +742,9 @@ export function buildExterior({ W, D, roofTop, north, south, frame, wall, site, 
     for (const m of glows) doorGlow = fadeGlow(m, doorGlow, doorLit, m === glows[0] ? dt : 0, DL.fade, m.userData.peak);
     portikMat.color.lerpColors(portikOff, portikLit, doorGlow);
   };
-  const roofMat = new THREE.MeshStandardMaterial({ color: 0x4b5157, roughness: 0.9 });
+  const roofMat = new THREE.MeshStandardMaterial({ map: roofMap(), color: roofColor(0x4b5157), roughness: 0.9 }); // #2088: roofing-felt strips (flat: along x, *guess*)
   registerSnow(roofMat, SEASON.snow.roof);
-  add(roofs, roofMat);
+  add(roofs.map((g) => roofUV(g, 'felt')), roofMat);
   add(panels, solarPanelMaterial(), false);
   add(patios, mats.patio, false);
   // #119, upstream117851d7: whole source hedges; phones retain the original merged batch.
