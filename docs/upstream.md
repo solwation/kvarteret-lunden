@@ -4005,3 +4005,21 @@ native-aspektbilder. Noll externa anrop, Storageanrop eller browserfel; sju lagr
 sentineller i vardera local/sessionStorage är orörda. Inga originalbilder, personlig
 inredning, karaktärer, spelkod, originaltjänster, Cloudflare eller originalhistoria
 importeras. [Egna bilder, kontroller, kostnad och begränsningar](verification/302/README.md).
+
+
+## Lövens nyanser och sidonerver, #305
+
+Granskad publicerad originalkälla `fa04a0ef0b1163d23832efe8a6a7b97bad07f3ac`
+(accepterad `a2b5b1939ced3e0bca8ecf042c32d7783f34067d`,
+[original #2085](https://github.com/solwation/lunden-3d-apartment/issues/2085)).
+Enbart neutrala `src/leafrgb.js` (byteidentisk) och fyra rader i publicens
+`leafAtlasParts` (import, färgkontext, toning, sidonerver) överförs; publicens
+`leafAtlasParts` var före ändringen funktionellt identisk med originalets bas. Test- och
+browserverktyg anpassas till publik bas/port/katalog. Befintlig attribution och licens
+gäller. Ingen config, originalbild, inredning, avatar, gameplay, lagring, tjänst,
+Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: tre Node-test, npm test/build och en egen före/efter-browser i
+512/256 med exakt bevarade alfabytes, RNG, mipalfa, geometri, material, säsonger och LOD;
+noll fel och externa anrop. Ingen ny GPU-/per-framekostnad; atlasgenereringen tar några
+tiotal ms extra en gång. [Egna bilder, kontroller och kostnad](verification/305/README.md).

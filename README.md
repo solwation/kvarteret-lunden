@@ -8,6 +8,8 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+Trädens löv har mjuk lokal färgtoning och diskreta sidonerver i den befintliga lövatlasen; effekten syns främst nära, med oförändrad lövform, säsonger och LOD (#305). [Egna jämförelsebilder och kontroller](docs/verification/305/README.md).
+
 Åvattnet har lågmälda stationära ljuskrusningar nära betraktaren, med gemensam fas över båda fortsättningsskarvarna och full avtoning på avstånd. Befintliga färger, vattennivåer och vinteryta behålls (#303). [Egna jämförelsebilder och shaderkostnad](docs/verification/303/README.md).
 
 Trädens bark har mycket grund ljusrelief och svagt varierad matt yta; björkens mörka märken behåller sin flata form. Effekten syns främst nära stammen, med befintliga färger, löv och fjärr-LOD kvar (#302). [Egna jämförelsebilder och budget](docs/verification/302/README.md).

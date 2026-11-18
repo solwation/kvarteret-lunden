@@ -1,0 +1,1484 @@
+{
+  "baseline": "553aa04c938cee20a630022dd4735dabc0385346",
+  "viewport": [
+    1200,
+    800
+  ],
+  "errors": [],
+  "external": [],
+  "profiles": {
+    "256": {
+      "before": {
+        "samples": [
+          {
+            "size": 256,
+            "bytes": 262144,
+            "rgba": "1e6851e4c047f548986654e7e8ce2188d5080ed37cf410557b8858a2d6e62aab",
+            "alpha": "f5bbddd7ac59ef960cf986b539ff9420635bfcbe0ce6d9a83dcf299abf59237b",
+            "transparent": 28377,
+            "badRGB": 0,
+            "mipAlpha": [
+              "c85c079d80c426660244fd6190bff0a43243d130f41a93381361f7bfb02bd011",
+              "aa45da011e5352919c9d123c4953418b8d32398875221ac4f57a01ebf36d58af",
+              "10185ba297ec3e26520edd61cc5bff266a63b6d86207160c3bb5fc516ffa316a",
+              "e6be3ec1acb27eb51a4e36b9a6312e4504988c8b63ee6db1d0b4d95823ed0289",
+              "8844058783b1405ae87c72c35ac4ee701b91877f9b9ffc500c4294c8c5871892",
+              "51b5e313bedeb769f9b305be1a32b21cc5d767176e071b5feb05de2cb403239d",
+              "289c6c56f6f3a98be3c3b1ac1e944dc209f8e97a785f5a7530d41971317a0420",
+              "cbe5cfdf7c2118a9c3d78ef1d684f3afa089201352886449a06a6511cfef74a7"
+            ],
+            "cpuMs": 19.399999999906868,
+            "maxStepMs": 3.7000000000116415,
+            "steps": [
+              0.3999999999650754,
+              1.2000000000116415,
+              1.1999999999534339,
+              2.099999999976717,
+              1.3000000000465661,
+              1.2999999999883585,
+              1.2999999999883585,
+              1.2999999999883585,
+              1.2999999999883585,
+              1.2999999999883585,
+              1.2000000000116415,
+              1.2000000000116415,
+              0.20000000001164153,
+              0.3999999999650754,
+              3.7000000000116415
+            ],
+            "rngCount": 8961,
+            "rng": "dba33e7e8b110336de9d8ad734193a786d525a9bee5a40a219c54fd14f957945"
+          },
+          {
+            "size": 256,
+            "bytes": 262144,
+            "rgba": "1e6851e4c047f548986654e7e8ce2188d5080ed37cf410557b8858a2d6e62aab",
+            "alpha": "f5bbddd7ac59ef960cf986b539ff9420635bfcbe0ce6d9a83dcf299abf59237b",
+            "transparent": 28377,
+            "badRGB": 0,
+            "mipAlpha": [
+              "c85c079d80c426660244fd6190bff0a43243d130f41a93381361f7bfb02bd011",
+              "aa45da011e5352919c9d123c4953418b8d32398875221ac4f57a01ebf36d58af",
+              "10185ba297ec3e26520edd61cc5bff266a63b6d86207160c3bb5fc516ffa316a",
+              "e6be3ec1acb27eb51a4e36b9a6312e4504988c8b63ee6db1d0b4d95823ed0289",
+              "8844058783b1405ae87c72c35ac4ee701b91877f9b9ffc500c4294c8c5871892",
+              "51b5e313bedeb769f9b305be1a32b21cc5d767176e071b5feb05de2cb403239d",
+              "289c6c56f6f3a98be3c3b1ac1e944dc209f8e97a785f5a7530d41971317a0420",
+              "cbe5cfdf7c2118a9c3d78ef1d684f3afa089201352886449a06a6511cfef74a7"
+            ],
+            "cpuMs": 17,
+            "maxStepMs": 2,
+            "steps": [
+              0,
+              1.099999999976717,
+              1.2000000000116415,
+              1.900000000023283,
+              1.7000000000116415,
+              1.3000000000465661,
+              1.1999999999534339,
+              1.2999999999883585,
+              1.3000000000465661,
+              1.2000000000116415,
+              1.2000000000116415,
+              1.099999999976717,
+              0.19999999995343387,
+              0.29999999998835847,
+              2
+            ],
+            "rngCount": 8961,
+            "rng": "dba33e7e8b110336de9d8ad734193a786d525a9bee5a40a219c54fd14f957945"
+          },
+          {
+            "size": 256,
+            "bytes": 262144,
+            "rgba": "1e6851e4c047f548986654e7e8ce2188d5080ed37cf410557b8858a2d6e62aab",
+            "alpha": "f5bbddd7ac59ef960cf986b539ff9420635bfcbe0ce6d9a83dcf299abf59237b",
+            "transparent": 28377,
+            "badRGB": 0,
+            "mipAlpha": [
+              "c85c079d80c426660244fd6190bff0a43243d130f41a93381361f7bfb02bd011",
+              "aa45da011e5352919c9d123c4953418b8d32398875221ac4f57a01ebf36d58af",
+              "10185ba297ec3e26520edd61cc5bff266a63b6d86207160c3bb5fc516ffa316a",
+              "e6be3ec1acb27eb51a4e36b9a6312e4504988c8b63ee6db1d0b4d95823ed0289",
+              "8844058783b1405ae87c72c35ac4ee701b91877f9b9ffc500c4294c8c5871892",
+              "51b5e313bedeb769f9b305be1a32b21cc5d767176e071b5feb05de2cb403239d",
+              "289c6c56f6f3a98be3c3b1ac1e944dc209f8e97a785f5a7530d41971317a0420",
+              "cbe5cfdf7c2118a9c3d78ef1d684f3afa089201352886449a06a6511cfef74a7"
+            ],
+            "cpuMs": 16.199999999895226,
+            "maxStepMs": 2,
+            "steps": [
+              0.09999999997671694,
+              1.099999999976717,
+              0.8999999999650754,
+              1.7000000000116415,
+              1.2999999999883585,
+              1.1999999999534339,
+              1.1000000000349246,
+              1.400000000023283,
+              1.2999999999883585,
+              1.2999999999883585,
+              1.099999999976717,
+              1.1000000000349246,
+              0.29999999998835847,
+              0.29999999998835847,
+              2
+            ],
+            "rngCount": 8961,
+            "rng": "dba33e7e8b110336de9d8ad734193a786d525a9bee5a40a219c54fd14f957945"
+          }
+        ],
+        "atlasReads": 3,
+        "geometry": {
+          "tree": {
+            "attributes": {
+              "position": {
+                "count": 168,
+                "bytes": 2016,
+                "sha": "2118e2517ecb56f7e293bc25e2af9d4810687297407796b08e353795b50f268f"
+              },
+              "normal": {
+                "count": 168,
+                "bytes": 2016,
+                "sha": "5735062af50b2b22926b616c1369c693cc470f0403268d4a7db6cd25293982ba"
+              },
+              "uv": {
+                "count": 168,
+                "bytes": 1344,
+                "sha": "7f0a3bc6878cdb9f95c104c191443e6832fc56d9d95f07b08371217a90ccb44a"
+              },
+              "color": {
+                "count": 168,
+                "bytes": 2016,
+                "sha": "8378929e0807639d0ca1f7627bd565a838bf82ec0897905e51e957ee08d12774"
+              }
+            },
+            "index": null,
+            "triangles": 56
+          },
+          "shrub": {
+            "attributes": {
+              "position": {
+                "count": 120,
+                "bytes": 1440,
+                "sha": "3712ee6c39bded593f3e8cc00eaede53c1750fdb12174da97a4901c32346cf8e"
+              },
+              "normal": {
+                "count": 120,
+                "bytes": 1440,
+                "sha": "cd3509dbb84ab4e09a4dfb0727013a85a3ee35287e2d97929f6de4020c2c4019"
+              },
+              "uv": {
+                "count": 120,
+                "bytes": 960,
+                "sha": "092ca5eb4ad1e18926cc667ee95dd2cf0f13496a88cea96c39664c191dfafe72"
+              },
+              "color": {
+                "count": 120,
+                "bytes": 1440,
+                "sha": "e215740d5318d01558c72ea991e4b400d1078a2f4156721be4c15d0142678642"
+              }
+            },
+            "index": null,
+            "triangles": 40
+          },
+          "far": {
+            "attributes": {
+              "position": {
+                "count": 90,
+                "bytes": 1080,
+                "sha": "78cf0a8a2b06eff8b8c7cef2ef2f6c97a7d89e868f922ff4c2e9a0fb8e13922b"
+              },
+              "normal": {
+                "count": 90,
+                "bytes": 1080,
+                "sha": "79d26bfda8a7f6e06e8eeeed38cc626462a2fc154afca8f92b5c15d3f84a7b45"
+              },
+              "uv": {
+                "count": 90,
+                "bytes": 720,
+                "sha": "ee14af3bc5cd0f1c1ae619907146de93793abca7dae0ae193d862996cfc8d44e"
+              },
+              "color": {
+                "count": 90,
+                "bytes": 1080,
+                "sha": "32c9ae3222e9e1db10a2269b22f19bc79497ac4c03c8a1a7903fcacb8c7c0624"
+              }
+            },
+            "index": null,
+            "triangles": 30
+          }
+        },
+        "cache": true,
+        "material": {
+          "alphaTest": 0.4,
+          "roughness": 0.92,
+          "side": 2,
+          "shadowSide": 2,
+          "shader": "(shader) => {\n    shader.fragmentShader = shader.fragmentShader.replace('#include <normal_fragment_begin>',\n      THREE.ShaderChunk.normal_fragment_begin.replace('float faceDirection = gl_FrontFacing ? 1.0 : - 1.0;', 'float faceDirection = 1.0;'));\n  }",
+          "programKey": "foliage-leaves-v1",
+          "depthMap": true
+        },
+        "texture": {
+          "size": 256,
+          "bytes": 262144,
+          "version": 1,
+          "colorSpace": "",
+          "min": 1008,
+          "mag": 1006,
+          "mips": true,
+          "anisotropy": 2
+        },
+        "trunk": {
+          "position": "2083d4b6bd3610765848829b7e5987e39fbc4d5802c301f3ca238ae96c9e5c1c",
+          "normal": "ce351ce039ad74068dcc6d83c8b7ae18c77ff17e77ea0b6c4c4956f9255e706a"
+        },
+        "views": [
+          {
+            "view": "close",
+            "month": 7,
+            "camera": [
+              1.3,
+              2.1,
+              1.5
+            ],
+            "target": [
+              0,
+              1.9,
+              0
+            ],
+            "calls": 3,
+            "triangles": 216,
+            "textures": 3,
+            "atlasVersion": 1,
+            "lod": {
+              "near": 3,
+              "far": 0
+            },
+            "regularVisible": true,
+            "matrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "colours": "62be6bbfbebe810239fe0e169db31968f6ebbbdf34defade46a6f580a86192e9",
+            "nearMatrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "farMatrices": "cb8bfe8dd0ac1a0a9b5b974d5fa67619ff726bb31c2cf6c590e92d3904128a47"
+          },
+          {
+            "view": "normal",
+            "month": 7,
+            "camera": [
+              3.1,
+              2.2,
+              4.5
+            ],
+            "target": [
+              0,
+              1.65,
+              0
+            ],
+            "calls": 3,
+            "triangles": 216,
+            "textures": 3,
+            "atlasVersion": 1,
+            "lod": {
+              "near": 3,
+              "far": 0
+            },
+            "regularVisible": true,
+            "matrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "colours": "62be6bbfbebe810239fe0e169db31968f6ebbbdf34defade46a6f580a86192e9",
+            "nearMatrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "farMatrices": "cb8bfe8dd0ac1a0a9b5b974d5fa67619ff726bb31c2cf6c590e92d3904128a47"
+          },
+          {
+            "view": "autumn",
+            "month": 10,
+            "camera": [
+              3.1,
+              2.2,
+              4.5
+            ],
+            "target": [
+              0,
+              1.65,
+              0
+            ],
+            "calls": 3,
+            "triangles": 216,
+            "textures": 3,
+            "atlasVersion": 1,
+            "lod": {
+              "near": 3,
+              "far": 0
+            },
+            "regularVisible": true,
+            "matrices": "04764fdffcf80d4df75b712459f30929fc27e51a196a90d2b928cfb5a11528ea",
+            "colours": "873686121ad9154d075de25d702287db58ef2591b1871c354a5f68def95cd819",
+            "nearMatrices": "04764fdffcf80d4df75b712459f30929fc27e51a196a90d2b928cfb5a11528ea",
+            "farMatrices": "cb8bfe8dd0ac1a0a9b5b974d5fa67619ff726bb31c2cf6c590e92d3904128a47"
+          },
+          {
+            "view": "winter",
+            "month": 1,
+            "camera": [
+              3.1,
+              2.2,
+              4.5
+            ],
+            "target": [
+              0,
+              1.65,
+              0
+            ],
+            "calls": 2,
+            "triangles": 48,
+            "textures": 3,
+            "atlasVersion": 1,
+            "lod": {
+              "near": 3,
+              "far": 0
+            },
+            "regularVisible": false,
+            "matrices": "45befcf532d11f93a61de1f18d884bc6832f3bffc0843f2e3a25b666ff7edcd3",
+            "colours": "7d55d89af944e04ba2ad5c34f2290c0c33882735891e2b4db6f2b1ce2a090ba6",
+            "nearMatrices": "45befcf532d11f93a61de1f18d884bc6832f3bffc0843f2e3a25b666ff7edcd3",
+            "farMatrices": "cb8bfe8dd0ac1a0a9b5b974d5fa67619ff726bb31c2cf6c590e92d3904128a47"
+          },
+          {
+            "view": "lod",
+            "month": 7,
+            "camera": [
+              0,
+              3,
+              58
+            ],
+            "target": [
+              0,
+              1.65,
+              0
+            ],
+            "calls": 3,
+            "triangles": 138,
+            "textures": 3,
+            "atlasVersion": 1,
+            "lod": {
+              "near": 0,
+              "far": 3
+            },
+            "regularVisible": false,
+            "matrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "colours": "62be6bbfbebe810239fe0e169db31968f6ebbbdf34defade46a6f580a86192e9",
+            "nearMatrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "farMatrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44"
+          }
+        ]
+      },
+      "after": {
+        "samples": [
+          {
+            "size": 256,
+            "bytes": 262144,
+            "rgba": "4ce0c65dde5d9799b197c8a5276b38c377a6e4dbac95bb0a8e3714fd15b7dd2e",
+            "alpha": "f5bbddd7ac59ef960cf986b539ff9420635bfcbe0ce6d9a83dcf299abf59237b",
+            "transparent": 28377,
+            "badRGB": 0,
+            "mipAlpha": [
+              "c85c079d80c426660244fd6190bff0a43243d130f41a93381361f7bfb02bd011",
+              "aa45da011e5352919c9d123c4953418b8d32398875221ac4f57a01ebf36d58af",
+              "10185ba297ec3e26520edd61cc5bff266a63b6d86207160c3bb5fc516ffa316a",
+              "e6be3ec1acb27eb51a4e36b9a6312e4504988c8b63ee6db1d0b4d95823ed0289",
+              "8844058783b1405ae87c72c35ac4ee701b91877f9b9ffc500c4294c8c5871892",
+              "51b5e313bedeb769f9b305be1a32b21cc5d767176e071b5feb05de2cb403239d",
+              "289c6c56f6f3a98be3c3b1ac1e944dc209f8e97a785f5a7530d41971317a0420",
+              "cbe5cfdf7c2118a9c3d78ef1d684f3afa089201352886449a06a6511cfef74a7"
+            ],
+            "cpuMs": 53.79999999998836,
+            "maxStepMs": 6.5,
+            "steps": [
+              0.5,
+              3.900000000023283,
+              4.100000000034925,
+              6.5,
+              5.7999999999883585,
+              4.099999999976717,
+              4.899999999965075,
+              4,
+              5.099999999976717,
+              3.900000000023283,
+              2.6000000000349246,
+              2.5,
+              0.5,
+              1.2999999999883585,
+              4.099999999976717
+            ],
+            "rngCount": 8961,
+            "rng": "dba33e7e8b110336de9d8ad734193a786d525a9bee5a40a219c54fd14f957945"
+          },
+          {
+            "size": 256,
+            "bytes": 262144,
+            "rgba": "4ce0c65dde5d9799b197c8a5276b38c377a6e4dbac95bb0a8e3714fd15b7dd2e",
+            "alpha": "f5bbddd7ac59ef960cf986b539ff9420635bfcbe0ce6d9a83dcf299abf59237b",
+            "transparent": 28377,
+            "badRGB": 0,
+            "mipAlpha": [
+              "c85c079d80c426660244fd6190bff0a43243d130f41a93381361f7bfb02bd011",
+              "aa45da011e5352919c9d123c4953418b8d32398875221ac4f57a01ebf36d58af",
+              "10185ba297ec3e26520edd61cc5bff266a63b6d86207160c3bb5fc516ffa316a",
+              "e6be3ec1acb27eb51a4e36b9a6312e4504988c8b63ee6db1d0b4d95823ed0289",
+              "8844058783b1405ae87c72c35ac4ee701b91877f9b9ffc500c4294c8c5871892",
+              "51b5e313bedeb769f9b305be1a32b21cc5d767176e071b5feb05de2cb403239d",
+              "289c6c56f6f3a98be3c3b1ac1e944dc209f8e97a785f5a7530d41971317a0420",
+              "cbe5cfdf7c2118a9c3d78ef1d684f3afa089201352886449a06a6511cfef74a7"
+            ],
+            "cpuMs": 56.29999999993015,
+            "maxStepMs": 9.199999999953434,
+            "steps": [
+              0.09999999997671694,
+              6.300000000046566,
+              3.6000000000349246,
+              5.699999999953434,
+              4.5,
+              9.199999999953434,
+              6.5,
+              3.8999999999650754,
+              4.2999999999883585,
+              3.7999999999883585,
+              2.6000000000349246,
+              2.6000000000349246,
+              0.5999999999767169,
+              0.7000000000116415,
+              1.8999999999650754
+            ],
+            "rngCount": 8961,
+            "rng": "dba33e7e8b110336de9d8ad734193a786d525a9bee5a40a219c54fd14f957945"
+          },
+          {
+            "size": 256,
+            "bytes": 262144,
+            "rgba": "4ce0c65dde5d9799b197c8a5276b38c377a6e4dbac95bb0a8e3714fd15b7dd2e",
+            "alpha": "f5bbddd7ac59ef960cf986b539ff9420635bfcbe0ce6d9a83dcf299abf59237b",
+            "transparent": 28377,
+            "badRGB": 0,
+            "mipAlpha": [
+              "c85c079d80c426660244fd6190bff0a43243d130f41a93381361f7bfb02bd011",
+              "aa45da011e5352919c9d123c4953418b8d32398875221ac4f57a01ebf36d58af",
+              "10185ba297ec3e26520edd61cc5bff266a63b6d86207160c3bb5fc516ffa316a",
+              "e6be3ec1acb27eb51a4e36b9a6312e4504988c8b63ee6db1d0b4d95823ed0289",
+              "8844058783b1405ae87c72c35ac4ee701b91877f9b9ffc500c4294c8c5871892",
+              "51b5e313bedeb769f9b305be1a32b21cc5d767176e071b5feb05de2cb403239d",
+              "289c6c56f6f3a98be3c3b1ac1e944dc209f8e97a785f5a7530d41971317a0420",
+              "cbe5cfdf7c2118a9c3d78ef1d684f3afa089201352886449a06a6511cfef74a7"
+            ],
+            "cpuMs": 44.800000000104774,
+            "maxStepMs": 5.400000000023283,
+            "steps": [
+              0.1000000000349246,
+              3.2999999999883585,
+              3.400000000023283,
+              5.400000000023283,
+              4.7999999999883585,
+              3.7000000000116415,
+              4.2000000000116415,
+              3.7999999999883585,
+              4.2000000000116415,
+              3.7000000000116415,
+              2.599999999976717,
+              2.300000000046566,
+              0.5999999999767169,
+              0.5999999999767169,
+              2.1000000000349246
+            ],
+            "rngCount": 8961,
+            "rng": "dba33e7e8b110336de9d8ad734193a786d525a9bee5a40a219c54fd14f957945"
+          }
+        ],
+        "atlasReads": 6,
+        "geometry": {
+          "tree": {
+            "attributes": {
+              "position": {
+                "count": 168,
+                "bytes": 2016,
+                "sha": "2118e2517ecb56f7e293bc25e2af9d4810687297407796b08e353795b50f268f"
+              },
+              "normal": {
+                "count": 168,
+                "bytes": 2016,
+                "sha": "5735062af50b2b22926b616c1369c693cc470f0403268d4a7db6cd25293982ba"
+              },
+              "uv": {
+                "count": 168,
+                "bytes": 1344,
+                "sha": "7f0a3bc6878cdb9f95c104c191443e6832fc56d9d95f07b08371217a90ccb44a"
+              },
+              "color": {
+                "count": 168,
+                "bytes": 2016,
+                "sha": "8378929e0807639d0ca1f7627bd565a838bf82ec0897905e51e957ee08d12774"
+              }
+            },
+            "index": null,
+            "triangles": 56
+          },
+          "shrub": {
+            "attributes": {
+              "position": {
+                "count": 120,
+                "bytes": 1440,
+                "sha": "3712ee6c39bded593f3e8cc00eaede53c1750fdb12174da97a4901c32346cf8e"
+              },
+              "normal": {
+                "count": 120,
+                "bytes": 1440,
+                "sha": "cd3509dbb84ab4e09a4dfb0727013a85a3ee35287e2d97929f6de4020c2c4019"
+              },
+              "uv": {
+                "count": 120,
+                "bytes": 960,
+                "sha": "092ca5eb4ad1e18926cc667ee95dd2cf0f13496a88cea96c39664c191dfafe72"
+              },
+              "color": {
+                "count": 120,
+                "bytes": 1440,
+                "sha": "e215740d5318d01558c72ea991e4b400d1078a2f4156721be4c15d0142678642"
+              }
+            },
+            "index": null,
+            "triangles": 40
+          },
+          "far": {
+            "attributes": {
+              "position": {
+                "count": 90,
+                "bytes": 1080,
+                "sha": "78cf0a8a2b06eff8b8c7cef2ef2f6c97a7d89e868f922ff4c2e9a0fb8e13922b"
+              },
+              "normal": {
+                "count": 90,
+                "bytes": 1080,
+                "sha": "79d26bfda8a7f6e06e8eeeed38cc626462a2fc154afca8f92b5c15d3f84a7b45"
+              },
+              "uv": {
+                "count": 90,
+                "bytes": 720,
+                "sha": "ee14af3bc5cd0f1c1ae619907146de93793abca7dae0ae193d862996cfc8d44e"
+              },
+              "color": {
+                "count": 90,
+                "bytes": 1080,
+                "sha": "32c9ae3222e9e1db10a2269b22f19bc79497ac4c03c8a1a7903fcacb8c7c0624"
+              }
+            },
+            "index": null,
+            "triangles": 30
+          }
+        },
+        "cache": true,
+        "material": {
+          "alphaTest": 0.4,
+          "roughness": 0.92,
+          "side": 2,
+          "shadowSide": 2,
+          "shader": "(shader) => {\n    shader.fragmentShader = shader.fragmentShader.replace('#include <normal_fragment_begin>',\n      THREE.ShaderChunk.normal_fragment_begin.replace('float faceDirection = gl_FrontFacing ? 1.0 : - 1.0;', 'float faceDirection = 1.0;'));\n  }",
+          "programKey": "foliage-leaves-v1",
+          "depthMap": true
+        },
+        "texture": {
+          "size": 256,
+          "bytes": 262144,
+          "version": 1,
+          "colorSpace": "",
+          "min": 1008,
+          "mag": 1006,
+          "mips": true,
+          "anisotropy": 2
+        },
+        "trunk": {
+          "position": "2083d4b6bd3610765848829b7e5987e39fbc4d5802c301f3ca238ae96c9e5c1c",
+          "normal": "ce351ce039ad74068dcc6d83c8b7ae18c77ff17e77ea0b6c4c4956f9255e706a"
+        },
+        "views": [
+          {
+            "view": "close",
+            "month": 7,
+            "camera": [
+              1.3,
+              2.1,
+              1.5
+            ],
+            "target": [
+              0,
+              1.9,
+              0
+            ],
+            "calls": 3,
+            "triangles": 216,
+            "textures": 3,
+            "atlasVersion": 1,
+            "lod": {
+              "near": 3,
+              "far": 0
+            },
+            "regularVisible": true,
+            "matrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "colours": "62be6bbfbebe810239fe0e169db31968f6ebbbdf34defade46a6f580a86192e9",
+            "nearMatrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "farMatrices": "cb8bfe8dd0ac1a0a9b5b974d5fa67619ff726bb31c2cf6c590e92d3904128a47"
+          },
+          {
+            "view": "normal",
+            "month": 7,
+            "camera": [
+              3.1,
+              2.2,
+              4.5
+            ],
+            "target": [
+              0,
+              1.65,
+              0
+            ],
+            "calls": 3,
+            "triangles": 216,
+            "textures": 3,
+            "atlasVersion": 1,
+            "lod": {
+              "near": 3,
+              "far": 0
+            },
+            "regularVisible": true,
+            "matrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "colours": "62be6bbfbebe810239fe0e169db31968f6ebbbdf34defade46a6f580a86192e9",
+            "nearMatrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "farMatrices": "cb8bfe8dd0ac1a0a9b5b974d5fa67619ff726bb31c2cf6c590e92d3904128a47"
+          },
+          {
+            "view": "autumn",
+            "month": 10,
+            "camera": [
+              3.1,
+              2.2,
+              4.5
+            ],
+            "target": [
+              0,
+              1.65,
+              0
+            ],
+            "calls": 3,
+            "triangles": 216,
+            "textures": 3,
+            "atlasVersion": 1,
+            "lod": {
+              "near": 3,
+              "far": 0
+            },
+            "regularVisible": true,
+            "matrices": "04764fdffcf80d4df75b712459f30929fc27e51a196a90d2b928cfb5a11528ea",
+            "colours": "873686121ad9154d075de25d702287db58ef2591b1871c354a5f68def95cd819",
+            "nearMatrices": "04764fdffcf80d4df75b712459f30929fc27e51a196a90d2b928cfb5a11528ea",
+            "farMatrices": "cb8bfe8dd0ac1a0a9b5b974d5fa67619ff726bb31c2cf6c590e92d3904128a47"
+          },
+          {
+            "view": "winter",
+            "month": 1,
+            "camera": [
+              3.1,
+              2.2,
+              4.5
+            ],
+            "target": [
+              0,
+              1.65,
+              0
+            ],
+            "calls": 2,
+            "triangles": 48,
+            "textures": 3,
+            "atlasVersion": 1,
+            "lod": {
+              "near": 3,
+              "far": 0
+            },
+            "regularVisible": false,
+            "matrices": "45befcf532d11f93a61de1f18d884bc6832f3bffc0843f2e3a25b666ff7edcd3",
+            "colours": "7d55d89af944e04ba2ad5c34f2290c0c33882735891e2b4db6f2b1ce2a090ba6",
+            "nearMatrices": "45befcf532d11f93a61de1f18d884bc6832f3bffc0843f2e3a25b666ff7edcd3",
+            "farMatrices": "cb8bfe8dd0ac1a0a9b5b974d5fa67619ff726bb31c2cf6c590e92d3904128a47"
+          },
+          {
+            "view": "lod",
+            "month": 7,
+            "camera": [
+              0,
+              3,
+              58
+            ],
+            "target": [
+              0,
+              1.65,
+              0
+            ],
+            "calls": 3,
+            "triangles": 138,
+            "textures": 3,
+            "atlasVersion": 1,
+            "lod": {
+              "near": 0,
+              "far": 3
+            },
+            "regularVisible": false,
+            "matrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "colours": "62be6bbfbebe810239fe0e169db31968f6ebbbdf34defade46a6f580a86192e9",
+            "nearMatrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "farMatrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44"
+          }
+        ]
+      }
+    },
+    "512": {
+      "before": {
+        "samples": [
+          {
+            "size": 512,
+            "bytes": 1048576,
+            "rgba": "393a4e146ddd9b5796803b3b446251b74a9b4b2b0fb0ad4251dfc87d1e21fe2f",
+            "alpha": "4c3873436f130b1656feff9e9e9a9a4026b3234c4b791a46aea08c666c025f17",
+            "transparent": 122555,
+            "badRGB": 0,
+            "mipAlpha": [
+              "5c9fdd19a0f5a3dd44e255a085de46829c1e9c4c9ba394fbc04422cc1acaf56b",
+              "ee41f374bfb38a1baab0952f4bc0ee7acec5fa4dc7a429c80ca8d33e2b49e59e",
+              "9b1870f332906e8c37ac54d010690cb795c5714eeb1fea22b3e1a7d5c678ee1e",
+              "d1b7541dc63645a886a2cdbbe26106f805e15a98c1afba240ab06468f5b08700",
+              "6ecf5925d354359a97d0624c9f42f904681334006a2dd4112a8242d6007bf994",
+              "469642162bef7590b68676ea1434861c33b1e1a5fd3e5235b06243ad6770c855",
+              "e99ce1d3307aecea1bbbdc5c84091271bd9d2233073eec059fc97714d1205cd0",
+              "370b727999e61169ac0a9cb6bc6f44b86b0d1bd4fe6d1f4a3d4672092e210e0c",
+              "7ace431cb61584cb9b8dc7ec08cf38ac0a2d649660be86d349fb43108b542fa4"
+            ],
+            "cpuMs": 29.100000000034925,
+            "maxStepMs": 4.7999999999883585,
+            "steps": [
+              2.5,
+              2.1000000000349246,
+              1,
+              2.2000000000116415,
+              1.7000000000116415,
+              1.2999999999883585,
+              2,
+              1.7999999999883585,
+              1.900000000023283,
+              1.6000000000349246,
+              1.7999999999883585,
+              1.2999999999883585,
+              0.5,
+              2.599999999976717,
+              4.7999999999883585
+            ],
+            "rngCount": 8961,
+            "rng": "dba33e7e8b110336de9d8ad734193a786d525a9bee5a40a219c54fd14f957945"
+          },
+          {
+            "size": 512,
+            "bytes": 1048576,
+            "rgba": "393a4e146ddd9b5796803b3b446251b74a9b4b2b0fb0ad4251dfc87d1e21fe2f",
+            "alpha": "4c3873436f130b1656feff9e9e9a9a4026b3234c4b791a46aea08c666c025f17",
+            "transparent": 122555,
+            "badRGB": 0,
+            "mipAlpha": [
+              "5c9fdd19a0f5a3dd44e255a085de46829c1e9c4c9ba394fbc04422cc1acaf56b",
+              "ee41f374bfb38a1baab0952f4bc0ee7acec5fa4dc7a429c80ca8d33e2b49e59e",
+              "9b1870f332906e8c37ac54d010690cb795c5714eeb1fea22b3e1a7d5c678ee1e",
+              "d1b7541dc63645a886a2cdbbe26106f805e15a98c1afba240ab06468f5b08700",
+              "6ecf5925d354359a97d0624c9f42f904681334006a2dd4112a8242d6007bf994",
+              "469642162bef7590b68676ea1434861c33b1e1a5fd3e5235b06243ad6770c855",
+              "e99ce1d3307aecea1bbbdc5c84091271bd9d2233073eec059fc97714d1205cd0",
+              "370b727999e61169ac0a9cb6bc6f44b86b0d1bd4fe6d1f4a3d4672092e210e0c",
+              "7ace431cb61584cb9b8dc7ec08cf38ac0a2d649660be86d349fb43108b542fa4"
+            ],
+            "cpuMs": 24.499999999883585,
+            "maxStepMs": 4.2999999999883585,
+            "steps": [
+              0.19999999995343387,
+              1.7000000000116415,
+              1.599999999976717,
+              1.900000000023283,
+              1.599999999976717,
+              1.3000000000465661,
+              1.5,
+              1.7999999999883585,
+              1.7000000000116415,
+              2.599999999976717,
+              1.2999999999883585,
+              1.099999999976717,
+              0.3999999999650754,
+              1.5,
+              4.2999999999883585
+            ],
+            "rngCount": 8961,
+            "rng": "dba33e7e8b110336de9d8ad734193a786d525a9bee5a40a219c54fd14f957945"
+          },
+          {
+            "size": 512,
+            "bytes": 1048576,
+            "rgba": "393a4e146ddd9b5796803b3b446251b74a9b4b2b0fb0ad4251dfc87d1e21fe2f",
+            "alpha": "4c3873436f130b1656feff9e9e9a9a4026b3234c4b791a46aea08c666c025f17",
+            "transparent": 122555,
+            "badRGB": 0,
+            "mipAlpha": [
+              "5c9fdd19a0f5a3dd44e255a085de46829c1e9c4c9ba394fbc04422cc1acaf56b",
+              "ee41f374bfb38a1baab0952f4bc0ee7acec5fa4dc7a429c80ca8d33e2b49e59e",
+              "9b1870f332906e8c37ac54d010690cb795c5714eeb1fea22b3e1a7d5c678ee1e",
+              "d1b7541dc63645a886a2cdbbe26106f805e15a98c1afba240ab06468f5b08700",
+              "6ecf5925d354359a97d0624c9f42f904681334006a2dd4112a8242d6007bf994",
+              "469642162bef7590b68676ea1434861c33b1e1a5fd3e5235b06243ad6770c855",
+              "e99ce1d3307aecea1bbbdc5c84091271bd9d2233073eec059fc97714d1205cd0",
+              "370b727999e61169ac0a9cb6bc6f44b86b0d1bd4fe6d1f4a3d4672092e210e0c",
+              "7ace431cb61584cb9b8dc7ec08cf38ac0a2d649660be86d349fb43108b542fa4"
+            ],
+            "cpuMs": 25.29999999993015,
+            "maxStepMs": 4.099999999976717,
+            "steps": [
+              0.29999999998835847,
+              2.599999999976717,
+              1.2999999999883585,
+              2.2000000000116415,
+              2.1000000000349246,
+              2.2000000000116415,
+              1.6000000000349246,
+              1.7999999999883585,
+              1.2999999999883585,
+              1.7999999999883585,
+              1.099999999976717,
+              1.1999999999534339,
+              0.30000000004656613,
+              1.3999999999650754,
+              4.099999999976717
+            ],
+            "rngCount": 8961,
+            "rng": "dba33e7e8b110336de9d8ad734193a786d525a9bee5a40a219c54fd14f957945"
+          }
+        ],
+        "atlasReads": 3,
+        "geometry": {
+          "tree": {
+            "attributes": {
+              "position": {
+                "count": 180,
+                "bytes": 2160,
+                "sha": "af646cedb90106a04a4559f17e47b85490c03c7884c0c475dcd88b2ba27cbb94"
+              },
+              "normal": {
+                "count": 180,
+                "bytes": 2160,
+                "sha": "26cac963b81806f97e9d5f9c2c78ad73f00f1f1d75d9c8f311b1088b8e7d856f"
+              },
+              "uv": {
+                "count": 180,
+                "bytes": 1440,
+                "sha": "ed5d3a31b4bad5eaf6d3f1b7e69ad80e4ad39f2a08baa141a2cd8550755a8de1"
+              },
+              "color": {
+                "count": 180,
+                "bytes": 2160,
+                "sha": "21af63f364d0d8b5a6384cbb5556788417e9b94085a22bc1bc3b8ef7323a3193"
+              }
+            },
+            "index": null,
+            "triangles": 60
+          },
+          "shrub": {
+            "attributes": {
+              "position": {
+                "count": 144,
+                "bytes": 1728,
+                "sha": "032d34741a798657d11fb6355b158cfbfceb01587142131943c9a41476c2e37a"
+              },
+              "normal": {
+                "count": 144,
+                "bytes": 1728,
+                "sha": "031859d1621d33f7bc84171c2b7ca1d2ca13511befbb6901041d792d69e9c0ce"
+              },
+              "uv": {
+                "count": 144,
+                "bytes": 1152,
+                "sha": "cd88bcff828d20e2e8332d19efb5274956d6cd748229e45c663b72a6e5134596"
+              },
+              "color": {
+                "count": 144,
+                "bytes": 1728,
+                "sha": "79c4cfa03b4192cc8e46274fd31d1b7c81a3151c3443b3c880cdf872a3e3aef3"
+              }
+            },
+            "index": null,
+            "triangles": 48
+          },
+          "far": {
+            "attributes": {
+              "position": {
+                "count": 108,
+                "bytes": 1296,
+                "sha": "ccc4ecbbf192e7a3c5b9451930855f4f8b44eb9b50c5cd654122b396ba6b699b"
+              },
+              "normal": {
+                "count": 108,
+                "bytes": 1296,
+                "sha": "fb90a916cd3c7131bd14569a1754e5d812220a5b59fc499bbed6a725c2ebe43c"
+              },
+              "uv": {
+                "count": 108,
+                "bytes": 864,
+                "sha": "372a302a60dfd2861874e79087c93cbcddebdd13ea7b5bb525d5d38743f6c50f"
+              },
+              "color": {
+                "count": 108,
+                "bytes": 1296,
+                "sha": "c8fdfb4b1d672859d5fe8921ec5fc362575440f37f69b0cffb4a42376740568b"
+              }
+            },
+            "index": null,
+            "triangles": 36
+          }
+        },
+        "cache": true,
+        "material": {
+          "alphaTest": 0.4,
+          "roughness": 0.92,
+          "side": 2,
+          "shadowSide": 2,
+          "shader": "(shader) => {\n    shader.fragmentShader = shader.fragmentShader.replace('#include <normal_fragment_begin>',\n      THREE.ShaderChunk.normal_fragment_begin.replace('float faceDirection = gl_FrontFacing ? 1.0 : - 1.0;', 'float faceDirection = 1.0;'));\n  }",
+          "programKey": "foliage-leaves-v1",
+          "depthMap": true
+        },
+        "texture": {
+          "size": 512,
+          "bytes": 1048576,
+          "version": 1,
+          "colorSpace": "",
+          "min": 1008,
+          "mag": 1006,
+          "mips": true,
+          "anisotropy": 2
+        },
+        "trunk": {
+          "position": "2083d4b6bd3610765848829b7e5987e39fbc4d5802c301f3ca238ae96c9e5c1c",
+          "normal": "ce351ce039ad74068dcc6d83c8b7ae18c77ff17e77ea0b6c4c4956f9255e706a"
+        },
+        "views": [
+          {
+            "view": "close",
+            "month": 7,
+            "camera": [
+              1.3,
+              2.1,
+              1.5
+            ],
+            "target": [
+              0,
+              1.9,
+              0
+            ],
+            "calls": 3,
+            "triangles": 228,
+            "textures": 3,
+            "atlasVersion": 1,
+            "lod": {
+              "near": 3,
+              "far": 0
+            },
+            "regularVisible": true,
+            "matrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "colours": "62be6bbfbebe810239fe0e169db31968f6ebbbdf34defade46a6f580a86192e9",
+            "nearMatrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "farMatrices": "cb8bfe8dd0ac1a0a9b5b974d5fa67619ff726bb31c2cf6c590e92d3904128a47"
+          },
+          {
+            "view": "normal",
+            "month": 7,
+            "camera": [
+              3.1,
+              2.2,
+              4.5
+            ],
+            "target": [
+              0,
+              1.65,
+              0
+            ],
+            "calls": 3,
+            "triangles": 228,
+            "textures": 3,
+            "atlasVersion": 1,
+            "lod": {
+              "near": 3,
+              "far": 0
+            },
+            "regularVisible": true,
+            "matrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "colours": "62be6bbfbebe810239fe0e169db31968f6ebbbdf34defade46a6f580a86192e9",
+            "nearMatrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "farMatrices": "cb8bfe8dd0ac1a0a9b5b974d5fa67619ff726bb31c2cf6c590e92d3904128a47"
+          },
+          {
+            "view": "autumn",
+            "month": 10,
+            "camera": [
+              3.1,
+              2.2,
+              4.5
+            ],
+            "target": [
+              0,
+              1.65,
+              0
+            ],
+            "calls": 3,
+            "triangles": 228,
+            "textures": 3,
+            "atlasVersion": 1,
+            "lod": {
+              "near": 3,
+              "far": 0
+            },
+            "regularVisible": true,
+            "matrices": "04764fdffcf80d4df75b712459f30929fc27e51a196a90d2b928cfb5a11528ea",
+            "colours": "873686121ad9154d075de25d702287db58ef2591b1871c354a5f68def95cd819",
+            "nearMatrices": "04764fdffcf80d4df75b712459f30929fc27e51a196a90d2b928cfb5a11528ea",
+            "farMatrices": "cb8bfe8dd0ac1a0a9b5b974d5fa67619ff726bb31c2cf6c590e92d3904128a47"
+          },
+          {
+            "view": "winter",
+            "month": 1,
+            "camera": [
+              3.1,
+              2.2,
+              4.5
+            ],
+            "target": [
+              0,
+              1.65,
+              0
+            ],
+            "calls": 2,
+            "triangles": 48,
+            "textures": 3,
+            "atlasVersion": 1,
+            "lod": {
+              "near": 3,
+              "far": 0
+            },
+            "regularVisible": false,
+            "matrices": "45befcf532d11f93a61de1f18d884bc6832f3bffc0843f2e3a25b666ff7edcd3",
+            "colours": "7d55d89af944e04ba2ad5c34f2290c0c33882735891e2b4db6f2b1ce2a090ba6",
+            "nearMatrices": "45befcf532d11f93a61de1f18d884bc6832f3bffc0843f2e3a25b666ff7edcd3",
+            "farMatrices": "cb8bfe8dd0ac1a0a9b5b974d5fa67619ff726bb31c2cf6c590e92d3904128a47"
+          },
+          {
+            "view": "lod",
+            "month": 7,
+            "camera": [
+              0,
+              3,
+              58
+            ],
+            "target": [
+              0,
+              1.65,
+              0
+            ],
+            "calls": 3,
+            "triangles": 156,
+            "textures": 3,
+            "atlasVersion": 1,
+            "lod": {
+              "near": 0,
+              "far": 3
+            },
+            "regularVisible": false,
+            "matrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "colours": "62be6bbfbebe810239fe0e169db31968f6ebbbdf34defade46a6f580a86192e9",
+            "nearMatrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "farMatrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44"
+          }
+        ]
+      },
+      "after": {
+        "samples": [
+          {
+            "size": 512,
+            "bytes": 1048576,
+            "rgba": "c802ba830c2ba89cd4a0ac25cec284f56575274d5973a28c705c0f8c1e241f1f",
+            "alpha": "4c3873436f130b1656feff9e9e9a9a4026b3234c4b791a46aea08c666c025f17",
+            "transparent": 122555,
+            "badRGB": 0,
+            "mipAlpha": [
+              "5c9fdd19a0f5a3dd44e255a085de46829c1e9c4c9ba394fbc04422cc1acaf56b",
+              "ee41f374bfb38a1baab0952f4bc0ee7acec5fa4dc7a429c80ca8d33e2b49e59e",
+              "9b1870f332906e8c37ac54d010690cb795c5714eeb1fea22b3e1a7d5c678ee1e",
+              "d1b7541dc63645a886a2cdbbe26106f805e15a98c1afba240ab06468f5b08700",
+              "6ecf5925d354359a97d0624c9f42f904681334006a2dd4112a8242d6007bf994",
+              "469642162bef7590b68676ea1434861c33b1e1a5fd3e5235b06243ad6770c855",
+              "e99ce1d3307aecea1bbbdc5c84091271bd9d2233073eec059fc97714d1205cd0",
+              "370b727999e61169ac0a9cb6bc6f44b86b0d1bd4fe6d1f4a3d4672092e210e0c",
+              "7ace431cb61584cb9b8dc7ec08cf38ac0a2d649660be86d349fb43108b542fa4"
+            ],
+            "cpuMs": 54.5999999998603,
+            "maxStepMs": 6,
+            "steps": [
+              0.29999999998835847,
+              4.599999999976717,
+              4.399999999965075,
+              6,
+              4.7000000000116415,
+              3.8999999999650754,
+              4.600000000034925,
+              3.900000000023283,
+              6,
+              3.699999999953434,
+              2.599999999976717,
+              2.3999999999650754,
+              0.5999999999767169,
+              2.800000000046566,
+              4.099999999976717
+            ],
+            "rngCount": 8961,
+            "rng": "dba33e7e8b110336de9d8ad734193a786d525a9bee5a40a219c54fd14f957945"
+          },
+          {
+            "size": 512,
+            "bytes": 1048576,
+            "rgba": "c802ba830c2ba89cd4a0ac25cec284f56575274d5973a28c705c0f8c1e241f1f",
+            "alpha": "4c3873436f130b1656feff9e9e9a9a4026b3234c4b791a46aea08c666c025f17",
+            "transparent": 122555,
+            "badRGB": 0,
+            "mipAlpha": [
+              "5c9fdd19a0f5a3dd44e255a085de46829c1e9c4c9ba394fbc04422cc1acaf56b",
+              "ee41f374bfb38a1baab0952f4bc0ee7acec5fa4dc7a429c80ca8d33e2b49e59e",
+              "9b1870f332906e8c37ac54d010690cb795c5714eeb1fea22b3e1a7d5c678ee1e",
+              "d1b7541dc63645a886a2cdbbe26106f805e15a98c1afba240ab06468f5b08700",
+              "6ecf5925d354359a97d0624c9f42f904681334006a2dd4112a8242d6007bf994",
+              "469642162bef7590b68676ea1434861c33b1e1a5fd3e5235b06243ad6770c855",
+              "e99ce1d3307aecea1bbbdc5c84091271bd9d2233073eec059fc97714d1205cd0",
+              "370b727999e61169ac0a9cb6bc6f44b86b0d1bd4fe6d1f4a3d4672092e210e0c",
+              "7ace431cb61584cb9b8dc7ec08cf38ac0a2d649660be86d349fb43108b542fa4"
+            ],
+            "cpuMs": 48.99999999982538,
+            "maxStepMs": 5.7999999999883585,
+            "steps": [
+              0.09999999997671694,
+              3.699999999953434,
+              3.7000000000116415,
+              5.7999999999883585,
+              4.199999999953434,
+              3.7000000000116415,
+              4.399999999965075,
+              3.7999999999883585,
+              4.099999999976717,
+              3.900000000023283,
+              2.6000000000349246,
+              2.400000000023283,
+              0.5,
+              2.199999999953434,
+              3.8999999999650754
+            ],
+            "rngCount": 8961,
+            "rng": "dba33e7e8b110336de9d8ad734193a786d525a9bee5a40a219c54fd14f957945"
+          },
+          {
+            "size": 512,
+            "bytes": 1048576,
+            "rgba": "c802ba830c2ba89cd4a0ac25cec284f56575274d5973a28c705c0f8c1e241f1f",
+            "alpha": "4c3873436f130b1656feff9e9e9a9a4026b3234c4b791a46aea08c666c025f17",
+            "transparent": 122555,
+            "badRGB": 0,
+            "mipAlpha": [
+              "5c9fdd19a0f5a3dd44e255a085de46829c1e9c4c9ba394fbc04422cc1acaf56b",
+              "ee41f374bfb38a1baab0952f4bc0ee7acec5fa4dc7a429c80ca8d33e2b49e59e",
+              "9b1870f332906e8c37ac54d010690cb795c5714eeb1fea22b3e1a7d5c678ee1e",
+              "d1b7541dc63645a886a2cdbbe26106f805e15a98c1afba240ab06468f5b08700",
+              "6ecf5925d354359a97d0624c9f42f904681334006a2dd4112a8242d6007bf994",
+              "469642162bef7590b68676ea1434861c33b1e1a5fd3e5235b06243ad6770c855",
+              "e99ce1d3307aecea1bbbdc5c84091271bd9d2233073eec059fc97714d1205cd0",
+              "370b727999e61169ac0a9cb6bc6f44b86b0d1bd4fe6d1f4a3d4672092e210e0c",
+              "7ace431cb61584cb9b8dc7ec08cf38ac0a2d649660be86d349fb43108b542fa4"
+            ],
+            "cpuMs": 48.10000000015134,
+            "maxStepMs": 5.400000000023283,
+            "steps": [
+              0.1000000000349246,
+              3.3999999999650754,
+              3.1000000000349246,
+              5.400000000023283,
+              4.5,
+              3.7999999999883585,
+              4.2000000000116415,
+              3.800000000046566,
+              4.199999999953434,
+              3.7000000000116415,
+              2.6000000000349246,
+              2.5,
+              0.7000000000116415,
+              2.2000000000116415,
+              3.900000000023283
+            ],
+            "rngCount": 8961,
+            "rng": "dba33e7e8b110336de9d8ad734193a786d525a9bee5a40a219c54fd14f957945"
+          }
+        ],
+        "atlasReads": 6,
+        "geometry": {
+          "tree": {
+            "attributes": {
+              "position": {
+                "count": 180,
+                "bytes": 2160,
+                "sha": "af646cedb90106a04a4559f17e47b85490c03c7884c0c475dcd88b2ba27cbb94"
+              },
+              "normal": {
+                "count": 180,
+                "bytes": 2160,
+                "sha": "26cac963b81806f97e9d5f9c2c78ad73f00f1f1d75d9c8f311b1088b8e7d856f"
+              },
+              "uv": {
+                "count": 180,
+                "bytes": 1440,
+                "sha": "ed5d3a31b4bad5eaf6d3f1b7e69ad80e4ad39f2a08baa141a2cd8550755a8de1"
+              },
+              "color": {
+                "count": 180,
+                "bytes": 2160,
+                "sha": "21af63f364d0d8b5a6384cbb5556788417e9b94085a22bc1bc3b8ef7323a3193"
+              }
+            },
+            "index": null,
+            "triangles": 60
+          },
+          "shrub": {
+            "attributes": {
+              "position": {
+                "count": 144,
+                "bytes": 1728,
+                "sha": "032d34741a798657d11fb6355b158cfbfceb01587142131943c9a41476c2e37a"
+              },
+              "normal": {
+                "count": 144,
+                "bytes": 1728,
+                "sha": "031859d1621d33f7bc84171c2b7ca1d2ca13511befbb6901041d792d69e9c0ce"
+              },
+              "uv": {
+                "count": 144,
+                "bytes": 1152,
+                "sha": "cd88bcff828d20e2e8332d19efb5274956d6cd748229e45c663b72a6e5134596"
+              },
+              "color": {
+                "count": 144,
+                "bytes": 1728,
+                "sha": "79c4cfa03b4192cc8e46274fd31d1b7c81a3151c3443b3c880cdf872a3e3aef3"
+              }
+            },
+            "index": null,
+            "triangles": 48
+          },
+          "far": {
+            "attributes": {
+              "position": {
+                "count": 108,
+                "bytes": 1296,
+                "sha": "ccc4ecbbf192e7a3c5b9451930855f4f8b44eb9b50c5cd654122b396ba6b699b"
+              },
+              "normal": {
+                "count": 108,
+                "bytes": 1296,
+                "sha": "fb90a916cd3c7131bd14569a1754e5d812220a5b59fc499bbed6a725c2ebe43c"
+              },
+              "uv": {
+                "count": 108,
+                "bytes": 864,
+                "sha": "372a302a60dfd2861874e79087c93cbcddebdd13ea7b5bb525d5d38743f6c50f"
+              },
+              "color": {
+                "count": 108,
+                "bytes": 1296,
+                "sha": "c8fdfb4b1d672859d5fe8921ec5fc362575440f37f69b0cffb4a42376740568b"
+              }
+            },
+            "index": null,
+            "triangles": 36
+          }
+        },
+        "cache": true,
+        "material": {
+          "alphaTest": 0.4,
+          "roughness": 0.92,
+          "side": 2,
+          "shadowSide": 2,
+          "shader": "(shader) => {\n    shader.fragmentShader = shader.fragmentShader.replace('#include <normal_fragment_begin>',\n      THREE.ShaderChunk.normal_fragment_begin.replace('float faceDirection = gl_FrontFacing ? 1.0 : - 1.0;', 'float faceDirection = 1.0;'));\n  }",
+          "programKey": "foliage-leaves-v1",
+          "depthMap": true
+        },
+        "texture": {
+          "size": 512,
+          "bytes": 1048576,
+          "version": 1,
+          "colorSpace": "",
+          "min": 1008,
+          "mag": 1006,
+          "mips": true,
+          "anisotropy": 2
+        },
+        "trunk": {
+          "position": "2083d4b6bd3610765848829b7e5987e39fbc4d5802c301f3ca238ae96c9e5c1c",
+          "normal": "ce351ce039ad74068dcc6d83c8b7ae18c77ff17e77ea0b6c4c4956f9255e706a"
+        },
+        "views": [
+          {
+            "view": "close",
+            "month": 7,
+            "camera": [
+              1.3,
+              2.1,
+              1.5
+            ],
+            "target": [
+              0,
+              1.9,
+              0
+            ],
+            "calls": 3,
+            "triangles": 228,
+            "textures": 3,
+            "atlasVersion": 1,
+            "lod": {
+              "near": 3,
+              "far": 0
+            },
+            "regularVisible": true,
+            "matrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "colours": "62be6bbfbebe810239fe0e169db31968f6ebbbdf34defade46a6f580a86192e9",
+            "nearMatrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "farMatrices": "cb8bfe8dd0ac1a0a9b5b974d5fa67619ff726bb31c2cf6c590e92d3904128a47"
+          },
+          {
+            "view": "normal",
+            "month": 7,
+            "camera": [
+              3.1,
+              2.2,
+              4.5
+            ],
+            "target": [
+              0,
+              1.65,
+              0
+            ],
+            "calls": 3,
+            "triangles": 228,
+            "textures": 3,
+            "atlasVersion": 1,
+            "lod": {
+              "near": 3,
+              "far": 0
+            },
+            "regularVisible": true,
+            "matrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "colours": "62be6bbfbebe810239fe0e169db31968f6ebbbdf34defade46a6f580a86192e9",
+            "nearMatrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "farMatrices": "cb8bfe8dd0ac1a0a9b5b974d5fa67619ff726bb31c2cf6c590e92d3904128a47"
+          },
+          {
+            "view": "autumn",
+            "month": 10,
+            "camera": [
+              3.1,
+              2.2,
+              4.5
+            ],
+            "target": [
+              0,
+              1.65,
+              0
+            ],
+            "calls": 3,
+            "triangles": 228,
+            "textures": 3,
+            "atlasVersion": 1,
+            "lod": {
+              "near": 3,
+              "far": 0
+            },
+            "regularVisible": true,
+            "matrices": "04764fdffcf80d4df75b712459f30929fc27e51a196a90d2b928cfb5a11528ea",
+            "colours": "873686121ad9154d075de25d702287db58ef2591b1871c354a5f68def95cd819",
+            "nearMatrices": "04764fdffcf80d4df75b712459f30929fc27e51a196a90d2b928cfb5a11528ea",
+            "farMatrices": "cb8bfe8dd0ac1a0a9b5b974d5fa67619ff726bb31c2cf6c590e92d3904128a47"
+          },
+          {
+            "view": "winter",
+            "month": 1,
+            "camera": [
+              3.1,
+              2.2,
+              4.5
+            ],
+            "target": [
+              0,
+              1.65,
+              0
+            ],
+            "calls": 2,
+            "triangles": 48,
+            "textures": 3,
+            "atlasVersion": 1,
+            "lod": {
+              "near": 3,
+              "far": 0
+            },
+            "regularVisible": false,
+            "matrices": "45befcf532d11f93a61de1f18d884bc6832f3bffc0843f2e3a25b666ff7edcd3",
+            "colours": "7d55d89af944e04ba2ad5c34f2290c0c33882735891e2b4db6f2b1ce2a090ba6",
+            "nearMatrices": "45befcf532d11f93a61de1f18d884bc6832f3bffc0843f2e3a25b666ff7edcd3",
+            "farMatrices": "cb8bfe8dd0ac1a0a9b5b974d5fa67619ff726bb31c2cf6c590e92d3904128a47"
+          },
+          {
+            "view": "lod",
+            "month": 7,
+            "camera": [
+              0,
+              3,
+              58
+            ],
+            "target": [
+              0,
+              1.65,
+              0
+            ],
+            "calls": 3,
+            "triangles": 156,
+            "textures": 3,
+            "atlasVersion": 1,
+            "lod": {
+              "near": 0,
+              "far": 3
+            },
+            "regularVisible": false,
+            "matrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "colours": "62be6bbfbebe810239fe0e169db31968f6ebbbdf34defade46a6f580a86192e9",
+            "nearMatrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44",
+            "farMatrices": "b1465a9f730f8e3b0c2fab89b20bfb9feccc5783be37d37c1b6a40105a13ec44"
+          }
+        ]
+      }
+    }
+  },
+  "source": {
+    "src/foliage.js": "e48c3532eedd293314f46d0e1507118d63901607b8ce60714dcfacdb6979a891",
+    "src/leafrgb.js": "03b84020b4859039e2971c34f1d434449e7a6b545f9724202fa07ae9ccd85823",
+    "src/config.js": "ea90efc4190f3826703ecc5ee8aac61a426f3c1a31bfb8d076486fda79bf470c",
+    "src/seasons.js": "40c3af85af4327527548f25d5754a89ee577e3bb3520a2de08f0a809c7dbcd70",
+    "src/lod.js": "994ecd57f18fa807456d81e1a8b4ddb8b06c9f8157491ce668b4b8154e9d5015",
+    "src/barksurface.js": "337ff840bc8dc86a0f886a168e58fff0dfb89e5a81612d4297d795a62f9f0fe7",
+    "tools/leafrgbtest.mjs": "cfe3795964c00f598e886f2bcba113a9604c8938ef52a4243e72f43b9421e44a",
+    "tools/leafrgb305.html": "70ef347932a400d57a9fc9b5108a796c032d8e5c1cc80cea17190468a6ec4e7a",
+    "tools/leafrgb305browser.cjs": "c47095898b0ce7cc80c9754672dd33683ff0b2c4a6da0dd7f901c72fdfa29bbe"
+  }
+}
