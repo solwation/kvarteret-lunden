@@ -1628,6 +1628,14 @@ export const FOLIAGE = {
   lod: { start: 46, end: 54, startPhone: 30, endPhone: 38, margin: 2, step: 1, trunkTint: 0.72 },
 };
 
+// #302: BARK_SURFACE — shallow near-trunk shading only; all values visual guesses.
+// Same64×128 UV/repeat as the untouched colour texture. Height spans remain sub-mm to ~1mm;
+// birch lenticels affect roughness only. Far LOD deliberately keeps no maps.
+export const BARK_SURFACE = {
+  bark: { bump: .004, groove: .28, grain: .02, bend: .30, roughness: [.90, .99], tone: .006 },
+  birch: { bump: .0015, wave: .035, fine: .014, roughness: [.84, .93], tone: .018, mark: .055 },
+};
+
 export const FENCE_HEIGHT = 1.8;
 // #214 (original #1786): how the patio / roof-terrace screen walls (skärmväggar) look: greige-olive vertical boards in a light cream frame
 // instead of a flat plane; boards, colours and post width are read by eye from Peab's courtyard render (*guess*). The thickness stays the drawn

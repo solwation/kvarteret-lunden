@@ -1,0 +1,23 @@
+{
+  "publicBase": "014f5c680bdb17595ff329dc7425cef193b3d21a",
+  "acceptedOriginalSource": "957303341e153cc4bae3993a1e773f07a79dcd17",
+  "exactInverseFoliage": true,
+  "exactInverseConfig": true,
+  "unchanged": {
+    "src/seasons.js": "40c3af85af4327527548f25d5754a89ee577e3bb3520a2de08f0a809c7dbcd70",
+    "src/lod.js": "994ecd57f18fa807456d81e1a8b4ddb8b06c9f8157491ce668b4b8154e9d5015",
+    "src/surroundings.js": "2221cfce03931b4793d7c46ecc27753b3ed0b396b3ede717c42e0e8004fafaef",
+    "src/courtyard.js": "fb070c95585c8f1cefa40e43ec91e7a1a472d9ec3fa07982ac24d1dd09122747",
+    "src/southbackdrop.js": "b1cc45154fcfd69c87bcfc2844f030b145e7d4c176710a3eb7d6f535e102341a",
+    "src/siteinstancebatch.js": "a8fca8b70bd7dc4f7399fe8d1ca4090419ee74b7cf8a4aa1fe41b7367bf10b41",
+    "src/vertexcompile.js": "3c05e3210ca47a780cc9433fa0939a7545a50bbd265a31f394793414d7eb7cbb"
+  },
+  "selectedSha256": {
+    "src/barksurface.js": "337ff840bc8dc86a0f886a168e58fff0dfb89e5a81612d4297d795a62f9f0fe7",
+    "src/foliage.js": "c45f0ba5ab6ed60cea17350ec378f66901137fc824dbd8a74cc7c1b59986fea2",
+    "src/config.js": "d1206d2f08a890a9b0493125fbf68af3b616ef60b59bbcb1d5ab87c856919fbb",
+    "tools/barksurfacetest.mjs": "b654c38d6b9435a29cf8008b728ca89e3ea7420bec621760ae8c2d3985b2697e"
+  },
+  "helperAndTestsByteIdenticalToAcceptedSource": true,
+  "configBlockExactExceptPublicIssueComment": true
+}

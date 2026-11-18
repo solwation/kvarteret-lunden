@@ -8,6 +8,8 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+Trädens bark har mycket grund ljusrelief och svagt varierad matt yta; björkens mörka märken behåller sin flata form. Effekten syns främst nära stammen, med befintliga färger, löv och fjärr-LOD kvar (#302). [Egna jämförelsebilder och budget](docs/verification/302/README.md).
+
 Den tvära backen söder om åbron har en längre, mjukt ansluten väg-/gångprofil. Brohöjder, vatten och byggnadsnivåer behålls; den nya lokala profilen är ett antagande (#301). [Kontroller, egna bilder och exakt budget](docs/verification/301/README.md).
 
 En smal trottoar följer Realgymnasiets tegelfasad vid Sankt Lars väg och ansluter vid båda gavlarna; bredd och höjd är uppskattade (#300).

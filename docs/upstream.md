@@ -3927,3 +3927,32 @@ ingen extra geometri, draw, pass eller lampa. Ingen FPS-/helvärldsprestanda på
 Selektiv publicerad originalkälla `71c55134018fb02942322c7f5d4f731cf88a3185` ([original#2077](https://github.com/solwation/lunden-3d-apartment/issues/2077)). Endast neutral cobbledCornerGeometry/import/metrisk texturperiod och byggarhook samt publicens eget cobbles-block överförs. Övrig street/config-kod bevarad exakt, inklusive publicens egna lampor. Befintlig attribution/licens gäller. Nya utbredningsankare och texturperiod är visuella antaganden. Inga originalbilder, personlig inredning/avatar/gameplay, lagring/tjänst, Cloudflare eller originalhistoria importeras.
 
 Egen faktisk publik surroundingsParts+buildStreet-browser med fyra matchade vyer och egna native-aspektbilder, tre Node-test samt npm test/build passerar. Alla övriga attribut och31gångqueries lika; noll browserfel/externa/Storageanrop, ursprungliga lagringsnamns sentineller orörda. +15trianglar/+1492geometribyte, samma mesh/material/128²canvas/draw/textur/pass/ljus och ingen ny per-framekostnad. Ingen fullWorld/FPS/fysisktelefonkontroll påstås. [Källhashar, bilder, exakta kontroller och begränsningar](verification/299/README.md).
+
+
+## Diskret barkrelief, #302
+
+Granskad publicerad originalkälla `957303341e153cc4bae3993a1e773f07a79dcd17`
+([original #2081](https://github.com/solwation/lunden-3d-apartment/issues/2081)).
+Enbart neutrala `src/barksurface.js` och tre riktade Node-test överförs byteidentiskt,
+med eget `BARK_SURFACE`-block (endast ärendenumret i kommentaren byts) samt exakt
+import/materialwrapper i publicens befintliga `barkMaterial`. Befintlig attribution och
+licens gäller. Publicens övriga config och hela färgcanvas/RNG, FOLIAGE, UV,
+stam-/lövgeometri, instanser, säsonger och LOD bevaras; återställningsjämförelser och
+källhashar finns i [urvalsbeviset](verification/302/selection.json).
+
+Barkens befintliga fåror får grund bump och mattare bottnar; björkens mörka lenticeller
+påverkar enbart roughness, aldrig håldjup. Relief och ytfinish är visuella antaganden.
+Effekten är mycket diskret och knappt synlig i helvyn. Två cachelagrade 64×128 RGBA8-kartor,
+höjd i R/absolut roughness i G, delas av vanliga och när-LOD-material: 65536 basbytes,
+87384 nominella mipbytes totalt, dessutom CPU-array/föraroverhead. Fjärr-LOD och depth
+behåller inga kartor. Inga nya geometrier, instanser, draws, pass, ljus eller
+per-frameuppladdningar; native fragmentarbete ökar för bump/roughness.
+
+Egen publik verifiering: tio riktade Node-kontroller inklusive befintlig LOD/säsong,
+npm test/build och en enda matchad browser av publicens verkliga instansade
+`barkMaterial`/`lodBarkMaterial`/`trunkGeometry`, `InstanceLod`, `registerTrees` och
+`applySeason`. Nära bark/björk, normal sommar/vinter samt LOD-zon har egna granskade
+native-aspektbilder. Noll externa anrop, Storageanrop eller browserfel; sju lagringsnamns
+sentineller i vardera local/sessionStorage är orörda. Inga originalbilder, personlig
+inredning, karaktärer, spelkod, originaltjänster, Cloudflare eller originalhistoria
+importeras. [Egna bilder, kontroller, kostnad och begränsningar](verification/302/README.md).
