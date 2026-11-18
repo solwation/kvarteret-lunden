@@ -29,7 +29,7 @@ await new Promise(r => server.listen(0, '127.0.0.1', r));
 const base = `http://127.0.0.1:${server.address().port}`;
 
 const browser = await chromium.launch({
-  executablePath: '/home/devcontainers/.local/bin/google-chrome',
+  executablePath: process.env.CHROME_PATH, // #330: no machine-specific browser path; Playwright's own Chromium by default
   headless: true,
   args: ['--no-sandbox']
 });

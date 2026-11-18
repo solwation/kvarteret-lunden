@@ -7,6 +7,10 @@ import {createHash} from 'node:crypto';
 import * as T from 'three';
 import {SITE} from '../src/config.js';
 import {houseVariant} from '../src/southbackdrop.js';
+// #330: #308 roof maps draw on a canvas while the batches are built; a generic no-op 2D-context stub keeps this a
+// geometry-only fixture (textures are not hashed; geometry, UVs and vertex colours still are).
+const context=new Proxy({getImageData:(x,y,w,h)=>({data:new Uint8ClampedArray(w*h*4)}),createImageData:(w,h)=>({data:new Uint8ClampedArray(w*h*4)})},{get:(o,k)=>k in o?o[k]:()=>({addColorStop(){}}),set:()=>true});
+globalThis.document??={createElement:()=>({width:1,height:1,getContext:()=>context})};
 const baseline='674a299',url=new URL('../src/southbackdrop.js',import.meta.url);
 const load=async text=>{assert(text.includes(' yield .9;'));text=text.replace(' yield .9;',' return group;'); // stop after the four real mesh batches, before canvas leaf-atlas/trees
  text=text.replace(/from\s+(['"])([^'"]+)\1/g,(_,q,dep)=>`from ${q}${dep.startsWith('.')?new URL(dep,url).href:import.meta.resolve(dep)}${q}`);return import('data:text/javascript;base64,'+Buffer.from(text).toString('base64'));};

@@ -1,7 +1,10 @@
 // Public #160: actual emitted southern edge/ramp and gamma-correct grass mean on a known canvas fixture.
 import test from 'node:test';import assert from 'node:assert/strict';import{readFileSync,writeFileSync}from'node:fs';import{createHash}from'node:crypto';import * as T from'three';import{SITE,GRASS}from'../src/config.js';
 const fixture=new Uint8ClampedArray(GRASS.textureSize**2*4);for(let i=0;i<fixture.length;i+=4)fixture.set([128,160,192,255],i);
-globalThis.document={createElement:()=>({width:1,height:1,getContext:()=>({createImageData:(w,h)=>({data:new Uint8ClampedArray(w*h*4)}),putImageData(){},getImageData:()=>({data:fixture}),beginPath(){},moveTo(){},lineTo(){},stroke(){}})})};
+// #330: a generic 2D-context stub (any other drawing call is a no-op, gradients accept stops) so later texture detail such as
+// #306's grass tufts cannot break this fixture; every readback returns a fresh copy of the known canvas samples.
+const context=new Proxy({createImageData:(w,h)=>({data:new Uint8ClampedArray(w*h*4)}),getImageData:()=>({data:fixture.slice()})},{get:(o,k)=>k in o?o[k]:()=>({addColorStop(){}}),set:()=>true});
+globalThis.document={createElement:()=>({width:1,height:1,getContext:()=>context})};
 const load=async(file,extra='',stop=false)=>{const u=new URL('../src/'+file,import.meta.url);let s=readFileSync(u,'utf8')+extra;if(stop)s=s.replace(' yield .9;',' return group;');s=s.replace(/from\s+(['"])([^'"]+)\1/g,(_,q,d)=>`from ${q}${d.startsWith('.')?new URL(d,u).href:import.meta.resolve(d)}${q}`);return import('data:text/javascript;base64,'+Buffer.from(s).toString('base64'));};
 const{grassMeanColor}=await import('../src/grass.js'),terrain=await load('surroundings.js','\nexport {terrainGeometry};');const terrainGeo=terrain.terrainGeometry(),ground=Object.assign(terrain.renderedTerrainY,{grid:terrain.renderedTerrainY.grid,surfaceGrid:terrain.renderedTerrainY.surfaceGrid}),south=await load('southbackdrop.js','',true),group=south.buildSouthBackdrop(ground),land=group.getObjectByName('south-land'),p=land.geometry.attributes.position,ramp=[];
 for(let i=0;i<p.count;i+=3){const t=[0,1,2].map(k=>[p.getX(i+k),p.getY(i+k),p.getZ(i+k)]);if(t.every(q=>q[2]===460||q[2]===472)&&t.some(q=>q[1]>-3.006))ramp.push(...t.flat());}
