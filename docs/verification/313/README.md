@@ -37,3 +37,5 @@ Kontroller
 
 Begränsningar: skolgårdarnas bänkar ligger i andra batchar och är omärkta (som i originalet). Ådringen syns främst nära;
 den tonar mot sitt medel när linjerna blir mindre än en pixel.
+
+Publicering: Pages success på `a9476b7`; inbäddade bild-URL:er HTTP 200 före stängning.
