@@ -4266,3 +4266,21 @@ publicens regel: 0 tända. Tv-flimret kräver dessutom upprepade `update`-anrop 
 alltså inte ändra en enda pixel eller färg i appen, bara lägga till död kod och konfiguration; `windowschedule.js`,
 `WINDOW_SCHEDULE`, testerna och browserverktyget har inte förts över. Om publicen senare får en kvälls-/nattvy ska #2120
 föras över tillsammans med den. Publicens egna fönsterljus, renderbudget och lagring är oförändrade.
+
+
+## Brunnslock och dagvattengaller, #319
+
+Granskad publicerad originalkälla `cfc519b428d02d1c84369d85e62374d54a3ffeac`
+(accepterad `36005ad16fb48b6fb4bfc626abb08eb27c9d9bca`,
+[original #2121](https://github.com/solwation/lunden-3d-apartment/issues/2121)).
+`src/drains.js` överförs utan originalets #2099-koppling (publicen saknar `wetground.js`, regn och blöt mark): materialet
+är alltid det enkla vertexfärgade, utan egen kompileringskrok. Övrig placering och geometri är byteidentisk.
+`STREET_DRAINS` ligger i ett eget block efter `STREET_WEAR`; i publicens `street.js` tillkommer import och tre rader
+efter lagningarna (markfunktionen heter `drainGround` eftersom publicens `buildStreet` redan har en `roadGround`).
+Publicens `roads.js`, `seasons.js` och `SITE.street`/`STREET_WEAR`/`COURTYARD` gav samma tillåtna platser som i
+originalet: 7 lock, 25 galler i rännstenen, 3 gårdsgaller. Testet anpassas (ingen våt-assert) och browserverktyget är eget.
+Ingen originalbild, inredning, avatar, gameplay, lagring, tjänst, Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: `node --test tools/drainstest.mjs` 6/6 mot publicens geometri, npm test/build och en egen före/efter-browser
+(gata, lock, galler, Karpvägen, gård) med +1 draw, +2564 trianglar, 0 texturer, 0 program, noll fel och externa anrop,
+lagring bevarad. [Egna bilder, kontroller och kostnad](verification/319/README.md).

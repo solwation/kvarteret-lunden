@@ -1,0 +1,204 @@
+{
+ "baseline": "d190248b5c94c936870e0f2ef3d7ebaf107f67c7",
+ "viewport": [
+  1200,
+  800
+ ],
+ "views": {
+  "street": [
+   -6,
+   -28.6,
+   1.5707963267948966,
+   -0.19198621771937624,
+   0
+  ],
+  "manhole": [
+   -21.6,
+   -27,
+   1.5707963267948966,
+   -0.7853981633974483,
+   0
+  ],
+  "gully": [
+   -12.2,
+   -29.1,
+   1.5707963267948966,
+   -0.7853981633974483,
+   0
+  ],
+  "karpvagen": [
+   -75.8,
+   -14,
+   3.141592653589793,
+   -0.20943951023931956,
+   0
+  ],
+  "courtyard": [
+   -27.5,
+   20,
+   0,
+   -0.7853981633974483,
+   0
+  ]
+ },
+ "phases": {
+  "before": {
+   "meshes": 1361,
+   "drains": null,
+   "loadMs": 43897,
+   "storage": "kept",
+   "views": {
+    "street": {
+     "camera": [
+      -6,
+      1.62,
+      -28.6
+     ],
+     "calls": 122,
+     "triangles": 591791,
+     "textures": 66,
+     "geometries": 526,
+     "programs": 58
+    },
+    "manhole": {
+     "camera": [
+      -21.6,
+      1.62,
+      -27
+     ],
+     "calls": 34,
+     "triangles": 401842,
+     "textures": 66,
+     "geometries": 526,
+     "programs": 58
+    },
+    "gully": {
+     "camera": [
+      -12.2,
+      1.62,
+      -29.1
+     ],
+     "calls": 48,
+     "triangles": 440781,
+     "textures": 66,
+     "geometries": 526,
+     "programs": 58
+    },
+    "karpvagen": {
+     "camera": [
+      -75.8,
+      1.62,
+      -14
+     ],
+     "calls": 123,
+     "triangles": 668143,
+     "textures": 67,
+     "geometries": 544,
+     "programs": 60
+    },
+    "courtyard": {
+     "camera": [
+      -27.5,
+      1.62,
+      20
+     ],
+     "calls": 83,
+     "triangles": 548342,
+     "textures": 67,
+     "geometries": 556,
+     "programs": 60
+    }
+   }
+  },
+  "after": {
+   "meshes": 1362,
+   "drains": {
+    "parent": "street-details",
+    "triangles": 2564,
+    "attributes": [
+     "color",
+     "normal",
+     "position"
+    ],
+    "visible": true,
+    "castShadow": false,
+    "map": false,
+    "key": "onBeforeCompile( /* shaderobject, renderer */ ) {}",
+    "box": [
+     -79.79,
+     -2.98,
+     -29.98,
+     28.98,
+     0.02,
+     83.84
+    ]
+   },
+   "loadMs": 58781,
+   "storage": "kept",
+   "views": {
+    "street": {
+     "camera": [
+      -6,
+      1.62,
+      -28.6
+     ],
+     "calls": 123,
+     "triangles": 594355,
+     "textures": 66,
+     "geometries": 527,
+     "programs": 58
+    },
+    "manhole": {
+     "camera": [
+      -21.6,
+      1.62,
+      -27
+     ],
+     "calls": 35,
+     "triangles": 404406,
+     "textures": 66,
+     "geometries": 527,
+     "programs": 58
+    },
+    "gully": {
+     "camera": [
+      -12.2,
+      1.62,
+      -29.1
+     ],
+     "calls": 49,
+     "triangles": 443345,
+     "textures": 66,
+     "geometries": 527,
+     "programs": 58
+    },
+    "karpvagen": {
+     "camera": [
+      -75.8,
+      1.62,
+      -14
+     ],
+     "calls": 124,
+     "triangles": 670707,
+     "textures": 67,
+     "geometries": 545,
+     "programs": 60
+    },
+    "courtyard": {
+     "camera": [
+      -27.5,
+      1.62,
+      20
+     ],
+     "calls": 84,
+     "triangles": 550906,
+     "textures": 67,
+     "geometries": 557,
+     "programs": 60
+    }
+   }
+  }
+ },
+ "errors": [],
+ "external": []
+}
