@@ -56,3 +56,5 @@ lazily första höstmånaden; säsongsbytet inklusive bakningen tog 76 ms i Swif
 Gränser: placeringen är en *guess*; löven är platt albedo/grovhet (ingen relief, ingen vind, de rör sig inte när man går);
 kartan täcker bara WALK. Publiken har ingen blöt mark (#2099 endast original), så inga våta löv. Utan `?month=` visar publiken
 sommar, så löven syns bara med `?month=9`–`11`. Mobilprofilen är verifierad i nodtestet, inte på en verklig telefon.
+
+Publicering: Pages success på `b2d14e4` (efter integrationsrättning av `6b79f6b`); inbäddade bild-URL:er HTTP 200 före stängning.
