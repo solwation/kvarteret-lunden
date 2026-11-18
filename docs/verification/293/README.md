@@ -90,3 +90,7 @@ här; README beskriver det synliga resultatet.
 ## Integration
 
 Samtliga tidigare main config-/README-bytes bevarades med enbart namngivna293-tillägg. Tegelkonsument/neutralmodul/fixtur är byteidentiska med fångad arbetarkälla1fd5c60. Fulla config-/byggfingeravtryck där är historiska efter orelaterad292integration; källbunden browser återanvänds. Integrerat npm test/build körs före publicering.
+
+## Publicering
+
+Kod/bilder `220100a53a59c97f29ae5b28f3166dc2dc2814b0`; faktiska run-ID [44266053977] success på exakt revision. Alla bilder HTTP200 och inbäddade före stängning: https://github.com/solwation/kvarteret-lunden/issues/293#issuecomment-6973072186. Slutkvittot ändrar inte appkällan; dess separata Pages-run följs av dirigenten.
