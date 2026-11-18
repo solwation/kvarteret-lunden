@@ -39,3 +39,5 @@ Ej tillämpligt: originalets blöta lager (#2099, `wetground.js`), regnvyn och t
 varken väder eller blöt mark, så alla profiler använder samma enkla material.
 
 Begränsningar: platser, mått och färger är antaganden utan dagvattenritning. Locken har ingen kollision och påverkar inte gång.
+
+Publicering: Pages success på `b109a00`; inbäddade bild-URL:er HTTP 200 före stängning.
