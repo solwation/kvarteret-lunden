@@ -51,3 +51,5 @@ instansbatchboxarna vidgas med `maxDisplacement` 0,35 m.
 
 Stammar, klätterväxter, södra skogsranden, klippta häckar och övriga lövklungor rör sig inte (samma omfång som originalet).
 Ingen vinddata finns; alla värden är visuella *gissningar*. Inte testat på fysisk Iris 640 eller telefon.
+
+Publicering: Pages success på `a9ba9d9`; inbäddade bild-URL:er HTTP 200 före stängning.
