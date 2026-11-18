@@ -77,3 +77,7 @@ npm run build
 Endast de granskade parade bilderna behålls; lösa före-/efterbilder tas bort av kontrollen.
 Dirigenten ansvarar för publicering, SHA-pinnad bildkommentar före stängning och faktisk
 Pages-verifiering. Ingen appändringslogg finns i public; README beskriver förbättringen.
+
+## Publicering
+
+Kod/bilder `e4e9f8544997a8575fc53dfcf120d1095c483bad`. Pages44264253076 success på exakt revision, båda bilder HTTP200 och inbäddade före stängning: https://github.com/solwation/kvarteret-lunden/issues/291#issuecomment-6972813586. Dokumentkvittot ändrar inte appkällan; dess separata utlösta run följs av dirigenten.
