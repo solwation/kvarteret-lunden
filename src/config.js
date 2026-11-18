@@ -2330,6 +2330,8 @@ export const STREET_DRAINS = {
   // sRGB: frame / cover / raised studs and bars (worn bright) / the dark slots
   colors: { rim: 0x26272a, cover: 0x3b3c3e, raised: 0x5a5b5e, bars: 0x4b4c4f, hole: 0x0c0c0d },
   roughness: 0.5, metalness: 0.45,
+};
+
 // #317 (original #2105, 9113aa3 + #2118 dd9088d0): fallen autumn leaves on the outdoor ground (src/leaflitter.js): a fragment
 // patch chained onto the lit ground materials (the lawns via grass.js; asphalt #294/#316, gravel #312, paving #296, kerbs,
 // cobbles, the zebra's paint, the courtyard's paving/brick, the park's paths and the backdrops' access paths) draws small
