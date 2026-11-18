@@ -116,3 +116,7 @@ trimApproach använder byggarens native default, ingen ombyggnad av hela southBa
 Äldre terräng-/kontextoregelbundenheter vid skarvar och äldre matthetsskillnad är kvar.
 Inga globala enhets-/FPS-/flödessimulerings-/surveyanspråk. Egna processer/lås stoppade
 efter körningen. Publicering, riktiga Pages-resultat och HTTP-bilder sköts av integratorn.
+
+## Integrationsgranskning
+
+Dirigenten har öppnat samtliga tre egna slutark och granskat selektiv diff, bevarande och budget. Alla testade produkt-/fixturebytes utom fristående configtillägg är byteidentiska; accepterad config behåller bark/sol och får endast RIVER_SURFACE. Delade dokument är exakt tidigare accepterade bytes plus portens namngivna tillägg. Befintligt grönt källbundet underlag återanvänds utan nya breda tester/browseromtag.
