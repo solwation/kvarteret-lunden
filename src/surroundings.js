@@ -25,6 +25,7 @@ import { paneTints } from './glasspanes.js';
 import { railMetal } from './railmetal.js';
 import { registerTrees, registerSnow } from './seasons.js';
 import { asphaltMaterial, asphaltUV } from './asphaltsurface.js';
+import { addRoadFrame } from './streetwear.js';
 import { lobeGeometry, leafMaterial, trunkGeometry, barkMaterial, lodLeafMaterial, lodBarkMaterial, lodFarTrunkMaterial } from './foliage.js';
 import { InstanceLod, lodRange } from './lod.js'; // public #284 (original #1958)
 import { buildStreet } from './street.js';
@@ -1830,8 +1831,8 @@ export function* surroundingsParts({ grass, husL = null }) {
       return grid.Z[j]<SOUTH_BANK.fade[1]&&grid.Z[j+1]>SOUTH_BANK.start&&Math.abs(x-southBankCentre(z))<reach+(grid.X[i+1]-grid.X[i])/2?surface.refined(i,j):1;
     }};
   };
-  const asphalt = [...S.roads, { x0: gd.drive, x1: gd.x + 0.05, z0: gd.z0 - 0.5, z1: gd.z1 + 0.5 }].flatMap((r) => r.path ? [pathStrip(r, (w) => -w / 2, (w) => w / 2, 0.012, roadGround)]
-    : r.fillets ? r.fillets.map((f) => filletGeometry(f, 0.012, groundY)) : [groundStrip(r.x0, r.x1, r.z0, r.z1, 0.012)]);
+  const asphalt = [...S.roads, { x0: gd.drive, x1: gd.x + 0.05, z0: gd.z0 - 0.5, z1: gd.z1 + 0.5 }].flatMap((r) => r.path ? [addRoadFrame(pathStrip(r, (w) => -w / 2, (w) => w / 2, 0.012, roadGround), r)]
+    : (r.fillets ? r.fillets.map((f) => filletGeometry(f, 0.012, groundY)) : [groundStrip(r.x0, r.x1, r.z0, r.z1, 0.012)]).map((g) => addRoadFrame(g, null))); // #316 (original #2103): lanes per own road only
   const walkingRoad=flat(asphalt.map(asphaltUV), asphaltMaterial(), 0xd9dfe4); // ploughed, a little grey; damp (#128)
   // pavements along the roads (left out where they would lie on another road's asphalt: a junction's mouth)
   const pavementClip=(road)=>road.name==='Sankt Lars väg'?c=>roadBridgeSpan(c.reduce((s,p)=>s+p[0],0)/4,c.reduce((s,p)=>s+p[1],0)/4)||c.every(([x,z])=>onRoad(x,z,-.05,road)):true;

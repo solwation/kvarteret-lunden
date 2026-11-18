@@ -1,0 +1,269 @@
+{
+ "baseline": "7911f304e3c1ac8bfed0e05347598da1ff277c13",
+ "viewport": [
+  1200,
+  800
+ ],
+ "views": {
+  "street": [
+   -6,
+   -28.6,
+   1.5707963267948966,
+   -0.19198621771937624,
+   0
+  ],
+  "intersection": [
+   4,
+   -26.2,
+   -1.3089969389957472,
+   -0.22689280275926285,
+   0
+  ],
+  "zebra": [
+   11,
+   -22.3,
+   0,
+   -0.6981317007977318,
+   0
+  ],
+  "near": [
+   -17,
+   -27.2,
+   1.6580627893946132,
+   -0.6632251157578453,
+   0
+  ]
+ },
+ "phases": {
+  "before": {
+   "meshes": 1361,
+   "worn": [],
+   "road": {
+    "name": "local-asphalt",
+    "vertices": 14205,
+    "attributes": [
+     "normal",
+     "position",
+     "uv"
+    ],
+    "receiveShadow": true,
+    "castShadow": false,
+    "box": [
+     -256.61,
+     -2.99,
+     -294.46,
+     30.02,
+     6.21,
+     189
+    ]
+   },
+   "patches": {
+    "name": "",
+    "vertices": 36,
+    "attributes": [
+     "normal",
+     "position"
+    ],
+    "receiveShadow": true,
+    "castShadow": false,
+    "box": [
+     -56.5,
+     0.02,
+     -29.2,
+     26.7,
+     0.02,
+     -10.25
+    ]
+   },
+   "zebra": {
+    "name": "",
+    "vertices": 180,
+    "attributes": [
+     "normal",
+     "position"
+    ],
+    "receiveShadow": true,
+    "castShadow": false,
+    "box": [
+     9.5,
+     -2.94,
+     -29.75,
+     28.15,
+     0.02,
+     82.5
+    ]
+   },
+   "loadMs": 32454,
+   "storage": "kept",
+   "views": {
+    "street": {
+     "camera": [
+      -6,
+      1.62,
+      -28.6
+     ],
+     "calls": 122,
+     "triangles": 591629,
+     "textures": 66,
+     "geometries": 526,
+     "programs": 55
+    },
+    "intersection": {
+     "camera": [
+      4,
+      1.62,
+      -26.2
+     ],
+     "calls": 52,
+     "triangles": 510538,
+     "textures": 69,
+     "geometries": 536,
+     "programs": 55
+    },
+    "zebra": {
+     "camera": [
+      11,
+      1.62,
+      -22.3
+     ],
+     "calls": 34,
+     "triangles": 366527,
+     "textures": 69,
+     "geometries": 537,
+     "programs": 55
+    },
+    "near": {
+     "camera": [
+      -17,
+      1.62,
+      -27.2
+     ],
+     "calls": 60,
+     "triangles": 495227,
+     "textures": 69,
+     "geometries": 537,
+     "programs": 55
+    }
+   }
+  },
+  "after": {
+   "meshes": 1361,
+   "worn": [
+    "local-asphalt",
+    "street-zebra"
+   ],
+   "road": {
+    "name": "local-asphalt",
+    "vertices": 14205,
+    "attributes": [
+     "normal",
+     "position",
+     "roadFrame",
+     "uv"
+    ],
+    "receiveShadow": true,
+    "castShadow": false,
+    "box": [
+     -256.61,
+     -2.99,
+     -294.46,
+     30.02,
+     6.21,
+     189
+    ]
+   },
+   "patches": {
+    "name": "street-asphalt-patches",
+    "vertices": 54,
+    "attributes": [
+     "normal",
+     "position",
+     "uv"
+    ],
+    "receiveShadow": true,
+    "castShadow": false,
+    "box": [
+     -56.5,
+     0.02,
+     -29.2,
+     26.7,
+     0.02,
+     -3.35
+    ]
+   },
+   "zebra": {
+    "name": "street-zebra",
+    "vertices": 180,
+    "attributes": [
+     "normal",
+     "position",
+     "roadFrame"
+    ],
+    "receiveShadow": true,
+    "castShadow": false,
+    "box": [
+     9.5,
+     -2.94,
+     -29.75,
+     28.15,
+     0.02,
+     82.5
+    ]
+   },
+   "loadMs": 45911,
+   "storage": "kept",
+   "views": {
+    "street": {
+     "camera": [
+      -6,
+      1.62,
+      -28.6
+     ],
+     "calls": 122,
+     "triangles": 591635,
+     "textures": 66,
+     "geometries": 526,
+     "programs": 56
+    },
+    "intersection": {
+     "camera": [
+      4,
+      1.62,
+      -26.2
+     ],
+     "calls": 52,
+     "triangles": 510544,
+     "textures": 69,
+     "geometries": 536,
+     "programs": 56
+    },
+    "zebra": {
+     "camera": [
+      11,
+      1.62,
+      -22.3
+     ],
+     "calls": 34,
+     "triangles": 366533,
+     "textures": 69,
+     "geometries": 537,
+     "programs": 56
+    },
+    "near": {
+     "camera": [
+      -17,
+      1.62,
+      -27.2
+     ],
+     "calls": 60,
+     "triangles": 495233,
+     "textures": 69,
+     "geometries": 537,
+     "programs": 56
+    }
+   }
+  }
+ },
+ "errors": [],
+ "external": []
+}

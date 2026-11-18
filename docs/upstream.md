@@ -4204,3 +4204,25 @@ avatar, gameplay, lagring, tjänst, Cloudflare eller originalhistoria importeras
 Egen verifiering: `node --test tools/rendersurfacetest.mjs` 6/6, npm test/build och en egen före/efter-browser i den
 riktiga appen (Hus L gata/loftgång/terrass, Hus A loggia, Hus C på avstånd, dag) med oförändrade draws, +2 små
 texturer, medelton per vy inom 0,3 % och noll fel/externa anrop. [Egna bilder, kontroller och kostnad](verification/311/README.md).
+
+
+## Slitna gator: hjulspår, sprickor, lagningar och slitet övergångsställe, #316
+
+Granskad originalkälla `d9be131c19e56399fe5b7e0b4cba9afd3dfb868b` (implementation) med efterföljande dokumentationscommits
+`5bf53f3d`, `7ce3213d`, `774f42ef`, `5fc56ee0` ([original #2103](https://github.com/solwation/lunden-3d-apartment/issues/2103)).
+Överfört: byteidentisk `src/streetwear.js` (`roadFrameAt`, `addRoadFrame`, `trackWeight`, `streetWear` för `asphalt`/`paint`),
+ett eget `STREET_WEAR`-block i `src/config.js` direkt efter `ASPHALT_SURFACE` och konsumentraderna i `asphaltsurface.js`
+(slitaget kedjat efter #294:s ballastton), `surroundings.js` (attributet `roadFrame` på vägremsorna: egen vägs körfält per
+`path`-väg, inga körfält på fillets/parkeringsytan) och `street.js` (lagningarna med asfaltens delade ballastkartor och tre
+extra lagningar, det slitna övergångsstället med `roadFrame`). Publicens funktionskroppar var identiska med originalets bas
+utöver att publiken saknar #2099:s blöta mark (`wetground.js`, endast original): kedjan är här ballast → slitage, utan
+blött lager, och regnvyn är ej tillämplig (publiken har inget väder). `bridgeheadGroundRect` (publikens namn på
+originalets `groundRect`) lämnas orörd. Modulens kommentarer om #2099 gäller bara originalet. Node-testet är originalets
+funktionsnivåtest med programnycklarna `asphalt-surface-2072|wear2103-asphalt` resp. `…|wear2103-paint` utan blött steg;
+browserverktyget är eget. Ingen originalbild, ändringslogg, inredning, avatar, gameplay, lagring, tjänst, Cloudflare eller
+originalhistoria importeras.
+
+Egen verifiering: `node --test tools/streetweartest.mjs` 5/5, npm test/build och en egen före/efter-browser i den riktiga
+appen (Sankt Lars väg, korsningen med övergångsstället, ned mot övergångsstället, nära vägyta; dag) med samma meshantal,
+vägens och övergångsställets geometri/gränser/skuggor, draws och texturer, +6 trianglar (tre lagningar), +1 program och noll
+fel/externa anrop. [Egna bilder, kontroller och kostnad](verification/316/README.md).

@@ -22,6 +22,8 @@ Bänkarna på gården, under pergolorna och i busskuren har ådring längs varje
 
 Avståndsdiset har luftperspektiv: lite blåare på mellanavstånd och ljust mot den fasta himmelsfärgen vid full dimma, utan väder eller varm sida mot solen; närområdet under 200 m och renderbudgeten är oförändrade (#314). [Egna jämförelsebilder och kontroller](docs/verification/314/README.md).
 
+Gatorna ser använda ut: svagt mörkare och blankare hjulspår, enstaka smala sprickor (några tätade med svart bitumen), sprickor längs vägkanten, fler och mer verklighetstrogna lagningar och övergångsställets vita fält slitna där hjulen går, med samma vägbredder, kantstenar, gångbarhet och draws (#316). [Egna jämförelsebilder och kontroller](docs/verification/316/README.md).
+
 Gräsmattorna har mjuka torrare och frodigare fläckar och små tuvor, och mönstret upprepas mindre på 10–20 m håll; medelfärgen på håll, säsonger och snö är oförändrade (#306). [Egna jämförelsebilder och kontroller](docs/verification/306/README.md).
 
 Fasadernas ogenomskinliga fönsterglas har en lugn himmelsreflex: varje ruta skiftar lite i ljushet och ton och är ljusare upptill. Genomsiktligt glas, karmar, nattfönster och renderbudget är oförändrade (#307). [Egna jämförelsebilder dag/natt och kontroller](docs/verification/307/README.md).
