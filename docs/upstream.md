@@ -1,5 +1,40 @@
 # Förbättringar från originalet
 
+## Små stenkorn i den lokala asfalten, #294
+
+Selektiv originalkälla `a6bc5b371e52e8bf4d8cba500bcd2790ab9a8858`
+([original #2072](https://github.com/solwation/lunden-3d-apartment/issues/2072));
+publicerat kod-/bildpaket `f825773e60e33a7d8af2ba914336d61707ec0a5b`.
+Endast neutrala `asphaltsurface.js`, dess tre material-/UV-/säsongstest,
+`ASPHALT_SURFACE` och anropet för publicens egen `walkingRoad` överförs.
+Helper och Node-test är byteidentiska med vald källa. Befintliga publika
+`seasons.js`/`vertexcompile.js` ger redan de nödvändiga API:erna och ändras inte.
+Inga originalplaner, bilder, personlig data, möbler, gameplay, lagring, tjänster,
+Cloudflare, changelog eller historik kopieras. Befintlig attribution/licens gäller.
+
+Publicens lokala asfalt behåller baspaletten `COLORS.asphalt`; delade deterministiska
+korn färgas kring den. Två 512² RGBA-kartor ger sRGB-färg och linjär packad höjd (R)/
+absolut roughness (G). UV är vägens X/Z-meter, samma 1,6 m repeat över remsor/fillets.
+Ungefär 7 mm korn, 0,45 mm bump, roughness 0,69–0,88 och två svaga metriska sinustermer
+med ±3,5% färgvariation är visuella antaganden, inte uppmätt slitning, lagning eller skada.
+Trilinjära mippar/anisotropi 4 dämpar korn på håll. Fragmenthooken behåller native vertex-
+policy, bounds och skugggeometri. Originalets övriga vägmaterial förs inte över.
+
+Befintlig `flat`/`registerSnow` äger fortsatt vinterfärg och färgkarta. Bara det nya
+materialet tar via befintlig `registerSeasonal` bort bump/roughness och återgår till
+roughness 0,7 under snö; sommar återställer exakt samma cachekartor. Bred tonvariation
+ligger under `USE_MAP` och försvinner också. Ingen delad vinterfunktion ändras.
+Publicens vägkoordinater, höjder, fogar, markeringar, `walkingRoad`-referens till
+walkingSupport och navigering består; bro-/fjärrväg och trottoarmaterial ändras inte.
+
+Exakt tillägg: två texturer, 2 097 152 basbyte / 2 796 200 byte med alla mipnivåer.
+Befintlig UV ersätts med samma byteantal; position/normal/index är identiska. Ingen ny
+geometri, draw, lampa, pass eller uppladdning per bildruta. Native bump-/roughnesssampling
+och två fragmentsinusberäkningar ökar arbetet; inget FPS-påstående.
+Egen verifiering: npm test/build, tre riktade Node-test + befintliga publika roadends,
+en matchad faktisk publik vägbyggare vid närvy/gånghöjd/avstånd/vinter/återställd sommar,
+budget och nät-/lagringsisolering. [Egna granskade bilder, källhashar och gränser](verification/294/README.md).
+
 ## Grunda kakelfogar och mattare fogytor, #292
 
 Selektiv exakt källa `0fd6db633ed861c1f8cf3d1f1829630b3b5963df`
