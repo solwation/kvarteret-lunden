@@ -45,3 +45,7 @@ Alla fem slutliga bildpar öppnade och granskade. Huset och sammanhängande nya 
 ![Snö](winter.jpg)
 
 Endast ovan beskrivna komponent/rutt är browserverifierad. Måtten är uppskattningar; ingen uppmätt trottoarhöjd eller exakt verklig gatubredd påstås. Egna processer/server/browserlås stoppade. Dirigenten hanterar publicering, CI/Pages och revisionsbundna HTTP-bilder i ärendet före stängning.
+
+## Publicering
+
+Kod/bilder `0fb7a202dbbecd2f785a70ddb0f1fd137a538d85`; faktiska run-ID [44278244226] success på exakt revision. Alla bilder HTTP200 och inbäddade före stängning: https://github.com/solwation/kvarteret-lunden/issues/300#issuecomment-6974778892. Slutkvittot ändrar inte appkällan; dess separata Pages-run följs av dirigenten.
