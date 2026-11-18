@@ -1,5 +1,27 @@
 # Förbättringar från originalet
 
+## Solpanelernas celler och glas, #304
+
+Granskad accepterad publicerad originalkälla `4c82da2a0cdd5fe2392a3c5eb8c3da6237952e38`
+([original #2083](https://github.com/solwation/lunden-3d-apartment/issues/2083)). Bara neutrala
+`solarsurface.js` (byteidentisk), deklarationen `SOLAR_SURFACE` med egen kommentar och tre
+avsedda exteriorställen (import, pretiltUV, panelmaterial) överförs. Exakta granskade filhashar,
+urval och egna verifierade publicbytes i [#304-verifieringen](verification/304/README.md).
+Ingen annan originalconfig, bild, personlig resurs, avatar/spel-/tjänstekod eller historik hämtas.
+
+L:s12befintliga boxar har diskreta cellmellanrum, tunna ledare och lugn glasroughness bara på
+ovansidan; färgpalett/metalness, sidornas släta färg/Float32roughness, alla position/normal/index,
+12tri/box, placering/lutning/lyft, takgång/kollision och batch är kvar. Detaljskalor är konstnärliga
+gissningar, ingen verifierad panelmodell. A/B/C saknar konsumenten, Nordicboxar/villatakens quads
+använder andra delade material och lämnas byteoförändrade. Effekten förblir mycket diskret i helvy.
+
+Egna3nativefall, npm test157moduler/build och en egen faktisk public buildExterior-browser med
+granskad native när-/hel takvy passerar. Sju originalnamnrymdssentineller orörda, noll lagringsanrop,
+externa anrop och fel. Samma13/45calls och32397/85539ritade trianglar. Två cachedkartor256²/128²
+tillför327680CPU/basbyte och436904nominella GPUbyte med mippar. Geometri/UVbyte och draw/pass/ljus
+är oförändrade; inget per-frameupload. Ingen global FPS-/mobil-/fullappnavigationsverifiering påstås.
+
+
 ## Flackare södra broanslutning, #301
 
 Granskad publicerad originalkälla `bc00a3e5b30fbacec71ec8ea76142ba9b16391eb`

@@ -18,6 +18,14 @@ konkret materiell risk; ta bara om felaktiga kamerapositioner. Befintliga snabba
 `npm test`/bygge och automatisk Pages-status kvarstår; dokument kräver ingen ny
 livebrowserkontroll av oförändrad app.
 
+## Solpanelernas celler och glas, #304
+
+Tre riktade nativefall, npm test/build och en egen faktisk public buildExterior-browser passerar.
+Matchade native när-/hel takvyer öppnade och granskade. Oförändrade position/normal/index/non-panelUV,
+takgång/kollision och drawbudget. Sju syntetiska sentineller orörda, noll lagringsanrop/externa anrop/fel.
+Två små delade kartor327680basbyte/436904mipbyte tillkommer; effekten är mörk och diskret på håll.
+[Urval, exakta sourcehashar, bilder och gränser](verification/304/README.md).
+
 ## Flackare södra broanslutning, #301
 
 Egen produktionbuildSurroundings-browser med tre matchade nativevyer och riktiga publika
