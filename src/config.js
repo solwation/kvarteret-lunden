@@ -2556,6 +2556,16 @@ manual: [
   ]
 };
 
+// Aerial perspective (public #314, from original #2100 c54c3b6, src/aerialhaze.js): the distance fog's colour and curve. Same
+// artistic *guesses* as the original (not measured). `blue` multiplies the (linear) fog/background colour for the mid-distance
+// haze (peak at half fog; full fog stays the flat background colour so far silhouettes melt into it); the fog curve between near
+// and far blends three's smoothstep towards a normalised exponential of steepness `k` with weight `w` (this static view is always
+// a clear day: `clear.w`). Not applicable here: `scatter` (the original's sky-shader halo round a low sun; amount 0, as this
+// view's background is a flat colour and its fixed sun is high, so a warm term would only part the haze from the sky) and the
+// weather (`overcast`, `overcastBlue` kept only because the shared module reads them).
+export const HAZE = { blue: [0.6, 0.76, 1.08], overcastBlue: 0.8, scatter: { color: [1, 0.86, 0.66], amount: 0 }, k: 2.2,
+  clear: { w: 0.35 }, overcast: { w: 0.85 } };
+
 // Shared clipped hedge relief and colours; all visual assumptions, reviewed from upstream #1143.
 export const HEDGE = {
   bumpScale: .32, fineScale: .11,   // dent noise wavelengths (broad lumps, small tufts)

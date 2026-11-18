@@ -1,5 +1,6 @@
 import {finishStartupCaches} from './startupcache.js';
 import * as THREE from 'three';
+import { hazeState, applyHaze } from './aerialhaze.js'; // #314 (original #2100): patches three's fog chunks at import, before any program compiles
 import { FrameIntervals } from './frameintervals.js';
 import { buildWorldSliced } from './world.js';
 import { loadingStep, loadingYield } from './loadingstep.js';
@@ -183,6 +184,8 @@ async function init() {
   camera = new THREE.PerspectiveCamera(65, 1, .06, 700); camera.rotation.order = 'YXZ';
   scene = new THREE.Scene(); scene.background = new THREE.Color(0xcbd9dd); scene.fog = new THREE.Fog(0xcbd9dd, 200, 650);
   const S = LIGHTING.sky;
+  // #314: aerial perspective for the fixed daylight: bluer mid-distance haze that lightens to the background colour at full fog (clear day, no weather)
+  applyHaze(hazeState({ sunDir: new THREE.Vector3(...S.sun.pos).normalize(), horizon: scene.fog.color, glow: new THREE.Color(0, 0, 0), glowAmt: 0, day: 1, oc: 0 }));
   scene.add(new THREE.HemisphereLight(S.hemi.sky, S.hemi.ground, S.hemi.intensity), new THREE.AmbientLight(S.ambient.color, S.ambient.intensity));
   const sunlight = new THREE.DirectionalLight(S.sun.color, S.sun.intensity); sunlight.position.set(...S.sun.pos); scene.add(sunlight);
   const fill = new THREE.DirectionalLight(S.fill.color, S.fill.intensity); fill.position.set(...S.fill.pos); scene.add(fill);

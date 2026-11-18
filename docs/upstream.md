@@ -4168,3 +4168,21 @@ riktiga appen (parkbänk nära och på håll, pergolabänk, busskurens bänk; so
 batchgränser/vertexantal/skuggor, identiska draws, trianglar och texturer; noll fel och externa anrop.
 Kostnad: 12 byte per vertex i de två batcherna (gården +455 kB, busskuren +8 kB), ett extra shaderprogram per
 material, ingen textur, draw, uniform eller per-framearbete. [Egna bilder, kontroller och kostnad](verification/313/README.md).
+## Luftperspektiv i avståndsdiset, #314
+
+Granskad originalkälla `c54c3b6e081d176bfa11616a443e74287e53ee9c`
+([original #2100](https://github.com/solwation/lunden-3d-apartment/issues/2100)).
+Neutrala `src/aerialhaze.js` (byteidentisk; lappar threes dimchunkar en gång vid import, three 0.170.0 som i originalet)
+och ett eget `HAZE`-block i `src/config.js` (originalets värden utom `scatter.amount` 0) överförs, plus två konsumentrader i
+`src/main.js`: importen direkt efter three och ett engångsanrop `applyHaze(hazeState(...))` efter scenens dimma med den
+fasta solens riktning, dimfärgen som horisont, ingen glöd, `day` 1, `oc` 0. Originalets `daycycle.js`-anrop per bildruta,
+himmelsshaderns `uScatter`-halo, väderkurvan (mulet/regn), åskblixtläget och `divelook.js`-`clearHaze` (dykvy) är inte
+tillämpliga: publiken har platt bakgrundsfärg, fast dagsljus och varken väder, dygnscykel eller dykvy. Den varma sidan mot
+solen utelämnas (halon 0), eftersom den fasta solen står högt och en varm term skulle skilja diset från den platta himlen.
+Testet skrivs om för publikens dimma 200–650 m och fasta ljus; browserverktyget är eget. Ingen originalbild, ändringslogg,
+inredning, avatar, gameplay, lagring, tjänst, Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: `node --test tools/aerialhazetest.mjs` 4/4, npm test/build, en egen före/efter-browser i den riktiga
+appen (över parken från höjd, Sankt Lars väg i ögonhöjd) med samma dimma, draws, texturer och program och noll fel/externa
+anrop, samt en engångskompilering av alla 588 scenmaterial (89 program, 0 länkfel). Kostnad: inga nya draws, texturer,
+program eller per-framearbete. [Egna bilder, kontroller och kostnad](verification/314/README.md).

@@ -1,0 +1,149 @@
+{
+ "baseline": "6ebab12685f93234e9e7e1ce2acc54f022feb635",
+ "viewport": [
+  1200,
+  800
+ ],
+ "views": {
+  "park-high": [
+   -78,
+   330,
+   0,
+   -0.12,
+   32
+  ],
+  "park-high-west": [
+   -78,
+   330,
+   1.2,
+   -0.1,
+   32
+  ],
+  "street-west": [
+   0,
+   -26,
+   1.5708,
+   0,
+   1.6
+  ],
+  "street-east": [
+   0,
+   -26,
+   -1.5708,
+   0,
+   1.6
+  ]
+ },
+ "phases": {
+  "before": {
+   "loadMs": 59999,
+   "haze": {
+    "near": 200,
+    "far": 650,
+    "color": "cbd9dd"
+   },
+   "views": {
+    "park-high": {
+     "calls": 619,
+     "triangles": 914133,
+     "textures": 73,
+     "programs": 58,
+     "camera": [
+      -78,
+      32,
+      330
+     ]
+    },
+    "park-high-west": {
+     "calls": 42,
+     "triangles": 493337,
+     "textures": 73,
+     "programs": 58,
+     "camera": [
+      -78,
+      32,
+      330
+     ]
+    },
+    "street-west": {
+     "calls": 147,
+     "triangles": 590599,
+     "textures": 73,
+     "programs": 58,
+     "camera": [
+      0,
+      1.6,
+      -26
+     ]
+    },
+    "street-east": {
+     "calls": 64,
+     "triangles": 545308,
+     "textures": 73,
+     "programs": 58,
+     "camera": [
+      0,
+      1.6,
+      -26
+     ]
+    }
+   }
+  },
+  "after": {
+   "loadMs": 32476,
+   "haze": {
+    "near": 200,
+    "far": 650,
+    "color": "cbd9dd"
+   },
+   "views": {
+    "park-high": {
+     "calls": 619,
+     "triangles": 914145,
+     "textures": 73,
+     "programs": 58,
+     "camera": [
+      -78,
+      32,
+      330
+     ]
+    },
+    "park-high-west": {
+     "calls": 42,
+     "triangles": 493349,
+     "textures": 73,
+     "programs": 58,
+     "camera": [
+      -78,
+      32,
+      330
+     ]
+    },
+    "street-west": {
+     "calls": 147,
+     "triangles": 590599,
+     "textures": 73,
+     "programs": 58,
+     "camera": [
+      0,
+      1.6,
+      -26
+     ]
+    },
+    "street-east": {
+     "calls": 64,
+     "triangles": 545308,
+     "textures": 73,
+     "programs": 58,
+     "camera": [
+      0,
+      1.6,
+      -26
+     ]
+    }
+   }
+  }
+ },
+ "errors": [],
+ "external": []
+}
