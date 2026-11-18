@@ -42,3 +42,5 @@ En 3 × 3 Worley-slinga per häckfragment (inget texturuppslag), en uniform; ing
 draws, texturer, ljus eller program (nyckeln byter bara namn). Klungorna är färg och normal, ingen siluettändring.
 Ej tillämpligt: originalets `lampwash.js`-kedjning av programnyckeln och parkeringshäckarna (finns inte här som
 `hedgeform`-konsumenter). Entrébuxbommen får ändringen i byggaren men syns inte i publicens scen.
+
+Publicering: Pages success på `567ccf0`; inbäddade bild-URL:er HTTP 200 före stängning.
