@@ -21,3 +21,7 @@ Fixture stops before buildings/trees/fullWorld, excludes weather renderer and do
 ![Normal and near, before left / after right](corner-paired.png)
 
 ![Both end connections](joins-paired.png)
+
+## Publicering
+
+Kod/bilder `992e1eddeba5a7f06b4c65d40e134f622a53b5ee`; faktiska run-ID [44276875609] success på exakt revision. Alla bilder HTTP200 och inbäddade före stängning: https://github.com/solwation/kvarteret-lunden/issues/299#issuecomment-6974596853. Slutkvittot ändrar inte appkällan; dess separata Pages-run följs av dirigenten.
