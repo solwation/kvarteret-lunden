@@ -111,3 +111,7 @@ HTTP-åtkomliga bilder före stängning, verifierar Pages-körningen och avsluta
 ## Integrationsbindning
 
 Testad helper/exterior/patio/seasons är byteidentiska med d01d6cc9. World får bara pavingimport/material ovanpå föregående accepterat skärmväggsmaterial; config enbart eget PAVING_SURFACE. Alla föregående README/upstream/configbytes bevarade och dokumenterade tillägg unika. Källbunden grön komponent/npmverifiering återanvänds utan omtag efter oberoende additioner.
+
+## Publicering
+
+Kod/bilder `d6fb47cd7a2766cdbce1681c4a2cf94e20dd6ca6`; faktiska run-ID [44273572963] success på exakt revision. Alla bilder HTTP200 och inbäddade före stängning: https://github.com/solwation/kvarteret-lunden/issues/296#issuecomment-6974129568. Slutkvittot ändrar inte appkällan; dess separata Pages-run följs av dirigenten.
