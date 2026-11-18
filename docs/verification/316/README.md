@@ -42,3 +42,5 @@ Ej tillämpligt: originalets blöta lager (#2099, `wetground.js`) och regnvyn �
 
 Begränsningar: sprickor, spår och lagningar är antaganden utan inmätning. Hjulspåren följer `SITE.roads`-vägarnas mittlinjer;
 fillets och parkeringsytan har inga körfält men får sprickor. Snömånader visar snöytan utan slitage.
+
+Publicering: Pages success på `98b3e3e`; inbäddade bild-URL:er HTTP 200 före stängning.
