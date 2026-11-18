@@ -4094,8 +4094,38 @@ export const SQUIRREL_SURFACE = {
   body: [[-.12,.07,.015,.028],[-.085,.075,.044,.049],[-.04,.085,.043,.048],[.025,.094,.036,.043],[.065,.105,.028,.035],[.085,.12,.019,.023]],
   head: [[.058,.122,.012,.020],[.082,.128,.032,.031],[.105,.125,.032,.029],[.126,.12,.021,.017],[.142,.118,.011,.009],[.148,.12,.006,.005]],
   eyes: { scale: [.0045,.005,.0035], at: [.024,.134,.116], glint: [.001,.001,.0008], glintAt: [.0265,.1365,.118] },
-  tail: { rows: { near: 38, far: 18 }, radial: { near: 24, far: 12 }, profile: [[0,.013,.012],[.15,.025,.023],[.35,.044,.035],[.58,.052,.037],[.78,.05,.035],[.94,.025,.022],[1,.002,.002]],
-    flow: [[9,4,.65],[5,62,.35]], ridge: .065, frost: .06, tipStart: .72, tipEnd: .90 },
+  // Public #325 (original #2128 e5784ceb): a bushier plume (wider profile) with a fluffy outline: hair locks up to `fringe` x the radius
+  // out of its edge, `locks` waves along it (same vertices). All *guess*, as in the original.
+  tail: { rows: { near: 38, far: 18 }, radial: { near: 24, far: 12 }, profile: [[0,.013,.012],[.15,.027,.024],[.35,.048,.038],[.58,.058,.041],[.78,.056,.039],[.94,.03,.026],[1,.002,.002]],
+    flow: [[9,4,.65],[5,62,.35]], ridge: .065, frost: .06, tipStart: .72, tipEnd: .90,
+    fringe: .4, locks: 41 },
+};
+
+// Public #325: squirrel life details (src/squirrellife.js), original #2128 e5784ceb values. All *guess*, after field-guide descriptions of
+// the red squirrel: it caches nuts mostly in autumn and digs caches up through winter into early spring (the snow months keep the
+// squirrels hidden, so March is the visible winter month). `life[season]`: `bury` = the share of ground finds it buries rather than eats,
+// `dig` = per s foraging, the chance it stops to dig, `scan` = per s foraging, the chance it stops, sits right up and scans for
+// `scan.time` s (holds of `scan.hold` s, each snapping within `scan.snap` s to a look up to `scan.yaw` / `scan.pitch` rad); `back` is
+// the original's cache-return chance (no caches here: unused). `eat`: forearm fold / wrist / head nod (rad) and nibbles per s.
+// `tail` (rad per joint): S wave `amp` at `wave` Hz with `lag` rad of phase per joint, hop counter-swing, leap opening, sitting curl,
+// sideways sway and wind flutter, each joint within ± `max`.
+// Public-only: `ground` = the chance an arrival at a forage spot is a find (then bury or eat), and the `eat` / `bury` / `dig` pause
+// lengths (s, the original's SQUIRRELS.eat and cache.bury / cache.dig); `morph` = the reference angle (rad) of the tail/head morph
+// targets, the forearm swing (rad) of the paws-to-mouth morph (`tuck`: its share sitting up without food), the morsel's radius (m) and colour. Passive scenery: nothing is
+// dropped, stored or found.
+export const SQUIRREL_LIFE = {
+  seasons: { autumn: [9, 10, 11], winter: [12, 1, 2, 3], spring: [4, 5], summer: [6, 7, 8] },
+  life: {
+    autumn: { bury: 0.8, dig: 0, scan: 0.05, back: 0.25 },
+    winter: { bury: 0.05, dig: 0.05, scan: 0.07, back: 0.95 },
+    spring: { bury: 0.2, dig: 0.02, scan: 0.06, back: 0.8 },
+    summer: { bury: 0.4, dig: 0, scan: 0.05, back: 0.7 },
+  },
+  scan: { time: [1.6, 3.6], hold: [0.22, 0.6], snap: 0.06, yaw: 0.9, pitch: 0.22 },
+  eat: { fore: -1.6, paw: -0.6, head: 0.18, nibble: 6, turn: 0.4 },
+  tail: { wave: 0.55, lag: 0.9, amp: 0.09, yawAmp: 0.06, hopAmp: 0.2, leapOpen: 0.32, sitCurl: 0.1, wind: 0.08, max: 0.5 },
+  ground: { find: 0.5, eat: 2.2, bury: 2.4, dig: 2.2 },
+  morph: { ref: 0.25, swing: 1.5, tuck: 0.6, morsel: 0.009, morselColor: 0x7a5434 },
 };
 
 export const SQUIRRELS = {

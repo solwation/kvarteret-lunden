@@ -3194,6 +3194,14 @@ hidden och avståndsfrys samt publik nät-/lagringsisolering ingår. npm test/bu
 passerar. Ingen fysisk mobil, FPS eller bred World-profil påstås.
 [Egna granskade bilder, rådata och begränsningar](verification/271/README.md).
 
+## Ekorrarnas svans, ätande, grävande och spanande, #325
+
+`node --test tools/squirrellifetest.mjs` kör originalets rena #2128-tester för `src/squirrellife.js` och publikens egna för
+hjärnans årstidspauser, de relativa livsmorferna (svansen, huvudets pitch, tassarna, smulan; fötterna kvar på marken) och den
+riktiga `Squirrels`-värden. `tools/squirrel325browser.mjs before|after` tar matchade posebilder i den riktiga appen. #271:s
+`tools/squirrelsurface271-native.mjs` låser exakt tre absoluta morfer och #271:s bytetak och gäller därför bara den revisionen.
+[Egna bilder, kostnad och begränsningar](verification/325/README.md).
+
 
 ## Neutral ponnyyta, #269
 

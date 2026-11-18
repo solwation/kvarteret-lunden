@@ -4446,3 +4446,26 @@ Granskad originalkälla `ef43316d16f16196f9ee826325713866b7641b47` ([original #2
 Egen verifiering: `node --test tools/riverfishschooltest.mjs` 7/7 (originalets fem funktionstester plus publikens
 näckroslä och `RiverFish`-konsumenten), npm test/build och en egen före/efter-browser i den riktiga appen
 (`tools/riverfishschool326browser.cjs`). [Egna bilder, kontroller och kostnad](verification/326/README.md).
+
+## Ekorrarnas svans, ätande, grävande och spanande, #325
+
+Granskad originalkälla `e5784ceb6b0141283ea179fe691aed2c7d4f7c12` ([original #2128](https://github.com/solwation/lunden-3d-apartment/issues/2128)).
+Överfört: `src/squirrellife.js` (`squirrelSeason`, `seasonLife`, `tailWave`, `scanHead`, `eatPaws`, `TAIL_JOINTS`) med byteidentiska
+funktionskroppar och endast filhuvudet anpassat; originalets `SQUIRREL_LIFE`-block (utan `eatNut`) i ett eget block direkt efter
+`SQUIRREL_SURFACE` i `src/config.js`, utökat med publika `ground` (fyndchans och pauslängder från originalets `SQUIRRELS.eat` och
+`cache.bury`/`cache.dig`) och `morph` (morfreferensvinkel, armsving, tassar mot bröstet, smulans storlek/färg); den fluffigare svansen
+(bredare `SQUIRREL_SURFACE.tail.profile`, `fringe`/`locks` och originalets fransrad i `tailSurface`). I publikens `squirrelbrain.js`
+blev markpauserna `scan`, `eat`, `bury` och `dig` (originalets pose: sitter upp / nosen ned och krafsar) rena animationspauser som
+månaden (`env.month()` från `registerSeasonal`) styr via `seasonLife`; ingenting lagras, tappas eller hittas, och en nära besökare
+skrämmer upp ekorren från alla pauser som förut. Publikens ekorre har inga ben, så `squirrelmodel.js` gör originalets ledoffset till
+relativa morfmål på samma sammanslagna mesh: sex svansleder (pitch), en jämn och en rampad sidosväng (minsta-kvadrat-anpassning av
+`tailWave`s yaw), huvudets pitch, framtassarna mot munnen och en liten smula mellan tassarna (en nollstor klump i vila). `squirrels.js`
+(`poseLife`) mappar `tailWave`/`scanHead`/`eatPaws` dit och lyfter kroppen med `rise` som originalet.
+Ej tillämpligt: nötfältet, gömmor, `back`, `hasNut`/nötter att plocka, `squirrelsync` (WIRE-posten, inget nät här), riggens benåterställning
+och `nutInPaws`, nötens vridning (`spin`), svansens spetsled (ingen punkt efter den på publikens mittlinje), bestiariets `modelVersion`,
+klättring (#2132), ljud, namn, ändringslogg. Publikens färger, kroppsmått, LOD, ritavstånd och lagring är oförändrade. Ingen
+originalbild, inredning, avatar, gameplay, tjänst, Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: `node --test tools/squirrellifetest.mjs` 8/8 (originalets rena tester plus publikens hjärna per årstid, morfmålen,
+svansmappningen och den riktiga `Squirrels`-värden), `tools/squirrelambienttest.mjs` 2/2, npm test/build och en egen före/efter i den
+riktiga appen. [Egna bilder, kontroller och kostnad](verification/325/README.md).
