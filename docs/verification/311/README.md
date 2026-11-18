@@ -54,3 +54,5 @@ utom Hus C, där originalets punkt i publiken bara visar tegel; vyn flyttades ti
 - Glas (#307), tak/takkantslist (#308), öppningar och publicens färger är oförändrade.
 - Strimmorna är avsiktligt svaga; i skugga på norrsidan och på gatuavstånd syns främst kornet nära.
 - Övrig ljus puts (skolan/campus, fonder) ingår inte, som i originalet.
+
+Publicering: Pages success på `24ce7e7`; inbäddade bild-URL:er HTTP 200 före stängning.

@@ -9,14 +9,21 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 ## Omfattning
 
 De ljusa putsfasaderna (Hus L:s övre våningar och Å-husens loggior och entrénischer) har en fin putsstruktur och svaga smutsstrimmor under fönsterblecken och vid golven, med samma medelton, öppningar, glas, tak och renderbudget (#311). [Egna jämförelsebilder och kontroller](docs/verification/311/README.md).
+
 Taken har diskreta falsar/papplister och en lugn vädrad matthet längs fallinjen, med oförändrad medelfärg på håll, samma snö och renderbudget; Hus L:s ljusa plåtavtäckning är nu en list längs takkanten så att takpappen syns (#308). [Egna jämförelsebilder och kontroller](docs/verification/308/README.md).
+
 Räcken utomhus (Hus L:s loftgång och takterrasser, loggiorna och garagetakets räcken i kvarteret samt busskurens stål) har en matt, lätt borstad pulverlackerad metallyta med diskret kantljus som dämpas i skymning; färger, geometri, batchar och renderbudget är oförändrade (#309). [Egna jämförelsebilder dag/skymning och kontroller](docs/verification/309/README.md).
+
 Häckarna vid Hus L:s uteplatser har synliga bladklungor med mjuka mörka skrevor, mörkare inre nära marken och en svagt ljusare topp; detaljen tonar bort på håll, och form, färger, snö och renderbudget är oförändrade (#310). [Egna jämförelsebilder sommar/vinter och kontroller](docs/verification/310/README.md).
+
 Gårdens grus och parkens grusgångar har små stenar i varierande ljushet och storlek, mörkare finmaterial emellan och svag ojämnhet i en delad gruskarta, med oförändrad medelfärg på håll, samma snö, gångbarhet och draws (#312). [Egna jämförelsebilder och kontroller](docs/verification/312/README.md).
+
 Bänkarna på gården, under pergolorna och i busskuren har ådring längs varje ribba, en svag väderbiten gråton och ljusare slitna kanter, utan nya draws eller texturer (#313). [Egna jämförelsebilder och kontroller](docs/verification/313/README.md).
+
 Avståndsdiset har luftperspektiv: lite blåare på mellanavstånd och ljust mot den fasta himmelsfärgen vid full dimma, utan väder eller varm sida mot solen; närområdet under 200 m och renderbudgeten är oförändrade (#314). [Egna jämförelsebilder och kontroller](docs/verification/314/README.md).
 
 Gräsmattorna har mjuka torrare och frodigare fläckar och små tuvor, och mönstret upprepas mindre på 10–20 m håll; medelfärgen på håll, säsonger och snö är oförändrade (#306). [Egna jämförelsebilder och kontroller](docs/verification/306/README.md).
+
 Fasadernas ogenomskinliga fönsterglas har en lugn himmelsreflex: varje ruta skiftar lite i ljushet och ton och är ljusare upptill. Genomsiktligt glas, karmar, nattfönster och renderbudget är oförändrade (#307). [Egna jämförelsebilder dag/natt och kontroller](docs/verification/307/README.md).
 
 Trädens löv har mjuk lokal färgtoning och diskreta sidonerver i den befintliga lövatlasen; effekten syns främst nära, med oförändrad lövform, säsonger och LOD (#305). [Egna jämförelsebilder och kontroller](docs/verification/305/README.md).
@@ -46,6 +53,7 @@ Kakel och klinker i kök och våtrum har grunda fogar, mjuka plattkanter och mat
 Parkettgolvens enstavs- och trestavsytor har finare böjd träådring och lågmäld mattlacksglans, med befintliga kulörer, plankmått och gångytor kvar (#291).
 
 Gången i hus A/B/C:s trapphus följer de verkliga trappstegens ovansida i stället för en ramp (#290).
+
 Synliga fasta ytor i L1004/L1201 går att mäta även när lägenheternas insida visas sammanslagen på håll (#289).
 
 L1004 och L1201 ritas med färre delar på håll; insidan tonas mjukt bort före fjärrvyn. Nära besökaren, och medan en dörr eller ett fönster är öppet inom 12 meter, visas de rörliga delarna fullt (#288). Befintliga dörrar, fönster och förflyttning behålls.
