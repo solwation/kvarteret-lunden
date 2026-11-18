@@ -70,3 +70,7 @@ inte alla trädplaceringar eller alla väder/ljus. Inga personliga resurser elle
 originalets lagring/tjänster införs. Root integrerar, publicerar och verifierar Pages.
 
 Dirigenten har granskat selektiv diff och alla tre egna bildark. Överlämningens produkt-, test- och fixturebytes är exakt bevarade; befintligt källbundet grönt underlag återanvänds utan rutinomkörning.
+
+## Publicering
+
+Kod/bilder `5a29dd695fee1c9f5f6a0172f7f6d35c1b8472be`; faktiska run-ID [44282741799] success på exakt revision. Alla bilder HTTP200 och inbäddade före stängning: https://github.com/solwation/kvarteret-lunden/issues/302#issuecomment-6975434752. Slutkvittot ändrar inte appkällan; dess separata Pages-run följs av dirigenten.
