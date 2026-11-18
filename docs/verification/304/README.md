@@ -112,3 +112,5 @@ Egen testad publik källa:
 
 [Fulla egna geometri-/material-/kameravärden och lagringsbevis](browser.json).
 README är publicens ändringsnotis; ingen originaländringslogg överförs.
+
+Dirigenten har granskat båda egna slutliga bildark och selektiv diff. Testad helper, exterior och fixture är byteidentiska; publicens accepterade barkblock och alla äldre README-/upstreambytes bevaras. Källbundet grönt underlag återanvänds utan ny browser- eller bred testkörning.
