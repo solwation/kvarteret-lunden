@@ -44,3 +44,5 @@ per ram; hjärnans uppdatering ≈ 0,8 µs per ekorre och bild. Språnglänkarna
 - Kronans svaj ute på grenen följer `siteWindOffset`s kronvikt; själva grenarna i trädgeometrin svajar inte (som i originalet).
 - Södra lundens träd (`southTreeFeet`) har ingen form i `treeForms` och klättras som förut.
 - Bilderna är tagna i ett enda träd med slumpad gren; före/efter har samma kamera-regel men inte exakt samma gren eller vinkel.
+
+Publicerad: `2fa8c3d`, Pages 44424358709 success.
