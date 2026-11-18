@@ -114,3 +114,7 @@ Egen testad publik källa:
 README är publicens ändringsnotis; ingen originaländringslogg överförs.
 
 Dirigenten har granskat båda egna slutliga bildark och selektiv diff. Testad helper, exterior och fixture är byteidentiska; publicens accepterade barkblock och alla äldre README-/upstreambytes bevaras. Källbundet grönt underlag återanvänds utan ny browser- eller bred testkörning.
+
+## Publicering
+
+Kod/bilder `fc18424b2931954a0427bf8eae51eacc1f61b0dd`; faktiska run-ID [44283123094] success på exakt revision. Alla bilder HTTP200 och inbäddade före stängning: https://github.com/solwation/kvarteret-lunden/issues/304#issuecomment-6975488075. Slutkvittot ändrar inte appkällan; dess separata Pages-run följs av dirigenten.
