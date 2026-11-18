@@ -60,3 +60,5 @@ både före och efter.
 
 Begränsningar: värdena i `RAIL_METAL` är *guess* från utseendet hos lackerade stålräcken, inget
 uppmätt. Den svagt mörkare lackskiftningen syns främst nära.
+
+Publicering: Pages success på `d21e146`; inbäddade bild-URL:er HTTP 200 före stängning.
