@@ -68,3 +68,5 @@ Ingen helvärlds-/fysisk telefon-/FPS-/separat skuggrenderingsmätning påstås.
 Detta verifierar den faktiska material-/geometri-/säsongs-/LOD-kedjan isolerat,
 inte alla trädplaceringar eller alla väder/ljus. Inga personliga resurser eller
 originalets lagring/tjänster införs. Root integrerar, publicerar och verifierar Pages.
+
+Dirigenten har granskat selektiv diff och alla tre egna bildark. Överlämningens produkt-, test- och fixturebytes är exakt bevarade; befintligt källbundet grönt underlag återanvänds utan rutinomkörning.
