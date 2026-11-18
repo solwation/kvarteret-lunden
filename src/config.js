@@ -1633,6 +1633,13 @@ export const SCREEN_WALL = {
   frame: [214, 207, 182], rail: 0.06, post: 0.07, // the cream top rail (m from the top) and the end posts (m along the wall)
 };
 
+// #297 (original #2075): painted-wood visual assumptions; shallow normal relief, never vertex displacement.
+export const SCREEN_WALL_SURFACE = {
+  depth: .0007, jointHeight: .15, edgePixels: 1.25,
+  faceRoughness: .85, grooveRoughness: .96, frameRoughness: .85, grainRoughness: .006,
+  grainBend: .8, grainAlpha: .032, grainWidth: .65,
+};
+
 export const CABINET_FIXES = [
   { level: 0, label: 'EL', z1: 0.465 + 0.4 },
 ];

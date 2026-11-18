@@ -22,6 +22,7 @@ import { grassMaterial } from './grass.js';
 import { pavingTexture } from './patio.js';
 import { patioHedgeMaterial } from './patiohedge.js';
 import { screenWallParts, screenWallTexture } from './screenwall.js';
+import { screenWallSurface } from './screenwallsurface.js';
 import { mirrorLamps, buildInterior, buildElCabinet } from './interior.js';
 import { Toilet } from './toilet.js';
 import { RoomMap } from './rooms.js';
@@ -56,7 +57,7 @@ const M = {
   grass: grassMaterial(),
   patio: mat(0xffffff, { map: pavingTexture(), roughness: 0.95 }), // slab paving (PATIO.paving)
   hedge: patioHedgeMaterial(),
-  fence: mat(0xffffff, { map: screenWallTexture(), roughness: 0.85 }), // #214: boards in a cream frame (SCREEN_WALL)
+  fence: mat(0xffffff, { map: screenWallTexture(), ...screenWallSurface() }), // #214: boards in a cream frame (SCREEN_WALL)
 };
 // Peab's standard finish for the visitable flats (#574, STANDARD): its own parquet and limestone window boards; walls,
 // ceilings, doors, frames, glass and the stair's white parts are the same white as ours

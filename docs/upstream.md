@@ -1,5 +1,41 @@
 # Förbättringar från originalet
 
+## Målad träyta på skärmväggar, #297
+
+Selektivt granskad, publicerad originalkälla:
+`a95e1719379f73593c0b6e7ffeb8bfd3d9626484`
+([original #2075](https://github.com/solwation/lunden-3d-apartment/issues/2075));
+produkt `c01298f0b73dd41e992e8cf45ed9430f11b10dcd` är byteidentisk.
+Urval: enbart neutrala `screenwallsurface.js`, dess tre Node-kontrakt,
+`SCREEN_WALL_SURFACE`, färgfibrernas rader i publicens egen `screenwall.js`
+och ett materialanrop/import i `World.M.fence`. Hjälparen är byteidentisk med
+källan bortsett från ärendekommentaren.
+
+Publicens eget seed214, alla basfärger, bräd-/rammått, RNG-ordning och
+`screenWallParts`-geometri/UV är bevarade. Böjda och delvis förgrenade fina fibrer
+ersätter de raka färgränderna. En delad linjär 256×512 RGBA8-karta ger låg
+fogrelief i R och matt variation i G. Ram/stolpar använder den befintliga plana
+UV-remsan. Relief ≈0,595mm och ytsträvhet ≈0,85 på brädor/ram, 0,96 i fogar är
+konstnärliga antaganden, inte uppmätt utförande. Alla tidigare configbytes utanför
+det namngivna blocket och hela `exterior.js` är exakt bevarade.
+
+Ingen övrig originalconfig, historik, bild, personlig resurs/inredning, namn,
+gameplay, tjänst, lagring eller Cloudflare kopieras. Inga nya beroenden eller
+externa resurser; befintlig attribution/licens gäller. Public saknar originalets
+opaqueRects-system: det importeras inte. Dess egna kollisionssegment, takterrasser,
+materialkonsumenter och nät-/lagringsgränser bevaras. Hus A/B/C saknar konsumenter
+av den här byggaren; ingen huslayout ändras. Ingen separat publik besökarändringslogg
+finns; README beskriver förbättringen.
+
+Tillägg: exakt en cachekarta, 524288 basbyte / 699052 byte med samtliga mippar.
+Ingen ny geometri, draw, pass, lampa eller texturuppladdning per bildruta;
+Standard-shaderns bump-/roughnesssampling ökar fragmentarbetet. Egen publik
+verifiering: tre deterministiska yt-/maskkontrakt, exakt config-/World-/geometribevarande,
+`npm test` (154 moduler), `npm run build` samt en egen browser med riktiga publika
+mark- och takterrasskonsumenter i matchade när-/normalvyer. Noll fel, externa anrop
+eller lagringsanrop; alla geometridata/kollisioner och per-vy ritanrop/trianglar lika.
+Inga originalbilder används. [Egna bilder, exakta källhashar, budget och begränsningar](verification/297/README.md).
+
 ## Näckrosor med mjuka former, #295
 
 Granskad, publicerad originalkälla: `75a21fdbe599186d738ab414b88e4b4c2c8cd4f0`

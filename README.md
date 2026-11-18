@@ -8,6 +8,8 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+Skärmväggarnas målade brädor har mjukare träådring, grunda fogar och svagt varierad matt yta; färger, ram och placering behålls (#297).
+
 Den lokala vägens asfalt har små stenkorn och svaga färgskiftningar som tonar ned på avstånd; vägens form och vinterutseende är kvar (#294).
 
 Hus L:s tegel har grunda fogar och lågmäld lerstruktur i ljuset, med befintliga färger, förband och öppningar kvar (#293).
