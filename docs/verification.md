@@ -3215,3 +3215,13 @@ nät-/lagringssentineller. `tools/riverfish274-warm-check.mjs BASE OUT` mäter s
 18-fiskpopulation och lika lokala drawantal i en kort isolerad komponent, utan
 hårdvaru-FPS-slutsats. npm test/build är gröna.
 [Exakta källor, attribut/MAX, resursunion, öppnade bilder och begränsningar](verification/274/README.md).
+
+
+## Hus L:s grunda tegelfogar #293
+
+Selektiv neutral materialöverföring från originalets 7b5f0f17 till publicens egna
+`buildExterior`, färgcanvas och plan. `npm test`/build och en smal browserjämförelse
+av fyra vyer kontrollerar identiska mesh-/öppningshashar, 153 fria glaspaneler,
+ritbudget, den delade 512×512-kartans minne, inga externa anrop och bevarade
+lagringssentineller. Nya parade bilder visas i oförändrade bildproportioner.
+[Exakta källor, kontroller, bilder och avgränsning](verification/293/README.md).

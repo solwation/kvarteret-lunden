@@ -1,0 +1,20 @@
+{
+  "original": "7b5f0f1740c02d7f7731e34a067563b4b88239e9",
+  "publicBefore": "49af0d2c85eb75f7a45987481c3527c1b93981d9",
+  "checks": [
+    "neutral module exact except issue comment",
+    "public config exact after removal of own added block",
+    "public exterior exact after reverting only added imports and material factory",
+    "public surroundings.js A/B/C unchanged"
+  ],
+  "originalSHA256": {
+    "src/bricksurface.js": "da4f59365733e84122a7be9e29d3fad29176b3ee57d189b2d9c2fb2ead95ca3e",
+    "src/config.js": "eeb5ea32a2eb629e9b151226496a01f2f57de9c70476d10d29e2cbee9c7ed7ae",
+    "src/exterior.js": "6422c2e2b171ae91258b8b21a16b25ddb8dced6a49df2aa1fe2642a702bf0b38"
+  },
+  "publicUnchangedSHA256": {
+    "src/surroundings.js": "2fe3f4f3b74cdb363760a1cbdf4a192aca25d55cdd94b3e4530c8d9e81f7911a"
+  },
+  "capturedWorkerCommit": "1fd5c6040763bef489f33156e0ba7824265ebbfa",
+  "integration": "All previous main config/README bytes retained plus293named blocks. Captured full config/build hashes historical after independent292tile integration. Brick product/fixture bytes unchanged; source-bound browser reused."
+}

@@ -8,6 +8,8 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+Hus L:s tegel har grunda fogar och lågmäld lerstruktur i ljuset, med befintliga färger, förband och öppningar kvar (#293).
+
 Kakel och klinker i kök och våtrum har grunda fogar, mjuka plattkanter och mattare fogytor; befintliga färger och plattmått behålls (#292).
 
 Parkettgolvens enstavs- och trestavsytor har finare böjd träådring och lågmäld mattlacksglans, med befintliga kulörer, plankmått och gångytor kvar (#291).

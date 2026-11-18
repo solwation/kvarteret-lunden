@@ -3674,3 +3674,34 @@ nät-/innehållsgränser, `npm run build` passerar. Texturbudget: +864000
 RGBA8-basbytes / +1151172 nominella mipbytes över båda delade finisherna;
 Standard-shadern får sin vanliga roughness-sampling, ingen extra pass/draw/light.
 [Egna bilder, källhashar, exakta kontroller och begränsningar](verification/291/README.md).
+
+
+## Grunda tegelfogar och lerstruktur, #293
+
+Selektivt granskad originalkälla: `7b5f0f1740c02d7f7731e34a067563b4b88239e9`
+([original #2071](https://github.com/solwation/lunden-3d-apartment/issues/2071)).
+Bildrättningen i originalets `c0145dc763a84ba5d1f75f540f2329ad2f69efc2` ändrar ingen
+produktkod och är inte bildkälla för denna överföring.
+
+Urvalet består endast av neutrala `src/bricksurface.js` (byteidentisk bortsett från
+ärendekommentaren), ett eget `BRICK_SURFACE`-block och två imports/materialfabriken
+för publicens Hus L i `src/exterior.js`. Publicens tidigare konfiguration och hela
+övriga exterior-koden, inklusive färgcanvas, UV-skala, öppningar och backing, är
+exakt bevarade. Relief och ytsträvhet är visuella antaganden, inte uppmätta fasadvärden.
+
+A/B/C inventerades separat: `surroundings.js:aHouseParts` använder egna plain/grid-
+fasader, `openingTexture`/`facadeOpenings`, loggia- och entréöppningar. De får ingen
+Hus L-karta och hela filen är oförändrad. Ingen övrig originalkonfiguration, historia,
+personlig bild/inredning, namn, gameplay, tjänst, lagring eller Cloudflare importeras.
+Modulen skapar en lokal cachad skalärkarta utan nät- eller lagringsanrop.
+
+Egen publik browserfixtur bygger faktisk `buildExterior` med publicens egen plan,
+fönsterdata och material. Fyra matchade bildpar är nytagna här och bevarar 1200×800-
+bildernas proportioner. Noll fel/externa anrop; originalnamnens lagringssentineller
+är orörda. Alla emitterade meshpositioner/UV/index och öppningsmetadata har lika hash;
+153 glaspaneler är fria, inom öppningarna och finns på båda fasadernas fyra våningar.
+Ritanrop/trianglar är lika. En delad 512×512 RGBA8-karta tillkommer, 1048576 basbytes /
+1398100 nominella mipbytes; samma karta används som bump och roughness. Vanlig Standard-
+shader får extra samplingar/UV-data, ingen extra pass, geometri, draw eller lampa.
+`npm test` (151 moduler) och `npm run build` passerar.
+[Egna bilder, exakta hashvärden, budget och begränsningar](verification/293/README.md).

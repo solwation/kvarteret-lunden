@@ -1,0 +1,4 @@
+npm test: PASS — 151 modules audited, import graph bundles, two architectural floor plans, same-origin network policy; app identity/start/scope, Apple icon, PNG dimensions and Android icon declarations.
+npm run build: PASS — Static site built in dist/: 323b0b3d8f2f4e7073b3c91c
+Browser wrapper: PASS — peak 1418 MiB of 4G; browser.json contains exact production/fixture SHA256 values and matched public results.
+Initial browser attempt: assertions passed until error audit detected missing fixture favicon.ico (404). Added data favicon in fixture; reran the same narrow comparison, passing. No product change or broader suite.

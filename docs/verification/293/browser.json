@@ -1,0 +1,287 @@
+{
+  "baseline": "49af0d2",
+  "renderer": "Chromium / SwiftShader",
+  "viewport": [
+    1200,
+    800
+  ],
+  "errors": [],
+  "external": [],
+  "phases": {
+    "before": {
+      "invariants": {
+        "panes": 153,
+        "exposed": true,
+        "bounds": true,
+        "storeys": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "brickTriangles": 1468,
+        "scalar": null,
+        "material": {
+          "hasBump": false,
+          "hasRoughness": false,
+          "packed": true,
+          "colour": [
+            512,
+            512
+          ],
+          "surface": null
+        }
+      },
+      "geometry": "4bf2d11cc236a0c487cf1bc8ab9660e3e77ea99af156c5c0c1be8e402eb2c0b2",
+      "openings": "f9b0c98fdee6ae41cc7ee2b5b6da298d31ae765c5a1ce1f90f2f447aa56ef9d2",
+      "views": [
+        {
+          "view": "facade",
+          "camera": [
+            -35,
+            9,
+            -39
+          ],
+          "target": [
+            -18,
+            5,
+            0
+          ],
+          "calls": 24,
+          "triangles": 21460,
+          "textures": 5,
+          "geometries": 53,
+          "programs": 7
+        },
+        {
+          "view": "entrance",
+          "camera": [
+            -7.45,
+            1.62,
+            -3.1
+          ],
+          "target": [
+            -5.9,
+            1.55,
+            -0.006
+          ],
+          "calls": 31,
+          "triangles": 57798,
+          "textures": 5,
+          "geometries": 53,
+          "programs": 7
+        },
+        {
+          "view": "grazing",
+          "camera": [
+            -8,
+            1.65,
+            -0.85
+          ],
+          "target": [
+            -5.25,
+            1.6,
+            -0.006
+          ],
+          "calls": 26,
+          "triangles": 52438,
+          "textures": 5,
+          "geometries": 53,
+          "programs": 7
+        },
+        {
+          "view": "distant",
+          "camera": [
+            -42,
+            11,
+            -80
+          ],
+          "target": [
+            -15,
+            5,
+            0
+          ],
+          "calls": 43,
+          "triangles": 68222,
+          "textures": 5,
+          "geometries": 53,
+          "programs": 7
+        }
+      ],
+      "storage": {
+        "local": {
+          "lunden.drawing": "original-drawing-sentinel",
+          "lunden.cloud.queue": "original-queue-sentinel"
+        },
+        "session": {
+          "lunden.session": "original-session-sentinel"
+        }
+      }
+    },
+    "after": {
+      "invariants": {
+        "panes": 153,
+        "exposed": true,
+        "bounds": true,
+        "storeys": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "brickTriangles": 1468,
+        "scalar": {
+          "height": [
+            56,
+            205
+          ],
+          "roughness": [
+            223,
+            247
+          ],
+          "cpuBytes": 1048576,
+          "nominalMipBytes": 1398100,
+          "colorSpace": "",
+          "repeat": [
+            1000,
+            1000
+          ],
+          "bumpScale": 0.0045
+        },
+        "material": {
+          "hasBump": true,
+          "hasRoughness": true,
+          "packed": true,
+          "colour": [
+            512,
+            512
+          ],
+          "surface": [
+            512,
+            512
+          ]
+        }
+      },
+      "geometry": "4bf2d11cc236a0c487cf1bc8ab9660e3e77ea99af156c5c0c1be8e402eb2c0b2",
+      "openings": "f9b0c98fdee6ae41cc7ee2b5b6da298d31ae765c5a1ce1f90f2f447aa56ef9d2",
+      "views": [
+        {
+          "view": "facade",
+          "camera": [
+            -35,
+            9,
+            -39
+          ],
+          "target": [
+            -18,
+            5,
+            0
+          ],
+          "calls": 24,
+          "triangles": 21460,
+          "textures": 6,
+          "geometries": 53,
+          "programs": 7
+        },
+        {
+          "view": "entrance",
+          "camera": [
+            -7.45,
+            1.62,
+            -3.1
+          ],
+          "target": [
+            -5.9,
+            1.55,
+            -0.006
+          ],
+          "calls": 31,
+          "triangles": 57798,
+          "textures": 6,
+          "geometries": 53,
+          "programs": 7
+        },
+        {
+          "view": "grazing",
+          "camera": [
+            -8,
+            1.65,
+            -0.85
+          ],
+          "target": [
+            -5.25,
+            1.6,
+            -0.006
+          ],
+          "calls": 26,
+          "triangles": 52438,
+          "textures": 6,
+          "geometries": 53,
+          "programs": 7
+        },
+        {
+          "view": "distant",
+          "camera": [
+            -42,
+            11,
+            -80
+          ],
+          "target": [
+            -15,
+            5,
+            0
+          ],
+          "calls": 43,
+          "triangles": 68222,
+          "textures": 6,
+          "geometries": 53,
+          "programs": 7
+        }
+      ],
+      "storage": {
+        "local": {
+          "lunden.drawing": "original-drawing-sentinel",
+          "lunden.cloud.queue": "original-queue-sentinel"
+        },
+        "session": {
+          "lunden.session": "original-session-sentinel"
+        }
+      }
+    }
+  },
+  "source": {
+    "src/exterior.js": "350fb58cfbb29bc33764c9c6d79ac3cbc126f6e1b022240b2d8e427e051f52fa",
+    "src/bricksurface.js": "8fbe3c083bd1d9bb7f7ed06147a6e98081a27815090c564832a78e8e94d017ce",
+    "src/config.js": "c33b56841d329f8724d7e8f0ce53e6182eaa04f133f5f3a9f89bf6a92080b6be",
+    "tools/bricksurface293.html": "d3a18ece05f0d9524263c62e3148cea16701d4b61192ab8723abc4fbf20f64e0",
+    "tools/bricksurface293browser.cjs": "c771b44c93a7bf25ea8bff2bf80adc7698e6b80cfe462f0f96308d967d363b4b"
+  },
+  "composition": {
+    "source": [
+      1200,
+      800
+    ],
+    "sheet": [
+      1200,
+      1676
+    ],
+    "labelHeight": 38,
+    "rowPitch": 838,
+    "scale": [
+      1,
+      1
+    ]
+  },
+  "import": {
+    "productSource": "7b5f0f1740c02d7f7731e34a067563b4b88239e9",
+    "scope": "neutral module, own block and public brick material only; public production geometry and colour atlas retained"
+  }
+}
