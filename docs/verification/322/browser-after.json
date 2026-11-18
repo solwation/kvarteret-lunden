@@ -1,0 +1,178 @@
+{
+ "phase": "after",
+ "errors": [],
+ "external": [],
+ "sockets": [],
+ "frames": [
+  {
+   "name": "stretch-0",
+   "T": 90.59999999999913,
+   "restLeft": 3.0055676658370487,
+   "activity": "wash",
+   "near": true,
+   "bow": null,
+   "tailWrap": 0,
+   "tailBend": [
+    -0.016950204407016722,
+    0
+   ],
+   "calls": 169,
+   "triangles": 665353,
+   "programs": 70,
+   "textures": 68
+  },
+  {
+   "name": "stretch-1",
+   "T": 91.79999999999913,
+   "restLeft": 1.8055676181533329,
+   "activity": "wash",
+   "near": true,
+   "bow": 0.9193632557345747,
+   "tailWrap": 0,
+   "tailBend": [
+    0.03644842778192126,
+    0
+   ],
+   "calls": 169,
+   "triangles": 665353,
+   "programs": 70,
+   "textures": 68
+  },
+  {
+   "name": "stretch-2",
+   "T": 92.39999999999912,
+   "restLeft": 1.2055674751021854,
+   "activity": "wash",
+   "near": true,
+   "bow": 1,
+   "tailWrap": 0,
+   "tailBend": [
+    0.04221639065631495,
+    0
+   ],
+   "calls": 169,
+   "triangles": 665353,
+   "programs": 70,
+   "textures": 68
+  },
+  {
+   "name": "stretch-3",
+   "T": 93.09999999999913,
+   "restLeft": 0.5055676658370487,
+   "activity": "wash",
+   "near": true,
+   "bow": 0.7867377057371342,
+   "tailWrap": 0,
+   "tailBend": [
+    -0.02545206176160625,
+    0
+   ],
+   "calls": 169,
+   "triangles": 665353,
+   "programs": 70,
+   "textures": 68
+  },
+  {
+   "name": "wrap-0",
+   "T": 360.20000000001335,
+   "restLeft": 28.404750970730106,
+   "activity": "look",
+   "near": true,
+   "bow": null,
+   "tailWrap": 0.3749997615814209,
+   "tailBend": [
+    0.005884166903346923,
+    0
+   ],
+   "calls": 79,
+   "triangles": 549374,
+   "programs": 70,
+   "textures": 70
+  },
+  {
+   "name": "wrap-1",
+   "T": 361.50000000001336,
+   "restLeft": 27.104751018413822,
+   "activity": "look",
+   "near": true,
+   "bow": null,
+   "tailWrap": 1,
+   "tailBend": [
+    -0.0011731688501541964,
+    0
+   ],
+   "calls": 79,
+   "triangles": 549374,
+   "programs": 70,
+   "textures": 70
+  },
+  {
+   "name": "wrap-2",
+   "T": 364.00000000001336,
+   "restLeft": 24.604751018413822,
+   "activity": "look",
+   "near": true,
+   "bow": null,
+   "tailWrap": 1,
+   "tailBend": [
+    0.00440838938553624,
+    0
+   ],
+   "calls": 79,
+   "triangles": 549374,
+   "programs": 70,
+   "textures": 70
+  },
+  {
+   "name": "wrap-3",
+   "T": 367.00000000001336,
+   "restLeft": 21.604751018413822,
+   "activity": "look",
+   "near": true,
+   "bow": null,
+   "tailWrap": 1,
+   "tailBend": [
+    0.002317627457813279,
+    0
+   ],
+   "calls": 79,
+   "triangles": 549374,
+   "programs": 70,
+   "textures": 70
+  },
+  {
+   "name": "fur",
+   "T": 367.20000000001335,
+   "restLeft": 21.404750970730106,
+   "activity": "look",
+   "near": true,
+   "bow": null,
+   "tailWrap": 1,
+   "tailBend": [
+    -0.0009400000319951409,
+    0
+   ],
+   "calls": 470,
+   "triangles": 705874,
+   "programs": 72,
+   "textures": 74
+  }
+ ],
+ "plan": {
+  "stretch": 90.59999999999913,
+  "wrap": 360.00000000001336
+ },
+ "cpu": {
+  "updates": 400,
+  "msPerUpdate": 0.5285000000055879,
+  "nearFrames": 400,
+  "cats": 12
+ },
+ "storage": {
+  "drawing": "unchanged",
+  "session": "unchanged",
+  "keys": [
+   "lunden.drawing"
+  ]
+ }
+}

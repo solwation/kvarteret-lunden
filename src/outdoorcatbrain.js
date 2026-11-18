@@ -1,5 +1,5 @@
 // Public #245: anonymous absolute-clock exploration with a bounded temporary social pause/return.
-import {hash01,routePlan,catAt} from './outdoorcatroute.js';
+import {hash01,routePlan,catAt,lapPlan} from './outdoorcatroute.js';
 import {CatExploration} from './catexploration.js';
 import {CAT_AFFORDANCES} from './cataffordances.js';
 import {OUTDOOR_CATS as C} from './config.js';
@@ -9,7 +9,9 @@ const variation=id=>Object.fromEntries(Object.entries(C.variation).map(([key,[ba
 // Public #260: a spec with `route` walks the original's fixed #1840 wall-clock loop instead of exploring (no climbing/seats).
 export class OutdoorCatBrain{
  constructor(spec,id,now=()=>Date.now()/1000){Object.assign(this,{spec,id,now,traits:variation(id),planner,loop:spec.route?routePlan(spec.route,spec.rest,C.speed,spec.vary):null,st:'route',delay:0,anchor:null,at:null,x:0,z:0,yaw:0,h:0});}
- scheduled(now=this.now()){const T=now-C.epoch+this.spec.phase-this.delay;return this.loop?{...catAt(this.loop,T,this.id),elevated:false,climbing:false}:planner.at(this.id,T,this.traits);}
+ scheduled(now=this.now()){const T=now-C.epoch+this.spec.phase-this.delay,s=this.loop?{...catAt(this.loop,T,this.id),elevated:false,climbing:false}:planner.at(this.id,T,this.traits);s.restDone=this.restDone(s);return s;}
+ /** Public #322 (original #2125 restTimes): how long the scheduled rest has lasted (s; 0 while walking), for the stretch before it walks on. */
+ restDone(s){if(s.walking)return 0;const done=this.loop?(lapPlan(this.loop,s.lap,this.id).legs[s.leg]?.rest??0)-s.restLeft:s.elapsed;return Number.isFinite(done)?Math.max(0,done):0;}
  set(state){if(state==='social'){if(this.st!=='route')return;this.anchor={...this.at};this.pauseAt=this.now();this.st='social';}else if(state==='home'&&this.st==='social')this.st='home';}
  update(dt){
   if(this.st==='route'){this.at=this.scheduled();Object.assign(this,{x:this.at.x,z:this.at.z,yaw:this.at.yaw});return this.at;}

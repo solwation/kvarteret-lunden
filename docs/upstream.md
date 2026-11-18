@@ -4346,3 +4346,23 @@ med originalets hjälpare (`shademosstest` hade den redan från #320). Browserve
 Egen verifiering: `node --test tools/snowcaptest.mjs` 5/5 (plus railmetal 3/3, rendersurface 6/6, shademoss 7/7,
 benchwood 4/4), npm test/build och en egen före/efter-browser i den riktiga appen i januari och juli (Hus L:s gata och tak,
 Hus A, gårdens bänkar) plus en telefonprobe. [Egna bilder, kontroller och kostnad](verification/321/README.md).
+
+## Levande utekatter, #322
+
+Granskade originalkällor `6bbfb282` (pälsshader, svansrörelse, öron, tvätt, stretch; samma innehåll som arbetsrevisionen
+`f42b53ee`) och verifieringscommit `238e0946` ([original #2125](https://github.com/solwation/lunden-3d-apartment/issues/2125)).
+Överfört: byteidentiska `src/catlife.js` (`TailMotion`, `sitChoice`, `groomKind`, `flankLick`, `stretchPose`, `earTwitch`,
+`moodOf`, `seedOf`) och `src/catfur.js` (strandklumpar och Kajiya-Kay-glans, begränsad vertexändring registrerad i
+`vertexcompile.js`), originalets `CAT_LIFE`-block oförändrat i ett eget block direkt efter `OUTDOOR_CATS` i `src/config.js`, och
+konsumentrader i publikens egna moduler: `catpuppet.js` (`initLife`, `groom`, `sitLook`, `live`, `TAIL_WRAP`, stretchen i
+`pose`), `outdoorcats.js` (pälsshadern på det delade kattmaterialet, sittval på publikens egen absoluta klocka, sovande katt
+med svansen runt sig, stretch de sista 2,4 s av en lång markvila) och `outdoorcatbrain.js` (`restDone`, motsvarar originalets
+`restTimes`). Publikens kattrigg slås ihop på CPU:n till en draw per katt med ett delat material, så svansböjen görs på CPU:n
+med `bendPoint` (shaderns tvilling, längs rörets `uv.x`) i stället för per-material-uniformen `uCatTail` (som står på 0).
+Ej tillämpligt: originalets inomhuskatt (`cat.js`/`CatSpawner`), öron mot dörrar, besökare, fiskpinne och leksak (publikens katter
+är passiv miljö; öronen bara rycker), smygande/hukande mot byte (publikens katter har inget bytesläge), sphynx-styrka,
+`bestiaryimages.js`, ändringslogg. Publikens färger, LOD, ritavstånd och lagring är oförändrade. Ingen originalbild,
+inredning, avatar, gameplay, lagring, tjänst, Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: `node --test tools/catlifetest.mjs` 7/7 (originalets rena tester, publikens rigg, vilklocka och passivitet),
+npm test/build och en egen före/efter-bildsekvens i den riktiga appen. [Egna bilder, kontroller och kostnad](verification/322/README.md).

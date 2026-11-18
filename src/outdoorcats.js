@@ -2,7 +2,9 @@
 // Exploration and internal contact selectively adapted from 131b5d9d9c11a5853320d7b36b4bf61409367f39.
 // Four exploring plus eight looping (#260) local-clock scenery animals. No targets, storage, audio, feeding or near-cat promotion.
 import * as THREE from 'three';
-import { OUTDOOR_CATS as C, SEASON } from './config.js';
+import { OUTDOOR_CATS as C, SEASON, CAT_LIFE as LF } from './config.js';
+import {furMaterial,bendPoint} from './catfur.js';
+import {moodOf,seedOf,sitChoice,stretchPose} from './catlife.js';
 import { createCatPuppet } from './catpuppet.js';
 import { OutdoorCatBrain } from './outdoorcatbrain.js';
 import {hash01} from './outdoorcatroute.js';
@@ -12,36 +14,48 @@ import {createCatClear} from './cathabitat.js';
 import {noseShape,pawContact,rubNoses,alignClimb} from './catcontact.js';
 import { registerSeasonal } from './seasons.js';
 
-const material=new THREE.MeshStandardMaterial({vertexColors:true,roughness:.8});
+// Public #322 (original #2125): the coat shader (the lie of the fur, a strand sheen) on the one shared cat material; no extra draw or texture.
+const material=furMaterial(new THREE.MeshStandardMaterial({vertexColors:true,roughness:.8}));
 /** A fixed-topology merged rig: near poses update existing CPU buffers, far poses are cached.
  * This preserves the procedural source silhouette without a draw call for each limb/eye. */
 function mergedRig(p){
  const parts=[];let count=0;p.object.traverse(o=>{if(!o.isMesh)return;const n=o.geometry.index?.count??o.geometry.attributes.position.count;parts.push({o,start:count,n});count+=n;});
  const g=new THREE.BufferGeometry();for(const key of ['position','normal','color'])g.setAttribute(key,new THREE.Float32BufferAttribute(new Float32Array(count*3),3));
  const v=new THREE.Vector3(),n=new THREE.Vector3(),normal=new THREE.Matrix3();
+ // #322: the tail's bend (catpuppet live → tailBend) on the CPU, along the tube's uv.x, the same curve as original catfur.js's shader
  const write=()=>{p.object.updateMatrixWorld(true);for(const {o,start,n:len} of parts){const src=o.geometry,idx=src.index,visible=o.visible&&o.parent.visible;normal.getNormalMatrix(o.matrixWorld);
-  for(let i=0;i<len;i++){const j=idx?idx.getX(i):i;v.fromBufferAttribute(src.attributes.position,j).applyMatrix4(o.matrixWorld);n.fromBufferAttribute(src.attributes.normal,j).applyMatrix3(normal).normalize();if(!visible)v.set(0,0,0);g.attributes.position.setXYZ(start+i,v.x,v.y,v.z);g.attributes.normal.setXYZ(start+i,n.x,n.y,n.z);g.attributes.color.setXYZ(start+i,o.material.color.r,o.material.color.g,o.material.color.b);}}
+  const [by,bl]=o===p.parts.tail&&p.tailBend?p.tailBend:[0,0],bend=(by||bl)&&src.attributes.uv;
+  for(let i=0;i<len;i++){const j=idx?idx.getX(i):i;v.fromBufferAttribute(src.attributes.position,j);n.fromBufferAttribute(src.attributes.normal,j);if(bend){const u=bend.getX(j);bendPoint(v,by,bl,u);bendPoint(n,by,bl,u);}v.applyMatrix4(o.matrixWorld);n.applyMatrix3(normal).normalize();if(!visible)v.set(0,0,0);g.attributes.position.setXYZ(start+i,v.x,v.y,v.z);g.attributes.normal.setXYZ(start+i,n.x,n.y,n.z);g.attributes.color.setXYZ(start+i,o.material.color.r,o.material.color.g,o.material.color.b);}}
   g.attributes.position.needsUpdate=true;g.attributes.normal.needsUpdate=true;};
  write();g.computeBoundingSphere();return {geometry:g,write,parts};
 }
 
-/** Visual pose only: a deterministic absolute-clock walk, wash, look or sleep. */
-function pose(p,s,t){
- p.walked=s.walking;p.stand=p.wantStand=s.walking||s.activity==='nuzzle'?1:0;p.gaitAmp=s.walking?1:0;p.gaitPhase=t*C.exploration.speed/.3*2*Math.PI;p.headOff.set(0,0,0);
+/** Visual pose only: a deterministic absolute-clock walk, wash, look or sleep; #322 (original #2125): idle sitting chooses grooming
+ * (face or flank), the tail round the paws or looking about on the same clock, a sleeping cat wraps its tail, the last seconds of a long
+ * ground rest are a stretch, the tail trails turns and flicks by mood, the ears twitch. `dt` eases the tail; 0 for the cached far poses. */
+function pose(p,s,t,dt=0){
+ const stretch=!s.walking&&!s.elevated&&s.activity!=='nuzzle'&&s.restLeft>0&&s.restLeft<=LF.stretch.secs&&s.restDone>=LF.stretch.after;
+ p.mood=moodOf(s.activity);p.lifeT=t;p.yawNow=s.yaw??0;p.wantWrap=0;p.bow=null;
+ p.walked=s.walking;p.stand=p.wantStand=s.walking||stretch||s.activity==='nuzzle'?1:0;p.gaitAmp=s.walking?1:0;p.gaitPhase=t*C.exploration.speed/.3*2*Math.PI;p.headOff.set(0,0,0);
  p.shoulder.rotation.set(0,0,0);p.leftShoulder.rotation.set(0,0,0);p.head.rotation.set(0,0,0);
- for(const e of p.eyes){e.eye.visible=s.activity!=='sleep';e.shut.visible=s.activity==='sleep';}
+ const sleep=!s.walking&&!stretch&&s.activity==='sleep';
+ for(const e of p.eyes){e.eye.visible=!sleep;e.shut.visible=sleep;}
  if(s.walking){p.head.rotation.x=.12;p.tailGroup.rotation.y=.3*Math.sin(t*4.5);}
- else if(s.activity==='wash'){
-  // Source's ordinary washing cycle; no pet/food behavior.
-  const cy=t%6,sm=(a,b,x)=>THREE.MathUtils.smoothstep(x,a,b),u=sm(0,.5,cy)*(1-sm(3.2,3.7,cy)),wipe=sm(2,2.4,cy)*(1-sm(2.9,3.2,cy)),lick=Math.sin(t*13)*.5+.5;
-  p.shoulder.rotation.set(-2.85*u-.25*wipe,0,.3*u+.15*wipe);p.head.rotation.set(.3*u+.08*lick*u*(1-wipe)-.2*wipe,.4*u*(1-wipe)+(1-u)*.35*Math.sin(t*.7),-.15*u+.3*wipe);p.tailGroup.rotation.y=.08*Math.sin(t*2.3)*(1-u);
- }else{p.head.rotation.set(s.activity==='sleep'?.5:0,s.activity==='sleep'?.15:.45*Math.sin(t*.6),s.activity==='sleep'?.1:0);p.tailGroup.rotation.y=s.activity==='sleep'?0:.08*Math.sin(t*2.3);}
- p.pose(0);
+ else if(stretch){p.bow=stretchPose(1-s.restLeft/LF.stretch.secs);p.tailGroup.rotation.y=0;} // the rest is ending: up, a long stretch, then off it walks
+ else if(s.activity==='wash')p.groom(t); // the source's grooming: the face as before, some cycles the flank. No pet/food behaviour.
+ else{
+  const choice=sleep||s.activity==='nuzzle'?'look':sitChoice(p.lifeSeed,t);
+  if(sleep){p.head.rotation.set(.5,.15,.1);p.tailGroup.rotation.y=0;p.wantWrap=1;} // head down, eyes shut, tail round it
+  else if(choice==='groom')p.groom(t);
+  else if(choice==='wrap')p.sitLook(t,true);
+  else{p.head.rotation.set(0,.45*Math.sin(t*.6),0);p.tailGroup.rotation.y=.08*Math.sin(t*2.3);}
+ }
+ p.pose(dt);
 }
 export class OutdoorCats{
  constructor({scene,camera,ground,barriers=[],trunks=[],lowMemory=false,now=()=>Date.now()/1000}){
   Object.assign(this,{scene,camera,ground,now,drawDist:lowMemory?C.drawDistPhone:C.drawDist,winter:false,lastTime:now(),hidden:false});
-  this.cats=[...C.cats,...C.loops].map((spec,id)=>{const brain=new OutdoorCatBrain(spec,id,()=>this.now()),p=createCatPuppet(spec.color);
+  this.cats=[...C.cats,...C.loops].map((spec,id)=>{const brain=new OutdoorCatBrain(spec,id,()=>this.now()),p=createCatPuppet(spec.color);p.initLife(seedOf(`public-cat-${id}`));
    pose(p,{walking:false,activity:'look'},0);const sit=mergedRig(p).geometry;
    pose(p,{walking:true,activity:'walk'},0);const walk=mergedRig(p).geometry;
    const nuzzleShape=noseShape(p),climbContact=pawContact(p),rig=mergedRig(p),mesh=new THREE.Mesh(rig.geometry,material);mesh.name=`ambient-cat-${id}`;mesh.visible=false;mesh.raycast=()=>{};mesh.userData.noDetail=true;scene.add(mesh);
@@ -58,7 +72,7 @@ export class OutdoorCats{
   for(const c of this.cats){let s=c.st==='social'?{...c.at,x:c.x,z:c.z,yaw:c.yaw,walking:c.walking,activity:'nuzzle',elevated:false,climbing:false}:c.st==='home'?{...c.at,x:c.x,z:c.z,yaw:c.yaw,walking:true,elevated:false,climbing:false}:c.at;
    const y=s.elevated?s.y:this.ground(s.x,s.z),d=Math.hypot(this.camera.position.x-s.x,this.camera.position.y-y,this.camera.position.z-s.z),visible=!hidden&&!this.winter&&Number.isFinite(y)&&d<this.drawDist,near=visible&&d<C.near;c.state={...s,plan:undefined,y,visible,near};c.mesh.visible=visible;if(!visible)continue;
    c.mesh.position.set(s.x,y,s.z);c.mesh.rotation.set(s.climbing?s.pitch:0,s.yaw,0,'YXZ');
-   if(near){pose(c.p,s,now-C.epoch+c.spec.phase);if(c.st==='social'&&this.nuzzle.pair)rubNoses(c,this.nuzzle.pair);c.rig.write();c.mesh.geometry=c.rig.geometry;}else c.mesh.geometry=s.walking?c.walk:c.sit;
+   if(near){pose(c.p,s,now-C.epoch+c.spec.phase,dt);if(c.st==='social'&&this.nuzzle.pair)rubNoses(c,this.nuzzle.pair);c.rig.write();c.mesh.geometry=c.rig.geometry;}else c.mesh.geometry=s.walking?c.walk:c.sit;
    alignClimb(c,near);
   }
   if(this.hearts){if(hidden||this.winter||!this.nuzzle.pair)this.hearts.points.visible=false;else this.hearts.update(dt);}
