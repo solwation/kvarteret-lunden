@@ -12,6 +12,7 @@ import { SEASON } from './config.js';
 import { gravelMaterial } from './gravelsurface.js';
 import { leafLitter } from './leaflitter.js';
 import { benchSlat, benchWood, padBenchSlats } from './benchwood.js'; // #313 (original #2098): weathered bench slats
+import { snowCap } from './snowcap.js'; // #321 (original #2123)
 import { groundY } from './surroundings.js';
 import { lobeGeometry, leafMaterial, windLeafMaterial } from './foliage.js';
 import { siteWindBounds } from './sitewind.js';
@@ -359,10 +360,10 @@ export function buildCourtyard() {
     paving: new THREE.MeshStandardMaterial({ map: paveTex, roughness: 0.95 }),
     gravel: gravelMaterial(0xcfc6b2, { name: 'courtyard-gravel' }), // #312 (original #2096): stones, mean colour kept
     sand: new THREE.MeshStandardMaterial({ color: 0xe0cfa0, vertexColors: true, roughness: 1 }), // mottled (#681)
-    wood: benchWood(new THREE.MeshStandardMaterial({ color: 0x8a6544, map: woodGrain(), vertexColors: true, roughness: 0.8 })), // grain + a tone per board (#682); #2098: weathered bench slats
-    metal: new THREE.MeshStandardMaterial({ color: 0x23262a, roughness: 0.5, metalness: 0.5 }),
+    wood: snowCap(benchWood(new THREE.MeshStandardMaterial({ color: 0x8a6544, map: woodGrain(), vertexColors: true, roughness: 0.8 }))), // grain + a tone per board (#682); #2098: weathered bench slats
+    metal: snowCap(new THREE.MeshStandardMaterial({ color: 0x23262a, roughness: 0.5, metalness: 0.5 })), // #321 (original #2123): snow caps in the snow months
     soil: new THREE.MeshStandardMaterial({ color: 0x3e2f24, roughness: 1 }),
-    pergola: new THREE.MeshStandardMaterial({ color: 0xd8d0bf, roughness: 0.85 }),
+    pergola: snowCap(new THREE.MeshStandardMaterial({ color: 0xd8d0bf, roughness: 0.85 })),
     brick: new THREE.MeshStandardMaterial({ map: herringbone(), roughness: 0.9 }),
   };
   leafLitter(mats.paving, 'paving'); leafLitter(mats.brick, 'paving'); // #317 (original #2105): autumn leaves (the gravel's own factory does it)

@@ -6,7 +6,8 @@ import * as THREE from 'three';
 import { renderSurfacePixels, renderMeanRoughness, renderSurfaceTexture, renderAlbedoPixels, renderAlbedoMean, renderAlbedoTexture, renderMaterial, renderUV, plainUV, dirtPatch } from '../src/rendersurface.js';
 import { RENDER_SURFACE as R } from '../src/config.js';
 const BASE = process.env.BASE_REV || 'd3981b4';
-const src = (f) => readFileSync(f, 'utf8'), at = (f) => execFileSync('git', ['show', `${BASE}:${f}`], { encoding: 'utf8' });
+const unwrapSnowCap = (s) => { for (let i = s.indexOf('snowCap('); i >= 0; i = s.indexOf('snowCap(')) { let d = 0, j = i + 7; for (; j < s.length; j++) { if (s[j] === '(') d++; else if (s[j] === ')' && --d === 0) break; } s = s.slice(0, i) + s.slice(i + 8, j) + s.slice(j + 1); } return s; }; // #321 (original #2123) wraps materials in snowCap(...): check the material inside
+const src = (f) => unwrapSnowCap(readFileSync(f, 'utf8')), at = (f) => execFileSync('git', ['show', `${BASE}:${f}`], { encoding: 'utf8' });
 
 test('map: deterministic, small, fine and calm, tiles, neutral texel at the mean roughness', () => {
   const p = renderSurfacePixels(), n = R.size, ch = (x, y, c) => p[4 * (((y + n) % n) * n + ((x + n) % n)) + c];

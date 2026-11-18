@@ -7,7 +7,8 @@ import * as THREE from 'three';
 import { railMetal, railMetalShader } from '../src/railmetal.js';
 import { hasNativeVertexCompile } from '../src/vertexcompile.js';
 import { RAIL_METAL as R } from '../src/config.js';
-const src = (f) => readFileSync(`src/${f}`, 'utf8');
+const unwrapSnowCap = (s) => { for (let i = s.indexOf('snowCap('); i >= 0; i = s.indexOf('snowCap(')) { let d = 0, j = i + 7; for (; j < s.length; j++) { if (s[j] === '(') d++; else if (s[j] === ')' && --d === 0) break; } s = s.slice(0, i) + s.slice(i + 8, j) + s.slice(j + 1); } return s; }; // #321 (original #2123) wraps materials in snowCap(...): check the material inside
+const src = (f) => unwrapSnowCap(readFileSync(`src/${f}`, 'utf8'));
 
 test('patch applies to three 0.170 standard/physical sources, after the chunks it needs', () => {
   const lib = THREE.ShaderLib.physical, sh = railMetalShader({ vertexShader: lib.vertexShader, fragmentShader: lib.fragmentShader, uniforms: {} });

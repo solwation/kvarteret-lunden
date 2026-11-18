@@ -1,0 +1,1459 @@
+{
+ "baseline": "d3109158500e5d88cd89189f48023f2b3a1bd16c",
+ "viewport": [
+  1280,
+  800
+ ],
+ "errors": [],
+ "external": [],
+ "phases": {
+  "before": {
+   "loadMs": 26439,
+   "views": [
+    {
+     "name": "husL-gata",
+     "x": -6,
+     "z": -12,
+     "yaw": 180,
+     "pitch": -30,
+     "lift": 8.6,
+     "camera": [
+      -6,
+      8.6,
+      -12
+     ],
+     "calls": 555,
+     "triangles": 790932,
+     "textures": 66,
+     "geometries": 533,
+     "programs": 65,
+     "imageSHA256": "51670d27baa97bebacef0e391706e6c89ad41641ab0732af30bf035570238930"
+    },
+    {
+     "name": "husL-tak",
+     "x": -6,
+     "z": -6,
+     "yaw": 180,
+     "pitch": -35,
+     "lift": 16.6,
+     "camera": [
+      -6,
+      16.6,
+      -6
+     ],
+     "calls": 554,
+     "triangles": 798683,
+     "textures": 66,
+     "geometries": 535,
+     "programs": 65,
+     "imageSHA256": "45bd25fb874d0f4f5d2ef8401a2473cd6e5770570f038369bbed03466e18612f"
+    },
+    {
+     "name": "husA",
+     "x": 2,
+     "z": 23,
+     "yaw": 200,
+     "pitch": -30,
+     "lift": 9.6,
+     "camera": [
+      2,
+      9.6,
+      23
+     ],
+     "calls": 185,
+     "triangles": 584445,
+     "textures": 76,
+     "geometries": 636,
+     "programs": 68,
+     "imageSHA256": "e0bb3341e82f97a9006623f853a37bc888794af8698c5215638441e6a21474c3"
+    },
+    {
+     "name": "gard-bankar",
+     "x": -30,
+     "z": 24,
+     "yaw": 90,
+     "pitch": -40,
+     "lift": 4.6,
+     "camera": [
+      -30,
+      4.6,
+      24
+     ],
+     "calls": 90,
+     "triangles": 518020,
+     "textures": 84,
+     "geometries": 702,
+     "programs": 70,
+     "imageSHA256": "1387c0c63cf9c560d492892e5d6cbda16d7564ec156668ddd04158c54fc772b0"
+    }
+   ],
+   "cap": {
+    "meshes": 1350,
+    "found": []
+   },
+   "uSnowCap": null,
+   "storage": {
+    "sentinel": "kept",
+    "keys": [
+     "kvarteret-lunden.paddockGrass",
+     "kvarteret-lunden.sentinel"
+    ]
+   }
+  },
+  "after": {
+   "loadMs": 25790,
+   "views": [
+    {
+     "name": "husL-gata",
+     "x": -6,
+     "z": -12,
+     "yaw": 180,
+     "pitch": -30,
+     "lift": 8.6,
+     "camera": [
+      -6,
+      8.6,
+      -12
+     ],
+     "calls": 555,
+     "triangles": 790932,
+     "textures": 66,
+     "geometries": 533,
+     "programs": 67,
+     "imageSHA256": "a1fa619ada80c2630635dc4cdf9d0747897922a23b564e61c7e5984a5d63fd48"
+    },
+    {
+     "name": "husL-tak",
+     "x": -6,
+     "z": -6,
+     "yaw": 180,
+     "pitch": -35,
+     "lift": 16.6,
+     "camera": [
+      -6,
+      16.6,
+      -6
+     ],
+     "calls": 554,
+     "triangles": 798683,
+     "textures": 66,
+     "geometries": 535,
+     "programs": 67,
+     "imageSHA256": "139934a7dcb33f4cc907b7e343870b7815522c32f0376b7f056cd178a484b412"
+    },
+    {
+     "name": "husA",
+     "x": 2,
+     "z": 23,
+     "yaw": 200,
+     "pitch": -30,
+     "lift": 9.6,
+     "camera": [
+      2,
+      9.6,
+      23
+     ],
+     "calls": 185,
+     "triangles": 584445,
+     "textures": 76,
+     "geometries": 636,
+     "programs": 70,
+     "imageSHA256": "bb2cf3f112b2f7486ede07fd0b1d033f16bb0f0ebf7929947ea19cb3fec1f042"
+    },
+    {
+     "name": "gard-bankar",
+     "x": -30,
+     "z": 24,
+     "yaw": 90,
+     "pitch": -40,
+     "lift": 4.6,
+     "camera": [
+      -30,
+      4.6,
+      24
+     ],
+     "calls": 90,
+     "triangles": 518020,
+     "textures": 84,
+     "geometries": 702,
+     "programs": 72,
+     "imageSHA256": "1114b3979c16a8c02150d00357d94a95619b61c16a0f78ee8a6fc5aca8757af3"
+    }
+   ],
+   "cap": {
+    "meshes": 1350,
+    "found": [
+     {
+      "name": null,
+      "vertices": 4278,
+      "box": [
+       [
+        -45,
+        0,
+        -4
+       ],
+       [
+        12,
+        13,
+        13
+       ]
+      ],
+      "key": "t, renderer */ ) {}|snowcap2123|shademoss2122-bump"
+     },
+     {
+      "name": null,
+      "vertices": 16026,
+      "box": [
+       [
+        -42,
+        6,
+        2
+       ],
+       [
+        12,
+        12,
+        11
+       ]
+      ],
+      "key": "ile( /* shaderobject, renderer */ ) {}|snowcap2123"
+     },
+     {
+      "name": null,
+      "vertices": 360,
+      "box": [
+       [
+        -42,
+        6,
+        1
+       ],
+       [
+        12,
+        13,
+        2
+       ]
+      ],
+      "key": "ile( /* shaderobject, renderer */ ) {}|snowcap2123"
+     },
+     {
+      "name": "loftRails",
+      "vertices": 30828,
+      "box": [
+       [
+        -45,
+        0,
+        -4
+       ],
+       [
+        12,
+        8,
+        3
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": null,
+      "vertices": 4428,
+      "box": [
+       [
+        -42,
+        1,
+        0
+       ],
+       [
+        12,
+        13,
+        13
+       ]
+      ],
+      "key": "ile( /* shaderobject, renderer */ ) {}|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 1980,
+      "box": [
+       [
+        -42,
+        10,
+        13
+       ],
+       [
+        -36,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 1872,
+      "box": [
+       [
+        -36,
+        10,
+        13
+       ],
+       [
+        -30,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 1872,
+      "box": [
+       [
+        -30,
+        10,
+        13
+       ],
+       [
+        -25,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 1764,
+      "box": [
+       [
+        -25,
+        10,
+        13
+       ],
+       [
+        -20,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 1764,
+      "box": [
+       [
+        -16,
+        10,
+        13
+       ],
+       [
+        -11,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 1872,
+      "box": [
+       [
+        -11,
+        10,
+        13
+       ],
+       [
+        -5,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 1872,
+      "box": [
+       [
+        -5,
+        10,
+        13
+       ],
+       [
+        0,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 1872,
+      "box": [
+       [
+        0,
+        10,
+        13
+       ],
+       [
+        6,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 1980,
+      "box": [
+       [
+        6,
+        10,
+        13
+       ],
+       [
+        12,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 612,
+      "box": [
+       [
+        -42,
+        10,
+        11
+       ],
+       [
+        -42,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 612,
+      "box": [
+       [
+        11,
+        10,
+        11
+       ],
+       [
+        12,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": null,
+      "vertices": 37956,
+      "box": [
+       [
+        -69,
+        0,
+        20
+       ],
+       [
+        5,
+        2,
+        49
+       ]
+      ],
+      "key": "bench-wood-2098|snowcap2123"
+     },
+     {
+      "name": null,
+      "vertices": 23748,
+      "box": [
+       [
+        -61,
+        0,
+        13
+       ],
+       [
+        6,
+        2,
+        47
+       ]
+      ],
+      "key": "ile( /* shaderobject, renderer */ ) {}|snowcap2123"
+     },
+     {
+      "name": null,
+      "vertices": 2772,
+      "box": [
+       [
+        -64,
+        0,
+        19
+       ],
+       [
+        -13,
+        3,
+        49
+       ]
+      ],
+      "key": "ile( /* shaderobject, renderer */ ) {}|snowcap2123"
+     },
+     {
+      "name": null,
+      "vertices": 702,
+      "box": [
+       [
+        -71,
+        -3,
+        0
+       ],
+       [
+        14,
+        0,
+        53
+       ]
+      ],
+      "key": "ct, renderer */ ) {}|snowcap2123|shademoss2122-map"
+     },
+     {
+      "name": "boxRails",
+      "vertices": 10188,
+      "box": [
+       [
+        -71,
+        -3,
+        10
+       ],
+       [
+        14,
+        1,
+        59
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "boxSlats",
+      "vertices": 588,
+      "box": [
+       [
+        -70,
+        -1,
+        11
+       ],
+       [
+        13,
+        1,
+        53
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "bus-stop-furniture",
+      "vertices": 684,
+      "box": [
+       [
+        35,
+        0,
+        188
+       ],
+       [
+        61,
+        3,
+        200
+       ]
+      ],
+      "key": "rail-metal-2089|bench-wood-2098|snowcap2123"
+     },
+     {
+      "name": null,
+      "vertices": 2475,
+      "box": [
+       [
+        -71,
+        -3,
+        13
+       ],
+       [
+        9,
+        15,
+        57
+       ]
+      ],
+      "key": "ct, renderer */ ) {}|snowcap2123|shademoss2122-map"
+     },
+     {
+      "name": null,
+      "vertices": 85356,
+      "box": [
+       [
+        -71,
+        -3,
+        13
+       ],
+       [
+        9,
+        15,
+        57
+       ]
+      ],
+      "key": "t, renderer */ ) {}|snowcap2123|shademoss2122-bump"
+     },
+     {
+      "name": "loggiaRails",
+      "vertices": 504,
+      "box": [
+       [
+        -71,
+        0,
+        13
+       ],
+       [
+        9,
+        13,
+        57
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": null,
+      "vertices": 20,
+      "box": [
+       [
+        -51,
+        -1,
+        25
+       ],
+       [
+        3,
+        3,
+        49
+       ]
+      ],
+      "key": "ile( /* shaderobject, renderer */ ) {}|snowcap2123"
+     },
+     {
+      "name": null,
+      "vertices": 816,
+      "box": [
+       [
+        -71,
+        -2,
+        12
+       ],
+       [
+        10,
+        15,
+        58
+       ]
+      ],
+      "key": "ile( /* shaderobject, renderer */ ) {}|snowcap2123"
+     }
+    ]
+   },
+   "uSnowCap": 1,
+   "storage": {
+    "sentinel": "kept",
+    "keys": [
+     "kvarteret-lunden.paddockGrass",
+     "kvarteret-lunden.sentinel"
+    ]
+   }
+  },
+  "after-july": {
+   "loadMs": 35026,
+   "views": [
+    {
+     "name": "husL-gata",
+     "x": -6,
+     "z": -12,
+     "yaw": 180,
+     "pitch": -30,
+     "lift": 8.6,
+     "camera": [
+      -6,
+      8.6,
+      -12
+     ],
+     "calls": 560,
+     "triangles": 856184,
+     "textures": 73,
+     "geometries": 536,
+     "programs": 72,
+     "imageSHA256": "e0338bb0e8ed8f9be89f8828c7d174ee0697ba730d911fe133d33457c8bbbbae"
+    },
+    {
+     "name": "husL-tak",
+     "x": -6,
+     "z": -6,
+     "yaw": 180,
+     "pitch": -35,
+     "lift": 16.6,
+     "camera": [
+      -6,
+      16.6,
+      -6
+     ],
+     "calls": 559,
+     "triangles": 860695,
+     "textures": 73,
+     "geometries": 538,
+     "programs": 72,
+     "imageSHA256": "5919fd19118e3b9ff6e9e947be65dd46bfbfedc8958499697f0b55347121bf58"
+    },
+    {
+     "name": "husA",
+     "x": 2,
+     "z": 23,
+     "yaw": 200,
+     "pitch": -30,
+     "lift": 9.6,
+     "camera": [
+      2,
+      9.6,
+      23
+     ],
+     "calls": 189,
+     "triangles": 617417,
+     "textures": 83,
+     "geometries": 639,
+     "programs": 75,
+     "imageSHA256": "6001620871c3a5cf4854e5af81a59ce669c8fd584b3a4ea30111b09ad9fb4945"
+    },
+    {
+     "name": "gard-bankar",
+     "x": -30,
+     "z": 24,
+     "yaw": 90,
+     "pitch": -40,
+     "lift": 4.6,
+     "camera": [
+      -30,
+      4.6,
+      24
+     ],
+     "calls": 94,
+     "triangles": 546264,
+     "textures": 91,
+     "geometries": 705,
+     "programs": 77,
+     "imageSHA256": "d3ffc01bb0c29d1b89eb4c3aa4bed6f3ff0e18953befe9e9cb1599daa2763f35"
+    }
+   ],
+   "cap": {
+    "meshes": 1350,
+    "found": [
+     {
+      "name": null,
+      "vertices": 4278,
+      "box": [
+       [
+        -45,
+        0,
+        -4
+       ],
+       [
+        12,
+        13,
+        13
+       ]
+      ],
+      "key": "t, renderer */ ) {}|snowcap2123|shademoss2122-bump"
+     },
+     {
+      "name": null,
+      "vertices": 16026,
+      "box": [
+       [
+        -42,
+        6,
+        2
+       ],
+       [
+        12,
+        12,
+        11
+       ]
+      ],
+      "key": "ile( /* shaderobject, renderer */ ) {}|snowcap2123"
+     },
+     {
+      "name": null,
+      "vertices": 360,
+      "box": [
+       [
+        -42,
+        6,
+        1
+       ],
+       [
+        12,
+        13,
+        2
+       ]
+      ],
+      "key": "ile( /* shaderobject, renderer */ ) {}|snowcap2123"
+     },
+     {
+      "name": "loftRails",
+      "vertices": 30828,
+      "box": [
+       [
+        -45,
+        0,
+        -4
+       ],
+       [
+        12,
+        8,
+        3
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": null,
+      "vertices": 4428,
+      "box": [
+       [
+        -42,
+        1,
+        0
+       ],
+       [
+        12,
+        13,
+        13
+       ]
+      ],
+      "key": "ile( /* shaderobject, renderer */ ) {}|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 1980,
+      "box": [
+       [
+        -42,
+        10,
+        13
+       ],
+       [
+        -36,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 1872,
+      "box": [
+       [
+        -36,
+        10,
+        13
+       ],
+       [
+        -30,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 1872,
+      "box": [
+       [
+        -30,
+        10,
+        13
+       ],
+       [
+        -25,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 1764,
+      "box": [
+       [
+        -25,
+        10,
+        13
+       ],
+       [
+        -20,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 1764,
+      "box": [
+       [
+        -16,
+        10,
+        13
+       ],
+       [
+        -11,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 1872,
+      "box": [
+       [
+        -11,
+        10,
+        13
+       ],
+       [
+        -5,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 1872,
+      "box": [
+       [
+        -5,
+        10,
+        13
+       ],
+       [
+        0,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 1872,
+      "box": [
+       [
+        0,
+        10,
+        13
+       ],
+       [
+        6,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 1980,
+      "box": [
+       [
+        6,
+        10,
+        13
+       ],
+       [
+        12,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 612,
+      "box": [
+       [
+        -42,
+        10,
+        11
+       ],
+       [
+        -42,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 612,
+      "box": [
+       [
+        11,
+        10,
+        11
+       ],
+       [
+        12,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": null,
+      "vertices": 37956,
+      "box": [
+       [
+        -69,
+        0,
+        20
+       ],
+       [
+        5,
+        2,
+        49
+       ]
+      ],
+      "key": "bench-wood-2098|snowcap2123"
+     },
+     {
+      "name": null,
+      "vertices": 23748,
+      "box": [
+       [
+        -61,
+        0,
+        13
+       ],
+       [
+        6,
+        2,
+        47
+       ]
+      ],
+      "key": "ile( /* shaderobject, renderer */ ) {}|snowcap2123"
+     },
+     {
+      "name": null,
+      "vertices": 2772,
+      "box": [
+       [
+        -64,
+        0,
+        19
+       ],
+       [
+        -13,
+        3,
+        49
+       ]
+      ],
+      "key": "ile( /* shaderobject, renderer */ ) {}|snowcap2123"
+     },
+     {
+      "name": null,
+      "vertices": 702,
+      "box": [
+       [
+        -71,
+        -3,
+        0
+       ],
+       [
+        14,
+        0,
+        53
+       ]
+      ],
+      "key": "ct, renderer */ ) {}|snowcap2123|shademoss2122-map"
+     },
+     {
+      "name": "boxRails",
+      "vertices": 10188,
+      "box": [
+       [
+        -71,
+        -3,
+        10
+       ],
+       [
+        14,
+        1,
+        59
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "boxSlats",
+      "vertices": 588,
+      "box": [
+       [
+        -70,
+        -1,
+        11
+       ],
+       [
+        13,
+        1,
+        53
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "bus-stop-furniture",
+      "vertices": 684,
+      "box": [
+       [
+        35,
+        0,
+        188
+       ],
+       [
+        61,
+        3,
+        200
+       ]
+      ],
+      "key": "rail-metal-2089|bench-wood-2098|snowcap2123"
+     },
+     {
+      "name": null,
+      "vertices": 2475,
+      "box": [
+       [
+        -71,
+        -3,
+        13
+       ],
+       [
+        9,
+        15,
+        57
+       ]
+      ],
+      "key": "ct, renderer */ ) {}|snowcap2123|shademoss2122-map"
+     },
+     {
+      "name": null,
+      "vertices": 85356,
+      "box": [
+       [
+        -71,
+        -3,
+        13
+       ],
+       [
+        9,
+        15,
+        57
+       ]
+      ],
+      "key": "t, renderer */ ) {}|snowcap2123|shademoss2122-bump"
+     },
+     {
+      "name": "loggiaRails",
+      "vertices": 504,
+      "box": [
+       [
+        -71,
+        0,
+        13
+       ],
+       [
+        9,
+        13,
+        57
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": null,
+      "vertices": 20,
+      "box": [
+       [
+        -51,
+        -1,
+        25
+       ],
+       [
+        3,
+        3,
+        49
+       ]
+      ],
+      "key": "ile( /* shaderobject, renderer */ ) {}|snowcap2123"
+     },
+     {
+      "name": null,
+      "vertices": 816,
+      "box": [
+       [
+        -71,
+        -2,
+        12
+       ],
+       [
+        10,
+        15,
+        58
+       ]
+      ],
+      "key": "ile( /* shaderobject, renderer */ ) {}|snowcap2123"
+     }
+    ]
+   },
+   "uSnowCap": 0,
+   "storage": {
+    "sentinel": "kept",
+    "keys": [
+     "kvarteret-lunden.paddockGrass",
+     "kvarteret-lunden.sentinel"
+    ]
+   }
+  },
+  "phone": {
+   "loadMs": 39339,
+   "views": [],
+   "cap": {
+    "meshes": 1315,
+    "found": [
+     {
+      "name": "loftRails",
+      "vertices": 30828,
+      "box": [
+       [
+        -45,
+        0,
+        -4
+       ],
+       [
+        12,
+        8,
+        3
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "terraceRails",
+      "vertices": 18072,
+      "box": [
+       [
+        -42,
+        10,
+        11
+       ],
+       [
+        12,
+        11,
+        13
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": null,
+      "vertices": 37956,
+      "box": [
+       [
+        -69,
+        0,
+        20
+       ],
+       [
+        5,
+        2,
+        49
+       ]
+      ],
+      "key": "bench-wood-2098|snowcap2123"
+     },
+     {
+      "name": "boxRails",
+      "vertices": 10188,
+      "box": [
+       [
+        -71,
+        -3,
+        10
+       ],
+       [
+        14,
+        1,
+        59
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "boxSlats",
+      "vertices": 588,
+      "box": [
+       [
+        -70,
+        -1,
+        11
+       ],
+       [
+        13,
+        1,
+        53
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     },
+     {
+      "name": "bus-stop-furniture",
+      "vertices": 684,
+      "box": [
+       [
+        35,
+        0,
+        188
+       ],
+       [
+        61,
+        3,
+        200
+       ]
+      ],
+      "key": "rail-metal-2089|bench-wood-2098|snowcap2123"
+     },
+     {
+      "name": "loggiaRails",
+      "vertices": 504,
+      "box": [
+       [
+        -71,
+        0,
+        13
+       ],
+       [
+        9,
+        13,
+        57
+       ]
+      ],
+      "key": "rail-metal-2089|snowcap2123"
+     }
+    ]
+   },
+   "uSnowCap": 1,
+   "storage": {
+    "sentinel": "kept",
+    "keys": [
+     "kvarteret-lunden.sentinel"
+    ]
+   }
+  }
+ },
+ "source": {
+  "src/snowcap.js": "a943c6f470f5a1d9b1d53e400e387cc9cdec9aceeec0a39626441783011887d1",
+  "src/config.js": "67ffa0c8db58e3f4f0ab801c9cac1bffa3e0052a74cf16fe83aee286a97a0857",
+  "src/exterior.js": "6ef0a8918790683ec4fbddf0b1add70f76c27d9b7a472247785bdf9c1a884062",
+  "src/surroundings.js": "cd1e87af43a3437125c317528738371b4b887da4d62e99d543757bbc59a2a97d",
+  "src/courtyard.js": "3941a9c41f1fc6732da262b7a5d9ae530ad85fe551fba4531dc94345743669d8",
+  "src/busstop.js": "f4f419d666c7d964e43ab17131f15b904b1dc2e150d4bb59f3ea4af80257b675",
+  "tools/snowcaptest.mjs": "6cb5dc34224f93189d8e55cde3d2e92680c8e46d373836ddc0a64f641089e597",
+  "tools/snowcap321browser.cjs": "64a889e11100342e358a5f7982aeecb36156c978cd0dc23c681ff958f4f0f9df"
+ },
+ "tone": {
+  "husL-gata": [
+   [
+    194.11,
+    182.22,
+    171.81
+   ],
+   [
+    194.23,
+    182.39,
+    172.04
+   ],
+   [
+    163.62,
+    149.9,
+    137.24
+   ]
+  ],
+  "husL-tak": [
+   [
+    191.45,
+    185.17,
+    175.56
+   ],
+   [
+    191.82,
+    185.63,
+    176.31
+   ],
+   [
+    152.95,
+    151.46,
+    139.63
+   ]
+  ],
+  "husA": [
+   [
+    165.71,
+    139.06,
+    123.61
+   ],
+   [
+    166,
+    139.57,
+    124.37
+   ],
+   [
+    144.88,
+    124.2,
+    99.27
+   ]
+  ],
+  "gard-bankar": [
+   [
+    210.01,
+    203.7,
+    193.37
+   ],
+   [
+    211.26,
+    205.73,
+    196.1
+   ],
+   [
+    102.8,
+    123.28,
+    74.67
+   ]
+  ]
+ }
+}

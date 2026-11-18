@@ -4326,3 +4326,23 @@ avatar, gameplay, lagring, tjänst, Cloudflare eller originalhistoria importeras
 
 Egen verifiering: `node --test tools/leaflittertest.mjs` 5/5, npm test/build och en egen före/efter-browser i den riktiga
 appen (gård, park, gata; juli, september, oktober, november, januari). [Egna bilder, kontroller och kostnad](verification/317/README.md).
+## Tunt snölager på smala uppåtvända ytor, #321
+
+Granskade originalkällor `0b2eb36bf2ebed1f7f1af25509dd06e6e1bdedc0` (implementation) och
+`cd6fd95564bbae119cca12f42cfc931ac50bbf57` (testernas `unwrapSnowCap`) ([original #2123](https://github.com/solwation/lunden-3d-apartment/issues/2123);
+publicerat resultat `3ada9d9c`). Överfört: byteidentisk `src/snowcap.js` (`snowCap`, `snowCapAmount`, `snowCapOn`,
+`snowCapUniform`, `snowCapGLSL`, `snowCapColor`; en delad `uSnowCap` via `registerSeasonal`, 1 under `SEASON.snowMonths`),
+ett eget `SNOW_CAP`-block i `src/config.js` direkt efter `SHADE_MOSS` (originalets värden) och konsumentraderna:
+`exterior.js` (Hus L:s tegel, puts, pilastrar, fascia/rectRing-kappning/murkrön/fönsterbleck, loftgångs- och terrassräcken),
+`surroundings.js` (Å-husen A/B/C:s tegelfasader, vita puts, loggiaräcken, husbokstäverna, ljus plåt; lådmurarnas tegel,
+räcken och spjälor), `courtyard.js` (bänkarnas trä, metall, pergolan) och `busstop.js` (bänken). Kedjan följer publikens
+befintliga steg: räckesmetall #309, bänkträ #313, puts #311 och mossa #320 (snön sist, så ett mossigt krön blir vitt);
+publiken har ingen `lampwash`. Telefonregeln som originalet: på `lowMemory` får bara material med eget kompileringssteg
+(räcken, bänkar) locket, inget nytt program för ett vanligt material. Alla originalets konsumenter finns i publiken.
+`tools/snowcaptest.mjs` är originalets funktionsnivåtest; `railmetaltest`/`rendersurfacetest` läser igenom `snowCap(...)`
+med originalets hjälpare (`shademosstest` hade den redan från #320). Browserverktyget är eget. Ingen originalbild,
+ändringslogg, inredning, avatar, gameplay, lagring, tjänst, Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: `node --test tools/snowcaptest.mjs` 5/5 (plus railmetal 3/3, rendersurface 6/6, shademoss 7/7,
+benchwood 4/4), npm test/build och en egen före/efter-browser i den riktiga appen i januari och juli (Hus L:s gata och tak,
+Hus A, gårdens bänkar) plus en telefonprobe. [Egna bilder, kontroller och kostnad](verification/321/README.md).
