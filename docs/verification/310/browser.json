@@ -1,0 +1,506 @@
+{
+ "baseline": "59c0acef3a775e1d608d66dc61ee9e5bce7b9c68",
+ "viewport": [
+  1280,
+  800
+ ],
+ "phases": {
+  "before": {
+   "views": {
+    "patio-near-sommar": {
+     "hedges": [
+      {
+       "vertices": 4668,
+       "hash": -29412270,
+       "map": true,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1810519360,
+       "map": true,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": 1084230619,
+       "map": true,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": 542501181,
+       "map": true,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": 2085486065,
+       "map": true,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": 2047943934,
+       "map": true,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1617710283,
+       "map": true,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1458813055,
+       "map": true,
+       "key": "hedge-form-1143"
+      }
+     ],
+     "calls": 203,
+     "triangles": 520464,
+     "textures": 54,
+     "programs": 52,
+     "lights": 4,
+     "programErrors": 0
+    },
+    "patio-walk-sommar": {
+     "hedges": [
+      {
+       "vertices": 4668,
+       "hash": -29412270,
+       "map": true,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1810519360,
+       "map": true,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": 1084230619,
+       "map": true,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": 542501181,
+       "map": true,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": 2085486065,
+       "map": true,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": 2047943934,
+       "map": true,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1617710283,
+       "map": true,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1458813055,
+       "map": true,
+       "key": "hedge-form-1143"
+      }
+     ],
+     "calls": 381,
+     "triangles": 765176,
+     "textures": 54,
+     "programs": 52,
+     "lights": 4,
+     "programErrors": 0
+    },
+    "patio-near-vinter": {
+     "hedges": [
+      {
+       "vertices": 4668,
+       "hash": -29412270,
+       "map": false,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1810519360,
+       "map": false,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": 1084230619,
+       "map": false,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": 542501181,
+       "map": false,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": 2085486065,
+       "map": false,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": 2047943934,
+       "map": false,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1617710283,
+       "map": false,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1458813055,
+       "map": false,
+       "key": "hedge-form-1143"
+      }
+     ],
+     "calls": 456,
+     "triangles": 670060,
+     "textures": 54,
+     "programs": 55,
+     "lights": 4,
+     "programErrors": 0
+    },
+    "patio-walk-vinter": {
+     "hedges": [
+      {
+       "vertices": 4668,
+       "hash": -29412270,
+       "map": false,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1810519360,
+       "map": false,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": 1084230619,
+       "map": false,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": 542501181,
+       "map": false,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": 2085486065,
+       "map": false,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": 2047943934,
+       "map": false,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1617710283,
+       "map": false,
+       "key": "hedge-form-1143"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1458813055,
+       "map": false,
+       "key": "hedge-form-1143"
+      }
+     ],
+     "calls": 379,
+     "triangles": 716780,
+     "textures": 54,
+     "programs": 55,
+     "lights": 4,
+     "programErrors": 0
+    }
+   },
+   "boxwood": {
+    "calls": 1,
+    "vertices": 1390,
+    "key": "hedge-form-1143"
+   },
+   "storageSame": true,
+   "errors": [],
+   "external": []
+  },
+  "after": {
+   "views": {
+    "patio-near-sommar": {
+     "hedges": [
+      {
+       "vertices": 4668,
+       "hash": -29412270,
+       "map": true,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1810519360,
+       "map": true,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": 1084230619,
+       "map": true,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": 542501181,
+       "map": true,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": 2085486065,
+       "map": true,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": 2047943934,
+       "map": true,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1617710283,
+       "map": true,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1458813055,
+       "map": true,
+       "key": "hedge-form-2094"
+      }
+     ],
+     "calls": 203,
+     "triangles": 520464,
+     "textures": 54,
+     "programs": 52,
+     "lights": 4,
+     "programErrors": 0
+    },
+    "patio-walk-sommar": {
+     "hedges": [
+      {
+       "vertices": 4668,
+       "hash": -29412270,
+       "map": true,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1810519360,
+       "map": true,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": 1084230619,
+       "map": true,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": 542501181,
+       "map": true,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": 2085486065,
+       "map": true,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": 2047943934,
+       "map": true,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1617710283,
+       "map": true,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1458813055,
+       "map": true,
+       "key": "hedge-form-2094"
+      }
+     ],
+     "calls": 381,
+     "triangles": 765176,
+     "textures": 54,
+     "programs": 52,
+     "lights": 4,
+     "programErrors": 0
+    },
+    "patio-near-vinter": {
+     "hedges": [
+      {
+       "vertices": 4668,
+       "hash": -29412270,
+       "map": false,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1810519360,
+       "map": false,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": 1084230619,
+       "map": false,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": 542501181,
+       "map": false,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": 2085486065,
+       "map": false,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": 2047943934,
+       "map": false,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1617710283,
+       "map": false,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1458813055,
+       "map": false,
+       "key": "hedge-form-2094"
+      }
+     ],
+     "calls": 456,
+     "triangles": 670060,
+     "textures": 54,
+     "programs": 55,
+     "lights": 4,
+     "programErrors": 0
+    },
+    "patio-walk-vinter": {
+     "hedges": [
+      {
+       "vertices": 4668,
+       "hash": -29412270,
+       "map": false,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1810519360,
+       "map": false,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": 1084230619,
+       "map": false,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": 542501181,
+       "map": false,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": 2085486065,
+       "map": false,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": 2047943934,
+       "map": false,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1617710283,
+       "map": false,
+       "key": "hedge-form-2094"
+      },
+      {
+       "vertices": 4668,
+       "hash": -1458813055,
+       "map": false,
+       "key": "hedge-form-2094"
+      }
+     ],
+     "calls": 379,
+     "triangles": 716780,
+     "textures": 54,
+     "programs": 55,
+     "lights": 4,
+     "programErrors": 0
+    }
+   },
+   "boxwood": {
+    "calls": 1,
+    "vertices": 1390,
+    "key": "hedge-form-2094"
+   },
+   "storageSame": true,
+   "errors": [],
+   "external": []
+  }
+ },
+ "sourceSha256": {
+  "src/hedgeclump.js": "8c831e8c643ef146b6f42011e8ba73adfd394a43cc2191ae8ae69108435b2f06",
+  "src/hedgeform.js": "44d7e09059bee4624040de998e87629e11a65c9b8826bcca7b448c2013415789",
+  "src/boxwood.js": "61f37aa484ca87cca029e8086ead48b09c3125f7b1d8cdec7f83f28c94918fac",
+  "src/patiohedge.js": "1368bd053df8ab9113195b16b1c0c944a215ef73809c8b9ebab85e5d8ffba2fb",
+  "src/config.js": "53e435291941c32b78e0bd51ca695653ec19f2ef0d56bfae7c17f0cb734be598",
+  "tools/hedgeclumptest.mjs": "775c605d7268bf38c816a227a26aac142135609923ecd3c948edbe667cbb6b69",
+  "tools/hedgeclump310browser.cjs": "73600c6e7aeddea35b9ff5f1cc1103e477e32957894dfb9a0f901233598b0b46"
+ }
+}

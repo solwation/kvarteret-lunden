@@ -4100,3 +4100,26 @@ appen (loftgång, terrass, gård, busskur; dag och dämpad skymning) med samma k
 oförändrade räckesmeshar/gränser, texturer och draws (±1 levande scen); noll fel och externa
 anrop. Ingen textur, draw, uniform eller per-framearbete; två extra shaderprogram (varianter).
 [Egna bilder, kontroller och kostnad](verification/309/README.md).
+
+
+## Bladklungor på klippta häckar, #310
+
+Granskad originalkälla `b1c509f51bdd2aabd3a9339d4f238ac022094a74`
+([original #2094](https://github.com/solwation/lunden-3d-apartment/issues/2094), publicerat resultat
+`bac7e53979530e50f95513fb726ef80ead13a4d3`). Överfört: byteidentisk `src/hedgeclump.js` (fragmentbaserat
+Worley-fält över häckens lövuv, JS-spegel och medelton för normalisering), `hedgeMaterial(material, clump)` och
+den mjuka toppövergången (`HEDGE.topRise`) i `src/hedgeform.js`, klungstorleken på konsumentraderna i
+`src/patiohedge.js` (21 cm, publicens produktionskonsument via `world.js`) och `src/boxwood.js` (13 cm; byggaren
+finns men används inte i publicens scen) samt ett eget `HEDGE_CLUMP`-block efter `HEDGE` i `src/config.js`.
+Publicens tre häckmoduler var identiska med originalets bas (bortsett från en kommentar), så patchen gäller rakt av.
+Originalets programnyckel kedjas där av `lampwash.js`, som inte finns här: publicens nyckel är fristående
+`hedge-form-2094` och inget beror på lampwash. Skolans/sjukhusets parkeringshäckar finns inte som `hedgeform`-
+konsumenter här; ej tillämpligt. Publicens färger, geometri, snöbyte, batchar och renderbudget behålls.
+Node-testet är originalets funktionsnivåtest (inga helfilsbaslinjer); browserverktyget är eget. Ingen
+originalbild, ändringslogg, inredning, avatar, gameplay, lagring, tjänst, Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: `node --test tools/hedgeclumptest.mjs` 5/5, en engångsjämförelse av `hedgeBody` mot publik bas
+`59c0ace` (position/normal/uv/hedgeLow/index identiska, vertexfärg högst 0,07 ifrån), npm test/build och en egen
+före/efter-browser i den riktiga appen (uteplatshäckar nära/gångvy sommar/vinter, entrébuxbom som komponent) med
+oförändrade draws/trianglar/texturer/program/ljus och häckgeometri; noll fel, externa anrop och lagringsändringar.
+[Egna bilder, kontroller och kostnad](verification/310/README.md).
