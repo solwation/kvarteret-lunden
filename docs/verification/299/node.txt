@@ -1,0 +1,11 @@
+✔ inset exactly reuses both sampled pavement edges, with positive winding and no road spill (25.377843ms)
+✔ every inset triangle lies exactly above an actual existing pavement triangle (34.446794ms)
+✔ ground-following placement and metric UVs remain deterministic on a slope (5.53075ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 213.634402

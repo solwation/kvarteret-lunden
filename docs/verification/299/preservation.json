@@ -1,0 +1,6 @@
+{
+  "baseline": "2da9c290adbd3d6eb76b564bea0a7b8954b2a766",
+  "originalSource": "71c55134018fb02942322c7f5d4f731cf88a3185",
+  "selection": "only neutralstreethelper/import/cobblehook/metretextureperiod and owncobblesconfig;otherpublicstreetbytes preserved",
+  "publicConfigRemainder": "byte-identical whole baseline after restoring one named cobbles block"
+}

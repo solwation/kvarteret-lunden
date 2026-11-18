@@ -8,6 +8,8 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+Stenläggningen vid gatuhörnet följer trottoarens sväng och markhöjd, med sammanhängande anslutningar i båda ändar (#299).
+
 Uteplatsernas betongplattor har grunda fogar och mjuka plattkanter som reagerar på ljuset; snöytan och den skyddade portikens plattläggning behålls (#296).
 
 Skärmväggarnas målade brädor har mjukare träådring, grunda fogar och svagt varierad matt yta; färger, ram och placering behålls (#297).

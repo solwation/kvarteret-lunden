@@ -3869,3 +3869,10 @@ nät-/lagringsisolering kontrolleras. Kartkostnad 589824 basbytes/786424 nominel
 plus CPU-array och föraroverhead; fragmentarbetet ökar genom native bump/roughness,
 ingen extra geometri, draw, pass eller lampa. Ingen FPS-/helvärldsprestanda påstås.
 [Egna bilder, källhashar, exakta budgetar och begränsningar](verification/296/README.md).
+
+
+## Ansluten stenläggning vid gatuhörnet, #299
+
+Selektiv publicerad originalkälla `71c55134018fb02942322c7f5d4f731cf88a3185` ([original#2077](https://github.com/solwation/lunden-3d-apartment/issues/2077)). Endast neutral cobbledCornerGeometry/import/metrisk texturperiod och byggarhook samt publicens eget cobbles-block överförs. Övrig street/config-kod bevarad exakt, inklusive publicens egna lampor. Befintlig attribution/licens gäller. Nya utbredningsankare och texturperiod är visuella antaganden. Inga originalbilder, personlig inredning/avatar/gameplay, lagring/tjänst, Cloudflare eller originalhistoria importeras.
+
+Egen faktisk publik surroundingsParts+buildStreet-browser med fyra matchade vyer och egna native-aspektbilder, tre Node-test samt npm test/build passerar. Alla övriga attribut och31gångqueries lika; noll browserfel/externa/Storageanrop, ursprungliga lagringsnamns sentineller orörda. +15trianglar/+1492geometribyte, samma mesh/material/128²canvas/draw/textur/pass/ljus och ingen ny per-framekostnad. Ingen fullWorld/FPS/fysisktelefonkontroll påstås. [Källhashar, bilder, exakta kontroller och begränsningar](verification/299/README.md).

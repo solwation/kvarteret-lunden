@@ -1,0 +1,9 @@
+{
+  "src/street.js": "24c9b1122c96f831c07ff13f991865b9a60986f439df11f7a0ba36d694f16e49",
+  "src/config.js": "bbecaa059c02a3dd46c073ba2ddcc32ef5b49125f8660a43a888d1fd47da4190",
+  "src/roads.js": "ef47ca91e59985be9e68753a721955426c221de92fa5387f98fa5a6c29849e65",
+  "src/surroundings.js": "381d174ac61a3f3129ec06d207a642ce5f5e552ed8fdb5db39aaa700997b2e46",
+  "tools/cobbledcorner299.html": "b319b706b99a04bfe90efe57210447bdac6de82dcf65ae6e6616f8dfd3713f22",
+  "tools/cobbledcorner299browser.cjs": "4e6f80af16ac7704bb1372bc929d004cc173b8e152fbdb10bd08c6a0fa5b0587",
+  "tools/cobbledcorner299test.mjs": "22154ecee6d1549b0d39d0867c3bf03c9b2d499f2d9ed924fa4a36bb1d278fd3"
+}
