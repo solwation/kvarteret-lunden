@@ -4145,3 +4145,26 @@ appen (gården nära och i gångvy, en grusgång i parken, gården i snö) med s
 oförändrade grusmeshar/gränser och draws (±1 levande scen); noll fel och externa anrop.
 Kostnad: två delade 512²-DataTextures (1 MiB vardera + mipmaps), engångsgenerering vid start,
 inga nya draws, ljus eller per-framearbete. [Egna bilder, kontroller och kostnad](verification/312/README.md).
+
+## Väderbitna bänkribbor, #313
+
+Granskad originalkälla `c96d77ed32fe3408bd244c018528d777b9eb43ce`
+([original #2098](https://github.com/solwation/lunden-3d-apartment/issues/2098)).
+Överfört: byteidentisk `src/benchwood.js` (varje bänkribba märks i sin egen ram med två 16-bitars vertexattribut; en
+fragmentpatch av det befintliga materialet ger ådring längs ribban, svag sval gråton och ljusare slitna långkanter),
+ett eget `BENCH_WOOD`-block efter `RAIL_METAL` i `src/config.js` (samma värden, *guess*) och konsumentrader på samma
+platser som i originalet: `courtyard.js` (parkbänkarnas `slat()` och pergolabänkarnas plankor märks, `benchWood` på
+virkesmaterialet, `padBenchSlats` på virkesbatchen; bordet och övrigt virke omärkt och oförändrat) och `busstop.js`
+(sits och rygg märks; `benchWood` kedjas efter publicens `railMetal` från #309, vars mättnadsmask fortsatt ser träets
+originalfärg). Publicens `bench()`/`grain()` och busskurens `box`/möbelbatch var identiska med originalets bas, och
+`vertexcompile.js`/`railmetal.js` identiska med originalets vid källrevisionen. Gruslinjerna från #312 rördes inte.
+Skolgårdens bänkar finns inte som märkta konsumenter (som i originalet); ej tillämpligt. Publicens färger, batchar,
+skuggor och sittplatser behålls. Node-testet är originalets funktionsnivåtest med publikens `node_modules/three` i
+stället för `THREE_DIR`; browserverktyget är eget. Ingen originalbild, ändringslogg, inredning, avatar, gameplay,
+lagring, tjänst, Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: `node --test tools/benchwoodtest.mjs` 4/4, npm test/build och en egen före/efter-browser i den
+riktiga appen (parkbänk nära och på håll, pergolabänk, busskurens bänk; sommardag) med samma kamera, oförändrade
+batchgränser/vertexantal/skuggor, identiska draws, trianglar och texturer; noll fel och externa anrop.
+Kostnad: 12 byte per vertex i de två batcherna (gården +455 kB, busskuren +8 kB), ett extra shaderprogram per
+material, ingen textur, draw, uniform eller per-framearbete. [Egna bilder, kontroller och kostnad](verification/313/README.md).

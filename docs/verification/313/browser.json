@@ -1,0 +1,249 @@
+{
+ "baseline": "6ebab12685f93234e9e7e1ce2acc54f022feb635",
+ "viewport": [
+  1200,
+  800
+ ],
+ "phases": {
+  "before": {
+   "meshes": 1361,
+   "batches": [
+    {
+     "name": "courtyard-wood",
+     "vertices": 37956,
+     "bytes": 1670064,
+     "benchWood": false,
+     "railMetal": false,
+     "castShadow": true,
+     "receiveShadow": true,
+     "min": [
+      -68.9,
+      -0.039,
+      20
+     ],
+     "max": [
+      4.9,
+      2.19,
+      49.1
+     ]
+    },
+    {
+     "name": "bus-stop-furniture",
+     "vertices": 684,
+     "bytes": 24624,
+     "benchWood": false,
+     "railMetal": true,
+     "castShadow": true,
+     "receiveShadow": true,
+     "min": [
+      34.801,
+      -0.031,
+      188.225
+     ],
+     "max": [
+      60.529,
+      2.98,
+      199.93
+     ]
+    }
+   ],
+   "loadMs": 32001,
+   "storage": "kept",
+   "views": {
+    "gard-bank-nara": {
+     "at": [
+      -35.3,
+      22.8,
+      1.279,
+      -0.56,
+      0
+     ],
+     "camera": [
+      -35.3,
+      1.62,
+      22.8
+     ],
+     "calls": 92,
+     "triangles": 512898,
+     "textures": 64,
+     "programs": 51
+    },
+    "gard-bank": {
+     "at": [
+      -31.8,
+      24.2,
+      1.222,
+      -0.24,
+      0
+     ],
+     "camera": [
+      -31.8,
+      1.62,
+      24.2
+     ],
+     "calls": 130,
+     "triangles": 580894,
+     "textures": 70,
+     "programs": 57
+    },
+    "pergola-bank": {
+     "at": [
+      -14.05,
+      21.2,
+      2.138,
+      -0.42,
+      0
+     ],
+     "camera": [
+      -14.05,
+      1.62,
+      21.2
+     ],
+     "calls": 128,
+     "triangles": 633753,
+     "textures": 70,
+     "programs": 57
+    },
+    "busskur-bank": {
+     "at": [
+      36.676,
+      191.096,
+      -0.309,
+      -0.42,
+      -0.031
+     ],
+     "camera": [
+      36.676,
+      1.589,
+      191.096
+     ],
+     "calls": 572,
+     "triangles": 796433,
+     "textures": 78,
+     "programs": 61
+    }
+   }
+  },
+  "after": {
+   "meshes": 1361,
+   "batches": [
+    {
+     "name": "courtyard-wood",
+     "vertices": 37956,
+     "bytes": 2125536,
+     "benchWood": true,
+     "railMetal": false,
+     "castShadow": true,
+     "receiveShadow": true,
+     "min": [
+      -68.9,
+      -0.039,
+      20
+     ],
+     "max": [
+      4.9,
+      2.19,
+      49.1
+     ]
+    },
+    {
+     "name": "bus-stop-furniture",
+     "vertices": 684,
+     "bytes": 32832,
+     "benchWood": true,
+     "railMetal": true,
+     "castShadow": true,
+     "receiveShadow": true,
+     "min": [
+      34.801,
+      -0.031,
+      188.225
+     ],
+     "max": [
+      60.529,
+      2.98,
+      199.93
+     ]
+    }
+   ],
+   "loadMs": 29811,
+   "storage": "kept",
+   "views": {
+    "gard-bank-nara": {
+     "at": [
+      -35.3,
+      22.8,
+      1.279,
+      -0.56,
+      0
+     ],
+     "camera": [
+      -35.3,
+      1.62,
+      22.8
+     ],
+     "calls": 92,
+     "triangles": 512898,
+     "textures": 64,
+     "programs": 52
+    },
+    "gard-bank": {
+     "at": [
+      -31.8,
+      24.2,
+      1.222,
+      -0.24,
+      0
+     ],
+     "camera": [
+      -31.8,
+      1.62,
+      24.2
+     ],
+     "calls": 130,
+     "triangles": 580894,
+     "textures": 70,
+     "programs": 58
+    },
+    "pergola-bank": {
+     "at": [
+      -14.05,
+      21.2,
+      2.138,
+      -0.42,
+      0
+     ],
+     "camera": [
+      -14.05,
+      1.62,
+      21.2
+     ],
+     "calls": 128,
+     "triangles": 633753,
+     "textures": 70,
+     "programs": 58
+    },
+    "busskur-bank": {
+     "at": [
+      36.676,
+      191.096,
+      -0.309,
+      -0.42,
+      -0.031
+     ],
+     "camera": [
+      36.676,
+      1.589,
+      191.096
+     ],
+     "calls": 572,
+     "triangles": 796433,
+     "textures": 78,
+     "programs": 62
+    }
+   }
+  }
+ },
+ "errors": [],
+ "external": []
+}
