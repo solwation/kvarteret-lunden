@@ -4469,3 +4469,19 @@ originalbild, inredning, avatar, gameplay, tjänst, Cloudflare eller originalhis
 Egen verifiering: `node --test tools/squirrellifetest.mjs` 8/8 (originalets rena tester plus publikens hjärna per årstid, morfmålen,
 svansmappningen och den riktiga `Squirrels`-värden), `tools/squirrelambienttest.mjs` 2/2, npm test/build och en egen före/efter i den
 riktiga appen. [Egna bilder, kontroller och kostnad](verification/325/README.md).
+## Bladkortens uttoning från kanten, #331
+
+Granskad originalkälla `48c80e0e6b590f0824f370974f11fe8cccccc1a7` ([original #2133](https://github.com/solwation/lunden-3d-apartment/issues/2133)).
+Överfört: `LEAF_GRAZE_GLSL` och JS-spegeln `leafGrazeFade` i `src/foliage.js` med oförändrade kroppar, insatta före
+`alphatest_fragment` i `makeLeafMaterial` (programnyckel `foliage-leaves-v1` → `v2`), samt `FOLIAGE.graze`
+(`cos: [0.1, 0.34]`, `near: [18, 30]`, originalets värden, *guess*) i `src/config.js`. Publikens `makeLeafMaterial` var
+identisk med originalets bas (`48c80e0e^`) utom kommentarer, så samma rader gäller. Uttoningen sitter därmed i alla
+bladfärgmaterial (delat, LOD nära/fjärran, vind) men inte i skuggdjupmaterialen; fragmentsteget är bara fragment (nativ
+vertexkompilering). `near[1]` 30 m = publikens `FOLIAGE.lod.startPhone`, så LOD-överlämningen är orörd även på mobil.
+Publikens vind (#315), LOD (#284), årstidsfärger (#305), trädformer (#327) och mobilprofil är oförändrade. Ej tillämpligt:
+originalets ändringslogg, bilder (även diagnosbilden med anisotropi/mipmaps) och browserverktyg (egna i stället). Ingen
+originalbild, inredning, avatar, gameplay, lagring, tjänst, Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: `node --test tools/leafgrazetest.mjs` 4/4 (originalets funktionstester), `treeformtest`, `lodtest`,
+`sitewindtest` och `barksurfacetest` gröna, npm test/build och en egen före/efter-browser i den riktiga appen
+(`tools/leafgraze331browser.cjs`). [Egna bilder, kontroller och kostnad](verification/331/README.md).

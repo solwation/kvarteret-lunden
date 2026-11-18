@@ -1,0 +1,199 @@
+{
+ "baseline": "1870e5d1c2d21e9287633edde0f59ed4acd9a76c",
+ "viewport": [
+  960,
+  600
+ ],
+ "errors": [],
+ "external": [],
+ "phases": {
+  "before": {
+   "loadMs": 31200,
+   "views": [
+    {
+     "view": "park",
+     "tree": {
+      "x": -3,
+      "z": 117.6,
+      "kind": "tree"
+     },
+     "calls": 39,
+     "triangles": 473412,
+     "textures": 68,
+     "geometries": 497,
+     "programs": 67,
+     "camera": [
+      -12,
+      -1.45,
+      106.6
+     ],
+     "imageSHA256": "9fa85b8b0c53361a648fd04531436a8abae116aa4dafcc1f706dc307ca3ad431"
+    },
+    {
+     "view": "under-south",
+     "tree": {
+      "x": -3,
+      "z": 117.6,
+      "kind": "tree"
+     },
+     "calls": 45,
+     "triangles": 457683,
+     "textures": 68,
+     "geometries": 498,
+     "programs": 68,
+     "camera": [
+      -2.05,
+      -3.9,
+      120.66
+     ],
+     "imageSHA256": "e016854efc3dc3677c92a364acfff7b2e3cc8dc2d24c2a576529396f2628dbbe"
+    },
+    {
+     "view": "under-west",
+     "tree": {
+      "x": -3,
+      "z": 117.6,
+      "kind": "tree"
+     },
+     "calls": 35,
+     "triangles": 464788,
+     "textures": 69,
+     "geometries": 500,
+     "programs": 70,
+     "camera": [
+      -0.09,
+      -3.9,
+      115.48
+     ],
+     "imageSHA256": "c18fccc6415aa3a86226bde316ea5296c382f8ab7e62bfb3aeaf6bbb6ec579f1"
+    },
+    {
+     "view": "under-north",
+     "tree": {
+      "x": -3,
+      "z": 117.6,
+      "kind": "tree"
+     },
+     "calls": 34,
+     "triangles": 440888,
+     "textures": 69,
+     "geometries": 500,
+     "programs": 70,
+     "camera": [
+      -6.68,
+      -3.9,
+      115.01
+     ],
+     "imageSHA256": "f0e9fa4c04b28473e8f37403c1f78990faeeed0e1582c354bb5d0fe7a05d443a"
+    }
+   ],
+   "storage": {
+    "sentinel": "kept",
+    "keys": [
+     "kvarteret-lunden.paddockGrass",
+     "lunden.sentinel"
+    ]
+   }
+  },
+  "after": {
+   "loadMs": 33214,
+   "views": [
+    {
+     "view": "park",
+     "tree": {
+      "x": -3,
+      "z": 117.6,
+      "kind": "tree"
+     },
+     "calls": 39,
+     "triangles": 473412,
+     "textures": 68,
+     "geometries": 497,
+     "programs": 67,
+     "camera": [
+      -12,
+      -1.45,
+      106.6
+     ],
+     "imageSHA256": "db3302f6ee67115ce55881a3f4b14caa6ec0bed9101ca4b5d9fc2aa2e9aadb1b"
+    },
+    {
+     "view": "under-south",
+     "tree": {
+      "x": -3,
+      "z": 117.6,
+      "kind": "tree"
+     },
+     "calls": 45,
+     "triangles": 457683,
+     "textures": 68,
+     "geometries": 498,
+     "programs": 68,
+     "camera": [
+      -2.05,
+      -3.9,
+      120.66
+     ],
+     "imageSHA256": "37fa53d85bdab44763273b737bdead62352514b0eb54f4aded87ba991e8e2592"
+    },
+    {
+     "view": "under-west",
+     "tree": {
+      "x": -3,
+      "z": 117.6,
+      "kind": "tree"
+     },
+     "calls": 35,
+     "triangles": 464728,
+     "textures": 69,
+     "geometries": 500,
+     "programs": 70,
+     "camera": [
+      -0.09,
+      -3.9,
+      115.48
+     ],
+     "imageSHA256": "8c4c5bea43e01d4846d0c28e61685a29ee7eb19db7140f2d21adcf70e50c1fa2"
+    },
+    {
+     "view": "under-north",
+     "tree": {
+      "x": -3,
+      "z": 117.6,
+      "kind": "tree"
+     },
+     "calls": 34,
+     "triangles": 440888,
+     "textures": 69,
+     "geometries": 500,
+     "programs": 70,
+     "camera": [
+      -6.68,
+      -3.9,
+      115.01
+     ],
+     "imageSHA256": "7f8997867a6e79ae2efe6c64c31e8d95f0f4c859d05233c19d9843972b1d6641"
+    }
+   ],
+   "storage": {
+    "sentinel": "kept",
+    "keys": [
+     "kvarteret-lunden.paddockGrass",
+     "lunden.sentinel"
+    ]
+   }
+  }
+ },
+ "diff": {
+  "park": 0.94,
+  "under-south": 3.25,
+  "under-west": 1.87,
+  "under-north": 2.63
+ },
+ "source": {
+  "src/foliage.js": "fcde00502951f9e32d0b58fc0d88377ebe6e67eb6a8479446ee5949559eac4dd",
+  "src/config.js": "26f222b7d879198acdcd8ac277e2fa5ef5f3486a425f60a9194f4d930935bef7",
+  "tools/leafgrazetest.mjs": "9e845003bf16040b1d05b7d3b873ac59c94cd4bc2ff121968071f065bb28e7d1",
+  "tools/leafgraze331browser.cjs": "80864b49c9204a2948bed38e9340b3fbcc1eb2469414cc25ee9b0e97c8ab8f37"
+ }
+}
