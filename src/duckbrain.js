@@ -17,7 +17,8 @@ export class DuckBrain {
     }
     if (this.habitat.next) goal = this.habitat.next(this,goal);
     const dx=goal.x-this.x, dz=goal.z-this.z, d=Math.hypot(dx,dz), surface=this.habitat.surface(this.x,this.z);
-    this.swimming=surface.water; this.moving=d>DUCKS.stopReach;
+    this.swimming=surface.water; this.moving=d>DUCKS.stopReach && !this.hold;
+    // Public #323: `hold` (set by duckmotion's resting behaviours) pauses wandering in place.
     if(this.moving){
       const stride=dt*(surface.water?DUCKS.swimSpeed:DUCKS.speed)*(social?.speed ?? 1); let step=Math.min(d,stride);
       // Slow on the actual bank slope; keep the feet on its surface rather than interpolating through it.

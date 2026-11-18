@@ -4366,3 +4366,24 @@ inredning, avatar, gameplay, lagring, tjänst, Cloudflare eller originalhistoria
 
 Egen verifiering: `node --test tools/catlifetest.mjs` 7/7 (originalets rena tester, publikens rigg, vilklocka och passivitet),
 npm test/build och en egen före/efter-bildsekvens i den riktiga appen. [Egna bilder, kontroller och kostnad](verification/322/README.md).
+## Gräsändernas kroppsspråk och V-kölvatten, #323
+
+Granskad originalkälla `1f71fe84802961ddf8a0fee28860ba084ad5651d` med README-uppdelningen `361ad4fe8fc2b27ee8d318c9f401063b9a9cf8a2`
+([original #2126](https://github.com/solwation/lunden-3d-apartment/issues/2126)).
+Överfört: `src/duckmotion.js` (`DuckActivity`, `duckPose`, `wakeVertices`, `wakeVertexCount`, `envelope`, `blankPose`) med
+oförändrade funktionskroppar och endast huvudkommentaren anpassad; ett eget `DUCK_MOTION`-block i `src/config.js` direkt efter
+`DUCKS` (originalets värden plus `takeoff.height: 3`, originalets `DUCKS.maxFeedHeight`, som publiken saknar); `hold` i
+`DuckBrain.update` (pausar vandring på stället); i publikens `src/ducks.js` en egen seedad beteendeström per fågel, kroppsnivåns
+pose (framåtryck, rullning, lyft, tippning runt en vattenlinjepunkt) på publikens procedurala modell, uppflygning när spelaren
+springer mot en and (> 2,2 m/s inom 2,6 m, 25 s nedkylning) och en delad transparent kölvattenbatch (112 hörn, 96 trianglar)
+som klipps mot den ritade strandkanten via `waterYAt`. Avvikelse: `forceSinglePass: true` på kölvattnets DoubleSide-material, så att
+det kostar ett draw i stället för två. DuckKiss (#244) har företräde och ger exakt neutral pose.
+Ej tillämpligt: originalets riggade GLB, mixer och benposer (nacke/huvud/stjärt/vingar, `flap`-klippet) – publikens änder är en
+procedural mesh utan ben, så huvudnicken och putsningens nackvridning syns inte (putsning blir en vila på stället) och
+uppflygningen saknar vingslag; bröd/matning, `lured`/`eating` (inerta här), ätrörelse, belöningar, ljud och ändringslogg.
+Publikens vatten (#280/#303) är orört: kölvattnet är en egen mesh. Ingen originalbild, inredning, avatar, gameplay, lagring,
+tjänst, Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: `node tools/duckmotiontest.mjs` 7/7, `node tools/duckambienttest.mjs` 3/3, npm test/build och en egen
+före/efter-browser i den riktiga appen med matchad simsekvens och påtvingade beteenden.
+[Egna bilder, kontroller och kostnad](verification/323/README.md).

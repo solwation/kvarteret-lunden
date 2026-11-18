@@ -8,6 +8,8 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+Gräsänderna i ån simmar med små simtag och lämnar ett svagt V-kölvatten som slutar vid strandkanten; ibland tippar de med stjärten upp, vilar en stund på stället eller skakar fjädrarna, och lyfter en kort bit om man springer rakt mot dem. Det är passiv miljö utan matning, ljud eller poäng; vattnet och renderbudgeten är i övrigt oförändrade (+1 draw medan kölvatten syns) (#323). [Egna före/efter-bilder och kontroller](docs/verification/323/README.md).
+
 Gatorna har runda gjutjärnslock mitt i körbanan och dagvattengaller i rännstenen längs kantstenen, och gårdens gångar tre små galler; de ligger platt på ytan, fria från lagningar och övergångsställen, och döljs under snön (#319). [Egna jämförelsebilder och kontroller](docs/verification/319/README.md).
 
 Skuggiga norrväggar (Hus L:s tegel och Å-husens tegel, socklar och vita puts, stödmurarna och parktrappan) har diskreta fläckar av mossa och alger lågt ned och lite grönare fogar; söder-, öst- och västsidor, telefonprofilen och renderbudgeten är oförändrade (#320). [Egna jämförelsebilder och kontroller](docs/verification/320/README.md).

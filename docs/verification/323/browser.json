@@ -1,0 +1,257 @@
+{
+ "baseline": "d3109158500e5d88cd89189f48023f2b3a1bd16c",
+ "viewport": [
+  1120,
+  800
+ ],
+ "errors": [],
+ "external": [],
+ "phases": {
+  "before": {
+   "loadMs": 36195,
+   "setup": {
+    "steps": 989,
+    "brain": {
+     "x": -183.912466358212,
+     "y": -7.335482880606918,
+     "z": 207.0922365675634,
+     "yaw": 0.13842229477626392,
+     "swimming": true,
+     "moving": true
+    },
+    "sceneMeshes": 1346
+   },
+   "frames": [
+    {
+     "name": "swim-0",
+     "calls": 660,
+     "triangles": 913297,
+     "programs": 76,
+     "textures": 80,
+     "geometries": 613,
+     "wakeVisible": false,
+     "state": {
+      "swimming": true,
+      "moving": true,
+      "kind": null,
+      "wake": 0,
+      "y": -7.345,
+      "pitch": 0,
+      "roll": 0
+     }
+    },
+    {
+     "name": "swim-1",
+     "calls": 660,
+     "triangles": 913297,
+     "programs": 76,
+     "textures": 80,
+     "geometries": 613,
+     "wakeVisible": false,
+     "state": {
+      "swimming": true,
+      "moving": true,
+      "kind": null,
+      "wake": 0,
+      "y": -7.351,
+      "pitch": 0,
+      "roll": 0
+     }
+    },
+    {
+     "name": "swim-2",
+     "calls": 660,
+     "triangles": 913297,
+     "programs": 76,
+     "textures": 80,
+     "geometries": 613,
+     "wakeVisible": false,
+     "state": {
+      "swimming": true,
+      "moving": true,
+      "kind": null,
+      "wake": 0,
+      "y": -7.341,
+      "pitch": 0,
+      "roll": 0
+     }
+    }
+   ],
+   "cpu": 0.212
+  },
+  "after": {
+   "loadMs": 44327,
+   "setup": {
+    "steps": 989,
+    "brain": {
+     "x": -183.912466358212,
+     "y": -7.335482880606918,
+     "z": 207.0922365675634,
+     "yaw": 0.13842229477626392,
+     "swimming": true,
+     "moving": true
+    },
+    "sceneMeshes": 1346
+   },
+   "frames": [
+    {
+     "name": "swim-0",
+     "calls": 661,
+     "triangles": 913393,
+     "programs": 77,
+     "textures": 80,
+     "geometries": 614,
+     "wakeVisible": true,
+     "state": {
+      "swimming": true,
+      "moving": true,
+      "kind": null,
+      "wake": 1,
+      "y": -7.345,
+      "pitch": 0,
+      "roll": -0.024
+     }
+    },
+    {
+     "name": "swim-1",
+     "calls": 661,
+     "triangles": 913393,
+     "programs": 77,
+     "textures": 80,
+     "geometries": 614,
+     "wakeVisible": true,
+     "state": {
+      "swimming": true,
+      "moving": true,
+      "kind": null,
+      "wake": 1,
+      "y": -7.351,
+      "pitch": 0,
+      "roll": -0.016
+     }
+    },
+    {
+     "name": "swim-2",
+     "calls": 661,
+     "triangles": 913393,
+     "programs": 77,
+     "textures": 80,
+     "geometries": 614,
+     "wakeVisible": true,
+     "state": {
+      "swimming": true,
+      "moving": true,
+      "kind": null,
+      "wake": 1,
+      "y": -7.341,
+      "pitch": 0,
+      "roll": -0.004
+     }
+    },
+    {
+     "name": "dabble",
+     "calls": 661,
+     "triangles": 913393,
+     "programs": 77,
+     "textures": 80,
+     "geometries": 614,
+     "wakeVisible": true,
+     "state": {
+      "swimming": true,
+      "moving": false,
+      "kind": "dabble",
+      "wake": 0.016,
+      "y": -7.193,
+      "pitch": 1.208,
+      "roll": 0
+     }
+    },
+    {
+     "name": "preen",
+     "calls": 661,
+     "triangles": 913393,
+     "programs": 77,
+     "textures": 80,
+     "geometries": 614,
+     "wakeVisible": true,
+     "state": {
+      "swimming": true,
+      "moving": false,
+      "kind": "preen",
+      "wake": 0.009,
+      "y": -7.341,
+      "pitch": 0,
+      "roll": 0
+     }
+    },
+    {
+     "name": "shake",
+     "calls": 661,
+     "triangles": 913393,
+     "programs": 77,
+     "textures": 80,
+     "geometries": 614,
+     "wakeVisible": true,
+     "state": {
+      "swimming": true,
+      "moving": false,
+      "kind": "shake",
+      "wake": 0.449,
+      "y": -7.296,
+      "pitch": 0,
+      "roll": 0.181
+     }
+    },
+    {
+     "name": "takeoff",
+     "calls": 661,
+     "triangles": 913393,
+     "programs": 77,
+     "textures": 80,
+     "geometries": 614,
+     "wakeVisible": true,
+     "state": {
+      "swimming": true,
+      "moving": true,
+      "kind": "takeoff",
+      "wake": 0.23,
+      "y": -6.824,
+      "pitch": -0.303,
+      "roll": 0
+     }
+    }
+   ],
+   "wakeCost": {
+    "on": {
+     "calls": 661,
+     "triangles": 913393
+    },
+    "off": {
+     "calls": 660,
+     "triangles": 913297
+    },
+    "vertices": 112,
+    "indexTriangles": 96,
+    "bytes": 5056
+   },
+   "cpu": 0.217,
+   "rush": {
+    "kind": "takeoff",
+    "cool": 25
+   },
+   "still": {
+    "wakeVisible": false,
+    "wake": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "hidden": {
+    "wakeVisible": false,
+    "ducksVisible": false
+   }
+  }
+ }
+}
