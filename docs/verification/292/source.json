@@ -1,0 +1,38 @@
+{
+  "sourceCommit": "d83d348c54a188f986694f556279d7ca85056da5",
+  "publicBaseline": "f4afd632ae8eb9f4f8cc6c07164f00f4dc60e954",
+  "originalSource": "0fd6db633ed861c1f8cf3d1f1829630b3b5963df",
+  "publicBuild": "f37b97495a7675c449d2a029",
+  "sha256": {
+    "src/tilesurface.js": "201612a37234ea8906766848b455fbe73805973c2f83bfe619f2f6ee86b5cb59",
+    "src/config.js": "6528e8b6af1d9388c74e0574cb06948d625ed737be578df59fa3140aeb73db1a",
+    "src/interior.js": "4e2892e4b1227593631d0a117e38628d78652a084a516fc940f3d391586f54e6",
+    "src/standardinterior.js": "2e958b55370fd04b3c65d33577d533b839b03759708f6aec2cd79e0c4519083c",
+    "src/l1201plan.js": "a88f3510ceecb3db3f9beb18e1f0fe24dca826fb42e1782f9dd08f3d935cbb45",
+    "data/plan.json": "5b76f14efff6287619f3ee4fd52aa3a4eb002599cad9d8bf29c92e1db030724b",
+    "tools/tilesurfacetest.mjs": "69e7e45259a99bfe6487b238e4b322bd71979033ee74c42b90f2abb708adc725",
+    "tools/tilesurface292.html": "ee294ac6717aa325acb441b250bac84a836a791d0f9c125000b887516f049cb8",
+    "tools/tilesurface292-check.cjs": "0bb2d64d55ef6689e3966936bc4c4d7a134f8959e1a7743ba58c827c94cf09e3"
+  },
+  "byteIdenticalImports": [
+    "src/tilesurface.js",
+    "tools/tilesurfacetest.mjs"
+  ],
+  "images": {
+    "l1004-paired.png": {
+      "bytes": 1335743,
+      "sha256": "6a6a3f85b1cc6f665a8480bc28af817fff4937c5bc465f7342e4f4e89ec7ea25"
+    },
+    "l1201-paired.png": {
+      "bytes": 1232398,
+      "sha256": "3a90067a439e6b6496762da184638ffa0229557a1f4b988ba665e14f3153cce2"
+    },
+    "l1007-paired.png": {
+      "bytes": 1496132,
+      "sha256": "69501ce86dfcdd76164e79bccd7dd1e488a19af22f81f5943c872a5c20864b27"
+    }
+  },
+  "capturedWorkerCommit": "7ed64b656e1a7f92ae5422118f9cb882a2f82576",
+  "integrationBuild": "c11cd143b01f01a4c1176802",
+  "integration": "Captured full config/build fingerprints refer to worker source; accepted main additionally preserves independent public291 PARQUET_SURFACE and World changes. All tilesurface/consumer/fixture/plan bytes match captured source; existing config/README bytes preserved plus named additions. npm test151modules/build green after integration. Browser reused across unrelated parquet integration."
+}

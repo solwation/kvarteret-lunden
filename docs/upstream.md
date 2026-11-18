@@ -18,7 +18,7 @@ repeatkanten. Färgdata är därför avsiktligt inte byteidentiska just vid den 
 En extra packad linjär RGBA-karta per material ger strukturell höjd i R och absolut
 roughness i G; bump/roughness delar samma karta, meterrepeat, upplösning och anisotropi.
 Höjden följer bara fog/förband, aldrig färgbrus. Canvas-/DataTexture-Y är registrerade
-även för halvförband. 0,8mm bump, 1,2mm mjuk plattkant (minst0,75texel) och fogroughness0,96
+även för halvförband. 0,8 mm bump, 1,2 mm mjuk plattkant (minst 0,75 texel) och fogroughness 0,96
 är visuella antaganden, inte uppmätt materialprofil eller verifierade standardval.
 
 Ingen geometri, kollisionsyta, öppning, fast inredning, ny lampa, pass eller uppdatering

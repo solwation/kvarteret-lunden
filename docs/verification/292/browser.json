@@ -1,0 +1,521 @@
+{
+  "baseline": "f4afd63",
+  "fixture": "Actual public buildInterior/buildStandardInterior; own shared floor0 and L1201 plan/fit; controlled light, no full World",
+  "results": {
+    "before": {
+      "stats": [
+        {
+          "meshes": 118,
+          "triangles": 26624,
+          "geometryBytes": 1411520,
+          "geometrySha256": "e0e726696351237ab3944f1597f9fd4276bb47acad85e919f04409033d1e2a91",
+          "palette": "{\"FINISH\":{\"parquet\":{\"base\":[204,186,170],\"width\":0.18,\"length\":2},\"hallTile\":{\"w\":0.6,\"h\":0.3,\"color\":8027261},\"wetTile\":{\"w\":0.15,\"h\":0.15,\"color\":7566711},\"wallTile\":{\"w\":0.4,\"h\":0.2,\"color\":16053490},\"splash\":{\"w\":0.2,\"h\":0.1,\"color\":16185076,\"grout\":13225420,\"roughness\":0.82},\"grout\":12172219,\"kitchenFront\":9279622,\"counter\":12763579,\"handle\":1710876,\"steel\":12830666,\"black\":1316118,\"laundryFront\":15922161,\"vanity\":5066577,\"chrome\":14146268},\"STANDARD\":{\"parquet\":{\"base\":[204,180,146],\"width\":0.2,\"length\":2.2,\"staves\":3},\"sill\":10327690,\"front\":15987696,\"appliance\":16185076,\"counter\":14276819,\"handle\":12172479,\"splash\":16053490,\"wetFloor\":{\"w\":0.1,\"h\":0.1,\"color\":10264481},\"wetWall\":{\"w\":0.2,\"h\":0.2,\"color\":16119283},\"vanity\":15921903,\"tiled\":[{\"level\":0,\"name\":\"Tvätt\",\"x0\":0.2,\"x1\":2.06,\"z0\":3.1,\"z1\":4.88},{\"level\":0,\"name\":\"Badrum\",\"x0\":0.2,\"x1\":2.06,\"z0\":4.88,\"z1\":7.6,\"wallTile\":2.5},{\"level\":1,\"name\":\"WC/dusch\",\"x0\":0.2,\"x1\":1.48,\"z0\":5.13,\"z1\":7.6,\"wallTile\":2.5}],\"wallCabinets\":{\"depth\":0.35,\"bottom\":1.45,\"top\":2.25,\"hood\":1.6},\"near\":9,\"detail\":12,\"lod\":{\"near\":5,\"hysteresis\":0.5,\"start\":24,\"end\":28,\"startPhone\":9,\"endPhone\":12}}}",
+          "materials": [
+            {
+              "repeat": [
+                2.5,
+                5
+              ],
+              "size": [
+                320,
+                160
+              ],
+              "surface": null
+            },
+            {
+              "repeat": [
+                0.8333333333333334,
+                0.8333333333333334
+              ],
+              "size": [
+                360,
+                360
+              ],
+              "surface": null
+            },
+            {
+              "repeat": [
+                1.6666666666666667,
+                1.6666666666666667
+              ],
+              "size": [
+                240,
+                240
+              ],
+              "surface": null
+            },
+            {
+              "repeat": [
+                1.25,
+                1.6666666666666665
+              ],
+              "size": [
+                320,
+                240
+              ],
+              "surface": null
+            }
+          ]
+        },
+        {
+          "meshes": 44,
+          "triangles": 18020,
+          "geometryBytes": 957080,
+          "geometrySha256": "2b55afc46abb3b7fa83f05c4bf9e69d0915cf00c08d9838be3f45515737f723b",
+          "palette": "{\"FINISH\":{\"parquet\":{\"base\":[204,186,170],\"width\":0.18,\"length\":2},\"hallTile\":{\"w\":0.6,\"h\":0.3,\"color\":8027261},\"wetTile\":{\"w\":0.15,\"h\":0.15,\"color\":7566711},\"wallTile\":{\"w\":0.4,\"h\":0.2,\"color\":16053490},\"splash\":{\"w\":0.2,\"h\":0.1,\"color\":16185076,\"grout\":13225420,\"roughness\":0.82},\"grout\":12172219,\"kitchenFront\":9279622,\"counter\":12763579,\"handle\":1710876,\"steel\":12830666,\"black\":1316118,\"laundryFront\":15922161,\"vanity\":5066577,\"chrome\":14146268},\"STANDARD\":{\"parquet\":{\"base\":[204,180,146],\"width\":0.2,\"length\":2.2,\"staves\":3},\"sill\":10327690,\"front\":15987696,\"appliance\":16185076,\"counter\":14276819,\"handle\":12172479,\"splash\":16053490,\"wetFloor\":{\"w\":0.1,\"h\":0.1,\"color\":10264481},\"wetWall\":{\"w\":0.2,\"h\":0.2,\"color\":16119283},\"vanity\":15921903,\"tiled\":[{\"level\":0,\"name\":\"Tvätt\",\"x0\":0.2,\"x1\":2.06,\"z0\":3.1,\"z1\":4.88},{\"level\":0,\"name\":\"Badrum\",\"x0\":0.2,\"x1\":2.06,\"z0\":4.88,\"z1\":7.6,\"wallTile\":2.5},{\"level\":1,\"name\":\"WC/dusch\",\"x0\":0.2,\"x1\":1.48,\"z0\":5.13,\"z1\":7.6,\"wallTile\":2.5}],\"wallCabinets\":{\"depth\":0.35,\"bottom\":1.45,\"top\":2.25,\"hood\":1.6},\"near\":9,\"detail\":12,\"lod\":{\"near\":5,\"hysteresis\":0.5,\"start\":24,\"end\":28,\"startPhone\":9,\"endPhone\":12}}}",
+          "materials": [
+            {
+              "repeat": [
+                2.5,
+                5
+              ],
+              "size": [
+                160,
+                80
+              ],
+              "surface": null
+            },
+            {
+              "repeat": [
+                2.5,
+                2.5
+              ],
+              "size": [
+                160,
+                160
+              ],
+              "surface": null
+            },
+            {
+              "repeat": [
+                1.6666666666666665,
+                1.6666666666666665
+              ],
+              "size": [
+                180,
+                180
+              ],
+              "surface": null
+            }
+          ]
+        },
+        {
+          "meshes": 39,
+          "triangles": 10944,
+          "geometryBytes": 604384,
+          "geometrySha256": "329c34b2a54cf1a01dcd69ed602079e846c7b97b9cea9d122066b853767626a3",
+          "palette": "{\"FINISH\":{\"parquet\":{\"base\":[204,186,170],\"width\":0.18,\"length\":2},\"hallTile\":{\"w\":0.6,\"h\":0.3,\"color\":8027261},\"wetTile\":{\"w\":0.15,\"h\":0.15,\"color\":7566711},\"wallTile\":{\"w\":0.4,\"h\":0.2,\"color\":16053490},\"splash\":{\"w\":0.2,\"h\":0.1,\"color\":16185076,\"grout\":13225420,\"roughness\":0.82},\"grout\":12172219,\"kitchenFront\":9279622,\"counter\":12763579,\"handle\":1710876,\"steel\":12830666,\"black\":1316118,\"laundryFront\":15922161,\"vanity\":5066577,\"chrome\":14146268},\"STANDARD\":{\"parquet\":{\"base\":[204,180,146],\"width\":0.2,\"length\":2.2,\"staves\":3},\"sill\":10327690,\"front\":15987696,\"appliance\":16185076,\"counter\":14276819,\"handle\":12172479,\"splash\":16053490,\"wetFloor\":{\"w\":0.1,\"h\":0.1,\"color\":10264481},\"wetWall\":{\"w\":0.2,\"h\":0.2,\"color\":16119283},\"vanity\":15921903,\"tiled\":[{\"level\":0,\"name\":\"Tvätt\",\"x0\":0.2,\"x1\":2.06,\"z0\":3.1,\"z1\":4.88},{\"level\":0,\"name\":\"Badrum\",\"x0\":0.2,\"x1\":2.06,\"z0\":4.88,\"z1\":7.6,\"wallTile\":2.5},{\"level\":1,\"name\":\"WC/dusch\",\"x0\":0.2,\"x1\":1.48,\"z0\":5.13,\"z1\":7.6,\"wallTile\":2.5}],\"wallCabinets\":{\"depth\":0.35,\"bottom\":1.45,\"top\":2.25,\"hood\":1.6},\"near\":9,\"detail\":12,\"lod\":{\"near\":5,\"hysteresis\":0.5,\"start\":24,\"end\":28,\"startPhone\":9,\"endPhone\":12}}}",
+          "materials": [
+            {
+              "repeat": [
+                2.5,
+                5
+              ],
+              "size": [
+                160,
+                80
+              ],
+              "surface": null
+            },
+            {
+              "repeat": [
+                2.5,
+                2.5
+              ],
+              "size": [
+                160,
+                160
+              ],
+              "surface": null
+            },
+            {
+              "repeat": [
+                1.6666666666666665,
+                1.6666666666666665
+              ],
+              "size": [
+                180,
+                180
+              ],
+              "surface": null
+            }
+          ]
+        }
+      ],
+      "views": {
+        "0-splash": {
+          "calls": 28,
+          "triangles": 19748
+        },
+        "0-wall": {
+          "calls": 15,
+          "triangles": 15776
+        },
+        "0-floor": {
+          "calls": 18,
+          "triangles": 15740
+        },
+        "1-splash": {
+          "calls": 21,
+          "triangles": 16664
+        },
+        "1-wall": {
+          "calls": 18,
+          "triangles": 16280
+        },
+        "1-floor": {
+          "calls": 18,
+          "triangles": 16400
+        },
+        "2-splash": {
+          "calls": 16,
+          "triangles": 9892
+        },
+        "2-wall": {
+          "calls": 7,
+          "triangles": 7044
+        },
+        "2-floor": {
+          "calls": 10,
+          "triangles": 7280
+        }
+      },
+      "errors": [],
+      "external": [],
+      "isolation": {
+        "same": true,
+        "calls": []
+      }
+    },
+    "after": {
+      "stats": [
+        {
+          "meshes": 118,
+          "triangles": 26624,
+          "geometryBytes": 1411520,
+          "geometrySha256": "e0e726696351237ab3944f1597f9fd4276bb47acad85e919f04409033d1e2a91",
+          "palette": "{\"FINISH\":{\"parquet\":{\"base\":[204,186,170],\"width\":0.18,\"length\":2},\"hallTile\":{\"w\":0.6,\"h\":0.3,\"color\":8027261},\"wetTile\":{\"w\":0.15,\"h\":0.15,\"color\":7566711},\"wallTile\":{\"w\":0.4,\"h\":0.2,\"color\":16053490},\"splash\":{\"w\":0.2,\"h\":0.1,\"color\":16185076,\"grout\":13225420,\"roughness\":0.82},\"grout\":12172219,\"kitchenFront\":9279622,\"counter\":12763579,\"handle\":1710876,\"steel\":12830666,\"black\":1316118,\"laundryFront\":15922161,\"vanity\":5066577,\"chrome\":14146268},\"STANDARD\":{\"parquet\":{\"base\":[204,180,146],\"width\":0.2,\"length\":2.2,\"staves\":3},\"sill\":10327690,\"front\":15987696,\"appliance\":16185076,\"counter\":14276819,\"handle\":12172479,\"splash\":16053490,\"wetFloor\":{\"w\":0.1,\"h\":0.1,\"color\":10264481},\"wetWall\":{\"w\":0.2,\"h\":0.2,\"color\":16119283},\"vanity\":15921903,\"tiled\":[{\"level\":0,\"name\":\"Tvätt\",\"x0\":0.2,\"x1\":2.06,\"z0\":3.1,\"z1\":4.88},{\"level\":0,\"name\":\"Badrum\",\"x0\":0.2,\"x1\":2.06,\"z0\":4.88,\"z1\":7.6,\"wallTile\":2.5},{\"level\":1,\"name\":\"WC/dusch\",\"x0\":0.2,\"x1\":1.48,\"z0\":5.13,\"z1\":7.6,\"wallTile\":2.5}],\"wallCabinets\":{\"depth\":0.35,\"bottom\":1.45,\"top\":2.25,\"hood\":1.6},\"near\":9,\"detail\":12,\"lod\":{\"near\":5,\"hysteresis\":0.5,\"start\":24,\"end\":28,\"startPhone\":9,\"endPhone\":12}}}",
+          "materials": [
+            {
+              "repeat": [
+                2.5,
+                5
+              ],
+              "size": [
+                320,
+                160
+              ],
+              "surface": {
+                "id": "0bc1a573-412c-47c4-84b4-3fcf2f7c72a7",
+                "size": [
+                  320,
+                  160
+                ],
+                "repeat": [
+                  2.5,
+                  5
+                ],
+                "bytes": 204800,
+                "sameTexture": true,
+                "roughness": 1,
+                "bumpScale": 0.0008
+              }
+            },
+            {
+              "repeat": [
+                0.8333333333333334,
+                0.8333333333333334
+              ],
+              "size": [
+                360,
+                360
+              ],
+              "surface": {
+                "id": "4d396367-27a5-4dc6-83dc-ec0bb86f98d9",
+                "size": [
+                  360,
+                  360
+                ],
+                "repeat": [
+                  0.8333333333333334,
+                  0.8333333333333334
+                ],
+                "bytes": 518400,
+                "sameTexture": true,
+                "roughness": 1,
+                "bumpScale": 0.0008
+              }
+            },
+            {
+              "repeat": [
+                1.6666666666666667,
+                1.6666666666666667
+              ],
+              "size": [
+                240,
+                240
+              ],
+              "surface": {
+                "id": "c4fcdb93-6f78-4323-9602-65f363a80998",
+                "size": [
+                  240,
+                  240
+                ],
+                "repeat": [
+                  1.6666666666666667,
+                  1.6666666666666667
+                ],
+                "bytes": 230400,
+                "sameTexture": true,
+                "roughness": 1,
+                "bumpScale": 0.0008
+              }
+            },
+            {
+              "repeat": [
+                1.25,
+                1.6666666666666665
+              ],
+              "size": [
+                320,
+                240
+              ],
+              "surface": {
+                "id": "b2e18df0-0f20-4546-a4be-217026caa842",
+                "size": [
+                  320,
+                  240
+                ],
+                "repeat": [
+                  1.25,
+                  1.6666666666666665
+                ],
+                "bytes": 307200,
+                "sameTexture": true,
+                "roughness": 1,
+                "bumpScale": 0.0008
+              }
+            }
+          ]
+        },
+        {
+          "meshes": 44,
+          "triangles": 18020,
+          "geometryBytes": 957080,
+          "geometrySha256": "2b55afc46abb3b7fa83f05c4bf9e69d0915cf00c08d9838be3f45515737f723b",
+          "palette": "{\"FINISH\":{\"parquet\":{\"base\":[204,186,170],\"width\":0.18,\"length\":2},\"hallTile\":{\"w\":0.6,\"h\":0.3,\"color\":8027261},\"wetTile\":{\"w\":0.15,\"h\":0.15,\"color\":7566711},\"wallTile\":{\"w\":0.4,\"h\":0.2,\"color\":16053490},\"splash\":{\"w\":0.2,\"h\":0.1,\"color\":16185076,\"grout\":13225420,\"roughness\":0.82},\"grout\":12172219,\"kitchenFront\":9279622,\"counter\":12763579,\"handle\":1710876,\"steel\":12830666,\"black\":1316118,\"laundryFront\":15922161,\"vanity\":5066577,\"chrome\":14146268},\"STANDARD\":{\"parquet\":{\"base\":[204,180,146],\"width\":0.2,\"length\":2.2,\"staves\":3},\"sill\":10327690,\"front\":15987696,\"appliance\":16185076,\"counter\":14276819,\"handle\":12172479,\"splash\":16053490,\"wetFloor\":{\"w\":0.1,\"h\":0.1,\"color\":10264481},\"wetWall\":{\"w\":0.2,\"h\":0.2,\"color\":16119283},\"vanity\":15921903,\"tiled\":[{\"level\":0,\"name\":\"Tvätt\",\"x0\":0.2,\"x1\":2.06,\"z0\":3.1,\"z1\":4.88},{\"level\":0,\"name\":\"Badrum\",\"x0\":0.2,\"x1\":2.06,\"z0\":4.88,\"z1\":7.6,\"wallTile\":2.5},{\"level\":1,\"name\":\"WC/dusch\",\"x0\":0.2,\"x1\":1.48,\"z0\":5.13,\"z1\":7.6,\"wallTile\":2.5}],\"wallCabinets\":{\"depth\":0.35,\"bottom\":1.45,\"top\":2.25,\"hood\":1.6},\"near\":9,\"detail\":12,\"lod\":{\"near\":5,\"hysteresis\":0.5,\"start\":24,\"end\":28,\"startPhone\":9,\"endPhone\":12}}}",
+          "materials": [
+            {
+              "repeat": [
+                2.5,
+                5
+              ],
+              "size": [
+                160,
+                80
+              ],
+              "surface": {
+                "id": "848e1006-96f1-4e67-8e20-20cfa306177b",
+                "size": [
+                  160,
+                  80
+                ],
+                "repeat": [
+                  2.5,
+                  5
+                ],
+                "bytes": 51200,
+                "sameTexture": true,
+                "roughness": 1,
+                "bumpScale": 0.0008
+              }
+            },
+            {
+              "repeat": [
+                2.5,
+                2.5
+              ],
+              "size": [
+                160,
+                160
+              ],
+              "surface": {
+                "id": "fff12550-759d-4698-8656-7f484ad63566",
+                "size": [
+                  160,
+                  160
+                ],
+                "repeat": [
+                  2.5,
+                  2.5
+                ],
+                "bytes": 102400,
+                "sameTexture": true,
+                "roughness": 1,
+                "bumpScale": 0.0008
+              }
+            },
+            {
+              "repeat": [
+                1.6666666666666665,
+                1.6666666666666665
+              ],
+              "size": [
+                180,
+                180
+              ],
+              "surface": {
+                "id": "55eb0bf2-cd20-4f2c-88e6-11e6c9f3ae62",
+                "size": [
+                  180,
+                  180
+                ],
+                "repeat": [
+                  1.6666666666666665,
+                  1.6666666666666665
+                ],
+                "bytes": 129600,
+                "sameTexture": true,
+                "roughness": 1,
+                "bumpScale": 0.0008
+              }
+            }
+          ]
+        },
+        {
+          "meshes": 39,
+          "triangles": 10944,
+          "geometryBytes": 604384,
+          "geometrySha256": "329c34b2a54cf1a01dcd69ed602079e846c7b97b9cea9d122066b853767626a3",
+          "palette": "{\"FINISH\":{\"parquet\":{\"base\":[204,186,170],\"width\":0.18,\"length\":2},\"hallTile\":{\"w\":0.6,\"h\":0.3,\"color\":8027261},\"wetTile\":{\"w\":0.15,\"h\":0.15,\"color\":7566711},\"wallTile\":{\"w\":0.4,\"h\":0.2,\"color\":16053490},\"splash\":{\"w\":0.2,\"h\":0.1,\"color\":16185076,\"grout\":13225420,\"roughness\":0.82},\"grout\":12172219,\"kitchenFront\":9279622,\"counter\":12763579,\"handle\":1710876,\"steel\":12830666,\"black\":1316118,\"laundryFront\":15922161,\"vanity\":5066577,\"chrome\":14146268},\"STANDARD\":{\"parquet\":{\"base\":[204,180,146],\"width\":0.2,\"length\":2.2,\"staves\":3},\"sill\":10327690,\"front\":15987696,\"appliance\":16185076,\"counter\":14276819,\"handle\":12172479,\"splash\":16053490,\"wetFloor\":{\"w\":0.1,\"h\":0.1,\"color\":10264481},\"wetWall\":{\"w\":0.2,\"h\":0.2,\"color\":16119283},\"vanity\":15921903,\"tiled\":[{\"level\":0,\"name\":\"Tvätt\",\"x0\":0.2,\"x1\":2.06,\"z0\":3.1,\"z1\":4.88},{\"level\":0,\"name\":\"Badrum\",\"x0\":0.2,\"x1\":2.06,\"z0\":4.88,\"z1\":7.6,\"wallTile\":2.5},{\"level\":1,\"name\":\"WC/dusch\",\"x0\":0.2,\"x1\":1.48,\"z0\":5.13,\"z1\":7.6,\"wallTile\":2.5}],\"wallCabinets\":{\"depth\":0.35,\"bottom\":1.45,\"top\":2.25,\"hood\":1.6},\"near\":9,\"detail\":12,\"lod\":{\"near\":5,\"hysteresis\":0.5,\"start\":24,\"end\":28,\"startPhone\":9,\"endPhone\":12}}}",
+          "materials": [
+            {
+              "repeat": [
+                2.5,
+                5
+              ],
+              "size": [
+                160,
+                80
+              ],
+              "surface": {
+                "id": "848e1006-96f1-4e67-8e20-20cfa306177b",
+                "size": [
+                  160,
+                  80
+                ],
+                "repeat": [
+                  2.5,
+                  5
+                ],
+                "bytes": 51200,
+                "sameTexture": true,
+                "roughness": 1,
+                "bumpScale": 0.0008
+              }
+            },
+            {
+              "repeat": [
+                2.5,
+                2.5
+              ],
+              "size": [
+                160,
+                160
+              ],
+              "surface": {
+                "id": "fff12550-759d-4698-8656-7f484ad63566",
+                "size": [
+                  160,
+                  160
+                ],
+                "repeat": [
+                  2.5,
+                  2.5
+                ],
+                "bytes": 102400,
+                "sameTexture": true,
+                "roughness": 1,
+                "bumpScale": 0.0008
+              }
+            },
+            {
+              "repeat": [
+                1.6666666666666665,
+                1.6666666666666665
+              ],
+              "size": [
+                180,
+                180
+              ],
+              "surface": {
+                "id": "55eb0bf2-cd20-4f2c-88e6-11e6c9f3ae62",
+                "size": [
+                  180,
+                  180
+                ],
+                "repeat": [
+                  1.6666666666666665,
+                  1.6666666666666665
+                ],
+                "bytes": 129600,
+                "sameTexture": true,
+                "roughness": 1,
+                "bumpScale": 0.0008
+              }
+            }
+          ]
+        }
+      ],
+      "views": {
+        "0-splash": {
+          "calls": 28,
+          "triangles": 19748
+        },
+        "0-wall": {
+          "calls": 15,
+          "triangles": 15776
+        },
+        "0-floor": {
+          "calls": 18,
+          "triangles": 15740
+        },
+        "1-splash": {
+          "calls": 21,
+          "triangles": 16664
+        },
+        "1-wall": {
+          "calls": 18,
+          "triangles": 16280
+        },
+        "1-floor": {
+          "calls": 18,
+          "triangles": 16400
+        },
+        "2-splash": {
+          "calls": 16,
+          "triangles": 9892
+        },
+        "2-wall": {
+          "calls": 7,
+          "triangles": 7044
+        },
+        "2-floor": {
+          "calls": 10,
+          "triangles": 7280
+        }
+      },
+      "errors": [],
+      "external": [],
+      "isolation": {
+        "same": true,
+        "calls": []
+      }
+    }
+  },
+  "extraTextures": {
+    "unique": 7,
+    "baseBytes": 1544000,
+    "mipBytes": 2058192
+  }
+}
