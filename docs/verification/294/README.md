@@ -89,3 +89,7 @@ Ingen arbetarpush har gjorts.
 ## Integration
 
 Alla tidigare main config-/README-/upstreambytes bevarades plus namngivna294-tillägg. Asfaltkonsument/hjälpare/fixtur/beroenden matchar exakt browserkällan; full config-/byggfingeravtryck där är historiska efter292/293. npm test153moduler och integrerat bygge824accf8ea510f58c1a37e46 gröna. Källbunden browser återanvänds efter orelaterade materialintegrationer.
+
+## Publicering
+
+Kod/bilder `9dfe1bd07545a5b1d78422326a4651d16b9ff79a`; faktiska run-ID [44266562510] success på exakt revision. Alla bilder HTTP200 och inbäddade före stängning: https://github.com/solwation/kvarteret-lunden/issues/294#issuecomment-6973146502. Slutkvittot ändrar inte appkällan; dess separata Pages-run följs av dirigenten.
