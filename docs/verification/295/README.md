@@ -100,3 +100,7 @@ revisionsbundna bilder, kontrollerar Pages-körningen och avslutar ärendet.
 ## Integration
 
 Fångad arbetarkälla b8ac5aa. Alla tidigare main-konfigurationsbytes behölls plus namngivet295-tillägg. Upstream får egen295-sektion och den uttryckliga14-trianglarsrättningen i äldre282-text; README ändrar bara näckrosmeningen. Produktens riverfloraview och fixturer matchar exakt fångad källa; hela RiverLilies-klassen oförändrad. Full config-/byggfingeravtryck i evidensen är historiska efter orelaterade292–294-materialblock. Källbunden browser återanvänds; integrerat npm test/build körs före publicering.
+
+## Publicering
+
+Kod/bilder `3d9ba709823a606b1085c082e6fd6d1596321574`; faktiska run-ID [44267142575] success på exakt revision. Alla bilder HTTP200 och inbäddade före stängning: https://github.com/solwation/kvarteret-lunden/issues/295#issuecomment-6973227052. Slutkvittot ändrar inte appkällan; dess separata Pages-run följs av dirigenten.
