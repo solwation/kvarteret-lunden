@@ -4134,6 +4134,18 @@ export const SQUIRREL_LIFE = {
   morph: { ref: 0.25, swing: 1.5, tuck: 0.6, morsel: 0.009, morselColor: 0x7a5434 },
 };
 
+// Public #328 (original #2132, 8a89f610): the squirrels climbing the trees' real skeletons (src/squirrelclimb.js; treeform.js treeSkeleton).
+// The original's values, all *guess* (red squirrels: ~0.2-0.3 kg, ~20 cm body; jumps of ~1.5-2.5 m between branches, longer only
+// downwards). `cling` m from the bark's surface to the body's centre (pressed to it); `turns` turns round the trunk per m climbed (a loose
+// spiral); `hop` m: the longest jump between two branch points (of one crown or two neighbouring crowns), `hopArc` [base, per m] m of the
+// jump's rise; `perch` [from, to] how far out along a main limb (0 trunk, 1 tip) it sits; `outer` the part of a limb it uses for a jump
+// (its reach); `limb` x climb speed along limbs; `stay` the chance a perch that ends without a leap becomes a short run or hop in the same
+// crown instead of the climb down; `sway` m of the crown's wind sway (sitewind.js siteWindOffset weight) at a limb's tip, from `swayFrom` out.
+export const SQUIRREL_CLIMB = {
+  cling: 0.06, turns: 0.22, hop: 2.6, hopArc: [0.12, 0.1], perch: [0.45, 0.92], outer: [0.55, 1], limb: 0.8, stay: 0.6,
+  sway: 0.1, swayFrom: 0.45,
+};
+
 export const SQUIRRELS = {
  simDist:70, drawDist:100, leapRange:11, groundHop:22,
  run:3.4, flee:6.5, climb:2.6, leap:5.5, perch:[3.5,8], forage:[16,36], search:[1.2,3.5],

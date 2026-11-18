@@ -4485,3 +4485,29 @@ originalbild, inredning, avatar, gameplay, lagring, tjänst, Cloudflare eller or
 Egen verifiering: `node --test tools/leafgrazetest.mjs` 4/4 (originalets funktionstester), `treeformtest`, `lodtest`,
 `sitewindtest` och `barksurfacetest` gröna, npm test/build och en egen före/efter-browser i den riktiga appen
 (`tools/leafgraze331browser.cjs`). [Egna bilder, kontroller och kostnad](verification/331/README.md).
+
+## Ekorrarna klättrar i trädens stammar och grenar, #328
+
+Granskad originalkälla `8a89f610be761e5baf9ae7eb7a98c4ce1c881b5b` ([original #2132](https://github.com/solwation/lunden-3d-apartment/issues/2132)).
+Överfört: `src/squirrelclimb.js` byteidentiskt (`section`, `sectionReach`, `climbFrame`, `trunkAt`, `limbAt`, `limbFor`, `perchF`,
+`climbRoute`, `crownRoute`, `pathOf`, `pathAt`, `climbPose`, `bestHop`, `reachOf`, `swayWeight`); originalets `SQUIRREL_CLIMB`-värden
+(*guess*) i ett eget block direkt efter `SQUIRREL_LIFE` i `src/config.js`; publikens `treeform.js` (#327) är identisk med originalets
+vid källrevisionen. Konsumentrader i publikens egna moduler: `squirrelhabitat.js` bygger varje ekorrträds klätterram från
+`treeForms` (`climbFrameOf`, telefonens stamlayout via `lowMemory`; ramen släpps om fotringen runt den ritade stammen inte är torr
+mark utanför vägen, så trädurvalet är oförändrat) och länkar språng med en ny ren `linkTrees` i `squirrelbrain.js` (originalets
+`canHop`: inom `leapRange` och, mellan två ramträd, grenpunkter inom 2,6 m). I publikens kompakta hjärna: `perchPoint`/`footPoint`,
+`enterPerch` på en gren, `hopVia`, `moveInCrown`, `startLimb`, `startHop`, `startUp`/`startDown` längs `climbRoute` (ned omvänd,
+huvudet först), `followPath` och tillstånden `limb` och grenhopp med originalets kroppar (`this.p.speed` → `this.spec.speed`); den gamla
+klättringen utan ram fick originalets mage-mot-barken-yaw. Där originalets `act()` väljer mellan flera mål väljer publikens sittande
+ekorre som förut språng (`leapChance`) eller annars, med `stay`-chansen, en tur i samma krona före klättringen ned. `squirrels.js`:
+ingen hoppstuds upprätt på stammen, höftoffseten följer pitch så kroppen ligger an mot barken, kronans vindsvaj (`siteWindOffset`)
+ute på en gren; `main.js` skickar `forms: treeForms`.
+Ej tillämpligt: `squirrelsync.js`/WIRE-posten (inget nät här), originalets ledade rigg och `climb`-klipp (publikens morfmodell har
+inga ben; upprätt pose via gruppens pitch), katternas bytesregel (publikens katter jagar inte), nötter, gömmor, matning, ljud,
+ändringslogg och originalets bilder/browserverktyg (egna i stället). De södra lundträden (`southTreeFeet`) finns inte i `treeForms`
+och behåller den gamla klättringen. Publikens färger, kroppsmått, LOD, ritavstånd och lagringsnamn är oförändrade. Ingen originalbild,
+inredning, avatar, gameplay, tjänst, Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: `node --test tools/squirrelclimbtest.mjs` 6/6 (originalets fem funktionstester anpassade till publikens hjärna plus
+publikens konsumenter), `squirrellifetest` 8/8, `squirrelambienttest` 2/2, `treeformtest` 6/6, npm test/build och en egen
+före/efter-browser i den riktiga appen (`tools/squirrelclimb328browser.mjs`). [Egna bilder, kontroller och kostnad](verification/328/README.md).

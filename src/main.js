@@ -31,7 +31,7 @@ import { visitSpot } from './paddockgeo.js';
 import { applySeason } from './seasons.js';
 import { LeafLitter } from './leaflitter.js';
 import { samples as roadSamples } from './roads.js';
-import { groundY, renderedTerrainY, treeFeet, aoTrees, southTreeFeet } from './surroundings.js';
+import { groundY, renderedTerrainY, treeFeet, aoTrees, southTreeFeet, treeForms } from './surroundings.js';
 import { Core } from './core.js';
 import { CoreHouse } from './corehouse.js';
 import { updateInstanceLods } from './lod.js';
@@ -212,7 +212,7 @@ async function init() {
   riverLilies = debugParams.has('noflora') ? null : new RiverLilies({scene}); // #282: at most two draw calls, only near the river
   if (ambientFish && riverLilies) ambientFish.flora = riverLilies; // #326: the lily pads a river fish may stand still behind
 
-  squirrels = new Squirrels({scene,camera,feet:treeFeet,crowns:aoTrees,southFeet:southTreeFeet,ground:renderedTerrainY});
+  squirrels = new Squirrels({scene,camera,feet:treeFeet,crowns:aoTrees,southFeet:southTreeFeet,ground:renderedTerrainY,forms:treeForms}); // #328: forms: the trees' skeletons to climb on
 
   ambientBalloon = new Balloon({scene});
   new LeafLitter({ trees: () => aoTrees, roads: () => SITE.roads.filter((r) => r.path || r.x1 !== undefined).map((r) => (r.path ? roadSamples(r) : [[r.x0, r.z0], [r.x1, r.z0], [r.x1, r.z1], [r.x0, r.z1], [r.x0, r.z0]].map(([x, z]) => ({ x, z, w: 0 })))) }).register(); // #317 (original #2105): fallen autumn leaves on the ground (month-driven shared uniforms; detail off on phones)

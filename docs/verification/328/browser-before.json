@@ -1,0 +1,70 @@
+{
+ "phase": "before",
+ "errors": [],
+ "external": [],
+ "sockets": [],
+ "poses": {
+  "climb-0": {
+   "state": "up",
+   "y": 3.52,
+   "pitch": 1.57,
+   "yaw": -3.14,
+   "limb": -1
+  },
+  "climb-1": {
+   "state": "up",
+   "y": 7.03,
+   "pitch": 1.57,
+   "yaw": -0.59,
+   "limb": -1
+  },
+  "climb-2": {
+   "state": "up",
+   "y": 10.45,
+   "pitch": 1.57,
+   "yaw": 1.88,
+   "limb": -1
+  },
+  "crown": {
+   "state": "perch",
+   "y": 10.85,
+   "pitch": 0,
+   "yaw": 0.6,
+   "limb": -1
+  },
+  "down-0": {
+   "state": "down",
+   "y": 10.39,
+   "pitch": -1.57,
+   "yaw": -1.3,
+   "limb": -1
+  },
+  "down-1": {
+   "state": "down",
+   "y": 6.88,
+   "pitch": -1.57,
+   "yaw": -3.85,
+   "limb": -1
+  },
+  "down-2": {
+   "state": "down",
+   "y": 3.46,
+   "pitch": -1.57,
+   "yaw": -6.32,
+   "limb": -1
+  }
+ },
+ "upDur": 4.61,
+ "downDur": 4.61,
+ "framed": 0,
+ "trees": 259,
+ "links": 340,
+ "calls": 47,
+ "triangles": 394174,
+ "programs": 81,
+ "textures": 82,
+ "geometries": 621,
+ "storage": {
+  "probe.unrelated": "unchanged"
+ }
+}

@@ -3202,6 +3202,14 @@ riktiga `Squirrels`-värden. `tools/squirrel325browser.mjs before|after` tar mat
 `tools/squirrelsurface271-native.mjs` låser exakt tre absoluta morfer och #271:s bytetak och gäller därför bara den revisionen.
 [Egna bilder, kostnad och begränsningar](verification/325/README.md).
 
+## Ekorrarna klättrar i trädens riktiga stammar och grenar, #328
+
+`node --test tools/squirrelclimbtest.mjs` kör originalets #2132-funktionstester för `src/squirrelclimb.js` och den publika hjärnan
+(vägen ligger på den ritade barken och spiralerar, hopp bara mellan grenpunkter inom `SQUIRREL_CLIMB.hop`, huvudet först nedåt,
+deterministiskt) plus publikens konsumenter: ramar från `treeForms` i `squirrelhabitat.js` och kroppens mittpunkt på barkpunkten i
+den riktiga `Squirrels`-värden. `tools/squirrelclimb328browser.mjs before|after` tar matchade bildsekvenser (upp, kronan, ned) i den
+riktiga appen. [Egna bilder, kostnad och begränsningar](verification/328/README.md).
+
 
 ## Neutral ponnyyta, #269
 
