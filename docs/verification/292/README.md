@@ -80,3 +80,7 @@ bildkommentar, faktisk Pages-verifiering och stängning; ingen arbetarpush har g
 ## Integration
 
 Tidigare public291-kod och samtliga config-/README-bytes bevarades; endast namngivna292-tillägg infogades. Konsumenter/hjälpare/fixtur/planer är byteidentiska med browserkällan. Full config-/byggfingeravtryck i den fångade evidensen är historiska; integrerat bygge c11cd143b01f01a4c1176802 och npm test151moduler är gröna. Ingen omkörning av källbunden browser efter orelaterad parkettintegration.
+
+## Publicering
+
+Kod/bilder `ce4151d539f8feb618177bd91a28dc9116d52b97`; faktiska run-ID [44265424219] success på exakt revision. Alla bilder HTTP200 och inbäddade före stängning: https://github.com/solwation/kvarteret-lunden/issues/292#issuecomment-6973015287. Slutkvittot ändrar inte appkällan; dess separata Pages-run följs av dirigenten.
