@@ -45,3 +45,5 @@ Kontroller
 
 Begränsningar: effekten är medvetet lågmäld och syns bara bortom 200 m (från höjd eller långa siktlinjer); gator i
 ögonhöjd slutar oftast före dimmans början. `groundao.js` räknar fortfarande sin egen smoothstep-dimfaktor (som i originalet).
+
+Publicering: Pages success på `ff7699c`; inbäddade bild-URL:er HTTP 200 före stängning.
