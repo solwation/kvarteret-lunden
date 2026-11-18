@@ -4409,3 +4409,23 @@ originalhistoria importeras.
 Egen verifiering: `node --test tools/ponymotiontest.mjs` 9/9 (originalets sex funktionstester plus tre för publikens riktiga
 `Paddock`: rullning i delad instansmatris, begränsade och vinddrivna kanaler, betessteg innanför staketet med huvudet nere,
 shaderns hårrad), npm test/build och en egen före/efter-bildsekvens i den riktiga appen. [Egna bilder, kontroller och kostnad](verification/324/README.md).
+
+## Trädens artformer, #327
+
+Granskad originalkälla `184b4fa73163e01ff3000867311904a13f3490dc` (README-uppdelningen `23913353` gäller bara originalets
+README; [original #2131](https://github.com/solwation/lunden-3d-apartment/issues/2131)). Överfört: `src/treeform.js`
+byteidentiskt (arter per position, kronlober, lutning/vridning/storleksspridning, grenordningar `trunkLayout`/`farTrunkLayout`,
+`trunkTriangles` och världsskelettet `treeSkeleton`), originalets `TREE_FORM`-block i `src/config.js` direkt efter `FOLIAGE`
+(originalets värden, alla *guess*) och de förenklade `FOLIAGE.trunk`-fälten, samt konsumentraderna i publikens `src/foliage.js`
+(`trunkGeometry(far, kind)` byggd från layouten, en geometri per barktyp) och `src/surroundings.js` `trees()` (`placeForm` för
+stora, vanliga, unga och björkträd samt parkens desktop-utfyllnad; de gamla vinklade grenunderinstanserna utgår eftersom den
+delade stamgeometrin nu bär grenarna; den gamla slumpströmmens dragningar behålls så att alla senare slumpplaceringar står kvar).
+`treeForms` exporteras från `surroundings.js` (fot, art, barktyp, stammatris) för en senare klättring (#328) men har ännu ingen
+konsument. Publikens trädpositioner, årstidsfärger (#305), vind (#315), LOD-zoner (#284), bladbatcher och mobilprofil
+(`lowMemory`: färre lober och grenar) är oförändrade. Ej tillämpligt: originalets ändringslogg, `tools/foliagetest.html`
+(saknas i publiken), originalets bilder och browserverktyg (egna i stället). Ingen originalbild, inredning, avatar, gameplay,
+lagring, tjänst, Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: `node --test tools/treeformtest.mjs` 6/6 (originalets funktionstester), `tools/barksurfacetest.mjs` och
+`tools/lodtest.mjs` gröna, npm test/build och en egen före/efter-browser i den riktiga appen (sommar/vinter, nära/fjärran).
+[Egna bilder, kontroller och kostnad](verification/327/README.md).

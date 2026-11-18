@@ -1,0 +1,877 @@
+{
+ "baseline": "10c4e3476c09ef2d8175ce0f8b8ac5bbdc25f5fb",
+ "viewport": [
+  960,
+  600
+ ],
+ "errors": [],
+ "external": [],
+ "phases": {
+  "before": {
+   "loadMs": 35048,
+   "views": [
+    {
+     "view": "park-near",
+     "month": 7,
+     "tree": {
+      "x": -19.62,
+      "z": 192.28,
+      "kind": "big"
+     },
+     "calls": 36,
+     "triangles": 437463,
+     "textures": 68,
+     "geometries": 497,
+     "programs": 68,
+     "camera": [
+      -30.62,
+      -1.38,
+      179.28
+     ],
+     "trees": {
+      "trunks": {
+       "meshes": 20,
+       "instances": 368,
+       "trianglesPerInstance": 46
+      },
+      "birches": {
+       "meshes": 4,
+       "instances": 4,
+       "trianglesPerInstance": 46
+      },
+      "crowns": {
+       "meshes": 21,
+       "instances": 396,
+       "trianglesPerInstance": 60
+      },
+      "crowns-far": {
+       "meshes": 1,
+       "instances": 32,
+       "trianglesPerInstance": 36
+      },
+      "trunks-far": {
+       "meshes": 1,
+       "instances": 27,
+       "trianglesPerInstance": 14
+      }
+     },
+     "forms": null,
+     "imageSHA256": "f80079ec9a29df8ad13818954f2111ddfa173d1c0b54c1992472ec4cd2dd8b4f"
+    },
+    {
+     "view": "park-near",
+     "month": 1,
+     "tree": {
+      "x": -19.62,
+      "z": 192.28,
+      "kind": "big"
+     },
+     "calls": 33,
+     "triangles": 413331,
+     "textures": 68,
+     "geometries": 497,
+     "programs": 71,
+     "camera": [
+      -30.62,
+      -1.38,
+      179.28
+     ],
+     "trees": {
+      "trunks": {
+       "meshes": 20,
+       "instances": 368,
+       "trianglesPerInstance": 46
+      },
+      "birches": {
+       "meshes": 4,
+       "instances": 4,
+       "trianglesPerInstance": 46
+      },
+      "crowns": {
+       "meshes": 21,
+       "instances": 396,
+       "trianglesPerInstance": 60
+      },
+      "crowns-far": {
+       "meshes": 1,
+       "instances": 0,
+       "trianglesPerInstance": 36
+      },
+      "trunks-far": {
+       "meshes": 1,
+       "instances": 27,
+       "trianglesPerInstance": 14
+      }
+     },
+     "forms": null,
+     "imageSHA256": "ee0c0a5aa387408482a59e14f1e2f9aa796690309a1278e2a3a810578c4ee1f8"
+    },
+    {
+     "view": "bridge",
+     "month": 7,
+     "tree": {
+      "x": -3,
+      "z": 117.6,
+      "kind": "tree"
+     },
+     "calls": 39,
+     "triangles": 459316,
+     "textures": 68,
+     "geometries": 497,
+     "programs": 71,
+     "camera": [
+      -12,
+      -1.45,
+      106.6
+     ],
+     "trees": {
+      "trunks": {
+       "meshes": 20,
+       "instances": 171,
+       "trianglesPerInstance": 46
+      },
+      "birches": {
+       "meshes": 4,
+       "instances": 13,
+       "trianglesPerInstance": 46
+      },
+      "crowns": {
+       "meshes": 21,
+       "instances": 206,
+       "trianglesPerInstance": 60
+      },
+      "crowns-far": {
+       "meshes": 1,
+       "instances": 335,
+       "trianglesPerInstance": 36
+      },
+      "trunks-far": {
+       "meshes": 1,
+       "instances": 301,
+       "trianglesPerInstance": 14
+      }
+     },
+     "forms": null,
+     "imageSHA256": "f30b9e1458ec1f5c453433498686251b7d5977225924052c96fa13eece43ac83"
+    },
+    {
+     "view": "bridge",
+     "month": 1,
+     "tree": {
+      "x": -3,
+      "z": 117.6,
+      "kind": "tree"
+     },
+     "calls": 36,
+     "triangles": 426976,
+     "textures": 68,
+     "geometries": 497,
+     "programs": 71,
+     "camera": [
+      -12,
+      -1.45,
+      106.6
+     ],
+     "trees": {
+      "trunks": {
+       "meshes": 20,
+       "instances": 171,
+       "trianglesPerInstance": 46
+      },
+      "birches": {
+       "meshes": 4,
+       "instances": 13,
+       "trianglesPerInstance": 46
+      },
+      "crowns": {
+       "meshes": 21,
+       "instances": 206,
+       "trianglesPerInstance": 60
+      },
+      "crowns-far": {
+       "meshes": 1,
+       "instances": 0,
+       "trianglesPerInstance": 36
+      },
+      "trunks-far": {
+       "meshes": 1,
+       "instances": 301,
+       "trianglesPerInstance": 14
+      }
+     },
+     "forms": null,
+     "imageSHA256": "6cbd6d4594b8bf2dd57e66db84b45aeea404ef3e4f36f1e615c81e768dac9f74"
+    },
+    {
+     "view": "park-far",
+     "month": 7,
+     "tree": {
+      "x": -19.62,
+      "z": 192.28,
+      "kind": "big"
+     },
+     "calls": 43,
+     "triangles": 526396,
+     "textures": 70,
+     "geometries": 500,
+     "programs": 74,
+     "camera": [
+      -79.62,
+      28.51,
+      112.28
+     ],
+     "trees": {
+      "trunks": {
+       "meshes": 20,
+       "instances": 145,
+       "trianglesPerInstance": 46
+      },
+      "birches": {
+       "meshes": 4,
+       "instances": 6,
+       "trianglesPerInstance": 46
+      },
+      "crowns": {
+       "meshes": 21,
+       "instances": 165,
+       "trianglesPerInstance": 60
+      },
+      "crowns-far": {
+       "meshes": 1,
+       "instances": 577,
+       "trianglesPerInstance": 36
+      },
+      "trunks-far": {
+       "meshes": 1,
+       "instances": 525,
+       "trianglesPerInstance": 14
+      }
+     },
+     "forms": null,
+     "imageSHA256": "1ee92f2c6820e02325c0ad9aa2c0b3a8373c494cf93a9fc0deecc857e95d0a1b"
+    },
+    {
+     "view": "park-far",
+     "month": 1,
+     "tree": {
+      "x": -19.62,
+      "z": 192.28,
+      "kind": "big"
+     },
+     "calls": 38,
+     "triangles": 448096,
+     "textures": 70,
+     "geometries": 500,
+     "programs": 74,
+     "camera": [
+      -79.62,
+      28.51,
+      112.28
+     ],
+     "trees": {
+      "trunks": {
+       "meshes": 20,
+       "instances": 145,
+       "trianglesPerInstance": 46
+      },
+      "birches": {
+       "meshes": 4,
+       "instances": 6,
+       "trianglesPerInstance": 46
+      },
+      "crowns": {
+       "meshes": 21,
+       "instances": 165,
+       "trianglesPerInstance": 60
+      },
+      "crowns-far": {
+       "meshes": 1,
+       "instances": 0,
+       "trianglesPerInstance": 36
+      },
+      "trunks-far": {
+       "meshes": 1,
+       "instances": 525,
+       "trianglesPerInstance": 14
+      }
+     },
+     "forms": null,
+     "imageSHA256": "c785edb708f5624af855def00d23792793a37fd6566a9eba4813cb45d4a3ae2d"
+    },
+    {
+     "view": "courtyard",
+     "month": 7,
+     "tree": {
+      "x": -18.5,
+      "z": 53.4,
+      "kind": "tree"
+     },
+     "calls": 90,
+     "triangles": 647593,
+     "textures": 71,
+     "geometries": 503,
+     "programs": 76,
+     "camera": [
+      -16.6,
+      -1.38,
+      41.4
+     ],
+     "trees": {
+      "trunks": {
+       "meshes": 20,
+       "instances": 48,
+       "trianglesPerInstance": 46
+      },
+      "birches": {
+       "meshes": 4,
+       "instances": 2,
+       "trianglesPerInstance": 46
+      },
+      "crowns": {
+       "meshes": 21,
+       "instances": 50,
+       "trianglesPerInstance": 60
+      },
+      "crowns-far": {
+       "meshes": 1,
+       "instances": 956,
+       "trianglesPerInstance": 36
+      },
+      "trunks-far": {
+       "meshes": 1,
+       "instances": 839,
+       "trianglesPerInstance": 14
+      }
+     },
+     "forms": null,
+     "imageSHA256": "1588121e579112e0e0454a4778c7ff189ff1a29d0f221f869559e40f30e9290f"
+    },
+    {
+     "view": "courtyard",
+     "month": 1,
+     "tree": {
+      "x": -18.5,
+      "z": 53.4,
+      "kind": "tree"
+     },
+     "calls": 84,
+     "triangles": 584605,
+     "textures": 71,
+     "geometries": 503,
+     "programs": 76,
+     "camera": [
+      -16.6,
+      -1.38,
+      41.4
+     ],
+     "trees": {
+      "trunks": {
+       "meshes": 20,
+       "instances": 48,
+       "trianglesPerInstance": 46
+      },
+      "birches": {
+       "meshes": 4,
+       "instances": 2,
+       "trianglesPerInstance": 46
+      },
+      "crowns": {
+       "meshes": 21,
+       "instances": 50,
+       "trianglesPerInstance": 60
+      },
+      "crowns-far": {
+       "meshes": 1,
+       "instances": 0,
+       "trianglesPerInstance": 36
+      },
+      "trunks-far": {
+       "meshes": 1,
+       "instances": 839,
+       "trianglesPerInstance": 14
+      }
+     },
+     "forms": null,
+     "imageSHA256": "e3791c469710c79a5d2be31ca6b887e46b0539352408052e3d7e1d7007939ffd"
+    }
+   ],
+   "storage": {
+    "sentinel": "kept",
+    "keys": [
+     "kvarteret-lunden.paddockGrass",
+     "lunden.sentinel"
+    ]
+   }
+  },
+  "after": {
+   "loadMs": 36062,
+   "views": [
+    {
+     "view": "park-near",
+     "month": 7,
+     "tree": {
+      "x": -19.62,
+      "z": 192.28,
+      "kind": "big"
+     },
+     "calls": 36,
+     "triangles": 438787,
+     "textures": 68,
+     "geometries": 498,
+     "programs": 68,
+     "camera": [
+      -30.62,
+      -1.38,
+      179.28
+     ],
+     "trees": {
+      "trunks": {
+       "meshes": 20,
+       "instances": 167,
+       "trianglesPerInstance": 166
+      },
+      "birches": {
+       "meshes": 4,
+       "instances": 4,
+       "trianglesPerInstance": 166
+      },
+      "crowns": {
+       "meshes": 21,
+       "instances": 529,
+       "trianglesPerInstance": 60
+      },
+      "crowns-far": {
+       "meshes": 1,
+       "instances": 38,
+       "trianglesPerInstance": 36
+      },
+      "trunks-far": {
+       "meshes": 1,
+       "instances": 6,
+       "trianglesPerInstance": 32
+      }
+     },
+     "forms": 504,
+     "species": {
+      "lime": 127,
+      "oak": 207,
+      "maple": 148,
+      "youngMaple": 9,
+      "birch": 13
+     },
+     "imageSHA256": "c8fa5ebd12f970abe03a7e3c4bdc065fd29fdc2fd7707a5c48cb8a5605a36a6d"
+    },
+    {
+     "view": "park-near",
+     "month": 1,
+     "tree": {
+      "x": -19.62,
+      "z": 192.28,
+      "kind": "big"
+     },
+     "calls": 33,
+     "triangles": 413215,
+     "textures": 68,
+     "geometries": 498,
+     "programs": 71,
+     "camera": [
+      -30.62,
+      -1.38,
+      179.28
+     ],
+     "trees": {
+      "trunks": {
+       "meshes": 20,
+       "instances": 167,
+       "trianglesPerInstance": 166
+      },
+      "birches": {
+       "meshes": 4,
+       "instances": 4,
+       "trianglesPerInstance": 166
+      },
+      "crowns": {
+       "meshes": 21,
+       "instances": 529,
+       "trianglesPerInstance": 60
+      },
+      "crowns-far": {
+       "meshes": 1,
+       "instances": 0,
+       "trianglesPerInstance": 36
+      },
+      "trunks-far": {
+       "meshes": 1,
+       "instances": 6,
+       "trianglesPerInstance": 32
+      }
+     },
+     "forms": 504,
+     "species": {
+      "lime": 127,
+      "oak": 207,
+      "maple": 148,
+      "youngMaple": 9,
+      "birch": 13
+     },
+     "imageSHA256": "81df64a2447823ecde490683733eecaf9665028ce78634e7bf547d40fff98e57"
+    },
+    {
+     "view": "bridge",
+     "month": 7,
+     "tree": {
+      "x": -3,
+      "z": 117.6,
+      "kind": "tree"
+     },
+     "calls": 39,
+     "triangles": 473256,
+     "textures": 68,
+     "geometries": 498,
+     "programs": 71,
+     "camera": [
+      -12,
+      -1.45,
+      106.6
+     ],
+     "trees": {
+      "trunks": {
+       "meshes": 20,
+       "instances": 129,
+       "trianglesPerInstance": 166
+      },
+      "birches": {
+       "meshes": 4,
+       "instances": 13,
+       "trianglesPerInstance": 166
+      },
+      "crowns": {
+       "meshes": 21,
+       "instances": 363,
+       "trianglesPerInstance": 60
+      },
+      "crowns-far": {
+       "meshes": 1,
+       "instances": 435,
+       "trianglesPerInstance": 36
+      },
+      "trunks-far": {
+       "meshes": 1,
+       "instances": 112,
+       "trianglesPerInstance": 32
+      }
+     },
+     "forms": 504,
+     "species": {
+      "lime": 127,
+      "oak": 207,
+      "maple": 148,
+      "youngMaple": 9,
+      "birch": 13
+     },
+     "imageSHA256": "5561f61b95721434d129b58707f202945a2264aaf078b6ebd3d0e40acc7b793d"
+    },
+    {
+     "view": "bridge",
+     "month": 1,
+     "tree": {
+      "x": -3,
+      "z": 117.6,
+      "kind": "tree"
+     },
+     "calls": 36,
+     "triangles": 434280,
+     "textures": 68,
+     "geometries": 498,
+     "programs": 71,
+     "camera": [
+      -12,
+      -1.45,
+      106.6
+     ],
+     "trees": {
+      "trunks": {
+       "meshes": 20,
+       "instances": 129,
+       "trianglesPerInstance": 166
+      },
+      "birches": {
+       "meshes": 4,
+       "instances": 13,
+       "trianglesPerInstance": 166
+      },
+      "crowns": {
+       "meshes": 21,
+       "instances": 363,
+       "trianglesPerInstance": 60
+      },
+      "crowns-far": {
+       "meshes": 1,
+       "instances": 0,
+       "trianglesPerInstance": 36
+      },
+      "trunks-far": {
+       "meshes": 1,
+       "instances": 112,
+       "trianglesPerInstance": 32
+      }
+     },
+     "forms": 504,
+     "species": {
+      "lime": 127,
+      "oak": 207,
+      "maple": 148,
+      "youngMaple": 9,
+      "birch": 13
+     },
+     "imageSHA256": "e5bffedacaa2747024316507577951b7c4f3b493c35ab7367c674e909d1bf143"
+    },
+    {
+     "view": "park-far",
+     "month": 7,
+     "tree": {
+      "x": -19.62,
+      "z": 192.28,
+      "kind": "big"
+     },
+     "calls": 43,
+     "triangles": 543952,
+     "textures": 70,
+     "geometries": 501,
+     "programs": 74,
+     "camera": [
+      -79.62,
+      28.51,
+      112.28
+     ],
+     "trees": {
+      "trunks": {
+       "meshes": 20,
+       "instances": 70,
+       "trianglesPerInstance": 166
+      },
+      "birches": {
+       "meshes": 4,
+       "instances": 6,
+       "trianglesPerInstance": 166
+      },
+      "crowns": {
+       "meshes": 21,
+       "instances": 242,
+       "trianglesPerInstance": 60
+      },
+      "crowns-far": {
+       "meshes": 1,
+       "instances": 800,
+       "trianglesPerInstance": 36
+      },
+      "trunks-far": {
+       "meshes": 1,
+       "instances": 267,
+       "trianglesPerInstance": 32
+      }
+     },
+     "forms": 504,
+     "species": {
+      "lime": 127,
+      "oak": 207,
+      "maple": 148,
+      "youngMaple": 9,
+      "birch": 13
+     },
+     "imageSHA256": "83298921cb81e032a05d0b043eb77fada648daf1929b159c93c6141e723ea5f9"
+    },
+    {
+     "view": "park-far",
+     "month": 1,
+     "tree": {
+      "x": -19.62,
+      "z": 192.28,
+      "kind": "big"
+     },
+     "calls": 38,
+     "triangles": 454476,
+     "textures": 70,
+     "geometries": 501,
+     "programs": 74,
+     "camera": [
+      -79.62,
+      28.51,
+      112.28
+     ],
+     "trees": {
+      "trunks": {
+       "meshes": 20,
+       "instances": 70,
+       "trianglesPerInstance": 166
+      },
+      "birches": {
+       "meshes": 4,
+       "instances": 6,
+       "trianglesPerInstance": 166
+      },
+      "crowns": {
+       "meshes": 21,
+       "instances": 242,
+       "trianglesPerInstance": 60
+      },
+      "crowns-far": {
+       "meshes": 1,
+       "instances": 0,
+       "trianglesPerInstance": 36
+      },
+      "trunks-far": {
+       "meshes": 1,
+       "instances": 267,
+       "trianglesPerInstance": 32
+      }
+     },
+     "forms": 504,
+     "species": {
+      "lime": 127,
+      "oak": 207,
+      "maple": 148,
+      "youngMaple": 9,
+      "birch": 13
+     },
+     "imageSHA256": "f991fd9fd98babe88c8931ba07eff53cb861c0dbf488d5317f4c6961bbc5c125"
+    },
+    {
+     "view": "courtyard",
+     "month": 7,
+     "tree": {
+      "x": -18.5,
+      "z": 53.4,
+      "kind": "tree"
+     },
+     "calls": 90,
+     "triangles": 664977,
+     "textures": 71,
+     "geometries": 504,
+     "programs": 76,
+     "camera": [
+      -16.6,
+      -1.38,
+      41.4
+     ],
+     "trees": {
+      "trunks": {
+       "meshes": 20,
+       "instances": 48,
+       "trianglesPerInstance": 166
+      },
+      "birches": {
+       "meshes": 4,
+       "instances": 2,
+       "trianglesPerInstance": 166
+      },
+      "crowns": {
+       "meshes": 21,
+       "instances": 271,
+       "trianglesPerInstance": 60
+      },
+      "crowns-far": {
+       "meshes": 1,
+       "instances": 1337,
+       "trianglesPerInstance": 36
+      },
+      "trunks-far": {
+       "meshes": 1,
+       "instances": 389,
+       "trianglesPerInstance": 32
+      }
+     },
+     "forms": 504,
+     "species": {
+      "lime": 127,
+      "oak": 207,
+      "maple": 148,
+      "youngMaple": 9,
+      "birch": 13
+     },
+     "imageSHA256": "0c45d008a3a8f9ad5087e6d7e2d51619c5c907f3eb648a25cad6551f2d3c9336"
+    },
+    {
+     "view": "courtyard",
+     "month": 1,
+     "tree": {
+      "x": -18.5,
+      "z": 53.4,
+      "kind": "tree"
+     },
+     "calls": 84,
+     "triangles": 586581,
+     "textures": 71,
+     "geometries": 504,
+     "programs": 76,
+     "camera": [
+      -16.6,
+      -1.38,
+      41.4
+     ],
+     "trees": {
+      "trunks": {
+       "meshes": 20,
+       "instances": 48,
+       "trianglesPerInstance": 166
+      },
+      "birches": {
+       "meshes": 4,
+       "instances": 2,
+       "trianglesPerInstance": 166
+      },
+      "crowns": {
+       "meshes": 21,
+       "instances": 271,
+       "trianglesPerInstance": 60
+      },
+      "crowns-far": {
+       "meshes": 1,
+       "instances": 0,
+       "trianglesPerInstance": 36
+      },
+      "trunks-far": {
+       "meshes": 1,
+       "instances": 389,
+       "trianglesPerInstance": 32
+      }
+     },
+     "forms": 504,
+     "species": {
+      "lime": 127,
+      "oak": 207,
+      "maple": 148,
+      "youngMaple": 9,
+      "birch": 13
+     },
+     "imageSHA256": "393415954562dd48cf180370ca3c67942c649f11d697e35bd147fc9de0e1a615"
+    }
+   ],
+   "storage": {
+    "sentinel": "kept",
+    "keys": [
+     "kvarteret-lunden.paddockGrass",
+     "lunden.sentinel"
+    ]
+   }
+  }
+ },
+ "diff": {
+  "park-near-7": 77.43,
+  "park-near-1": 61.02,
+  "bridge-7": 44.22,
+  "bridge-1": 21.16,
+  "park-far-7": 54.26,
+  "park-far-1": 29.93,
+  "courtyard-7": 67.9,
+  "courtyard-1": 27.54
+ },
+ "source": {
+  "src/treeform.js": "36efefe26266c7c829ccf69bb72647b4cda451f4f699c19817420cdd711e1e29",
+  "src/foliage.js": "5b69ca3ff336235234f4463c31031846cb8438c99a80c37ea4eb5ed6449d0dda",
+  "src/surroundings.js": "54365cb2fb0d74e406ec4cbfd018fca14e16fb54f48e62e805fd77614439509a",
+  "src/config.js": "230e91bb443dfe3ea0d26af527cd07aa81be7efcf0ad19e2001f8091456813b6",
+  "tools/treeformtest.mjs": "5e5cfa292bae07ee6f15915d1b69d7ba506a0d2c6650f84d9bd487c73d77a3b3",
+  "tools/treeform327browser.cjs": "74c5a94cf1c9b3314f147e5a7a9d07cfb304af5c2dd0e0dfe7e2871288bad1c4"
+ }
+}
