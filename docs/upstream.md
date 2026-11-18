@@ -1,5 +1,33 @@
 # Förbättringar från originalet
 
+<a id="issue-300"></a>
+
+## Smal fasadtrottoar vid Realgymnasiet, #300
+
+Accepterad publicerad originalkälla: 3c5d527608439a40c3c68f0221cc1549eca220fc
+([original #2078](https://github.com/solwation/lunden-3d-apartment/issues/2078)).
+Selektivt urval: enbart det neutrala blocket roads.js:facadeWalkGeometries
+(byteidentiskt, SHA256 f409afebb3d39702130d6c868c943cf346e1ba4985e247cb0fc2c5ecc35e6759), facadeWalks-parametrarna med egen publik kommentar
+och helperimport/spridning i publicens befintliga walkingPaving-batch.
+[Exakta källhashar, urval och bevarande](verification/300/selection.json).
+
+Publicens source 130681301/fasadkant 3→4 styr remsan vid Realgymnasiet 20.
+Bredd 1.1 m, lift 0.028 m och gavelreturer är uttryckligt guess, inte uppmätta.
+Båda ändar ansluter till befintlig trottoar; hus/vägar/entréer/korsningar/gångstöd
+och tidigare A/B/C/L/HepCat-data är kvar. Befintliga egna sydjoin-/markrefinement-/
+bro-/gåstödsimplementationer är bytebevarade. Bara Sankt Lars-asfalt täcks lokalt;
+övriga körvägar klipps som tidigare.
+
+Inga originalfoton/rapportbilder, personliga resurser, gameplay, tjänster,
+Cloudflare, annan originalconfig eller originalhistorik kopieras. Befintlig
+attribution/licens behålls. Egen publik komponentbrowser med faktisk
+Realgymnasiet 20-backdrop visar nära/normal/båda gavlar/snö; fem egna granskade,
+nativeaspekta bildpar. 0 externa anrop/Storagecalls, sentinels oförändrade.
++56064 attributbyte/+584 trianglar, inga nya draws/texturer/material/meshes/ljus/pass.
+npm test (156 moduler) och npm run build (fcf9a0ba382b4010a052bbad) passerar.
+[Kontroller, bildpar, budget och begränsningar](verification/300/README.md).
+
+
 ## Diskret betongyta på åbroarna, #298
 
 Granskad publicerad originalkälla:

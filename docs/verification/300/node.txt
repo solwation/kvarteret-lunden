@@ -1,0 +1,11 @@
+✔ one sourced facade, 1.1m continuous pavement and both short gable returns (14.280536ms)
+✔ finite terrain-following geometry stays within the local facade envelope and above existing road (4.425427ms)
+✔ walking centre is clear of existing walls, feet and slope are unchanged; no other vehicle way is covered (10.062674ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 238.945345

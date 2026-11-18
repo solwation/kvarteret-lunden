@@ -3236,3 +3236,13 @@ bevarar färgpixel-/geometrihashar/bounds/ritbudget, snö/sommaråterställning 
 lagringsisolering. Portikgolvet inspekteras isolerat från början; övriga komponenter
 behåller sin arkitektur med dekor dold lika. npm test/build är obligatoriska.
 [Egna granskade bilder, källurval, minne och begränsningar](verification/296/README.md).
+
+## Fasadtrottoar vid Realgymnasiet, #300
+
+Tre kontrollgrupper: tre riktade Nodeprov och exakt källbevarande/pathaudit,
+ordinarie npm test/build samt en egen source-bunden publik production
+surroundingsParts/buildStreet-browser. Backdrop bifogas före capture och
+source 130681301 krävs. Nära/normal/båda ändar/snö, oförminskade egna bildpar,
+oförändrade gångstödsprov, noll externa anrop/Storagecalls och orörda
+originalsentinels. +56064 attributbyte/+584 trianglar, inga fler draws/texturer.
+[Urval, källhashar, bilder och begränsningar](verification/300/README.md).

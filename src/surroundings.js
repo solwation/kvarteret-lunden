@@ -29,7 +29,7 @@ import { buildStreet } from './street.js';
 import { buildHepcat, hepcatTexture, hepcatStone } from './hepcat.js';
 import { buildStreetSigns } from './streetsigns.js';
 import { buildGroundAO } from './groundao.js';
-import { cutAtTerrain, onRoad, onWalk, pathStrip, filletGeometry, vehicleTrim, finish as surfaceGeometry } from './roads.js';
+import { cutAtTerrain, onRoad, onWalk, pathStrip, filletGeometry, vehicleTrim, facadeWalkGeometries, finish as surfaceGeometry } from './roads.js';
 import { wallRect } from './roofs.js';
 import { buildingRoofWalk } from './buildingroofs.js';
 import { schoolWallPlan } from './schoolwall.js';
@@ -1927,7 +1927,7 @@ export function* surroundingsParts({ grass, husL = null }) {
   pavementPieces = pavementPiecesFrom(joinedWalks);
   cutPavement = polygonCutter(pavementPieces, 8);
   const connectPavement = (g,width,support) => besidePavement(g,width,p=>[p[0],pavementJoinHeight(p[0],p[2],p[1],width,support),p[2]]);
-  const walkingPaving=flat([...[...S.paving, ...S.basementPaving].map((r) => groundStrip(r.x0, r.x1, r.z0, r.z1, 0.008)), ...walks], COLORS.paving, SEASON.snow.paving);
+  const walkingPaving=flat([...[...S.paving, ...S.basementPaving].map((r) => groundStrip(r.x0, r.x1, r.z0, r.z1, 0.008)), ...walks, ...facadeWalkGeometries(roadGround)], COLORS.paving, SEASON.snow.paving);
   yield 0.15;
   group.add(buildRiverBridges(roadGround, connectPavement));
   yield 0.2;

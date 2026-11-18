@@ -478,6 +478,9 @@ export const SITE = {
     { name: 'Infarten', path: [[-10.25, -24.5], [-10.25, -16.1]], w: 5.5 },
     { name: 'Infarten, hörnen', fillets: [{ x: -13, z: -24, sx: -1, sz: 1, r: 2 }, { x: -7.5, z: -24, sx: 1, sz: 1, r: 2 }] },
   ],
+  // Public #300, original #2078: narrow pavement along Realgymnasiet 20's unchanged west source edge.
+  // Width, visual lift and gable returns are guesses, not surveyed dimensions.
+  facadeWalks: [{ source: '130681301', face: [3, 4], w: 1.1, lift: 0.028, return: 3 }],
   // #729: simple connected park paving, traced approximately from the light strips in the situation plan.
   // Straight strips typically 1.5 m wide; terminal rectangles/route/widths are *guess*, all on existing park ground (-3); no surveyed levels.
   basementPaving: [

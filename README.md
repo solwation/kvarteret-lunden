@@ -8,6 +8,8 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+En smal trottoar följer Realgymnasiets tegelfasad vid Sankt Lars väg och ansluter vid båda gavlarna; bredd och höjd är uppskattade (#300).
+
 Stenläggningen vid gatuhörnet följer trottoarens sväng och markhöjd, med sammanhängande anslutningar i båda ändar (#299).
 
 Uteplatsernas betongplattor har grunda fogar och mjuka plattkanter som reagerar på ljuset; snöytan och den skyddade portikens plattläggning behålls (#296).

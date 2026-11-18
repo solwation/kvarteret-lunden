@@ -1,0 +1,75 @@
+{
+  "publicBaseline": "992e1eddeba5a7f06b4c65d40e134f622a53b5ee",
+  "acceptedOriginalSource": "3c5d527608439a40c3c68f0221cc1549eca220fc",
+  "selection": {
+    "facadeWalkGeometriesSHA256": "f409afebb3d39702130d6c868c943cf346e1ba4985e247cb0fc2c5ecc35e6759",
+    "config": "only facadeWalks source130681301/face3,4/w1.1/lift.028/return3; public comment",
+    "consumer": "only helper import and spread into existing walkingPaving batch"
+  },
+  "reviewedOriginalFiles": {
+    "src/roads.js": "570cfd4d9714218f9470947d5746ab0fe192a30936b0d2aeed69527b50c6dbe2",
+    "src/config.js": "1d4d8b776b1c4db2c62f7782de6ae3dfa68112fce6845efc15ad33e6173f4fd2",
+    "src/surroundings.js": "8ec578f95641be1c2fff2c3c5509935e147f4345d75063ab819a114549baacdd"
+  },
+  "unchangedPublicFiles": {
+    "src/realgym20.js": "3340329b220c5f2dd204de1894c185aebabb129cf257fd0bc2755a2ffb9a0ae1",
+    "src/sitebackdrop.js": "3f0360060ad8fbec9e4a0dc870ad0d70fd275508796a5c060deb875439ef26c1",
+    "src/farwalk.js": "09533bd376244d3cc396732439bfa53e78427932ebc7dfe14ccc9d4bb752e6fc",
+    "src/street.js": "24c9b1122c96f831c07ff13f991865b9a60986f439df11f7a0ba36d694f16e49",
+    "src/riverbridge.js": "0dd911cc28da9268e69cd68f9055072931705a16f9ce50c91cd3ed44b00f5474",
+    "src/walksupport.js": "74c09265dfc6556700bb589e4f9117effde031a259d937a7ae6497443ef0b1ae"
+  },
+  "oldConfigBytes": "exact outside named Public #300 block",
+  "oldRoadsBytes": "exact after removing inserted helper",
+  "oldSurroundingsBytes": "exact after reversing two named additions",
+  "pathauditbeforeSHA256": "9898c3d80fde3bffa81852eee0a23c8a2641d651646bd6f6d1e76950d5925c17",
+  "pathauditafterSHA256": "9898c3d80fde3bffa81852eee0a23c8a2641d651646bd6f6d1e76950d5925c17",
+  "images": {
+    "normal.jpg": {
+      "size": [
+        2200,
+        756
+      ],
+      "sha256": "527c15bb5c7b060401a585ca474f04ac7a77ba89a7719ba227408e826be8c5f9"
+    },
+    "winter.jpg": {
+      "size": [
+        2200,
+        756
+      ],
+      "sha256": "71edb72112ed65caebbd664498237015e0e821ca55b5bb3575b277be4d778f76"
+    },
+    "south.jpg": {
+      "size": [
+        2200,
+        756
+      ],
+      "sha256": "301bd8b7ce250303905886f98c75022f3329e4e7a57ca7d0ea5da927e3c9663e"
+    },
+    "north.jpg": {
+      "size": [
+        2200,
+        756
+      ],
+      "sha256": "d819e2e5d296b5ac8597154a7f3772881dbf7a9d60b5cb417f2f45de6ab5ce0f"
+    },
+    "near.jpg": {
+      "size": [
+        2200,
+        756
+      ],
+      "sha256": "9f307825bd6bc1e033ef1f1762ac36bc3b97bbe89c2087f25c56d7f6185fd56a"
+    }
+  },
+  "publicSource": {
+    "src/config.js": "0ac3037fc9dc6b5077d9b3f97b8458d9733283be9f69a7d3a98660a93357823d",
+    "src/roads.js": "f34e83251829616cb4a8714018ac5a6ee3675f3ef338bb25951a6504dbb8d6d3",
+    "src/surroundings.js": "2221cfce03931b4793d7c46ecc27753b3ed0b396b3ede717c42e0e8004fafaef",
+    "src/realgym20.js": "3340329b220c5f2dd204de1894c185aebabb129cf257fd0bc2755a2ffb9a0ae1",
+    "src/sitebackdrop.js": "3f0360060ad8fbec9e4a0dc870ad0d70fd275508796a5c060deb875439ef26c1",
+    "src/farwalk.js": "09533bd376244d3cc396732439bfa53e78427932ebc7dfe14ccc9d4bb752e6fc",
+    "tools/facadewalk300.html": "9c67c6b14d522a60b53107bd4b49f713ede0c94d61de9e127428b5fb7d712f36",
+    "tools/facadewalk300browser.cjs": "2e7d4e32f0de914150c29d23fd526dab54bf1046b23472855d862eac20ed66a0",
+    "tools/facadewalk300test.mjs": "5893767ff317171626836a7122e2359c6bbc00a61b572d0676b48fabd728d6a3"
+  }
+}
