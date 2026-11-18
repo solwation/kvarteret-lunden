@@ -35,3 +35,7 @@ Målade fibrer är lågmälda och mjukt böjda/förgrenade. Befintlig greige/cre
 Begränsningar: avgränsad komponent med styrd belysning, ingen fullWorld-, vinter-, fysisk telefon- eller FPS-kontroll. Befintlig säsongskod är orörd. Root ansvarar för integration, bildpublicering/ärendekommentar och faktisk Pages-success.
 
 Återskapa med repoets Three 0.170.0 i `node_modules`, egen HTTP-server på 8200 och värdens browserwrapper: `node tools/screenwallsurface297browser.cjs http://localhost:8200 docs/verification/297`. Föreversionens moduler hämtas från publik Git-bas, utan originalrepo eller externa resurser vid körningen.
+
+## Publicering
+
+Kod/bilder `8d9254ae4e5440d2d754fb785a8f01a75cacd77e`; faktiska run-ID [44272621180] success på exakt revision. Alla bilder HTTP200 och inbäddade före stängning: https://github.com/solwation/kvarteret-lunden/issues/297#issuecomment-6973997508. Slutkvittot ändrar inte appkällan; dess separata Pages-run följs av dirigenten.
