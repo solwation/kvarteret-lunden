@@ -1,5 +1,28 @@
 # Förbättringar från originalet
 
+## Flackare södra broanslutning, #301
+
+Granskad publicerad originalkälla `bc00a3e5b30fbacec71ec8ea76142ba9b16391eb`
+([original #2079](https://github.com/solwation/lunden-3d-apartment/issues/2079)). Endast neutrala
+`src/southbank.js` (byteidentisk) och deklarationen `SOUTH_BRIDGE_APPROACH` överförs; publicens
+configkommentar pekar på eget #301. Inga övriga originalconfigvärden, bilder, personlig data,
+spel-/simningskod, tjänster eller historik hämtas. Exakta hashvärden/urval i
+[egen källbunden verifiering](verification/301/README.md).
+
+Den gamla antagna femmetersanslutningen gav en cirka2,66m hög vägg efter broänden.
+En lokal Hermite-profil z147..203,9 /halvbredd8m/fade18m förenar oflyttat brodatum−3 med
+befintligt krön och sluttangent. Alla nya profilval är guess; LM-kontrollerna mäter mark och
+behålls råa. A/B/C/L ligger utanför korridoren. Publicens egna bro-/botten-/vattenmått,
+roadGround/refined-grid, connectPavement/trimApproach, byggnadspads och WalkSupport bevaras.
+
+Egna12scopade nativefall, npm test/build och en egen faktisk public buildSurroundings-browser
+passerar. Neutral Navigation når road/GC-mål båda håll vid gång/sprint; sju lagringssentineller
+för originalnamnrymden är orörda, noll lagringsanrop/externa anrop/fel. Tre egna matchade
+nativebilder öppnade och granskade. Samma43/47/41calls och10texturer; −367trianglar/−35352
+geometribyte i komponenten genom befintlig adaptiv vägtriangulering. Inga nya ljus/pass eller
+per-frameuppladdningar. Ingen global FPS-/mobil-/surveyverifiering påstås.
+
+
 <a id="issue-300"></a>
 
 ## Smal fasadtrottoar vid Realgymnasiet, #300

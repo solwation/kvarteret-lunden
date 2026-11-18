@@ -1,0 +1,36 @@
+<!doctype html><html><meta charset="utf-8"><link rel="icon" href="data:,"><title>Production southern bridge approach #301</title><style>body{margin:0}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"../node_modules/three/build/three.module.js","three/addons/":"../node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import * as T from 'three';
+import {buildSurroundings,groundY,groundBelowDeckY,buildingPadList,renderedTerrainY,walkingGroundY,walkingGroundSlope,walkingSupportHeight} from '../src/surroundings.js';
+import {southBankCentre} from '../src/southbank.js';
+import {bridgeRecords,deckAt,deckUnderAt,pierBoxes,waterYAt} from '../src/riverbridge.js';
+import {grassMaterial} from '../src/grass.js';
+import {Navigation} from '../src/navigation.js';
+const scene=new T.Scene();scene.background=new T.Color(0xbecdd2);
+const world=buildSurroundings({grass:grassMaterial()});scene.add(world);
+scene.add(new T.HemisphereLight(0xe9f2f9,0x615e4d,1.3));const sun=new T.DirectionalLight(0xffefd5,3.2);sun.position.set(-12,35,-22);scene.add(sun);
+const renderer=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setPixelRatio(1);renderer.setSize(1120,800);renderer.toneMapping=T.NeutralToneMapping;renderer.outputColorSpace=T.SRGBColorSpace;document.body.append(renderer.domElement);
+const camera=new T.PerspectiveCamera(57,1.4,.05,2000);
+const hash=a=>{let h=2166136261;for(const x of new Uint8Array(a.buffer,a.byteOffset,a.byteLength)){h^=x;h=Math.imul(h,16777619);}return h>>>0;};
+window.__proof=()=>{
+ const meshes=[],inventory=[],geos=new Set();let bytes=0,triangles=0;
+ world.traverse(o=>{if(!o.geometry)return;const g=o.geometry;inventory.push({name:o.name,triangles:(g.index?.count??g.attributes.position.count)/3,vertices:g.attributes.position.count});if(!geos.has(g)){geos.add(g);bytes+=Object.values(g.attributes).reduce((s,a)=>s+a.array.byteLength,0)+(g.index?.array.byteLength??0);triangles+=o.isMesh?(g.index?.count??g.attributes.position.count)/3:0;}
+ if(['site-terrain','bridges-concrete','bridges-steel','bridges-water','bridges-asphalt'].includes(o.name)){const p=g.attributes.position,xz=[],outside=[];for(let i=0;i<p.count;i++){const x=p.getX(i),z=p.getZ(i);xz.push(x,z);if(z<=143||z>=208||Math.abs(x-southBankCentre(z))>=24)outside.push(x,p.getY(i),z);}g.computeBoundingBox();meshes.push({name:o.name,extentXZ:[g.boundingBox.min.x,g.boundingBox.max.x,g.boundingBox.min.z,g.boundingBox.max.z],count:p.count,index:g.index?hash(g.index.array):null,xz:hash(new Float32Array(xz)),outside:hash(new Float32Array(outside)),positions:hash(p.array)});}});
+ const profile=[];for(let z=140;z<=210;z+=2){const x=southBankCentre(z);profile.push({z,y:groundY(x,z),drawn:renderedTerrainY(x,z),gc:groundY(x-5.7,z),walk:walkingGroundY(x,z),gcWalk:walkingGroundY(x-5.7,z),slope:walkingGroundSlope(x,z)});}
+ return{meshes,inventory,support:{core:world.userData.walkingSupport.core,outer:world.userData.walkingSupport.outer,triangles:world.userData.walkingSupport.triangles},geometry:{unique:geos.size,bytes,triangles},pads:buildingPadList(),records:bridgeRecords,piers:pierBoxes(),queries:bridgeRecords.map(r=>({top:deckAt(r.x,r.z),under:deckUnderAt(r.x,r.z),water:waterYAt(r.x,r.z),ground:groundBelowDeckY(r.x,r.z)})),profile};
+};
+window.__routes=()=>{
+ const routes=[],world={size:{x:10,z:10},levels:[{segments:[],footprints:[]},{segments:[],footprints:[]}],doors:[]};
+ for(const offset of [0,-5.7])for(const run of [false,true]){
+  const n=new Navigation(world,new T.PerspectiveCamera()),point=z=>[southBankCentre(z)+offset,z],start=point(140);n.teleport(start[0],walkingGroundY(...start),start[1]);n.keys.add('KeyW');if(run)n.keys.add('ShiftLeft');let maxError=0,reached=true,ticks=0;
+  for(const z of [150,160,180,204,180,160,150,140]){const[x,tz]=point(z);let steps=0;while(Math.hypot(n.pos.x-x,n.pos.z-tz)>.15&&steps++<2000){n.camera.rotation.y=Math.atan2(-(x-n.pos.x),-(tz-n.pos.z));n.update(.05);maxError=Math.max(maxError,Math.abs(n.pos.y-walkingGroundY(n.pos.x,n.pos.z)));ticks++;}if(steps>=2000){reached=false;break;}}
+  routes.push({offset,run,reached,ticks,maxError,finite:n.pos.toArray().every(Number.isFinite)});
+ }
+ return{routes,decks:bridgeRecords.map(r=>({kind:r.kind,top:deckAt(r.x,r.z),walk:walkingGroundY(r.x,r.z),support:walkingSupportHeight(r.x,r.z)}))};
+};
+window.__frame=view=>{
+ const views={report:[[18,-1.4,131],[22,-1,165]],side:[[-15,4,157],[25,-1.7,172]],transition:[[18,-.8,149],[25,-1.4,179]]};
+ const[eye,target]=views[view];camera.position.fromArray(eye);camera.lookAt(new T.Vector3(...target));camera.updateMatrixWorld(true);renderer.info.reset();renderer.render(scene,camera);return{view,camera:eye,target,calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,textures:renderer.info.memory.textures,image:renderer.domElement.toDataURL('image/jpeg',.96)};
+};window.__ready=true;
+</script></html>

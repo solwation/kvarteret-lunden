@@ -18,6 +18,15 @@ konkret materiell risk; ta bara om felaktiga kamerapositioner. Befintliga snabba
 `npm test`/bygge och automatisk Pages-status kvarstår; dokument kräver ingen ny
 livebrowserkontroll av oförändrad app.
 
+## Flackare södra broanslutning, #301
+
+Egen produktionbuildSurroundings-browser med tre matchade nativevyer och riktiga publika
+trimApproach/roadGround/WalkSupport-konsumenter; Navigation road/GC båda håll gång/sprint.
+Tolv scoped nativefall samt npm test/build passerar. Sju ursprungsnamnrymdssentineller orörda,
+noll lagringsanrop/externa anrop/fel. Oförändrad grundgrid, brodatum, vatten och byggnadspads;
+−367trianglar/−35352geometribyte i komponenten, oförändrade calls/texturer.
+[Egna granskade bilder, källhashar, exakta antaganden och gränser](verification/301/README.md).
+
 ## Finare parkettytor, #291
 
 `tools/parquet291-check.mjs BASE docs/verification/291` använder publicens riktiga

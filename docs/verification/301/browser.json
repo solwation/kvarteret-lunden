@@ -1,0 +1,3831 @@
+{
+  "upstream": "bc00a3e5b30fbacec71ec8ea76142ba9b16391eb",
+  "baseline": "2636f11d4374e332df3c6f81d545b13d41e122e9",
+  "viewport": [
+    1120,
+    800
+  ],
+  "renderer": "Chromium / SwiftShader",
+  "errors": [],
+  "external": [],
+  "phases": {
+    "before": {
+      "meshes": [
+        {
+          "name": "site-terrain",
+          "extentXZ": [
+            -350,
+            340,
+            -340,
+            460
+          ],
+          "count": 207362,
+          "index": 3681903899,
+          "xz": 3502822309,
+          "outside": 1607017400,
+          "positions": 2714465385
+        },
+        {
+          "name": "bridges-concrete",
+          "extentXZ": [
+            16.014053344726562,
+            30.85759162902832,
+            99.32396697998047,
+            146.5159912109375
+          ],
+          "count": 864,
+          "index": null,
+          "xz": 1294879109,
+          "outside": 2717597198,
+          "positions": 193497585
+        },
+        {
+          "name": "bridges-steel",
+          "extentXZ": [
+            16.31783676147461,
+            30.494434356689453,
+            99.92760467529297,
+            145.93606567382812
+          ],
+          "count": 21672,
+          "index": null,
+          "xz": 315991054,
+          "outside": 2941392512,
+          "positions": 1577238282
+        },
+        {
+          "name": "bridges-asphalt",
+          "extentXZ": [
+            16.325578689575195,
+            30.654420852661133,
+            90.59552001953125,
+            156.39602661132812
+          ],
+          "count": 5223,
+          "index": null,
+          "xz": 3149756820,
+          "outside": 2846677018,
+          "positions": 2186216108
+        },
+        {
+          "name": "bridges-water",
+          "extentXZ": [
+            -351.8581848144531,
+            340.27801513671875,
+            19.88703155517578,
+            360.3566589355469
+          ],
+          "count": 3366,
+          "index": null,
+          "xz": 1737757183,
+          "outside": 612694588,
+          "positions": 612694588
+        }
+      ],
+      "inventory": [
+        {
+          "name": "site-terrain",
+          "triangles": 132681,
+          "vertices": 207362
+        },
+        {
+          "name": "site-terrain-remainder",
+          "triangles": 74146,
+          "vertices": 207362
+        },
+        {
+          "name": "site-terrain-southeast",
+          "triangles": 58535,
+          "vertices": 207362
+        },
+        {
+          "name": "",
+          "triangles": 234,
+          "vertices": 702
+        },
+        {
+          "name": "",
+          "triangles": 3396,
+          "vertices": 10188
+        },
+        {
+          "name": "",
+          "triangles": 196,
+          "vertices": 588
+        },
+        {
+          "name": "",
+          "triangles": 408,
+          "vertices": 816
+        },
+        {
+          "name": "",
+          "triangles": 4,
+          "vertices": 12
+        },
+        {
+          "name": "",
+          "triangles": 4775,
+          "vertices": 14325
+        },
+        {
+          "name": "",
+          "triangles": 10080,
+          "vertices": 30240
+        },
+        {
+          "name": "bridges-concrete",
+          "triangles": 288,
+          "vertices": 864
+        },
+        {
+          "name": "bridges-steel",
+          "triangles": 7224,
+          "vertices": 21672
+        },
+        {
+          "name": "bridges-asphalt",
+          "triangles": 1741,
+          "vertices": 5223
+        },
+        {
+          "name": "bridges-water",
+          "triangles": 1122,
+          "vertices": 3366
+        },
+        {
+          "name": "park-paths-asphalt",
+          "triangles": 5741,
+          "vertices": 17223
+        },
+        {
+          "name": "park-paths",
+          "triangles": 2230,
+          "vertices": 6690
+        },
+        {
+          "name": "park-timber-bridge",
+          "triangles": 228,
+          "vertices": 684
+        },
+        {
+          "name": "park-shore-growth",
+          "triangles": 4420,
+          "vertices": 13260
+        },
+        {
+          "name": "football-static",
+          "triangles": 968,
+          "vertices": 2904
+        },
+        {
+          "name": "football-nets",
+          "triangles": 50.666666666666664,
+          "vertices": 152
+        },
+        {
+          "name": "gym-gravel",
+          "triangles": 492,
+          "vertices": 1476
+        },
+        {
+          "name": "gym-wood",
+          "triangles": 1376,
+          "vertices": 4128
+        },
+        {
+          "name": "gym-padding",
+          "triangles": 80,
+          "vertices": 240
+        },
+        {
+          "name": "gym-steel",
+          "triangles": 2456,
+          "vertices": 7368
+        },
+        {
+          "name": "bus-stop-platform",
+          "triangles": 156,
+          "vertices": 468
+        },
+        {
+          "name": "bus-stop-furniture",
+          "triangles": 228,
+          "vertices": 684
+        },
+        {
+          "name": "bus-stop-glass",
+          "triangles": 6,
+          "vertices": 18
+        },
+        {
+          "name": "bus-stop-sign",
+          "triangles": 8,
+          "vertices": 16
+        },
+        {
+          "name": "west-facade",
+          "triangles": 3068,
+          "vertices": 9204
+        },
+        {
+          "name": "west-roof",
+          "triangles": 24,
+          "vertices": 72
+        },
+        {
+          "name": "west-glass",
+          "triangles": 416,
+          "vertices": 1248
+        },
+        {
+          "name": "west-access",
+          "triangles": 2566,
+          "vertices": 7698
+        },
+        {
+          "name": "west-karpBrick",
+          "triangles": 44,
+          "vertices": 132
+        },
+        {
+          "name": "west-karpGlass",
+          "triangles": 656,
+          "vertices": 1968
+        },
+        {
+          "name": "west-karpRoof",
+          "triangles": 16,
+          "vertices": 48
+        },
+        {
+          "name": "east-facade",
+          "triangles": 944,
+          "vertices": 2832
+        },
+        {
+          "name": "east-roof",
+          "triangles": 133,
+          "vertices": 399
+        },
+        {
+          "name": "east-glass",
+          "triangles": 3596,
+          "vertices": 10788
+        },
+        {
+          "name": "east-access",
+          "triangles": 15471,
+          "vertices": 46413
+        },
+        {
+          "name": "east-modern",
+          "triangles": 16160,
+          "vertices": 48480
+        },
+        {
+          "name": "east-modern-far",
+          "triangles": 5302,
+          "vertices": 15906
+        },
+        {
+          "name": "east-modern-2",
+          "triangles": 11784,
+          "vertices": 35352
+        },
+        {
+          "name": "east-modern-2-far",
+          "triangles": 4084,
+          "vertices": 12252
+        },
+        {
+          "name": "east-modern-3",
+          "triangles": 21734,
+          "vertices": 65202
+        },
+        {
+          "name": "east-modern-3-far",
+          "triangles": 12132,
+          "vertices": 36396
+        },
+        {
+          "name": "east-schoolGlass",
+          "triangles": 4598,
+          "vertices": 13794
+        },
+        {
+          "name": "east-schoolBrick",
+          "triangles": 3594,
+          "vertices": 10782
+        },
+        {
+          "name": "east-schoolRoof",
+          "triangles": 7790,
+          "vertices": 23370
+        },
+        {
+          "name": "east-lawn",
+          "triangles": 1795,
+          "vertices": 5385
+        },
+        {
+          "name": "nordic-wellness-lettering",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "tower-clock-dials",
+          "triangles": 32,
+          "vertices": 34
+        },
+        {
+          "name": "tower-clock-hands",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "north-facade",
+          "triangles": 96,
+          "vertices": 288
+        },
+        {
+          "name": "north-roof",
+          "triangles": 48,
+          "vertices": 144
+        },
+        {
+          "name": "north-glass",
+          "triangles": 1704,
+          "vertices": 5112
+        },
+        {
+          "name": "north-access",
+          "triangles": 7780,
+          "vertices": 23340
+        },
+        {
+          "name": "north-modern",
+          "triangles": 200,
+          "vertices": 600
+        },
+        {
+          "name": "south-facade",
+          "triangles": 9934,
+          "vertices": 29802
+        },
+        {
+          "name": "south-roof",
+          "triangles": 1968,
+          "vertices": 5904
+        },
+        {
+          "name": "south-glass",
+          "triangles": 5534,
+          "vertices": 16602
+        },
+        {
+          "name": "south-land",
+          "triangles": 132356,
+          "vertices": 397068
+        },
+        {
+          "name": "south-trunks",
+          "triangles": 16,
+          "vertices": 28
+        },
+        {
+          "name": "south-crowns",
+          "triangles": 36,
+          "vertices": 108
+        },
+        {
+          "name": "edge-land",
+          "triangles": 18141,
+          "vertices": 54423
+        },
+        {
+          "name": "edge-houses",
+          "triangles": 3569,
+          "vertices": 10707
+        },
+        {
+          "name": "",
+          "triangles": 825,
+          "vertices": 2475
+        },
+        {
+          "name": "",
+          "triangles": 792,
+          "vertices": 1584
+        },
+        {
+          "name": "",
+          "triangles": 14028,
+          "vertices": 42084
+        },
+        {
+          "name": "",
+          "triangles": 168,
+          "vertices": 504
+        },
+        {
+          "name": "",
+          "triangles": 1300,
+          "vertices": 3900
+        },
+        {
+          "name": "",
+          "triangles": 4824,
+          "vertices": 14472
+        },
+        {
+          "name": "loggiaLampGlass",
+          "triangles": 624,
+          "vertices": 1872
+        },
+        {
+          "name": "loggiaLampWash",
+          "triangles": 104,
+          "vertices": 312
+        },
+        {
+          "name": "loggiaLampPools",
+          "triangles": 9360,
+          "vertices": 28080
+        },
+        {
+          "name": "siteNeighborSeals",
+          "triangles": 1656,
+          "vertices": 4968
+        },
+        {
+          "name": "siteNeighborGlass",
+          "triangles": 2490,
+          "vertices": 7470
+        },
+        {
+          "name": "",
+          "triangles": 10,
+          "vertices": 20
+        },
+        {
+          "name": "",
+          "triangles": 198,
+          "vertices": 594
+        },
+        {
+          "name": "",
+          "triangles": 408,
+          "vertices": 816
+        },
+        {
+          "name": "",
+          "triangles": 360,
+          "vertices": 600
+        },
+        {
+          "name": "",
+          "triangles": 36,
+          "vertices": 108
+        },
+        {
+          "name": "",
+          "triangles": 36,
+          "vertices": 108
+        },
+        {
+          "name": "",
+          "triangles": 384,
+          "vertices": 760
+        },
+        {
+          "name": "",
+          "triangles": 24,
+          "vertices": 48
+        },
+        {
+          "name": "",
+          "triangles": 12,
+          "vertices": 24
+        },
+        {
+          "name": "hepcat-walls",
+          "triangles": 131,
+          "vertices": 393
+        },
+        {
+          "name": "hepcat-roof",
+          "triangles": 443,
+          "vertices": 1329
+        },
+        {
+          "name": "hepcat-dark",
+          "triangles": 48,
+          "vertices": 144
+        },
+        {
+          "name": "",
+          "triangles": 12,
+          "vertices": 24
+        },
+        {
+          "name": "",
+          "triangles": 6,
+          "vertices": 18
+        },
+        {
+          "name": "",
+          "triangles": 12,
+          "vertices": 24
+        },
+        {
+          "name": "",
+          "triangles": 12,
+          "vertices": 36
+        },
+        {
+          "name": "tree-trunks -1|-1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks -1|-2",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks -1|0",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks -1|1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks -2|-1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks -2|0",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks -2|1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks -2|2",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks -3|-1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks -3|2",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks 0|-1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks 0|-2",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks 0|0",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks 0|1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks 1|-1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks 1|-2",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks 1|0",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks 2|-1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks 2|-2",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks 2|0",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-birches -1|0",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-birches -1|1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-birches 0|0",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-birches 0|1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-crowns -1|-1",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns -1|-2",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns -1|0",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns -1|1",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns -2|-1",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns -2|0",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns -2|1",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns -2|2",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns -3|-1",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns -3|1",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns -3|2",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns 0|-1",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns 0|-2",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns 0|0",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns 0|1",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns 1|-1",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns 1|-2",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns 1|0",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns 2|-1",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns 2|-2",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns 2|0",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns far",
+          "triangles": 36,
+          "vertices": 108
+        },
+        {
+          "name": "tree-trunks far",
+          "triangles": 14,
+          "vertices": 42
+        },
+        {
+          "name": "ground-ao",
+          "triangles": 34512,
+          "vertices": 28833
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 16318,
+          "vertices": 48954
+        },
+        {
+          "name": "",
+          "triangles": 12,
+          "vertices": 36
+        },
+        {
+          "name": "",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "street-cobbled-corner",
+          "triangles": 17,
+          "vertices": 51
+        },
+        {
+          "name": "streetLampPosts",
+          "triangles": 188,
+          "vertices": 564
+        },
+        {
+          "name": "streetLampHeads",
+          "triangles": 12,
+          "vertices": 36
+        },
+        {
+          "name": "streetLampPools",
+          "triangles": 20460,
+          "vertices": 61380
+        },
+        {
+          "name": "",
+          "triangles": 64,
+          "vertices": 192
+        },
+        {
+          "name": "",
+          "triangles": 192,
+          "vertices": 576
+        },
+        {
+          "name": "street-bus-stop-sign",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "street-bus-stop-sign",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "street-bus-stop-sign",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "street-bus-stop-sign",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 5,
+          "vertices": 7
+        },
+        {
+          "name": "streetSignPoles",
+          "triangles": 1244,
+          "vertices": 3732
+        },
+        {
+          "name": "streetSignBlades",
+          "triangles": 92,
+          "vertices": 276
+        }
+      ],
+      "support": {
+        "core": {
+          "x0": 13,
+          "x1": 36,
+          "z0": 143,
+          "z1": 192
+        },
+        "outer": {
+          "x0": 11.61,
+          "x1": 38,
+          "z0": 142,
+          "z1": 194
+        },
+        "triangles": 6317
+      },
+      "geometry": {
+        "unique": 123,
+        "bytes": 66392622,
+        "triangles": 722173,
+        "rawPrimitiveThirds": 722223.6666666667,
+        "lineSegments": 76
+      },
+      "pads": [
+        {
+          "name": "\u00d6stra l\u00e4ngan vid Karpv\u00e4gen",
+          "level": 1.0430623504188317,
+          "x0": -168.68,
+          "x1": -83.17,
+          "z0": -20.6,
+          "z1": 61.23
+        },
+        {
+          "name": "Karpv\u00e4gen 10",
+          "level": -0.8377107601314283,
+          "x0": -140.47,
+          "x1": -92.44,
+          "z0": 70.77,
+          "z1": 118.21
+        },
+        {
+          "name": "Karpv\u00e4gen 6\u20138",
+          "level": 0.6597207572296246,
+          "x0": -202.7,
+          "x1": -134.94,
+          "z0": 68.35,
+          "z1": 134.37
+        },
+        {
+          "name": "Karpv\u00e4gen 2\u20134",
+          "level": 2.0357470304438734,
+          "x0": -254.93,
+          "x1": -187.32,
+          "z0": 22.509999999999998,
+          "z1": 84.02
+        },
+        {
+          "name": "Sankt Thomas skola / byggnad 1 (Klockhuset)",
+          "level": 6.934768019564847,
+          "x0": 16.39,
+          "x1": 74.9,
+          "z0": -143.78,
+          "z1": -103.08
+        },
+        {
+          "name": "H\u00f6jebroskolan / byggnad 9",
+          "level": 5.689624104953597,
+          "x0": 123.49000000000001,
+          "x1": 176.05,
+          "z0": -161.12,
+          "z1": -42.48
+        },
+        {
+          "name": "F\u00f6rskolan Freinet / byggnad 7",
+          "level": 6.612810049949821,
+          "x0": 60.849999999999994,
+          "x1": 137.31,
+          "z0": -140.27,
+          "z1": -101.1
+        },
+        {
+          "name": "Komplementbyggnad 88457558",
+          "level": 0.24865102327328265,
+          "x0": 263.63,
+          "x1": 306.27,
+          "z0": -89.29,
+          "z1": -51.58
+        },
+        {
+          "name": "F\u00f6rskolan Kastanjen",
+          "level": -0.0396291886287864,
+          "x0": 218.1,
+          "x1": 271.7,
+          "z0": -75.56,
+          "z1": -39.35
+        },
+        {
+          "name": "Kunskapsskolan / byggnad 19",
+          "level": -0.6845394771483155,
+          "x0": 79.73,
+          "x1": 125.39,
+          "z0": -18.740000000000002,
+          "z1": 35.629999999999995
+        },
+        {
+          "name": "Tillbyggnad vid Realgymnasiets sal (guess)",
+          "level": -2.501007765689317,
+          "x0": 63,
+          "x1": 89.2,
+          "z0": 30.6,
+          "z1": 57.2
+        },
+        {
+          "name": "\u00d6stra paviljongen vid Kunskapsskolan / byggnad 19",
+          "level": -2.351976685838574,
+          "x0": 105.37,
+          "x1": 158.79,
+          "z0": -13.73,
+          "z1": 34.33
+        },
+        {
+          "name": "F\u00f6rskolan Framtiden / byggnad 8",
+          "level": 4.400787283874687,
+          "x0": 61.709999999999994,
+          "x1": 138.15,
+          "z0": -80.14,
+          "z1": -40.96
+        },
+        {
+          "name": "NTI / skolan \u00f6ver gatan",
+          "level": 3.5614095345270527,
+          "x0": -48.89,
+          "x1": 25.89,
+          "z0": -81.33,
+          "z1": -42.54
+        },
+        {
+          "name": "\u00d6stra borgg\u00e5rden, byggnad 2",
+          "level": 5.9206938519198635,
+          "x0": -51.57,
+          "x1": 25.85,
+          "z0": -146.93,
+          "z1": -104.83
+        },
+        {
+          "name": "Montessorigrundskolan / byggnad 4",
+          "level": 5.490797796328686,
+          "x0": -87.62,
+          "x1": -36.25,
+          "z0": -163.85,
+          "z1": -46.41
+        },
+        {
+          "name": "Realgymnasiet / byggnad 88",
+          "level": 2.8189091863538374,
+          "x0": 13.920000000000002,
+          "x1": 71.31,
+          "z0": -88.12,
+          "z1": -30.759999999999998
+        },
+        {
+          "name": "Hunnerupshemmet / 85",
+          "level": 4.435143292038862,
+          "x0": -241.82,
+          "x1": -146.76,
+          "z0": -96.95,
+          "z1": -17.92
+        },
+        {
+          "name": "Norra vinklade byggnaden",
+          "level": 5.010134316412409,
+          "x0": -226.76,
+          "x1": -132,
+          "z0": -158.42,
+          "z1": -94.67
+        },
+        {
+          "name": "Norra tegelpaviljongen",
+          "level": 6.4497022989939925,
+          "x0": -92.02,
+          "x1": -22.54,
+          "z0": -197.91,
+          "z1": -160.22
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 64",
+          "level": 7.03695449981724,
+          "x0": 231.15,
+          "x1": 268.92,
+          "z0": 338.97,
+          "z1": 375.21
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 57",
+          "level": 2.909191462982556,
+          "x0": 224.92,
+          "x1": 261.7,
+          "z0": 245.63,
+          "z1": 288.36
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 56",
+          "level": 3.9145933571754883,
+          "x0": 175.44,
+          "x1": 210.81,
+          "z0": 261.59,
+          "z1": 302.82
+        },
+        {
+          "name": "Sankt Lars 88457566",
+          "level": 4.534002683046054,
+          "x0": 101.46,
+          "x1": 143.74,
+          "z0": 392.01,
+          "z1": 438.53
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 61",
+          "level": 5.745501309290334,
+          "x0": 252.52999999999997,
+          "x1": 286.81,
+          "z0": 275.76,
+          "z1": 315.56
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 59",
+          "level": 5.844926673996162,
+          "x0": 216.18,
+          "x1": 251.32,
+          "z0": 285.43,
+          "z1": 326.31
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 42",
+          "level": 3.744054413705283,
+          "x0": -119.63,
+          "x1": -40.55,
+          "z0": 316.7,
+          "z1": 382.72
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 63",
+          "level": 7.579843834666897,
+          "x0": 268.2,
+          "x1": 305.54,
+          "z0": 329.37,
+          "z1": 364.94
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 48",
+          "level": 3.717437647900713,
+          "x0": 2.0700000000000003,
+          "x1": 42.84,
+          "z0": 352.94,
+          "z1": 395.23
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 60",
+          "level": 4.734524677460414,
+          "x0": 195.63,
+          "x1": 235.52,
+          "z0": 323.55,
+          "z1": 359.7
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 49",
+          "level": 4.201270473055224,
+          "x0": 18.79,
+          "x1": 64.38,
+          "z0": 379.56,
+          "z1": 423.32
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 43",
+          "level": 2.1415994277604593,
+          "x0": -142.8,
+          "x1": -59.959999999999994,
+          "z0": 370.05,
+          "z1": 463.28
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 45",
+          "level": 1.94,
+          "x0": -8.77,
+          "x1": 72.06,
+          "z0": 231.74,
+          "z1": 313.47
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 66",
+          "level": 4.61603660696148,
+          "x0": 193.07,
+          "x1": 231.12,
+          "z0": 349.49,
+          "z1": 385.54
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 47",
+          "level": 4.182859869376991,
+          "x0": 38.07,
+          "x1": 117.98,
+          "z0": 306.09,
+          "z1": 383.33
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 58",
+          "level": 4.8379589907167775,
+          "x0": 177.66,
+          "x1": 212.82,
+          "z0": 297.41,
+          "z1": 338.29
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 46",
+          "level": 4.2331135517153005,
+          "x0": 66.91,
+          "x1": 130.20999999999998,
+          "z0": 237.22,
+          "z1": 312.89
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 62",
+          "level": 6.352765142119053,
+          "x0": 237.54,
+          "x1": 275.6,
+          "z0": 312.38,
+          "z1": 347.53
+        },
+        {
+          "name": "Sankt Lars 88457611",
+          "level": 6.5683653286183965,
+          "x0": 218.64,
+          "x1": 251.96,
+          "z0": 319.75,
+          "z1": 346.88
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 41",
+          "level": 1.83,
+          "x0": -72.25999999999999,
+          "x1": -7.100000000000001,
+          "z0": 253.93,
+          "z1": 318.75
+        },
+        {
+          "name": "Sankt Lars 145221625",
+          "level": 6.1470417967423225,
+          "x0": 246.33999999999997,
+          "x1": 275.88,
+          "z0": 361.95,
+          "z1": 395.5
+        },
+        {
+          "name": "Sankt Lars 145221627",
+          "level": 7.293560776037596,
+          "x0": 265.98,
+          "x1": 294.75,
+          "z0": 308.31,
+          "z1": 341.71
+        },
+        {
+          "name": "S\u00e4vsl\u00e4ndegatan 14",
+          "level": 0.677746512569618,
+          "x0": 202.15,
+          "x1": 232.56,
+          "z0": 213.98,
+          "z1": 246.75
+        },
+        {
+          "name": "S\u00e4vsl\u00e4ndegatan 2",
+          "level": 1.0864873605495775,
+          "x0": 139.37,
+          "x1": 169.78,
+          "z0": 231.36,
+          "z1": 264.14
+        },
+        {
+          "name": "S\u00e4vsl\u00e4ndegatan 6",
+          "level": 0.8633248646389504,
+          "x0": 159.12,
+          "x1": 189.55,
+          "z0": 226.4,
+          "z1": 259.18
+        },
+        {
+          "name": "Nattsl\u00e4ndegatan 20",
+          "level": 0.6754558251418489,
+          "x0": 219.02,
+          "x1": 251.99,
+          "z0": 180.37,
+          "z1": 212.98
+        },
+        {
+          "name": "Nattsl\u00e4ndegatan 14",
+          "level": 0.11324877545635226,
+          "x0": 196.38,
+          "x1": 230.03,
+          "z0": 152.3,
+          "z1": 185.63
+        },
+        {
+          "name": "Nattsl\u00e4ndegatan 18",
+          "level": 0.6058133068383239,
+          "x0": 214.12,
+          "x1": 247.09,
+          "z0": 174.53,
+          "z1": 207.14
+        },
+        {
+          "name": "S\u00e4vsl\u00e4ndegatan 16",
+          "level": 0.7485259820266355,
+          "x0": 209.7,
+          "x1": 240.13,
+          "z0": 211.97,
+          "z1": 244.74
+        },
+        {
+          "name": "S\u00e4vsl\u00e4ndegatan 4",
+          "level": 0.9322254238505426,
+          "x0": 146.92,
+          "x1": 177.34,
+          "z0": 229.36,
+          "z1": 262.12
+        },
+        {
+          "name": "S\u00e4vsl\u00e4ndegatan 8",
+          "level": 0.7921912071556354,
+          "x0": 166.68,
+          "x1": 197.1,
+          "z0": 224.4,
+          "z1": 257.16999999999996
+        },
+        {
+          "name": "Sankt Lars 44",
+          "level": 4.494170896807506,
+          "x0": -70.14,
+          "x1": 13.629999999999999,
+          "z0": 380.19,
+          "z1": 460.23
+        }
+      ],
+      "records": [
+        {
+          "kind": "road",
+          "ends": [
+            [
+              23.9,
+              100
+            ],
+            [
+              23.3,
+              145.8
+            ]
+          ],
+          "width": 7.2,
+          "slab": 0.45,
+          "pier": 0.75,
+          "foot": 1.8,
+          "ext": 3.05,
+          "extW": 0.75,
+          "x": 23.6,
+          "z": 122.9,
+          "dx": -0.013099312667987124,
+          "dz": 0.9999142003230209,
+          "len": 45.80392996239516,
+          "full": 45.80392996239516
+        },
+        {
+          "kind": "gc",
+          "ends": [
+            [
+              18.1,
+              101
+            ],
+            [
+              17.8,
+              146.5
+            ]
+          ],
+          "length": 40,
+          "width": 3,
+          "slab": 0.18,
+          "truss": 1.45,
+          "panels": 10,
+          "steel": 0.1,
+          "ext": 0,
+          "extW": 0,
+          "x": 17.950000000000003,
+          "z": 123.75,
+          "dx": -0.006593263280462223,
+          "dz": 0.9999782642034348,
+          "len": 40,
+          "full": 45.50098900024042
+        }
+      ],
+      "piers": [
+        {
+          "x": 21.712179149725532,
+          "z": 107.60598196848258,
+          "half": 0.575,
+          "dx": -0.013099312667987124,
+          "dz": 0.9999142003230209
+        },
+        {
+          "x": 25.88782085027447,
+          "z": 107.6606846981841,
+          "half": 0.575,
+          "dx": -0.013099312667987124,
+          "dz": 0.9999142003230209
+        },
+        {
+          "x": 21.512179149725533,
+          "z": 122.87264863514925,
+          "half": 0.575,
+          "dx": -0.013099312667987124,
+          "dz": 0.9999142003230209
+        },
+        {
+          "x": 25.68782085027447,
+          "z": 122.92735136485076,
+          "half": 0.575,
+          "dx": -0.013099312667987124,
+          "dz": 0.9999142003230209
+        },
+        {
+          "x": 21.312179149725534,
+          "z": 138.1393153018159,
+          "half": 0.575,
+          "dx": -0.013099312667987124,
+          "dz": 0.9999142003230209
+        },
+        {
+          "x": 25.48782085027447,
+          "z": 138.19401803151743,
+          "half": 0.575,
+          "dx": -0.013099312667987124,
+          "dz": 0.9999142003230209
+        }
+      ],
+      "queries": [
+        {
+          "top": -3,
+          "under": -3.45,
+          "water": -7,
+          "ground": -7.6
+        },
+        {
+          "top": -3,
+          "under": -3.18,
+          "water": -7.005238124393923,
+          "ground": -7.605238124393923
+        }
+      ],
+      "profile": [
+        {
+          "z": 140,
+          "y": -3,
+          "drawn": -4.469408663344456,
+          "gc": -3,
+          "walk": -3,
+          "gcWalk": -3,
+          "slope": null
+        },
+        {
+          "z": 142,
+          "y": -3,
+          "drawn": -3.627567914747377,
+          "gc": -3,
+          "walk": -3,
+          "gcWalk": -3,
+          "slope": null
+        },
+        {
+          "z": 144,
+          "y": -3,
+          "drawn": -3.1064329900026904,
+          "gc": -3,
+          "walk": -3,
+          "gcWalk": -3,
+          "slope": null
+        },
+        {
+          "z": 146,
+          "y": -3.002743463079507,
+          "drawn": -3.012743649714135,
+          "gc": -3,
+          "walk": -2.9866061725006827,
+          "gcWalk": -3,
+          "slope": 0.026012497257420664
+        },
+        {
+          "z": 148,
+          "y": -2.557537143910098,
+          "drawn": -2.5577892255163106,
+          "gc": -2.5669518507500353,
+          "walk": -2.5407114698360376,
+          "gcWalk": -2.5564542559156913,
+          "slope": 0.47826942152750496
+        },
+        {
+          "z": 150,
+          "y": -1.5361803437252581,
+          "drawn": -1.5462060183664488,
+          "gc": -1.554674050986786,
+          "walk": -1.5212059954847763,
+          "gcWalk": -1.54667436362192,
+          "slope": 0.525009083044366
+        },
+        {
+          "z": 152,
+          "y": -0.33999999999999986,
+          "drawn": -0.9429492820506244,
+          "gc": -0.3687111111111112,
+          "walk": -0.4390808895465374,
+          "gcWalk": -0.44463274268134095,
+          "slope": 0.2452343495162841
+        },
+        {
+          "z": 154,
+          "y": -0.33000000000000007,
+          "drawn": -0.3400000000000001,
+          "gc": -0.3587555555555557,
+          "walk": -0.31799998429347526,
+          "gcWalk": -0.35075554968023964,
+          "slope": 0.004999994931793428
+        },
+        {
+          "z": 156,
+          "y": -0.31999999999999984,
+          "drawn": -0.33000000000000007,
+          "gc": -0.3487999999999998,
+          "walk": -0.30800000416289913,
+          "gcWalk": -0.34119681573059546,
+          "slope": 0.005000045994143086
+        },
+        {
+          "z": 158,
+          "y": -0.31000000000000005,
+          "drawn": -0.32000000000000006,
+          "gc": -0.3388444444444443,
+          "walk": -0.29800927642519776,
+          "gcWalk": -0.330072281751548,
+          "slope": 0.004972792952236022
+        },
+        {
+          "z": 160,
+          "y": -0.2999999999999998,
+          "drawn": -0.30000000000000004,
+          "gc": -0.3288888888888888,
+          "walk": -0.28546310332702696,
+          "gcWalk": -0.31641062365736206,
+          "slope": 0.010848326472977189
+        },
+        {
+          "z": 162,
+          "y": -0.27,
+          "drawn": -0.28,
+          "gc": -0.2989333333333333,
+          "walk": -0.25828147072445523,
+          "gcWalk": -0.2833620158789521,
+          "slope": 0.01500771468048613
+        },
+        {
+          "z": 164,
+          "y": -0.2400000000000002,
+          "drawn": -0.25,
+          "gc": -0.26897777777777776,
+          "walk": -0.22835871033657731,
+          "gcWalk": -0.2484309019412631,
+          "slope": 0.0149481402800916
+        },
+        {
+          "z": 166,
+          "y": -0.20999999999999996,
+          "drawn": -0.21999999999999997,
+          "gc": -0.23933333333333318,
+          "walk": -0.19831216542210225,
+          "gcWalk": -0.2231231863907521,
+          "slope": 0.015008564895256178
+        },
+        {
+          "z": 168,
+          "y": -0.18000000000000016,
+          "drawn": -0.18999999999999995,
+          "gc": -0.20999999999999996,
+          "walk": -0.16817560204516246,
+          "gcWalk": -0.19078326963944994,
+          "slope": 0.015004745497581025
+        },
+        {
+          "z": 170,
+          "y": -0.1499999999999999,
+          "drawn": -0.15999999999999992,
+          "gc": -0.18066666666666675,
+          "walk": -0.1377946909420805,
+          "gcWalk": -0.16516765985557477,
+          "slope": 0.015359809562609952
+        },
+        {
+          "z": 172,
+          "y": -0.1200000000000001,
+          "drawn": -0.1299999999999999,
+          "gc": -0.1513333333333331,
+          "walk": -0.10753039902112226,
+          "gcWalk": -0.138552308809067,
+          "slope": 0.014988584153477405
+        },
+        {
+          "z": 174,
+          "y": -0.08999999999999986,
+          "drawn": -0.09999999999999985,
+          "gc": -0.12199999999999989,
+          "walk": -0.07661544251128,
+          "gcWalk": -0.11027372351234237,
+          "slope": 0.015335121427270431
+        },
+        {
+          "z": 176,
+          "y": -0.06000000000000005,
+          "drawn": -0.07499999999999994,
+          "gc": -0.09266666666666667,
+          "walk": -0.04655840498171325,
+          "gcWalk": -0.07944782106910629,
+          "slope": 0.011654498125443254
+        },
+        {
+          "z": 178,
+          "y": -0.040000000000000036,
+          "drawn": -0.05000000000000004,
+          "gc": -0.07333333333333325,
+          "walk": -0.028000002560569975,
+          "gcWalk": -0.04799883723301528,
+          "slope": 0.009999979211651458
+        },
+        {
+          "z": 180,
+          "y": -0.020000000000000018,
+          "drawn": -0.03000000000000002,
+          "gc": -0.053999999999999826,
+          "walk": -0.008000023624259842,
+          "gcWalk": -0.011168630511372964,
+          "slope": 0.010000083891459862
+        },
+        {
+          "z": 182,
+          "y": 0,
+          "drawn": -0.01,
+          "gc": -0.01791111111111121,
+          "walk": 0.01740953814641083,
+          "gcWalk": 0.015246815789978989,
+          "slope": 0.010033845311017345
+        },
+        {
+          "z": 184,
+          "y": 0.020000000000000018,
+          "drawn": 0.027659574468085216,
+          "gc": 0.018177777777777848,
+          "walk": 0.044163513417431924,
+          "gcWalk": 0.07178983153219913,
+          "slope": 0.01828208868575778
+        },
+        {
+          "z": 186,
+          "y": 0.07531914893617042,
+          "drawn": 0.06531914893617043,
+          "gc": 0.08958581560283685,
+          "walk": 0.08731918941923791,
+          "gcWalk": 0.1025773304109262,
+          "slope": 0.027659526855084063
+        },
+        {
+          "z": 188,
+          "y": 0.13063829787234083,
+          "drawn": 0.12161809728655729,
+          "gc": 0.1609938534278963,
+          "walk": 0.1436689319685703,
+          "gcWalk": 0.1693011278922416,
+          "slope": 0.03531094787620668
+        },
+        {
+          "z": 190,
+          "y": 0.18791666666666673,
+          "drawn": 0.17791666666666672,
+          "gc": 0.23436111111111124,
+          "walk": 0.20483978851322607,
+          "gcWalk": 0.221678077308035,
+          "slope": 0.030873445450939976
+        },
+        {
+          "z": 192,
+          "y": 0.2462500000000003,
+          "drawn": 0.2349679487179488,
+          "gc": 0.3087833333333334,
+          "walk": 0.2605451011635417,
+          "gcWalk": 0.27043910033721885,
+          "slope": 0.023787917773257786
+        },
+        {
+          "z": 194,
+          "y": 0.3020192307692309,
+          "drawn": 0.29201923076923086,
+          "gc": 0.380641452991453,
+          "walk": 0.3020192307692309,
+          "gcWalk": 0.380641452991453,
+          "slope": null
+        },
+        {
+          "z": 196,
+          "y": 0.3500961538461538,
+          "drawn": 0.34009615384615377,
+          "gc": 0.43298504273504257,
+          "walk": 0.3500961538461538,
+          "gcWalk": 0.43298504273504257,
+          "slope": null
+        },
+        {
+          "z": 198,
+          "y": 0.3981730769230767,
+          "drawn": 0.3881730769230767,
+          "gc": 0.47350641025641016,
+          "walk": 0.3981730769230767,
+          "gcWalk": 0.47350641025641016,
+          "slope": null
+        },
+        {
+          "z": 200,
+          "y": 0.44625000000000004,
+          "drawn": 0.4362499999999998,
+          "gc": 0.5140277777777778,
+          "walk": 0.44625000000000004,
+          "gcWalk": 0.5140277777777778,
+          "slope": null
+        },
+        {
+          "z": 202,
+          "y": 0.49432692307692294,
+          "drawn": 0.48432692307692293,
+          "gc": 0.5545491452991449,
+          "walk": 0.49432692307692294,
+          "gcWalk": 0.5545491452991449,
+          "slope": null
+        },
+        {
+          "z": 204,
+          "y": 0.5412244897959182,
+          "drawn": 0.5200206043956042,
+          "gc": 0.5938911564625848,
+          "walk": 0.5412244897959182,
+          "gcWalk": 0.5938911564625848,
+          "slope": null
+        },
+        {
+          "z": 206,
+          "y": 0.5657142857142858,
+          "drawn": 0.5557142857142854,
+          "gc": 0.6108253968253967,
+          "walk": 0.5657142857142858,
+          "gcWalk": 0.6108253968253967,
+          "slope": null
+        },
+        {
+          "z": 208,
+          "y": 0.5902040816326528,
+          "drawn": 0.5803571428571426,
+          "gc": 0.6277596371882082,
+          "walk": 0.5902040816326528,
+          "gcWalk": 0.6277596371882082,
+          "slope": null
+        },
+        {
+          "z": 210,
+          "y": 0.6150000190734863,
+          "drawn": 0.6050000190734863,
+          "gc": 0.6616134907066593,
+          "walk": 0.6150000190734863,
+          "gcWalk": 0.6616134907066593,
+          "slope": null
+        }
+      ],
+      "views": [
+        {
+          "view": "report",
+          "camera": [
+            18,
+            -1.4,
+            131
+          ],
+          "target": [
+            22,
+            -1,
+            165
+          ],
+          "calls": 43,
+          "triangles": 572780,
+          "textures": 10
+        },
+        {
+          "view": "side",
+          "camera": [
+            -15,
+            4,
+            157
+          ],
+          "target": [
+            25,
+            -1.7,
+            172
+          ],
+          "calls": 47,
+          "triangles": 601752,
+          "textures": 10
+        },
+        {
+          "view": "transition",
+          "camera": [
+            18,
+            -0.8,
+            149
+          ],
+          "target": [
+            25,
+            -1.4,
+            179
+          ],
+          "calls": 41,
+          "triangles": 565372,
+          "textures": 10
+        }
+      ],
+      "storage": {
+        "trace": [],
+        "untouched": true,
+        "localCount": 5,
+        "sessionCount": 2
+      },
+      "navigation": {
+        "routes": [
+          {
+            "offset": 0,
+            "run": false,
+            "reached": true,
+            "ticks": 1603,
+            "maxError": 0.04588834289176613,
+            "finite": true
+          },
+          {
+            "offset": 0,
+            "run": true,
+            "reached": true,
+            "ticks": 536,
+            "maxError": 0.32766096422177227,
+            "finite": true
+          },
+          {
+            "offset": -5.7,
+            "run": false,
+            "reached": true,
+            "ticks": 1603,
+            "maxError": 0.05249502071277057,
+            "finite": true
+          },
+          {
+            "offset": -5.7,
+            "run": true,
+            "reached": true,
+            "ticks": 536,
+            "maxError": 0.3088331342091214,
+            "finite": true
+          }
+        ],
+        "decks": [
+          {
+            "kind": "road",
+            "top": -3,
+            "walk": -3,
+            "support": null
+          },
+          {
+            "kind": "gc",
+            "top": -3,
+            "walk": -3,
+            "support": null
+          }
+        ]
+      }
+    },
+    "after": {
+      "meshes": [
+        {
+          "name": "site-terrain",
+          "extentXZ": [
+            -350,
+            340,
+            -340,
+            460
+          ],
+          "count": 207362,
+          "index": 3681903899,
+          "xz": 3502822309,
+          "outside": 1607017400,
+          "positions": 3239148079
+        },
+        {
+          "name": "bridges-concrete",
+          "extentXZ": [
+            16.014053344726562,
+            30.85759162902832,
+            99.32396697998047,
+            146.5159912109375
+          ],
+          "count": 864,
+          "index": null,
+          "xz": 1294879109,
+          "outside": 2717597198,
+          "positions": 193497585
+        },
+        {
+          "name": "bridges-steel",
+          "extentXZ": [
+            16.31783676147461,
+            30.494434356689453,
+            99.92760467529297,
+            145.93606567382812
+          ],
+          "count": 21672,
+          "index": null,
+          "xz": 315991054,
+          "outside": 2941392512,
+          "positions": 1577238282
+        },
+        {
+          "name": "bridges-asphalt",
+          "extentXZ": [
+            16.325578689575195,
+            30.654420852661133,
+            90.59552001953125,
+            156.39602661132812
+          ],
+          "count": 4692,
+          "index": null,
+          "xz": 2766299174,
+          "outside": 2846677018,
+          "positions": 3597462757
+        },
+        {
+          "name": "bridges-water",
+          "extentXZ": [
+            -351.8581848144531,
+            340.27801513671875,
+            19.88703155517578,
+            360.3566589355469
+          ],
+          "count": 3366,
+          "index": null,
+          "xz": 1737757183,
+          "outside": 612694588,
+          "positions": 612694588
+        }
+      ],
+      "inventory": [
+        {
+          "name": "site-terrain",
+          "triangles": 132681,
+          "vertices": 207362
+        },
+        {
+          "name": "site-terrain-remainder",
+          "triangles": 74146,
+          "vertices": 207362
+        },
+        {
+          "name": "site-terrain-southeast",
+          "triangles": 58535,
+          "vertices": 207362
+        },
+        {
+          "name": "",
+          "triangles": 234,
+          "vertices": 702
+        },
+        {
+          "name": "",
+          "triangles": 3396,
+          "vertices": 10188
+        },
+        {
+          "name": "",
+          "triangles": 196,
+          "vertices": 588
+        },
+        {
+          "name": "",
+          "triangles": 408,
+          "vertices": 816
+        },
+        {
+          "name": "",
+          "triangles": 4,
+          "vertices": 12
+        },
+        {
+          "name": "",
+          "triangles": 4735,
+          "vertices": 14205
+        },
+        {
+          "name": "",
+          "triangles": 10080,
+          "vertices": 30240
+        },
+        {
+          "name": "bridges-concrete",
+          "triangles": 288,
+          "vertices": 864
+        },
+        {
+          "name": "bridges-steel",
+          "triangles": 7224,
+          "vertices": 21672
+        },
+        {
+          "name": "bridges-asphalt",
+          "triangles": 1564,
+          "vertices": 4692
+        },
+        {
+          "name": "bridges-water",
+          "triangles": 1122,
+          "vertices": 3366
+        },
+        {
+          "name": "park-paths-asphalt",
+          "triangles": 5601,
+          "vertices": 16803
+        },
+        {
+          "name": "park-paths",
+          "triangles": 2230,
+          "vertices": 6690
+        },
+        {
+          "name": "park-timber-bridge",
+          "triangles": 228,
+          "vertices": 684
+        },
+        {
+          "name": "park-shore-growth",
+          "triangles": 4420,
+          "vertices": 13260
+        },
+        {
+          "name": "football-static",
+          "triangles": 968,
+          "vertices": 2904
+        },
+        {
+          "name": "football-nets",
+          "triangles": 50.666666666666664,
+          "vertices": 152
+        },
+        {
+          "name": "gym-gravel",
+          "triangles": 492,
+          "vertices": 1476
+        },
+        {
+          "name": "gym-wood",
+          "triangles": 1376,
+          "vertices": 4128
+        },
+        {
+          "name": "gym-padding",
+          "triangles": 80,
+          "vertices": 240
+        },
+        {
+          "name": "gym-steel",
+          "triangles": 2456,
+          "vertices": 7368
+        },
+        {
+          "name": "bus-stop-platform",
+          "triangles": 156,
+          "vertices": 468
+        },
+        {
+          "name": "bus-stop-furniture",
+          "triangles": 228,
+          "vertices": 684
+        },
+        {
+          "name": "bus-stop-glass",
+          "triangles": 6,
+          "vertices": 18
+        },
+        {
+          "name": "bus-stop-sign",
+          "triangles": 8,
+          "vertices": 16
+        },
+        {
+          "name": "west-facade",
+          "triangles": 3068,
+          "vertices": 9204
+        },
+        {
+          "name": "west-roof",
+          "triangles": 24,
+          "vertices": 72
+        },
+        {
+          "name": "west-glass",
+          "triangles": 416,
+          "vertices": 1248
+        },
+        {
+          "name": "west-access",
+          "triangles": 2566,
+          "vertices": 7698
+        },
+        {
+          "name": "west-karpBrick",
+          "triangles": 44,
+          "vertices": 132
+        },
+        {
+          "name": "west-karpGlass",
+          "triangles": 656,
+          "vertices": 1968
+        },
+        {
+          "name": "west-karpRoof",
+          "triangles": 16,
+          "vertices": 48
+        },
+        {
+          "name": "east-facade",
+          "triangles": 944,
+          "vertices": 2832
+        },
+        {
+          "name": "east-roof",
+          "triangles": 133,
+          "vertices": 399
+        },
+        {
+          "name": "east-glass",
+          "triangles": 3596,
+          "vertices": 10788
+        },
+        {
+          "name": "east-access",
+          "triangles": 15471,
+          "vertices": 46413
+        },
+        {
+          "name": "east-modern",
+          "triangles": 16160,
+          "vertices": 48480
+        },
+        {
+          "name": "east-modern-far",
+          "triangles": 5302,
+          "vertices": 15906
+        },
+        {
+          "name": "east-modern-2",
+          "triangles": 11784,
+          "vertices": 35352
+        },
+        {
+          "name": "east-modern-2-far",
+          "triangles": 4084,
+          "vertices": 12252
+        },
+        {
+          "name": "east-modern-3",
+          "triangles": 21734,
+          "vertices": 65202
+        },
+        {
+          "name": "east-modern-3-far",
+          "triangles": 12132,
+          "vertices": 36396
+        },
+        {
+          "name": "east-schoolGlass",
+          "triangles": 4598,
+          "vertices": 13794
+        },
+        {
+          "name": "east-schoolBrick",
+          "triangles": 3594,
+          "vertices": 10782
+        },
+        {
+          "name": "east-schoolRoof",
+          "triangles": 7790,
+          "vertices": 23370
+        },
+        {
+          "name": "east-lawn",
+          "triangles": 1795,
+          "vertices": 5385
+        },
+        {
+          "name": "nordic-wellness-lettering",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "tower-clock-dials",
+          "triangles": 32,
+          "vertices": 34
+        },
+        {
+          "name": "tower-clock-hands",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "north-facade",
+          "triangles": 96,
+          "vertices": 288
+        },
+        {
+          "name": "north-roof",
+          "triangles": 48,
+          "vertices": 144
+        },
+        {
+          "name": "north-glass",
+          "triangles": 1704,
+          "vertices": 5112
+        },
+        {
+          "name": "north-access",
+          "triangles": 7780,
+          "vertices": 23340
+        },
+        {
+          "name": "north-modern",
+          "triangles": 200,
+          "vertices": 600
+        },
+        {
+          "name": "south-facade",
+          "triangles": 9934,
+          "vertices": 29802
+        },
+        {
+          "name": "south-roof",
+          "triangles": 1968,
+          "vertices": 5904
+        },
+        {
+          "name": "south-glass",
+          "triangles": 5534,
+          "vertices": 16602
+        },
+        {
+          "name": "south-land",
+          "triangles": 132346,
+          "vertices": 397038
+        },
+        {
+          "name": "south-trunks",
+          "triangles": 16,
+          "vertices": 28
+        },
+        {
+          "name": "south-crowns",
+          "triangles": 36,
+          "vertices": 108
+        },
+        {
+          "name": "edge-land",
+          "triangles": 18141,
+          "vertices": 54423
+        },
+        {
+          "name": "edge-houses",
+          "triangles": 3569,
+          "vertices": 10707
+        },
+        {
+          "name": "",
+          "triangles": 825,
+          "vertices": 2475
+        },
+        {
+          "name": "",
+          "triangles": 792,
+          "vertices": 1584
+        },
+        {
+          "name": "",
+          "triangles": 14028,
+          "vertices": 42084
+        },
+        {
+          "name": "",
+          "triangles": 168,
+          "vertices": 504
+        },
+        {
+          "name": "",
+          "triangles": 1300,
+          "vertices": 3900
+        },
+        {
+          "name": "",
+          "triangles": 4824,
+          "vertices": 14472
+        },
+        {
+          "name": "loggiaLampGlass",
+          "triangles": 624,
+          "vertices": 1872
+        },
+        {
+          "name": "loggiaLampWash",
+          "triangles": 104,
+          "vertices": 312
+        },
+        {
+          "name": "loggiaLampPools",
+          "triangles": 9360,
+          "vertices": 28080
+        },
+        {
+          "name": "siteNeighborSeals",
+          "triangles": 1656,
+          "vertices": 4968
+        },
+        {
+          "name": "siteNeighborGlass",
+          "triangles": 2490,
+          "vertices": 7470
+        },
+        {
+          "name": "",
+          "triangles": 10,
+          "vertices": 20
+        },
+        {
+          "name": "",
+          "triangles": 198,
+          "vertices": 594
+        },
+        {
+          "name": "",
+          "triangles": 408,
+          "vertices": 816
+        },
+        {
+          "name": "",
+          "triangles": 360,
+          "vertices": 600
+        },
+        {
+          "name": "",
+          "triangles": 36,
+          "vertices": 108
+        },
+        {
+          "name": "",
+          "triangles": 36,
+          "vertices": 108
+        },
+        {
+          "name": "",
+          "triangles": 384,
+          "vertices": 760
+        },
+        {
+          "name": "",
+          "triangles": 24,
+          "vertices": 48
+        },
+        {
+          "name": "",
+          "triangles": 12,
+          "vertices": 24
+        },
+        {
+          "name": "hepcat-walls",
+          "triangles": 131,
+          "vertices": 393
+        },
+        {
+          "name": "hepcat-roof",
+          "triangles": 443,
+          "vertices": 1329
+        },
+        {
+          "name": "hepcat-dark",
+          "triangles": 48,
+          "vertices": 144
+        },
+        {
+          "name": "",
+          "triangles": 12,
+          "vertices": 24
+        },
+        {
+          "name": "",
+          "triangles": 6,
+          "vertices": 18
+        },
+        {
+          "name": "",
+          "triangles": 12,
+          "vertices": 24
+        },
+        {
+          "name": "",
+          "triangles": 12,
+          "vertices": 36
+        },
+        {
+          "name": "tree-trunks -1|-1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks -1|-2",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks -1|0",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks -1|1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks -2|-1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks -2|0",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks -2|1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks -2|2",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks -3|-1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks -3|2",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks 0|-1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks 0|-2",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks 0|0",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks 0|1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks 1|-1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks 1|-2",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks 1|0",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks 2|-1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks 2|-2",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-trunks 2|0",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-birches -1|0",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-birches -1|1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-birches 0|0",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-birches 0|1",
+          "triangles": 46,
+          "vertices": 138
+        },
+        {
+          "name": "tree-crowns -1|-1",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns -1|-2",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns -1|0",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns -1|1",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns -2|-1",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns -2|0",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns -2|1",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns -2|2",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns -3|-1",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns -3|1",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns -3|2",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns 0|-1",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns 0|-2",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns 0|0",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns 0|1",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns 1|-1",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns 1|-2",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns 1|0",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns 2|-1",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns 2|-2",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns 2|0",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "tree-crowns far",
+          "triangles": 36,
+          "vertices": 108
+        },
+        {
+          "name": "tree-trunks far",
+          "triangles": 14,
+          "vertices": 42
+        },
+        {
+          "name": "ground-ao",
+          "triangles": 34512,
+          "vertices": 28833
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 16318,
+          "vertices": 48954
+        },
+        {
+          "name": "",
+          "triangles": 12,
+          "vertices": 36
+        },
+        {
+          "name": "",
+          "triangles": 60,
+          "vertices": 180
+        },
+        {
+          "name": "street-cobbled-corner",
+          "triangles": 17,
+          "vertices": 51
+        },
+        {
+          "name": "streetLampPosts",
+          "triangles": 188,
+          "vertices": 564
+        },
+        {
+          "name": "streetLampHeads",
+          "triangles": 12,
+          "vertices": 36
+        },
+        {
+          "name": "streetLampPools",
+          "triangles": 20460,
+          "vertices": 61380
+        },
+        {
+          "name": "",
+          "triangles": 64,
+          "vertices": 192
+        },
+        {
+          "name": "",
+          "triangles": 192,
+          "vertices": 576
+        },
+        {
+          "name": "street-bus-stop-sign",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "street-bus-stop-sign",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "street-bus-stop-sign",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "street-bus-stop-sign",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 2,
+          "vertices": 4
+        },
+        {
+          "name": "",
+          "triangles": 5,
+          "vertices": 7
+        },
+        {
+          "name": "streetSignPoles",
+          "triangles": 1244,
+          "vertices": 3732
+        },
+        {
+          "name": "streetSignBlades",
+          "triangles": 92,
+          "vertices": 276
+        }
+      ],
+      "support": {
+        "core": {
+          "x0": 13,
+          "x1": 36,
+          "z0": 143,
+          "z1": 192
+        },
+        "outer": {
+          "x0": 11.61,
+          "x1": 38,
+          "z0": 142,
+          "z1": 194
+        },
+        "triangles": 5948
+      },
+      "geometry": {
+        "unique": 123,
+        "bytes": 66357270,
+        "triangles": 721806,
+        "rawPrimitiveThirds": 721856.6666666667,
+        "lineSegments": 76
+      },
+      "pads": [
+        {
+          "name": "\u00d6stra l\u00e4ngan vid Karpv\u00e4gen",
+          "level": 1.0430623504188317,
+          "x0": -168.68,
+          "x1": -83.17,
+          "z0": -20.6,
+          "z1": 61.23
+        },
+        {
+          "name": "Karpv\u00e4gen 10",
+          "level": -0.8377107601314283,
+          "x0": -140.47,
+          "x1": -92.44,
+          "z0": 70.77,
+          "z1": 118.21
+        },
+        {
+          "name": "Karpv\u00e4gen 6\u20138",
+          "level": 0.6597207572296246,
+          "x0": -202.7,
+          "x1": -134.94,
+          "z0": 68.35,
+          "z1": 134.37
+        },
+        {
+          "name": "Karpv\u00e4gen 2\u20134",
+          "level": 2.0357470304438734,
+          "x0": -254.93,
+          "x1": -187.32,
+          "z0": 22.509999999999998,
+          "z1": 84.02
+        },
+        {
+          "name": "Sankt Thomas skola / byggnad 1 (Klockhuset)",
+          "level": 6.934768019564847,
+          "x0": 16.39,
+          "x1": 74.9,
+          "z0": -143.78,
+          "z1": -103.08
+        },
+        {
+          "name": "H\u00f6jebroskolan / byggnad 9",
+          "level": 5.689624104953597,
+          "x0": 123.49000000000001,
+          "x1": 176.05,
+          "z0": -161.12,
+          "z1": -42.48
+        },
+        {
+          "name": "F\u00f6rskolan Freinet / byggnad 7",
+          "level": 6.612810049949821,
+          "x0": 60.849999999999994,
+          "x1": 137.31,
+          "z0": -140.27,
+          "z1": -101.1
+        },
+        {
+          "name": "Komplementbyggnad 88457558",
+          "level": 0.24865102327328265,
+          "x0": 263.63,
+          "x1": 306.27,
+          "z0": -89.29,
+          "z1": -51.58
+        },
+        {
+          "name": "F\u00f6rskolan Kastanjen",
+          "level": -0.0396291886287864,
+          "x0": 218.1,
+          "x1": 271.7,
+          "z0": -75.56,
+          "z1": -39.35
+        },
+        {
+          "name": "Kunskapsskolan / byggnad 19",
+          "level": -0.6845394771483155,
+          "x0": 79.73,
+          "x1": 125.39,
+          "z0": -18.740000000000002,
+          "z1": 35.629999999999995
+        },
+        {
+          "name": "Tillbyggnad vid Realgymnasiets sal (guess)",
+          "level": -2.501007765689317,
+          "x0": 63,
+          "x1": 89.2,
+          "z0": 30.6,
+          "z1": 57.2
+        },
+        {
+          "name": "\u00d6stra paviljongen vid Kunskapsskolan / byggnad 19",
+          "level": -2.351976685838574,
+          "x0": 105.37,
+          "x1": 158.79,
+          "z0": -13.73,
+          "z1": 34.33
+        },
+        {
+          "name": "F\u00f6rskolan Framtiden / byggnad 8",
+          "level": 4.400787283874687,
+          "x0": 61.709999999999994,
+          "x1": 138.15,
+          "z0": -80.14,
+          "z1": -40.96
+        },
+        {
+          "name": "NTI / skolan \u00f6ver gatan",
+          "level": 3.5614095345270527,
+          "x0": -48.89,
+          "x1": 25.89,
+          "z0": -81.33,
+          "z1": -42.54
+        },
+        {
+          "name": "\u00d6stra borgg\u00e5rden, byggnad 2",
+          "level": 5.9206938519198635,
+          "x0": -51.57,
+          "x1": 25.85,
+          "z0": -146.93,
+          "z1": -104.83
+        },
+        {
+          "name": "Montessorigrundskolan / byggnad 4",
+          "level": 5.490797796328686,
+          "x0": -87.62,
+          "x1": -36.25,
+          "z0": -163.85,
+          "z1": -46.41
+        },
+        {
+          "name": "Realgymnasiet / byggnad 88",
+          "level": 2.8189091863538374,
+          "x0": 13.920000000000002,
+          "x1": 71.31,
+          "z0": -88.12,
+          "z1": -30.759999999999998
+        },
+        {
+          "name": "Hunnerupshemmet / 85",
+          "level": 4.435143292038862,
+          "x0": -241.82,
+          "x1": -146.76,
+          "z0": -96.95,
+          "z1": -17.92
+        },
+        {
+          "name": "Norra vinklade byggnaden",
+          "level": 5.010134316412409,
+          "x0": -226.76,
+          "x1": -132,
+          "z0": -158.42,
+          "z1": -94.67
+        },
+        {
+          "name": "Norra tegelpaviljongen",
+          "level": 6.4497022989939925,
+          "x0": -92.02,
+          "x1": -22.54,
+          "z0": -197.91,
+          "z1": -160.22
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 64",
+          "level": 7.03695449981724,
+          "x0": 231.15,
+          "x1": 268.92,
+          "z0": 338.97,
+          "z1": 375.21
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 57",
+          "level": 2.909191462982556,
+          "x0": 224.92,
+          "x1": 261.7,
+          "z0": 245.63,
+          "z1": 288.36
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 56",
+          "level": 3.9145933571754883,
+          "x0": 175.44,
+          "x1": 210.81,
+          "z0": 261.59,
+          "z1": 302.82
+        },
+        {
+          "name": "Sankt Lars 88457566",
+          "level": 4.534002683046054,
+          "x0": 101.46,
+          "x1": 143.74,
+          "z0": 392.01,
+          "z1": 438.53
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 61",
+          "level": 5.745501309290334,
+          "x0": 252.52999999999997,
+          "x1": 286.81,
+          "z0": 275.76,
+          "z1": 315.56
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 59",
+          "level": 5.844926673996162,
+          "x0": 216.18,
+          "x1": 251.32,
+          "z0": 285.43,
+          "z1": 326.31
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 42",
+          "level": 3.744054413705283,
+          "x0": -119.63,
+          "x1": -40.55,
+          "z0": 316.7,
+          "z1": 382.72
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 63",
+          "level": 7.579843834666897,
+          "x0": 268.2,
+          "x1": 305.54,
+          "z0": 329.37,
+          "z1": 364.94
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 48",
+          "level": 3.717437647900713,
+          "x0": 2.0700000000000003,
+          "x1": 42.84,
+          "z0": 352.94,
+          "z1": 395.23
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 60",
+          "level": 4.734524677460414,
+          "x0": 195.63,
+          "x1": 235.52,
+          "z0": 323.55,
+          "z1": 359.7
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 49",
+          "level": 4.201270473055224,
+          "x0": 18.79,
+          "x1": 64.38,
+          "z0": 379.56,
+          "z1": 423.32
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 43",
+          "level": 2.1415994277604593,
+          "x0": -142.8,
+          "x1": -59.959999999999994,
+          "z0": 370.05,
+          "z1": 463.28
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 45",
+          "level": 1.94,
+          "x0": -8.77,
+          "x1": 72.06,
+          "z0": 231.74,
+          "z1": 313.47
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 66",
+          "level": 4.61603660696148,
+          "x0": 193.07,
+          "x1": 231.12,
+          "z0": 349.49,
+          "z1": 385.54
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 47",
+          "level": 4.182859869376991,
+          "x0": 38.07,
+          "x1": 117.98,
+          "z0": 306.09,
+          "z1": 383.33
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 58",
+          "level": 4.8379589907167775,
+          "x0": 177.66,
+          "x1": 212.82,
+          "z0": 297.41,
+          "z1": 338.29
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 46",
+          "level": 4.2331135517153005,
+          "x0": 66.91,
+          "x1": 130.20999999999998,
+          "z0": 237.22,
+          "z1": 312.89
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 62",
+          "level": 6.352765142119053,
+          "x0": 237.54,
+          "x1": 275.6,
+          "z0": 312.38,
+          "z1": 347.53
+        },
+        {
+          "name": "Sankt Lars 88457611",
+          "level": 6.5683653286183965,
+          "x0": 218.64,
+          "x1": 251.96,
+          "z0": 319.75,
+          "z1": 346.88
+        },
+        {
+          "name": "Sankt Lars v\u00e4g 41",
+          "level": 1.83,
+          "x0": -72.25999999999999,
+          "x1": -7.100000000000001,
+          "z0": 253.93,
+          "z1": 318.75
+        },
+        {
+          "name": "Sankt Lars 145221625",
+          "level": 6.1470417967423225,
+          "x0": 246.33999999999997,
+          "x1": 275.88,
+          "z0": 361.95,
+          "z1": 395.5
+        },
+        {
+          "name": "Sankt Lars 145221627",
+          "level": 7.293560776037596,
+          "x0": 265.98,
+          "x1": 294.75,
+          "z0": 308.31,
+          "z1": 341.71
+        },
+        {
+          "name": "S\u00e4vsl\u00e4ndegatan 14",
+          "level": 0.677746512569618,
+          "x0": 202.15,
+          "x1": 232.56,
+          "z0": 213.98,
+          "z1": 246.75
+        },
+        {
+          "name": "S\u00e4vsl\u00e4ndegatan 2",
+          "level": 1.0864873605495775,
+          "x0": 139.37,
+          "x1": 169.78,
+          "z0": 231.36,
+          "z1": 264.14
+        },
+        {
+          "name": "S\u00e4vsl\u00e4ndegatan 6",
+          "level": 0.8633248646389504,
+          "x0": 159.12,
+          "x1": 189.55,
+          "z0": 226.4,
+          "z1": 259.18
+        },
+        {
+          "name": "Nattsl\u00e4ndegatan 20",
+          "level": 0.6754558251418489,
+          "x0": 219.02,
+          "x1": 251.99,
+          "z0": 180.37,
+          "z1": 212.98
+        },
+        {
+          "name": "Nattsl\u00e4ndegatan 14",
+          "level": 0.11324877545635226,
+          "x0": 196.38,
+          "x1": 230.03,
+          "z0": 152.3,
+          "z1": 185.63
+        },
+        {
+          "name": "Nattsl\u00e4ndegatan 18",
+          "level": 0.6058133068383239,
+          "x0": 214.12,
+          "x1": 247.09,
+          "z0": 174.53,
+          "z1": 207.14
+        },
+        {
+          "name": "S\u00e4vsl\u00e4ndegatan 16",
+          "level": 0.7485259820266355,
+          "x0": 209.7,
+          "x1": 240.13,
+          "z0": 211.97,
+          "z1": 244.74
+        },
+        {
+          "name": "S\u00e4vsl\u00e4ndegatan 4",
+          "level": 0.9322254238505426,
+          "x0": 146.92,
+          "x1": 177.34,
+          "z0": 229.36,
+          "z1": 262.12
+        },
+        {
+          "name": "S\u00e4vsl\u00e4ndegatan 8",
+          "level": 0.7921912071556354,
+          "x0": 166.68,
+          "x1": 197.1,
+          "z0": 224.4,
+          "z1": 257.16999999999996
+        },
+        {
+          "name": "Sankt Lars 44",
+          "level": 4.494170896807506,
+          "x0": -70.14,
+          "x1": 13.629999999999999,
+          "z0": 380.19,
+          "z1": 460.23
+        }
+      ],
+      "records": [
+        {
+          "kind": "road",
+          "ends": [
+            [
+              23.9,
+              100
+            ],
+            [
+              23.3,
+              145.8
+            ]
+          ],
+          "width": 7.2,
+          "slab": 0.45,
+          "pier": 0.75,
+          "foot": 1.8,
+          "ext": 3.05,
+          "extW": 0.75,
+          "x": 23.6,
+          "z": 122.9,
+          "dx": -0.013099312667987124,
+          "dz": 0.9999142003230209,
+          "len": 45.80392996239516,
+          "full": 45.80392996239516
+        },
+        {
+          "kind": "gc",
+          "ends": [
+            [
+              18.1,
+              101
+            ],
+            [
+              17.8,
+              146.5
+            ]
+          ],
+          "length": 40,
+          "width": 3,
+          "slab": 0.18,
+          "truss": 1.45,
+          "panels": 10,
+          "steel": 0.1,
+          "ext": 0,
+          "extW": 0,
+          "x": 17.950000000000003,
+          "z": 123.75,
+          "dx": -0.006593263280462223,
+          "dz": 0.9999782642034348,
+          "len": 40,
+          "full": 45.50098900024042
+        }
+      ],
+      "piers": [
+        {
+          "x": 21.712179149725532,
+          "z": 107.60598196848258,
+          "half": 0.575,
+          "dx": -0.013099312667987124,
+          "dz": 0.9999142003230209
+        },
+        {
+          "x": 25.88782085027447,
+          "z": 107.6606846981841,
+          "half": 0.575,
+          "dx": -0.013099312667987124,
+          "dz": 0.9999142003230209
+        },
+        {
+          "x": 21.512179149725533,
+          "z": 122.87264863514925,
+          "half": 0.575,
+          "dx": -0.013099312667987124,
+          "dz": 0.9999142003230209
+        },
+        {
+          "x": 25.68782085027447,
+          "z": 122.92735136485076,
+          "half": 0.575,
+          "dx": -0.013099312667987124,
+          "dz": 0.9999142003230209
+        },
+        {
+          "x": 21.312179149725534,
+          "z": 138.1393153018159,
+          "half": 0.575,
+          "dx": -0.013099312667987124,
+          "dz": 0.9999142003230209
+        },
+        {
+          "x": 25.48782085027447,
+          "z": 138.19401803151743,
+          "half": 0.575,
+          "dx": -0.013099312667987124,
+          "dz": 0.9999142003230209
+        }
+      ],
+      "queries": [
+        {
+          "top": -3,
+          "under": -3.45,
+          "water": -7,
+          "ground": -7.6
+        },
+        {
+          "top": -3,
+          "under": -3.18,
+          "water": -7.005238124393923,
+          "ground": -7.605238124393923
+        }
+      ],
+      "profile": [
+        {
+          "z": 140,
+          "y": -3,
+          "drawn": -4.469408663344456,
+          "gc": -3,
+          "walk": -3,
+          "gcWalk": -3,
+          "slope": null
+        },
+        {
+          "z": 142,
+          "y": -3,
+          "drawn": -3.627567914747377,
+          "gc": -3,
+          "walk": -3,
+          "gcWalk": -3,
+          "slope": null
+        },
+        {
+          "z": 144,
+          "y": -3,
+          "drawn": -3.1064329900026904,
+          "gc": -3,
+          "walk": -3,
+          "gcWalk": -3,
+          "slope": null
+        },
+        {
+          "z": 146,
+          "y": -3.002743463079507,
+          "drawn": -3.012743649714135,
+          "gc": -3,
+          "walk": -2.9909497512766268,
+          "gcWalk": -3,
+          "slope": 0.000862084091914791
+        },
+        {
+          "z": 148,
+          "y": -3.0011891390490266,
+          "drawn": -3.0103928410536414,
+          "gc": -3.0048757628720244,
+          "walk": -2.98928807783712,
+          "gcWalk": -2.9964880635383944,
+          "slope": 0.0014576220761934942
+        },
+        {
+          "z": 150,
+          "y": -2.9845777897769823,
+          "drawn": -2.994603464418173,
+          "gc": -2.9860098943827427,
+          "walk": -2.9696035126890608,
+          "gcWalk": -2.97801017601954,
+          "slope": 0.03079429493976081
+        },
+        {
+          "z": 152,
+          "y": -2.9277063506456877,
+          "drawn": -2.9329980898791623,
+          "gc": -2.928332487239183,
+          "walk": -2.907998269144296,
+          "gcWalk": -2.920588704424104,
+          "slope": 0.030794354728054227
+        },
+        {
+          "z": 154,
+          "y": -2.8617001696053515,
+          "drawn": -2.8717001696053512,
+          "gc": -2.862898702725726,
+          "walk": -2.849022741005643,
+          "gcWalk": -2.85489876677297,
+          "slope": 0.038752918901044445
+        },
+        {
+          "z": 156,
+          "y": -2.7769952499501533,
+          "drawn": -2.7784774861136947,
+          "gc": -2.7789289083075364,
+          "walk": -2.7644845840192316,
+          "gcWalk": -2.768957605601846,
+          "slope": 0.045380830073726584
+        },
+        {
+          "z": 158,
+          "y": -2.675254802622039,
+          "drawn": -2.6852548026220386,
+          "gc": -2.6780720288200657,
+          "walk": -2.6627535198715853,
+          "gcWalk": -2.6680618873522626,
+          "slope": 0.05526808912702377
+        },
+        {
+          "z": 160,
+          "y": -2.558142038562951,
+          "drawn": -2.5612874856684362,
+          "gc": -2.5619768964559153,
+          "walk": -2.545592877183351,
+          "gcWalk": -2.551169853626584,
+          "slope": 0.06253147081854346
+        },
+        {
+          "z": 162,
+          "y": -2.4273201687148345,
+          "drawn": -2.4373201687148343,
+          "gc": -2.432292250764836,
+          "walk": -2.4150662352785752,
+          "gcWalk": -2.421907733988186,
+          "slope": 0.06733872493825509
+        },
+        {
+          "z": 164,
+          "y": -2.2844524040196346,
+          "drawn": -2.289261062067064,
+          "gc": -2.2906667386537305,
+          "walk": -2.272191318081437,
+          "gcWalk": -2.2762925060949657,
+          "slope": 0.0742083056411183
+        },
+        {
+          "z": 166,
+          "y": -2.131201955419294,
+          "drawn": -2.1412019554192936,
+          "gc": -2.1388298159376014,
+          "walk": -2.118894918506492,
+          "gcWalk": -2.123909963601842,
+          "slope": 0.0790249152842621
+        },
+        {
+          "z": 168,
+          "y": -1.9692320338557585,
+          "drawn": -1.9757039028451326,
+          "gc": -1.9784747920623331,
+          "walk": -1.9571655288933278,
+          "gcWalk": -1.9632776425925347,
+          "slope": 0.08200860713595634
+        },
+        {
+          "z": 170,
+          "y": -1.800205850270972,
+          "drawn": -1.810205850270972,
+          "gc": -1.8111871033081126,
+          "walk": -1.7879556374296945,
+          "gcWalk": -1.7977621948493956,
+          "slope": 0.08605584666602661
+        },
+        {
+          "z": 172,
+          "y": -1.6257866156068794,
+          "drawn": -1.6339216955381979,
+          "gc": -1.638617514629001,
+          "walk": -1.613422204391204,
+          "gcWalk": -1.626218060751161,
+          "slope": 0.08822411416632932
+        },
+        {
+          "z": 174,
+          "y": -1.4476375408054238,
+          "drawn": -1.4576375408054238,
+          "gc": -1.4624154013363069,
+          "walk": -1.4352915438830864,
+          "gcWalk": -1.450538834280467,
+          "slope": 0.0901164337828912
+        },
+        {
+          "z": 176,
+          "y": -1.2674218368085508,
+          "drawn": -1.2772201276818138,
+          "gc": -1.2842287490985906,
+          "walk": -1.2537635975341197,
+          "gcWalk": -1.2719295269338329,
+          "slope": 0.09241767642728149
+        },
+        {
+          "z": 178,
+          "y": -1.0868027145582038,
+          "drawn": -1.0968027145582038,
+          "gc": -1.1057041539416606,
+          "walk": -1.0708134686668582,
+          "gcWalk": -1.0895753396360335,
+          "slope": 0.09005295475428902
+        },
+        {
+          "z": 180,
+          "y": -0.9074433849963288,
+          "drawn": -0.9189048868115357,
+          "gc": -0.9284868222485767,
+          "walk": -0.8929351375331729,
+          "gcWalk": -0.9014135999674463,
+          "slope": 0.08650536027890175
+        },
+        {
+          "z": 182,
+          "y": -0.7310070590648676,
+          "drawn": -0.7410070590648676,
+          "gc": -0.7430007067738358,
+          "walk": -0.7188317907368366,
+          "gcWalk": -0.7204503345429829,
+          "slope": 0.08679885456337569
+        },
+        {
+          "z": 184,
+          "y": -0.559156947705767,
+          "drawn": -0.5722816604629188,
+          "gc": -0.5604664144146132,
+          "walk": -0.5473069459315689,
+          "gcWalk": -0.5357593599705578,
+          "slope": 0.08477907918813718
+        },
+        {
+          "z": 186,
+          "y": -0.39355626186097004,
+          "drawn": -0.40355626186097004,
+          "gc": -0.38263696524971014,
+          "walk": -0.38178712882389965,
+          "gcWalk": -0.3731635767581782,
+          "slope": 0.08047113730437205
+        },
+        {
+          "z": 188,
+          "y": -0.2358682124724214,
+          "drawn": -0.2506559911450382,
+          "gc": -0.21129891606963813,
+          "walk": -0.2240755360432879,
+          "gcWalk": -0.20353965071145064,
+          "slope": 0.07897581141192778
+        },
+        {
+          "z": 190,
+          "y": -0.08775601048206427,
+          "drawn": -0.09775601048206427,
+          "gc": -0.04827236037661997,
+          "walk": -0.0718766067222268,
+          "gcWalk": -0.056655203086277896,
+          "slope": 0.07416491287993793
+        },
+        {
+          "z": 192,
+          "y": 0.049117133168155025,
+          "drawn": 0.032665998527113396,
+          "gc": 0.10458907161540587,
+          "walk": 0.058279545946147426,
+          "gcWalk": 0.06483540545380706,
+          "slope": 0.06078048463229675
+        },
+        {
+          "z": 194,
+          "y": 0.17308800753629106,
+          "drawn": 0.16308800753629105,
+          "gc": 0.2453982129807919,
+          "walk": 0.17308800753629106,
+          "gcWalk": 0.2453982129807919,
+          "slope": null
+        },
+        {
+          "z": 196,
+          "y": 0.2824934016804037,
+          "drawn": 0.2643790560974182,
+          "gc": 0.36103253233235977,
+          "walk": 0.2824934016804037,
+          "gcWalk": 0.36103253233235977,
+          "slope": null
+        },
+        {
+          "z": 198,
+          "y": 0.37567010465854533,
+          "drawn": 0.3656701046585453,
+          "gc": 0.4487415124446561,
+          "walk": 0.37567010465854533,
+          "gcWalk": 0.4487415124446561,
+          "slope": null
+        },
+        {
+          "z": 200,
+          "y": 0.45095490552877315,
+          "drawn": 0.43117734900384397,
+          "gc": 0.5178210906358549,
+          "walk": 0.45095490552877315,
+          "gcWalk": 0.5178210906358549,
+          "slope": null
+        },
+        {
+          "z": 202,
+          "y": 0.5066845933491426,
+          "drawn": 0.4966845933491426,
+          "gc": 0.5667098530856616,
+          "walk": 0.5066845933491426,
+          "gcWalk": 0.5667098530856616,
+          "slope": null
+        },
+        {
+          "z": 204,
+          "y": 0.5412244897959182,
+          "drawn": 0.526199439531714,
+          "gc": 0.5938911564625848,
+          "walk": 0.5412244897959182,
+          "gcWalk": 0.5938911564625848,
+          "slope": null
+        },
+        {
+          "z": 206,
+          "y": 0.5657142857142858,
+          "drawn": 0.5557142857142854,
+          "gc": 0.6108253968253967,
+          "walk": 0.5657142857142858,
+          "gcWalk": 0.6108253968253967,
+          "slope": null
+        },
+        {
+          "z": 208,
+          "y": 0.5902040816326528,
+          "drawn": 0.5803571428571426,
+          "gc": 0.6277596371882082,
+          "walk": 0.5902040816326528,
+          "gcWalk": 0.6277596371882082,
+          "slope": null
+        },
+        {
+          "z": 210,
+          "y": 0.6150000190734863,
+          "drawn": 0.6050000190734863,
+          "gc": 0.6616134907066593,
+          "walk": 0.6150000190734863,
+          "gcWalk": 0.6616134907066593,
+          "slope": null
+        }
+      ],
+      "views": [
+        {
+          "view": "report",
+          "camera": [
+            18,
+            -1.4,
+            131
+          ],
+          "target": [
+            22,
+            -1,
+            165
+          ],
+          "calls": 43,
+          "triangles": 572413,
+          "textures": 10
+        },
+        {
+          "view": "side",
+          "camera": [
+            -15,
+            4,
+            157
+          ],
+          "target": [
+            25,
+            -1.7,
+            172
+          ],
+          "calls": 47,
+          "triangles": 601385,
+          "textures": 10
+        },
+        {
+          "view": "transition",
+          "camera": [
+            18,
+            -0.8,
+            149
+          ],
+          "target": [
+            25,
+            -1.4,
+            179
+          ],
+          "calls": 41,
+          "triangles": 565005,
+          "textures": 10
+        }
+      ],
+      "storage": {
+        "trace": [],
+        "untouched": true,
+        "localCount": 5,
+        "sessionCount": 2
+      },
+      "navigation": {
+        "routes": [
+          {
+            "offset": 0,
+            "run": false,
+            "reached": true,
+            "ticks": 1603,
+            "maxError": 0.003461692331629629,
+            "finite": true
+          },
+          {
+            "offset": 0,
+            "run": true,
+            "reached": true,
+            "ticks": 536,
+            "maxError": 0.007814185602039059,
+            "finite": true
+          },
+          {
+            "offset": -5.7,
+            "run": false,
+            "reached": true,
+            "ticks": 1603,
+            "maxError": 0.014014265534503065,
+            "finite": true
+          },
+          {
+            "offset": -5.7,
+            "run": true,
+            "reached": true,
+            "ticks": 536,
+            "maxError": 0.00938065969253421,
+            "finite": true
+          }
+        ],
+        "decks": [
+          {
+            "kind": "road",
+            "top": -3,
+            "walk": -3,
+            "support": null
+          },
+          {
+            "kind": "gc",
+            "top": -3,
+            "walk": -3,
+            "support": null
+          }
+        ]
+      }
+    }
+  },
+  "source": {
+    "src/southbank.js": "784b92d13a248359abc391889e411d431b7b9e41a4ce31b5e10c053cc063ddae",
+    "src/config.js": "e5222c9be2a685502d442de31196d8167c54375f856b98a8d11df1249bb97108",
+    "src/surroundings.js": "381d174ac61a3f3129ec06d207a642ce5f5e552ed8fdb5db39aaa700997b2e46",
+    "src/riverbridge.js": "0dd911cc28da9268e69cd68f9055072931705a16f9ce50c91cd3ed44b00f5474",
+    "src/roads.js": "ef47ca91e59985be9e68753a721955426c221de92fa5387f98fa5a6c29849e65",
+    "src/walksupport.js": "74c09265dfc6556700bb589e4f9117effde031a259d937a7ae6497443ef0b1ae",
+    "src/navigation.js": "c2f9b55b6dc2f75518250228f62c1afa5decfdcc99ac3b82a9bfb2b7668efa40",
+    "tools/southbridge301.html": "30a6690984460833250d7529a9b563e37ad7547781634e802bf9dbccb3ce6d02",
+    "tools/southbridge301browser.cjs": "9614c78f2717888a4693c7e7a4146357405fa7fb77b99f3b2d29e6d80c7490d7",
+    "tools/southbridge301test.mjs": "cef5023908d0c6ffcd78d8922ccfca0625025d0c7e89bc558cfbeb829284e145"
+  },
+  "captureSource": {
+    "src/southbank.js": "784b92d13a248359abc391889e411d431b7b9e41a4ce31b5e10c053cc063ddae",
+    "src/config.js": "e5222c9be2a685502d442de31196d8167c54375f856b98a8d11df1249bb97108",
+    "src/surroundings.js": "381d174ac61a3f3129ec06d207a642ce5f5e552ed8fdb5db39aaa700997b2e46",
+    "src/riverbridge.js": "0dd911cc28da9268e69cd68f9055072931705a16f9ce50c91cd3ed44b00f5474",
+    "src/roads.js": "ef47ca91e59985be9e68753a721955426c221de92fa5387f98fa5a6c29849e65",
+    "src/walksupport.js": "74c09265dfc6556700bb589e4f9117effde031a259d937a7ae6497443ef0b1ae",
+    "src/navigation.js": "c2f9b55b6dc2f75518250228f62c1afa5decfdcc99ac3b82a9bfb2b7668efa40",
+    "tools/southbridge301.html": "56ec53a67c31cd0fc7833c72cf83df0fe9edefbe96c3b46dd182b4bc81f2aebd",
+    "tools/southbridge301browser.cjs": "9614c78f2717888a4693c7e7a4146357405fa7fb77b99f3b2d29e6d80c7490d7",
+    "tools/southbridge301test.mjs": "cef5023908d0c6ffcd78d8922ccfca0625025d0c7e89bc558cfbeb829284e145"
+  },
+  "measurementCorrection": "After capture, exclude football-nets LineSegments from the unique mesh-triangle counter. Source confirms 152 vertices/76 segments; no product, camera, render or image bytes changed.",
+  "measurementSource": {
+    "src/footballmodel.js": "df74a38b443a0785fc445b7447c12a8baeb14aa92799d919516bb69446d6213c"
+  }
+}
