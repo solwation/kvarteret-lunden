@@ -45,3 +45,5 @@ före och efter). Engångsgenerering ~20–35 ms → ~27–47 ms i SwiftShader. 
 Originalets flodbädd-variant (`bed`, #1945) finns inte i publicen; blandningen ersätter endast
 `<map_fragment>` i publicens `grassMaterial`. Publicens egna `paddock.js`-gräs (instansade strån) använder
 inte den delade kartan och påverkas inte. Fläckstyrka och blandning är konstnärliga *gissningar* från originalet.
+
+Publicering: Pages success på `519370a`; inbäddade bild-URL:er HTTP 200 före stängning.

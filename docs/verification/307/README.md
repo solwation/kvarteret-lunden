@@ -50,3 +50,5 @@ Kostnad: inga nya draws, texturer, program, ljus eller per-framearbete. Glasbatc
 saknade färg får ett färgattribut: cirka 42 500 vertexar × 12 B ≈ 0,5 MB extra
 geometriminne (east-glass och north-glass hade redan färg). Engångs-CPU vid bygget,
 uppmätt i Node för 58 000 vertexar: cirka 12–16 ms. Ingen fysisk enhet eller FPS mätt.
+
+Publicering: Pages success på `3a510d0`; inbäddade bild-URL:er HTTP 200 före stängning.
