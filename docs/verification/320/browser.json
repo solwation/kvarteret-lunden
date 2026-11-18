@@ -1,0 +1,452 @@
+{
+ "baseline": "d190248b5c94c936870e0f2ef3d7ebaf107f67c7",
+ "viewport": [
+  1280,
+  800
+ ],
+ "errors": [],
+ "external": [],
+ "phases": {
+  "before": {
+   "loadMs": 37458,
+   "views": [
+    {
+     "name": "husL-nara",
+     "x": -8,
+     "z": -2.6,
+     "yaw": 160,
+     "pitch": -22,
+     "camera": [
+      -8,
+      1.62,
+      -2.6
+     ],
+     "calls": 227,
+     "triangles": 790482,
+     "textures": 73,
+     "geometries": 552,
+     "programs": 65,
+     "imageSHA256": "5f1b1ac22ebfefb5de3692cce8ac0570046e22e4bfa908f028a63470276c065b"
+    },
+    {
+     "name": "husL-gata",
+     "x": -6,
+     "z": -16,
+     "yaw": 180,
+     "pitch": -2,
+     "camera": [
+      -6,
+      1.62,
+      -16
+     ],
+     "calls": 577,
+     "triangles": 878252,
+     "textures": 73,
+     "geometries": 557,
+     "programs": 65,
+     "imageSHA256": "fad8aca4f08ad46b5c2cfb477e032d87c083b63a80067a353f18537dacd290d2"
+    },
+    {
+     "name": "husA-nord",
+     "x": 2,
+     "z": 23,
+     "yaw": 200,
+     "pitch": -6,
+     "camera": [
+      2,
+      1.62,
+      23
+     ],
+     "calls": 178,
+     "triangles": 629235,
+     "textures": 82,
+     "geometries": 650,
+     "programs": 67,
+     "imageSHA256": "45d8b4badf1cdd5fbaf35d0b1d0105f440c2a650945410f95a2697e2e4c3fd7a"
+    },
+    {
+     "name": "husB-nord",
+     "x": -32,
+     "z": 27,
+     "yaw": 180,
+     "pitch": -4,
+     "camera": [
+      -32,
+      1.62,
+      27
+     ],
+     "calls": 174,
+     "triangles": 646251,
+     "textures": 91,
+     "geometries": 729,
+     "programs": 67,
+     "imageSHA256": "64d14d914b0e240541605c27211172e3d8eb5f1074d070e640a47535fde9b5bc"
+    },
+    {
+     "name": "husC-nord",
+     "x": -61,
+     "z": 4,
+     "yaw": 180,
+     "pitch": -4,
+     "camera": [
+      -61,
+      1.62,
+      4
+     ],
+     "calls": 126,
+     "triangles": 675855,
+     "textures": 91,
+     "geometries": 729,
+     "programs": 67,
+     "imageSHA256": "51b847adcccbcca34b901dcb8739872b470d09e0edc676070897834dab4de665"
+    }
+   ],
+   "moss": {
+    "meshes": 1349,
+    "found": []
+   },
+   "storage": {
+    "sentinel": "kept",
+    "keys": [
+     "kvarteret-lunden.paddockGrass",
+     "kvarteret-lunden.sentinel"
+    ]
+   }
+  },
+  "after": {
+   "loadMs": 39779,
+   "views": [
+    {
+     "name": "husL-nara",
+     "x": -8,
+     "z": -2.6,
+     "yaw": 160,
+     "pitch": -22,
+     "camera": [
+      -8,
+      1.62,
+      -2.6
+     ],
+     "calls": 227,
+     "triangles": 790482,
+     "textures": 73,
+     "geometries": 552,
+     "programs": 69,
+     "imageSHA256": "f4741492e17023e681b76520f372888fbb3b869ca4e9216bb1f74d581af654e7"
+    },
+    {
+     "name": "husL-gata",
+     "x": -6,
+     "z": -16,
+     "yaw": 180,
+     "pitch": -2,
+     "camera": [
+      -6,
+      1.62,
+      -16
+     ],
+     "calls": 577,
+     "triangles": 878252,
+     "textures": 73,
+     "geometries": 557,
+     "programs": 69,
+     "imageSHA256": "2453bde308c72b603ea7fe2b6f29d6e771fc125b315e060275fa95390080ed4c"
+    },
+    {
+     "name": "husA-nord",
+     "x": 2,
+     "z": 23,
+     "yaw": 200,
+     "pitch": -6,
+     "camera": [
+      2,
+      1.62,
+      23
+     ],
+     "calls": 178,
+     "triangles": 629235,
+     "textures": 82,
+     "geometries": 650,
+     "programs": 71,
+     "imageSHA256": "b90bbc5d5212633dba4e503946803e123933420e8924e8cdeb7886deea02986c"
+    },
+    {
+     "name": "husB-nord",
+     "x": -32,
+     "z": 27,
+     "yaw": 180,
+     "pitch": -4,
+     "camera": [
+      -32,
+      1.62,
+      27
+     ],
+     "calls": 174,
+     "triangles": 646251,
+     "textures": 91,
+     "geometries": 729,
+     "programs": 71,
+     "imageSHA256": "6475f25efb7d67f807355e0c1916147baaeaac24cfc650976e6146a284b3fe05"
+    },
+    {
+     "name": "husC-nord",
+     "x": -61,
+     "z": 4,
+     "yaw": 180,
+     "pitch": -4,
+     "camera": [
+      -61,
+      1.62,
+      4
+     ],
+     "calls": 126,
+     "triangles": 675855,
+     "textures": 91,
+     "geometries": 729,
+     "programs": 71,
+     "imageSHA256": "2503e98bf1d8cc651bb62b16039485c3653b419f68c234bc8f1ba2fb27ac3b7c"
+    }
+   ],
+   "moss": {
+    "meshes": 1349,
+    "found": [
+     {
+      "name": null,
+      "kind": "bump",
+      "vertices": 4278,
+      "bytes": 17112,
+      "lowVertices": 902,
+      "height": [
+       0,
+       13.3
+      ],
+      "box": [
+       [
+        -45,
+        0,
+        -4
+       ],
+       [
+        12,
+        13,
+        13
+       ]
+      ],
+      "key": "rer */ ) {}|shademoss2122-bump"
+     },
+     {
+      "name": null,
+      "kind": "map",
+      "vertices": 702,
+      "bytes": 2808,
+      "lowVertices": 701,
+      "height": [
+       -3,
+       3.12
+      ],
+      "box": [
+       [
+        -71,
+        -3,
+        0
+       ],
+       [
+        14,
+        0,
+        53
+       ]
+      ],
+      "key": "erer */ ) {}|shademoss2122-map"
+     },
+     {
+      "name": null,
+      "kind": "plain",
+      "vertices": 816,
+      "bytes": 3264,
+      "lowVertices": 741,
+      "height": [
+       -3.01,
+       2.84
+      ],
+      "box": [
+       [
+        -70,
+        -3,
+        -3
+       ],
+       [
+        14,
+        0,
+        59
+       ]
+      ],
+      "key": "er */ ) {}|shademoss2122-plain"
+     },
+     {
+      "name": null,
+      "kind": "map",
+      "vertices": 2475,
+      "bytes": 9900,
+      "lowVertices": 1408,
+      "height": [
+       -3,
+       17.74
+      ],
+      "box": [
+       [
+        -71,
+        -3,
+        13
+       ],
+       [
+        9,
+        15,
+        57
+       ]
+      ],
+      "key": "erer */ ) {}|shademoss2122-map"
+     },
+     {
+      "name": null,
+      "kind": "bump",
+      "vertices": 85356,
+      "bytes": 341424,
+      "lowVertices": 14988,
+      "height": [
+       -1.9,
+       17.74
+      ],
+      "box": [
+       [
+        -71,
+        -3,
+        13
+       ],
+       [
+        9,
+        15,
+        57
+       ]
+      ],
+      "key": "rer */ ) {}|shademoss2122-bump"
+     },
+     {
+      "name": null,
+      "kind": "plain",
+      "vertices": 36,
+      "bytes": 144,
+      "lowVertices": 34,
+      "height": [
+       -2.63,
+       2.77
+      ],
+      "box": [
+       [
+        -71,
+        -3,
+        13
+       ],
+       [
+        -70,
+        0,
+        37
+       ]
+      ],
+      "key": "er */ ) {}|shademoss2122-plain"
+     }
+    ]
+   },
+   "storage": {
+    "sentinel": "kept",
+    "keys": [
+     "kvarteret-lunden.paddockGrass",
+     "kvarteret-lunden.sentinel"
+    ]
+   }
+  },
+  "phone": {
+   "loadMs": 38083,
+   "views": [],
+   "moss": {
+    "meshes": 1314,
+    "found": []
+   },
+   "storage": {
+    "sentinel": "kept",
+    "keys": [
+     "kvarteret-lunden.sentinel"
+    ]
+   }
+  }
+ },
+ "source": {
+  "src/shademoss.js": "3fe54d05d301d69f66f003a571b0c498b2b7c9f46e1156e63961896f6b16b642",
+  "src/config.js": "602c17bdd08cd2d0c894f6dd2879092f474b2220727407e3048b72a0250afb79",
+  "src/exterior.js": "e805556273a79b6403cfcd1bce902b504e6e83bbb8b1ee097b9e29a229d95a43",
+  "src/surroundings.js": "8b0e4504aac1035fcea00fec1d33abab0a1019c6f3ce77e551d48d4477313643",
+  "tools/shademosstest.mjs": "a71b1e46ada1a9f0ee13cc5e2b900fe022d5d745df00924088de6819a6659b61",
+  "tools/shademoss320browser.cjs": "c9109db869cf2ad85ab0da21c056f692f739c28e6631560650a3ce1b0956a32d"
+ },
+ "tone": {
+  "husL-nara": [
+   [
+    160.11,
+    139.9,
+    122.03
+   ],
+   [
+    157.91,
+    140.15,
+    122.11
+   ]
+  ],
+  "husL-gata": [
+   [
+    157.01,
+    145.31,
+    135.45
+   ],
+   [
+    156.8,
+    145.34,
+    135.43
+   ]
+  ],
+  "husA-nord": [
+   [
+    167.04,
+    161.04,
+    129.78
+   ],
+   [
+    166.82,
+    161,
+    129.71
+   ]
+  ],
+  "husB-nord": [
+   [
+    144.65,
+    132.87,
+    105.64
+   ],
+   [
+    144.03,
+    132.86,
+    105.54
+   ]
+  ],
+  "husC-nord": [
+   [
+    136.41,
+    153.21,
+    89.47
+   ],
+   [
+    135.93,
+    153.18,
+    89.35
+   ]
+  ]
+ }
+}

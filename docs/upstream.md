@@ -4284,3 +4284,20 @@ Ingen originalbild, inredning, avatar, gameplay, lagring, tjänst, Cloudflare el
 Egen verifiering: `node --test tools/drainstest.mjs` 6/6 mot publicens geometri, npm test/build och en egen före/efter-browser
 (gata, lock, galler, Karpvägen, gård) med +1 draw, +2564 trianglar, 0 texturer, 0 program, noll fel och externa anrop,
 lagring bevarad. [Egna bilder, kontroller och kostnad](verification/319/README.md).
+## Mossa och alger lågt på skuggiga norrväggar, #320
+
+Granskade originalkällor `bc054abc034562001ed0de5d932b70cc141d8529` (implementation), `c609309103089f6a955ae1d34c0724c686d63f8c`
+(dämpad ton, mörkare fogar) ([original #2122](https://github.com/solwation/lunden-3d-apartment/issues/2122)) och
+`8ca2cde5d27f889246e1935f285c75660151d240` ([original #2134](https://github.com/solwation/lunden-3d-apartment/issues/2134):
+JS-tvillingens bilinjära brus). Överfört: byteidentisk `src/shademoss.js`, ett eget `SHADE_MOSS`-block i `src/config.js`
+direkt efter `RENDER_SURFACE` och konsumentraderna i `exterior.js` (Hus L:s tegel, `bump`-fogar; putsen ≥ 6 m får ingen)
+och `surroundings.js` (Å-husen A/B/C:s tegelfasader och vita puts, socklarna, stödmurarnas tegel och parktrappan).
+Publicens anrop motsvarade originalets bas utan #2123:s `snowCap`, så kedjan är tegel #293 / puts #311 → mossa; publiken har
+ingen `lampwash`. Telefonprofilen får varken attribut eller variant, som i originalet. Alla originalets konsumenter finns i
+publiken. Node-testet är originalets funktionsnivåtest; browserverktyget är eget. Ingen originalbild, ändringslogg,
+inredning, avatar, gameplay, lagring, tjänst, Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: `node --test tools/shademosstest.mjs` 7/7, npm test/build och en egen före/efter/telefon-browser i den
+riktiga appen (Hus L nära och från gatan, Hus A/B/C:s norrsidor, dag) med samma meshantal, draws, trianglar och texturer,
++4 program, medelton per vy inom 1,4 %, ingen mossa på telefon och noll fel/externa anrop.
+[Egna bilder, kontroller och kostnad](verification/320/README.md).
