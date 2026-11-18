@@ -1,3 +1,4 @@
+import { riverSurface } from './riversurface.js';
 import {createStartupPointCache} from './startupcache.js';
 import * as THREE from 'three';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
@@ -162,7 +163,7 @@ export function buildRiverBridges(approachGround=()=>B.deckY, trimApproach=g=>g)
  // The old eastern source vertex sits 6.5 m inside the terrain; overlap the continuation at the exact boundary.
  const [east,z]=R.upstream.boundary;
  parts.water.push(pathStrip({path:[[east,z],...riverPath],w:[widths[0],...widths]},w=>-w/2,w=>w/2,0,waterYAt));
- const mats={concrete:bridgeConcreteMaterial(),steel:new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,metalness:.45,roughness:.55}),asphalt:new THREE.MeshStandardMaterial({color:COLORS.asphalt,roughness:.85}),water:new THREE.MeshStandardMaterial({color:COLORS.water,roughness:.15,metalness:.2})};
+ const mats={concrete:bridgeConcreteMaterial(),steel:new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,metalness:.45,roughness:.55}),asphalt:new THREE.MeshStandardMaterial({color:COLORS.asphalt,roughness:.85}),water:riverSurface(new THREE.MeshStandardMaterial({color:COLORS.water,roughness:.15,metalness:.2}))};
  for(const[k,list]of Object.entries(parts)){const geo=mergeGeometries(list.map(g=>g.index?g.toNonIndexed():g));const mesh=new THREE.Mesh(geo,mats[k]);mesh.name=`bridges-${k}`;mesh.castShadow=k!=='water';mesh.receiveShadow=true;group.add(mesh);list.forEach(g=>g.dispose());}
  group.userData.records=bridgeRecords;return group;
 }

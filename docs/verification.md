@@ -26,6 +26,14 @@ takgång/kollision och drawbudget. Sju syntetiska sentineller orörda, noll lagr
 Två små delade kartor327680basbyte/436904mipbyte tillkommer; effekten är mörk och diskret på håll.
 [Urval, exakta sourcehashar, bilder och gränser](verification/304/README.md).
 
+## Stationära ljuskrusningar på ån, #303
+
+Tio riktade Nodefall, exakt publik källbevaring och egen faktisk buildRiverBridges +
+buildEdgeBackdrop-browser med båda skarvar, normalprober, fjärr/undersida/vinter och
+noll nät-/lagringsanrop. Tre egna granskade nativebildpar; inga nya maps/buffers/draws,
+men verkligt extra shaderarbete och ett extra cacheprogram redovisas.
+[Resultat, källhashar, bilder, budget och begränsningar](verification/303/README.md).
+
 ## Flackare södra broanslutning, #301
 
 Egen produktionbuildSurroundings-browser med tre matchade nativevyer och riktiga publika

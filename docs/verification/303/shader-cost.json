@@ -1,0 +1,25 @@
+{
+  "injectedPreChunkSourceBytes": {
+    "main": {
+      "vertex": 100,
+      "fragment": 703
+    },
+    "edge": {
+      "vertex": 370,
+      "fragment": 703
+    },
+    "winter": {
+      "vertex": 0,
+      "fragment": 0
+    }
+  },
+  "newTextureBytes": 0,
+  "newAttributeBytes": 0,
+  "newUniforms": 0,
+  "newPasses": 0,
+  "newDraws": 0,
+  "newFrameUploads": 0,
+  "activeFragment": "2 sin + 2 cos; 2 fwidth (four derivatives); 2 smoothsteps; camera distance; vector arithmetic and normal normalization",
+  "vertex": "one world-position transform and vec4 varying; edge colour/height mask classification",
+  "driverShaderBinaryBytes": "unknown; not exposed by WebGL"
+}

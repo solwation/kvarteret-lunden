@@ -1,3 +1,5 @@
+import { riverSurface } from './riversurface.js';
+import { waterYAt } from './riverbridge.js';
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { SITE, SEASON, ROAD_ENDS, EDGE_BACKDROP as E, COLORS } from './config.js';
@@ -256,7 +258,7 @@ export function buildEdgeBackdrop(ground) {
   for (const p of E.paths) parts.push(ribbon(p.path, p.width, E.level + lift.path, p.color));
   for (const p of E.roads) parts.push(ribbon(p.path, p.width, E.level + lift.road, p.color, ground)); // #218 (original #1802): lifted over the sloping band, above the river strip's 0.35 m
   parts.push(...roadEndParts(ground)); // #230: extend the selected road/pavement ends into existing fog
-  const land = new THREE.Mesh(geometry(parts), new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, roughness: 1, side: THREE.DoubleSide }));
+  const land = new THREE.Mesh(geometry(parts), riverSurface(new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, roughness: 1, side: THREE.DoubleSide }), E.rivers.map(r => waterYAt(...r.path[0]))));
   land.name = 'edge-land';
   group.add(land);
   const mats = [land.material];

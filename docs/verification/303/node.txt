@@ -1,0 +1,18 @@
+✔ interpreted relative fall is tied to the checked source and preserves the road-bridge datum (1.673824ms)
+✔ rendered water vertices follow the same continuous downstream level as the terrain and navigation (69.042045ms)
+✔ the reviewed bridge cross-section and existing mapped park paths retain their buffers (35.463307ms)
+✔ public recovery stays outside the wade barrier at every anchor (#91) and dry; outer terrain joins without a step (1.734821ms)
+✔ the timber deck and its ramp tops stay fixed while the front toes remain buried under the local shore (0.307411ms)
+✔ #91: the recovery from the bend at anchor14 (and every nearby start) lands outside the wade barrier (1.935646ms)
+✔ the water lies well under the bank crest along the whole river and the ribbon covers every submerged bank point (86.812165ms)
+✔ deterministic finite slopes stay below 0.055; distance and pixel footprint fully suppress far ripples (28.675883ms)
+✔ the two continuation water planes share the same world phase; mask excludes other colours/heights and winter colourless land (0.732489ms)
+✔ material hook is cached/idempotent, preserves native contracts and adds only stationary shader math (1.201469ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 377.132556

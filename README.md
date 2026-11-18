@@ -8,6 +8,8 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+Åvattnet har lågmälda stationära ljuskrusningar nära betraktaren, med gemensam fas över båda fortsättningsskarvarna och full avtoning på avstånd. Befintliga färger, vattennivåer och vinteryta behålls (#303). [Egna jämförelsebilder och shaderkostnad](docs/verification/303/README.md).
+
 Trädens bark har mycket grund ljusrelief och svagt varierad matt yta; björkens mörka märken behåller sin flata form. Effekten syns främst nära stammen, med befintliga färger, löv och fjärr-LOD kvar (#302). [Egna jämförelsebilder och budget](docs/verification/302/README.md).
 
 Hus L:s solpaneler har diskreta cellmellanrum, tunna ledarbanor och lugn glasstruktur. Panelernas form, placering och takgång är kvar (#304). [Egna bilder, källbundna kontroller och exakt kostnad](docs/verification/304/README.md).

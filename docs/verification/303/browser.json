@@ -1,0 +1,2270 @@
+{
+  "baseline": "e78b683bc3e8e01ba41f8211854deeadc7800056",
+  "fixture": "Actual buildRiverBridges + full buildEdgeBackdrop + actual terrain through production yield.05; no World/bootstrap/fauna bootstrap.1120x800,DPR1,MSAA,NeutralToneMapping,one fixed diagnostic sun per matched view",
+  "errors": [],
+  "external": [],
+  "phases": {
+    "before": {
+      "meshes": [
+        {
+          "name": "site-terrain",
+          "bytes": 8227756,
+          "triangles": 132681,
+          "bounds": [
+            [
+              -350,
+              -8.034990310668945,
+              -340
+            ],
+            [
+              340,
+              12.314000129699707,
+              460
+            ]
+          ],
+          "hash": "30f14c0aa0609fae391a9020025cac9c0e9069ae862b2dca07e8ef0eb71b1056",
+          "cast": false,
+          "receive": true
+        },
+        {
+          "name": "site-terrain-remainder",
+          "bytes": 7525336,
+          "triangles": 74146,
+          "bounds": [
+            [
+              -350,
+              -8.034990310668945,
+              -340
+            ],
+            [
+              340,
+              12.314000129699707,
+              460
+            ]
+          ],
+          "hash": "4bd5677f28c7d644af1ec91f4134879bede04989963fdae4fe2287ff4b90dd7e",
+          "cast": false,
+          "receive": true
+        },
+        {
+          "name": "site-terrain-southeast",
+          "bytes": 7338004,
+          "triangles": 58535,
+          "bounds": [
+            [
+              -350,
+              -8.034990310668945,
+              -340
+            ],
+            [
+              340,
+              12.314000129699707,
+              460
+            ]
+          ],
+          "hash": "d2d3697d50dbb63a051e6dc916f8bb58be1d196f756dc6fcd13f8213ba568645",
+          "cast": false,
+          "receive": true
+        },
+        {
+          "name": "bridges-concrete",
+          "bytes": 38016,
+          "triangles": 288,
+          "bounds": [
+            [
+              16.014053344726562,
+              -7.599999904632568,
+              99.32396697998047
+            ],
+            [
+              30.85759162902832,
+              -2.75,
+              146.5159912109375
+            ]
+          ],
+          "hash": "404ca4cdc387ad7f8ce03239cdfd3e5fbd774da65b693ae8c4567164f66ea13b",
+          "cast": true,
+          "receive": true
+        },
+        {
+          "name": "bridges-steel",
+          "bytes": 953568,
+          "triangles": 7224,
+          "bounds": [
+            [
+              16.31783676147461,
+              -3,
+              99.92760467529297
+            ],
+            [
+              30.494434356689453,
+              -1.5,
+              145.93606567382812
+            ]
+          ],
+          "hash": "81dd23e2460b3c64385caa366a0926de1b6f2c3c3f4a4bc31b0c817afe28a011",
+          "cast": true,
+          "receive": true
+        },
+        {
+          "name": "bridges-asphalt",
+          "bytes": 15552,
+          "triangles": 162,
+          "bounds": [
+            [
+              16.325578689575195,
+              -3.054779529571533,
+              90.59552001953125
+            ],
+            [
+              30.654420852661133,
+              -2.7021703720092773,
+              156.9789581298828
+            ]
+          ],
+          "hash": "831eb23fb1c5f9e9a39570432ecd3fe6ca41c12bf5ad9569c56422ce217f3298",
+          "cast": true,
+          "receive": true
+        },
+        {
+          "name": "bridges-water",
+          "bytes": 107712,
+          "triangles": 1122,
+          "bounds": [
+            [
+              -351.8581848144531,
+              -7.424990653991699,
+              19.88703155517578
+            ],
+            [
+              340.27801513671875,
+              -6.672598838806152,
+              360.3566589355469
+            ]
+          ],
+          "hash": "a71b8d5efc1a34793814793a76cbeaa595bcfc4e7b04b1e3986eeaed1c924da2",
+          "cast": false,
+          "receive": true
+        },
+        {
+          "name": "edge-land",
+          "bytes": 1798740,
+          "triangles": 16655,
+          "bounds": [
+            [
+              -1401.5491943359375,
+              -8.024991035461426,
+              -1000
+            ],
+            [
+              1234.2821044921875,
+              12.630085945129395,
+              1154.49609375
+            ]
+          ],
+          "hash": "a261ff50003fbaef9d62b5b770827f136d5da0c97bb01c01b3c970a587670130",
+          "cast": false,
+          "receive": false
+        },
+        {
+          "name": "edge-houses",
+          "bytes": 385452,
+          "triangles": 3569,
+          "bounds": [
+            [
+              -879.9000244140625,
+              -3.309999942779541,
+              -918.8832397460938
+            ],
+            [
+              213.7440643310547,
+              23.989999771118164,
+              392.1097717285156
+            ]
+          ],
+          "hash": "7345ada27c35d01d3f731803016a517f71c3b99012fe2e907b47ee3ccf4d8347",
+          "cast": false,
+          "receive": false
+        }
+      ],
+      "water": {
+        "color": 4679034,
+        "roughness": 0.15,
+        "metalness": 0.2,
+        "side": 0,
+        "opacity": 1,
+        "transparent": false,
+        "depthWrite": true,
+        "vertexColors": false,
+        "maps": [
+          {
+            "kind": "map",
+            "present": false,
+            "version": null
+          },
+          {
+            "kind": "normalMap",
+            "present": false,
+            "version": null
+          },
+          {
+            "kind": "bumpMap",
+            "present": false,
+            "version": null
+          },
+          {
+            "kind": "roughnessMap",
+            "present": false,
+            "version": null
+          }
+        ]
+      },
+      "edge": {
+        "color": 16777215,
+        "roughness": 1,
+        "metalness": 0,
+        "side": 2,
+        "opacity": 1,
+        "transparent": false,
+        "depthWrite": true,
+        "vertexColors": true,
+        "maps": [
+          {
+            "kind": "map",
+            "present": false,
+            "version": null
+          },
+          {
+            "kind": "normalMap",
+            "present": false,
+            "version": null
+          },
+          {
+            "kind": "bumpMap",
+            "present": false,
+            "version": null
+          },
+          {
+            "kind": "roughnessMap",
+            "present": false,
+            "version": null
+          }
+        ]
+      },
+      "levels": [
+        -6.672598647482322,
+        -7.424990590544272
+      ],
+      "edgeMask": {
+        "waterVertices": 1824,
+        "dryVertices": 48141,
+        "otherWaterVerticesExcluded": 63
+      },
+      "queries": [
+        {
+          "x": 333.48,
+          "z": 25.71,
+          "water": -6.678585790586161,
+          "shore": -5.178585790586161,
+          "ground": -7.278585790586161
+        },
+        {
+          "x": 300.14,
+          "z": 33.37,
+          "water": -6.709958521095721,
+          "shore": -5.209958521095721,
+          "ground": -7.30995852109572
+        },
+        {
+          "x": 280.48,
+          "z": 38.61,
+          "water": -6.728618132528053,
+          "shore": -5.228618132528053,
+          "ground": -7.328618132528053
+        },
+        {
+          "x": 259.89,
+          "z": 49.27,
+          "water": -6.749881866418384,
+          "shore": -5.249881866418384,
+          "ground": -7.349881866418384
+        },
+        {
+          "x": 228.37,
+          "z": 59.59,
+          "water": -6.780298794568278,
+          "shore": -5.280298794568278,
+          "ground": -7.380298794568278
+        },
+        {
+          "x": 216.35,
+          "z": 64.62,
+          "water": -6.792248615841492,
+          "shore": -5.292248615841492,
+          "ground": -7.392248615841492
+        },
+        {
+          "x": 204.64,
+          "z": 74.37,
+          "water": -6.806223076602029,
+          "shore": -5.306223076602029,
+          "ground": -7.4062230766020285
+        },
+        {
+          "x": 190.76,
+          "z": 79.13,
+          "water": -6.819680149346264,
+          "shore": -5.319680149346264,
+          "ground": -7.419680149346264
+        },
+        {
+          "x": 131.38,
+          "z": 74.61,
+          "water": -6.874295062561119,
+          "shore": -5.374295062561119,
+          "ground": -7.474295062561119
+        },
+        {
+          "x": 127.15,
+          "z": 83.64,
+          "water": -6.883440058163601,
+          "shore": -5.383440058163601,
+          "ground": -7.483440058163601
+        },
+        {
+          "x": 124.35,
+          "z": 101.96,
+          "water": -6.90043642447885,
+          "shore": -5.40043642447885,
+          "ground": -7.50043642447885
+        },
+        {
+          "x": 116.11,
+          "z": 114.02,
+          "water": -6.913831767809577,
+          "shore": -5.413831767809577,
+          "ground": -7.5138317678095765
+        },
+        {
+          "x": 105.35,
+          "z": 119.29,
+          "water": -6.924819772529211,
+          "shore": -5.424819772529211,
+          "ground": -7.52481977252921
+        },
+        {
+          "x": 74.99,
+          "z": 119.53,
+          "water": -6.9526637849692445,
+          "shore": -5.4526637849692445,
+          "ground": -7.552663784969244
+        },
+        {
+          "x": 44.31,
+          "z": 119.8,
+          "water": -6.980801488862222,
+          "shore": -5.480801488862222,
+          "ground": -7.580801488862222
+        },
+        {
+          "x": 1.16,
+          "z": 125.14,
+          "water": -7.0206762149971675,
+          "shore": -5.5206762149971675,
+          "ground": -7.620676214997167
+        },
+        {
+          "x": -15.1,
+          "z": 129.89,
+          "water": -7.036211516015622,
+          "shore": -5.536211516015622,
+          "ground": -7.636211516015622
+        },
+        {
+          "x": -67.45,
+          "z": 166.11,
+          "water": -7.094592743232702,
+          "shore": -5.594592743232702,
+          "ground": -7.694592743232701
+        },
+        {
+          "x": -89.43,
+          "z": 183.37,
+          "water": -7.120222812764011,
+          "shore": -5.620222812764011,
+          "ground": -7.7202228127640105
+        },
+        {
+          "x": -101.32,
+          "z": 198.71,
+          "water": -7.13802228814737,
+          "shore": -5.63802228814737,
+          "ground": -7.73802228814737
+        },
+        {
+          "x": -110.41,
+          "z": 205.34,
+          "water": -7.1483405751954585,
+          "shore": -5.6483405751954585,
+          "ground": -7.748340575195458
+        },
+        {
+          "x": -181.7,
+          "z": 207.36,
+          "water": -7.213746843025356,
+          "shore": -5.713746843025356,
+          "ground": -7.813746843025355
+        },
+        {
+          "x": -220.92,
+          "z": 225.61,
+          "water": -7.253418908725273,
+          "shore": -5.753418908725273,
+          "ground": -7.853418908725272
+        },
+        {
+          "x": -235.63,
+          "z": 235.51,
+          "water": -7.2696801493462635,
+          "shore": -5.7696801493462635,
+          "ground": -7.869680149346263
+        },
+        {
+          "x": -248.18,
+          "z": 251.46,
+          "water": -7.2882930909336885,
+          "shore": -5.7882930909336885,
+          "ground": -7.888293090933688
+        },
+        {
+          "x": -256.19,
+          "z": 263.74,
+          "water": -7.301739112205258,
+          "shore": -5.801739112205258,
+          "ground": -7.901739112205258
+        },
+        {
+          "x": -268.91,
+          "z": 283.27,
+          "water": -7.32311401155072,
+          "shore": -5.82311401155072,
+          "ground": -7.9231140115507195
+        },
+        {
+          "x": -292.46,
+          "z": 311.54,
+          "water": -7.356857734726255,
+          "shore": -5.856857734726255,
+          "ground": -7.956857734726254
+        },
+        {
+          "x": -308.44,
+          "z": 332.5,
+          "water": -7.381029563296016,
+          "shore": -5.881029563296016,
+          "ground": -7.9810295632960155
+        },
+        {
+          "x": -322.75,
+          "z": 343.94,
+          "water": -7.397831510441721,
+          "shore": -5.897831510441721,
+          "ground": -7.997831510441721
+        },
+        {
+          "x": -338.5,
+          "z": 351.1,
+          "water": -7.413698342573966,
+          "shore": -5.913698342573966,
+          "ground": -8.013698342573965
+        },
+        {
+          "x": -350,
+          "z": 355.5,
+          "water": -7.424990590544272,
+          "shore": -5.924990590544272,
+          "ground": -8.024990590544272
+        }
+      ],
+      "views": {
+        "near": {
+          "view": "near",
+          "camera": [
+            -37.6,
+            -6.510633456943661,
+            146.73999999999998
+          ],
+          "calls": 8,
+          "triangles": 161701,
+          "textures": 2,
+          "geometries": 8,
+          "programs": 5,
+          "water": {
+            "color": 4679034,
+            "roughness": 0.15,
+            "metalness": 0.2,
+            "side": 0,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": false,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "edge": {
+            "color": 16777215,
+            "roughness": 1,
+            "metalness": 0,
+            "side": 2,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": true,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "timestamp": 3542.5,
+          "imageSHA256": "185e30b23dafc1102aafc391cb45ac68b5bab66b8d5019c5a142fdf634f7e156"
+        },
+        "walking": {
+          "view": "walking",
+          "camera": [
+            -38,
+            -5.4106334569436605,
+            150.04
+          ],
+          "calls": 6,
+          "triangles": 154189,
+          "textures": 2,
+          "geometries": 8,
+          "programs": 5,
+          "water": {
+            "color": 4679034,
+            "roughness": 0.15,
+            "metalness": 0.2,
+            "side": 0,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": false,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "edge": {
+            "color": 16777215,
+            "roughness": 1,
+            "metalness": 0,
+            "side": 2,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": true,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "timestamp": 3648.199999999255,
+          "imageSHA256": "d931efd59f3d01d102ddb3aadcf281b48bcaa95b9152a2932b782ae48865f232"
+        },
+        "far": {
+          "view": "far",
+          "camera": [
+            -40,
+            72.93936654305634,
+            173.04
+          ],
+          "calls": 8,
+          "triangles": 161701,
+          "textures": 2,
+          "geometries": 8,
+          "programs": 5,
+          "water": {
+            "color": 4679034,
+            "roughness": 0.15,
+            "metalness": 0.2,
+            "side": 0,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": false,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "edge": {
+            "color": 16777215,
+            "roughness": 1,
+            "metalness": 0,
+            "side": 2,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": true,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "timestamp": 3726.800000000745,
+          "imageSHA256": "c2c886f8255645522199c450a1fd72d69e47f05f41029a00682a1e1f2b9b975e"
+        },
+        "under": {
+          "view": "under",
+          "camera": [
+            -37.2,
+            -7.760633456943661,
+            145.64
+          ],
+          "calls": 6,
+          "triangles": 154189,
+          "textures": 2,
+          "geometries": 8,
+          "programs": 5,
+          "water": {
+            "color": 4679034,
+            "roughness": 0.15,
+            "metalness": 0.2,
+            "side": 0,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": false,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "edge": {
+            "color": 16777215,
+            "roughness": 1,
+            "metalness": 0,
+            "side": 2,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": true,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "timestamp": 3771.800000000745,
+          "imageSHA256": "f7c9f2cdee9b8fafac8ca3e44cc94a8d77dae615f052556146270ca5dbb5869e"
+        },
+        "east": {
+          "view": "east",
+          "camera": [
+            337,
+            -5.022598647482322,
+            32.379999999999995
+          ],
+          "calls": 4,
+          "triangles": 95492,
+          "textures": 2,
+          "geometries": 8,
+          "programs": 5,
+          "water": {
+            "color": 4679034,
+            "roughness": 0.15,
+            "metalness": 0.2,
+            "side": 0,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": false,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "edge": {
+            "color": 16777215,
+            "roughness": 1,
+            "metalness": 0,
+            "side": 2,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": true,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "timestamp": 3834.199999999255,
+          "imageSHA256": "90ac5691dc7ab1de7f66848183164e921576d0172b3bb05080d11f68fc797253"
+        },
+        "west": {
+          "view": "west",
+          "camera": [
+            -353,
+            -5.774990590544272,
+            362.5
+          ],
+          "calls": 8,
+          "triangles": 161701,
+          "textures": 2,
+          "geometries": 8,
+          "programs": 5,
+          "water": {
+            "color": 4679034,
+            "roughness": 0.15,
+            "metalness": 0.2,
+            "side": 0,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": false,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "edge": {
+            "color": 16777215,
+            "roughness": 1,
+            "metalness": 0,
+            "side": 2,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": true,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "timestamp": 3928.5,
+          "imageSHA256": "61c21363ed108da4e6c2cfd682b648521ca5fa6b4099e2ebd62f7afa3cd49eac"
+        },
+        "winter": {
+          "view": "winter",
+          "camera": [
+            348,
+            -3.672598647482322,
+            40.379999999999995
+          ],
+          "calls": 2,
+          "triangles": 20224,
+          "textures": 2,
+          "geometries": 8,
+          "programs": 6,
+          "water": {
+            "color": 4679034,
+            "roughness": 0.15,
+            "metalness": 0.2,
+            "side": 0,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": false,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "edge": {
+            "color": 15660023,
+            "roughness": 1,
+            "metalness": 0,
+            "side": 2,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": false,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "timestamp": 4020.800000000745,
+          "imageSHA256": "14c6e67eaac0607bfb4a94e6050bd73f50d76bea61ae43a8f9970af532add33b"
+        }
+      },
+      "seams": [
+        {
+          "name": "Höje å uppströms",
+          "local": [
+            339.9400744345164,
+            -6.672653861205234,
+            25.38298774186884
+          ],
+          "edge": [
+            339.9400744345164,
+            -6.672598838806152,
+            25.38298774186884
+          ],
+          "slopeLocal": [
+            -0.030205604680185683,
+            -0.01369917193768523
+          ],
+          "slopeEdge": [
+            -0.030205604680185683,
+            -0.01369917193768523
+          ]
+        },
+        {
+          "name": "Höje å nedströms",
+          "local": [
+            -349.9439888094543,
+            -7.424935633796121,
+            355.47848845580495
+          ],
+          "edge": [
+            -349.9439888094543,
+            -7.424990653991699,
+            355.47848845580495
+          ],
+          "slopeLocal": [
+            0.014694023896288818,
+            -0.010529494767073454
+          ],
+          "slopeEdge": [
+            0.014694023896288818,
+            -0.010529494767073454
+          ]
+        }
+      ],
+      "normalProbes": [
+        {
+          "name": "Höje å uppströms",
+          "pixels": [
+            [
+              127,
+              128,
+              255,
+              255
+            ],
+            [
+              128,
+              128,
+              255,
+              255
+            ]
+          ]
+        },
+        {
+          "name": "Höje å nedströms",
+          "pixels": [
+            [
+              127,
+              127,
+              255,
+              255
+            ],
+            [
+              128,
+              128,
+              255,
+              255
+            ]
+          ]
+        }
+      ],
+      "repeatAfterMs": 690.8000000007451,
+      "isolation": {
+        "same": true,
+        "calls": []
+      }
+    },
+    "after": {
+      "meshes": [
+        {
+          "name": "site-terrain",
+          "bytes": 8227756,
+          "triangles": 132681,
+          "bounds": [
+            [
+              -350,
+              -8.034990310668945,
+              -340
+            ],
+            [
+              340,
+              12.314000129699707,
+              460
+            ]
+          ],
+          "hash": "30f14c0aa0609fae391a9020025cac9c0e9069ae862b2dca07e8ef0eb71b1056",
+          "cast": false,
+          "receive": true
+        },
+        {
+          "name": "site-terrain-remainder",
+          "bytes": 7525336,
+          "triangles": 74146,
+          "bounds": [
+            [
+              -350,
+              -8.034990310668945,
+              -340
+            ],
+            [
+              340,
+              12.314000129699707,
+              460
+            ]
+          ],
+          "hash": "4bd5677f28c7d644af1ec91f4134879bede04989963fdae4fe2287ff4b90dd7e",
+          "cast": false,
+          "receive": true
+        },
+        {
+          "name": "site-terrain-southeast",
+          "bytes": 7338004,
+          "triangles": 58535,
+          "bounds": [
+            [
+              -350,
+              -8.034990310668945,
+              -340
+            ],
+            [
+              340,
+              12.314000129699707,
+              460
+            ]
+          ],
+          "hash": "d2d3697d50dbb63a051e6dc916f8bb58be1d196f756dc6fcd13f8213ba568645",
+          "cast": false,
+          "receive": true
+        },
+        {
+          "name": "bridges-concrete",
+          "bytes": 38016,
+          "triangles": 288,
+          "bounds": [
+            [
+              16.014053344726562,
+              -7.599999904632568,
+              99.32396697998047
+            ],
+            [
+              30.85759162902832,
+              -2.75,
+              146.5159912109375
+            ]
+          ],
+          "hash": "404ca4cdc387ad7f8ce03239cdfd3e5fbd774da65b693ae8c4567164f66ea13b",
+          "cast": true,
+          "receive": true
+        },
+        {
+          "name": "bridges-steel",
+          "bytes": 953568,
+          "triangles": 7224,
+          "bounds": [
+            [
+              16.31783676147461,
+              -3,
+              99.92760467529297
+            ],
+            [
+              30.494434356689453,
+              -1.5,
+              145.93606567382812
+            ]
+          ],
+          "hash": "81dd23e2460b3c64385caa366a0926de1b6f2c3c3f4a4bc31b0c817afe28a011",
+          "cast": true,
+          "receive": true
+        },
+        {
+          "name": "bridges-asphalt",
+          "bytes": 15552,
+          "triangles": 162,
+          "bounds": [
+            [
+              16.325578689575195,
+              -3.054779529571533,
+              90.59552001953125
+            ],
+            [
+              30.654420852661133,
+              -2.7021703720092773,
+              156.9789581298828
+            ]
+          ],
+          "hash": "831eb23fb1c5f9e9a39570432ecd3fe6ca41c12bf5ad9569c56422ce217f3298",
+          "cast": true,
+          "receive": true
+        },
+        {
+          "name": "bridges-water",
+          "bytes": 107712,
+          "triangles": 1122,
+          "bounds": [
+            [
+              -351.8581848144531,
+              -7.424990653991699,
+              19.88703155517578
+            ],
+            [
+              340.27801513671875,
+              -6.672598838806152,
+              360.3566589355469
+            ]
+          ],
+          "hash": "a71b8d5efc1a34793814793a76cbeaa595bcfc4e7b04b1e3986eeaed1c924da2",
+          "cast": false,
+          "receive": true
+        },
+        {
+          "name": "edge-land",
+          "bytes": 1798740,
+          "triangles": 16655,
+          "bounds": [
+            [
+              -1401.5491943359375,
+              -8.024991035461426,
+              -1000
+            ],
+            [
+              1234.2821044921875,
+              12.630085945129395,
+              1154.49609375
+            ]
+          ],
+          "hash": "a261ff50003fbaef9d62b5b770827f136d5da0c97bb01c01b3c970a587670130",
+          "cast": false,
+          "receive": false
+        },
+        {
+          "name": "edge-houses",
+          "bytes": 385452,
+          "triangles": 3569,
+          "bounds": [
+            [
+              -879.9000244140625,
+              -3.309999942779541,
+              -918.8832397460938
+            ],
+            [
+              213.7440643310547,
+              23.989999771118164,
+              392.1097717285156
+            ]
+          ],
+          "hash": "7345ada27c35d01d3f731803016a517f71c3b99012fe2e907b47ee3ccf4d8347",
+          "cast": false,
+          "receive": false
+        }
+      ],
+      "water": {
+        "color": 4679034,
+        "roughness": 0.15,
+        "metalness": 0.2,
+        "side": 0,
+        "opacity": 1,
+        "transparent": false,
+        "depthWrite": true,
+        "vertexColors": false,
+        "maps": [
+          {
+            "kind": "map",
+            "present": false,
+            "version": null
+          },
+          {
+            "kind": "normalMap",
+            "present": false,
+            "version": null
+          },
+          {
+            "kind": "bumpMap",
+            "present": false,
+            "version": null
+          },
+          {
+            "kind": "roughnessMap",
+            "present": false,
+            "version": null
+          }
+        ]
+      },
+      "edge": {
+        "color": 16777215,
+        "roughness": 1,
+        "metalness": 0,
+        "side": 2,
+        "opacity": 1,
+        "transparent": false,
+        "depthWrite": true,
+        "vertexColors": true,
+        "maps": [
+          {
+            "kind": "map",
+            "present": false,
+            "version": null
+          },
+          {
+            "kind": "normalMap",
+            "present": false,
+            "version": null
+          },
+          {
+            "kind": "bumpMap",
+            "present": false,
+            "version": null
+          },
+          {
+            "kind": "roughnessMap",
+            "present": false,
+            "version": null
+          }
+        ]
+      },
+      "levels": [
+        -6.672598647482322,
+        -7.424990590544272
+      ],
+      "edgeMask": {
+        "waterVertices": 1824,
+        "dryVertices": 48141,
+        "otherWaterVerticesExcluded": 63
+      },
+      "queries": [
+        {
+          "x": 333.48,
+          "z": 25.71,
+          "water": -6.678585790586161,
+          "shore": -5.178585790586161,
+          "ground": -7.278585790586161
+        },
+        {
+          "x": 300.14,
+          "z": 33.37,
+          "water": -6.709958521095721,
+          "shore": -5.209958521095721,
+          "ground": -7.30995852109572
+        },
+        {
+          "x": 280.48,
+          "z": 38.61,
+          "water": -6.728618132528053,
+          "shore": -5.228618132528053,
+          "ground": -7.328618132528053
+        },
+        {
+          "x": 259.89,
+          "z": 49.27,
+          "water": -6.749881866418384,
+          "shore": -5.249881866418384,
+          "ground": -7.349881866418384
+        },
+        {
+          "x": 228.37,
+          "z": 59.59,
+          "water": -6.780298794568278,
+          "shore": -5.280298794568278,
+          "ground": -7.380298794568278
+        },
+        {
+          "x": 216.35,
+          "z": 64.62,
+          "water": -6.792248615841492,
+          "shore": -5.292248615841492,
+          "ground": -7.392248615841492
+        },
+        {
+          "x": 204.64,
+          "z": 74.37,
+          "water": -6.806223076602029,
+          "shore": -5.306223076602029,
+          "ground": -7.4062230766020285
+        },
+        {
+          "x": 190.76,
+          "z": 79.13,
+          "water": -6.819680149346264,
+          "shore": -5.319680149346264,
+          "ground": -7.419680149346264
+        },
+        {
+          "x": 131.38,
+          "z": 74.61,
+          "water": -6.874295062561119,
+          "shore": -5.374295062561119,
+          "ground": -7.474295062561119
+        },
+        {
+          "x": 127.15,
+          "z": 83.64,
+          "water": -6.883440058163601,
+          "shore": -5.383440058163601,
+          "ground": -7.483440058163601
+        },
+        {
+          "x": 124.35,
+          "z": 101.96,
+          "water": -6.90043642447885,
+          "shore": -5.40043642447885,
+          "ground": -7.50043642447885
+        },
+        {
+          "x": 116.11,
+          "z": 114.02,
+          "water": -6.913831767809577,
+          "shore": -5.413831767809577,
+          "ground": -7.5138317678095765
+        },
+        {
+          "x": 105.35,
+          "z": 119.29,
+          "water": -6.924819772529211,
+          "shore": -5.424819772529211,
+          "ground": -7.52481977252921
+        },
+        {
+          "x": 74.99,
+          "z": 119.53,
+          "water": -6.9526637849692445,
+          "shore": -5.4526637849692445,
+          "ground": -7.552663784969244
+        },
+        {
+          "x": 44.31,
+          "z": 119.8,
+          "water": -6.980801488862222,
+          "shore": -5.480801488862222,
+          "ground": -7.580801488862222
+        },
+        {
+          "x": 1.16,
+          "z": 125.14,
+          "water": -7.0206762149971675,
+          "shore": -5.5206762149971675,
+          "ground": -7.620676214997167
+        },
+        {
+          "x": -15.1,
+          "z": 129.89,
+          "water": -7.036211516015622,
+          "shore": -5.536211516015622,
+          "ground": -7.636211516015622
+        },
+        {
+          "x": -67.45,
+          "z": 166.11,
+          "water": -7.094592743232702,
+          "shore": -5.594592743232702,
+          "ground": -7.694592743232701
+        },
+        {
+          "x": -89.43,
+          "z": 183.37,
+          "water": -7.120222812764011,
+          "shore": -5.620222812764011,
+          "ground": -7.7202228127640105
+        },
+        {
+          "x": -101.32,
+          "z": 198.71,
+          "water": -7.13802228814737,
+          "shore": -5.63802228814737,
+          "ground": -7.73802228814737
+        },
+        {
+          "x": -110.41,
+          "z": 205.34,
+          "water": -7.1483405751954585,
+          "shore": -5.6483405751954585,
+          "ground": -7.748340575195458
+        },
+        {
+          "x": -181.7,
+          "z": 207.36,
+          "water": -7.213746843025356,
+          "shore": -5.713746843025356,
+          "ground": -7.813746843025355
+        },
+        {
+          "x": -220.92,
+          "z": 225.61,
+          "water": -7.253418908725273,
+          "shore": -5.753418908725273,
+          "ground": -7.853418908725272
+        },
+        {
+          "x": -235.63,
+          "z": 235.51,
+          "water": -7.2696801493462635,
+          "shore": -5.7696801493462635,
+          "ground": -7.869680149346263
+        },
+        {
+          "x": -248.18,
+          "z": 251.46,
+          "water": -7.2882930909336885,
+          "shore": -5.7882930909336885,
+          "ground": -7.888293090933688
+        },
+        {
+          "x": -256.19,
+          "z": 263.74,
+          "water": -7.301739112205258,
+          "shore": -5.801739112205258,
+          "ground": -7.901739112205258
+        },
+        {
+          "x": -268.91,
+          "z": 283.27,
+          "water": -7.32311401155072,
+          "shore": -5.82311401155072,
+          "ground": -7.9231140115507195
+        },
+        {
+          "x": -292.46,
+          "z": 311.54,
+          "water": -7.356857734726255,
+          "shore": -5.856857734726255,
+          "ground": -7.956857734726254
+        },
+        {
+          "x": -308.44,
+          "z": 332.5,
+          "water": -7.381029563296016,
+          "shore": -5.881029563296016,
+          "ground": -7.9810295632960155
+        },
+        {
+          "x": -322.75,
+          "z": 343.94,
+          "water": -7.397831510441721,
+          "shore": -5.897831510441721,
+          "ground": -7.997831510441721
+        },
+        {
+          "x": -338.5,
+          "z": 351.1,
+          "water": -7.413698342573966,
+          "shore": -5.913698342573966,
+          "ground": -8.013698342573965
+        },
+        {
+          "x": -350,
+          "z": 355.5,
+          "water": -7.424990590544272,
+          "shore": -5.924990590544272,
+          "ground": -8.024990590544272
+        }
+      ],
+      "views": {
+        "near": {
+          "view": "near",
+          "camera": [
+            -37.6,
+            -6.510633456943661,
+            146.73999999999998
+          ],
+          "calls": 8,
+          "triangles": 161701,
+          "textures": 2,
+          "geometries": 8,
+          "programs": 6,
+          "water": {
+            "color": 4679034,
+            "roughness": 0.15,
+            "metalness": 0.2,
+            "side": 0,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": false,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "edge": {
+            "color": 16777215,
+            "roughness": 1,
+            "metalness": 0,
+            "side": 2,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": true,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "timestamp": 3120.300000000745,
+          "imageSHA256": "92b33a0f4d08f81c2ded02e442748b5515071662226023957f1ced46c30658bb"
+        },
+        "walking": {
+          "view": "walking",
+          "camera": [
+            -38,
+            -5.4106334569436605,
+            150.04
+          ],
+          "calls": 6,
+          "triangles": 154189,
+          "textures": 2,
+          "geometries": 8,
+          "programs": 6,
+          "water": {
+            "color": 4679034,
+            "roughness": 0.15,
+            "metalness": 0.2,
+            "side": 0,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": false,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "edge": {
+            "color": 16777215,
+            "roughness": 1,
+            "metalness": 0,
+            "side": 2,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": true,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "timestamp": 3230.300000000745,
+          "imageSHA256": "492791c65d7f2b767ce682141e41f59f0a1ceabd900bd8d9f29df9c699f35469"
+        },
+        "far": {
+          "view": "far",
+          "camera": [
+            -40,
+            72.93936654305634,
+            173.04
+          ],
+          "calls": 8,
+          "triangles": 161701,
+          "textures": 2,
+          "geometries": 8,
+          "programs": 6,
+          "water": {
+            "color": 4679034,
+            "roughness": 0.15,
+            "metalness": 0.2,
+            "side": 0,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": false,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "edge": {
+            "color": 16777215,
+            "roughness": 1,
+            "metalness": 0,
+            "side": 2,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": true,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "timestamp": 3305.4000000003725,
+          "imageSHA256": "c2c886f8255645522199c450a1fd72d69e47f05f41029a00682a1e1f2b9b975e"
+        },
+        "under": {
+          "view": "under",
+          "camera": [
+            -37.2,
+            -7.760633456943661,
+            145.64
+          ],
+          "calls": 6,
+          "triangles": 154189,
+          "textures": 2,
+          "geometries": 8,
+          "programs": 6,
+          "water": {
+            "color": 4679034,
+            "roughness": 0.15,
+            "metalness": 0.2,
+            "side": 0,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": false,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "edge": {
+            "color": 16777215,
+            "roughness": 1,
+            "metalness": 0,
+            "side": 2,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": true,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "timestamp": 3349.9000000003725,
+          "imageSHA256": "f7c9f2cdee9b8fafac8ca3e44cc94a8d77dae615f052556146270ca5dbb5869e"
+        },
+        "east": {
+          "view": "east",
+          "camera": [
+            337,
+            -5.022598647482322,
+            32.379999999999995
+          ],
+          "calls": 4,
+          "triangles": 95492,
+          "textures": 2,
+          "geometries": 8,
+          "programs": 6,
+          "water": {
+            "color": 4679034,
+            "roughness": 0.15,
+            "metalness": 0.2,
+            "side": 0,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": false,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "edge": {
+            "color": 16777215,
+            "roughness": 1,
+            "metalness": 0,
+            "side": 2,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": true,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "timestamp": 3414.7000000011176,
+          "imageSHA256": "0383a9130dc3a73a0b292c3ac159595abac3ec2ea98af537eadef730f0e9fd47"
+        },
+        "west": {
+          "view": "west",
+          "camera": [
+            -353,
+            -5.774990590544272,
+            362.5
+          ],
+          "calls": 8,
+          "triangles": 161701,
+          "textures": 2,
+          "geometries": 8,
+          "programs": 6,
+          "water": {
+            "color": 4679034,
+            "roughness": 0.15,
+            "metalness": 0.2,
+            "side": 0,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": false,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "edge": {
+            "color": 16777215,
+            "roughness": 1,
+            "metalness": 0,
+            "side": 2,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": true,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "timestamp": 3509.800000000745,
+          "imageSHA256": "2ae11cd03657251357c3b432c340c07011b62d4efe07e8500d2ab109f31e57f4"
+        },
+        "winter": {
+          "view": "winter",
+          "camera": [
+            348,
+            -3.672598647482322,
+            40.379999999999995
+          ],
+          "calls": 2,
+          "triangles": 20224,
+          "textures": 2,
+          "geometries": 8,
+          "programs": 7,
+          "water": {
+            "color": 4679034,
+            "roughness": 0.15,
+            "metalness": 0.2,
+            "side": 0,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": false,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "edge": {
+            "color": 15660023,
+            "roughness": 1,
+            "metalness": 0,
+            "side": 2,
+            "opacity": 1,
+            "transparent": false,
+            "depthWrite": true,
+            "vertexColors": false,
+            "maps": [
+              {
+                "kind": "map",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "normalMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "bumpMap",
+                "present": false,
+                "version": null
+              },
+              {
+                "kind": "roughnessMap",
+                "present": false,
+                "version": null
+              }
+            ]
+          },
+          "timestamp": 3599.7000000011176,
+          "imageSHA256": "14c6e67eaac0607bfb4a94e6050bd73f50d76bea61ae43a8f9970af532add33b"
+        }
+      },
+      "seams": [
+        {
+          "name": "Höje å uppströms",
+          "local": [
+            339.9400744345164,
+            -6.672653861205234,
+            25.38298774186884
+          ],
+          "edge": [
+            339.9400744345164,
+            -6.672598838806152,
+            25.38298774186884
+          ],
+          "slopeLocal": [
+            -0.030205604680185683,
+            -0.01369917193768523
+          ],
+          "slopeEdge": [
+            -0.030205604680185683,
+            -0.01369917193768523
+          ]
+        },
+        {
+          "name": "Höje å nedströms",
+          "local": [
+            -349.9439888094543,
+            -7.424935633796121,
+            355.47848845580495
+          ],
+          "edge": [
+            -349.9439888094543,
+            -7.424990653991699,
+            355.47848845580495
+          ],
+          "slopeLocal": [
+            0.014694023896288818,
+            -0.010529494767073454
+          ],
+          "slopeEdge": [
+            0.014694023896288818,
+            -0.010529494767073454
+          ]
+        }
+      ],
+      "normalProbes": [
+        {
+          "name": "Höje å uppströms",
+          "pixels": [
+            [
+              128,
+              127,
+              255,
+              255
+            ],
+            [
+              128,
+              127,
+              255,
+              255
+            ]
+          ]
+        },
+        {
+          "name": "Höje å nedströms",
+          "pixels": [
+            [
+              127,
+              127,
+              255,
+              255
+            ],
+            [
+              127,
+              127,
+              255,
+              255
+            ]
+          ]
+        }
+      ],
+      "repeatAfterMs": 744.3000000007451,
+      "isolation": {
+        "same": true,
+        "calls": []
+      }
+    }
+  },
+  "source": {
+    "src/riversurface.js": "7ddf64a0a863af5d009f80b2cad61e27ae776a2fbde4f8311d34ba74e70459f9",
+    "src/config.js": "26ce551bc636a9b9c0863c4416fc89ed6c86f2a33daa6ea7e530e29dc5109cee",
+    "src/riverbridge.js": "a0155a7378199e91874d61d307ad0bc6f77092e5d96b4b4761982de94b08b15a",
+    "src/edgebackdrop.js": "c37bb55febe06a848a909e3cd77027ebd4df1cc0abf31872e10245688c2825fd",
+    "src/riveredge.js": "dee3ab8de02116cfc48c9046e68e76048694c6af072a4a36dd5c1399d559b726",
+    "src/surroundings.js": "2221cfce03931b4793d7c46ecc27753b3ed0b396b3ede717c42e0e8004fafaef",
+    "src/riverdrift.js": "5169f5c4e56a390a3e750c99b5b577576b7353c2b1b1f036d03d4cfa16755ca1",
+    "src/riverfish.js": "a9a6df1c68b308300d24d3c7a0b4b70ad30b5bcfc8000d34fd6572ff135ad525",
+    "src/farwalk.js": "09533bd376244d3cc396732439bfa53e78427932ebc7dfe14ccc9d4bb752e6fc",
+    "src/seasons.js": "40c3af85af4327527548f25d5754a89ee577e3bb3520a2de08f0a809c7dbcd70",
+    "src/riverpark.js": "d12dc94ef537e3c2779720adef949ece1f2e33a02fca46f844ababd8a7a5a75d",
+    "tools/riversurface303.html": "3d94e4b4f1ecd15efc14aea9cf560032c3aa050c09d21ce35869c7deca625b06",
+    "tools/riversurface303browser.cjs": "dd349feddb0f7864d7af6c3d53db07725ebd8ad4eb29d56df3aeb91d06a1cc04",
+    "tools/riversurface303test.mjs": "02c55e527f4bc0576f5f18decb2652bf121538b93362b38bed790a3541dc7977"
+  }
+}

@@ -22,6 +22,33 @@ tillför327680CPU/basbyte och436904nominella GPUbyte med mippar. Geometri/UVbyte
 är oförändrade; inget per-frameupload. Ingen global FPS-/mobil-/fullappnavigationsverifiering påstås.
 
 
+<a id="issue-303"></a>
+
+## Stationära ljuskrusningar på ån, #303
+
+Granskad accepterad publicerad originalkälla:
+`c02d687594fd8c00ad1088f401c5ebd30d7222c2`
+([original #2082](https://github.com/solwation/lunden-3d-apartment/issues/2082)).
+Endast byteidentiska neutrala `src/riversurface.js`, namngivna `RIVER_SURFACE`-värden
+med egen publik kommentar och två granskade materialwrappers/importer överförs.
+Publicens tidigare config och alla andra källmoduler är bytebevarade;
+[exakta urval och hashvärden](verification/303/selection.json).
+
+Inga originalbilder, personlig data/inredning, spel-/simningskod, tjänster,
+Cloudflare eller originalhistorik importeras. Befintlig attribution/licens behålls.
+Publicens lokala vatten är fortsatt FrontSide, medan edge-land är DoubleSide;
+originalets tvåsidiga lokala simyta importeras alltså inte. Egna färger,
+vattenfall/nivåer/botten/stränder, navigering, vinter, äldre matthet och geometri
+behålls. Endast vattenfärg på de två verkliga fortsättningsplanen får krusningar.
+
+Egen faktisk buildRiverBridges + buildEdgeBackdrop-browser använder egna matchade
+nativebilder och kontrollerar båda skarvar, fjärravtoning, undersida, vinter och
+lagrings-/nätverksisolering. Stationär effekt: ingen tidsuniform, extraloop,
+texturkarta, ny geometri/draw/pass eller per-frameuppladdning. Shaderarbete och
+program redovisas uttryckligt; ingen gratis GPU-/FPS-effekt påstås.
+[Egna resultat, bilder, budget och gränser](verification/303/README.md).
+
+
 ## Flackare södra broanslutning, #301
 
 Granskad publicerad originalkälla `bc00a3e5b30fbacec71ec8ea76142ba9b16391eb`

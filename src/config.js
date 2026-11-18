@@ -2261,6 +2261,13 @@ export const BRICK_SURFACE = {
   mortarRoughness: 0.97, faceRoughness: 0.90, grainRoughness: 0.025,
 };
 
+// #303 (original #2082): stationary wind ripples in world metres; artistic guesses, not measured flow or waves.
+// Stationary lighting only: no displacement, texture or frame-time update.
+export const RIVER_SURFACE = {
+  waves: [[8.8, 3.1, 0.65, -0.37, 0.55, 0.035], [-4.6, 13.4, 0.4, 0.7, 0.45, 0.02]],
+  distance: [12, 45], footprint: [0.035, 0.12], levelTolerance: 0.002,
+};
+
 // #294 (upstream #2072): aggregate visual guesses, not surveyed wear or repairs.
 export const ASPHALT_SURFACE = {
   size: 512, tile: 1.6, cells: 224, seed: 2072, colourVariation: 0.17,

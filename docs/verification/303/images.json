@@ -1,0 +1,20 @@
+{
+  "surface": {
+    "sha256": "da430729b85a08c33bf8404b88f9a8e89616d2e11601a31cabaecc16d35411a8",
+    "width": 2240,
+    "height": 1672,
+    "openedAndInspected": true
+  },
+  "joins": {
+    "sha256": "d59d690a28499fee905c5f862466afdcfbbd950b5042d3afe5c677602dbf126f",
+    "width": 2240,
+    "height": 1672,
+    "openedAndInspected": true
+  },
+  "range-under": {
+    "sha256": "7211f0f50ebed85cdc12010d841d61b10a0bb644c0d96a36ffe7cc6c6ea0bf3e",
+    "width": 2240,
+    "height": 1672,
+    "openedAndInspected": true
+  }
+}
