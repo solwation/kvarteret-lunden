@@ -2290,6 +2290,21 @@ export const ASPHALT_SURFACE = {
   broadStrength: 0.035, broadScale: [0.27, 0.19, 0.11, -0.31],
 };
 
+// #312 (original #2096, b0581f3): shared gravel surface (src/gravelsurface.js) for the courtyard gravel and the park's gravel
+// paths (the original's boule-court move is not ported; the public court keeps its sand batch). One deterministic seamless
+// `size` px map per `tile` m (world-metre UVs): `cells` stones across the tile (~12 mm pea gravel grains, *guess*), each its own
+// brightness (± `stoneContrast`) and slight warm/cool tint (`stoneTint`), with darker fines (`fines`) between them, soft tone
+// patches (`patch`, value noise over the tile) and a broad shader tone across tiles (`broadStrength` / `broadScale`). The map's
+// linear mean is normalised to `mean` and materials divide their colour by it, so each surface's average colour is unchanged.
+// `depth`: bump relief; `roughness`: stone top … fines; `snowRoughness`: winter. All values are visual *guess* values.
+export const GRAVEL_SURFACE = {
+  size: 512, tile: 0.9, cells: 72, seed: 2096, mean: 0.6, anisotropy: 4,
+  stoneContrast: 0.45, stoneTint: 0.08, fines: 0.78, grit: 0.05,
+  patch: { seed: 20961, contrast: 1.4, strength: 0.07, octaves: [{ cells: 3, amp: 1 }, { cells: 7, amp: 0.5 }] },
+  depth: 0.0006, roughness: [0.78, 0.97], snowRoughness: 1,
+  broadStrength: 0.05, broadScale: [0.43, 0.29, 0.17, -0.51],
+};
+
 // #296 (original #2074): artistic surface assumptions for the existing 40 cm patio slabs, not surveyed concrete profiles.
 export const PAVING_SURFACE = {
   ppm: 160, slabs: 6, depth: 0.0015, bevel: 0.002, minBevelPixels: 1.25,

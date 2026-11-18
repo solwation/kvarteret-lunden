@@ -1,0 +1,233 @@
+{
+ "baseline": "59c0acef3a775e1d608d66dc61ee9e5bce7b9c68",
+ "viewport": [
+  1200,
+  800
+ ],
+ "views": {
+  "walk-courtyard": [
+   -25,
+   32,
+   0,
+   -0.45,
+   0,
+   6
+  ],
+  "close-courtyard": [
+   -26,
+   25,
+   0,
+   -1.1,
+   0,
+   6
+  ],
+  "walk-park": [
+   -40.1,
+   112,
+   0,
+   -0.4,
+   -3,
+   6
+  ],
+  "walk-winter": [
+   -25,
+   32,
+   0,
+   -0.45,
+   0,
+   1
+  ]
+ },
+ "phases": {
+  "before": {
+   "meshes": 1361,
+   "patched": 0,
+   "gravel": [
+    {
+     "name": "?",
+     "vertices": 12,
+     "index": null,
+     "map": false,
+     "receiveShadow": true,
+     "castShadow": false,
+     "min": [
+      -38,
+      0,
+      19.2
+     ],
+     "max": [
+      -19.9,
+      0,
+      29.7
+     ]
+    },
+    {
+     "name": "park-paths",
+     "vertices": 6690,
+     "index": null,
+     "map": false,
+     "receiveShadow": true,
+     "castShadow": false,
+     "min": [
+      -269.39,
+      -5.74,
+      64.68
+     ],
+     "max": [
+      121.68,
+      3.36,
+      259.12
+     ]
+    }
+   ],
+   "loadMs": 38196,
+   "storage": "kept",
+   "views": {
+    "walk-courtyard": {
+     "camera": [
+      -25,
+      1.62,
+      32
+     ],
+     "calls": 242,
+     "triangles": 661274,
+     "textures": 71,
+     "geometries": 564,
+     "programs": 58
+    },
+    "close-courtyard": {
+     "camera": [
+      -26,
+      1.62,
+      25
+     ],
+     "calls": 58,
+     "triangles": 510364,
+     "textures": 71,
+     "geometries": 564,
+     "programs": 58
+    },
+    "walk-park": {
+     "camera": [
+      -40.1,
+      -1.38,
+      112
+     ],
+     "calls": 591,
+     "triangles": 761242,
+     "textures": 75,
+     "geometries": 620,
+     "programs": 62
+    },
+    "walk-winter": {
+     "camera": [
+      -25,
+      1.62,
+      32
+     ],
+     "calls": 238,
+     "triangles": 620030,
+     "textures": 75,
+     "geometries": 620,
+     "programs": 65
+    }
+   }
+  },
+  "after": {
+   "meshes": 1361,
+   "patched": 2,
+   "gravel": [
+    {
+     "name": "courtyard-gravel",
+     "vertices": 12,
+     "index": null,
+     "map": true,
+     "receiveShadow": true,
+     "castShadow": false,
+     "min": [
+      -38,
+      0,
+      19.2
+     ],
+     "max": [
+      -19.9,
+      0,
+      29.7
+     ]
+    },
+    {
+     "name": "park-paths",
+     "vertices": 6690,
+     "index": null,
+     "map": true,
+     "receiveShadow": true,
+     "castShadow": false,
+     "min": [
+      -269.39,
+      -5.74,
+      64.68
+     ],
+     "max": [
+      121.68,
+      3.36,
+      259.12
+     ]
+    }
+   ],
+   "loadMs": 48387,
+   "storage": "kept",
+   "views": {
+    "walk-courtyard": {
+     "camera": [
+      -25,
+      1.62,
+      32
+     ],
+     "calls": 242,
+     "triangles": 661274,
+     "textures": 73,
+     "geometries": 564,
+     "programs": 59
+    },
+    "close-courtyard": {
+     "camera": [
+      -26,
+      1.62,
+      25
+     ],
+     "calls": 58,
+     "triangles": 510364,
+     "textures": 73,
+     "geometries": 564,
+     "programs": 59
+    },
+    "walk-park": {
+     "camera": [
+      -40.1,
+      -1.38,
+      112
+     ],
+     "calls": 591,
+     "triangles": 761242,
+     "textures": 77,
+     "geometries": 620,
+     "programs": 63
+    },
+    "walk-winter": {
+     "camera": [
+      -25,
+      1.62,
+      32
+     ],
+     "calls": 238,
+     "triangles": 620030,
+     "textures": 77,
+     "geometries": 620,
+     "programs": 67
+    }
+   }
+  }
+ },
+ "errors": [],
+ "external": []
+}

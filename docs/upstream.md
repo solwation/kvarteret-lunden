@@ -4123,3 +4123,25 @@ Egen verifiering: `node --test tools/hedgeclumptest.mjs` 5/5, en engångsjämfö
 före/efter-browser i den riktiga appen (uteplatshäckar nära/gångvy sommar/vinter, entrébuxbom som komponent) med
 oförändrade draws/trianglar/texturer/program/ljus och häckgeometri; noll fel, externa anrop och lagringsändringar.
 [Egna bilder, kontroller och kostnad](verification/310/README.md).
+## Grusytor med små stenar, #312
+
+Granskad originalkälla `b0581f3528fb38df5e2a7ac029736678234b4661`
+([original #2096](https://github.com/solwation/lunden-3d-apartment/issues/2096)).
+Neutrala `src/gravelsurface.js` (byteidentisk; beror på publicens `grassdetail.js` och
+`vertexcompile.js`, båda identiska med originalets vid källrevisionen) och ett eget
+`GRAVEL_SURFACE`-block i `src/config.js` (samma värden) överförs, plus konsumentrader:
+`courtyard.js` (gårdsgruset får `gravelMaterial(0xcfc6b2)`, metertexturkoordinater fanns redan i
+`plate()`) och `riverpark.js` (parkens grusgångar får `gravelMaterial` och `gravelUV()` på den
+sammanslagna batchen; asfalten oförändrad). Publikens gruskulörer var desamma som originalets och
+behålls som medelfärg. Originalets flytt av boulebanan till grusbatchen (med hörntoner per vertex)
+överförs inte: boulebanan är spelyta i originalet och ligger kvar i publikens sandbatch, så
+`gravelTint`/`BOULE_TINT` behövs inte. Geometri, höjder, kollision, gångbarhet och snö
+(`registerSnow`) är oförändrade. Test- och browserverktyg skrivs om för publik bas/port/katalog
+med funktionsnivåkontroller. Ingen originalbild, inredning, avatar, gameplay, lagring, tjänst,
+Cloudflare eller originalhistoria importeras.
+
+Egen verifiering: fyra Node-test, npm test/build och en egen före/efter-browser i den riktiga
+appen (gården nära och i gångvy, en grusgång i parken, gården i snö) med samma kamera,
+oförändrade grusmeshar/gränser och draws (±1 levande scen); noll fel och externa anrop.
+Kostnad: två delade 512²-DataTextures (1 MiB vardera + mipmaps), engångsgenerering vid start,
+inga nya draws, ljus eller per-framearbete. [Egna bilder, kontroller och kostnad](verification/312/README.md).

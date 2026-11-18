@@ -9,6 +9,7 @@ import { COURTYARD as C, SITE, PLAYER } from './config.js';
 import { pavingTexture } from './patio.js';
 import { registerSnow, registerTrees } from './seasons.js';
 import { SEASON } from './config.js';
+import { gravelMaterial } from './gravelsurface.js';
 import { groundY } from './surroundings.js';
 import { lobeGeometry, leafMaterial } from './foliage.js';
 import { BatchLod } from './lod.js';
@@ -160,7 +161,7 @@ export function buildCourtyard() {
     seats.segments.push(...segs); seats.footprints.push(quad);
   };
   for (const p of C.paths) geos.paving.push(plate(p, 0.006, p.x0 < R.x1 && p.x1 > R.x0 && p.z0 < R.z1 && p.z1 > R.z0));
-  for (const g of C.gravel) geos.gravel.push(plate(g, 0.003));
+  for (const g of C.gravel) geos.gravel.push(plate(g, 0.003)); // #312: shared gravel map (metre UVs from plate())
   // pergolas: posts, beams, cross slats; a dining table and two benches under them
   for (const p of C.pergolas) {
     const bulbStart = bulbs.length;
@@ -350,7 +351,7 @@ export function buildCourtyard() {
   const paveTex = pavingTexture();
   const mats = {
     paving: new THREE.MeshStandardMaterial({ map: paveTex, roughness: 0.95 }),
-    gravel: new THREE.MeshStandardMaterial({ color: 0xcfc6b2, roughness: 1 }),
+    gravel: gravelMaterial(0xcfc6b2, { name: 'courtyard-gravel' }), // #312 (original #2096): stones, mean colour kept
     sand: new THREE.MeshStandardMaterial({ color: 0xe0cfa0, vertexColors: true, roughness: 1 }), // mottled (#681)
     wood: new THREE.MeshStandardMaterial({ color: 0x8a6544, map: woodGrain(), vertexColors: true, roughness: 0.8 }), // grain + a tone per board (#682)
     metal: new THREE.MeshStandardMaterial({ color: 0x23262a, roughness: 0.5, metalness: 0.5 }),
