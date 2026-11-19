@@ -1,6 +1,6 @@
 # Målade skärmväggar — publik #297
 
-Publik produktkälla `c5e11071f51537d12a95cebf4748f669ebc89592` jämförd med `1bcd30b6d34e11524838d16c1c7dc094725f5c6d`.
+Publik produktkälla `e3aa442f364f4611b4c4bbf2d13448f555b66c4e` jämförd med `1bcd30b6d34e11524838d16c1c7dc094725f5c6d`.
 Selektiv granskad originalkälla `a95e1719379f73593c0b6e7ffeb8bfd3d9626484` (#2075). Exakta produkt-/fixtur-/plankällhashar och valda originalhashar finns i [source.json](source.json); [preservation.json](preservation.json) binder de bytebevarade delarna. Originalets bilder, planer, personlig inredning, tjänster, gameplay och historik har inte importerats. Befintlig attribution/licens gäller; ingen ny extern konstresurs eller beroende används.
 
 ## Egna matchade produktionsbilder

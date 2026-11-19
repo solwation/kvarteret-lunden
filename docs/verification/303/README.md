@@ -53,8 +53,8 @@ inte uppfyller publicens flat-materialkontrakt. Endast fixturen rättades till p
 riktiga grassMaterial(); inga produkt-/Node-/källprov påverkades eller togs om.
 Bara slutliga källbundna bilder/JSON sparas. Browserföreläget serverar exakt de två gamla
 konsumenterna från publik baseline; configens gamla bytes är bevarade och det nya
-blocket är då oanvänt. Verifieringsfixtur/runner är selektivt anpassade från b6191d463a8936ef6ae93fff7b7344915bd072fc,
-som ingår i accepterade publicerade originalkällan; inga originalbilder används.
+blocket är då oanvänt. Verifieringsfixtur/runner är selektivt anpassade från publicerade originalkällan c02d687594fd8c00ad1088f401c5ebd30d7222c2
+(byteidentisk med arbetarrevisionen som först citerades, #332); inga originalbilder används.
 
 ## Faktisk budget och kontinuitet
 

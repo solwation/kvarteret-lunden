@@ -139,7 +139,7 @@ pavementjoin och fullvärld/navigation ingår inte. README är publicens ändrin
 Selektivt granskad, publicerad originalkälla:
 `a95e1719379f73593c0b6e7ffeb8bfd3d9626484`
 ([original #2075](https://github.com/solwation/lunden-3d-apartment/issues/2075));
-produkt `c01298f0b73dd41e992e8cf45ed9430f11b10dcd` är byteidentisk.
+publicerad produkt `e3aa442f364f4611b4c4bbf2d13448f555b66c4e`; dess källhashar i `docs/verification/297/source.json` är verifierade mot den commiten (#332).
 Urval: enbart neutrala `screenwallsurface.js`, dess tre Node-kontrakt,
 `SCREEN_WALL_SURFACE`, färgfibrernas rader i publicens egen `screenwall.js`
 och ett materialanrop/import i `World.M.fence`. Hjälparen är byteidentisk med
