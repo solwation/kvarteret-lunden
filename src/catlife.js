@@ -69,7 +69,7 @@ export function moodOf(activity) {
     case 'creep': case 'crouch': return 'stalk';
     case 'pounce': case 'chase': case 'play': return 'play';
     case 'notice': case 'fish': case 'eat': case 'sniff': case 'climb': case 'alert': return 'alert';
-    case 'pet': case 'held': case 'nuzzle': case 'happy': return 'happy';
+    case 'nuzzle': case 'happy': return 'happy';
     case 'hurt': case 'scared': case 'flee': case 'cross': return 'cross';
     default: return 'calm';
   }

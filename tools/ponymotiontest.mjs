@@ -16,9 +16,9 @@ const still = { x: 0, z: 0, power: 0 };
 const mean = (a) => a.reduce((s, v) => s + v, 0) / a.length;
 
 test('every motion stays bounded through all states, gales, flies and long frames', () => {
-  const states = ['idle', 'graze', 'walk', 'watch', 'pet', 'feed'];
+  const states = ['idle', 'graze', 'walk', 'watch'];
   for (const seed of [7, 19, 3]) {
-    const { tr } = run(400, (t) => ({ state: states[Math.floor(t / 9) % 6], walking: Math.floor(t / 9) % 6 === 2, headDown: t % 18 < 9, flies: true,
+    const { tr } = run(400, (t) => ({ state: states[Math.floor(t / 9) % 4], walking: Math.floor(t / 9) % 4 === 2, headDown: t % 18 < 9, flies: true,
       wind: { x: 1.7 * Math.sin(t * 0.7), z: -1.7 * Math.cos(t * 0.5), power: 1 } }), seed, 0.1);
     for (const s of tr) {
       assert.ok(Math.abs(s.lean) <= 1 + 1e-9 && s.rest >= 0 && s.rest <= 1);

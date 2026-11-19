@@ -50,14 +50,14 @@ export function ponyWind(state, x, z, yaw, out = { x: 0, z: 0, power: 0 }) {
 }
 
 /**
- * Advance pony motion `m` by `dt` s. `o`: { state ('idle' | 'graze' | 'walk' | 'watch' | 'pet' | 'feed'), walking, headDown (neck pitch
+ * Advance pony motion `m` by `dt` s. `o`: { state ('idle' | 'graze' | 'walk' | 'watch'), walking, headDown (neck pitch
  * past grazing), wind ({x, z, power} from ponyWind), flies (bool) }. Returns `m` with bounded fields: `lean` −1…1 (+ = weight on the
  * left legs), `rest` 0…1 (the unloaded hind leg rests), `chew`/`grind` −1…1, `ears[k].x/y` rad, `tail[k].x/z` rad, `mane`, `twitch`.
  */
 export function stepPonyMotion(m, dt, o) {
   if (!(dt > 0)) return m;
   dt = Math.min(dt, 0.1); m.t += dt;
-  const r = m.rnd, st = o.state, standing = !o.walking && st !== 'walk' && st !== 'pet';
+  const r = m.rnd, st = o.state, standing = !o.walking && st !== 'walk';
   // weight shift: a new loaded side every `period` s while standing; walking evens the weight out
   m.shiftT -= dt;
   if (m.shiftT <= 0) { m.shiftT = span(r, M.shift.period); m.side = r() < 0.75 ? -m.side : m.side; }
@@ -65,11 +65,11 @@ export function stepPonyMotion(m, dt, o) {
   m.lean += ((standing ? m.side : 0) - m.lean) * k;
   m.rest += ((standing ? 1 : 0) - m.rest) * Math.min(1, dt * M.shift.ease * 1.5);
   // chewing with the head down (grass or hay)
-  m.eat += (((st === 'graze' || st === 'feed') && o.headDown ? 1 : 0) - m.eat) * Math.min(1, dt * 3);
+  m.eat += ((st === 'graze' && o.headDown ? 1 : 0) - m.eat) * Math.min(1, dt * 3);
   m.chewPh += dt * 6.2832 * M.chew.hz;
   m.chew = Math.max(0, Math.sin(m.chewPh)) * m.eat; m.grind = Math.sin(m.chewPh + 1.2) * m.eat;
   // ears: own random turns; forward while attentive; flattened briefly by a fly
-  const attentive = st === 'watch' || st === 'pet';
+  const attentive = st === 'watch';
   m.ears.forEach((e, i) => {
     e.t -= dt;
     if (e.t <= 0) { e.t = span(r, M.ears.period); e.ty = attentive ? (r() - 0.5) * 0.3 * M.ears.turn : (r() * 2 - 1) * M.ears.turn; }

@@ -6,7 +6,7 @@ import { TREE_FORM as TF } from './config.js';
 // lobes (src/foliage.js lobeGeometry, the same instanced batches — a lobe more or less is an instance, not a draw), a trunk
 // that leans a little and is turned its own way, and per-tree spreads of height, width and lobe size. Nothing here draws or
 // touches the scene: the functions return plain transforms, so surroundings.js, the helper test and later consumers (the
-// squirrels' climbing, #2132; birds landing in crowns, #2129) all see the same trees.
+// squirrels' climbing, #2132) all see the same trees.
 //
 // `trunkLayout(bark, phone)` is the branch architecture of the shared trunk geometry (foliage.js trunkGeometry builds its
 // cylinders from it): the stem and leader (order 0), main limbs (1), second limbs (2) and fine twigs (3, desktop only), in the
