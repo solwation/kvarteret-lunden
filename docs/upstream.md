@@ -1,5 +1,20 @@
 # Förbättringar från originalet
 
+## Orkesterkärnan v0.15.0, #343
+
+Gemensamt underhåll med [original #2225](https://github.com/solwation/lunden-3d-apartment/issues/2225)
+(`1326a2ffa6962eb0fb6ad613093a25e35c2dc7d9`). Kärnan är hämtad direkt från sitt
+neutrala källrepo, inte kopierad från originalprojektet: exakt release
+[`141aa62399af12b48fadd8dec38137b40d8a7be5`](https://github.com/solwation/dirigenten-och-orkestern/releases/tag/v0.15.0).
+Endast `.orchestra/shared/` och lokal pin/proveniens/förtroenderad ändras. Säkerhetsrättning:
+ärenden från konton utan skrivrätt väntar på betrodd acceptans (kommentar eller
+`accepted`-etikett satt av betrodd aktör); agenter accepterar aldrig själva. Den publika
+raden räknar ärenden som dirigenten skapar enligt hostreglerna som betrodda; här finns
+ingen rapporttjänst. Ingen applikationskod, lagring, personligt innehåll eller
+tjänsteintegration överförs; köregler, prioritet och timers är bevarade. Verifiering:
+exakt Git-trädidentitet mot releasen (`3c7bb57f`), diff/länkar/regelkonsekvens samt
+`npm test` och `npm run build`.
+
 ## Orkesterkärnan v0.14.5, #335
 
 Gemensamt underhåll med [original #2213](https://github.com/solwation/lunden-3d-apartment/issues/2213)
