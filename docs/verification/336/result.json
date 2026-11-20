@@ -1,0 +1,296 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "name": "no audio context before explicit opt-in"
+    },
+    {
+      "ok": true,
+      "name": "actual world window can open before opt-in; other sfx stay silent"
+    },
+    {
+      "ok": true,
+      "name": "wind control starts off"
+    },
+    {
+      "ok": true,
+      "name": "gesture creates one running noise source, bed plus actual open-window filter"
+    },
+    {
+      "ok": true,
+      "name": "repeated scene wind updates allocate no new audio nodes"
+    },
+    {
+      "ok": true,
+      "name": "off control silences and suspends the context"
+    },
+    {
+      "ok": true,
+      "name": "re-enable reuses the same context and noise source"
+    },
+    {
+      "ok": true,
+      "name": "rendered outdoor wind rises with shared power"
+    },
+    {
+      "ok": true,
+      "name": "rendered indoor wind is substantially damped"
+    },
+    {
+      "ok": true,
+      "name": "summer leaves and bare winter branches have distinct spectra"
+    },
+    {
+      "ok": true,
+      "name": "window follows same strength and stopping disconnects its sound"
+    },
+    {
+      "ok": true,
+      "name": "one shared source, two bed filters, no nodes created by parameter updates"
+    },
+    {
+      "ok": true,
+      "name": "original storage untouched/unread and no external requests"
+    },
+    {
+      "ok": true,
+      "name": "actual viewer and offline audio report no errors"
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "pendingWindow": {
+    "open": true,
+    "handle": true,
+    "noAudio": true,
+    "otherSilent": true
+  },
+  "enabled": {
+    "contexts": 1,
+    "state": "running",
+    "nodes": {
+      "source": 1,
+      "filter": 3,
+      "panner": 1,
+      "gain": 4
+    }
+  },
+  "audio": [
+    {
+      "name": "out-0",
+      "power": 0,
+      "indoors": false,
+      "leaves": 1,
+      "rms": 0.0005162948397523458,
+      "brightness": 176.00602193092632,
+      "built": {
+        "source": 1,
+        "filter": 2,
+        "panner": 0
+      },
+      "afterSet": {
+        "source": 1,
+        "filter": 2,
+        "panner": 0
+      }
+    },
+    {
+      "name": "in-0",
+      "power": 0,
+      "indoors": true,
+      "leaves": 1,
+      "rms": 0.00009293307163664209,
+      "brightness": 176.00602184308434,
+      "built": {
+        "source": 1,
+        "filter": 2,
+        "panner": 0
+      },
+      "afterSet": {
+        "source": 1,
+        "filter": 2,
+        "panner": 0
+      }
+    },
+    {
+      "name": "out-0.12",
+      "power": 0.12,
+      "indoors": false,
+      "leaves": 1,
+      "rms": 0.002187346774260079,
+      "brightness": 1751.9522127236942,
+      "built": {
+        "source": 1,
+        "filter": 2,
+        "panner": 0
+      },
+      "afterSet": {
+        "source": 1,
+        "filter": 2,
+        "panner": 0
+      }
+    },
+    {
+      "name": "in-0.12",
+      "power": 0.12,
+      "indoors": true,
+      "leaves": 1,
+      "rms": 0.0003834937399796863,
+      "brightness": 1007.7190820585292,
+      "built": {
+        "source": 1,
+        "filter": 2,
+        "panner": 0
+      },
+      "afterSet": {
+        "source": 1,
+        "filter": 2,
+        "panner": 0
+      }
+    },
+    {
+      "name": "out-1",
+      "power": 1,
+      "indoors": false,
+      "leaves": 1,
+      "rms": 0.04132990562945234,
+      "brightness": 2580.266397038994,
+      "built": {
+        "source": 1,
+        "filter": 2,
+        "panner": 0
+      },
+      "afterSet": {
+        "source": 1,
+        "filter": 2,
+        "panner": 0
+      }
+    },
+    {
+      "name": "in-1",
+      "power": 1,
+      "indoors": true,
+      "leaves": 1,
+      "rms": 0.004484160883361049,
+      "brightness": 2362.397454078488,
+      "built": {
+        "source": 1,
+        "filter": 2,
+        "panner": 0
+      },
+      "afterSet": {
+        "source": 1,
+        "filter": 2,
+        "panner": 0
+      }
+    },
+    {
+      "name": "winter",
+      "power": 0.7,
+      "indoors": false,
+      "leaves": 0,
+      "rms": 0.021333778713731686,
+      "brightness": 910.5537333948715,
+      "built": {
+        "source": 1,
+        "filter": 2,
+        "panner": 0
+      },
+      "afterSet": {
+        "source": 1,
+        "filter": 2,
+        "panner": 0
+      }
+    },
+    {
+      "name": "summer",
+      "power": 0.7,
+      "indoors": false,
+      "leaves": 1,
+      "rms": 0.02349484502831856,
+      "brightness": 3384.565779069788,
+      "built": {
+        "source": 1,
+        "filter": 2,
+        "panner": 0
+      },
+      "afterSet": {
+        "source": 1,
+        "filter": 2,
+        "panner": 0
+      }
+    },
+    {
+      "name": "window-low",
+      "power": 0.12,
+      "indoors": false,
+      "leaves": 1,
+      "rms": 0.003298669707384822,
+      "brightness": 366.9087309594144,
+      "built": {
+        "source": 1,
+        "filter": 3,
+        "panner": 1
+      },
+      "afterSet": {
+        "source": 1,
+        "filter": 3,
+        "panner": 1
+      }
+    },
+    {
+      "name": "window-high",
+      "power": 1,
+      "indoors": false,
+      "leaves": 1,
+      "rms": 0.014989209159743484,
+      "brightness": 908.3321971548746,
+      "built": {
+        "source": 1,
+        "filter": 3,
+        "panner": 1
+      },
+      "afterSet": {
+        "source": 1,
+        "filter": 3,
+        "panner": 1
+      }
+    },
+    {
+      "name": "window-closed",
+      "power": 1,
+      "indoors": false,
+      "leaves": 1,
+      "rms": 0,
+      "brightness": 0,
+      "built": {
+        "source": 1,
+        "filter": 3,
+        "panner": 1
+      },
+      "afterSet": {
+        "source": 1,
+        "filter": 3,
+        "panner": 1
+      }
+    }
+  ],
+  "isolation": {
+    "unchanged": true,
+    "originalAccess": [],
+    "storage": [
+      [
+        "get",
+        "kvarteret-lunden.paddockGrass"
+      ],
+      [
+        "get",
+        "kvarteret-lunden.update-resume"
+      ],
+      [
+        "remove",
+        "kvarteret-lunden.update-resume"
+      ]
+    ]
+  }
+}

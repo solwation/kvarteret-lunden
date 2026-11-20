@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: body gain, low-pass frequency and Q rise monotonically with the wind; calm is nearly silent
+ok 1 - body gain, low-pass frequency and Q rise monotonically with the wind; calm is nearly silent
+  ---
+  duration_ms: 2.268191
+  type: 'test'
+  ...
+# Subtest: gusts follow exactly the vegetation time, direction and downwind phase; power remains bounded
+ok 2 - gusts follow exactly the vegetation time, direction and downwind phase; power remains bounded
+  ---
+  duration_ms: 0.558898
+  type: 'test'
+  ...
+# Subtest: season and trees: summer leaves rustle high and broad near trees, bare branches whistle narrow and lower; no trees, no rustle
+ok 3 - season and trees: summer leaves rustle high and broad near trees, bare branches whistle narrow and lower; no trees, no rustle
+  ---
+  duration_ms: 0.508898
+  type: 'test'
+  ...
+# Subtest: indoors: much quieter, dulled below the ceiling, rustle/whistle nearly gone; monotone still
+ok 4 - indoors: much quieter, dulled below the ceiling, rustle/whistle nearly gone; monotone still
+  ---
+  duration_ms: 0.312599
+  type: 'test'
+  ...
+# Subtest: treeNearness: 1 at a tree, 0 at or beyond the range, nearest wins
+ok 5 - treeNearness: 1 at a tree, 0 at or beyond the range, nearest wins
+  ---
+  duration_ms: 0.229399
+  type: 'test'
+  ...
+# Subtest: open window: level and brightness rise with the wind; the old fixed sound (0.16 / 520 Hz) is a light breeze
+ok 6 - open window: level and brightness rise with the wind; the old fixed sound (0.16 / 520 Hz) is a light breeze
+  ---
+  duration_ms: 0.903597
+  type: 'test'
+  ...
+# Subtest: every output is finite for odd input
+ok 7 - every output is finite for odd input
+  ---
+  duration_ms: 0.769197
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 135.47145

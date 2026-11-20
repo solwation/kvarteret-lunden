@@ -3000,6 +3000,18 @@ export const SITE_WIND = {
   maxDisplacement: 0.35,
 };
 
+// Public #336, original #2177 26fa2762: neutral procedural wind. Levels/filter settings are artistic
+// guesses from the reviewed source, not recordings or measured weather. Gusts use SITE_WIND's existing phase.
+// Public-only graph values: master level, shared noise seconds and positional window falloff are explicit guesses.
+export const WIND_SOUND = {
+  every: 0.25, ease: 0.6, near: 14,
+  body: { gain: [0.02, 0.22], gamma: 1.3, hz: [180, 1100], q: [0.7, 7], howl: [0.45, 0.8] },
+  band: { rustle: { hz: [3200, 4000], q: 0.8, gain: 0.05 }, whistle: { hz: [1000, 2400], q: [2, 8], gain: 0.06 }, from: [0.2, 0.7] },
+  indoor: { gain: 0.18, hz: 420, band: 0.1 },
+  window: { gain: [0.08, 0.3], hz: [300, 930], level: 0.6, ref: 1.2, rolloff: 1.2 },
+  master: 0.8, noiseSeconds: 2,
+};
+
 export const PHONE_FRUSTUM = { pad: 0.01 };
 
 // Camera near plane (src/main.js `updateCameraNear`, from the original's #1276, dd9927ef): the 24-bit depth buffer resolves about

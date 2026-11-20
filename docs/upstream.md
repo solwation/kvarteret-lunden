@@ -36,6 +36,33 @@ tjänsteintegration överförs; köregler, prioritet och timers är bevarade. Ve
 exakt Git-trädidentitet mot releasen (`3c7bb57f`), diff/länkar/regelkonsekvens samt
 `npm test` och `npm run build`.
 
+## Neutralt vindsus och öppna fönster, #336
+
+Granskad originalkälla `26fa2762aa43792163904aa8721db95091b2e329`
+([original #2177](https://github.com/solwation/lunden-3d-apartment/issues/2177)). Selektivt urval:
+`windsound.js` kropp/band/inomhus-/fönsterparametrar och `treeNearness`, de neutrala `WIND_SOUND`-värdena,
+principen med en brusloop/två filter samt de rena testfallen. Publikens `audio.js` var en tyst stub:
+hela originalfilen överförs **inte**. Den nya lilla vindgrafen använder en delad procedural bruskälla,
+två filter för utomhusljudet och en positionsdämpad filtergren per öppet fönster; uppdateringarna bygger inga noder.
+Alla andra `sfx`-anrop förblir tysta, också djuren enligt AGENTS #235–238.
+
+Anpassningar: styrka tas direkt från publikens `siteWind.power`, och byfasen använder exakt samma
+`siteWind.time/dir` och `SITE_WIND.gust` som vegetationens shader; originalets `windsim.js`, väderkälla
+samt separata byoscillation överförs inte. Bladtäckning kommer från publikens `floraMonth`/`SEASON`,
+närhet från befintliga träd och inomhusdämpning från `Navigation.outdoors/below/inCore`.
+`main.js` uppdaterar var 0,25 s; det redan befintliga `world.js`-anropet `sfx.wind(at)` får samma styrka.
+Publikens fasta lugna bris och befintliga `?wind=power[,seconds]` är oförändrade.
+
+En egen av/på-knapp i Hjälp börjar av varje besök, skapar AudioContext först vid tryck,
+stänger av och pausar kontexten med samma knapp och sparar ingen inställning. Inga ljudfiler,
+personliga resurser, djurljud, spel, originalnycklar, nätverksanrop eller tjänster överförs.
+Originalets positional-falloffvärden återanvänds; alla ljudnivåer är konstnärliga antaganden.
+Exakta käll-/publikhashar och urval finns i [#336:s verifiering](verification/336/README.md).
+
+Portade funktionstester, npm test/build och eget browserpass med faktisk app/knapp/fönster och
+numerisk OfflineAudioContext-verifiering redovisas där. Ljudresultatet visas som nivå-/spektrummått;
+den nya kontrollen har en egen granskad bild. Ingen fysisk hörsel-/telefonprestanda påstås.
+
 ## Orkesterkärnan v0.14.5, #335
 
 Gemensamt underhåll med [original #2213](https://github.com/solwation/lunden-3d-apartment/issues/2213)

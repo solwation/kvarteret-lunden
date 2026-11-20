@@ -10,7 +10,10 @@ import { VERSION, takeResume, watchUpdates, saveResume, claimContextReload } fro
 import { reloadOnContextRestore, lowMemory } from './lowmemory.js';
 import { installTightFrustum } from './tightfrustum.js';
 import { installSiteInstanceBatch } from './siteinstancebatch.js';
-import { SiteWind } from './sitewind.js';
+import { SiteWind, siteWind as windState } from './sitewind.js';
+import { toggleMuted, isMuted, updateListener, updateWindSound } from './audio.js';
+import { treeNearness } from './windsound.js';
+import { WIND_SOUND, SEASON } from './config.js';
 import { installPlaceCycle } from './place-cycle.js';
 import { Garage } from './garage.js';
 import { Balloon } from './balloon.js';
@@ -50,6 +53,7 @@ const intervals = debugParams.has('perf') ? new FrameIntervals() : null;
 // #315 (original #2101): trees, shrubs and reeds sway in a fixed light breeze (no weather here: SITE_WIND.calm);
 // &wind=power[,seconds] pins the power 0…1 and optionally holds the clock (repeatable frames)
 const [windForce, windTime] = (debugParams.get('wind') ?? '').split(',').map((v) => (v === '' ? NaN : Number(v)));
+let windSoundT = 0;
 const siteWind = new SiteWind(null, { force: windForce, time: windTime });
 const ray = new THREE.Raycaster(), centre = new THREE.Vector2();
 const points = new THREE.Group();
@@ -310,6 +314,14 @@ function frame() {
   paddock?.update(dt, navigation.below, paddockRain); // no weather here: only the debug parameter ?paddockrain=0..1 (original #1316's rain input)
   ducks.update(dt,navigation.below);
   siteWind.update(dt); // #315: three uniforms, no per-instance work
+  windSoundT += dt;
+  if (windSoundT >= WIND_SOUND.every) {
+    windSoundT = 0;
+    updateListener(camera);
+    updateWindSound(windState, { x:navigation.pos.x, z:navigation.pos.z,
+      leaves:SEASON.trees[floraMonth][3], near:treeNearness(treeFeet,navigation.pos.x,navigation.pos.z),
+      indoors:!navigation.outdoors || navigation.below || navigation.inCore });
+  }
 
   ambientCats?.update(navigation.below || navigation.inCore || !navigation.outdoors);
 
@@ -355,6 +367,15 @@ $('start').addEventListener('click', () => {
   $('intro').hidden = true; active = true; requestLook();
 });
 $('help').addEventListener('click', () => { release(); $('help-dialog').showModal(); });
+$('wind-sound').addEventListener('click', async () => {
+  const button = $('wind-sound'); button.disabled = true;
+  try {
+    await toggleMuted();
+    button.textContent = isMuted() ? 'Vindljud: av' : 'Vindljud: på';
+    button.setAttribute('aria-pressed',String(!isMuted()));
+  } catch { button.textContent = 'Vindljud kunde inte startas – försök igen'; }
+  finally { button.disabled = false; }
+});
 $('close-help').addEventListener('click', () => $('help-dialog').close());
 $('resume').addEventListener('click', requestLook);
 $('measure').addEventListener('click', setMeasure);

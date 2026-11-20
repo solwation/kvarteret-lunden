@@ -1,0 +1,29 @@
+{
+  "originalCommit": "26fa2762aa43792163904aa8721db95091b2e329",
+  "publicBase": "a08a6f3",
+  "originalFileHashes": {
+    "src/windsound.js": "aa582d5536058eb071ea24b1e20ad632bad3d43c248128905c2b90f54224f309",
+    "src/audio.js": "1787a46432f78d6ba8c7599c309e4aee100206fa00582456d2b5a55bbed4e7b8",
+    "src/config.js": "0954d8d0878dbe9bb1f286b708b813a6595bb3a60b6f61b0740d1c6336e99bde",
+    "src/main.js": "b117998721056cfa7fb8100760a4e0cbe5d11f7613d99c649f0b4ef39521f835",
+    "tools/windsoundtest.mjs": "e98df2eef16b41adf3aced91299327b204c3d36528d388e7ae8bb5f087d1eefd"
+  },
+  "testedPublicFileHashes": {
+    "src/windsound.js": "88c0ca045a16b74d56113a8275eab9598f59adb0c39d976f1949326c7669aacd",
+    "src/audio.js": "83ae95fffa5b2fbadf5e0831fe34e296d1b3b7704f3c8faeabcab3829de1afba",
+    "src/config.js": "96d38fb865f658f6b8c1822d8950fb534333ac367d48062a4ca1d5837d5d20c6",
+    "src/main.js": "408d9e49c3909bb1c08883370ac0dd3c1229fd0b3752c0b8147e911cb3b2ac8c",
+    "index.html": "d71a8c35a73face3388f56be89d9469e72952a1d4314a2492e437fe52a9ac68b",
+    "tools/windsoundtest.mjs": "dc2185b6707abd761bc30db1a107daec57f0c5508eb68a40f26b6742c69a871a",
+    "tools/windsound336browser.cjs": "cd7fcfcf2850d1bbc7d84500aae958aa08ac673800ebd432efc0d2028a7ff3ac"
+  },
+  "selection": [
+    "windSoundParams: original body unchanged except speed renamed power; direct public siteWind.power instead of windsim mapping.",
+    "windowWindParams and treeNearness: original function bodies retained.",
+    "gustAt: original independent sweep replaced by the exact public SITE_WIND gust phase using shared time and direction.",
+    "WIND_SOUND: near/every/ease/body/band/indoor and window gain/hz values retained; original gust and unused window LFO fields omitted.",
+    "audio.js: silent public stub replaced only by a small neutral wind graph/controller; whole original audio.js NOT imported. One shared noise source also feeds window branches, no original LFO, reverb or other sfx.",
+    "main.js: public-only 0.25-second wind consumer and explicit opt-in help control; no original main block or weather model imported.",
+    "tools/windsoundtest.mjs: seven neutral test cases adapted to power and the existing vegetation gust model."
+  ]
+}

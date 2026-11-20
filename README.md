@@ -8,6 +8,9 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+I **Hjälp** kan du slå på **Vindljud** för besöket. Det börjar avstängt och sparas inte. Ett syntetiskt vindsus följer samma fasta bris och byar som träden, med lövprassel nära träd och dovare ljud inomhus; öppna fönster släpper in ett svagt sus med samma vindstyrka. Ljudet använder inga inspelningar eller externa tjänster, och miljödjuren förblir ljudlösa (#336). [Ljudmätningar och den granskade kontrollen](docs/verification/336/README.md).
+
+
 Trädkronornas lövkort som ses nästan från kanten tonas bort på nära håll, så kronorna inte längre ser strimmiga ut under och bredvid träden. Bara inom 30 m (före mobilens LOD-gräns) och aldrig kronans täta kärna; skuggor, vind, LOD, årstider och draw-antal är oförändrade (#331). [Egna före/efter-bilder under kronan och i parken](docs/verification/331/README.md).
 
 Träden har fått egna arter och former: breda runda lönnar, kupolformade lindar, oregelbundna ekar och smala björkar med hängande kronor, med fler grenar som syns genom kronan och särskilt på vintern, och varje träd lutar och växer lite på sitt eget sätt. Arten är en deterministisk dragning per trädposition (ett antagande, ingen inventering); trädens platser, årstidsfärger, vind, LOD och mobilprofil är publikens egna och draw-antalet oförändrat (#327). [Egna före/efter-bilder sommar och vinter, nära och på avstånd](docs/verification/327/README.md).
