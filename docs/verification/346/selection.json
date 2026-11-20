@@ -1,0 +1,24 @@
+{
+  "originalCommit": "2e3e2ec5b63a295d26565fe84695038475eecbc7",
+  "publicBase": "23483c52f061f4bcd01dc99f337827c59a77eee8",
+  "sourcePaintSHA256": "5edac8e7ac5e0645606650b03291eda35c9f3f6b253e732af7aa280a910cb9a6",
+  "paintBodyFromDetailAtByteIdentical": true,
+  "testedPublicFileHashes": {
+    "src/paintsurface.js": "2651e741595831b4c31e38f0b66e911dc55b4bcfc3d8c7f0ad7d87cb3b3b7394",
+    "src/config.js": "02f8bfefc2e20aed06e1a9c2ab0781f07567493760d772080914852850baa07d",
+    "src/world.js": "8e873db2af57ccc0c6aec53c34f8db64229d39abf8763486a85ac19a3d17c377",
+    "src/main.js": "12d837aaa57116e89408437181e4a0ce098de65d26448025f3a3cff442d05c1b",
+    "src/interior.js": "4e2892e4b1227593631d0a117e38628d78652a084a516fc940f3d391586f54e6",
+    "src/vertexcompile.js": "47d28e079de552863adaffea7c821c91120e83f5bbc9bca721c0d292cb10f869",
+    "tools/paintsurfacetest.mjs": "5d88ff75f91e96b9a832d4a227fb3e5292f38c9c2533a131d6e79732e1b1e7a6",
+    "tools/paintsurface346browser.cjs": "f2f27d552ae4b3906e8d79779b5a57435ab5129f1511b2b52cb04a1abe1835f8",
+    "tools/paintgrazing346browser.cjs": "3897779e7111873fa6ba5939f01f9b0eb06fd2fb2eb954a6a6c9887068a85a24"
+  },
+  "selection": [
+    "Only paintsurface.js neutral body, PAINT_SURFACE values and world.js wall/ceiling wrappers imported.",
+    "Public-only pure query control paintDetailEnabled/initial uniform added; original main/Quality integration omitted.",
+    "Original personal hood/interior material split, history, images and tools not imported.",
+    "Public main.js, interior.js and vertexcompile.js unchanged.",
+    "Fixed daylight retained; separate ceiling grazing light exists in diagnostic test only."
+  ]
+}

@@ -12,6 +12,29 @@ Ej överfört: kvack/vingljud/VoiceCap, `duckLureNear`, bröd, matning, belönin
 Egen verifiering: `node --test tools/ducklifetest.mjs` 4/4, `duckambienttest`/`duckmotiontest` gröna, npm test/build och browser före/efter
 (`tools/ducklife344browser.cjs`). [Bilder och kostnad](verification/344/README.md).
 
+## Rollerstruktur på väggar och sprutstruktur i takmaterialet, #346
+
+Granskad originalkälla `2e3e2ec5b63a295d26565fe84695038475eecbc7`
+([original #2205](https://github.com/solwation/lunden-3d-apartment/issues/2205)). Endast neutrala
+`src/paintsurface.js`, `PAINT_SURFACE` och wrapper på publikens befintliga `world.js` `M.wall/ceiling`
+överförs; även de modellerade standardlägenheterna använder dessa material. Originalets personliga
+kökskåpa och `interior.js`, main/Quality-controller och ändringshistorik överförs inte.
+
+Kart-, fade- och shaderfunktionskroppar bevaras från källan. Publik anpassning: en lokal ren
+`paintDetailEnabled(search)` läser `?quality=0`/`?nopaint` för samma `paintDetail`-uniform,
+utan lagring eller automatisk kvalitetsmodell. Övriga nivåer och lowMemory använder samma lilla
+128² linjära RGBA8-karta, med originalets antagna rollerhöjd0,24mm/upprepning80mm och
+takhöjd0,45mm/upprepning150mm. `rememberFragmentCompile` finns med samma API och registrerar
+oförändrade vertexpositioner/skuggavtal. Färger, basroughness, alla geometrier, parkett/kakel och
+andra material förblir oförändrade. Ingen personlig resurs, bild, spelkod, tjänst eller originallagring importeras.
+
+Egen faktisk publik-app-browser använder samma frysta kamera/material med detaljen av/på och
+oförändrat fast dagsljus. Väggen visar en fin detalj; det befintliga dagsljuset ger ingen synlig
+skillnad på takets undersida. En separat uttryckligt diagnostisk strykljusbild verifierar det riktiga
+takmaterialet, utan någon ljusändring i produkten. Oförändrade draw-/triangelantal, +1 delad karta
+(65536basbyte,87380nominella byte inklusive mippar) och +2 programvarianter i den uppmätta normala
+scenen; inga nya pass eller per-frameuppladdningar. [Urval, egna nativebilder, kontroller och begränsningar](verification/346/README.md).
+
 ## Rum bakom grannfönstren, #337
 
 Granskad publicerad originalkälla `dd7e6697d58465db68b2f3d1d61412e9b25707cb`

@@ -3012,6 +3012,11 @@ export const WIND_SOUND = {
   master: 0.8, noiseSeconds: 2,
 };
 
+// Public #346, original #2205 2e3e2ec5: artistic roller/spray guesses, not surveyed standard finishes.
+// Metres; one shared 128² packed map. Existing public colours and geometry are retained.
+export const PAINT_SURFACE = { size: 128, seed: 2205, roughGrain: 0.7, roughness: 0.14, fade: [1.5, 4.5],
+  wall: { tile: 0.08, depth: 0.00024 }, ceiling: { tile: 0.15, depth: 0.00045 } };
+
 export const PHONE_FRUSTUM = { pad: 0.01 };
 
 // Camera near plane (src/main.js `updateCameraNear`, from the original's #1276, dd9927ef): the 24-bit depth buffer resolves about

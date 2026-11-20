@@ -8,6 +8,9 @@ En första statisk 3D-visning finns i projektet. Den innehåller området, L1007
 
 ## Omfattning
 
+De målade väggarna har en mycket fin rollerstruktur i närljus, och takmaterialet en något grövre sprutstruktur. Färger och geometri behålls; detaljen tonar bort mellan1,5 och4,5m. Ytorna är konstnärliga antaganden, inte verifierade standardval. Den verifierade takvyn är oförändrad i fast dagsljus; en separat strykljuskontroll visar takmaterialets struktur. `?quality=0` eller `?nopaint` stänger av just denna detalj (#346). [Egna jämförelser, diagnosticerat strykljus och kostnad](docs/verification/346/README.md).
+
+
 I **Hjälp** kan du slå på **Vindljud** för besöket. Det börjar avstängt och sparas inte. Ett syntetiskt vindsus följer samma fasta bris och byar som träden, med lövprassel nära träd och dovare ljud inomhus; öppna fönster släpper in ett svagt sus med samma vindstyrka. Ljudet använder inga inspelningar eller externa tjänster, och miljödjuren förblir ljudlösa (#336). [Ljudmätningar och den granskade kontrollen](docs/verification/336/README.md).
 
 

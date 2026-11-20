@@ -1,0 +1,38 @@
+{
+  "diagnostic": true,
+  "description": "Actual public ceiling; fixture-only grazing directional light, not production daylight",
+  "viewport": [
+    960,
+    640
+  ],
+  "light": {
+    "color": 16773598,
+    "intensity": 2.2,
+    "position": [
+      -0.8,
+      2.44,
+      10.35
+    ],
+    "target": [
+      3.2,
+      2.6,
+      10.35
+    ]
+  },
+  "views": {
+    "before": {
+      "calls": 157,
+      "triangles": 736777,
+      "textures": 67,
+      "programs": 117
+    },
+    "after": {
+      "calls": 157,
+      "triangles": 736777,
+      "textures": 67,
+      "programs": 117
+    }
+  },
+  "errors": [],
+  "external": []
+}
