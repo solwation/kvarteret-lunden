@@ -1,0 +1,1325 @@
+{
+  "baseline": "a08a6f3836b823f334f4ff73700f9b1781582d44",
+  "viewport": [
+    1000,
+    700
+  ],
+  "views": {
+    "kitchen": {
+      "feet": [
+        3.65,
+        0,
+        2.8
+      ],
+      "look": [
+        5.25,
+        1,
+        2.18
+      ]
+    },
+    "bath": {
+      "feet": [
+        1.35,
+        0,
+        6.35
+      ],
+      "look": [
+        0.35,
+        0.9,
+        5.7
+      ]
+    }
+  },
+  "phases": {
+    "before": {
+      "loadMs": 36803,
+      "views": {
+        "kitchen": {
+          "calls": 156,
+          "triangles": 604935,
+          "programs": 67,
+          "textures": 70,
+          "renderMs": 10,
+          "room": "Kök / matplats",
+          "probe": null,
+          "materials": []
+        },
+        "bath": {
+          "calls": 149,
+          "triangles": 612250,
+          "programs": 69,
+          "textures": 71,
+          "renderMs": 10,
+          "room": "Badrum",
+          "probe": null,
+          "materials": []
+        }
+      },
+      "final": {
+        "samples": [],
+        "storage": [
+          "kept",
+          "kept"
+        ],
+        "units": [
+          {
+            "id": "L1004",
+            "offset": [
+              -24.825,
+              0
+            ],
+            "levels": [
+              0,
+              3.25
+            ],
+            "rooms": [
+              [
+                "Hall",
+                "Tvätt",
+                "Badrum",
+                "Kök / matplats",
+                "Klk",
+                "Vardagsrum",
+                "Hall"
+              ],
+              [
+                "Sovrum 3",
+                "Sovrum 1",
+                "Klk",
+                "Hall",
+                "Allrum",
+                "Sovrum 2",
+                "WC/dusch"
+              ]
+            ]
+          },
+          {
+            "id": "L1201",
+            "offset": [
+              -41.474999999999994,
+              1.57
+            ],
+            "levels": [
+              6.3999999999999995,
+              9.399999999999999
+            ],
+            "rooms": [
+              [
+                "Hall",
+                "Kök / matplats",
+                "Badrum",
+                "Klk",
+                "Vardagsrum"
+              ],
+              [
+                "Sovrum 1",
+                "Sovrum 2",
+                "Klk",
+                "WC/dusch",
+                "Allrum"
+              ]
+            ]
+          }
+        ],
+        "cores": [
+          {
+            "hasRoomMaps": false
+          },
+          {
+            "hasRoomMaps": false
+          },
+          {
+            "hasRoomMaps": false
+          }
+        ]
+      }
+    },
+    "after": {
+      "loadMs": 38946,
+      "views": {
+        "kitchen": {
+          "calls": 156,
+          "triangles": 604935,
+          "programs": 129,
+          "textures": 75,
+          "renderMs": 6,
+          "room": "Kök / matplats",
+          "probe": {
+            "mode": "live",
+            "zone": "L:0:Kök / matplats",
+            "stats": {
+              "captures": 1,
+              "faces": 6,
+              "lastMs": 5547
+            },
+            "cache": [
+              "L:0:Kök / matplats"
+            ]
+          },
+          "materials": [
+            {
+              "cls": "handle",
+              "env": true,
+              "intensity": 0.6
+            },
+            {
+              "cls": "chrome",
+              "env": true,
+              "intensity": 1
+            },
+            {
+              "cls": "black",
+              "env": true,
+              "intensity": 0.5
+            },
+            {
+              "cls": "steel",
+              "env": true,
+              "intensity": 0.8
+            },
+            {
+              "cls": "steel",
+              "env": true,
+              "intensity": 0.8
+            },
+            {
+              "cls": "steelDark",
+              "env": true,
+              "intensity": 0.6
+            },
+            {
+              "cls": "tile",
+              "env": true,
+              "intensity": 0.12
+            },
+            {
+              "cls": "floorTile",
+              "env": true,
+              "intensity": 0.06
+            },
+            {
+              "cls": "appliance",
+              "env": true,
+              "intensity": 0.2
+            },
+            {
+              "cls": "tile",
+              "env": true,
+              "intensity": 0.12
+            },
+            {
+              "cls": "porcelain",
+              "env": true,
+              "intensity": 0.25
+            },
+            {
+              "cls": "porcelain",
+              "env": true,
+              "intensity": 0.25
+            },
+            {
+              "cls": "chrome",
+              "env": true,
+              "intensity": 1
+            },
+            {
+              "cls": "porcelain",
+              "env": true,
+              "intensity": 0.25
+            },
+            {
+              "cls": "appliance",
+              "env": true,
+              "intensity": 0.2
+            },
+            {
+              "cls": "glass",
+              "env": true,
+              "intensity": 0.6
+            },
+            {
+              "cls": "handle",
+              "env": true,
+              "intensity": 0.6
+            },
+            {
+              "cls": "steel",
+              "env": true,
+              "intensity": 0.8
+            },
+            {
+              "cls": "chrome",
+              "env": true,
+              "intensity": 1
+            },
+            {
+              "cls": "tile",
+              "env": true,
+              "intensity": 0.12
+            },
+            {
+              "cls": "floorTile",
+              "env": true,
+              "intensity": 0.06
+            },
+            {
+              "cls": "tile",
+              "env": true,
+              "intensity": 0.12
+            },
+            {
+              "cls": "porcelain",
+              "env": true,
+              "intensity": 0.25
+            },
+            {
+              "cls": "appliance",
+              "env": true,
+              "intensity": 0.2
+            },
+            {
+              "cls": "glass",
+              "env": true,
+              "intensity": 0.6
+            },
+            {
+              "cls": "handle",
+              "env": true,
+              "intensity": 0.6
+            },
+            {
+              "cls": "steel",
+              "env": true,
+              "intensity": 0.8
+            },
+            {
+              "cls": "chrome",
+              "env": true,
+              "intensity": 1
+            },
+            {
+              "cls": "black",
+              "env": true,
+              "intensity": 0.5
+            },
+            {
+              "cls": "chrome",
+              "env": true,
+              "intensity": 1
+            },
+            {
+              "cls": "steelDark",
+              "env": true,
+              "intensity": 0.6
+            },
+            {
+              "cls": "tile",
+              "env": true,
+              "intensity": 0.12
+            },
+            {
+              "cls": "floorTile",
+              "env": true,
+              "intensity": 0.06
+            },
+            {
+              "cls": "tile",
+              "env": true,
+              "intensity": 0.12
+            },
+            {
+              "cls": "porcelain",
+              "env": true,
+              "intensity": 0.25
+            },
+            {
+              "cls": "porcelain",
+              "env": true,
+              "intensity": 0.25
+            },
+            {
+              "cls": "chrome",
+              "env": true,
+              "intensity": 1
+            },
+            {
+              "cls": "appliance",
+              "env": true,
+              "intensity": 0.2
+            },
+            {
+              "cls": "handle",
+              "env": true,
+              "intensity": 0.6
+            },
+            {
+              "cls": "glass",
+              "env": true,
+              "intensity": 0.6
+            },
+            {
+              "cls": "steel",
+              "env": true,
+              "intensity": 0.8
+            },
+            {
+              "cls": "chrome",
+              "env": true,
+              "intensity": 1
+            },
+            {
+              "cls": "black",
+              "env": true,
+              "intensity": 0.5
+            },
+            {
+              "cls": "chrome",
+              "env": true,
+              "intensity": 1
+            },
+            {
+              "cls": "steelDark",
+              "env": true,
+              "intensity": 0.6
+            },
+            {
+              "cls": "tile",
+              "env": true,
+              "intensity": 0.12
+            },
+            {
+              "cls": "floorTile",
+              "env": true,
+              "intensity": 0.06
+            },
+            {
+              "cls": "tile",
+              "env": true,
+              "intensity": 0.12
+            },
+            {
+              "cls": "porcelain",
+              "env": true,
+              "intensity": 0.25
+            },
+            {
+              "cls": "porcelain",
+              "env": true,
+              "intensity": 0.25
+            },
+            {
+              "cls": "chrome",
+              "env": true,
+              "intensity": 1
+            }
+          ]
+        },
+        "bath": {
+          "calls": 149,
+          "triangles": 612250,
+          "programs": 131,
+          "textures": 77,
+          "renderMs": 10,
+          "room": "Badrum",
+          "probe": {
+            "mode": "live",
+            "zone": "L:0:Badrum",
+            "stats": {
+              "captures": 2,
+              "faces": 12,
+              "lastMs": 10
+            },
+            "cache": [
+              "L:0:Kök / matplats",
+              "L:0:Badrum"
+            ]
+          },
+          "materials": [
+            {
+              "cls": "handle",
+              "env": true,
+              "intensity": 0.6
+            },
+            {
+              "cls": "chrome",
+              "env": true,
+              "intensity": 1
+            },
+            {
+              "cls": "black",
+              "env": true,
+              "intensity": 0.5
+            },
+            {
+              "cls": "steel",
+              "env": true,
+              "intensity": 0.8
+            },
+            {
+              "cls": "steel",
+              "env": true,
+              "intensity": 0.8
+            },
+            {
+              "cls": "steelDark",
+              "env": true,
+              "intensity": 0.6
+            },
+            {
+              "cls": "tile",
+              "env": true,
+              "intensity": 0.12
+            },
+            {
+              "cls": "floorTile",
+              "env": true,
+              "intensity": 0.06
+            },
+            {
+              "cls": "appliance",
+              "env": true,
+              "intensity": 0.2
+            },
+            {
+              "cls": "tile",
+              "env": true,
+              "intensity": 0.12
+            },
+            {
+              "cls": "porcelain",
+              "env": true,
+              "intensity": 0.25
+            },
+            {
+              "cls": "porcelain",
+              "env": true,
+              "intensity": 0.25
+            },
+            {
+              "cls": "chrome",
+              "env": true,
+              "intensity": 1
+            },
+            {
+              "cls": "porcelain",
+              "env": true,
+              "intensity": 0.25
+            },
+            {
+              "cls": "appliance",
+              "env": true,
+              "intensity": 0.2
+            },
+            {
+              "cls": "glass",
+              "env": true,
+              "intensity": 0.6
+            },
+            {
+              "cls": "handle",
+              "env": true,
+              "intensity": 0.6
+            },
+            {
+              "cls": "steel",
+              "env": true,
+              "intensity": 0.8
+            },
+            {
+              "cls": "chrome",
+              "env": true,
+              "intensity": 1
+            },
+            {
+              "cls": "tile",
+              "env": true,
+              "intensity": 0.12
+            },
+            {
+              "cls": "floorTile",
+              "env": true,
+              "intensity": 0.06
+            },
+            {
+              "cls": "tile",
+              "env": true,
+              "intensity": 0.12
+            },
+            {
+              "cls": "porcelain",
+              "env": true,
+              "intensity": 0.25
+            },
+            {
+              "cls": "appliance",
+              "env": true,
+              "intensity": 0.2
+            },
+            {
+              "cls": "glass",
+              "env": true,
+              "intensity": 0.6
+            },
+            {
+              "cls": "handle",
+              "env": true,
+              "intensity": 0.6
+            },
+            {
+              "cls": "steel",
+              "env": true,
+              "intensity": 0.8
+            },
+            {
+              "cls": "chrome",
+              "env": true,
+              "intensity": 1
+            },
+            {
+              "cls": "black",
+              "env": true,
+              "intensity": 0.5
+            },
+            {
+              "cls": "chrome",
+              "env": true,
+              "intensity": 1
+            },
+            {
+              "cls": "steelDark",
+              "env": true,
+              "intensity": 0.6
+            },
+            {
+              "cls": "tile",
+              "env": true,
+              "intensity": 0.12
+            },
+            {
+              "cls": "floorTile",
+              "env": true,
+              "intensity": 0.06
+            },
+            {
+              "cls": "tile",
+              "env": true,
+              "intensity": 0.12
+            },
+            {
+              "cls": "porcelain",
+              "env": true,
+              "intensity": 0.25
+            },
+            {
+              "cls": "porcelain",
+              "env": true,
+              "intensity": 0.25
+            },
+            {
+              "cls": "chrome",
+              "env": true,
+              "intensity": 1
+            },
+            {
+              "cls": "appliance",
+              "env": true,
+              "intensity": 0.2
+            },
+            {
+              "cls": "handle",
+              "env": true,
+              "intensity": 0.6
+            },
+            {
+              "cls": "glass",
+              "env": true,
+              "intensity": 0.6
+            },
+            {
+              "cls": "steel",
+              "env": true,
+              "intensity": 0.8
+            },
+            {
+              "cls": "chrome",
+              "env": true,
+              "intensity": 1
+            },
+            {
+              "cls": "black",
+              "env": true,
+              "intensity": 0.5
+            },
+            {
+              "cls": "chrome",
+              "env": true,
+              "intensity": 1
+            },
+            {
+              "cls": "steelDark",
+              "env": true,
+              "intensity": 0.6
+            },
+            {
+              "cls": "tile",
+              "env": true,
+              "intensity": 0.12
+            },
+            {
+              "cls": "floorTile",
+              "env": true,
+              "intensity": 0.06
+            },
+            {
+              "cls": "tile",
+              "env": true,
+              "intensity": 0.12
+            },
+            {
+              "cls": "porcelain",
+              "env": true,
+              "intensity": 0.25
+            },
+            {
+              "cls": "porcelain",
+              "env": true,
+              "intensity": 0.25
+            },
+            {
+              "cls": "chrome",
+              "env": true,
+              "intensity": 1
+            }
+          ]
+        }
+      },
+      "final": {
+        "samples": [
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 0,
+            "canRender": true,
+            "frame": 38
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 0,
+            "canRender": true,
+            "frame": 39
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 0,
+            "canRender": true,
+            "frame": 40
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 0,
+            "canRender": true,
+            "frame": 41
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 0,
+            "canRender": true,
+            "frame": 42
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 0,
+            "canRender": true,
+            "frame": 43
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 0,
+            "canRender": true,
+            "frame": 44
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 0,
+            "canRender": true,
+            "frame": 45
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 0,
+            "canRender": true,
+            "frame": 46
+          },
+          {
+            "ms": 7197,
+            "faces": 1,
+            "captures": 0,
+            "canRender": true,
+            "frame": 48
+          },
+          {
+            "ms": 2976,
+            "faces": 1,
+            "captures": 0,
+            "canRender": true,
+            "frame": 50
+          },
+          {
+            "ms": 5,
+            "faces": 1,
+            "captures": 0,
+            "canRender": true,
+            "frame": 52
+          },
+          {
+            "ms": 5,
+            "faces": 1,
+            "captures": 0,
+            "canRender": true,
+            "frame": 54
+          },
+          {
+            "ms": 9,
+            "faces": 1,
+            "captures": 0,
+            "canRender": true,
+            "frame": 56
+          },
+          {
+            "ms": 5547,
+            "faces": 1,
+            "captures": 1,
+            "canRender": true,
+            "frame": 75
+          },
+          {
+            "ms": 1,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 76
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 77
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 79
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 80
+          },
+          {
+            "ms": 1,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 81
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 82
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 83
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 84
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 85
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 86
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 87
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 88
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 89
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 90
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 91
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 92
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 93
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 94
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 95
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 96
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 97
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 98
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 99
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 100
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 101
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 102
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 103
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 104
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 105
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 106
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 107
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 108
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 109
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 110
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 111
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 112
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 113
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 114
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 115
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 116
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 117
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 118
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 119
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 120
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 121
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 122
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
+            "canRender": true,
+            "frame": 123
+          },
+          {
+            "ms": 10,
+            "faces": 1,
+            "captures": 1,
+            "canRender": true,
+            "frame": 125
+          },
+          {
+            "ms": 10,
+            "faces": 1,
+            "captures": 1,
+            "canRender": true,
+            "frame": 127
+          },
+          {
+            "ms": 5,
+            "faces": 1,
+            "captures": 1,
+            "canRender": true,
+            "frame": 129
+          },
+          {
+            "ms": 9,
+            "faces": 1,
+            "captures": 1,
+            "canRender": true,
+            "frame": 131
+          },
+          {
+            "ms": 12,
+            "faces": 1,
+            "captures": 1,
+            "canRender": true,
+            "frame": 133
+          },
+          {
+            "ms": 10,
+            "faces": 1,
+            "captures": 2,
+            "canRender": true,
+            "frame": 152
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 2,
+            "canRender": true,
+            "frame": 153
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 2,
+            "canRender": true,
+            "frame": 154
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 2,
+            "canRender": true,
+            "frame": 155
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 2,
+            "canRender": true,
+            "frame": 156
+          },
+          {
+            "ms": 1,
+            "faces": 0,
+            "captures": 2,
+            "canRender": true,
+            "frame": 157
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 2,
+            "canRender": true,
+            "frame": 158
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 2,
+            "canRender": true,
+            "frame": 159
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 2,
+            "canRender": true,
+            "frame": 160
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 2,
+            "canRender": true,
+            "frame": 162
+          },
+          {
+            "ms": 0,
+            "faces": 0,
+            "captures": 2,
+            "canRender": true,
+            "frame": 163
+          }
+        ],
+        "storage": [
+          "kept",
+          "kept"
+        ],
+        "units": [
+          {
+            "id": "L1004",
+            "offset": [
+              -24.825,
+              0
+            ],
+            "levels": [
+              0,
+              3.25
+            ],
+            "rooms": [
+              [
+                "Hall",
+                "Tvätt",
+                "Badrum",
+                "Kök / matplats",
+                "Klk",
+                "Vardagsrum",
+                "Hall"
+              ],
+              [
+                "Sovrum 3",
+                "Sovrum 1",
+                "Klk",
+                "Hall",
+                "Allrum",
+                "Sovrum 2",
+                "WC/dusch"
+              ]
+            ]
+          },
+          {
+            "id": "L1201",
+            "offset": [
+              -41.474999999999994,
+              1.57
+            ],
+            "levels": [
+              6.3999999999999995,
+              9.399999999999999
+            ],
+            "rooms": [
+              [
+                "Hall",
+                "Kök / matplats",
+                "Badrum",
+                "Klk",
+                "Vardagsrum"
+              ],
+              [
+                "Sovrum 1",
+                "Sovrum 2",
+                "Klk",
+                "WC/dusch",
+                "Allrum"
+              ]
+            ]
+          }
+        ],
+        "cores": [
+          {
+            "hasRoomMaps": false
+          },
+          {
+            "hasRoomMaps": false
+          },
+          {
+            "hasRoomMaps": false
+          }
+        ]
+      }
+    }
+  },
+  "errors": [],
+  "external": []
+}

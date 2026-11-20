@@ -1,0 +1,68 @@
+{
+  "sourceCommit": "7adb45fd27ebec7fb811cb67fb09ae5d1a4bca69",
+  "publicBaseline": "a08a6f3836b823f334f4ff73700f9b1781582d44",
+  "laterModuleReview": [
+    {
+      "commit": "b85bd611",
+      "scope": "Window glass joining probe, windowReflect and setBoost; excluded. No later relevant probe fix."
+    }
+  ],
+  "files": [
+    {
+      "path": "src/roomprobe.js",
+      "selection": "Neutral cube/PMREM scheduler, cache, procedural room fallback and pure helpers; public comments/mode adaptation only.",
+      "sourceSha256": "3e981471726a31a3ca7020b8256b867ab9eaac08a7ae7699cd7aeef50b02957b",
+      "publicSha256": "f4dfda7c90961ad64ea909fc8c82f65b0c15512d8d499d546f4fd93b09395572"
+    },
+    {
+      "path": "src/config.js",
+      "selection": "Only ROOM_PROBE values, appended with public attribution.",
+      "sourceSha256": "01d7bf86cb5ecf713df6356cc450ec98e43bf813f1a42ce0e664788e5dde7721",
+      "publicSha256": "2872b073b38f1b935ef25afe3828c9ee56b1675471afdddb36e629ad46976693"
+    },
+    {
+      "path": "src/interior.js",
+      "selection": "Only existing fixed-fitting material class tags, omitting absent brass.",
+      "sourceSha256": "84a9958d5c435cd6ff1a420b218b126e9be2e14f748b6a50a49280aeaa6501b3",
+      "publicSha256": "fabab3233709f85dd5f02bc2919263f1825eccfa6b032688ddecb39ba88f1489"
+    },
+    {
+      "path": "src/standardinterior.js",
+      "selection": "Only existing fixed-fitting material class tags.",
+      "sourceSha256": "dbc7b46ec6fd5bc20cff5e9e6c711b3cb4726f72884d2fe98d37edf3156ee961",
+      "publicSha256": "d7515ae71a807c100af8d44565c6984559efbe931b5c83cb7e292eeb0c7921a3"
+    },
+    {
+      "path": "src/toilet.js",
+      "selection": "Only porcelain/chrome tags.",
+      "sourceSha256": "a99df96616f83ab99de98aa10ed254c42ecf005476ca6e470428a2f3ea47c3b0",
+      "publicSha256": "b40c2b96c5aa8f2f01635b228448bc19086f5c40bbc901c739cef598a7f059e2"
+    },
+    {
+      "path": "src/world.js",
+      "selection": "Only existing porcelain material tag.",
+      "sourceSha256": "fcae26850ccc94b2b2067588eb2e762de5963d4228185ef6a9ba7fde62968d07",
+      "publicSha256": "02d67eb6dcb80747a02b0a544120810710c37836ba9a2681f999faf594473c0c"
+    },
+    {
+      "path": "tools/roomprobetest.mjs",
+      "selection": "Pure source tests, public quality=0 expectation and new opt-out/start/shadow checks.",
+      "sourceSha256": "d69c5a4cccd0dccc8ef7a4363789305022e1b831086ee7e3cab56126054ecbb2",
+      "publicSha256": "461d7294fb29f4af993313d8010ad5e1d76b66e6481d63e58d070925a17c1522"
+    },
+    {
+      "path": "src/main.js",
+      "selection": "Own public integration: public RoomMap/VisitUnit, fixed day, first normal frame, quality=0/noprobe and lowMemory; no original main code imported.",
+      "publicSha256": "0458fad559fde50a8b0430e730e9926e69f10dd8f10deb6682c72f06551ccf58"
+    }
+  ],
+  "excluded": [
+    "Personal furnishing/assets/images",
+    "WindowLight",
+    "lights.js",
+    "Original main/quality/warmup/day cycle",
+    "Window-glass reflection port #2179",
+    "Cloud/game/storage/network integrations",
+    "Original history"
+  ]
+}

@@ -1,0 +1,384 @@
+{
+  "after": {
+    "screenPrograms": 50,
+    "calls": 149,
+    "triangles": 612250,
+    "cachedPrograms": 132
+  },
+  "baselineMaterials": {
+    "screenPrograms": 48,
+    "calls": 149,
+    "triangles": 612250,
+    "cachedPrograms": 132
+  },
+  "restored": {
+    "screenPrograms": 50,
+    "calls": 149,
+    "triangles": 612250,
+    "cachedPrograms": 132
+  },
+  "taggedMaterials": 51,
+  "cores": [
+    {
+      "house": "Hus A",
+      "hasRoomMaps": false,
+      "tags": []
+    },
+    {
+      "house": "Hus B",
+      "hasRoomMaps": false,
+      "tags": []
+    },
+    {
+      "house": "Hus C",
+      "hasRoomMaps": false,
+      "tags": []
+    }
+  ],
+  "units": [
+    {
+      "id": "L1004",
+      "tags": [
+        "appliance",
+        "appliance",
+        "black",
+        "black",
+        "chrome",
+        "chrome",
+        "chrome",
+        "chrome",
+        "chrome",
+        "chrome",
+        "floorTile",
+        "floorTile",
+        "glass",
+        "glass",
+        "handle",
+        "handle",
+        "porcelain",
+        "porcelain",
+        "porcelain",
+        "porcelain",
+        "steel",
+        "steel",
+        "steelDark",
+        "steelDark",
+        "tile",
+        "tile",
+        "tile",
+        "tile"
+      ],
+      "zones": [
+        [
+          {
+            "name": "Hall",
+            "zone": {
+              "key": "L1004:0:Hall",
+              "x": -23.658561643835615,
+              "y": 1.3,
+              "z": 1.7513698630136967
+            },
+            "localRoom": "Hall",
+            "floor": 0
+          },
+          {
+            "name": "Tvätt",
+            "zone": {
+              "key": "L1004:0:Tvätt",
+              "x": -23.674999999999997,
+              "y": 1.3,
+              "z": 3.974999999999998
+            },
+            "localRoom": "Tvätt",
+            "floor": 0
+          },
+          {
+            "name": "Badrum",
+            "zone": {
+              "key": "L1004:0:Badrum",
+              "x": -23.657954545454544,
+              "y": 1.3,
+              "z": 6.314772727272738
+            },
+            "localRoom": "Badrum",
+            "floor": 0
+          },
+          {
+            "name": "Kök / matplats",
+            "zone": {
+              "key": "L1004:0:Kök / matplats",
+              "x": -20.906866446437,
+              "y": 1.3,
+              "z": 2.870186408683347
+            },
+            "localRoom": "Kök / matplats",
+            "floor": 0
+          },
+          {
+            "name": "Klk",
+            "zone": {
+              "key": "L1004:0:Klk",
+              "x": -20.215189873417717,
+              "y": 1.3,
+              "z": 6.624367088607608
+            },
+            "localRoom": "Klk",
+            "floor": 0
+          },
+          {
+            "name": "Vardagsrum",
+            "zone": {
+              "key": "L1004:0:Vardagsrum",
+              "x": -21.925397598182403,
+              "y": 1.3,
+              "z": 10.020001622849774
+            },
+            "localRoom": "Vardagsrum",
+            "floor": 0
+          },
+          {
+            "name": "Hall",
+            "zone": {
+              "key": "L1004:0:Hall",
+              "x": -23.658561643835615,
+              "y": 1.3,
+              "z": 1.7513698630136967
+            },
+            "localRoom": "Hall",
+            "floor": 0
+          }
+        ],
+        [
+          {
+            "name": "Sovrum 3",
+            "zone": {
+              "key": "L1004:1:Sovrum 3",
+              "x": -23.39346577309718,
+              "y": 4.55,
+              "z": 2.722618477740549
+            },
+            "localRoom": "Sovrum 3",
+            "floor": 3.25
+          },
+          {
+            "name": "Sovrum 1",
+            "zone": {
+              "key": "L1004:1:Sovrum 1",
+              "x": -20.745275590551177,
+              "y": 4.55,
+              "z": 2.5057086614173127
+            },
+            "localRoom": "Sovrum 1",
+            "floor": 3.25
+          },
+          {
+            "name": "Klk",
+            "zone": {
+              "key": "L1004:1:Klk",
+              "x": -20.099999999999998,
+              "y": 4.55,
+              "z": 4.875000000000001
+            },
+            "localRoom": "Klk",
+            "floor": 3.25
+          },
+          {
+            "name": "Hall",
+            "zone": {
+              "key": "L1004:1:Hall",
+              "x": -21.41,
+              "y": 4.55,
+              "z": 6.486000000000018
+            },
+            "localRoom": "Hall",
+            "floor": 3.25
+          },
+          {
+            "name": "Allrum",
+            "zone": {
+              "key": "L1004:1:Allrum",
+              "x": -23.400000000000002,
+              "y": 4.55,
+              "z": 10.024999999999993
+            },
+            "localRoom": "Allrum",
+            "floor": 3.25
+          },
+          {
+            "name": "Sovrum 2",
+            "zone": {
+              "key": "L1004:1:Sovrum 2",
+              "x": -20.647786211258698,
+              "y": 4.55,
+              "z": 10.041160657811515
+            },
+            "localRoom": "Sovrum 2",
+            "floor": 3.25
+          },
+          {
+            "name": "WC/dusch",
+            "zone": {
+              "key": "L1004:1:WC/dusch",
+              "x": -23.970666666666666,
+              "y": 4.55,
+              "z": 6.305333333333328
+            },
+            "localRoom": "WC/dusch",
+            "floor": 3.25
+          }
+        ]
+      ]
+    },
+    {
+      "id": "L1201",
+      "tags": [
+        "appliance",
+        "appliance",
+        "black",
+        "black",
+        "chrome",
+        "chrome",
+        "chrome",
+        "chrome",
+        "chrome",
+        "chrome",
+        "floorTile",
+        "floorTile",
+        "glass",
+        "glass",
+        "handle",
+        "handle",
+        "porcelain",
+        "porcelain",
+        "porcelain",
+        "porcelain",
+        "steel",
+        "steel",
+        "steelDark",
+        "steelDark",
+        "tile",
+        "tile",
+        "tile",
+        "tile"
+      ],
+      "zones": [
+        [
+          {
+            "name": "Hall",
+            "zone": {
+              "key": "L1201:0:Hall",
+              "x": -40.27499999999999,
+              "y": 7.699999999999999,
+              "z": 2.545
+            },
+            "localRoom": "Hall",
+            "floor": 6.3999999999999995
+          },
+          {
+            "name": "Kök / matplats",
+            "zone": {
+              "key": "L1201:0:Kök / matplats",
+              "x": -37.884545454545446,
+              "y": 7.699999999999999,
+              "z": 4.567944664031623
+            },
+            "localRoom": "Kök / matplats",
+            "floor": 6.3999999999999995
+          },
+          {
+            "name": "Badrum",
+            "zone": {
+              "key": "L1201:0:Badrum",
+              "x": -40.01304619225967,
+              "y": 7.699999999999999,
+              "z": 6.252053682896362
+            },
+            "localRoom": "Badrum",
+            "floor": 6.3999999999999995
+          },
+          {
+            "name": "Klk",
+            "zone": {
+              "key": "L1201:0:Klk",
+              "x": -40.02860082304526,
+              "y": 7.699999999999999,
+              "z": 8.687915931804815
+            },
+            "localRoom": "Klk",
+            "floor": 6.3999999999999995
+          },
+          {
+            "name": "Vardagsrum",
+            "zone": {
+              "key": "L1201:0:Vardagsrum",
+              "x": -38.2531903190319,
+              "y": 7.699999999999999,
+              "z": 10.330588558855904
+            },
+            "localRoom": "Vardagsrum",
+            "floor": 6.3999999999999995
+          }
+        ],
+        [
+          {
+            "name": "Sovrum 1",
+            "zone": {
+              "key": "L1201:1:Sovrum 1",
+              "x": -39.768719959524404,
+              "y": 10.7,
+              "z": 3.793418922337459
+            },
+            "localRoom": "Sovrum 1",
+            "floor": 9.399999999999999
+          },
+          {
+            "name": "Sovrum 2",
+            "zone": {
+              "key": "L1201:1:Sovrum 2",
+              "x": -37.20259291270527,
+              "y": 10.7,
+              "z": 3.8085263612791724
+            },
+            "localRoom": "Sovrum 2",
+            "floor": 9.399999999999999
+          },
+          {
+            "name": "Klk",
+            "zone": {
+              "key": "L1201:1:Klk",
+              "x": -40.34794676806083,
+              "y": 10.7,
+              "z": 6.401273764258564
+            },
+            "localRoom": "Klk",
+            "floor": 9.399999999999999
+          },
+          {
+            "name": "WC/dusch",
+            "zone": {
+              "key": "L1201:1:WC/dusch",
+              "x": -36.52499999999999,
+              "y": 10.7,
+              "z": 6.544999999999998
+            },
+            "localRoom": "WC/dusch",
+            "floor": 9.399999999999999
+          },
+          {
+            "name": "Allrum",
+            "zone": {
+              "key": "L1201:1:Allrum",
+              "x": -38.529405137449295,
+              "y": 10.7,
+              "z": 8.715166741775558
+            },
+            "localRoom": "Allrum",
+            "floor": 9.399999999999999
+          }
+        ]
+      ]
+    }
+  ],
+  "errors": [],
+  "external": []
+}

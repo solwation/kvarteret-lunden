@@ -1,0 +1,622 @@
+diff --git a/README.md b/README.md
+index eef2c78..a8678be 100644
+--- a/README.md
++++ b/README.md
+@@ -378,3 +378,10 @@ fortsätter vara gångbara i båda riktningar. [Riktad verifiering](docs/verific
+ 
+ Byggnadernas kantlinjer använder en selektiv beräkningsförbättring från Three.js r187.
+ Visningen använder fortfarande r170/WebGL; [verifiering och avgränsning](docs/verification/254/README.md).
++
++
++Fasta blanka ytor i modellerade rum kan nu spegla rummet med en liten, filtrerad
++rumsbild (#334). En kubsida tas per bildruta vid behov; sex rum kan återanvändas.
++Mobilens lågminnesläge tar bara en rumsbild. `?quality=0` eller `?noprobe` behåller
++utseendet utan dessa reflektioner. Färg/finish är modellens befintliga val, inte
++verifierad standard för alla bostäder. [Urval, verifiering och begränsningar](docs/verification/334/README.md).
+diff --git a/docs/upstream.md b/docs/upstream.md
+index 21abd51..2681900 100644
+--- a/docs/upstream.md
++++ b/docs/upstream.md
+@@ -1,5 +1,28 @@
+ # Förbättringar från originalet
+ 
++## Blanka fasta ytor speglar rummet, #334
++
++Granskad originalkälla `7adb45fd27ebec7fb811cb67fb09ae5d1a4bca69`
++([original #2151](https://github.com/solwation/lunden-3d-apartment/issues/2151)).
++Selektivt urval: neutral `roomprobe.js`, `ROOM_PROBE`, materialtaggar för redan
++befintligt krom/stål/porslin/apparatglas/vitvaror/kakel och anpassade rena tester.
++Egen publik loop använder enbart publika RoomMap/VisitUnit, fast dag och första
++ordinarie bildrutan som startgräns. Inget original-main, lights.js, Quality/WarmUp,
++WindowLight, personligt innehåll, bild, tjänst/spel eller originalhistorik importeras.
++Senare `b85bd611` (#2179) granskades: det gäller fönster och lämnas utanför.
++[Exakta filhashar och urval](verification/334/selection.json).
++
++L1007 och de redan besökbara neutrala L1004/L1201 har rum och fasta ytor. A/B/C
++har trapphus/exteriörer men inga motsvarande modellerade köks-/badrumszoner;
++ingen sådan rumsdata uppfinns. Publicens redan valda lägenhetsfinish ändras inte.
++Sonden använder 64 px, PMREM, sexzons-LRU och en kubsida per tillåten bildruta.
++Mobil/lowMemory fångar en gång och frigör fångstresurser; `quality=0`/`noprobe`
++lämnar material utan nya miljökartor, som före portningen. Fast publikt dagsljus
++har ingen lamp-/nattcykel att trigga omfångst från. En procedurritad neutral
++reservkarta används medan den första rumskartan saknas.
++[Egen faktisk public-appverifiering, kostnad och begränsningar](verification/334/README.md).
++
++
+ ## Orkesterkärnan v0.14.5, #335
+ 
+ Gemensamt underhåll med [original #2213](https://github.com/solwation/lunden-3d-apartment/issues/2213)
+diff --git a/src/config.js b/src/config.js
+index 165b406..f7c5a47 100644
+--- a/src/config.js
++++ b/src/config.js
+@@ -4264,3 +4264,11 @@ export const RIVER_FISH_SURFACE = {
+ // lines do not thin with distance, so beyond `fadeNear` m from the eye the darkening fades smoothly to `fadeMin` of that at
+ // `fadeFar` m, where dense joints otherwise merge into ink. All *guesses* by eye (the original's before/after shots).
+ export const EDGE_LOOK = { strength: 0.2, shade: 0.55, fadeNear: 2.5, fadeFar: 10, fadeMin: 0.45 };
++
++// Public #334: fixed-fitting room reflections; original #2151 (7adb45fd), neutral public loop.
++export const ROOM_PROBE = {
++  size: 64, far: 18, near: .05, height: 1.3, facesPerFrame: 1, keep: 6, settle: .6, check: .25,
++  bands: [.06, .3, .7], margin: .03, minLevel: 1, paintedNight: .3,
++  k: { chrome: 1, steel: .8, steelDark: .6, handle: .6, glass: .6, black: .5,
++    porcelain: .25, appliance: .2, tile: .12, floorTile: .06 },
++};
+diff --git a/src/interior.js b/src/interior.js
+index 36ad022..7cb7bca 100644
+--- a/src/interior.js
++++ b/src/interior.js
+@@ -52,6 +52,9 @@ const M = {
+ };
+ 
+ for (const k of ['splash', 'wallTile', 'hallTile', 'wetTile']) M[k].userData.skin = true;
++// #334: only existing fixed fittings, shared by all public visitable flats.
++for (const [cls, keys] of Object.entries({ chrome: ['chrome'], steel: ['steel', 'dishwasher'], steelDark: ['steelDark'], handle: ['handle'], glass: ['glassDark'], black: ['black'], porcelain: ['porcelain'], appliance: ['appliance'], tile: ['splash', 'wallTile'], floorTile: ['wetTile'] }))
++  for (const k of keys) M[k].userData.roomProbe = cls;
+ 
+ /**
+  * Light-emitting parts (spots, globe, LED strips, mirror light) get one material per room so
+diff --git a/src/main.js b/src/main.js
+index 7b2810f..43bc5e0 100644
+--- a/src/main.js
++++ b/src/main.js
+@@ -1,3 +1,6 @@
++import {RoomProbe, probeZone} from './roomprobe.js';
++import {reflectors} from './reflections.js';
++import {ROOM_PROBE} from './config.js';
+ import {finishStartupCaches} from './startupcache.js';
+ import * as THREE from 'three';
+ import { hazeState, applyHaze } from './aerialhaze.js'; // #314 (original #2100): patches three's fog chunks at import, before any program compiles
+@@ -50,6 +53,7 @@ const intervals = debugParams.has('perf') ? new FrameIntervals() : null;
+ // &wind=power[,seconds] pins the power 0…1 and optionally holds the clock (repeatable frames)
+ const [windForce, windTime] = (debugParams.get('wind') ?? '').split(',').map((v) => (v === '' ? NaN : Number(v)));
+ const siteWind = new SiteWind(null, { force: windForce, time: windTime });
++let roomProbe, probeHome, probeRoom = null, probeClock = ROOM_PROBE.check, probeReady = false;
+ const ray = new THREE.Raycaster(), centre = new THREE.Vector2();
+ const points = new THREE.Group();
+ const clock = new THREE.Clock();
+@@ -254,11 +258,17 @@ async function init() {
+   }
+   world.windowLights?.update(12, 0, true);
+   const startupCache=finishStartupCaches(); // #246: release all build tables before ordinary input/rendering
++  // No original day cycle, Quality or WarmUp: fixed public day, first ordinary draw before cube work.
++  const probeOff = debugParams.has('noprobe') || debugParams.get('quality') === '0';
++  roomProbe = new RoomProbe(renderer, scene, camera, {lowMemory, off: probeOff, hide: () => reflectors().map(m => m.r)});
++  roomProbe.collect();
++  roomProbe.setLevel(probeOff ? 0 : ROOM_PROBE.minLevel);
++  probeHome = {roomMaps: world.roomMaps, floorOf: l => LEVELS[l].floor};
+   ready = true;
+   $('place-toggle').disabled = false;
+   // Keep model access local for diagnostics, without a service connection.
+   const siteInstances = lowMemory ? null : installSiteInstanceBatch(renderer, scene);
+-  window.lundenViewer = {startupCache,intervals, colorFrustum, siteInstances, phoneFrustum, paddock, ducks, ambientCats, ambientFish, riverDrift, riverLilies, squirrels, ambientBalloon, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
++  window.lundenViewer = {roomProbe,startupCache,intervals, colorFrustum, siteInstances, phoneFrustum, paddock, ducks, ambientCats, ambientFish, riverDrift, riverLilies, squirrels, ambientBalloon, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
+   window.kvarteretStartup?.finish();
+   $('start').disabled = false; $('start').textContent = 'Börja utforska →';
+   status('Dator och mobil · Ingen inloggning');
+@@ -341,8 +351,17 @@ function frame() {
+     }
+   }
+   updateInstanceLods(camera); // public #284 (original #1958): trees beyond the dither zone use their far level
++  probeClock += dt;
++  if (probeClock >= ROOM_PROBE.check) {
++    probeClock = 0;
++    const unit = navigation.unit;
++    probeRoom = navigation.outdoors || navigation.below || navigation.inCore ? null
++      : probeZone(navigation.pos, unit ? navigation.unitLevel : navigation.level, probeHome, unit);
++  }
++  roomProbe.update(dt, probeRoom, 'public-day', 1, probeReady && (!renderer.shadowMap.enabled || !renderer.shadowMap.needsUpdate));
+   const renderStart = measured ? performance.now() : 0;
+   renderer.render(scene,camera);
++  probeReady = true;
+   if (measured) {
+     const end = performance.now();
+     intervals.complete({ ms: end - start, phases: { update: renderStart - start, render: end - renderStart }, delta: {} });
+diff --git a/src/roomprobe.js b/src/roomprobe.js
+new file mode 100644
+index 0000000..7bb0e3f
+--- /dev/null
++++ b/src/roomprobe.js
+@@ -0,0 +1,254 @@
++import * as THREE from 'three';
++import { ROOM_PROBE as R } from './config.js';
++
++// Public #334, selectively adapted from original #2151 at 7adb45fd27ebec7fb811cb67fb09ae5d1a4bca69.
++// Fixed fittings share one 64 px PMREM map of the current public room. One cube face per eligible frame;
++// six cached room zones, a settle delay on entry, one capture only on low-memory devices.
++// The public loop has fixed daylight and starts after the scene's first ordinary frame.
++// quality=0 / noprobe keeps the public baseline without environment maps.
++
++/** Procedural neutral fallback while the first public room capture is pending; no image assets. */
++let envTex = null;
++export function roomEnv() {
++  if (envTex) return envTex;
++  const c = document.createElement('canvas');
++  c.width = 256; c.height = 128;
++  const g = c.getContext('2d');
++  const grad = g.createLinearGradient(0, 0, 0, 128);
++  grad.addColorStop(0, '#f2eee8'); grad.addColorStop(0.38, '#e2dbd0'); grad.addColorStop(0.5, '#cbc1b2');
++  grad.addColorStop(0.56, '#b9a993'); grad.addColorStop(1, '#8f7d68');
++  g.fillStyle = grad; g.fillRect(0, 0, 256, 128);
++  g.fillStyle = '#ffffff';
++  g.fillRect(40, 40, 30, 28); g.fillRect(170, 44, 22, 24); // windows
++  g.fillStyle = '#3d3a36';
++  g.fillRect(100, 52, 24, 20); // a dark doorway / cabinets
++  envTex = new THREE.CanvasTexture(c);
++  envTex.mapping = THREE.EquirectangularReflectionMapping;
++  envTex.colorSpace = THREE.SRGBColorSpace;
++  return envTex;
++}
++
++// ---------- pure helpers (tools/roomprobetest.mjs) ----------
++
++/** What the shiny materials show at quality `level`: 'off' (no env map at all, `&noprobe`), 'once'
++ * (phones: one capture, never again) or 'live' (captured per zone, recaptured on light changes). */
++export function probeMode(level, { lowMemory = false, off = false, minLevel = R.minLevel } = {}) {
++  if (off) return 'off';
++  if (level < minLevel) return 'off';
++  return lowMemory ? 'once' : 'live';
++}
++
++/** The daylight band 0 … bands.length of `value` (0 night … 1 day). With the previous band `prev` a value must pass an edge
++ * by `margin` before the band changes, so a cloud drifting over the threshold does not recapture back and forth. */
++export function daylightBand(value, prev = null, bands = R.bands, margin = R.margin) {
++  let b = 0;
++  while (b < bands.length && value >= bands[b]) b++;
++  if (prev === null || prev === b) return b;
++  const edge = b > prev ? bands[b - 1] : bands[b]; // the edge just crossed (towards b)
++  return Math.abs(value - edge) < margin && Math.abs(b - prev) === 1 ? prev : b;
++}
++
++/** Where a zone's probe stands: the centre of the largest region named `name` (RoomMap.regions()) when `inside(x, z)`
++ * says it is in that room (an L-shaped room's centre can fall in a wall or the next room), else null (use the visitor's spot). */
++export function zoneCenter(regions, name, inside = () => true) {
++  let best = null;
++  for (const r of regions) if (r.name === name && (!best || r.area > best.area)) best = r;
++  return best && inside(best.x, best.z) ? { x: best.x, z: best.z } : null;
++}
++
++/** paintedScale: the painted room's strength by daylight (0 … 1), so it does not shine at night. */
++export const paintedScale = (daylight, night = R.paintedNight) => night + (1 - night) * Math.min(1, Math.max(0, daylight));
++
++/**
++ * When to capture (pure: no GPU). Zones are keys ('L:0:Kök / matplats', 'L1004:1:Hall' …), `sig` the light's signature
++ * (daylight band + lamps). `step(dt, key, sig)` → null, { show: key } (a fresh map is cached: use it) or
++ * { capture: key, sig } (draw one; call `begin` then `finish` when its faces are done). A missing or stale map is captured
++ * at once the first time, otherwise once (key, sig) has held for `settle` s. 'once' captures the first zone and stops.
++ */
++export class ProbePlan {
++  constructor({ mode = 'live', keep = R.keep, settle = R.settle } = {}) {
++    Object.assign(this, { mode, keep, settle });
++    this.cache = new Map(); // key → sig, oldest use first
++    this.current = null;    // the key whose map the materials show
++    this.capturing = null;  // { key, sig }
++    this.want = { key: null, sig: null, age: 0 };
++    this.captures = 0;
++  }
++
++  step(dt, key, sig) {
++    if (this.mode !== 'live' && this.mode !== 'once') return null;
++    if (this.capturing || key === null || key === undefined) return null;
++    if (this.mode === 'once') return this.captures ? null : { capture: key, sig };
++    if (this.want.key !== key || this.want.sig !== sig) this.want = { key, sig, age: 0 };
++    else this.want.age += dt;
++    if (this.cache.get(key) === sig) {
++      if (this.current === key) return null;
++      this.cache.delete(key); this.cache.set(key, sig); // (most recently used)
++      this.current = key;
++      return { show: key };
++    }
++    return !this.captures || this.want.age >= this.settle ? { capture: key, sig } : null;
++  }
++
++  begin(key, sig) { this.capturing = { key, sig }; }
++  abort() { this.capturing = null; }
++
++  /** The capture is drawn: it is cached and shown. Returns { key, evicted: [keys whose maps can be freed] }. */
++  finish() {
++    const { key, sig } = this.capturing;
++    this.capturing = null;
++    this.captures++;
++    this.cache.delete(key); this.cache.set(key, sig);
++    this.current = key;
++    const evicted = [];
++    for (const k of this.cache.keys()) {
++      if (this.cache.size <= this.keep) break;
++      if (k !== key) { this.cache.delete(k); evicted.push(k); }
++    }
++    return { key, evicted };
++  }
++}
++
++// ---------- the probe ----------
++
++/** The visitor's zone: { key, x, y, z } (the probe's spot) or null outdoors / in a doorway / in the stairwell.
++ * `home` = { roomMaps, floorOf(level) } (L1007), `unit` = the visited flat (visitunit.js) or null, `level` its / our level. */
++const centres = new WeakMap(); // RoomMap → Map(name → { x, z } | null)
++export function probeZone(pos, level, home, unit = null, height = R.height) {
++  const ox = unit?.ox ?? 0, oz = unit?.oz ?? 0, maps = unit ? unit.roomMaps : home.roomMaps;
++  const map = maps?.[level];
++  if (!map || level < 0) return null;
++  const lx = pos.x - ox, lz = pos.z - oz, name = map.at(lx, lz);
++  if (!name) return null;
++  const key = `${unit ? unit.id : 'L'}:${level}:${name}`;
++  if (!centres.has(map)) centres.set(map, new Map()); // (regions() walks the grid: once per room)
++  const known = centres.get(map);
++  if (!known.has(name)) known.set(name, zoneCenter(map.regions(), name, (x, z) => map.at(x, z) === name));
++  const c = known.get(name) ?? { x: lx, z: lz };
++  const floor = unit ? unit.levels[level].floor : home.floorOf(level);
++  return { key, x: c.x + ox, y: floor + height, z: c.z + oz };
++}
++
++export class RoomProbe {
++  /** `hide()` → objects to leave out of a capture (the mirrors: a Reflector would draw its own pass inside each face). */
++  constructor(renderer, scene, camera, { lowMemory = false, off = false, hide = () => [] } = {}) {
++    Object.assign(this, { renderer, scene, camera, lowMemory, off, hide });
++    this.mats = new Map(); // material → its k (ROOM_PROBE.k[class])
++    this.plan = new ProbePlan({ mode: off ? 'off' : 'painted' });
++    this.maps = new Map(); // zone key → PMREM render target
++    this.face = -1; this.zone = null; this.daylight = 1; this.painted = -1;
++    this.stats = { captures: 0, faces: 0, lastMs: 0 };
++  }
++
++  get mode() { return this.plan.mode; }
++
++  /** Find existing fixed-fitting materials before the first ordinary public frame. */
++  collect(root = this.scene) {
++    if (this.off) return 0;
++    const before = this.mats.size;
++    root.traverse((o) => {
++      if (!o.material) return;
++      for (const m of Array.isArray(o.material) ? o.material : [o.material]) {
++        const cls = m.userData?.roomProbe;
++        if (!cls || this.mats.has(m) || !(cls in R.k)) continue;
++        this.mats.set(m, R.k[cls]);
++        this.assign(m);
++      }
++    });
++    return this.mats.size - before;
++  }
++
++  /** The map a material shows now: the current zone's capture, else the painted room. */
++  get texture() {
++    const live = this.mode === 'live' || this.mode === 'once';
++    return (live && this.maps.get(this.plan.current)?.texture) || roomEnv();
++  }
++
++  assign(m) {
++    const t = this.texture, k = this.mats.get(m);
++    if (m.envMap !== t) m.envMap = t;
++    m.envMapIntensity = t === envTex ? k * paintedScale(this.daylight) : k;
++  }
++
++  showAll() { this.painted = this.daylight; for (const m of this.mats.keys()) this.assign(m); }
++
++  /** Public quality=0 is an opt-out; there is no automatic quality controller here. */
++  setLevel(level) {
++    const mode = probeMode(level, { lowMemory: this.lowMemory, off: this.off });
++    if (mode === this.plan.mode) return;
++    if (this.plan.capturing) { this.plan.abort(); this.face = -1; }
++    this.plan.mode = mode;
++    this.showAll();
++  }
++
++  ensureTargets() {
++    if (this.cube) return;
++    const opts = this.lowMemory
++      // phones (#1561): three's screen path for this target too (tone mapping + sRGB output = the programs already compiled
++      // for the screen), stored as plain RGBA8; the PMREM decodes it (below)
++      ? { type: THREE.UnsignedByteType, colorSpace: THREE.SRGBColorSpace }
++      // Desktop: linear half-float. Cube/PMREM programs compile only on the first capture.
++      : { type: THREE.HalfFloatType };
++    this.cube = new THREE.WebGLCubeRenderTarget(R.size, { ...opts, generateMipmaps: false, minFilter: THREE.LinearFilter });
++    if (this.lowMemory) { this.cube.isXRRenderTarget = true; this.cube.texture.internalFormat = 'RGBA8'; }
++    this.cams = new THREE.CubeCamera(R.near, R.far, this.cube);
++    this.cams.coordinateSystem = this.renderer.coordinateSystem;
++    this.cams.updateCoordinateSystem();
++    this.pmrem = new THREE.PMREMGenerator(this.renderer);
++    if (this.lowMemory) { // three r170's private cube-to-cubeUV material: decode the sRGB-encoded faces as it is made
++      let cm = null;
++      Object.defineProperty(this.pmrem, '_cubemapMaterial', { configurable: true, get: () => cm, set: (m) => {
++        if (m) m.fragmentShader = m.fragmentShader.replace(/gl_FragColor = (textureCube\([^;]*\));/, 'gl_FragColor = sRGBTransferEOTF( $1 );');
++        cm = m;
++      } });
++    }
++  }
++
++  /** Once a frame. `zone` = probeZone(…) or null, `sig` = the light's signature, `canRender` = a frame without the shadow
++   * pass or the warm-up. Draws at most `facesPerFrame` cube faces. */
++  update(dt, zone, sig, daylight, canRender) {
++    this.daylight = daylight;
++    if (this.mode === 'off') return;
++    if (this.texture === envTex && Math.abs(this.painted - daylight) > 0.01) this.showAll(); // the painted room follows the daylight
++    if (this.face < 0) {
++      const a = this.plan.step(dt, zone?.key ?? null, sig);
++      if (a?.show) this.showAll();
++      else if (a?.capture) { this.plan.begin(a.capture, a.sig); this.zone = zone; this.face = 0; }
++    }
++    if (this.face < 0 || !canRender) return;
++    this.ensureTargets();
++    const t0 = performance.now();
++    for (let n = 0; n < R.facesPerFrame && this.face < 6; n++) this.renderFace(this.face++);
++    if (this.face === 6) this.finish();
++    this.stats.lastMs = performance.now() - t0;
++  }
++
++  renderFace(i) {
++    const r = this.renderer, cams = this.cams, prev = r.getRenderTarget(), prevFace = r.getActiveCubeFace(), prevMip = r.getActiveMipmapLevel();
++    if (i === 0) {
++      cams.position.set(this.zone.x, this.zone.y, this.zone.z);
++      cams.updateMatrixWorld(true);
++      for (const c of cams.children) c.layers.mask = this.camera.layers.mask;
++    }
++    const hidden = this.hide().filter((o) => o.visible);
++    for (const o of hidden) o.visible = false;
++    try {
++      r.setRenderTarget(this.cube, i);
++      r.render(this.scene, cams.children[i]);
++    } finally {
++      for (const o of hidden) o.visible = true;
++      r.setRenderTarget(prev, prevFace, prevMip);
++    }
++    this.stats.faces++;
++  }
++
++  finish() {
++    this.face = -1;
++    const { key, evicted } = this.plan.finish();
++    this.maps.set(key, this.pmrem.fromCubemap(this.cube.texture, this.maps.get(key) ?? null));
++    for (const k of evicted) { this.maps.get(k)?.dispose(); this.maps.delete(k); }
++    this.stats.captures++;
++    this.showAll();
++    if (this.mode === 'once') { this.cube.dispose(); this.pmrem.dispose(); this.cube = null; } // phones: never again (#2151)
++  }
++}
+diff --git a/src/standardinterior.js b/src/standardinterior.js
+index b2d1cf9..80bd8ff 100644
+--- a/src/standardinterior.js
++++ b/src/standardinterior.js
+@@ -28,6 +28,9 @@ const M = {
+   wetWall: tileMaterial({ tw: S.wetWall.w, th: S.wetWall.h, nx: 3, ny: 3, color: S.wetWall.color, vary: 0.02, grout: 0xcfd1d0, ppm: 300, seed: 25 }, 0.55),
+ };
+ for (const k of ['splash', 'wet', 'wetWall']) M[k].userData.skin = true;
++// #334: only existing fixed fittings, shared by all public visitable flats.
++for (const [cls, keys] of Object.entries({ chrome: ['chrome'], steel: ['steel'], handle: ['handle'], glass: ['glass'], porcelain: ['porcelain'], appliance: ['appliance'], tile: ['splash', 'wetWall'], floorTile: ['wet'] }))
++  for (const k of keys) M[k].userData.roomProbe = cls;
+ // An opening front is ONE mesh (#621: a draw call each, not one per material — the kitchens have ~30 of them): its parts'
+ // colours as vertex colours on one material; the handles' metal is shaded down to look like M.handle's (no env map:
+ // metalness 0.6 shows ~half the colour; `HANDLE_SHADE` *guess*, matched by eye in a screenshot).
+diff --git a/src/toilet.js b/src/toilet.js
+index 7d7ce46..a671b27 100644
+--- a/src/toilet.js
++++ b/src/toilet.js
+@@ -9,6 +9,10 @@ import { TOILET as T } from './config.js';
+ const porcelain = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.12 });
+ const chrome = new THREE.MeshStandardMaterial({ color: 0xd7dadc, roughness: 0.15, metalness: 0.6 });
+ 
++// #334: the existing fixed toilet fittings.
++porcelain.userData.roomProbe = 'porcelain';
++chrome.userData.roomProbe = 'chrome';
++
+ const ellipse = (rx, rz) => {
+   const s = new THREE.Shape();
+   s.absellipse(0, 0, rx, rz, 0, Math.PI * 2, false);
+diff --git a/src/world.js b/src/world.js
+index b884d83..7877e55 100644
+--- a/src/world.js
++++ b/src/world.js
+@@ -46,7 +46,7 @@ const M = {
+   cabinet: mat(COLORS.cabinet, { roughness: 0.5 }),
+   counter: mat(COLORS.counter, { roughness: 0.35 }),
+   appliance: mat(COLORS.appliance, { roughness: 0.3 }),
+-  porcelain: mat(COLORS.porcelain, { roughness: 0.15 }),
++  porcelain: mat(COLORS.porcelain, { roughness: 0.15, userData: { roomProbe: 'porcelain' } }),
+   frame: mat(COLORS.frame, { roughness: 0.5 }),
+   glass: new THREE.MeshPhysicalMaterial({
+     color: COLORS.glass, transparent: true, opacity: 0.1, roughness: 0.02, metalness: 0, depthWrite: false,
+diff --git a/tools/roomprobe334browser.cjs b/tools/roomprobe334browser.cjs
+new file mode 100644
+index 0000000..b242145
+--- /dev/null
++++ b/tools/roomprobe334browser.cjs
+@@ -0,0 +1,14 @@
++// Public #334: real public app only; matched native-size fixed-fitting views, baseline modules from Git.
++const {chromium}=require('playwright'),fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{execFileSync}=require('node:child_process');
++const [base='http://127.0.0.1:8444',out='docs/verification/334']=process.argv.slice(2);
++const baseline='a08a6f3836b823f334f4ff73700f9b1781582d44',touched=['main.js','config.js','interior.js','standardinterior.js','toilet.js','world.js'];
++const views={kitchen:{feet:[3.65,0,2.8],look:[5.25,1.0,2.18]},bath:{feet:[1.35,0,6.35],look:[.35,.9,5.7]}};
++(async()=>{fs.mkdirSync(out,{recursive:true});const browser=await chromium.launch({executablePath:process.env.CHROME_PATH,args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});const report={baseline,viewport:[1000,700],views,phases:{},errors:[],external:[]};
++try{for(const phase of ['before','after']){const ctx=await browser.newContext({viewport:{width:1000,height:700},deviceScaleFactor:1});await ctx.addInitScript(()=>{localStorage.setItem('public334.sentinel','kept');sessionStorage.setItem('public334.sentinel','kept');});await ctx.route('**/*',r=>{const u=r.request().url();if(!u.startsWith(base+'/')){report.external.push(u);return r.abort();}const m=new URL(u).pathname.match(/^\/src\/([a-z0-9]+\.js)$/);if(phase==='before'&&m&&touched.includes(m[1]))return r.fulfill({contentType:'text/javascript',body:execFileSync('git',['show',baseline+':src/'+m[1]])});return r.continue();});const page=await ctx.newPage();page.on('pageerror',e=>report.errors.push(phase+': '+e.message));page.on('console',m=>{if(m.type()==='error')report.errors.push(phase+': '+m.text());});await page.clock.setFixedTime(new Date('2026-06-15T10:00:00Z'));const start=Date.now();await page.goto(base+'/?wind=0,0');await page.waitForFunction(()=>window.lundenViewer?.renderer.info.render.frame>0,null,{timeout:300000,polling:1000});
++const info=report.phases[phase]={loadMs:Date.now()-start,views:{}};
++await page.evaluate(()=>{document.getElementById('intro').hidden=true;document.getElementById('resume').hidden=true;const a=lundenViewer;a.probeSamples=[];if(a.roomProbe){const p=a.roomProbe,update=p.update.bind(p);p.update=(...args)=>{const before=p.stats.faces,t=performance.now();update(...args);a.probeSamples.push({ms:performance.now()-t,faces:p.stats.faces-before,captures:p.stats.captures,canRender:args[4],frame:a.renderer.info.render.frame});};}});
++for(const [name,v]of Object.entries(views)){await page.evaluate(v=>{const a=lundenViewer;a.navigation.teleport(...v.feet);a.camera.lookAt(...v.look);},v);if(phase==='after')await page.waitForFunction(name=>lundenViewer.roomProbe.plan.current?.includes(name==='kitchen'?'Kök':'Badrum')&&lundenViewer.roomProbe.face<0,name,{timeout:180000,polling:500});else await page.waitForTimeout(1000);
++const result=await page.evaluate(()=>new Promise(ok=>requestAnimationFrame(()=>{const a=lundenViewer,r=a.renderer;r.info.autoReset=false;r.info.reset();const t=performance.now();r.render(a.scene,a.camera);const ms=performance.now()-t;const mats={};a.scene.traverse(o=>{for(const m of [].concat(o.material||[]))if(m.userData.roomProbe)mats[m.uuid]={cls:m.userData.roomProbe,env:!!m.envMap,intensity:m.envMapIntensity};});const result={png:r.domElement.toDataURL('image/png'),calls:r.info.render.calls,triangles:r.info.render.triangles,programs:r.info.programs.length,textures:r.info.memory.textures,renderMs:ms,room:a.world.roomAt(0,a.navigation.pos.x,a.navigation.pos.z),probe:a.roomProbe?{mode:a.roomProbe.mode,zone:a.roomProbe.plan.current,stats:{...a.roomProbe.stats},cache:[...a.roomProbe.maps.keys()]}:null,materials:Object.values(mats)};r.info.autoReset=true;ok(result);})));fs.writeFileSync(path.join(out,`${name}-${phase}.png`),Buffer.from(result.png.split(',')[1],'base64'));delete result.png;info.views[name]=result;}
++info.final=await page.evaluate(()=>({samples:lundenViewer.probeSamples,storage:[localStorage.getItem('public334.sentinel'),sessionStorage.getItem('public334.sentinel')],units:lundenViewer.world.units.map(u=>({id:u.id,offset:[u.ox,u.oz],levels:u.levels.map(l=>l.floor),rooms:u.roomMaps.map(m=>m.regions().map(r=>r.name))})),cores:lundenViewer.world.coreHouses?.map?.(c=>({id:c.id,hasRoomMaps:!!c.roomMaps}))}));await ctx.close();}
++assert.deepEqual(report.errors,[]);assert.deepEqual(report.external,[]);for(const phase of ['before','after'])assert.deepEqual(report.phases[phase].final.storage,['kept','kept']);for(const name of Object.keys(views)){assert.equal(report.phases.after.views[name].calls,report.phases.before.views[name].calls,'ordinary calls '+name);assert.equal(report.phases.after.views[name].triangles,report.phases.before.views[name].triangles,'ordinary triangles '+name);}const samples=report.phases.after.final.samples;assert(samples.some(s=>s.faces===1));assert(samples.every(s=>s.faces<=1));assert(samples.every(s=>s.canRender||s.faces===0));fs.writeFileSync(path.join(out,'browser.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({errors:report.errors,external:report.external,phases:report.phases},null,1));
++}finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});
+diff --git a/tools/roomprobe334screen.cjs b/tools/roomprobe334screen.cjs
+new file mode 100644
+index 0000000..7142baf
+--- /dev/null
++++ b/tools/roomprobe334screen.cjs
+@@ -0,0 +1,7 @@
++// Public #334: one bounded real-app follow-up after the cached-program increase was observed.
++// Count programs actually submitted by an ordinary screen draw, not the entire cube/PMREM cache.
++const {chromium}=require('playwright'),fs=require('node:fs'),assert=require('node:assert/strict');
++(async()=>{const base=process.argv[2]||'http://127.0.0.1:8444',browser=await chromium.launch({executablePath:process.env.CHROME_PATH,args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});const errors=[],external=[];
++try{const ctx=await browser.newContext({viewport:{width:1000,height:700}});await ctx.route('**/*',r=>r.request().url().startsWith(base+'/')?r.continue():(external.push(r.request().url()),r.abort()));const page=await ctx.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(base+'/?wind=0,0');await page.waitForFunction(()=>window.lundenViewer?.renderer.info.render.frame>0,null,{timeout:300000});await page.evaluate(()=>{const a=lundenViewer;a.navigation.teleport(1.35,0,6.35);a.camera.lookAt(.35,.9,5.7);});await page.waitForFunction(()=>lundenViewer.roomProbe.plan.current==='L:0:Badrum'&&lundenViewer.roomProbe.face<0,null,{timeout:180000,polling:500});
++const report=await page.evaluate(async()=>{const a=lundenViewer,{probeZone}=await import('/src/roomprobe.js');a.renderer.setAnimationLoop(null);const r=a.renderer,gl=r.getContext(),used=new Set(),restore=[];for(const name of ['drawElements','drawArrays','drawElementsInstanced','drawArraysInstanced']){const f=gl[name];if(!f)continue;gl[name]=function(...args){used.add(gl.getParameter(gl.CURRENT_PROGRAM));return f.apply(this,args);};restore.push(()=>gl[name]=f);}const ext=gl.getExtension('WEBGL_multi_draw');if(ext)for(const name of ['multiDrawElementsWEBGL','multiDrawArraysWEBGL','multiDrawElementsInstancedWEBGL','multiDrawArraysInstancedWEBGL']){const f=ext[name];if(!f)continue;ext[name]=function(...args){used.add(gl.getParameter(gl.CURRENT_PROGRAM));return f.apply(this,args);};restore.push(()=>ext[name]=f);}
++const draw=()=>{used.clear();r.info.reset();r.render(a.scene,a.camera);return{screenPrograms:used.size,calls:r.info.render.calls,triangles:r.info.render.triangles,cachedPrograms:r.info.programs.length};};const after=draw(),saved=[];for(const m of a.roomProbe.mats.keys()){saved.push([m,m.envMap,m.envMapIntensity]);m.envMap=null;}const baselineMaterials=draw();for(const[m,t,k]of saved){m.envMap=t;m.envMapIntensity=k;}const restored=draw();for(const f of restore)f();const tags=root=>{const set=new Set();root.traverse(o=>{for(const m of [].concat(o.material||[]))if(m.userData.roomProbe)set.add(m);});return [...set].map(m=>m.userData.roomProbe).sort();};const zones=a.world.units.map(u=>({id:u.id,tags:tags(u.object),zones:u.roomMaps.map((map,l)=>map.rooms.map(room=>{const zone=probeZone({x:room.x+u.ox,z:room.z+u.oz},l,null,u);return{name:room.name,zone,localRoom:zone?map.at(zone.x-u.ox,zone.z-u.oz):null,floor:u.levels[l].floor};}))}));return{after,baselineMaterials,restored,taggedMaterials:a.roomProbe.mats.size,cores:a.world.coreHouses.map(c=>({house:c.house,hasRoomMaps:!!c.roomMaps,tags:tags(c.object)})),units:zones};});report.errors=errors;report.external=external;fs.writeFileSync('docs/verification/334/screen.json',JSON.stringify(report,null,2));assert.equal(report.after.screenPrograms,report.baselineMaterials.screenPrograms,'ordinary screen program budget');assert.equal(report.after.calls,report.baselineMaterials.calls);assert.deepEqual(report.after,report.restored);for(const c of report.cores){assert.equal(c.hasRoomMaps,false);assert.deepEqual(c.tags,[]);}for(const u of report.units){assert(u.tags.includes('chrome'));assert(u.tags.includes('porcelain'));for(const level of u.zones)for(const z of level)if(z.zone){assert.equal(z.localRoom,z.name);assert.equal(z.zone.y,z.floor+1.3);assert(z.zone.key.startsWith(u.id+':'));}}assert.deepEqual(errors,[]);assert.deepEqual(external,[]);console.log(JSON.stringify(report,null,2));}finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});
+diff --git a/tools/roomprobetest.mjs b/tools/roomprobetest.mjs
+new file mode 100644
+index 0000000..7441149
+--- /dev/null
++++ b/tools/roomprobetest.mjs
+@@ -0,0 +1,147 @@
++// Public #334, selectively adapted from original #2151 (7adb45fd): glossy surfaces indoors reflect the room — when the room probe captures (world load, a new zone, a light change,
++// the settle time, phones once), which map each quality level shows, the daylight bands' hysteresis and where a zone's
++// probe stands. Pure helpers of src/roomprobe.js (no GPU).   node --test tools/roomprobetest.mjs
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import { probeMode, daylightBand, zoneCenter, paintedScale, ProbePlan, probeZone } from '../src/roomprobe.js';
++import { ROOM_PROBE as R } from '../src/config.js';
++
++test('quality level → mode: off below minLevel, live on desktop, once on phones, off with &noprobe', () => {
++  assert.equal(probeMode(0), 'off');
++  for (let l = R.minLevel; l <= 4; l++) assert.equal(probeMode(l), 'live', `level ${l}`);
++  assert.equal(probeMode(0, { lowMemory: true }), 'off');
++  assert.equal(probeMode(2, { lowMemory: true }), 'once');
++  assert.equal(probeMode(3, { off: true }), 'off');
++  assert.equal(probeMode(0, { off: true }), 'off');
++});
++
++test('a 64 px probe: the same pre-filtered size as the painted room (one program for both)', () => {
++  assert.equal(R.size, 64, 'roomEnv is 256 wide → PMREM cube size 256 / 4 = 64');
++  for (const k of Object.values(R.k)) assert.ok(k > 0 && k <= 1);
++  assert.ok(R.k.tile < R.k.porcelain && R.k.floorTile <= R.k.tile && R.k.porcelain < R.k.chrome, 'tiles low (#271), chrome strongest');
++});
++
++test('daylight bands with hysteresis', () => {
++  const B = [0.1, 0.5], m = 0.05;
++  assert.equal(daylightBand(0, null, B, m), 0);
++  assert.equal(daylightBand(0.3, null, B, m), 1);
++  assert.equal(daylightBand(0.9, null, B, m), 2);
++  assert.equal(daylightBand(0.52, 1, B, m), 1, 'just over the edge: stays');
++  assert.equal(daylightBand(0.56, 1, B, m), 2, 'clearly over: changes');
++  assert.equal(daylightBand(0.48, 2, B, m), 2, 'just under on the way down: stays');
++  assert.equal(daylightBand(0.44, 2, B, m), 1);
++  assert.equal(daylightBand(0.02, 2, B, m), 0, 'a jump over two edges changes at once');
++});
++
++test('the painted room dims at night', () => {
++  assert.equal(paintedScale(1), 1);
++  assert.equal(paintedScale(0), R.paintedNight);
++  assert.ok(paintedScale(0.5) > paintedScale(0.2));
++  assert.equal(paintedScale(2), 1);
++});
++
++test('live: the first capture at once, a new zone or a light change after settling, a cached zone is shown without one', () => {
++  const p = new ProbePlan({ mode: 'live', keep: 2, settle: 0.5 }), dt = 0.25;
++  assert.equal(p.step(dt, null, 'a'), null, 'outdoors: nothing');
++  assert.deepEqual(p.step(dt, 'kitchen', 'day'), { capture: 'kitchen', sig: 'day' }, 'world load: at once');
++  p.begin('kitchen', 'day');
++  assert.equal(p.step(dt, 'bath', 'day'), null, 'one capture at a time');
++  assert.deepEqual(p.finish(), { key: 'kitchen', evicted: [] });
++  assert.equal(p.current, 'kitchen');
++  assert.equal(p.step(dt, 'kitchen', 'day'), null, 'fresh: nothing to do');
++  // a new zone: captured once it has held for `settle`
++  assert.equal(p.step(dt, 'bath', 'day'), null);
++  assert.equal(p.step(dt, 'bath', 'day'), null);
++  assert.deepEqual(p.step(dt, 'bath', 'day'), { capture: 'bath', sig: 'day' });
++  p.begin('bath', 'day'); p.finish();
++  // back in the kitchen: its map is still fresh → shown, no capture
++  assert.deepEqual(p.step(dt, 'kitchen', 'day'), { show: 'kitchen' });
++  assert.equal(p.step(dt, 'kitchen', 'day'), null);
++  // the lamps go on: the signature changes → recapture after settling
++  assert.equal(p.step(dt, 'kitchen', 'evening+lamps'), null);
++  assert.equal(p.step(dt, 'kitchen', 'evening+lamps'), null);
++  assert.deepEqual(p.step(dt, 'kitchen', 'evening+lamps'), { capture: 'kitchen', sig: 'evening+lamps' });
++  p.begin('kitchen', 'evening+lamps'); p.finish();
++  // the bathroom's day map is stale now
++  p.step(dt, 'bath', 'evening+lamps'); p.step(dt, 'bath', 'evening+lamps');
++  assert.deepEqual(p.step(dt, 'bath', 'evening+lamps'), { capture: 'bath', sig: 'evening+lamps' });
++  // a lamp flicking on and off within the settle time captures nothing
++  const q = new ProbePlan({ mode: 'live', settle: 0.5 });
++  q.step(dt, 'k', 'a'); q.begin('k', 'a'); q.finish();
++  for (let i = 0; i < 6; i++) assert.equal(q.step(dt, 'k', i % 2 ? 'a' : 'b'), null);
++});
++
++test('live: at most `keep` zones are kept, the least recently used is freed (never the one shown)', () => {
++  const p = new ProbePlan({ mode: 'live', keep: 2, settle: 0 });
++  const cap = (k) => { const a = p.step(0, k, 's'); assert.equal(a.capture, k); p.begin(k, 's'); return p.finish().evicted; };
++  assert.deepEqual(cap('a'), []);
++  assert.deepEqual(cap('b'), []);
++  p.step(0, 'a', 's'); // a used again → b is the oldest
++  assert.deepEqual(cap('c'), ['b']);
++  assert.deepEqual([...p.cache.keys()].sort(), ['a', 'c']);
++});
++
++test('once (phones): one capture of the first zone, then never again — not for a new zone, not for a light change', () => {
++  const p = new ProbePlan({ mode: 'once' });
++  assert.equal(p.step(0.25, null, 'day'), null);
++  assert.deepEqual(p.step(0.25, 'kitchen', 'day'), { capture: 'kitchen', sig: 'day' });
++  p.begin('kitchen', 'day'); p.finish();
++  for (let i = 0; i < 20; i++) {
++    assert.equal(p.step(0.25, 'bath', 'night'), null);
++    assert.equal(p.step(0.25, 'kitchen', 'night+lamps'), null);
++  }
++});
++
++test('painted / off: never captures', () => {
++  for (const mode of ['painted', 'off']) {
++    const p = new ProbePlan({ mode, settle: 0 });
++    for (let i = 0; i < 5; i++) assert.equal(p.step(0.25, 'kitchen', `s${i}`), null);
++  }
++});
++
++test('a zone: the room centre when it is in the room, else the visitor\'s spot; keys per flat, level and room', () => {
++  const regions = [{ name: 'Kök', x: 2, z: 3, area: 10 }, { name: 'Kök', x: 9, z: 9, area: 1 }, { name: 'Bad', x: 1, z: 6, area: 5 }];
++  assert.deepEqual(zoneCenter(regions, 'Kök'), { x: 2, z: 3 }, 'the largest region');
++  assert.equal(zoneCenter(regions, 'Kök', () => false), null, 'centre outside the room');
++  assert.equal(zoneCenter(regions, 'Hall'), null);
++  // a room map: x < 2 'Bad', else 'Kök'; the centre of 'Bad' (1, 6) is in it
++  const map = { at: (x, z) => (x < 0 || z < 0 ? null : x < 2 ? 'Bad' : 'Kök'), regions: () => regions };
++  const home = { roomMaps: [map], floorOf: () => 0.5 };
++  assert.deepEqual(probeZone({ x: 0.5, z: 5 }, 0, home), { key: 'L:0:Bad', x: 1, y: 0.5 + R.height, z: 6 });
++  assert.equal(probeZone({ x: -1, z: 5 }, 0, home), null, 'outside the flat');
++  assert.equal(probeZone({ x: 0.5, z: 5 }, -1, home), null, 'aloft / no level');
++  assert.equal(probeZone({ x: 0.5, z: 5 }, 1, home), null, 'no map for that level');
++  const unit = { id: 'L1004', ox: 10, oz: 0, roomMaps: [map], levels: [{ floor: 3 }] };
++  assert.deepEqual(probeZone({ x: 15, z: 5 }, 0, null, unit), { key: 'L1004:0:Kök', x: 12, y: 3 + R.height, z: 3 }, 'a visited flat: its own coordinates');
++});
++
++// Public policy and render scheduling: no scene build or WebGL required.
++test('public opt-out collects nothing and leaves existing materials unchanged', async () => {
++  const {RoomProbe} = await import('../src/roomprobe.js');
++  const material = {userData: {roomProbe: 'chrome'}, envMap: null};
++  const p = new RoomProbe({}, {traverse: fn => fn({material})}, {}, {off: true});
++  assert.equal(p.collect(), 0);
++  p.setLevel(0);
++  p.update(.05, {key: 'public-room'}, 'public-day', 1, true);
++  assert.equal(p.mode, 'off');
++  assert.equal(material.envMap, null);
++  assert.equal(p.stats.faces, 0);
++  assert.equal(p.cube, undefined);
++});
++
++test('public startup/shadow gate delays drawing and an eligible update draws only one face', async () => {
++  const {RoomProbe} = await import('../src/roomprobe.js');
++  const p = new RoomProbe({}, {}, {});
++  Object.defineProperty(p, 'texture', {get: () => null});
++  p.plan.mode = 'live';
++  p.ensureTargets = () => {};
++  const faces = [];
++  p.renderFace = i => faces.push(i);
++  p.update(.05, {key: 'public-room'}, 'public-day', 1, false);
++  assert.deepEqual(faces, [], 'first ordinary frame / shadow frame');
++  assert.equal(p.face, 0, 'capture can be queued before it is allowed to draw');
++  p.update(.05, {key: 'public-room'}, 'public-day', 1, true);
++  assert.deepEqual(faces, [0]);
++  p.update(.05, {key: 'public-room'}, 'public-day', 1, false);
++  assert.deepEqual(faces, [0], 'later shadow frame also leaves the pending face alone');
++});
