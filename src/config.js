@@ -3012,6 +3012,18 @@ export const WIND_SOUND = {
   master: 0.8, noiseSeconds: 2,
 };
 
+// Public #352, original #2190 f58e50a0: the outdoor ambient bed (src/ambientbed.js, createWindGraph's two extra loops): Höje å babbling
+// (`river`: band-pass Hz near [0] -> far [1], Q, peak gain; full within `full` m of the river centreline, nothing at `range` m) and a faint
+// far city hum (`city`: low-pass Hz by traffic level, peak gain; the public scene has no traffic or time-of-day system, so the level
+// follows the visitor's local clock: `night` / `day` = level 0...1, `dayFrom` / `dayTo` = hour ramps, `rush` = [hour, width h] swells adding `rushBoost`).
+// `indoor` = the share heard through walls (gain x, low-pass ceiling Hz), the bed's own indoor model. All *guesses* by ear (no recordings).
+export const AMBIENT_BED = {
+  ease: 0.8,
+  river: { full: 6, range: 70, hz: [500, 1500], q: 0.6, gain: 0.1 },
+  city: { night: 0.1, day: 0.5, dayFrom: [5, 7.5], dayTo: [20.5, 23], rush: [[8, 1.4], [16.8, 1.6]], rushBoost: 0.5, hz: [140, 320], gain: 0.07 },
+  indoor: { river: 0.12, hz: 380, city: 0.3, hzCity: 150 },
+};
+
 // Public #346, original #2205 2e3e2ec5: artistic roller/spray guesses, not surveyed standard finishes.
 // Metres; one shared 128² packed map. Existing public colours and geometry are retained.
 export const PAINT_SURFACE = { size: 128, seed: 2205, roughGrain: 0.7, roughness: 0.14, fade: [1.5, 4.5],

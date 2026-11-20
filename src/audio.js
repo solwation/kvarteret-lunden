@@ -1,7 +1,8 @@
 // Public #336: only neutral wind is audible. No assets, persistence, animal or interaction sounds.
 import {windowOcclusion, windowCutoff} from './soundocclusion.js';
 import {OCCLUSION as O} from './config.js';
-import { WIND_SOUND as S } from './config.js';
+import { WIND_SOUND as S, AMBIENT_BED as AB } from './config.js';
+import { riverBabbleParams, cityHumParams, distToPolyline } from './ambientbed.js';
 import { windSoundParams, windStrength, windowWindParams, gustAt } from './windsound.js';
 
 /** One shared procedural source, two outdoor filters, and a positional branch per open window.
@@ -18,7 +19,18 @@ export function createWindGraph(ctx, random = Math.random) {
   noise.start();
   const windows = new Set();
   const ease = (param, value, tc) => param.setTargetAtTime(value, ctx.currentTime, tc);
+  // Public #352: the ambient bed - two more loops on the same noise buffer (river band-pass, city low-pass); built once, silent until set().
+  const loop = (type, hz, q, offset) => {
+    const src = ctx.createBufferSource(); src.buffer = noiseBuf; src.loop = true;
+    const f = ctx.createBiquadFilter(), g = ctx.createGain(); f.type = type; f.frequency.value = hz; f.Q.value = q; g.gain.value = 0;
+    src.connect(f).connect(g).connect(master); src.start(0, offset); return { f, g };
+  };
+  const river = loop('bandpass', 900, AB.river.q, S.noiseSeconds * 0.37), city = loop('lowpass', 200, 0.7, S.noiseSeconds * 0.71);
   return { master, noiseBuf,
+    setAmbient(p, tc = AB.ease) {
+      ease(river.g.gain, p.river.gain, tc); ease(river.f.frequency, p.river.hz, tc); ease(river.f.Q, p.river.q, tc);
+      ease(city.g.gain, p.city.gain, tc); ease(city.f.frequency, p.city.hz, tc);
+    },
     set(p, power, tc = S.ease) {
       ease(body.gain,p.gain,tc); ease(lp.frequency,p.lpHz,tc); ease(lp.Q,p.lpQ,tc);
       ease(band.gain,p.bandGain,tc); ease(bp.frequency,p.bandHz,tc); ease(bp.Q,p.bandQ,tc);
@@ -42,6 +54,7 @@ export function createWindGraph(ctx, random = Math.random) {
 
 let ctx = null, graph = null, muted = true, power = 0;
 let params = windSoundParams();
+let ambient = ambientParams();
 const windows = new Set();
 /** Called only by the explicit wind-sound control, inside its user gesture. */
 export function initAudio() {
@@ -49,7 +62,7 @@ export function initAudio() {
   const AC = globalThis.AudioContext || globalThis.webkitAudioContext;
   if (!AC) return null;
   ctx = new AC(); graph = createWindGraph(ctx); graph.master.gain.value = 0;
-  graph.set(params,power);
+  graph.set(params,power); graph.setAmbient(ambient);
   for (const v of windows) { v.voice=graph.window(v.pos,power); v.voice.setOcclusion(v.oc); }
   return ctx;
 }
@@ -62,6 +75,11 @@ export async function toggleMuted() {
   }
   return muted;
 }
+/** Public #352: neutral babble by distance to `riverPath` and a faint city hum by `hour`; same indoors flag as the wind. */
+function ambientParams({ riverPath = [], x = 0, z = 0, hour = 12, indoors = false } = {}) {
+  return { river: riverBabbleParams({ dist: distToPolyline(riverPath, x, z), indoors }), city: cityHumParams({ hour, indoors }) };
+}
+export function updateAmbientBed(scene) { ambient = ambientParams(scene); graph?.setAmbient(ambient); }
 export const isMuted = () => muted;
 export const audioParts = () => ctx ? { ctx, master: graph.master, noiseBuf: graph.noiseBuf } : null;
 

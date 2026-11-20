@@ -37,7 +37,7 @@ const [base='http://localhost:8446',out='docs/verification/336']=process.argv.sl
   await page.locator('#wind-sound').click();
   await page.waitForFunction(()=>document.querySelector('#wind-sound').getAttribute('aria-pressed')==='true');
   report.enabled=await page.evaluate(()=>({contexts:__windAudit.contexts.length,state:__windAudit.contexts[0].state,nodes:{...__windAudit.nodes}}));
-  check(report.enabled.contexts===1&&report.enabled.state==='running'&&report.enabled.nodes.source===1&&report.enabled.nodes.filter===3,'gesture creates one running noise source, bed plus actual open-window filter');
+  check(report.enabled.contexts===1&&report.enabled.state==='running'&&report.enabled.nodes.source===3&&report.enabled.nodes.filter===5,'gesture creates one running noise source, bed plus actual open-window filter');
   await page.evaluate(()=>__testWindWindow.toggle());
   const once=await page.evaluate(()=>({...__windAudit.nodes}));
   await page.waitForTimeout(750);
@@ -46,7 +46,7 @@ const [base='http://localhost:8446',out='docs/verification/336']=process.argv.sl
   await page.waitForFunction(()=>document.querySelector('#wind-sound').getAttribute('aria-pressed')==='false'&&__windAudit.contexts[0].state==='suspended');
   check(true,'off control silences and suspends the context');
   await page.locator('#wind-sound').click();await page.waitForFunction(()=>__windAudit.contexts[0].state==='running');
-  check(await page.evaluate(()=>__windAudit.contexts.length===1&&__windAudit.nodes.source===1),'re-enable reuses the same context and noise source');
+  check(await page.evaluate(()=>__windAudit.contexts.length===1&&__windAudit.nodes.source===3),'re-enable reuses the same context and noise source');
   // Synthetic sound evidence uses the exact production graph, not a reimplemented audio formula.
   report.audio=await page.evaluate(async()=>{
    const A=await import('/src/audio.js'),W=await import('/src/windsound.js'),rows=[];
@@ -71,7 +71,7 @@ const [base='http://localhost:8446',out='docs/verification/336']=process.argv.sl
   check([0,.12,1].every(p=>get('in-'+p).rms<get('out-'+p).rms*.6),'rendered indoor wind is substantially damped');
   check(get('summer').brightness>get('winter').brightness,'summer leaves and bare winter branches have distinct spectra');
   check(get('window-high').rms>get('window-low').rms&&get('window-closed').rms===0,'window follows same strength and stopping disconnects its sound');
-  check(report.audio.every(r=>r.built.source===1&&r.built.filter===(r.name.startsWith('window')?3:2)&&JSON.stringify(r.built)===JSON.stringify(r.afterSet)),'one shared source, two bed filters, no nodes created by parameter updates');
+  check(report.audio.every(r=>r.built.source===3&&r.built.filter===(r.name.startsWith("window")?5:4)&&JSON.stringify(r.built)===JSON.stringify(r.afterSet)),'one shared source, two bed filters, no nodes created by parameter updates');
   report.isolation=await page.evaluate(()=>({unchanged:__sentinels().every(v=>v==='wind-isolation-sentinel'),originalAccess:__windAudit.storage.filter(([,k])=>String(k).startsWith('lunden.')),storage:__windAudit.storage}));
   check(report.isolation.unchanged&&report.isolation.originalAccess.length===0&&report.external.length===0,'original storage untouched/unread and no external requests');
   // Capture only the changed control; stop rendering before raising the viewport for readable native DOM pixels.

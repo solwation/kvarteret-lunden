@@ -11,7 +11,8 @@ import { reloadOnContextRestore, lowMemory } from './lowmemory.js';
 import { installTightFrustum } from './tightfrustum.js';
 import { installSiteInstanceBatch } from './siteinstancebatch.js';
 import { SiteWind, siteWind as windState } from './sitewind.js';
-import { toggleMuted, isMuted, updateListener, updateWindSound, updateWindowOcclusion } from './audio.js';
+import { toggleMuted, isMuted, updateListener, updateWindSound, updateWindowOcclusion, updateAmbientBed } from './audio.js';
+import { riverPath } from './riverbridge.js'; // #352
 import { treeNearness } from './windsound.js';
 import { WIND_SOUND, SEASON } from './config.js';
 import { RoofSteam } from './roofsteam.js'; // #345 (original #2204): cold-weather condensation at the existing roof outlets
@@ -334,6 +335,7 @@ function frame() {
     updateWindSound(windState, { x:navigation.pos.x, z:navigation.pos.z,
       leaves:SEASON.trees[floraMonth][3], near:treeNearness(treeFeet,navigation.pos.x,navigation.pos.z),
       indoors:!navigation.outdoors || navigation.below || navigation.inCore });
+    updateAmbientBed({ riverPath, x:navigation.pos.x, z:navigation.pos.z, hour, indoors:!navigation.outdoors || navigation.below || navigation.inCore }); // #352
   }
   if (roofSteam) { const sp = windState.power * ROOF_STEAM.windAtFull; roofSteam.weather.wind.x = windState.dir.x * sp; roofSteam.weather.wind.z = windState.dir.y * sp; roofSteam.update(dt); } // #345: the same downwind vector as the sway
 

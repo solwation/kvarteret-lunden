@@ -1,0 +1,216 @@
+[
+ {
+  "name": "river 0 m",
+  "dist": 0,
+  "hour": 3,
+  "indoors": false,
+  "only": "river",
+  "rms": 0.017284596947473196,
+  "centroidHz": 4267.305894822177,
+  "built": {
+   "source": 3,
+   "filter": 4
+  },
+  "after": {
+   "source": 3,
+   "filter": 4
+  }
+ },
+ {
+  "name": "river 10 m",
+  "dist": 10,
+  "hour": 3,
+  "indoors": false,
+  "only": "river",
+  "rms": 0.016844509948135054,
+  "centroidHz": 4252.054011527452,
+  "built": {
+   "source": 3,
+   "filter": 4
+  },
+  "after": {
+   "source": 3,
+   "filter": 4
+  }
+ },
+ {
+  "name": "river 25 m",
+  "dist": 25,
+  "hour": 3,
+  "indoors": false,
+  "only": "river",
+  "rms": 0.010052242374556205,
+  "centroidHz": 3965.920519176053,
+  "built": {
+   "source": 3,
+   "filter": 4
+  },
+  "after": {
+   "source": 3,
+   "filter": 4
+  }
+ },
+ {
+  "name": "river 50 m",
+  "dist": 50,
+  "hour": 3,
+  "indoors": false,
+  "only": "river",
+  "rms": 0.0007572948779653183,
+  "centroidHz": 2691.0078594212027,
+  "built": {
+   "source": 3,
+   "filter": 4
+  },
+  "after": {
+   "source": 3,
+   "filter": 4
+  }
+ },
+ {
+  "name": "river 70 m",
+  "dist": 70,
+  "hour": 3,
+  "indoors": false,
+  "only": "river",
+  "rms": 0.00034210887769667037,
+  "centroidHz": 156.40680517769832,
+  "built": {
+   "source": 3,
+   "filter": 4
+  },
+  "after": {
+   "source": 3,
+   "filter": 4
+  }
+ },
+ {
+  "name": "river 150 m",
+  "dist": 150,
+  "hour": 3,
+  "indoors": false,
+  "only": "river",
+  "rms": 0.00034210887769667037,
+  "centroidHz": 156.40680517769832,
+  "built": {
+   "source": 3,
+   "filter": 4
+  },
+  "after": {
+   "source": 3,
+   "filter": 4
+  }
+ },
+ {
+  "name": "river 0 m indoors",
+  "dist": 0,
+  "hour": 3,
+  "indoors": true,
+  "rms": 0.0011068318923722978,
+  "centroidHz": 2184.139159006378,
+  "built": {
+   "source": 3,
+   "filter": 4
+  },
+  "after": {
+   "source": 3,
+   "filter": 4
+  }
+ },
+ {
+  "name": "city 03:00",
+  "dist": 1000000000,
+  "hour": 3,
+  "indoors": false,
+  "rms": 0.00034210887769667037,
+  "centroidHz": 156.40680517769832,
+  "built": {
+   "source": 3,
+   "filter": 4
+  },
+  "after": {
+   "source": 3,
+   "filter": 4
+  }
+ },
+ {
+  "name": "city 08:00",
+  "dist": 1000000000,
+  "hour": 8,
+  "indoors": false,
+  "rms": 0.004806048913875629,
+  "centroidHz": 311.85032864610196,
+  "built": {
+   "source": 3,
+   "filter": 4
+  },
+  "after": {
+   "source": 3,
+   "filter": 4
+  }
+ },
+ {
+  "name": "city 12:00",
+  "dist": 1000000000,
+  "hour": 12,
+  "indoors": false,
+  "rms": 0.0020656260875295267,
+  "centroidHz": 224.15275714607796,
+  "built": {
+   "source": 3,
+   "filter": 4
+  },
+  "after": {
+   "source": 3,
+   "filter": 4
+  }
+ },
+ {
+  "name": "city 17:00",
+  "dist": 1000000000,
+  "hour": 17,
+  "indoors": false,
+  "rms": 0.004759209837492745,
+  "centroidHz": 310.4740345492858,
+  "built": {
+   "source": 3,
+   "filter": 4
+  },
+  "after": {
+   "source": 3,
+   "filter": 4
+  }
+ },
+ {
+  "name": "city 22:00",
+  "dist": 1000000000,
+  "hour": 22,
+  "indoors": false,
+  "rms": 0.0008909405308355353,
+  "centroidHz": 180.24614182691096,
+  "built": {
+   "source": 3,
+   "filter": 4
+  },
+  "after": {
+   "source": 3,
+   "filter": 4
+  }
+ },
+ {
+  "name": "city 08:00 indoors",
+  "dist": 1000000000,
+  "hour": 8,
+  "indoors": true,
+  "rms": 0.0009981145377044062,
+  "centroidHz": 148.7161763923529,
+  "built": {
+   "source": 3,
+   "filter": 4
+  },
+  "after": {
+   "source": 3,
+   "filter": 4
+  }
+ }
+]

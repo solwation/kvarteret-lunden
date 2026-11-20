@@ -1,5 +1,22 @@
 # Förbättringar från originalet
 
+## Ån porlar och avlägset stadsbrus, #352
+
+Granskad originalkälla `f58e50a021517558cf272924397a1c342399553f`
+([original #2190](https://github.com/solwation/lunden-3d-apartment/issues/2190)). Överfört: de rena hjälparna i `src/ambientbed.js`
+(`distToPolyline`, `riverBabbleParams`, `trafficLevel`, `cityHumParams`), `AMBIENT_BED` (*guess*) i `src/config.js` och funktionstestet
+`tools/ambientbedtest.mjs`. Anpassat: originalets separata `sfx.ambientBed()` ersätts av två extra loopar (bandpass för ån, lågpass för staden)
+direkt i publikens `createWindGraph`, på samma delade bruskälla och master som vinden; knappen **Vindljud** styr dem (av = master 0 och pausad
+kontext, ingen ny nod skapas vid uppdatering). `main.js` anropar `updateAmbientBed` i den befintliga 0,25 s-tickan med publikens `riverPath`
+(`riverbridge.js`), spelarens plats, samma inomhustest som vinden och besökarens lokala timme. Inomhus: egen dämpning (gain och lågpass), ingen
+dubbeldämpning via #348:s ocklusion (bäddarna är lyssnarbundna, som originalet).
+
+Ej överfört / skillnader: originalets `main.js`, `sfx`-proxy, dygnscykel (`day.hour`) och trafikdata; publiken saknar trafik- och dygnssystem, så
+stadsbruset följer den lokala klockan som ankornas natt (#344) medan dagsljuset förblir fast. Inga stenar/forsar, väder- eller fönstermodell.
+Inget ändringsregister finns här. Befintliga nodräkningar i `tools/windsound336browser.cjs` och `tools/windowocclusion348browser.cjs`
+justerades (3 källor, +2 filter), utan att köras om. Egen kontroll: `node --test tools/ambientbedtest.mjs` 6/6 och
+`tools/ambientbed352browser.cjs` (produktionsgrafen i OfflineAudioContext, RMS per avstånd/timme/inomhus). [Mätningar](verification/352/README.md).
+
 ## Diskret ånga från skorstenar och takhuvar i kyla, #345
 
 Selektiv källa `0638c8b1f6da01c372af58aac4178a2b5b6d0231`
