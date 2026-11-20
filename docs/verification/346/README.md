@@ -25,11 +25,11 @@ PLAYWRIGHT_MODULE=/path/to/playwright /path/to/original/tools/browsertest.sh \
 
 ## Egna bilder och fast dagsljus
 
-Alla sparade bilder öppnades och granskades i ursprunglig proportion, med samma upplösning inom varje par. `before/wall.png` → `wall.png` visar mycket fin, återhållsam väggstruktur med bibehållen färg. Kameran är `[0.85,1.65,9.2]` mot `[0.1,1.8,8.4]` i L1007:s riktiga skal. Bildens genomsnittliga absoluta kanaländring är cirka 0,28 av 255; detta är diskret detalj, inte en ny väggkulör.
+Alla sparade bilder öppnades och granskades i ursprunglig proportion, med samma upplösning inom varje par. [av-kontrollen wall.png](https://github.com/solwation/kvarteret-lunden/blob/6f07b2592c115e1b53bb5b4f8cde8c03722eb1f3/docs/verification/346/before/wall.png) → `wall.png` visar mycket fin, återhållsam väggstruktur med bibehållen färg. Kameran är `[0.85,1.65,9.2]` mot `[0.1,1.8,8.4]` i L1007:s riktiga skal. Bildens genomsnittliga absoluta kanaländring är cirka 0,28 av 255; detta är diskret detalj, inte en ny väggkulör.
 
-`before/ceiling.png` → `ceiling.png` är **pixelidentiska i den här verifierade fasta dagsljusvyn**. Publiken har inga uppåtriktade taklampor, så takets undersida belyses här i praktiken med jämnt indirekt ljus. Det är en faktisk synlighetsbegränsning. Produktionsljusen eller shaderstyrkan har inte ändrats för att få en skillnad.
+[av-kontrollen ceiling.png](https://github.com/solwation/kvarteret-lunden/blob/6f07b2592c115e1b53bb5b4f8cde8c03722eb1f3/docs/verification/346/before/ceiling.png) → `ceiling.png` är **pixelidentiska i den här verifierade fasta dagsljusvyn**. Publiken har inga uppåtriktade taklampor, så takets undersida belyses här i praktiken med jämnt indirekt ljus. Det är en faktisk synlighetsbegränsning. Produktionsljusen eller shaderstyrkan har inte ändrats för att få en skillnad.
 
-`before/ceiling-grazing.png` → `ceiling-grazing.png` är en separat **diagnostisk** kontroll av samma riktiga takgeometri/material, kamera `[3.05,2.05,8.6]` mot `[3.2,2.65,10.35]`, med ett tillfälligt släpljus enbart i testet. Den grövre takstrukturen kan då ses. `grazing.json` anger ljuset och kostnaden; det motsvarar inte appens vanliga dagsljus och är ingen bild av en ny produktfunktion för belysning. Den första diagnostiska bildtagningen fångade en resize-race (480×320 före, 960×640 efter); den kasserades och samma begränsade par togs om med synkron renderstorlek. Inga produktionsbytes ändrades och ingen bred profilmatris kördes. `pixels.json` binder slutliga bildstorlekar och skillnader.
+[av-kontrollen ceiling-grazing.png](https://github.com/solwation/kvarteret-lunden/blob/6f07b2592c115e1b53bb5b4f8cde8c03722eb1f3/docs/verification/346/before/ceiling-grazing.png) → `ceiling-grazing.png` är en separat **diagnostisk** kontroll av samma riktiga takgeometri/material, kamera `[3.05,2.05,8.6]` mot `[3.2,2.65,10.35]`, med ett tillfälligt släpljus enbart i testet. Den grövre takstrukturen kan då ses. `grazing.json` anger ljuset och kostnaden; det motsvarar inte appens vanliga dagsljus och är ingen bild av en ny produktfunktion för belysning. Den första diagnostiska bildtagningen fångade en resize-race (480×320 före, 960×640 efter); den kasserades och samma begränsade par togs om med synkron renderstorlek. Inga produktionsbytes ändrades och ingen bred profilmatris kördes. `pixels.json` binder slutliga bildstorlekar och skillnader.
 
 ## Budget och gränser
 
@@ -45,3 +45,13 @@ Uniform av/på ändrar alltså inga batchar/pass. En separat materialklon utan p
 Det diagnostiska takparet redovisas separat; jämför inte scenbudgeten mellan olika appstarter eller olika ljussättningar. Testljuset ger egna shaderkombinationer, vilka inte ingår i produktkostnaden ovan. Samma draw-/triangel-/programantal gäller inom det diagnostiska paret. Ingen global FPS-, fysisk telefon- eller hårdvarugaranti påstås. Wrappen saknade systemd-scope på denna värd; någon hård browserminnesgräns verifierades inte.
 
 Root-dirigenten äger integration/publicering/Pages-kontroll och bildpublicering. Server/browser stoppas före överlämning; ingen push eller stängning från arbetaren.
+
+## Publicering
+
+Integrerad med oförändrade verifierade källblock som
+`6f07b2592c115e1b53bb5b4f8cde8c03722eb1f3`.
+[Test, bygge och Pages44767964640](https://github.com/solwation/kvarteret-lunden/actions/runs/44767964640)
+passerade. [Slutkommentar med inbäddade och tydligt märkta produkt-/diagnostikbilder](https://github.com/solwation/kvarteret-lunden/issues/346#issuecomment-7044105279)
+publicerades före stängning; alla sex SHA-pinnade bilder gav HTTP200.
+Dirigenten granskade samlad diff och alla sex nativebilder utan rutinmässiga omkörningar.
+Av-bilderna är borttagna från main efter publiceringen och finns kvar på pinnade historiklänkar.
