@@ -26,6 +26,9 @@ oldest first. Already active work may finish. See [CLAUDE.md](CLAUDE.md) and
 
 ## Shared orchestra and issue workflow
 
+Each agent may claim one issue across both queues when work starts. Future work stays available
+under the [host claim policy](.orchestra/project.md#active-claims-across-both-repositories).
+
 For issue labels/state, follow [.orchestra/shared/ISSUE-WORKFLOW.md](.orchestra/shared/ISSUE-WORKFLOW.md),
 the canonical guide from github-dashboard. Finished handoffs retain their documented
 owner with `integration-ready`, without an active slot; see the

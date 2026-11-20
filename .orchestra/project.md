@@ -110,8 +110,18 @@ Issueflow guide, including recognized aliases; canonical labels are used for new
 a complete global check. Record skipped older/higher and outside-scope work. A request
 to create an issue during a session does not permanently exclude implementation.
 
-Reserve only the current issue, with a comment identifying session, responsibility and
-coordination links; re-read comments/labels immediately afterwards. Earlier valid claim
+### Active claims across both repositories
+
+Each agent may have **one active work issue in total** across the two repositories.
+Claim it when the named agent starts implementing, reviewing or integrating it.
+Several agents may help on the same issue. A conductor who is only coordinating,
+an unused slot or a helper already assigned to an issue provides no additional claim.
+There are **zero advance reservations**. A proposed sequence, a claim on a parent
+or responsibility for a project track leaves each unstarted child or sibling available
+for fresh selection within the user's scope, priorities and actual dependencies.
+
+Post a claim comment identifying the session, working agent, responsibility and
+coordination links. Re-read comments and labels immediately afterwards. Earlier valid claim
 wins. Create the session label if missing and set both labels together at active start;
 reconcile own claims on resume/status updates. Remove recognized work labels and own
 owner label when paused back to backlog, released, closed or reopened. Finished handoffs
@@ -127,11 +137,20 @@ must be integrated and closed, or its work labels removed, before parent closure
 no capacity slot. Same-file work needs distinct block/module ownership; actual
 coupled dependencies may require serial work, not bypassing priority for convenience.
 
-Documented `integration-ready` handoffs do not expire under active/future-claim timers.
+Before selection and before reporting that nothing is startable, match each claimed
+issue in both fresh queues to its actual worker and current activity in the issue
+and coordination threads. For every skipped candidate, record its actual reason,
+such as work in progress, a documented handoff, a concrete dependency, an
+unanswered product question, an explicit deferral or the session scope. A plan or ownership label alone is insufficient. Immediately release
+your own unstarted claims, clear their work and ownership labels, and correct
+both status threads. If another session lists future work, tell it which entries
+are available and apply ordinary selection immediately. Recheck the individual
+issue for actual work or a handoff before claiming it. Preserve other owners'
+active labels and documented handoffs.
+
+Documented `integration-ready` handoffs retain their owner without an active slot.
 Investigate an unavailable owner and announce an explicit handover preserving checkout,
 commits and evidence; missing ownership metadata or heartbeat never permits duplicate implementation.
-Existing future claims expire after 30 minutes without start. Announce taking
-an unstarted claim when its owner has no capacity; release your own unused ones.
 An active issue may be taken over only after 90 minutes without commit/comment/status
 and no evidence its agent is running (missing from status, or session status older than
 90 minutes). A 3-hour-old session status is abandoned, but never seize visibly active
@@ -182,8 +201,8 @@ Keep these checks brief; no new background monitoring service is required.
   or checkpoint/release it under the existing ownership rules when necessary.
 - Use fewer roles when only coupled work remains or delegation adds coordination
   cost. A free role may do independent cheap work while a browser job waits only
-  when priority, headroom and review throughput permit it. Do not duplicate an
-  active issue or create future claims merely to fill capacity.
+  when priority, headroom and review throughput permit it. Dispatch under the
+  [active claim limit](#active-claims-across-both-repositories).
 
 Keep one publishing/integration owner. Expensive browser jobs remain serial under
 [the host browser queue and shared lock](shared/COORDINATION.md#select-and-claim);

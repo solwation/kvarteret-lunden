@@ -46,8 +46,10 @@ Read [AGENTS.md](AGENTS.md) for public-content, storage and service boundaries. 
   and preserve ownership, active labels, dependencies and already lower priorities. Raising a parent does not
   automatically raise existing children. Fetch missing parents before deciding; do not guess at unresolved links.
 - Questions for the user go on the issue as a comment with the `user-question` label, never in chat; the issue is blocked until answered (user, 2026-10-17).
-- Read the current issue, all comments and labels before claiming it. Never take another agent's active issue or reservation, or a documented `integration-ready`
-  handoff, even if its owner label is missing. Only its owner/integrator resumes it.
+- Read the current issue, all comments and labels before claiming it. Each working agent may claim one active issue across both repositories, with zero advance reservations.
+  Check the actual worker, documented handoff or specific blocker before reporting an empty queue under the
+  [host claim policy](.orchestra/project.md#active-claims-across-both-repositories). Respect another agent's active work
+  and documented `integration-ready` handoffs, including those missing an owner label. Only its owner/integrator resumes it.
 - Set `in-progress` **in this repository** when work actually starts. Keep it only while actively working. Finished handoffs use
   `integration-ready` with owner/checkout/revision/evidence/next action, retaining the session owner
   even on session stop; pause/backlog return, release or reopening clears work labels and claim.
