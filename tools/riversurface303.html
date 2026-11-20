@@ -29,7 +29,8 @@ const views={
  near:[main.x-.6,.55,main.z+1.7,main.x,main.z],walking:[main.x-1,1.65,main.z+5,main.x,main.z],
  far:[main.x-3,80,main.z+28,main.x,main.z],under:[main.x-.2,-.7,main.z+.6,main.x,main.z],
  east:[a[0]-3,1.65,a[1]+7,a[0],a[1]],west:[b[0]-3,1.65,b[1]+7,b[0],b[1]],
- winter:[a[0]+8,3,a[1]+15,a[0]+10,a[1]]
+ winter:[a[0]+8,3,a[1]+15,a[0]+10,a[1]],
+ grazing:[main.x-.5,.35,main.z+12,main.x,main.z-8]
 };
 window.__frame=view=>{applySeason(view==='winter'?1:6);local.visible=bridges.visible=scene.visible=true;edge.visible=true;if(view==='winter'){local.visible=false;bridges.visible=false}
  const[x,h,z,tx,tz]=views[view],y=waterYAt(tx,tz);camera.position.set(x,y+h,z);camera.lookAt(tx,y,tz);sun.target.position.set(tx,y,tz);
@@ -51,5 +52,6 @@ window.__normalProbes=()=>{
   results.push(row);
  }renderer.setRenderTarget(null);target.dispose();return results;
 };
+import('../src/riversurface.js').then(m=>{window.__step=m.stepRiverFlow??(()=>{})});// #342: the later frame advances the ripple clock when the module has one
 window.__ready=true;
 </script>

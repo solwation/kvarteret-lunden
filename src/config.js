@@ -2335,6 +2335,18 @@ export const BRICK_SURFACE = {
 export const RIVER_SURFACE = {
   waves: [[8.8, 3.1, 0.65, -0.37, 0.55, 0.035], [-4.6, 13.4, 0.4, 0.7, 0.45, 0.02]],
   distance: [12, 45], footprint: [0.035, 0.12], levelTolerance: 0.002,
+  // #342 (original #2186): the sky in the water and ripples that drift with the current, all artistic *guesses* (no measured flow speed or reflectance).
+  // `sky`: Fresnel-weighted reflection added to the indirect specular (no env map, no reflection pass, off when seen from below):
+  // weight = f0 + (1 - f0) x (1 - cos)^power, times `gain`. This site has fixed daylight, so the reflected sky is its own: `horizon` = the scene's
+  // background/fog colour (src/main.js), `zenith` = LIGHTING.sky.hemi.sky. `bank`: the mirror turns darker and green-tinted towards the shore
+  // (|across| / half width from `from` to 1, up to `mix`), where the trees stand.
+  // `flow`: the near-water ripples live in the river's own frame (chainage u, across v) and travel downstream (towards increasing path index, the
+  // way SITE.river.fall drops) at 2 pi x `cycles` / `wrap` m/s (~0.4 m/s); the module's ripple clock wraps every `wrap` s, which is exactly
+  // `cycles` whole wave-lengths for every wave, so the wrap is invisible: keep each wave's ku and c INTEGERS.
+  // waves: [ku, kv, c, d, bend, gain] (rad/m along / across the flow, bend wobble). Slope bound = sum of gains.
+  sky: { f0: 0.05, power: 4, gain: 2.6, horizon: 0xcbd9dd, zenith: 0xf1f7ff },
+  bank: { from: 0.55, mix: 0.7, tint: [0.03, 0.05, 0.035] },
+  flow: { cycles: 38, wrap: 600, waves: [[2, 9, 1, 3, 0.5, 0.04], [5, -3.4, 3, 0.7, 0.4, 0.025]] },
 };
 
 // #294 (upstream #2072): aggregate visual guesses, not surveyed wear or repairs.

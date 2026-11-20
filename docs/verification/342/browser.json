@@ -1,0 +1,69 @@
+{
+ "rev": "HEAD",
+ "errors": [],
+ "shots": [
+  {
+   "file": "docs/verification/342/before/before-near.jpg",
+   "calls": 8,
+   "triangles": 161701,
+   "textures": 3,
+   "programs": 6
+  },
+  {
+   "file": "docs/verification/342/before/before-walking.jpg",
+   "calls": 6,
+   "triangles": 154189,
+   "textures": 3,
+   "programs": 6
+  },
+  {
+   "file": "docs/verification/342/before/before-grazing.jpg",
+   "calls": 6,
+   "triangles": 154189,
+   "textures": 3,
+   "programs": 6
+  },
+  {
+   "file": "docs/verification/342/after-near.jpg",
+   "calls": 8,
+   "triangles": 161701,
+   "textures": 3,
+   "programs": 6
+  },
+  {
+   "file": "docs/verification/342/after-near-later.jpg",
+   "calls": 8,
+   "triangles": 161701,
+   "textures": 3,
+   "programs": 6
+  },
+  {
+   "file": "docs/verification/342/after-walking.jpg",
+   "calls": 6,
+   "triangles": 154189,
+   "textures": 3,
+   "programs": 6
+  },
+  {
+   "file": "docs/verification/342/after-walking-later.jpg",
+   "calls": 6,
+   "triangles": 154189,
+   "textures": 3,
+   "programs": 6
+  },
+  {
+   "file": "docs/verification/342/after-grazing.jpg",
+   "calls": 6,
+   "triangles": 154189,
+   "textures": 3,
+   "programs": 6
+  },
+  {
+   "file": "docs/verification/342/after-grazing-later.jpg",
+   "calls": 6,
+   "triangles": 154189,
+   "textures": 3,
+   "programs": 6
+  }
+ ]
+}

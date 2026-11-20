@@ -22,6 +22,7 @@ import { skirtTop } from './edgebackdrop.js';
 import { OutdoorCats } from './outdoorcats.js';
 
 import { RiverFish } from './riverfish.js';
+import { stepRiverFlow } from './riversurface.js'; // #342: the drifting ripples' clock
 import { RiverDriftSurface } from './riverdriftview.js'; // #280: flecks drifting downstream on Höje å
 import { RiverLilies } from './riverfloraview.js'; // #282: water lilies near the banks of Höje å
 
@@ -314,6 +315,7 @@ function frame() {
 
   ambientFish?.update(dt, navigation.below || navigation.inCore || !navigation.outdoors);
   riverDrift?.update(dt, camera.position, navigation.below); // #280
+  stepRiverFlow(dt); // #342: one uniform
   riverLilies?.update(camera.position, navigation.below, floraMonth); // #282 (the scene is summer unless ?month= says otherwise)
 
   squirrels.update(dt,navigation.below);

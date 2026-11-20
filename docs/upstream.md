@@ -1,5 +1,12 @@
 # Förbättringar från originalet
 
+## Höje å speglar himlen, #342
+
+Granskad originalkälla `7e6b16b63e14bb419dfa80de3f2473c6105cbecd` ([original #2186](https://github.com/solwation/lunden-3d-apartment/issues/2186)).
+Fresnelvägd himmelsreflektion, mörkare/grönare strandton och nedströms drivande närkrusningar i `riversurface.js` med `RIVER_SURFACE.sky/bank/flow`
+(*guess*). Publiken saknar dygnscykel/`wetground`: egen fast himmel (bakgrund/hemisfärljus) och egen krusningsklocka (`stepRiverFlow`). Ingen ny draw,
+textur eller pass. [Verifiering och bilder](verification/342/README.md).
+
 ## Orkesterkärnan v0.15.0, #343
 
 Gemensamt underhåll med [original #2225](https://github.com/solwation/lunden-3d-apartment/issues/2225)

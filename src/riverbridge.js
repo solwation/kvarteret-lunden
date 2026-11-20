@@ -1,4 +1,4 @@
-import { riverSurface } from './riversurface.js';
+import { riverSurface, addRiverFlow } from './riversurface.js';
 import {createStartupPointCache} from './startupcache.js';
 import * as THREE from 'three';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
@@ -162,8 +162,8 @@ export function buildRiverBridges(approachGround=()=>B.deckY, trimApproach=g=>g)
  const value=(a,i,fallback)=>a?a[Math.min(i,a.length-1)]:fallback,slope=i=>Math.min(value(R.banks,i,R.bank)*(R.bankScale??1)*.4,2.5),widths=riverPath.map((_,i)=>value(R.widths,i,R.width)+2*slope(i));
  // The old eastern source vertex sits 6.5 m inside the terrain; overlap the continuation at the exact boundary.
  const [east,z]=R.upstream.boundary;
- parts.water.push(pathStrip({path:[[east,z],...riverPath],w:[widths[0],...widths]},w=>-w/2,w=>w/2,0,waterYAt));
- const mats={concrete:bridgeConcreteMaterial(),steel:new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,metalness:.45,roughness:.55}),asphalt:new THREE.MeshStandardMaterial({color:COLORS.asphalt,roughness:.85}),water:riverSurface(new THREE.MeshStandardMaterial({color:COLORS.water,roughness:.15,metalness:.2}))};
+ parts.water.push(addRiverFlow(pathStrip({path:[[east,z],...riverPath],w:[widths[0],...widths]},w=>-w/2,w=>w/2,0,waterYAt),riverAt)); // (#342/#2186: the river frame for the drifting ripples and the bank shading)
+ const mats={concrete:bridgeConcreteMaterial(),steel:new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,metalness:.45,roughness:.55}),asphalt:new THREE.MeshStandardMaterial({color:COLORS.asphalt,roughness:.85}),water:riverSurface(new THREE.MeshStandardMaterial({color:COLORS.water,roughness:.15,metalness:.2}),null,{flow:true})};
  for(const[k,list]of Object.entries(parts)){const geo=mergeGeometries(list.map(g=>g.index?g.toNonIndexed():g));const mesh=new THREE.Mesh(geo,mats[k]);mesh.name=`bridges-${k}`;mesh.castShadow=k!=='water';mesh.receiveShadow=true;group.add(mesh);list.forEach(g=>g.dispose());}
  group.userData.records=bridgeRecords;return group;
 }
