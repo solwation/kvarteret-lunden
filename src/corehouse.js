@@ -6,6 +6,8 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { PLAYER, CORE as CL } from './config.js';
 import { box, panelX, panelZ, complement, labelTexture, makeDoor, buildFlatDoors, shade, Lift } from './core.js';
 import { architectureEdges } from './architectural-edges.js';
+import { lowMemory } from './lowmemory.js';
+import { addDayAttribute, glassSources, patchStairMaterial } from './stairdaylight.js'; // #347 (original #2183)
 
 // Hus A's, Hus B's and Hus C's stair cores (#637, #638, #639, #652; CORE_A / CORE_B / CORE_C in config, which list the sources and the assumptions): a walkable
 // stair hall and a lift from the basement (våning −1) to the top storey, the main entrance's glazed door in the courtyard recess
@@ -259,6 +261,10 @@ export class CoreHouse {
     });
     const add = (geos, mat, edgeSources, parent = group) => { if (!geos.length) return; const m = new THREE.Mesh(mergeGeometries(geos), mat); if (edgeSources) m.userData.edgeSources = edgeSources; m.raycast = () => {}; parent.add(m); return m; };
     this.mats = { wall: new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.DoubleSide }), light: new THREE.MeshBasicMaterial({ color: 0xffffff }) };
+    if (!lowMemory) { // #347 (original #2183): the second baked light (daylight through this core's own panes) + the world-space surface detail; phones keep the plain material
+      addDayAttribute([...geo.solid, ...outsideSolid], glassSources(geo.glass));
+      patchStairMaterial(this.mats.wall, Y);
+    }
     add(geo.solid, this.mats.wall, src);
     if (this.exterior) add(outsideSolid, this.mats.wall, outsideSources, this.exterior);
     add(geo.light, this.mats.light);

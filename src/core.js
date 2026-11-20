@@ -2,7 +2,8 @@
 // Adapted for the independent, impersonal Kvarteret Lunden walkthrough.
 import { architectureEdges } from './architectural-edges.js';
 import * as THREE from 'three';
-import { freeCanvasAfterUpload } from './lowmemory.js';
+import { freeCanvasAfterUpload, lowMemory } from './lowmemory.js';
+import { addDayAttribute, glassSources, patchStairMaterial } from './stairdaylight.js'; // #347 (original #2183)
 import { EMERGENCY_LIGHT } from './architectural-settings.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { CORE as K, PORTIK, GARAGE, HUS_L, PLAYER, storeyFloor } from './config.js';
@@ -482,6 +483,10 @@ export class Core {
     const add = (geos, mat) => { if (!geos.length) return; const m = new THREE.Mesh(mergeGeometries(geos), mat); m.userData.edgeSources = geos; m.raycast = () => {}; group.add(m); return m; };
     this.mats = { wall: new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.DoubleSide }), light: new THREE.MeshBasicMaterial({ color: 0xffffff }) };
     const flatTags = buildFlatDoors(geo); // the flats' doors (#626): baked into the merged wall mesh, + one label mesh
+    if (!lowMemory) { // #347 (original #2183): the second baked light (daylight through the core's panes) + the world-space surface detail (not on phones)
+      addDayAttribute([...geo.wall, ...geo.low, ...geo.stair, ...geo.rail], glassSources(geo.glass));
+      patchStairMaterial(this.mats.wall, Y);
+    }
     add([...geo.wall, ...geo.low, ...geo.stair, ...geo.rail], this.mats.wall);
     add(flatTags.geos, new THREE.MeshBasicMaterial({ map: flatTags.tex }));
     add(geo.light, this.mats.light);

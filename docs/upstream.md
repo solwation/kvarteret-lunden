@@ -1,5 +1,18 @@
 # Förbättringar från originalet
 
+## Dagsljus i trapphusen, #347
+
+Granskad publicerad originalkälla `1da6a3c94adf3115a0b5845bd87c9106f73db987`
+([original #2183](https://github.com/solwation/lunden-3d-apartment/issues/2183)). Överfört: `src/stairdaylight.js` (ett bakat
+`dayK`-flyttal per hörn för hur mycket dagsljus från kärnans egna rutor som når dit, nyansbevarande mjuk skuldra nära glaset,
+dämpat lampljus djupt i kärnan och en delad 64×64-detaljtextur i världskoordinater för målningskorn, slitageband i handhöjd och
+blanka golvfläckar), `STAIR_DAYLIGHT` (*guess*) i `src/config.js`, krokarna i `src/core.js` (Hus L) och `src/corehouse.js` (Hus A-C)
+och enhetstestet `tools/stairdaylighttest.mjs`. Anpassat: publiken saknar dygnscykel och väder, så `main.js` sätter `uDay` en gång från
+den fasta klara dagen (`STAIR_DAYLIGHT.fixed`) och detaljtexturen saknar kvalitetsnivå (av bara på telefon, där inget patchas).
+Originalets #2205 `PAINT_SURFACE` rör lägenheternas väggar (`interior.js`/`world.js`), inte trapphusmaterialen; ingen konflikt.
+Egen browser (`tools/stairdaylight347browser.cjs`): oförändrade draw calls/trianglar/program, +1 textur; telefonen oförändrad.
+[Bilder, mätvärden och gränser](verification/347/README.md).
+
 ## Ändparen vilar vid stranden på natten, #344
 
 Granskad originalkälla `a5983bfa86849660315b1f2bbcfd1f5a9226463c` ([original #2202](https://github.com/solwation/lunden-3d-apartment/issues/2202)).

@@ -1,0 +1,423 @@
+{
+ "baseline": "23483c52f061f4bcd01dc99f337827c59a77eee8",
+ "viewport": [
+  960,
+  600
+ ],
+ "views": {
+  "L": [
+   -17.5,
+   5.2,
+   0,
+   4,
+   0
+  ],
+  "A": [
+   1.3,
+   36.6,
+   0,
+   2,
+   0
+  ],
+  "B": [
+   -33.9,
+   42.6,
+   0,
+   2,
+   0
+  ],
+  "C": [
+   -60.9,
+   24,
+   -90,
+   2,
+   0
+  ]
+ },
+ "phases": {
+  "before": {
+   "loadMs": 28835,
+   "views": {
+    "L": {
+     "cost": {
+      "calls": 125,
+      "triangles": 514906,
+      "textures": 72,
+      "geometries": 563,
+      "programs": 75
+     },
+     "stats": {
+      "mean": 211,
+      "blown": 0,
+      "sat": 0.039
+     },
+     "pos": [
+      -17.5,
+      0,
+      5.2
+     ]
+    },
+    "A": {
+     "cost": {
+      "calls": 528,
+      "triangles": 699934,
+      "textures": 76,
+      "geometries": 598,
+      "programs": 76
+     },
+     "stats": {
+      "mean": 219.6,
+      "blown": 0,
+      "sat": 0.03
+     },
+     "pos": [
+      1.35,
+      0,
+      36.6
+     ]
+    },
+    "B": {
+     "cost": {
+      "calls": 482,
+      "triangles": 719120,
+      "textures": 78,
+      "geometries": 657,
+      "programs": 76
+     },
+     "stats": {
+      "mean": 218.1,
+      "blown": 0,
+      "sat": 0.029
+     },
+     "pos": [
+      -33.9,
+      0,
+      42.6
+     ]
+    },
+    "C": {
+     "cost": {
+      "calls": 621,
+      "triangles": 902710,
+      "textures": 87,
+      "geometries": 704,
+      "programs": 83
+     },
+     "stats": {
+      "mean": 212.5,
+      "blown": 0,
+      "sat": 0.028
+     },
+     "pos": [
+      -60.9,
+      0,
+      24
+     ]
+    }
+   },
+   "dayK": [],
+   "patched": 0
+  },
+  "after": {
+   "loadMs": 28338,
+   "views": {
+    "L": {
+     "cost": {
+      "calls": 125,
+      "triangles": 514906,
+      "textures": 73,
+      "geometries": 563,
+      "programs": 75
+     },
+     "stats": {
+      "mean": 198.4,
+      "blown": 0,
+      "sat": 0.038
+     },
+     "pos": [
+      -17.5,
+      0,
+      5.2
+     ]
+    },
+    "A": {
+     "cost": {
+      "calls": 528,
+      "triangles": 699934,
+      "textures": 77,
+      "geometries": 598,
+      "programs": 76
+     },
+     "stats": {
+      "mean": 186.4,
+      "blown": 0,
+      "sat": 0.032
+     },
+     "pos": [
+      1.35,
+      0,
+      36.6
+     ]
+    },
+    "B": {
+     "cost": {
+      "calls": 482,
+      "triangles": 719120,
+      "textures": 79,
+      "geometries": 657,
+      "programs": 76
+     },
+     "stats": {
+      "mean": 183.6,
+      "blown": 0,
+      "sat": 0.031
+     },
+     "pos": [
+      -33.9,
+      0,
+      42.6
+     ]
+    },
+    "C": {
+     "cost": {
+      "calls": 621,
+      "triangles": 902710,
+      "textures": 88,
+      "geometries": 704,
+      "programs": 83
+     },
+     "stats": {
+      "mean": 177.2,
+      "blown": 0,
+      "sat": 0.03
+     },
+     "pos": [
+      -60.9,
+      0,
+      24
+     ]
+    }
+   },
+   "dayK": [
+    [
+     0.1,
+     0.39,
+     1.21,
+     0,
+     14880
+    ],
+    [
+     0.01,
+     0.02,
+     0.13,
+     0,
+     16488
+    ],
+    [
+     0.01,
+     0.08,
+     0.98,
+     0,
+     7944
+    ],
+    [
+     0.01,
+     0.02,
+     0.13,
+     0,
+     13632
+    ],
+    [
+     0.01,
+     0.08,
+     0.96,
+     0,
+     11058
+    ],
+    [
+     0.01,
+     0.03,
+     0.1,
+     0,
+     21732
+    ],
+    [
+     0.01,
+     0.05,
+     0.87,
+     0,
+     19398
+    ]
+   ],
+   "patched": 7
+  },
+  "before-lowmem": {
+   "loadMs": 27086,
+   "views": {
+    "L": {
+     "cost": {
+      "calls": 124,
+      "triangles": 575986,
+      "textures": 69,
+      "geometries": 543,
+      "programs": 65
+     },
+     "stats": {
+      "mean": 211.1,
+      "blown": 0,
+      "sat": 0.039
+     },
+     "pos": [
+      -17.5,
+      0,
+      5.2
+     ]
+    },
+    "A": {
+     "cost": {
+      "calls": 515,
+      "triangles": 756550,
+      "textures": 73,
+      "geometries": 576,
+      "programs": 66
+     },
+     "stats": {
+      "mean": 219.7,
+      "blown": 0,
+      "sat": 0.03
+     },
+     "pos": [
+      1.35,
+      0,
+      36.6
+     ]
+    },
+    "B": {
+     "cost": {
+      "calls": 465,
+      "triangles": 773596,
+      "textures": 75,
+      "geometries": 629,
+      "programs": 66
+     },
+     "stats": {
+      "mean": 218.1,
+      "blown": 0,
+      "sat": 0.029
+     },
+     "pos": [
+      -33.9,
+      0,
+      42.6
+     ]
+    },
+    "C": {
+     "cost": {
+      "calls": 557,
+      "triangles": 829041,
+      "textures": 76,
+      "geometries": 636,
+      "programs": 66
+     },
+     "stats": {
+      "mean": 212.6,
+      "blown": 0,
+      "sat": 0.028
+     },
+     "pos": [
+      -60.9,
+      0,
+      24
+     ]
+    }
+   },
+   "dayK": [],
+   "patched": 0
+  },
+  "after-lowmem": {
+   "loadMs": 31182,
+   "views": {
+    "L": {
+     "cost": {
+      "calls": 124,
+      "triangles": 575986,
+      "textures": 69,
+      "geometries": 543,
+      "programs": 65
+     },
+     "stats": {
+      "mean": 211.1,
+      "blown": 0,
+      "sat": 0.039
+     },
+     "pos": [
+      -17.5,
+      0,
+      5.2
+     ]
+    },
+    "A": {
+     "cost": {
+      "calls": 515,
+      "triangles": 756550,
+      "textures": 73,
+      "geometries": 576,
+      "programs": 66
+     },
+     "stats": {
+      "mean": 219.7,
+      "blown": 0,
+      "sat": 0.03
+     },
+     "pos": [
+      1.35,
+      0,
+      36.6
+     ]
+    },
+    "B": {
+     "cost": {
+      "calls": 465,
+      "triangles": 773596,
+      "textures": 75,
+      "geometries": 629,
+      "programs": 66
+     },
+     "stats": {
+      "mean": 218.1,
+      "blown": 0,
+      "sat": 0.029
+     },
+     "pos": [
+      -33.9,
+      0,
+      42.6
+     ]
+    },
+    "C": {
+     "cost": {
+      "calls": 557,
+      "triangles": 829041,
+      "textures": 76,
+      "geometries": 636,
+      "programs": 66
+     },
+     "stats": {
+      "mean": 212.6,
+      "blown": 0,
+      "sat": 0.028
+     },
+     "pos": [
+      -60.9,
+      0,
+      24
+     ]
+    }
+   },
+   "dayK": [],
+   "patched": 0
+  }
+ },
+ "errors": [],
+ "external": []
+}

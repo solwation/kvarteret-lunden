@@ -38,8 +38,9 @@ import { samples as roadSamples } from './roads.js';
 import { groundY, renderedTerrainY, treeFeet, aoTrees, southTreeFeet, treeForms } from './surroundings.js';
 import { Core } from './core.js';
 import { CoreHouse } from './corehouse.js';
+import { stairDayUniforms, dayBlend } from './stairdaylight.js'; // #347 (original #2183)
 import { updateInstanceLods } from './lod.js';
-import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, LIGHTING, STARTUP, TOUCH, VIEW_NEAR, SITE, OUTDOOR, EDGE_BACKDROP } from './config.js';
+import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, LIGHTING, STARTUP, TOUCH, VIEW_NEAR, SITE, OUTDOOR, EDGE_BACKDROP, STAIR_DAYLIGHT } from './config.js';
 import { region, stickMirrored, setupTouchLayout } from './touchlayout.js';
 
 const $ = id => document.getElementById(id);
@@ -258,6 +259,12 @@ async function init() {
     $('resume').hidden = !active || touch;
   }
   world.windowLights?.update(12, 0, true);
+  { // #347 (original #2183): the stairwells' daylight through their own panes. Fixed clear daylight here (no day cycle / weather), so set once;
+    // the detail texture has no quality level to follow (phones never get the patch). `?nostairday` switches both off (before / after shots).
+    const on = !debugParams.has('nostairday');
+    stairDayUniforms.uDay.value = dayBlend(STAIR_DAYLIGHT.fixed.daylight, STAIR_DAYLIGHT.fixed.overcast, on);
+    stairDayUniforms.uDetail.value = on ? 1 : 0;
+  }
   const startupCache=finishStartupCaches(); // #246: release all build tables before ordinary input/rendering
   ready = true;
   $('place-toggle').disabled = false;

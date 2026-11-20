@@ -18,6 +18,12 @@ konkret materiell risk; ta bara om felaktiga kamerapositioner. Befintliga snabba
 `npm test`/bygge och automatisk Pages-status kvarstår; dokument kräver ingen ny
 livebrowserkontroll av oförändrad app.
 
+## Dagsljus i trapphusen, #347
+
+`node --test tools/stairdaylighttest.mjs` (7 fall), npm test/build och en egen faktisk public browser (`tools/stairdaylight347browser.cjs`)
+med före/efter-bilder av alla fyra trapphuskärnor (L, A, B, C) och `&lowmem`: oförändrade draw calls/trianglar/program, +1 textur,
+inga utfrätta pixlar, inga fel eller externa anrop. [Bilder, mätvärden och gränser](verification/347/README.md).
+
 ## Rum bakom grannfönstren, #337
 
 `node --test tools/interiormaptest.mjs tools/glasspanestest.mjs` (8 fall), npm test/build och en egen faktisk
