@@ -1,5 +1,17 @@
 # Förbättringar från originalet
 
+## Orkesterkärnan v0.14.5, #335
+
+Gemensamt underhåll med [original #2213](https://github.com/solwation/lunden-3d-apartment/issues/2213)
+(`99f291b1d3296711ba2443a22944a96f881d744c`). Kärnan är hämtad direkt från sitt
+neutrala källrepo, inte kopierad från originalprojektet: exakt release
+[`0e7416bcb02ed5fb40ca503c8b02ac0a58d7a338`](https://github.com/solwation/dirigenten-och-orkestern/releases/tag/v0.14.5).
+Endast `.orchestra/shared/` och lokal pin/proveniens ändras. Buggfix: städskriptet
+behandlar inte längre en klon med bara en `git stash` som integrerad. Ingen
+applikationskod, lagring, personligt innehåll eller tjänsteintegration överförs;
+köregler och timers är bevarade. Verifiering: exakt Git-trädidentitet mot releasen
+(`a9b72f93`), skriptets regressionstest, diff/regelkonsekvens samt `npm test` och `npm run build`.
+
 ## Solpanelernas celler och glas, #304
 
 Granskad accepterad publicerad originalkälla `4c82da2a0cdd5fe2392a3c5eb8c3da6237952e38`

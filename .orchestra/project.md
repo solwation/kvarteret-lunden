@@ -313,20 +313,24 @@ These follow [COORDINATION.md](shared/COORDINATION.md), not the phase hooks.
 
 ## Shared version and maintenance
 
-Shared release: **v0.14.4**, commit **91156fc91cdb0e065821f27baf1cd15458a5aadf**. Imported directly from the official release
-with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git 91156fc91cdb0e065821f27baf1cd15458a5aadf --squash`
+Shared release: **v0.14.5**, commit **0e7416bcb02ed5fb40ca503c8b02ac0a58d7a338**. Imported directly from the official release
+with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git 0e7416bcb02ed5fb40ca503c8b02ac0a58d7a338 --squash`
+in [#335](https://github.com/solwation/kvarteret-lunden/issues/335), matching
+[original #2213](https://github.com/solwation/lunden-3d-apartment/issues/2213).
+The complete [v0.14.4..v0.14.5 diff](https://github.com/solwation/dirigenten-och-orkestern/compare/91156fc91cdb0e065821f27baf1cd15458a5aadf...0e7416bcb02ed5fb40ca503c8b02ac0a58d7a338)
+was reviewed: `scripts/prune-worktrees.sh` no longer classifies a clone whose only
+unpublished work is a `git stash` as integrated (it was removed with `--apply`); such a
+clone is now `unproven` with its stash count and `--archive` bundles every stash entry
+(#81, regression test included). Worktrees were never affected. ORCHESTRA.md,
+COORDINATION.md, WORKER.md, ISSUE-WORKFLOW.md and the Issueflow snapshot are unchanged.
+No priority, ownership, queue-order, timer, publication or issue migration. No original
+application code, personal content or service integration is imported. Documentation/script-only:
+no meaningful app result image or visitor changelog. Stable releases and version tags
+were checked on 2026-11-20; the exact v0.14.5 tag resolves to the commit above.
+
+The previous v0.14.4 import (`91156fc91cdb0e065821f27baf1cd15458a5aadf`) remains recorded
 in [#286](https://github.com/solwation/kvarteret-lunden/issues/286), matching
 [original #1993](https://github.com/solwation/lunden-3d-apartment/issues/1993).
-The complete [v0.14.3..v0.14.4 diff](https://github.com/solwation/dirigenten-och-orkestern/compare/524cfb22db1cea96bf11028c0207348567fb61da...91156fc91cdb0e065821f27baf1cd15458a5aadf)
-was reviewed: platform-created checkout directories inside a project must also be
-ignored and included among the prune roots (#80); install examples and the Pages site
-reflect this. This host already ignores `.claude/worktrees/`; the cleanup rule above
-now explicitly includes every existing such root, alongside the named ext4 root.
-Manual checkouts stay on ext4; platform-created checkouts stay where the platform puts them.
-No priority, ownership, queue-order, timer, publication or issue migration. No original
-application code, personal content or service integration is imported. Documentation-only:
-no meaningful app result image or visitor changelog. Stable releases and version tags
-were checked on 2026-11-16; the exact release/tag resolves to the commit above.
 
 The previous v0.14.3 import (`524cfb22db1cea96bf11028c0207348567fb61da`) remains recorded
 in [#281](https://github.com/solwation/kvarteret-lunden/issues/281), matching
