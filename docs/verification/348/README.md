@@ -118,3 +118,11 @@ Grova faser: källgranskning/avgränsning3min, implementation/rena tester4min,
 två små app/offlinepasscirka3min, dokumentation/slutkontroll3min. Ingen mer
 browser behövs efter de gröna riktade kontrollerna. Rotdirigenten äger
 integration, Pages-verifiering och stängning.
+
+## Publicering
+
+Integrerad som `4c5169b4d507042fb617ecd831da1ac74c2997c9`.
+[Test, bygge och Pages44769185866](https://github.com/solwation/kvarteret-lunden/actions/runs/44769185866)
+passerade. [Slutkommentaren med konkret ickevisuell ljud-/runtimeevidens](https://github.com/solwation/kvarteret-lunden/issues/348#issuecomment-7044230947)
+publicerades före stängning. Dirigenten granskade sammanfogad diff och oförändrade
+verifierade ljud-/hjälpar-/testblock utan rutinmässig omkörning.
