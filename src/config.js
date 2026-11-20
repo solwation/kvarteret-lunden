@@ -4332,3 +4332,11 @@ export const RIVER_FISH_SURFACE = {
 // lines do not thin with distance, so beyond `fadeNear` m from the eye the darkening fades smoothly to `fadeMin` of that at
 // `fadeFar` m, where dense joints otherwise merge into ink. All *guesses* by eye (the original's before/after shots).
 export const EDGE_LOOK = { strength: 0.2, shade: 0.55, fadeNear: 2.5, fadeFar: 10, fadeMin: 0.45 };
+
+// Public #348: selected neutral original #2181 (11995f35) estimates, artistic assumptions.
+export const OCCLUSION = {
+  wall:{db:9,hz:1500}, door:{db:6,hz:2200}, openDoor:{db:1.2,hz:9000}, floor:{db:11,hz:1000},
+  maxDb:18, minHz:700, doorClosedT:.2, ramp:.12,
+  // Own public portal lookup: existing RoomMap uses 5 cm cells, at most one metre inward.
+  portalStep:.05, portalReach:1,
+};

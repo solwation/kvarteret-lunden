@@ -1,0 +1,141 @@
+{
+  "note": "Superseded min(cutoff) integration: levels change but the already darker wind LP masks the higher occlusion cutoff. Final source uses an explicit approximation, not a second filter.",
+  "offline": [
+    {
+      "name": "clear",
+      "rms": 0.010283366558657749,
+      "brightness": 735.1588085490395,
+      "built": {
+        "source": 1,
+        "filter": 3,
+        "gain": 4,
+        "panner": 1
+      },
+      "afterUpdates": {
+        "source": 1,
+        "filter": 3,
+        "gain": 4,
+        "panner": 1
+      }
+    },
+    {
+      "name": "wall",
+      "rms": 0.0036486759633279258,
+      "brightness": 735.1588089118588,
+      "built": {
+        "source": 1,
+        "filter": 3,
+        "gain": 4,
+        "panner": 1
+      },
+      "afterUpdates": {
+        "source": 1,
+        "filter": 3,
+        "gain": 4,
+        "panner": 1
+      }
+    },
+    {
+      "name": "floor",
+      "rms": 0.00289824636850031,
+      "brightness": 735.1588092909741,
+      "built": {
+        "source": 1,
+        "filter": 3,
+        "gain": 4,
+        "panner": 1
+      },
+      "afterUpdates": {
+        "source": 1,
+        "filter": 3,
+        "gain": 4,
+        "panner": 1
+      }
+    },
+    {
+      "name": "door-closed",
+      "rms": 0.005153891804444291,
+      "brightness": 735.1588085627161,
+      "built": {
+        "source": 1,
+        "filter": 3,
+        "gain": 4,
+        "panner": 1
+      },
+      "afterUpdates": {
+        "source": 1,
+        "filter": 3,
+        "gain": 4,
+        "panner": 1
+      }
+    },
+    {
+      "name": "door-open",
+      "rms": 0.008956437334315281,
+      "brightness": 735.1588090657692,
+      "built": {
+        "source": 1,
+        "filter": 3,
+        "gain": 4,
+        "panner": 1
+      },
+      "afterUpdates": {
+        "source": 1,
+        "filter": 3,
+        "gain": 4,
+        "panner": 1
+      }
+    },
+    {
+      "name": "restored",
+      "rms": 0.010283366558657749,
+      "brightness": 735.1588085490395,
+      "built": {
+        "source": 1,
+        "filter": 3,
+        "gain": 4,
+        "panner": 1
+      },
+      "afterUpdates": {
+        "source": 1,
+        "filter": 3,
+        "gain": 4,
+        "panner": 1
+      }
+    },
+    {
+      "name": "bed-clear",
+      "rms": 0.02349484502831856,
+      "brightness": 3384.565779069788,
+      "built": {
+        "source": 1,
+        "filter": 3,
+        "gain": 4,
+        "panner": 1
+      },
+      "afterUpdates": {
+        "source": 1,
+        "filter": 3,
+        "gain": 4,
+        "panner": 1
+      }
+    },
+    {
+      "name": "bed-with-obstacle",
+      "rms": 0.02349484502831856,
+      "brightness": 3384.565779069788,
+      "built": {
+        "source": 1,
+        "filter": 3,
+        "gain": 4,
+        "panner": 1
+      },
+      "afterUpdates": {
+        "source": 1,
+        "filter": 3,
+        "gain": 4,
+        "panner": 1
+      }
+    }
+  ]
+}

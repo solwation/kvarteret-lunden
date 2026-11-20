@@ -343,7 +343,7 @@ function addWindowFrame(group, x0, x1, fz, y0, y1, transom, out = -1, opens = tr
   const o = new Openable({ name: 'fönstret', object: pivot, mode: 'flap', axis: [1, 0, 0], sign: -out, max, speed: 1.6 }); // (`max`: a per-window stop, #429)
   o.normal = new THREE.Vector3(0, 0, -out); // the room side (tests stand there)
   const toggle = o.toggle.bind(o), at = new THREE.Vector3((a + b) / 2 + ox, (lo + hi) / 2, zo + oz); // (`ox`: a visited flat's offset, #574)
-  o.toggle = () => { toggle(); o.wind?.stop(); o.wind = o.isOpen ? sfx.wind(at) : null; }; // the wind blows in while it is open
+  o.toggle = () => { toggle(); o.wind?.stop(); o.wind = o.isOpen ? sfx.wind(at,o.normal) : null; }; // the wind blows in while it is open
   return [o];
 }
 

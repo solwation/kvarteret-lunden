@@ -11,7 +11,7 @@ import { reloadOnContextRestore, lowMemory } from './lowmemory.js';
 import { installTightFrustum } from './tightfrustum.js';
 import { installSiteInstanceBatch } from './siteinstancebatch.js';
 import { SiteWind, siteWind as windState } from './sitewind.js';
-import { toggleMuted, isMuted, updateListener, updateWindSound } from './audio.js';
+import { toggleMuted, isMuted, updateListener, updateWindSound, updateWindowOcclusion } from './audio.js';
 import { treeNearness } from './windsound.js';
 import { WIND_SOUND, SEASON } from './config.js';
 import { installPlaceCycle } from './place-cycle.js';
@@ -318,6 +318,7 @@ function frame() {
   if (windSoundT >= WIND_SOUND.every) {
     windSoundT = 0;
     updateListener(camera);
+    updateWindowOcclusion(world,camera.position);
     updateWindSound(windState, { x:navigation.pos.x, z:navigation.pos.z,
       leaves:SEASON.trees[floraMonth][3], near:treeNearness(treeFeet,navigation.pos.x,navigation.pos.z),
       indoors:!navigation.outdoors || navigation.below || navigation.inCore });

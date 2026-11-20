@@ -35,6 +35,32 @@ takmaterialet, utan någon ljusändring i produkten. Oförändrade draw-/triange
 (65536basbyte,87380nominella byte inklusive mippar) och +2 programvarianter i den uppmätta normala
 scenen; inga nya pass eller per-frameuppladdningar. [Urval, egna nativebilder, kontroller och begränsningar](verification/346/README.md).
 
+## Fönstervind bakom innerhinder, #348
+
+Granskad originalkälla `11995f35d32105d017be0d4efb0883b2ee8bef7f`
+([original #2181](https://github.com/solwation/lunden-3d-apartment/issues/2181)), inklusive
+hjälparnas första `18414a7451b072bb775dfbd8a5d898b92dffd9d0`. Bara ren
+segmentkorsning, rum/cell-/vägg-/dörrskattning och neutrala OCCLUSION-värden
+överförs selektivt. Originalets slutliga fönsterundantag granskas och bevaras:
+**ingen extra fasadförlust genom själva det öppna fönstret**. Detta nya spår
+avser bara mellanliggande modellerade innerhinder i samma bostad.
+
+Egen publik anpassning använder verkliga RoomMap-celler, absoluta golv,
+VisitUnit.walls/doors/throughSlab och dörrens fasta segmentAt(0) med live t.
+Fönstrets befintliga normal anger rumssidan; högst en meter/5cm inåt söks i
+befintlig rumsdata. Pannerns position ändras inte. Endast den befintliga
+fönstergrenens filter/gain får nya mål var0,25s; vindbädden är kvar. En uttrycklig
+konstnärlig cutoff-approximation kombinerar den redan låga vindfiltreringen med
+hindrets uppskattning, utan att påstå fysisk ekvivalens till seriefilter.
+
+L1007/L1004/L1201 har vardera sex verkliga vindfönster och omfattas. A/B/C har
+inte motsvarande öppningsbara vindkonsumenter; inga läggs till. Inga generella
+ljudeffekter, djurljud, playroom, personliga resurser, bilder, originalets
+ljudmotor, väder/spel/tjänster eller lagring följer med. Default av/gestkontroll,
+bruskälla, vegetationsvind, av/på och tysta övriga sfx bevaras.
+[Exakta källhashar, numeriska app/offlinebevis och gränser](verification/348/README.md).
+
+
 ## Rum bakom grannfönstren, #337
 
 Granskad publicerad originalkälla `dd7e6697d58465db68b2f3d1d61412e9b25707cb`

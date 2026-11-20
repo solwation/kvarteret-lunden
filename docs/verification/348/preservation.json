@@ -1,0 +1,52 @@
+{
+  "files": [
+    {
+      "path": "src/windsound.js",
+      "sha256": "88c0ca045a16b74d56113a8275eab9598f59adb0c39d976f1949326c7669aacd",
+      "unchanged": true
+    },
+    {
+      "path": "src/sitewind.js",
+      "sha256": "db345be51b0ba88c58363628e673051ffd4d77717098192e28d20ee011c0d893",
+      "unchanged": true
+    },
+    {
+      "path": "src/navigation.js",
+      "sha256": "c2f9b55b6dc2f75518250228f62c1afa5decfdcc99ac3b82a9bfb2b7668efa40",
+      "unchanged": true
+    },
+    {
+      "path": "src/visitunit.js",
+      "sha256": "fbcd3a623bf0fe71883cd3863cdcfc5255733f64858c81e0bf2fa789b35a9918",
+      "unchanged": true
+    },
+    {
+      "path": "src/doors.js",
+      "sha256": "57dd2c61550826d0bb402813d8fd63d76aac02f94a5c3478e02bff499f7d3f77",
+      "unchanged": true
+    },
+    {
+      "path": "src/corehouse.js",
+      "sha256": "9b871af8f778a8f585b0fb7383d3e5c27af3f6653d7eb95138da282da4cb3c46",
+      "unchanged": true
+    },
+    {
+      "path": "index.html",
+      "sha256": "d71a8c35a73face3388f56be89d9469e72952a1d4314a2492e437fe52a9ac68b",
+      "unchanged": true
+    },
+    {
+      "path": "style.css",
+      "sha256": "5f61d6bc365e379c5cc2611aff9c4236161bd5073fa4c140bc1996d5294b48c9",
+      "unchanged": true
+    },
+    {
+      "path": "data/plan.json",
+      "sha256": "5b76f14efff6287619f3ee4fd52aa3a4eb002599cad9d8bf29c92e1db030724b",
+      "unchanged": true
+    }
+  ],
+  "ambientGraphConstructionByteUnchanged": true,
+  "UIByteUnchanged": true,
+  "note": "Existing master, shared noise source and two bed filters/gains are unchanged; only per-window targets use the new estimate."
+}

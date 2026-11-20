@@ -1,4 +1,6 @@
 // Public #336: only neutral wind is audible. No assets, persistence, animal or interaction sounds.
+import {windowOcclusion, windowCutoff} from './soundocclusion.js';
+import {OCCLUSION as O} from './config.js';
 import { WIND_SOUND as S } from './config.js';
 import { windSoundParams, windStrength, windowWindParams, gustAt } from './windsound.js';
 
@@ -21,7 +23,7 @@ export function createWindGraph(ctx, random = Math.random) {
       ease(body.gain,p.gain,tc); ease(lp.frequency,p.lpHz,tc); ease(lp.Q,p.lpQ,tc);
       ease(band.gain,p.bandGain,tc); ease(bp.frequency,p.bandHz,tc); ease(bp.Q,p.bandQ,tc);
       const w = windowWindParams(power);
-      for (const v of windows) { ease(v.g.gain,w.gain*S.window.level,tc); ease(v.f.frequency,w.lpHz,tc); }
+      for (const v of windows) { v.power=power; ease(v.g.gain,w.gain*S.window.level*(v.oc?.gain ?? 1),tc); ease(v.f.frequency,windowCutoff(w.lpHz,v.oc),tc); }
     },
     window(pos, power) {
       const f = ctx.createBiquadFilter(), g = ctx.createGain(), p = ctx.createPanner(), w = windowWindParams(power);
@@ -29,8 +31,11 @@ export function createWindGraph(ctx, random = Math.random) {
       p.panningModel = 'equalpower'; p.distanceModel = 'inverse'; p.refDistance = S.window.ref; p.rolloffFactor = S.window.rolloff;
       p.positionX.value = pos.x; p.positionY.value = pos.y; p.positionZ.value = pos.z;
       noise.connect(f).connect(g).connect(p).connect(master);
-      const v = { f, g }; windows.add(v);
-      return { stop() { if (!windows.delete(v)) return; noise.disconnect(f); f.disconnect(); g.disconnect(); p.disconnect(); } };
+      const v = { f, g, power, oc:null }; windows.add(v);
+      return {
+        setOcclusion(oc) { v.oc=oc; const w=windowWindParams(v.power); ease(g.gain,w.gain*S.window.level*(oc?.gain ?? 1),O.ramp); ease(f.frequency,windowCutoff(w.lpHz,oc),O.ramp); },
+        stop() { if (!windows.delete(v)) return; noise.disconnect(f); f.disconnect(); g.disconnect(); p.disconnect(); }
+      };
     },
   };
 }
@@ -45,7 +50,7 @@ export function initAudio() {
   if (!AC) return null;
   ctx = new AC(); graph = createWindGraph(ctx); graph.master.gain.value = 0;
   graph.set(params,power);
-  for (const v of windows) v.voice = graph.window(v.pos,power);
+  for (const v of windows) { v.voice=graph.window(v.pos,power); v.voice.setOcclusion(v.oc); }
   return ctx;
 }
 export async function toggleMuted() {
@@ -76,11 +81,19 @@ export function updateListener(camera) {
     l.upX.value=0; l.upY.value=1; l.upZ.value=0;
   } else { l.setPosition(p.x,p.y,p.z); l.setOrientation(-Math.sin(yaw),0,-Math.cos(yaw),0,1,0); }
 }
+// Reuses each existing window filter/gain. Called on main's existing quarter-second wind tick.
+let acousticWorld=null, acousticListener=null;
+export function updateWindowOcclusion(world,listener) {
+  acousticWorld=world; acousticListener={x:listener.x,y:listener.y,z:listener.z};
+  for(const v of windows){v.oc=windowOcclusion(world,acousticListener,v.pos,v.normal);v.voice?.setOcclusion(v.oc);}
+}
 const silent = () => {};
-const wind = pos => {
-  const v = { pos: { x:pos.x,y:pos.y,z:pos.z }, voice:graph?.window(pos,power) };
+const wind = (pos,normal) => {
+  const v = {pos:{x:pos.x,y:pos.y,z:pos.z},normal:normal?{x:normal.x,z:normal.z}:null,voice:graph?.window(pos,power),oc:null};
+  if(acousticWorld && acousticListener)v.oc=windowOcclusion(acousticWorld,acousticListener,v.pos,v.normal);
+  v.voice?.setOcclusion(v.oc);
   windows.add(v);
-  return { stop() { if (!windows.delete(v)) return; v.voice?.stop(); } };
+  return {get occlusion(){return v.oc;}, stop() { if (!windows.delete(v)) return; v.voice?.stop(); } };
 };
 // All pre-existing non-wind consumers, including scenery animals, stay silent.
 export const sfx = new Proxy(Object.freeze({ wind }), { get: (target,key) => Object.hasOwn(target,key) ? target[key] : silent });

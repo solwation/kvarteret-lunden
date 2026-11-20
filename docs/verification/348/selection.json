@@ -1,0 +1,32 @@
+{
+  "sourceCommit": "11995f35d32105d017be0d4efb0883b2ee8bef7f",
+  "initialHelpersCommit": "18414a7451b072bb775dfbd8a5d898b92dffd9d0",
+  "publicBaseline": "c649ffa",
+  "sourceFileSha256": {
+    "src/soundocclusion.js": "7c4da703efb08de263a65814a246bda6dd20a8a12c6c25e7d514d2443fb4b198",
+    "src/config.js": "209b4e18a1153155264aaa760af343e50b53cd086bc706ed02e25ca6e4c38fc4",
+    "tools/soundocclusiontest.mjs": "782466f33004e7cc64c1f3e2a45d17ddb1704b368ec0dce12a495a9cbc7cab6b"
+  },
+  "publicFileSha256": {
+    "src/soundocclusion.js": "eeebe939a78a6a64272d2235ce203d73fb4a001d591d56773ef2bff630e70b9f",
+    "src/config.js": "7a4ad56b65d757aed0eed67ce6c203b9cc1f54dc2bd8865ce0fdebb21c982694",
+    "src/audio.js": "0f4d47ee37649a7aeced9f92927fc700b9c9688410bc9c54b0e15ef3814a83f8",
+    "src/main.js": "805f90df08ca246a6f06ba9e05d92de0010c241124cc133acf5240b6db76d9e3",
+    "src/world.js": "23e4603adb4b6e4cf02fd215b7ee29f5a252f7f9d1d5b1cb9ca765ff827ed582",
+    "tools/soundocclusiontest.mjs": "997df1bd2e26cd5e178d8680fc424acec3efda231e70b18c998888d3e8aecde2"
+  },
+  "selection": {
+    "src/soundocclusion.js": "Only segment crossing, fixed room/cell estimates and gain/cutoff combination principle. Own public adaptation for ears vs feet heights, RoomMap portal, VisitUnit walls/doors/slabs, actual doorway segmentAt(0), public-only supported cells. Not byte-identical.",
+    "src/config.js": "Only wall/door/openDoor/floor db/hz, maxDb/minHz/doorClosedT/ramp. No facade, original loop scheduler, birds or gameplay. Two own public portal bounds use existing 5cm grid.",
+    "src/audio.js": "Own small extension of reviewed #336 graph; existing window biquad/gain reused, optional opening normal and per-window attenuation. No original audio engine imported.",
+    "src/main.js": "Own one quarter-second update call plus import.",
+    "src/world.js": "Only pass existing room-side window normal; original panner position untouched."
+  },
+  "excluded": [
+    "Original general out()/audio graph/reverb/effects/animals/gameplay",
+    "Original playroom/facade/cross-building inference",
+    "Original wind exemption removal: opening stays clear",
+    "Personal resources/images/storage/weather/network/service integrations",
+    "Original history"
+  ]
+}
