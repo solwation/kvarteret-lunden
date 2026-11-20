@@ -18,6 +18,13 @@ konkret materiell risk; ta bara om felaktiga kamerapositioner. Befintliga snabba
 `npm test`/bygge och automatisk Pages-status kvarstår; dokument kräver ingen ny
 livebrowserkontroll av oförändrad app.
 
+## Rum bakom grannfönstren, #337
+
+`node --test tools/interiormaptest.mjs tools/glasspanestest.mjs` (8 fall), npm test/build och en egen faktisk
+public browser (`tools/roommap337browser.cjs`) med före/efter-bilder, dag och natt, för Hus L och Hus A-C:
+oförändrade draw calls/trianglar/texturer, +1 shaderprogram, inga fel eller externa anrop.
+[Bilder, mätvärden och gränser](verification/337/README.md).
+
 ## Solpanelernas celler och glas, #304
 
 Tre riktade nativefall, npm test/build och en egen faktisk public buildExterior-browser passerar.

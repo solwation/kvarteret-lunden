@@ -1,5 +1,19 @@
 # Förbättringar från originalet
 
+## Rum bakom grannfönstren, #337
+
+Granskad publicerad originalkälla `dd7e6697d58465db68b2f3d1d61412e9b25707cb`
+([original #2180](https://github.com/solwation/lunden-3d-apartment/issues/2180)). Överfört: `src/interiormap.js`
+(interior mapping i det befintliga `neighborGlass`-fragmentshadern: golv, tak, väggar, möbelblock samt gardin/persienn/skir gardin/
+rullgardin per fönster, deterministiskt från rutans mitt, bakat som tre vec4-attribut), `ROOM_MAP` (*guess*) i `src/config.js`,
+valfritt `rooms`-argument i `paneTints`, anrop i `exterior.js` (Hus L:s grannar) och `surroundings.js` (Hus A-C:s loggia-/entréglas
+samt de additiva kvällsrutorna formade som lampupplysta rum) och enhetstestet `tools/interiormaptest.mjs`.
+Anpassat: publicen saknar `windowschedule.js`, så den 10 rader långa `keyRandom` (FNV-1a + mulberry32) ligger lokalt i
+`interiormap.js`; kommentarer pekar på publicens egna fönsterlampor. Bakgrundsglas (`sitebackdrop`/`southbackdrop`) lämnas oförändrat
+liksom `lowMemory`/mobil (ingen patch, inga attribut). Inga personliga resurser, bilder eller tjänster.
+Egen browser (`tools/roommap337browser.cjs`): oförändrade draw calls/trianglar/texturer, +1 shaderprogram per vy.
+[Bilder, mätvärden och gränser](verification/337/README.md).
+
 ## Höje å speglar himlen, #342
 
 Granskad originalkälla `7e6b16b63e14bb419dfa80de3f2473c6105cbecd` ([original #2186](https://github.com/solwation/lunden-3d-apartment/issues/2186)).
