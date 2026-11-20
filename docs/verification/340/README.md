@@ -37,7 +37,7 @@ SiteWind are entirely unchanged ([preservation.json](preservation.json)).
    consumer and the existing secondary-motion consumers pass (`node.txt`).
 2. `npm test`: **184 modules**, import graph/public isolation/identity/CSP checks
    pass (`npm-test.txt`). `npm run build`: **1182ee1a0a9a706a9d00c182** (`build.txt`).
-3. `PLAYWRIGHT_MODULE=/home/devcontainers/kvarteret-lunden/node_modules/playwright /mnt/c/Users/olw/Documents/lunden-3d-apartment/tools/browsertest.sh node tools/ponybreath340browser.cjs http://localhost:8448 docs/verification/340`:
+3. `PLAYWRIGHT_MODULE=/path/to/playwright /path/to/original/tools/browsertest.sh node tools/ponybreath340browser.cjs http://localhost:8448 docs/verification/340`:
    own actual public app, one context, fixed `?month=1&wind=0.2,0`, no source
    substitution or original screenshots. App load 31.4 s. Camera is at the real
    existing shelter and the ordinary ponies retain their actual winter poses.
