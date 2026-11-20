@@ -18,6 +18,12 @@ konkret materiell risk; ta bara om felaktiga kamerapositioner. Befintliga snabba
 `npm test`/bygge och automatisk Pages-status kvarstår; dokument kräver ingen ny
 livebrowserkontroll av oförändrad app.
 
+## Diskret ånga från skorstenar och takhuvar i kyla, #345
+
+Fem Nodefall (`tools/roofsteamtest.mjs`) och en egen faktisk browser (`tools/roofsteam345browser.cjs`): 49 befintliga utlopp,
+480 punkter (20x24) i vyerna, +1 draw, samma trianglar, av vid varmt/långt/nivå 0, telefon 72 (6x12), noll fel och externa anrop.
+[Resultat, bilder och gränser](verification/345/README.md).
+
 ## Dagsljus i trapphusen, #347
 
 `node --test tools/stairdaylighttest.mjs` (7 fall), npm test/build och en egen faktisk public browser (`tools/stairdaylight347browser.cjs`)

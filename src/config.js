@@ -4368,3 +4368,21 @@ export const STAIR_DAYLIGHT = {
   texSize: 64,         // the one shared detail texture (RGBA, seeded value noise): 16 KB
   scale: [1.7, 0.31],  // texture repeats per metre: fine grain, broad patches
 };
+
+// #345 (original #2204): illustrative condensation above the existing chimney caps and roof vent hoods, not a measured exhaust
+// simulation (all values *guess*). The public scene has no weather: `monthTemp` is a neutral mean outdoor temperature per month
+// (°C, Swedish climate by eye; `?month=` picks the month, the default scene month is July) and `?temp=` pins one; the wind is
+// SITE_WIND's direction and power (`windAtFull` m/s at power 1). Budget: at most `maxSources`×`points` points on desktop and
+// `phoneSources`×`phonePoints` on phones (20×24 / 6×12), one Points draw, no light, shadow or pass. `?steam=0..3` is the quality
+// level (0 off, 1 half the sources, ≥2 full); `minLevel` 1 is the lowest drawn level. `color`/`edge` are linear RGB (the shader output is
+// sRGB-encoded, so 0.9 reads as ~0.95): a whitish soft core, lighter than the pale sky, with a subtle grey rim so a puff keeps some
+// contrast against snow (*guess*, by eye).
+export const ROOF_STEAM = {
+  cold: -8, warm: 8, windThin: 0.06, maxWind: 16, windAtFull: 12,
+  monthTemp: [-4, -4, 0, 5, 11, 15, 18, 17, 12, 7, 2, -2], // Jan…Dec (*guess*)
+  life: 7, rise: 0.75, windShare: 0.34, bend: 0.7, swirl: 0.18,
+  size: [0.55, 2.1], alpha: 0.4, fadeIn: 0.08,
+  far: 125, fadeFrom: 95, every: 0.4, maxSources: 20, phoneSources: 6,
+  points: 24, phonePoints: 12, minLevel: 1, lowLevelShare: 0.5,
+  outletLift: 0.04, color: [0.9, 0.92, 0.94], edge: [0.55, 0.6, 0.66],
+};

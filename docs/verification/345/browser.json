@@ -1,0 +1,103 @@
+{
+  "viewport": [
+    1280,
+    720
+  ],
+  "views": [
+    {
+      "view": "houses",
+      "eye": {
+        "x": 7.460967149279072,
+        "y": 13.254230316741209,
+        "z": 48.26223111003789
+      },
+      "clear": true,
+      "ndc": [
+        2.6809806450581593e-16,
+        -0.38181541065020014
+      ],
+      "outlet": {
+        "x": -1.0243142249594974,
+        "y": 14.254230316741209,
+        "z": 39.77694973579931
+      },
+      "group": "surroundings",
+      "selected": 20,
+      "count": 480,
+      "visible": true,
+      "before": {
+        "calls": 287,
+        "triangles": 719350,
+        "points": 0,
+        "programs": 75
+      },
+      "after": {
+        "calls": 288,
+        "triangles": 719350,
+        "points": 480,
+        "programs": 75
+      }
+    },
+    {
+      "view": "campus",
+      "eye": {
+        "x": 40.48528137423857,
+        "y": 22.125277510035396,
+        "z": -114.01471862576143
+      },
+      "clear": true,
+      "ndc": [
+        0,
+        -0.3818154106502006
+      ],
+      "outlet": {
+        "x": 32,
+        "y": 23.125277510035396,
+        "z": -122.5
+      },
+      "group": "east-backdrop",
+      "selected": 20,
+      "count": 480,
+      "visible": true,
+      "before": {
+        "calls": 31,
+        "triangles": 371389,
+        "points": 0,
+        "programs": 75
+      },
+      "after": {
+        "calls": 32,
+        "triangles": 371389,
+        "points": 480,
+        "programs": 75
+      }
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "sources": {
+    "total": 49,
+    "groups": {
+      "surroundings": 15,
+      "east-backdrop": 34
+    }
+  },
+  "gates": {
+    "warm": true,
+    "far": true,
+    "q0": true,
+    "restored": true,
+    "phone": {
+      "count": 72,
+      "max": 72
+    },
+    "shadow": false,
+    "depthWrite": false,
+    "desktopMax": 480
+  },
+  "errorsCount": 0,
+  "default": {
+    "temp": 18,
+    "visible": false
+  }
+}

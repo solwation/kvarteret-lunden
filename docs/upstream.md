@@ -1,5 +1,21 @@
 # Förbättringar från originalet
 
+## Diskret ånga från skorstenar och takhuvar i kyla, #345
+
+Selektiv källa `0638c8b1f6da01c372af58aac4178a2b5b6d0231`
+([original #2204](https://github.com/solwation/lunden-3d-apartment/issues/2204)). Överfört: `src/roofsteam.js`
+(utan originalets dygnscykel: publiken har fast dagsljus, så ingen ljusuniform), `ROOF_STEAM` i `src/config.js`,
+utloppsmetadata (`steamOutlets`/`roofSteam`) i `campusfacades.js`, `schoolfacade.js`, `sitebackdrop.js` (platta
+takenheter) och `surroundings.js` (husens takhuvar), samt `tools/roofsteamtest.mjs` och `tools/roofsteam345browser.cjs`.
+Ingen geometri, kollision eller byggbudget ändras. Publiken saknar Weather/windsim: temperaturen är en neutral
+månadstabell (`ROOF_STEAM.monthTemp`, *guess*; vald månad = `?month=`, standardscenen är juli, alltså ingen ånga) eller
+`?temp=` och vinden är `SiteWind`s riktning och styrka (`windAtFull` m/s vid 1). Ingen kvalitetsnivå finns här: `?steam=0..3`
+(0 = av), telefon (`lowMemory`) får den mindre budgeten. Originalets realväder, tjänster, Cloudflare, `main.js` och historik
+hämtas inte. Hus L har ingen takhuv i byggarna och får ingen påhittad; skolans huvudbyggnads (`surroundings.js`) enkla
+skorstenar saknade utloppsmetadata i originalet och lämnas. Alla värden och vilka utlopp som är aktiva är *guess*, ingen HVAC.
+Färgen är ljus (linjärt `0.9/0.92/0.94`, sRGB-kodad vid utmatning) med en svag gråare kant (`edge`) för kontrast mot snö, alpha 0,4; originalet hade ingen kant.
+Egna kontroller: [verification/345/README.md](verification/345/README.md).
+
 ## Ny Pages-körning efter dubbla artefakter, #350
 
 Granskad publicerad originalkälla `03fd05e4c09cfe7cb52f6f2f671022a32e95493a`

@@ -14,6 +14,7 @@ import { SiteWind, siteWind as windState } from './sitewind.js';
 import { toggleMuted, isMuted, updateListener, updateWindSound, updateWindowOcclusion } from './audio.js';
 import { treeNearness } from './windsound.js';
 import { WIND_SOUND, SEASON } from './config.js';
+import { RoofSteam } from './roofsteam.js'; // #345 (original #2204): cold-weather condensation at the existing roof outlets
 import { installPlaceCycle } from './place-cycle.js';
 import { Garage } from './garage.js';
 import { Balloon } from './balloon.js';
@@ -40,14 +41,14 @@ import { Core } from './core.js';
 import { CoreHouse } from './corehouse.js';
 import { stairDayUniforms, dayBlend } from './stairdaylight.js'; // #347 (original #2183)
 import { updateInstanceLods } from './lod.js';
-import { CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, LIGHTING, STARTUP, TOUCH, VIEW_NEAR, SITE, OUTDOOR, EDGE_BACKDROP, STAIR_DAYLIGHT } from './config.js';
+import { ROOF_STEAM, CORE_A, CORE_B, CORE_C, CORE, GARAGE, LEVELS, LIGHTING, STARTUP, TOUCH, VIEW_NEAR, SITE, OUTDOOR, EDGE_BACKDROP, STAIR_DAYLIGHT } from './config.js';
 import { region, stickMirrored, setupTouchLayout } from './touchlayout.js';
 
 const $ = id => document.getElementById(id);
 const touch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
 document.body.classList.toggle('touch', touch);
 const touchLayout = setupTouchLayout({enabled: touch}); // own button/stick layout from the help dialog (#30, upstream 1af9b39)
-let renderer, camera, scene, world, navigation, core, garage, paddock, ducks, ambientCats, ambientFish, riverDrift, riverLilies, floraMonth = 7, squirrels, ambientBalloon;
+let roofSteam, renderer, camera, scene, world, navigation, core, garage, paddock, ducks, ambientCats, ambientFish, riverDrift, riverLilies, floraMonth = 7, squirrels, ambientBalloon;
 const debugParams = new URLSearchParams(location.search), paddockRain = Math.max(0, Math.min(1, Number(debugParams.get('paddockrain')) || 0));
 let active = false, ready = false, focus = null, measuring = false, firstPoint = null;
 const intervals = debugParams.has('perf') ? new FrameIntervals() : null;
@@ -223,6 +224,10 @@ async function init() {
   ambientBalloon = new Balloon({scene});
   new LeafLitter({ trees: () => aoTrees, roads: () => SITE.roads.filter((r) => r.path || r.x1 !== undefined).map((r) => (r.path ? roadSamples(r) : [[r.x0, r.z0], [r.x1, r.z0], [r.x1, r.z1], [r.x0, r.z1], [r.x0, r.z0]].map(([x, z]) => ({ x, z, w: 0 })))) }).register(); // #317 (original #2105): fallen autumn leaves on the ground (month-driven shared uniforms; detail off on phones)
   const debugMonth = Number(debugParams.get('month')); if (debugMonth >= 1 && debugMonth <= 12) { applySeason(Math.round(debugMonth)); floraMonth = Math.round(debugMonth); } // debug: show a month's season (snow months: white ground, ponies in the stable)
+  // #345: neutral temperature (month table, `?temp=` pins it) and the site wind; level `?steam=0..3`, phones get the small budget
+  const steamLevel = debugParams.has('steam') ? Math.round(Number(debugParams.get('steam')) || 0) : 3;
+  roofSteam = new RoofSteam({ scene, camera, phone: lowMemory, weather: { temp: Number.isFinite(parseFloat(debugParams.get('temp'))) ? parseFloat(debugParams.get('temp')) : ROOF_STEAM.monthTemp[floraMonth - 1], wind: { x: 0, z: 0 } } });
+  roofSteam.setLevel(steamLevel);
   await loadingStep('Bygger trapphus och garage', 0.82);
   garage = world.garage = new Garage();
   for (const o of [garage.object, garage.blackout, garage.door?.object, garage.parkObject]) if (o) scene.add(o);
@@ -270,7 +275,7 @@ async function init() {
   $('place-toggle').disabled = false;
   // Keep model access local for diagnostics, without a service connection.
   const siteInstances = lowMemory ? null : installSiteInstanceBatch(renderer, scene);
-  window.lundenViewer = {startupCache,intervals, colorFrustum, siteInstances, phoneFrustum, paddock, ducks, ambientCats, ambientFish, riverDrift, riverLilies, squirrels, ambientBalloon, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
+  window.lundenViewer = {roofSteam, startupCache,intervals, colorFrustum, siteInstances, phoneFrustum, paddock, ducks, ambientCats, ambientFish, riverDrift, riverLilies, squirrels, ambientBalloon, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
   window.kvarteretStartup?.finish();
   $('start').disabled = false; $('start').textContent = 'Börja utforska →';
   status('Dator och mobil · Ingen inloggning');
@@ -330,6 +335,7 @@ function frame() {
       leaves:SEASON.trees[floraMonth][3], near:treeNearness(treeFeet,navigation.pos.x,navigation.pos.z),
       indoors:!navigation.outdoors || navigation.below || navigation.inCore });
   }
+  if (roofSteam) { const sp = windState.power * ROOF_STEAM.windAtFull; roofSteam.weather.wind.x = windState.dir.x * sp; roofSteam.weather.wind.z = windState.dir.y * sp; roofSteam.update(dt); } // #345: the same downwind vector as the sway
 
   ambientCats?.update(navigation.below || navigation.inCore || !navigation.outdoors);
 

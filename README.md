@@ -45,6 +45,8 @@ Avståndsdiset har luftperspektiv: lite blåare på mellanavstånd och ljust mot
 
 Gatorna ser använda ut: svagt mörkare och blankare hjulspår, enstaka smala sprickor (några tätade med svart bitumen), sprickor längs vägkanten, fler och mer verklighetstrogna lagningar och övergångsställets vita fält slitna där hjulen går, med samma vägbredder, kantstenar, gångbarhet och draws (#316). [Egna jämförelsebilder och kontroller](docs/verification/316/README.md).
 
+I kyla (`?month=1`, eller `?temp=` under +8 °C) stiger diskret ljus mjuk ånga från husens takhuvar, skolans skorstenar och de platta takens ventilationsenheter och böjs av vinden; standardscenen är juli och har ingen (#345). [Egna bilder och kontroller](docs/verification/345/README.md).
+
 Trädkronor, buskar, gårdens perenner och vassen vid ån vajar svagt i en fast lätt bris, skuggorna följer med; stammar, klippta häckar, klätterväxter och renderbudget är oförändrade (#315). [Egna bilder och kontroller](docs/verification/315/README.md).
 
 Gräsmattorna har mjuka torrare och frodigare fläckar och små tuvor, och mönstret upprepas mindre på 10–20 m håll; medelfärgen på håll, säsonger och snö är oförändrade (#306). [Egna jämförelsebilder och kontroller](docs/verification/306/README.md).
