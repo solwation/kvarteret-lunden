@@ -13,7 +13,10 @@ Originalets incidentloggar, run-id, produktkod och historik importeras inte. Ing
 publik incident påstås, ingen provpublicering har startats och varken workflow,
 publiceringspolicy, artefakter eller app ändras. Dokumentationsdiff/länkar/faktiska
 workflowfält och CLI-help granskas; publicens vanliga `npm test`/`npm run build`
-körs efter sista textändringen. Ingen meningsfull browserbild för en ren driftrutin.
+är gröna efter sista textändringen (190 moduler granskade, bygge `9786b118b9da3c35fd323000`).
+Leverans `60a1c30688bad8752e260c9bf9e49583893f036f`, [Pages44773701959](https://github.com/solwation/kvarteret-lunden/actions/runs/44773701959) grön;
+[slutkommentar](https://github.com/solwation/kvarteret-lunden/issues/350#issuecomment-7044832473).
+Ingen meningsfull browserbild för en ren driftrutin.
 
 ## Dagsljus i trapphusen, #347
 
