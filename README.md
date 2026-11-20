@@ -234,6 +234,37 @@ Visningen är publicerad på **[solwation.github.io/kvarteret-lunden](https://so
 
 En öppen visning kontrollerar nya versioner varje minut och när fliken blir synlig eller nätet återkommer. Efter tio sekunders inaktivitet visas en femsekunders nedräkning. Rörelse och annan inmatning avbryter nedräkningen; hjälp och mätning skjuter upp den. Plats och blickriktning återställs efter omladdningen. På dator klickar man Fortsätt utforska för att fånga musen igen. Om webbläsaren blockerar lagring startar den nya versionen från välkomstvyn. Ingen inloggning behövs. Nätfel låter den befintliga visningen fortsätta. Ändringar som bara berör dokumentation laddar inte om besökaren.
 
+### Återställning efter dubbla Pages-artefakter (#350)
+
+Workflowens enda `publish`-jobb kör npm-installation, tester och bygge till `dist/`,
+sedan `actions/upload-pages-artifact@v3` och `actions/deploy-pages@v4`. Efter exempelvis
+ett HTTP502 vid deploy kan en job-omkörning lämna två `github-pages`-artefakter i samma
+körning. Om loggen säger `Multiple artifacts named "github-pages"` / `Artifact count
+is 2`, använd en **ny workflow-körning** i stället för ännu en omkörning av det jobbet.
+
+Publiceringsägaren sparar gammalt run-id och full `headSha`, kontrollerar att `main`
+fortfarande pekar på avsedd revision och samordnar med andra pågående publiceringar:
+`concurrency: pages` med `cancel-in-progress: true` kan avbryta en annan körning.
+Om `main` har gått vidare måste avsedd leverans samordnas; en ny körning får inte
+beskrivas som den gamla revisionen eller motivera en återställning av andras ändringar.
+
+I Actions: välj **Publish Kvarteret Lunden → Run workflow → main**. Motsvarande
+kommando nedan **startar publicering** och är avsett för publiceringsägaren:
+
+```sh
+gh workflow run pages.yml --repo solwation/kvarteret-lunden --ref main
+```
+
+Kontrollera nytt run-id, `event: workflow_dispatch` och avsedd full `headSha`.
+Läs artefaktmetadata via `gh api repos/solwation/kvarteret-lunden/actions/runs/RUN_ID/artifacts`:
+den nya körningen ska ha en `github-pages`-artefakt. Följ tester, bygge, uppladdning
+**och faktisk deploy till success**; uppladdning eller köad deploy räcker inte.
+Rutinen kräver ingen artefaktradering, workflowändring eller produktändring och ändrar
+inte normala leveranskontroller. Den är en anpassning av en verifierad återställning
+i källprojektet, inte ett påstående om en inträffad publik incident; se
+[proveniens](docs/upstream.md#ny-pages-körning-efter-dubbla-artefakter-350) och
+[GitHubs manual-run-guide](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow).
+
 ## Verifiering
 
 Normalpackarens befintliga hjälpfunktion normaliserar nu riktningar före bytekonvertering (#256).

@@ -1,5 +1,20 @@
 # Förbättringar från originalet
 
+## Ny Pages-körning efter dubbla artefakter, #350
+
+Granskad publicerad originalkälla `03fd05e4c09cfe7cb52f6f2f671022a32e95493a`
+([original #2236](https://github.com/solwation/lunden-3d-apartment/issues/2236)). Endast den
+generella återställningsrutinen från leveransguiden överförs till README:s publiceringsavsnitt:
+ny samordnad `workflow_dispatch`, kontroll av full avsedd revision, nytt run-id,
+en artefakt och faktisk deployframgång. Anpassat till detta repos `publish`-jobb,
+npm/test/build, `dist/`, workflowtitel och repo-adress.
+
+Originalets incidentloggar, run-id, produktkod och historik importeras inte. Ingen
+publik incident påstås, ingen provpublicering har startats och varken workflow,
+publiceringspolicy, artefakter eller app ändras. Dokumentationsdiff/länkar/faktiska
+workflowfält och CLI-help granskas; publicens vanliga `npm test`/`npm run build`
+körs efter sista textändringen. Ingen meningsfull browserbild för en ren driftrutin.
+
 ## Dagsljus i trapphusen, #347
 
 Granskad publicerad originalkälla `1da6a3c94adf3115a0b5845bd87c9106f73db987`
