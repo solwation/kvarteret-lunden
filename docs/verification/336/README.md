@@ -35,3 +35,12 @@ Fönster ensamt: RMS **0,003299 → 0,014989** från styrka 0,12 till 1; stoppat
 Kostnad: inga ändrade WebGL-draws/material/geometrier eller bildresurser. Efter opt-in finns en noise-source, två filter och tre gainnoder för bädden; varje öppet fönster lägger till ett filter, en gain och en panner men ingen ny bruskälla. De kopplas bort vid stängning. Brusbufferten är 2 sekunder mono Float32, 384000 byte vid 48 kHz, delas av alla grenar. Ingen ny rAF, timer, nätanslutning eller lagringsnyckel. Appens befintliga renderloop sköter kvartsekundsuppdateringen. Browserwrappen saknade systemd-scope på värden; någon hård minnesgräns verifierades därför inte.
 
 Root-dirigenten äger integration/publicering och slutlig releasekontroll. Inga tjänster startades utöver det egna tillfälliga lokala HTTP-testet; det och browsern stoppas före överlämning. Ingen push eller stängning från arbetaren.
+
+## Publicering
+
+Integrerad med oförändrade verifierade ljud-/hjälpar-/UI-block som
+`23483c52f061f4bcd01dc99f337827c59a77eee8`.
+[Test, bygge och Pages44765605748](https://github.com/solwation/kvarteret-lunden/actions/runs/44765605748)
+passerade. [Slutkommentaren med inbäddad resultatbild](https://github.com/solwation/kvarteret-lunden/issues/336#issuecomment-7043725726)
+publicerades före stängning; den SHA-pinnade bilden verifierades HTTP200/95747byte.
+Dirigenten granskade kombinerad diff och återanvände de källbundna gröna kontrollerna.
