@@ -11,7 +11,7 @@ export class DuckKiss {
  clear(a,b,water){const C=this.config,n=Math.max(1,Math.ceil(Math.hypot(b.x-a.x,b.z-a.z)/C.sample)),ys=[];for(let i=0;i<=n;i++){const x=a.x+(b.x-a.x)*i/n,z=a.z+(b.z-a.z)*i/n;if(!this.habitat.contains(x,z))return false;const s=this.habitat.surface(x,z);if(s.water!==water||!Number.isFinite(s.y))return false;ys.push(s.y);}return Math.max(...ys)-Math.min(...ys)<=C.rise;}
  update(dt,flock,hidden=false){
   const C=this.config;dt=Number.isFinite(dt)?Math.min(Math.max(dt,0),C.maxStep):0;this.time+=dt;
-  const idle=b=>!hidden&&this.seen(b);
+  const idle=b=>!hidden&&!b.roosting&&this.seen(b);
   if(this.pair){const p=this.pair;if(!p.birds.every(idle)||p.age>C.timeout){this.stop();return;}p.age+=dt;
    let ready=true;p.birds.forEach((b,i)=>{const q=['space','turn','withdraw','resume'].includes(p.stage)?p.space[i]:p.goals[i],yaw=['space','resume'].includes(p.stage)?p.yaws[i]:p.yaws[2+i],delta=Math.atan2(Math.sin(yaw-b.yaw),Math.cos(yaw-b.yaw)),d=Math.hypot(q.x-b.x,q.z-b.z);b.yaw+=Math.max(-C.turn*dt,Math.min(C.turn*dt,delta));
     if(!this.clear(b,q,p.water)){this.stop();return;}

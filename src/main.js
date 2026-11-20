@@ -208,7 +208,7 @@ async function init() {
   // In parts, with the card's heartbeat painted between them (#39, from the original's 673b78d #1133).
   world = await buildWorldSliced(plan, (share) => loadingYield(0.2 + 0.6 * share)); scene.add(world.object);
   paddock = new URLSearchParams(location.search).has('nopaddock') ? null : new Paddock({ scene, camera, ground: (x, z) => (z > SITE.backgroundGround.z1 ? -3.01 : Math.max(groundY(x, z), renderedTerrainY(x, z))), trees: treeFeet }); // original #1280: the fenced pony paddock, scenery only
-  ducks = new Ducks({scene,camera,ground:renderedTerrainY}); // #235: ambient only; use the actual drawn bank/riverbed
+  ducks = new Ducks({scene,camera,ground:renderedTerrainY,hour:()=>{const t=new Date();return t.getHours()+t.getMinutes()/60+t.getSeconds()/3600;}}); // #344: the ducks rest ashore on the visitor's local night // #235: ambient only; use the actual drawn bank/riverbed
 
   ambientCats = debugParams.has('nocats') ? null : new OutdoorCats({scene,camera,ground:createAmbientCatGround((x,z)=>Math.max(groundY(x,z),renderedTerrainY(x,z)),renderedTerrainY,skirtTop,OUTDOOR,EDGE_BACKDROP.level),barriers:catPhysicalSegments([...world.levels[0].segments,...farSegments()]),trunks:[...treeFeet,...southTreeFeet],lowMemory});
 

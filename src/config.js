@@ -3998,6 +3998,14 @@ export const DUCKS = Object.freeze({
   }
 });
 
+// Public #344 (original #2202, a5983bfa; sound, calls and feeding excluded): neutral mallard dusk/night shore rest. All values *guess*.
+// Hour ramps: settle from 18-20, wake from 05-07 (local clock; `settle` = night weight at which pairs head for the shore);
+// `arrive` m from the rest point counts as arrived; `mateOffset` m along the river between a pair's two rest points;
+// `poseEase` per s for the body weight; `crouch` m the body sinks and `tuck` rad it pitches while resting; `breath` m breathing amplitude.
+export const DUCK_LIFE = Object.freeze({
+  dusk: [18, 20], dawn: [5, 7], settle: .2, arrive: .28, mateOffset: .9, poseEase: 1.8, crouch: .025, tuck: .1, breath: .003,
+});
+
 // Public #323 (original #2126, 1f71fe84): mallard swim strokes, dabbling, preening, shaking, short take-off and a faint V wake. All *guess* (look, not measured).
 // `every` s between idle-behaviour rolls per duck; `weights` relative odds (dabble only on water); `dur` [min, extra] s.
 // Pose angles in rad; pivot/lift in m in the model frame (origin at the feet, waterline about DUCKS.habitat.sink above it).

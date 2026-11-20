@@ -1,0 +1,443 @@
+{
+ "baseline": "a08a6f3836b823f334f4ff73700f9b1781582d44",
+ "viewport": [
+  1120,
+  800
+ ],
+ "errors": [],
+ "external": [],
+ "runs": {
+  "before-night": {
+   "state": [
+    {
+     "id": 0,
+     "pair": 0,
+     "x": -160.11,
+     "z": 203.05,
+     "swimming": true,
+     "moving": false,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -7.293,
+     "pitch": 0
+    },
+    {
+     "id": 3,
+     "pair": 0,
+     "x": -160.14,
+     "z": 202.2,
+     "swimming": false,
+     "moving": false,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -5.995,
+     "pitch": 0
+    },
+    {
+     "id": 2,
+     "pair": 1,
+     "x": -222.92,
+     "z": 220.89,
+     "swimming": false,
+     "moving": true,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -6.392,
+     "pitch": 0
+    },
+    {
+     "id": 1,
+     "pair": 1,
+     "x": -221.85,
+     "z": 220.23,
+     "swimming": false,
+     "moving": true,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -6.367,
+     "pitch": 0
+    }
+   ],
+   "dist": 65.29687819791303,
+   "calls": 29,
+   "triangles": 371407,
+   "state2": [
+    {
+     "id": 0,
+     "pair": 0,
+     "x": -160.11,
+     "z": 203.05,
+     "swimming": true,
+     "moving": false,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -7.293,
+     "pitch": 0
+    },
+    {
+     "id": 3,
+     "pair": 0,
+     "x": -160.14,
+     "z": 202.2,
+     "swimming": false,
+     "moving": false,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -5.995,
+     "pitch": 0
+    },
+    {
+     "id": 2,
+     "pair": 1,
+     "x": -222.92,
+     "z": 220.89,
+     "swimming": false,
+     "moving": true,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -6.392,
+     "pitch": 0
+    },
+    {
+     "id": 1,
+     "pair": 1,
+     "x": -221.85,
+     "z": 220.23,
+     "swimming": false,
+     "moving": true,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -6.367,
+     "pitch": 0
+    }
+   ],
+   "cpu": 0.087,
+   "night": null,
+   "storage": "[[\"lunden.sentinel\",\"kept\"]]"
+  },
+  "day": {
+   "state": [
+    {
+     "id": 0,
+     "pair": 0,
+     "x": -160.11,
+     "z": 203.05,
+     "swimming": true,
+     "moving": false,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -7.293,
+     "pitch": 0
+    },
+    {
+     "id": 3,
+     "pair": 0,
+     "x": -160.14,
+     "z": 202.2,
+     "swimming": false,
+     "moving": false,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -5.995,
+     "pitch": 0
+    },
+    {
+     "id": 2,
+     "pair": 1,
+     "x": -222.92,
+     "z": 220.89,
+     "swimming": false,
+     "moving": true,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -6.392,
+     "pitch": 0
+    },
+    {
+     "id": 1,
+     "pair": 1,
+     "x": -221.85,
+     "z": 220.23,
+     "swimming": false,
+     "moving": true,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -6.367,
+     "pitch": 0
+    }
+   ],
+   "dist": 65.29687819791303,
+   "calls": 29,
+   "triangles": 371407,
+   "state2": [
+    {
+     "id": 0,
+     "pair": 0,
+     "x": -160.11,
+     "z": 203.05,
+     "swimming": true,
+     "moving": false,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -7.293,
+     "pitch": 0
+    },
+    {
+     "id": 3,
+     "pair": 0,
+     "x": -160.14,
+     "z": 202.2,
+     "swimming": false,
+     "moving": false,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -5.995,
+     "pitch": 0
+    },
+    {
+     "id": 2,
+     "pair": 1,
+     "x": -222.92,
+     "z": 220.89,
+     "swimming": false,
+     "moving": true,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -6.392,
+     "pitch": 0
+    },
+    {
+     "id": 1,
+     "pair": 1,
+     "x": -221.85,
+     "z": 220.23,
+     "swimming": false,
+     "moving": true,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -6.367,
+     "pitch": 0
+    }
+   ],
+   "cpu": 0.152,
+   "night": 0,
+   "storage": "[[\"lunden.sentinel\",\"kept\"]]"
+  },
+  "night": {
+   "state": [
+    {
+     "id": 0,
+     "pair": 0,
+     "x": -160.17,
+     "z": 200.9,
+     "swimming": false,
+     "moving": false,
+     "sleeping": true,
+     "roosting": true,
+     "meshY": -5.729,
+     "pitch": 0.1
+    },
+    {
+     "id": 3,
+     "pair": 0,
+     "x": -160.91,
+     "z": 200.72,
+     "swimming": false,
+     "moving": false,
+     "sleeping": true,
+     "roosting": true,
+     "meshY": -5.73,
+     "pitch": 0.1
+    },
+    {
+     "id": 2,
+     "pair": 1,
+     "x": -208.39,
+     "z": 212.34,
+     "swimming": false,
+     "moving": false,
+     "sleeping": true,
+     "roosting": true,
+     "meshY": -5.773,
+     "pitch": 0.1
+    },
+    {
+     "id": 1,
+     "pair": 1,
+     "x": -209.08,
+     "z": 212.5,
+     "swimming": false,
+     "moving": false,
+     "sleeping": true,
+     "roosting": true,
+     "meshY": -5.774,
+     "pitch": 0.1
+    }
+   ],
+   "dist": 49.55581706046277,
+   "calls": 29,
+   "triangles": 371867,
+   "state2": [
+    {
+     "id": 0,
+     "pair": 0,
+     "x": -160.17,
+     "z": 200.9,
+     "swimming": false,
+     "moving": false,
+     "sleeping": true,
+     "roosting": true,
+     "meshY": -5.729,
+     "pitch": 0.1
+    },
+    {
+     "id": 3,
+     "pair": 0,
+     "x": -160.91,
+     "z": 200.72,
+     "swimming": false,
+     "moving": false,
+     "sleeping": true,
+     "roosting": true,
+     "meshY": -5.73,
+     "pitch": 0.1
+    },
+    {
+     "id": 2,
+     "pair": 1,
+     "x": -208.39,
+     "z": 212.34,
+     "swimming": false,
+     "moving": false,
+     "sleeping": true,
+     "roosting": true,
+     "meshY": -5.773,
+     "pitch": 0.1
+    },
+    {
+     "id": 1,
+     "pair": 1,
+     "x": -209.08,
+     "z": 212.5,
+     "swimming": false,
+     "moving": false,
+     "sleeping": true,
+     "roosting": true,
+     "meshY": -5.774,
+     "pitch": 0.1
+    }
+   ],
+   "cpu": 0.142,
+   "night": 1,
+   "storage": "[[\"lunden.sentinel\",\"kept\"]]"
+  },
+  "morning": {
+   "state": [
+    {
+     "id": 0,
+     "pair": 0,
+     "x": -160.11,
+     "z": 203.05,
+     "swimming": true,
+     "moving": false,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -7.293,
+     "pitch": 0
+    },
+    {
+     "id": 3,
+     "pair": 0,
+     "x": -160.14,
+     "z": 202.2,
+     "swimming": false,
+     "moving": false,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -5.995,
+     "pitch": 0
+    },
+    {
+     "id": 2,
+     "pair": 1,
+     "x": -222.92,
+     "z": 220.89,
+     "swimming": false,
+     "moving": true,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -6.392,
+     "pitch": 0
+    },
+    {
+     "id": 1,
+     "pair": 1,
+     "x": -221.85,
+     "z": 220.23,
+     "swimming": false,
+     "moving": true,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -6.367,
+     "pitch": 0
+    }
+   ],
+   "dist": 65.29687819791303,
+   "calls": 29,
+   "triangles": 371407,
+   "state2": [
+    {
+     "id": 0,
+     "pair": 0,
+     "x": -160.11,
+     "z": 203.05,
+     "swimming": true,
+     "moving": false,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -7.293,
+     "pitch": 0
+    },
+    {
+     "id": 3,
+     "pair": 0,
+     "x": -160.14,
+     "z": 202.2,
+     "swimming": false,
+     "moving": false,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -5.995,
+     "pitch": 0
+    },
+    {
+     "id": 2,
+     "pair": 1,
+     "x": -222.92,
+     "z": 220.89,
+     "swimming": false,
+     "moving": true,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -6.392,
+     "pitch": 0
+    },
+    {
+     "id": 1,
+     "pair": 1,
+     "x": -221.85,
+     "z": 220.23,
+     "swimming": false,
+     "moving": true,
+     "sleeping": false,
+     "roosting": false,
+     "meshY": -6.367,
+     "pitch": 0
+    }
+   ],
+   "cpu": 0.147,
+   "night": 0,
+   "storage": "[[\"lunden.sentinel\",\"kept\"]]"
+  }
+ }
+}

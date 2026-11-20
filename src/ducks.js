@@ -6,10 +6,11 @@ import {duckModel} from './duckmodel.js';
 import {DuckKiss,duckBill} from './duckkiss.js';
 import {Hearts} from './ambienthearts.js';
 import {DuckActivity,duckPose,wakeVertices,wakeVertexCount,DUCK_MOTION} from './duckmotion.js';
+import {duckNight,duckSleepPose,DUCK_LIFE} from './ducklife.js';
 import {waterYAt} from './riverbridge.js';
 export class Ducks {
- constructor({scene,camera,ground}) {
-  this.camera=camera;this.ground=ground;this.habitat=duckHabitat(ground);this.flock=new DuckFlock(this.habitat);
+ constructor({scene,camera,ground,hour=()=>12}) {
+  this.hour=hour;this.camera=camera;this.ground=ground;this.habitat=duckHabitat(ground);this.flock=new DuckFlock(this.habitat);
   const geometries=[duckModel(false),duckModel(true)],mat=new THREE.MeshStandardMaterial({vertexColors:true,roughness:1});
   let seed=DUCKS.social.seed+1846;const random=()=>{seed=seed*16807%2147483647;return seed/2147483647;};
   this.kiss=new DuckKiss({config:DUCKS.kiss,bill:duckBill(geometries[0].attributes.position),habitat:this.habitat,seen:b=>this.kissVisible(b),random,burst:p=>{
@@ -60,11 +61,13 @@ export class Ducks {
   if(!hidden)for(const a of this.animals){const b=a.brain,dx=b.x-p.x,dz=b.z-p.z,d=Math.hypot(dx,dz),toward=(vx*dx+vz*dz)/(d||1);
    a.activity.update(dt,b,{disturbed:d<T.disturb&&toward<T.maxSpeed&&Math.abs(p.y-b.y)<T.height&&toward>T.disturbSpeed,asleep:d>=DUCKS.near});}
   this.kiss.update(dt,this.flock,hidden);
-  if(!hidden)this.flock.update(dt,b=>!this.kiss.owns(b)&&Math.hypot(p.x-b.x,p.z-b.z)<DUCKS.near);
+  if(!hidden)this.flock.update(dt,b=>!this.kiss.owns(b)&&Math.hypot(p.x-b.x,p.z-b.z)<DUCKS.near,this.night=duckNight(this.hour()));
   if(this.kissHearts){if(hidden||!this.kiss.pair)this.kissHearts.points.visible=false;else this.kissHearts.update(dt);}
   for(const a of this.animals){const b=a.brain,d=Math.hypot(p.x-b.x,p.z-b.z);a.mesh.visible=!hidden&&d<DUCKS.draw;
    // Public #323: body-level pose only (the procedural mesh has no neck/head/wing bones).
-   const o=a.pose=duckPose(b,a.activity,a.pose??undefined),fwd=o.surge+o.tz;
+   // Public #344: eased resting weight (crouch, tuck, breathing) while the bird sleeps ashore at night.
+   a.rest=(a.rest??0)+((b.sleeping&&!b.kissing?1:0)-(a.rest??0))*Math.min(1,dt*DUCK_LIFE.poseEase);if(a.rest<1e-3)a.rest=0;
+   const o=a.pose=duckPose(b,a.activity,a.pose??undefined);if(a.rest>0)duckSleepPose(o,a.rest,a.activity.time);const fwd=o.surge+o.tz;
    a.mesh.position.set(b.x+Math.sin(b.yaw)*fwd,b.y+(b.swimming&&!b.kissing?DUCKS.bob*Math.sin(b.phase):0)+o.lift+o.ty,b.z+Math.cos(b.yaw)*fwd);
    a.mesh.rotation.set(o.pitch,b.yaw,(!b.kissing&&!b.swimming&&b.moving?Math.sin(b.phase)*DUCKS.waddle:0)+o.roll,'YXZ');a.mesh.updateMatrixWorld();
   }

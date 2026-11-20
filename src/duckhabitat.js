@@ -1,5 +1,5 @@
 // Public #244: neutral selection from original 131b5d9d.
-import { DUCKS } from './config.js';
+import { DUCKS, DUCK_LIFE } from './config.js';
 import { riverAt, riverPath, waterYAt, deckAt } from './riverbridge.js';
 import { onRoad } from './roads.js';
 const H=DUCKS.habitat;
@@ -27,6 +27,11 @@ export function duckHabitat(ground){
    const p=duckRiverPoint(origin+offset,(b-.5)*r.width*.5);return habitat.contains(p.x,p.z)?p:center;
   },
   home(pair){return habitat.point(H.restOffsets[pair===0?0:2],'walk');},
+  /** Public #344: a pair's dry, supported shore rest point (the male a little further along); falls back to the pair's home. */
+  sleep(pair,female){
+   const offset=H.restOffsets[pair===0?0:2]+(female?0:DUCK_LIFE.mateOffset),p=habitat.point(offset,'walk',.5);
+   return habitat.contains(p.x,p.z)&&!habitat.surface(p.x,p.z).water?p:habitat.home(pair);
+  },
   goal(mode,a,b,pair=0){const choices=H.territories[pair%H.territories.length],index=choices[Math.min(choices.length-1,Math.floor(a*choices.length))];return habitat.point(H.restOffsets[index],mode,b);},
   next(from,goal){
    const r=riverAt(from.x,from.z),g=riverAt(goal.x,goal.z),delta=g.along-r.along;

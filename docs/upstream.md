@@ -1,5 +1,17 @@
 # Förbättringar från originalet
 
+## Ändparen vilar vid stranden på natten, #344
+
+Granskad originalkälla `a5983bfa86849660315b1f2bbcfd1f5a9226463c` ([original #2202](https://github.com/solwation/lunden-3d-apartment/issues/2202)).
+Överfört (endast neutral dygnsrytm): `src/ducklife.js` med `duckNight` (skymning 18-20, gryning 05-07, lokal timme) och en kroppsvilepose,
+`DUCK_LIFE` (*guess*, utan ljud-/nackvärden) i `src/config.js`, `DuckHabitat.sleep` (torr, stödd strandpunkt per par, hanen en bit längre fram,
+annars hemmet), vilolägen i `DuckBrain`/`DuckFlock` (`night`-vikt; båda partner behåller id och revir, ingen nattgruppering, ingen teleport),
+`roosting`-grind i `duckmotion.js` och `duckkiss.js`. Publikens `Ducks` tar `hour` från besökarens lokala klocka (`main.js`, ingen DayCycle) och
+lättar in en kroppsvila (sänkning, framåtlutning, andning) på den procedurala modellen i stället för originalets nackbenspår.
+Ej överfört: kvack/vingljud/VoiceCap, `duckLureNear`, bröd, matning, belöningar, originalets GLB-spår, ändringslogg och bilder.
+Egen verifiering: `node --test tools/ducklifetest.mjs` 4/4, `duckambienttest`/`duckmotiontest` gröna, npm test/build och browser före/efter
+(`tools/ducklife344browser.cjs`). [Bilder och kostnad](verification/344/README.md).
+
 ## Rum bakom grannfönstren, #337
 
 Granskad publicerad originalkälla `dd7e6697d58465db68b2f3d1d61412e9b25707cb`

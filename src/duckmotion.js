@@ -25,7 +25,7 @@ export class DuckActivity {
   /** Advance one bird; `disturbed`: the caller saw the player rush at it; `asleep`: its brain is paused by distance. Returns the current kind (or null). */
   update(dt, b, { disturbed = false, asleep = false } = {}) {
     dt = Math.min(Math.max(dt, 0), .1); this.time += dt; this.cool = Math.max(0, this.cool - dt);
-    const busy = !!(b.kissing || b.eating > 0 || b.lured);
+    const busy = !!(b.kissing || b.eating > 0 || b.lured || b.roosting);
     if (this.kind) { this.t += dt; if (this.t >= this.dur || b.kissing || (busy && this.kind !== 'takeoff') || (this.kind === 'dabble' && !b.swimming)) this.stop(); }
     if (!this.kind && !busy) {
       if (disturbed && this.cool <= 0) { this.start('takeoff'); this.cool = M.takeoff.cooldown; }

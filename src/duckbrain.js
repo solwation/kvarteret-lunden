@@ -1,5 +1,5 @@
 // Public #244: neutral seeded pair/flock motion selected from original 131b5d9d.
-import { DUCKS } from './config.js';
+import { DUCKS, DUCK_LIFE } from './config.js';
 export { DUCKS };
 export class DuckBrain {
   constructor({ home, habitat, seed = 1 }) {
@@ -17,7 +17,8 @@ export class DuckBrain {
     }
     if (this.habitat.next) goal = this.habitat.next(this,goal);
     const dx=goal.x-this.x, dz=goal.z-this.z, d=Math.hypot(dx,dz), surface=this.habitat.surface(this.x,this.z);
-    this.swimming=surface.water; this.moving=d>DUCKS.stopReach && !this.hold;
+    this.swimming=surface.water; this.sleeping=!!(social?.rest && !surface.water && d<=DUCK_LIFE.arrive);
+    this.moving=!this.sleeping && d>DUCKS.stopReach && !this.hold;
     // Public #323: `hold` (set by duckmotion's resting behaviours) pauses wandering in place.
     if(this.moving){
       const stride=dt*(surface.water?DUCKS.swimSpeed:DUCKS.speed)*(social?.speed ?? 1); let step=Math.min(d,stride);
@@ -50,25 +51,30 @@ export class DuckFlock {
     const p={x:b.x-Math.sin(b.yaw)*lag+Math.cos(b.yaw)*side,z:b.z-Math.cos(b.yaw)*lag-Math.sin(b.yaw)*side};
     return this.habitat.contains(p.x,p.z)?p:{x:b.x,z:b.z};
   }
-  update(dt,active=()=>true) {
+  update(dt,active=()=>true,night=0) {
     dt=Number.isFinite(dt)?Math.min(Math.max(dt,0),DUCKS.maxStep):0;
     const C=DUCKS.social,near=active;
     // Freeze both partners at the distance boundary, never run a far bird's AI to catch up.
     active=b=>near(b)&&near(this.brains[b.pair*2+(b.female?1:0)]);
     if(!this.brains.some(active))return;
     this.time+=Math.min(Math.max(dt,0),DUCKS.maxStep);
-    this.grouping=this.time%C.groupPeriod<C.groupSeconds && this.brains.filter(b=>b.female).every(active);
+    this.grouping=night<DUCK_LIFE.settle && this.time%C.groupPeriod<C.groupSeconds && this.brains.filter(b=>b.female).every(active);
     const lead=this.brains[0];
     for(let i=0;i<this.brains.length;i+=2){
       const female=this.brains[i],male=this.brains[i+1];
+      // Public #344: from dusk both partners keep their ids and territory and walk to their own dry shore point; no teleporting.
+      const rest=night>=DUCK_LIFE.settle&&active(female);
+      if(active(female))female.roosting=male.roosting=rest;
+      if(rest&&!this.sleepGoals)this.sleepGoals=this.brains.map(b=>this.habitat.sleep?.(b.pair,b.female)??b.home);
+      const resting=b=>({goal:this.sleepGoals[b.pair*2+(b.female?0:1)],rest:true});
       if(active(female)){
         const regroup=this.grouping&&i>0;
         const goal=regroup?this.behind(lead,C.follow,C.groupSide):null;
         const wait=active(male)&&Math.hypot(female.x-male.x,female.z-male.z)>C.pairWait;
-        const social=goal?{goal,speed:wait?0:C.catchup}:wait?{goal:female,speed:0}:null;
+        const social=rest?resting(female):goal?{goal,speed:wait?0:C.catchup}:wait?{goal:female,speed:0}:null;
         female.update(dt,social);
       }
-      if(active(male))male.update(dt,{goal:this.behind(female,C.follow),speed:C.catchup});
+      if(active(male))male.update(dt,rest?resting(male):{goal:this.behind(female,C.follow),speed:C.catchup});
     }
     return;
   }
