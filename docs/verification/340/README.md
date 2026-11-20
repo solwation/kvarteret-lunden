@@ -50,7 +50,7 @@ SiteWind are entirely unchanged ([preservation.json](preservation.json)).
 
 ![Cold seasonal pony breath](cold-breath.png)
 
-The empty-pool comparison is retained at `before/cold-empty.png` for publication before closure.
+The [empty-pool comparison](https://github.com/solwation/kvarteret-lunden/blob/a669c198423f0e9e3b5c492160f72f18cac504b1/docs/verification/340/before/cold-empty.png) is retained in history and the issue comment; it is pruned from main at closure.
 `browser.json`/`browser.txt` bind the actual source hashes, camera, wind, live
 puff count, draw/resources, errors and isolation results.
 
@@ -84,3 +84,14 @@ extension. The browser and local server 8448 are stopped before handoff. Root
 owns integration, publishing the embedded image pair, removing the `before/`
 image, release checks and closure. Public has no player changelog consumer;
 README is the user-visible change note.
+
+## Publication
+
+Source `c649ffacbf2318710444234672a44480a12410f4`; documentation path correction
+`a669c198423f0e9e3b5c492160f72f18cac504b1` leaves the verified production code unchanged.
+The first CI44766743077 failed the personal-home-path guard on a late README command;
+the portable command passes local npm test/build and
+[CI44767325611, including Pages](https://github.com/solwation/kvarteret-lunden/actions/runs/44767325611).
+[Completion comment with both embedded images](https://github.com/solwation/kvarteret-lunden/issues/340#issuecomment-7043964472)
+was posted before closure. Both SHA-pinned images returned HTTP200; the conductor
+reviewed the combined diff, both native images and unchanged production/test files.
