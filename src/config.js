@@ -3070,6 +3070,13 @@ export const PONY_MOTION = {
   drift: { every: [5, 12], dist: [0.4, 0.9], speed: 0.28, turn: 0.35 },
 };
 
+// #340: breath-only values reviewed from original #2188 b0fb6260 (PONY_VOICE/AVATAR_BREATH).
+// Public has no temperature engine: snow months use snowMin, summer stays off. Wind drift is a visual guess.
+export const PONY_BREATH = { warm:9, cold:-1, snowMin:.7, range:45, max:24, maxDt:.1,
+  period:{idle:3.2,graze:3.8,watch:2.8,walk:2.2}, plume:[.8,1.1,1.5], gap:.09, alpha:.95, scale:2,
+  speed:.6, rise:.03, drag:2.2, buoyancy:.06, life:1.1, size:.11, grow:[.7,2.7], fadeIn:.1,
+  color:[.92,.95,1], wind:.12 };
+
 export const PADDOCK = {
   field: '237019759', inset: 1.2, postStep: 3, post: { w: 0.13, h: 1.3 }, rails: [0.55, 0.95, 1.25], rail: { w: 0.06, h: 0.12 },
   gate: { w: 3.2, near: [-116.2, 219.98] }, visit: { out: 5, aim: 14, near: [7, 14, 9], cone: 0.3 }, // the 'Hästhagen' menu destination (#83, *guess*): `out` m outside the gate along its normal, looking at the point `aim` m inside it; #88: the ponies are placed

@@ -1,0 +1,2 @@
+browsertest: no systemd user scope here, running without a memory ceiling
+{"pass":true,"loadMs":31369,"n":12,"before":{"calls":37,"points":0,"textures":60,"geometries":496,"programs":66},"cold":{"calls":38,"points":12,"textures":60,"geometries":496,"programs":66},"empty":{"calls":37,"points":0,"textures":60,"geometries":496,"programs":66},"warm":{"n":0,"visible":false}}

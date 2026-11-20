@@ -1,0 +1,94 @@
+TAP version 13
+# Subtest: cold curve retains warm cutoff/full cold and seasonal snow minimum without a weather source
+ok 1 - cold curve retains warm cutoff/full cold and seasonal snow minimum without a weather source
+  ---
+  duration_ms: 0.927095
+  type: 'test'
+  ...
+# Subtest: breath has state cadence, no catch-up burst and no paused/warm emission
+ok 2 - breath has state cadence, no catch-up burst and no paused/warm emission
+  ---
+  duration_ms: 1.806789
+  type: 'test'
+  ...
+# Subtest: muzzle follows own procedural head and instance scale/yaw, with two distinct nostrils
+ok 3 - muzzle follows own procedural head and instance scale/yaw, with two distinct nostrils
+  ---
+  duration_ms: 0.726696
+  type: 'test'
+  ...
+# Subtest: one capped pool: no texture, correct depth, live upload, wind drift, expiry and zero draw range
+ok 4 - one capped pool: no texture, correct depth, live upload, wind drift, expiry and zero draw range
+  ---
+  duration_ms: 2.260187
+  type: 'test'
+  ...
+# Subtest: real public paddock uses only snow proxy; hidden/far/warm have zero puffs and no extra pony meshes
+ok 5 - real public paddock uses only snow proxy; hidden/far/warm have zero puffs and no extra pony meshes
+  ---
+  duration_ms: 448.965335
+  type: 'test'
+  ...
+# Subtest: every motion stays bounded through all states, gales, flies and long frames
+ok 6 - every motion stays bounded through all states, gales, flies and long frames
+  ---
+  duration_ms: 444.062267
+  type: 'test'
+  ...
+# Subtest: the wind drives mane and tail downwind (in the pony frame); calm leaves only a small sway
+ok 7 - the wind drives mane and tail downwind (in the pony frame); calm leaves only a small sway
+  ---
+  duration_ms: 66.402523
+  type: 'test'
+  ...
+# Subtest: a chain: the lower tail joints lag behind a swing (secondary motion)
+ok 8 - a chain: the lower tail joints lag behind a swing (secondary motion)
+  ---
+  duration_ms: 1.289192
+  type: 'test'
+  ...
+# Subtest: flies only in the summer months and dry weather: skin twitches and tail swats
+ok 9 - flies only in the summer months and dry weather: skin twitches and tail swats
+  ---
+  duration_ms: 76.904263
+  type: 'test'
+  ...
+# Subtest: weight shifts between sides while standing, settles while walking; chewing only with the head down
+ok 10 - weight shifts between sides while standing, settles while walking; chewing only with the head down
+  ---
+  duration_ms: 106.200097
+  type: 'test'
+  ...
+# Subtest: grazing drift: a slow step every few seconds only while grazing
+ok 11 - grazing drift: a slow step every few seconds only while grazing
+  ---
+  duration_ms: 0.747395
+  type: 'test'
+  ...
+# Subtest: the real paddock: roll in the shared instance matrix (rug follows), tail/ear/mane channels bounded and wind-driven
+ok 12 - the real paddock: roll in the shared instance matrix (rug follows), tail/ear/mane channels bounded and wind-driven
+  ---
+  duration_ms: 278.014121
+  type: 'test'
+  ...
+# Subtest: the real paddock: a grazing pony on a cropped bite takes slow steps, head down, inside the fence
+ok 13 - the real paddock: a grazing pony on a cropped bite takes slow steps, head down, inside the fence
+  ---
+  duration_ms: 166.278856
+  type: 'test'
+  ...
+# Subtest: the pony shader moves only the accent hair of neck and head by aAnim2.zw, in the one existing program
+ok 14 - the pony shader moves only the accent hair of neck and head by aAnim2.zw, in the one existing program
+  ---
+  duration_ms: 122.858203
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1600.632588

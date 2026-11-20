@@ -62,6 +62,33 @@ Exakta käll-/publikhashar och urval finns i [#336:s verifiering](verification/3
 Portade funktionstester, npm test/build och eget browserpass med faktisk app/knapp/fönster och
 numerisk OfflineAudioContext-verifiering redovisas där. Ljudresultatet visas som nivå-/spektrummått;
 den nya kontrollen har en egen granskad bild. Ingen fysisk hörsel-/telefonprestanda påstås.
+## Ponnyernas synliga andedräkt, #340
+
+Granskad originalkälla `b0fb62601aa732a601b8bdd92ca284bc11de55eb`
+([original #2188](https://github.com/solwation/lunden-3d-apartment/issues/2188)).
+Endast `breathCold`/utandningsrytmen från `ponysound.js`, mjuka procedurala
+punktpuffar/fade från `avatarbreath.js` och konceptet kort plym per näsborre från
+`paddock.js` anpassas. Exakta hela källfilers SHA-256, numeriskt urval och undantag
+finns i [selection.json](verification/340/selection.json).
+
+Publicens `ponybreath.js` är en egen neutral pool med högst 24 punkter, utan
+avatar-, ljud- eller väderberoenden. Den egna procedurala hästgeometrins
+näsborrepositioner och samma huvud-/hals-/instansrotationer används i stället för
+originalets riggben. Snömånadernas befintliga flagga ger källans `snowMin=0.7`;
+ingen temperatur uppskattas. Sommar, kalender/default, fast middagsljus och
+befintlig SiteWind lämnas kvar. En svag vinddrift är en explicit visuell gissning.
+
+Inga ljud, originalmodeller/personliga resurser, avatarer, klappning/matning,
+poäng, tjänster eller originalets lagring följer med. Befintlig attribution/licens
+bevaras. Geometri/huvudshader, staket/kollision och main/season/wind är bytebevarade
+utanför konsumentkopplingen, se [preservation.json](verification/340/preservation.json).
+
+Egen faktisk publik appbrowser: granskad native 1000×650 tom/kall bild, 12 puffar,
+37→38 draws och tillbaka till 37 tomt; sommar 0. Inga externa anrop, WebSockets
+eller fel; syntetiska original-/oberoende lagringssentineller orörda utan åtkomst.
+14 riktade Node-prov samt npm test/build gröna. +1 distinkt puffshader förväntas;
+bildparets redan uppvärmda 66 program är stabila. 576 fasta attributbyte exkluderar
+de högst 24 JS-puffobjekten. [Kontroller, bilder och begränsningar](verification/340/README.md).
 
 ## Orkesterkärnan v0.14.5, #335
 

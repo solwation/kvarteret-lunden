@@ -9,6 +9,8 @@ import { shelterWinter } from './shelterwinter.js';
 import { ponyBlankets } from './ponyblanket.js';
 import { shelterSpots, snowCovered, RainWatch, footprintGround, shelterSite, relocateShelter } from './paddockshelter.js';
 import { siteWind } from './sitewind.js';
+import { PonyBreath, breathCold, stepPonyBreath, ponyMuzzle } from './ponybreath.js';
+import { PONY_BREATH as PB } from './config.js';
 import { newPonyMotion, stepPonyMotion, ponyWind, flySeason, grazeDrift } from './ponymotion.js';
 
 // Imported from the original's #1280/#1295 (see docs/upstream.md): the pony paddock on the kidney-shaped meadow south of the timber footbridge: a merged post-and-rail fence with a closed gate, a
@@ -380,6 +382,9 @@ export class Paddock {
     this.initGrass(scene, ground);
     this.initShelter();
     this.winterDecor = shelterWinter(ground, this.spots.shelter); scene.add(this.winterDecor); // original #1345
+    this.breathPuffs = new PonyBreath(scene);
+    this.breathMatrix = new THREE.Matrix4(); this.breathAt = new THREE.Vector3();
+    this.breathDir = new THREE.Vector3(); this.breathTmp = new THREE.Vector3();
     this.write();
   }
 
@@ -668,6 +673,25 @@ export class Paddock {
     });
     e.needsUpdate = true; this.anim.needsUpdate = true; this.anim2.needsUpdate = true;
   }
+  /** #340: fixed-noon seasonal scenery only; snow is a proxy, not measured temperature. */
+  breathe(dt) {
+    const cold = breathCold(undefined, this.snowy);
+    if (!cold) { this.breathPuffs.clear(); return; }
+    this.ponies.forEach((p,i) => {
+      const near = !p.gone && Math.hypot(this.camera.position.x-p.x,this.camera.position.z-p.z)<PB.range;
+      const state = p.breath ??= {t:i*.45};
+      const strength = stepPonyBreath(state,dt,p.state,near?cold:0);
+      if (!strength) return;
+      this.mesh.getMatrixAt(i,this.breathMatrix);
+      for (const side of [-1,1]) {
+        ponyMuzzle(p,this.breathMatrix,side,this.breathAt,this.breathDir);
+        for (let j=0;j<PB.plume.length;j++) this.breathPuffs.emit(
+          this.breathTmp.copy(this.breathAt).addScaledVector(this.breathDir,j*PB.gap),
+          this.breathDir,Math.min(1,PB.alpha*strength),PB.scale*PB.plume[j]);
+      }
+    });
+    this.breathPuffs.update(dt,siteWind);
+  }
   /** Per frame: nothing is simulated or drawn beyond PADDOCK.viewDist m from the paddock, or underground. No allocations. */
   update(dt, hidden = false, rain = 0) {
     this.rain = rain;
@@ -676,11 +700,12 @@ export class Paddock {
     this.winterDecor.visible = show && this.winter; // original #1345: same snow months and distance/underground culling as the ponies
     this.mesh.visible = show && this.ponies.some((q) => !q.gone); this.grass.visible = show && !this.snowy;
     this.growGrass(Math.min(dt, 0.1)); // #1342: 72 h regrowth in real time, also while far away
-    if (!show) return;
+    if (!show) { this.breathPuffs.clear(); return; }
     dt = Math.min(dt, 0.1); this.time += dt;
     this.ponies.forEach((p, i) => { if (!p.gone) this.stepPony(p, i, dt); });
     const g = this.gm; g.t += dt;
     if (g.dirty && g.t >= P.grass.period) { g.t = 0; this.uploadGrass(); }
     this.write();
+    this.breathe(dt);
   }
 }

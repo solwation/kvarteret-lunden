@@ -1,0 +1,27 @@
+{
+  "repository": "solwation/lunden-3d-apartment",
+  "sourceRevision": "b0fb62601aa732a601b8bdd92ca284bc11de55eb",
+  "reviewedFilesSHA256": {
+    "src/ponysound.js": "04b1f86593c2c133c7ad7b5b3460d4b88e5bfc9f5344eff18870bcc64a2b216e",
+    "src/avatarbreath.js": "385fd2980724a7e6df84ab1790f96509eb6efcb6e77e42862eb9150b445612d7",
+    "src/paddock.js": "cc756cf4615e2bdda38e51c9b724505a611fd46abd5be59ce957b1fd539c5fde",
+    "src/config.js": "a62bbf90cbdc2d737423162c4f340695d912046aef28a4c9b34bcdefdc9006ed"
+  },
+  "selected": [
+    "breathCold and stepPonyBreath without sound/snort event scheduling",
+    "BreathPuffs soft procedural point shaders, bounded lifetime/drag/fade and size constants",
+    "per-nostril short plume concept and cold/snow thresholds"
+  ],
+  "publicAdaptation": [
+    "neutral PonyBreath class; no shared avatar singleton",
+    "24-point capacity for two existing scenery ponies",
+    "muzzle transforms from public procedural head shader and PONY_SURFACE nostrils",
+    "snowMin=.7 proxy from existing snow months, no actual temperature inferred",
+    "existing fixed-noon colour and SiteWind only"
+  ],
+  "excluded": [
+    "all sound scheduling and audio synthesis",
+    "avatars, exertion, interactions, scoring, original rig/model/assets",
+    "weather engine, services, networking, original storage and unrelated config"
+  ]
+}

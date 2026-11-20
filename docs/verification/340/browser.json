@@ -1,0 +1,105 @@
+{
+  "errors": [],
+  "external": [],
+  "sockets": [],
+  "source": {
+    "src/ponybreath.js": "12292206562e34a85afa923ce22fa133e731a182e0783c8e239ffa1dc55d138a",
+    "src/paddock.js": "5d1cb990b80a5bd808fd1ca5c145ce94fb1195b23506c1f103c8e62d6e6a661c",
+    "src/config.js": "3f781e25ba06ade90c5f3b8b8e98c587af95acbfa3339735dec9b6d26b03606a",
+    "tools/ponybreath340browser.cjs": "d38e7eb18c093d0f87363a3e8f5dcc9f3c863e6ea72d85c80130418719e1f42b"
+  },
+  "viewport": [
+    1000,
+    650
+  ],
+  "loadMs": 31369,
+  "before": {
+    "calls": 37,
+    "points": 0,
+    "textures": 60,
+    "geometries": 496,
+    "programs": 66
+  },
+  "cold": {
+    "calls": 38,
+    "points": 12,
+    "textures": 60,
+    "geometries": 496,
+    "programs": 66
+  },
+  "empty": {
+    "calls": 37,
+    "points": 0,
+    "textures": 60,
+    "geometries": 496,
+    "programs": 66
+  },
+  "warm": {
+    "n": 0,
+    "visible": false
+  },
+  "n": 12,
+  "muzzles": [
+    {
+      "state": "idle",
+      "pos": [
+        -126.3041884374866,
+        -3.1437890701016924,
+        228.97579984020393
+      ],
+      "neck": 0.7347060460201456,
+      "scale": 1
+    },
+    {
+      "state": "idle",
+      "pos": [
+        -125.90242179841309,
+        -3.156082838979897,
+        227.22121055272737
+      ],
+      "neck": 0.7579525268385116,
+      "scale": 1
+    }
+  ],
+  "camera": [
+    -122.42149254655894,
+    -1.6937890701016924,
+    229.0441563949251
+  ],
+  "wind": {
+    "power": 0.2,
+    "dir": [
+      0.7071067811865476,
+      -0.7071067811865476
+    ]
+  },
+  "pool": {
+    "max": 24,
+    "bytes": 576,
+    "depthTest": true,
+    "depthWrite": false
+  },
+  "isolation": {
+    "sentinels": {
+      "lunden.session": "synthetic-kept",
+      "lunden.name": "synthetic-kept",
+      "unrelated.sentinel": "synthetic-kept",
+      "kvarteret-lunden.sentinel": "synthetic-kept"
+    },
+    "events": [
+      [
+        "get",
+        "kvarteret-lunden.paddockGrass"
+      ],
+      [
+        "get",
+        "kvarteret-lunden.update-resume"
+      ],
+      [
+        "remove",
+        "kvarteret-lunden.update-resume"
+      ]
+    ]
+  },
+  "pass": true
+}

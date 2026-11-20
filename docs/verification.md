@@ -24,6 +24,14 @@ livebrowserkontroll av oförändrad app.
 public browser (`tools/roommap337browser.cjs`) med före/efter-bilder, dag och natt, för Hus L och Hus A-C:
 oförändrade draw calls/trianglar/texturer, +1 shaderprogram, inga fel eller externa anrop.
 [Bilder, mätvärden och gränser](verification/337/README.md).
+## Ponnyandedräkt i snösäsong, #340
+
+`node --test tools/ponybreath340test.mjs tools/ponymotiontest.mjs` (14 gröna),
+npm test/build och en egen faktisk publik appbrowser passerar. Mulen följer
+publicens procedurala huvud/instansmatris; den neutrala poolen är 24 punkter,
+0 draws tom/varm och +1 medan levande. Inga nya texturer/ljus/pass, externa anrop,
+WebSockets eller originalnyckelåtkomst. Snöminimum är en säsongsproxy, inte faktisk
+temperatur. [Native bildpar, urval, resurskostnad och gränser](verification/340/README.md).
 
 ## Solpanelernas celler och glas, #304
 
