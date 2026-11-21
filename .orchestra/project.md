@@ -333,8 +333,23 @@ These follow [COORDINATION.md](shared/COORDINATION.md), not the phase hooks.
 
 ## Shared version and maintenance
 
-Shared release: **v0.15.0**, commit **141aa62399af12b48fadd8dec38137b40d8a7be5**. Imported directly from the official release
-with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git 141aa62399af12b48fadd8dec38137b40d8a7be5 --squash`
+Shared release: **v0.15.1**, commit **647b06c2964687aab93804944cd641a020fa988d**. Imported directly from the official release
+with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git 647b06c2964687aab93804944cd641a020fa988d --squash`
+in [#353](https://github.com/solwation/kvarteret-lunden/issues/353), matching
+[original #2301](https://github.com/solwation/lunden-3d-apartment/issues/2301).
+The complete [v0.15.0..v0.15.1 diff](https://github.com/solwation/dirigenten-och-orkestern/compare/141aa62399af12b48fadd8dec38137b40d8a7be5...647b06c2964687aab93804944cd641a020fa988d)
+was reviewed: a bug fix in `scripts/prune-worktrees.sh`, whose `--apply` treated a
+submodule or other repository inside a checkout's working tree as a checkout of its own
+and could delete it even while the enclosing checkout was active under its claim marker;
+such a repository is now part of its enclosing checkout (#83, regression test included).
+`scripts/check-links.py` now also checks Markdown links whose text wraps onto the next
+line (#84). CHANGELOG, README, INSTALL and the Pages site carry the version. ORCHESTRA.md,
+COORDINATION.md, WORKER.md, ISSUE-WORKFLOW.md and the Issueflow snapshot are unchanged,
+so no host rule changes. No application code, personal content or service integration is
+imported; documentation and scripts only, with no app result image. The exact v0.15.1
+tag was checked on 2026-11-21 and resolves to the imported commit.
+
+The previous v0.15.0 import (`141aa62399af12b48fadd8dec38137b40d8a7be5`) remains recorded
 in [#343](https://github.com/solwation/kvarteret-lunden/issues/343), matching
 [original #2225](https://github.com/solwation/lunden-3d-apartment/issues/2225).
 The complete [v0.14.5..v0.15.0 diff](https://github.com/solwation/dirigenten-och-orkestern/compare/0e7416bcb02ed5fb40ca503c8b02ac0a58d7a338...141aa62399af12b48fadd8dec38137b40d8a7be5)

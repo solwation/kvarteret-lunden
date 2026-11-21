@@ -146,6 +146,18 @@ Fresnelvägd himmelsreflektion, mörkare/grönare strandton och nedströms driva
 (*guess*). Publiken saknar dygnscykel/`wetground`: egen fast himmel (bakgrund/hemisfärljus) och egen krusningsklocka (`stepRiverFlow`). Ingen ny draw,
 textur eller pass. [Verifiering och bilder](verification/342/README.md).
 
+## Orkesterkärnan v0.15.1, #353
+
+Gemensamt underhåll med [original #2301](https://github.com/solwation/lunden-3d-apartment/issues/2301)
+(`c5e24c8f`). Kärnan är hämtad direkt från sitt neutrala källrepo, inte kopierad från
+originalprojektet: exakt release
+[`647b06c2964687aab93804944cd641a020fa988d`](https://github.com/solwation/dirigenten-och-orkestern/releases/tag/v0.15.1).
+Endast `.orchestra/shared/` och lokal pin/proveniens ändras. Buggrättning: städskriptet
+`prune-worktrees.sh --apply` raderar inte längre en submodul inuti en aktiv checkout;
+länkkontrollen läser även radbrutna länkar. Inga regler, ingen applikationskod, lagring,
+personligt innehåll eller tjänsteintegration. Verifiering: filvis trädidentitet mot
+taggen, diff/länkar/regelkonsekvens samt `npm test` och `npm run build`.
+
 ## Orkesterkärnan v0.15.0, #343
 
 Gemensamt underhåll med [original #2225](https://github.com/solwation/lunden-3d-apartment/issues/2225)
