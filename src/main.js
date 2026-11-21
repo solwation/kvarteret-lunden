@@ -1,3 +1,6 @@
+import {RoomProbe, probeZone} from './roomprobe.js';
+import {reflectors} from './reflections.js';
+import {ROOM_PROBE} from './config.js';
 import {finishStartupCaches} from './startupcache.js';
 import * as THREE from 'three';
 import { hazeState, applyHaze } from './aerialhaze.js'; // #314 (original #2100): patches three's fog chunks at import, before any program compiles
@@ -58,6 +61,7 @@ const intervals = debugParams.has('perf') ? new FrameIntervals() : null;
 const [windForce, windTime] = (debugParams.get('wind') ?? '').split(',').map((v) => (v === '' ? NaN : Number(v)));
 let windSoundT = 0;
 const siteWind = new SiteWind(null, { force: windForce, time: windTime });
+let roomProbe, probeHome, probeRoom = null, probeClock = ROOM_PROBE.check, probeReady = false;
 const ray = new THREE.Raycaster(), centre = new THREE.Vector2();
 const points = new THREE.Group();
 const clock = new THREE.Clock();
@@ -272,11 +276,17 @@ async function init() {
     stairDayUniforms.uDetail.value = on ? 1 : 0;
   }
   const startupCache=finishStartupCaches(); // #246: release all build tables before ordinary input/rendering
+  // No original day cycle, Quality or WarmUp: fixed public day, first ordinary draw before cube work.
+  const probeOff = debugParams.has('noprobe') || debugParams.get('quality') === '0';
+  roomProbe = new RoomProbe(renderer, scene, camera, {lowMemory, off: probeOff, hide: () => reflectors().map(m => m.r)});
+  roomProbe.collect();
+  roomProbe.setLevel(probeOff ? 0 : ROOM_PROBE.minLevel);
+  probeHome = {roomMaps: world.roomMaps, floorOf: l => LEVELS[l].floor};
   ready = true;
   $('place-toggle').disabled = false;
   // Keep model access local for diagnostics, without a service connection.
   const siteInstances = lowMemory ? null : installSiteInstanceBatch(renderer, scene);
-  window.lundenViewer = {roofSteam, startupCache,intervals, colorFrustum, siteInstances, phoneFrustum, paddock, ducks, ambientCats, ambientFish, riverDrift, riverLilies, squirrels, ambientBalloon, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
+  window.lundenViewer = {roofSteam, roomProbe, startupCache,intervals, colorFrustum, siteInstances, phoneFrustum, paddock, ducks, ambientCats, ambientFish, riverDrift, riverLilies, squirrels, ambientBalloon, world, navigation, camera, renderer, scene, moveTo, locations, easeLook, touchLayout};
   window.kvarteretStartup?.finish();
   $('start').disabled = false; $('start').textContent = 'Börja utforska →';
   status('Dator och mobil · Ingen inloggning');
@@ -371,8 +381,17 @@ function frame() {
     }
   }
   updateInstanceLods(camera); // public #284 (original #1958): trees beyond the dither zone use their far level
+  probeClock += dt;
+  if (probeClock >= ROOM_PROBE.check) {
+    probeClock = 0;
+    const unit = navigation.unit;
+    probeRoom = navigation.outdoors || navigation.below || navigation.inCore ? null
+      : probeZone(navigation.pos, unit ? navigation.unitLevel : navigation.level, probeHome, unit);
+  }
+  roomProbe.update(dt, probeRoom, 'public-day', 1, probeReady && (!renderer.shadowMap.enabled || !renderer.shadowMap.needsUpdate));
   const renderStart = measured ? performance.now() : 0;
   renderer.render(scene,camera);
+  probeReady = true;
   if (measured) {
     const end = performance.now();
     intervals.complete({ ms: end - start, phases: { update: renderStart - start, render: end - renderStart }, delta: {} });

@@ -1,5 +1,27 @@
 # Förbättringar från originalet
 
+## Blanka fasta ytor speglar rummet, #334
+
+Granskad originalkälla `7adb45fd27ebec7fb811cb67fb09ae5d1a4bca69`
+([original #2151](https://github.com/solwation/lunden-3d-apartment/issues/2151)).
+Selektivt urval: neutral `roomprobe.js`, `ROOM_PROBE`, materialtaggar för redan
+befintligt krom/stål/porslin/apparatglas/vitvaror/kakel och anpassade rena tester.
+Egen publik loop använder enbart publika RoomMap/VisitUnit, fast dag och första
+ordinarie bildrutan som startgräns. Inget original-main, lights.js, Quality/WarmUp,
+WindowLight, personligt innehåll, bild, tjänst/spel eller originalhistorik importeras.
+Senare `b85bd611` (#2179) granskades: det gäller fönster och lämnas utanför.
+[Exakta filhashar och urval](verification/334/selection.json).
+
+L1007 och de redan besökbara neutrala L1004/L1201 har rum och fasta ytor. A/B/C
+har trapphus/exteriörer men inga motsvarande modellerade köks-/badrumszoner;
+ingen sådan rumsdata uppfinns. Publicens redan valda lägenhetsfinish ändras inte.
+Sonden använder 64 px, PMREM, sexzons-LRU och en kubsida per tillåten bildruta.
+Mobil/lowMemory fångar en gång och frigör fångstresurser; `quality=0`/`noprobe`
+lämnar material utan nya miljökartor, som före portningen. Fast publikt dagsljus
+har ingen lamp-/nattcykel att trigga omfångst från. En procedurritad neutral
+reservkarta används medan den första rumskartan saknas.
+[Egen faktisk public-appverifiering, kostnad och begränsningar](verification/334/README.md).
+
 ## Ån porlar och avlägset stadsbrus, #352
 
 Granskad originalkälla `f58e50a021517558cf272924397a1c342399553f`

@@ -52,6 +52,9 @@ const M = {
 };
 
 for (const k of ['splash', 'wallTile', 'hallTile', 'wetTile']) M[k].userData.skin = true;
+// #334: only existing fixed fittings, shared by all public visitable flats.
+for (const [cls, keys] of Object.entries({ chrome: ['chrome'], steel: ['steel', 'dishwasher'], steelDark: ['steelDark'], handle: ['handle'], glass: ['glassDark'], black: ['black'], porcelain: ['porcelain'], appliance: ['appliance'], tile: ['splash', 'wallTile'], floorTile: ['wetTile'] }))
+  for (const k of keys) M[k].userData.roomProbe = cls;
 
 /**
  * Light-emitting parts (spots, globe, LED strips, mirror light) get one material per room so

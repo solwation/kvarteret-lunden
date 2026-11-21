@@ -4398,3 +4398,11 @@ export const ROOF_STEAM = {
   points: 24, phonePoints: 12, minLevel: 1, lowLevelShare: 0.5,
   outletLift: 0.04, color: [0.9, 0.92, 0.94], edge: [0.55, 0.6, 0.66],
 };
+
+// Public #334: fixed-fitting room reflections; original #2151 (7adb45fd), neutral public loop.
+export const ROOM_PROBE = {
+  size: 64, far: 18, near: .05, height: 1.3, facesPerFrame: 1, keep: 6, settle: .6, check: .25,
+  bands: [.06, .3, .7], margin: .03, minLevel: 1, paintedNight: .3,
+  k: { chrome: 1, steel: .8, steelDark: .6, handle: .6, glass: .6, black: .5,
+    porcelain: .25, appliance: .2, tile: .12, floorTile: .06 },
+};

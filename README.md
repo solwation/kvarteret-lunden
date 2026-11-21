@@ -421,3 +421,10 @@ fortsätter vara gångbara i båda riktningar. [Riktad verifiering](docs/verific
 
 Byggnadernas kantlinjer använder en selektiv beräkningsförbättring från Three.js r187.
 Visningen använder fortfarande r170/WebGL; [verifiering och avgränsning](docs/verification/254/README.md).
+
+
+Fasta blanka ytor i modellerade rum kan nu spegla rummet med en liten, filtrerad
+rumsbild (#334). En kubsida tas per bildruta vid behov; sex rum kan återanvändas.
+Mobilens lågminnesläge tar bara en rumsbild. `?quality=0` eller `?noprobe` behåller
+utseendet utan dessa reflektioner. Färg/finish är modellens befintliga val, inte
+verifierad standard för alla bostäder. [Urval, verifiering och begränsningar](docs/verification/334/README.md).

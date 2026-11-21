@@ -1,11 +1,12 @@
 # Rumsreflektioner på fasta ytor, #334
 
-**Checkpoint, inte slutgodkänd:** programkravet är öppet. En vanlig fryst
-badrumsbild använder 48 → 50 distinkta GL-program med reflektionerna.
-Kandidaten är inte aktiverad i publicerad app. Den bevaras som
-[granskningsbar implementation](proposal.patch), källrevision
-`808be761957511177ceeadae4834336f9bafd246`, och behöver ett budgetbeslut
-i #334. Bilder och rådata är från kandidaten, inte dagens publicerade app.
+**Integrerad efter budgetbeslut (2026-11-21).** Användaren godkände på #334
+(2026-11-20) två fler aktiva skärmprogram (48 → 50) för rumsreflexerna. Den
+granskade [patchen](proposal.patch) från källrevision
+`808be761957511177ceeadae4834336f9bafd246` är applicerad på `main`
+`739314ab51f01a259eb7e9d93f00fcda39e588f9` och aktiv som standard
+(`?quality=0`/`?noprobe` stänger av). Se [Integration](#integration-2026-11-21)
+för de nya mätningarna; avsnitten nedan beskriver checkpointen.
 
 Granskad originalkälla: `7adb45fd27ebec7fb811cb67fb09ae5d1a4bca69` (#2151).
 Publik bas: `a08a6f3836b823f334f4ff73700f9b1781582d44`.
@@ -117,7 +118,7 @@ i de tre mätta skärmrenderingarna, inga nya bilder tas och inga produktionskä
 | Trianglar | 612250 | 612250 | 612250 |
 | Hela programcachen | 132 | 132 | 132 |
 
-**Programasserten fallerar avsiktligt på 50 ≠ 48.** Den ursprungliga
+**Programasserten fallerade i checkpointen på 50 ≠ 48; efter beslutet tillåter den högst +2.** Den ursprungliga
 acceptansen kräver oförändrat programantal i vanliga bildrutor. Detta är en
 verklig ökning med två, inte bara de separat redovisade kub-/PMREM-programmen.
 Ingen optimering görs på chans efter denna diagnos. Handoff är en trygg
@@ -150,3 +151,31 @@ browser: identiska återställda renderingstal, noll externa/fel, A/B/C utan
 taggar/RoomMaps, L:s materialklasser och 24 giltiga enhetszoner med rätt namn,
 nyckel och absolut golvhöjd. Samtliga frysta produktionsfilhashar matchade
 `selection.json`. Slutlig snabb kontroll: 11 Nodefall, npm test och build gröna.
+
+
+## Integration 2026-11-21
+
+Patchen applicerades med `git apply --3way`; endast tre textkonflikter mot
+nyare publika ändringar löstes (sektion i `docs/upstream.md`, `ROOM_PROBE`
+efter `ROOF_STEAM` i `src/config.js`, `roofSteam` och `roomProbe` båda i
+`window.lundenViewer`). Ingen kodändring i sonden. `tools/roomprobe334screen.cjs`
+tillåter nu högst två extra vanliga skärmprogram (beslutet på #334);
+`tools/roomprobe334browser.cjs` jämför mot integrationsbasen (`BASELINE` kan sättas).
+
+Kontroller: `node --test tools/roomprobetest.mjs` 11/11, `npm test` (193 moduler)
+och `npm run build` gröna. Båda browserskripten kördes mot riktig app (Chromium,
+SwiftShader, 1000×700, DPR1), noll konsol-/sidfel och externa anrop; bilderna
+här är ersatta med denna körning och granskade i full storlek.
+
+| Vanlig skärmrender, aktuell main | Före | Efter |
+| --- | ---: | ---: |
+| Kök, ritanrop / trianglar | 156 / 604935 | 156 / 604935 |
+| Badrum, ritanrop / trianglar | 149 / 612250 | 149 / 612250 |
+| Badrum, distinkta skärmprogram (fryst, envMap av/på) | 50 | 52 |
+| Kök / badrum, hela programcachen | 70 / 72 | 135 / 137 |
+
+Baslinjen är nu 50 skärmprogram eftersom main fått andra varianter sedan
+checkpointen; ökningen från sonden är fortfarande exakt två, som godkänt.
+46 mätta probe-update, tolv ritade exakt en kubsida, max 1816 ms (första
+kall kompilering i SwiftShader). Fysisk mobil och GPU-kontextförlust är
+fortfarande inte körda.

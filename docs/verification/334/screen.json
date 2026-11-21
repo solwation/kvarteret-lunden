@@ -1,21 +1,21 @@
 {
   "after": {
-    "screenPrograms": 50,
+    "screenPrograms": 52,
     "calls": 149,
     "triangles": 612250,
-    "cachedPrograms": 132
+    "cachedPrograms": 137
   },
   "baselineMaterials": {
-    "screenPrograms": 48,
-    "calls": 149,
-    "triangles": 612250,
-    "cachedPrograms": 132
-  },
-  "restored": {
     "screenPrograms": 50,
     "calls": 149,
     "triangles": 612250,
-    "cachedPrograms": 132
+    "cachedPrograms": 137
+  },
+  "restored": {
+    "screenPrograms": 52,
+    "calls": 149,
+    "triangles": 612250,
+    "cachedPrograms": 137
   },
   "taggedMaterials": 51,
   "cores": [

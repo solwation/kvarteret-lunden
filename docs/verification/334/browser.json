@@ -1,5 +1,5 @@
 {
-  "baseline": "a08a6f3836b823f334f4ff73700f9b1781582d44",
+  "baseline": "739314ab51f01a259eb7e9d93f00fcda39e588f9",
   "viewport": [
     1000,
     700
@@ -32,14 +32,14 @@
   },
   "phases": {
     "before": {
-      "loadMs": 36803,
+      "loadMs": 31842,
       "views": {
         "kitchen": {
           "calls": 156,
           "triangles": 604935,
-          "programs": 67,
-          "textures": 70,
-          "renderMs": 10,
+          "programs": 70,
+          "textures": 72,
+          "renderMs": 5,
           "room": "Kök / matplats",
           "probe": null,
           "materials": []
@@ -47,9 +47,9 @@
         "bath": {
           "calls": 149,
           "triangles": 612250,
-          "programs": 69,
-          "textures": 71,
-          "renderMs": 10,
+          "programs": 72,
+          "textures": 73,
+          "renderMs": 5,
           "room": "Badrum",
           "probe": null,
           "materials": []
@@ -135,14 +135,14 @@
       }
     },
     "after": {
-      "loadMs": 38946,
+      "loadMs": 30163,
       "views": {
         "kitchen": {
           "calls": 156,
           "triangles": 604935,
-          "programs": 129,
-          "textures": 75,
-          "renderMs": 6,
+          "programs": 135,
+          "textures": 77,
+          "renderMs": 5,
           "room": "Kök / matplats",
           "probe": {
             "mode": "live",
@@ -150,7 +150,7 @@
             "stats": {
               "captures": 1,
               "faces": 6,
-              "lastMs": 5547
+              "lastMs": 14
             },
             "cache": [
               "L:0:Kök / matplats"
@@ -417,9 +417,9 @@
         "bath": {
           "calls": 149,
           "triangles": 612250,
-          "programs": 131,
-          "textures": 77,
-          "renderMs": 10,
+          "programs": 137,
+          "textures": 79,
+          "renderMs": 5,
           "room": "Badrum",
           "probe": {
             "mode": "live",
@@ -427,7 +427,7 @@
             "stats": {
               "captures": 2,
               "faces": 12,
-              "lastMs": 10
+              "lastMs": 6
             },
             "cache": [
               "L:0:Kök / matplats",
@@ -700,27 +700,6 @@
             "faces": 0,
             "captures": 0,
             "canRender": true,
-            "frame": 38
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 0,
-            "canRender": true,
-            "frame": 39
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 0,
-            "canRender": true,
-            "frame": 40
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 0,
-            "canRender": true,
             "frame": 41
           },
           {
@@ -738,70 +717,70 @@
             "frame": 43
           },
           {
-            "ms": 0,
-            "faces": 0,
-            "captures": 0,
-            "canRender": true,
-            "frame": 44
-          },
-          {
-            "ms": 0,
-            "faces": 0,
+            "ms": 1816,
+            "faces": 1,
             "captures": 0,
             "canRender": true,
             "frame": 45
           },
           {
+            "ms": 419,
+            "faces": 1,
+            "captures": 0,
+            "canRender": true,
+            "frame": 47
+          },
+          {
+            "ms": 6,
+            "faces": 1,
+            "captures": 0,
+            "canRender": true,
+            "frame": 49
+          },
+          {
+            "ms": 4,
+            "faces": 1,
+            "captures": 0,
+            "canRender": true,
+            "frame": 51
+          },
+          {
+            "ms": 8,
+            "faces": 1,
+            "captures": 0,
+            "canRender": true,
+            "frame": 53
+          },
+          {
+            "ms": 14,
+            "faces": 1,
+            "captures": 1,
+            "canRender": true,
+            "frame": 72
+          },
+          {
             "ms": 0,
             "faces": 0,
-            "captures": 0,
+            "captures": 1,
             "canRender": true,
-            "frame": 46
+            "frame": 73
           },
           {
-            "ms": 7197,
-            "faces": 1,
-            "captures": 0,
+            "ms": 0,
+            "faces": 0,
+            "captures": 1,
             "canRender": true,
-            "frame": 48
+            "frame": 74
           },
           {
-            "ms": 2976,
-            "faces": 1,
-            "captures": 0,
-            "canRender": true,
-            "frame": 50
-          },
-          {
-            "ms": 5,
-            "faces": 1,
-            "captures": 0,
-            "canRender": true,
-            "frame": 52
-          },
-          {
-            "ms": 5,
-            "faces": 1,
-            "captures": 0,
-            "canRender": true,
-            "frame": 54
-          },
-          {
-            "ms": 9,
-            "faces": 1,
-            "captures": 0,
-            "canRender": true,
-            "frame": 56
-          },
-          {
-            "ms": 5547,
-            "faces": 1,
+            "ms": 0,
+            "faces": 0,
             "captures": 1,
             "canRender": true,
             "frame": 75
           },
           {
-            "ms": 1,
+            "ms": 0,
             "faces": 0,
             "captures": 1,
             "canRender": true,
@@ -819,7 +798,7 @@
             "faces": 0,
             "captures": 1,
             "canRender": true,
-            "frame": 79
+            "frame": 78
           },
           {
             "ms": 0,
@@ -829,7 +808,7 @@
             "frame": 80
           },
           {
-            "ms": 1,
+            "ms": 0,
             "faces": 0,
             "captures": 1,
             "canRender": true,
@@ -983,263 +962,60 @@
             "frame": 102
           },
           {
-            "ms": 0,
-            "faces": 0,
-            "captures": 1,
-            "canRender": true,
-            "frame": 103
-          },
-          {
-            "ms": 0,
-            "faces": 0,
+            "ms": 6,
+            "faces": 1,
             "captures": 1,
             "canRender": true,
             "frame": 104
           },
           {
-            "ms": 0,
-            "faces": 0,
-            "captures": 1,
-            "canRender": true,
-            "frame": 105
-          },
-          {
-            "ms": 0,
-            "faces": 0,
+            "ms": 7,
+            "faces": 1,
             "captures": 1,
             "canRender": true,
             "frame": 106
           },
           {
-            "ms": 0,
-            "faces": 0,
-            "captures": 1,
-            "canRender": true,
-            "frame": 107
-          },
-          {
-            "ms": 0,
-            "faces": 0,
+            "ms": 6,
+            "faces": 1,
             "captures": 1,
             "canRender": true,
             "frame": 108
           },
           {
-            "ms": 0,
-            "faces": 0,
-            "captures": 1,
-            "canRender": true,
-            "frame": 109
-          },
-          {
-            "ms": 0,
-            "faces": 0,
+            "ms": 7,
+            "faces": 1,
             "captures": 1,
             "canRender": true,
             "frame": 110
           },
           {
-            "ms": 0,
-            "faces": 0,
-            "captures": 1,
-            "canRender": true,
-            "frame": 111
-          },
-          {
-            "ms": 0,
-            "faces": 0,
+            "ms": 10,
+            "faces": 1,
             "captures": 1,
             "canRender": true,
             "frame": 112
           },
           {
-            "ms": 0,
-            "faces": 0,
-            "captures": 1,
-            "canRender": true,
-            "frame": 113
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 1,
-            "canRender": true,
-            "frame": 114
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 1,
-            "canRender": true,
-            "frame": 115
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 1,
-            "canRender": true,
-            "frame": 116
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 1,
-            "canRender": true,
-            "frame": 117
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 1,
-            "canRender": true,
-            "frame": 118
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 1,
-            "canRender": true,
-            "frame": 119
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 1,
-            "canRender": true,
-            "frame": 120
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 1,
-            "canRender": true,
-            "frame": 121
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 1,
-            "canRender": true,
-            "frame": 122
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 1,
-            "canRender": true,
-            "frame": 123
-          },
-          {
-            "ms": 10,
+            "ms": 6,
             "faces": 1,
-            "captures": 1,
-            "canRender": true,
-            "frame": 125
-          },
-          {
-            "ms": 10,
-            "faces": 1,
-            "captures": 1,
-            "canRender": true,
-            "frame": 127
-          },
-          {
-            "ms": 5,
-            "faces": 1,
-            "captures": 1,
-            "canRender": true,
-            "frame": 129
-          },
-          {
-            "ms": 9,
-            "faces": 1,
-            "captures": 1,
+            "captures": 2,
             "canRender": true,
             "frame": 131
           },
           {
-            "ms": 12,
-            "faces": 1,
-            "captures": 1,
-            "canRender": true,
-            "frame": 133
-          },
-          {
-            "ms": 10,
-            "faces": 1,
+            "ms": 0,
+            "faces": 0,
             "captures": 2,
             "canRender": true,
-            "frame": 152
+            "frame": 132
           },
           {
             "ms": 0,
             "faces": 0,
             "captures": 2,
             "canRender": true,
-            "frame": 153
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 2,
-            "canRender": true,
-            "frame": 154
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 2,
-            "canRender": true,
-            "frame": 155
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 2,
-            "canRender": true,
-            "frame": 156
-          },
-          {
-            "ms": 1,
-            "faces": 0,
-            "captures": 2,
-            "canRender": true,
-            "frame": 157
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 2,
-            "canRender": true,
-            "frame": 158
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 2,
-            "canRender": true,
-            "frame": 159
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 2,
-            "canRender": true,
-            "frame": 160
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 2,
-            "canRender": true,
-            "frame": 162
-          },
-          {
-            "ms": 0,
-            "faces": 0,
-            "captures": 2,
-            "canRender": true,
-            "frame": 163
+            "frame": 134
           }
         ],
         "storage": [

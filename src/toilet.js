@@ -9,6 +9,10 @@ import { TOILET as T } from './config.js';
 const porcelain = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.12 });
 const chrome = new THREE.MeshStandardMaterial({ color: 0xd7dadc, roughness: 0.15, metalness: 0.6 });
 
+// #334: the existing fixed toilet fittings.
+porcelain.userData.roomProbe = 'porcelain';
+chrome.userData.roomProbe = 'chrome';
+
 const ellipse = (rx, rz) => {
   const s = new THREE.Shape();
   s.absellipse(0, 0, rx, rz, 0, Math.PI * 2, false);
