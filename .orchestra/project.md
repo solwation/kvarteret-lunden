@@ -333,8 +333,21 @@ These follow [COORDINATION.md](shared/COORDINATION.md), not the phase hooks.
 
 ## Shared version and maintenance
 
-Shared release: **v0.15.1**, commit **647b06c2964687aab93804944cd641a020fa988d**. Imported directly from the official release
-with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git 647b06c2964687aab93804944cd641a020fa988d --squash`
+Shared release: **v0.15.2**, commit **851689b7b6ecba35bf2a36a4032bf5998809019e**. Imported directly from the official release
+with `git subtree pull --prefix=.orchestra/shared https://github.com/solwation/dirigenten-och-orkestern.git 851689b7b6ecba35bf2a36a4032bf5998809019e --squash`
+in [#354](https://github.com/solwation/kvarteret-lunden/issues/354), matching
+[original #2466](https://github.com/solwation/lunden-3d-apartment/issues/2466).
+The complete [v0.15.1..v0.15.2 diff](https://github.com/solwation/dirigenten-och-orkestern/compare/647b06c2964687aab93804944cd641a020fa988d...851689b7b6ecba35bf2a36a4032bf5998809019e)
+was reviewed: `scripts/check-links.py` now blanks a code span wrapping onto the next
+line as one span, so a link after it is checked and text inside it is ignored (#85).
+A regression test covers both cases. CHANGELOG, README, INSTALL and the Pages site
+carry the version. ORCHESTRA.md, COORDINATION.md, WORKER.md, ISSUE-WORKFLOW.md and the
+Issueflow snapshot are unchanged; no host-rule or workflow changes. No application
+code, personal content or service integration is imported; documentation and scripts
+only, with no app result image. The exact v0.15.2 tag was checked on 2026-11-27 and
+resolves to the imported commit.
+
+The previous v0.15.1 import (`647b06c2964687aab93804944cd641a020fa988d`) remains recorded
 in [#353](https://github.com/solwation/kvarteret-lunden/issues/353), matching
 [original #2301](https://github.com/solwation/lunden-3d-apartment/issues/2301).
 The complete [v0.15.0..v0.15.1 diff](https://github.com/solwation/dirigenten-och-orkestern/compare/141aa62399af12b48fadd8dec38137b40d8a7be5...647b06c2964687aab93804944cd641a020fa988d)
@@ -342,12 +355,8 @@ was reviewed: a bug fix in `scripts/prune-worktrees.sh`, whose `--apply` treated
 submodule or other repository inside a checkout's working tree as a checkout of its own
 and could delete it even while the enclosing checkout was active under its claim marker;
 such a repository is now part of its enclosing checkout (#83, regression test included).
-`scripts/check-links.py` now also checks Markdown links whose text wraps onto the next
-line (#84). CHANGELOG, README, INSTALL and the Pages site carry the version. ORCHESTRA.md,
-COORDINATION.md, WORKER.md, ISSUE-WORKFLOW.md and the Issueflow snapshot are unchanged,
-so no host rule changes. No application code, personal content or service integration is
-imported; documentation and scripts only, with no app result image. The exact v0.15.1
-tag was checked on 2026-11-21 and resolves to the imported commit.
+`scripts/check-links.py` also began checking Markdown links whose text wraps onto the
+next line (#84). The workflow instructions and Issueflow snapshot were unchanged.
 
 The previous v0.15.0 import (`141aa62399af12b48fadd8dec38137b40d8a7be5`) remains recorded
 in [#343](https://github.com/solwation/kvarteret-lunden/issues/343), matching
