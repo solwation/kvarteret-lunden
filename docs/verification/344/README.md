@@ -5,7 +5,7 @@ Publik bas `a08a6f3`, granskad originalkälla `a5983bfa86849660315b1f2bbcfd1f5a9
 Egna bilder från `tools/ducklife344browser.cjs` i den riktiga publika appen (1120×800, SwiftShader, `?month=6&nocats`, fast lokal klocka);
 före = basens moduler serverade i stället för de nya. Flocken stegas 600 s med observatören vid första paret. [Browserdata](browser.json).
 
-- [before/night-before.jpg](before/night-before.jpg): före, kl 23: paret simmar/går som på dagen.
+- [before/night-before.jpg](https://raw.githubusercontent.com/solwation/kvarteret-lunden/baecd3b97c91153ad94abd8494fdad954934da26/docs/verification/344/before/night-before.jpg): före, kl 23: paret simmar/går som på dagen.
 - [night.jpg](night.jpg): efter, kl 23: paret vilar torrt på stranden, kroppen lätt sänkt och framåtlutad.
 - [day.jpg](day.jpg): efter, kl 12: oförändrad dagrörelse.
 
