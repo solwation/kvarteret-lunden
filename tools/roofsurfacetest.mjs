@@ -62,7 +62,12 @@ test('public roof consumers: map + UVs before merging, public colours kept, roof
   for (const hex of ['0x6d7175', '0x5c6369', '0x2c3034', '0x33383c']) assert(su.includes(`map: roofMap(), color: roofColor(${hex})`), hex);
   assert(!/schoolTextures\(\)\.roof|maps\.roof/.test(sb), 'the old school seam map is not used');
   assert(sf.includes('export const SCHOOL_ROOF_LEVEL') && fn(sf, 'schoolRoofTint') === fn(at('src/schoolfacade.js'), 'schoolRoofTint'));
-  for (const f of ['src/buildingroofs.js', 'src/roofs.js', 'src/campusfacades.js', 'src/seasons.js', 'src/pavilionroof.js', 'src/karpfacade.js', 'src/hepcat.js', 'src/lod.js']) assert.equal(src(f), at(f), f + ' unchanged');
+  for (const f of ['src/buildingroofs.js', 'src/roofs.js', 'src/seasons.js', 'src/pavilionroof.js', 'src/karpfacade.js', 'src/hepcat.js', 'src/lod.js']) assert.equal(src(f), at(f), f + ' unchanged');
+  // #356: #345 (790965a) only collects chimney steam outlets in campusfacades.js; everything else stays byte-identical.
+  const steam345 = [[', steamOutlets = [];', ';'], [/\n *steamOutlets\.push\(\[x, y \+ S\.chimney\[1\] - \.28, z\]\);[^\n]*/, ''], ['{ roofY, windows, steamOutlets, ', '{ roofY, windows, ']];
+  let cf = src('src/campusfacades.js');
+  for (const [from, to] of steam345) { const next = cf.replace(from, to); assert.notEqual(next, cf, 'campusfacades.js #345 line ' + from); cf = next; }
+  assert.equal(cf, at('src/campusfacades.js'), 'src/campusfacades.js unchanged apart from #345 steam outlets');
   for (const name of ['hipRoof', 'roof', 'roofSpec', 'addSurroundingRoofWalk']) if (su.includes(`function ${name}(`)) assert.equal(fn(su, name), fn(at('src/surroundings.js'), name), name);
   for (const name of ['boxGeo', 'tiltedPanelGeo', 'husLLayout']) assert.equal(fn(ex, name), fn(at('src/exterior.js'), name), name);
 });
