@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "python3 -m http.server 8157",
     "build": "node tools/build.mjs",
-    "test": "node tools/verify.mjs"
+    "test": "node tools/verify.mjs",
+    "test:node": "node tools/nodetests.mjs"
   },
   "dependencies": {"three": "0.170.0"},
   "devDependencies": {"esbuild": "0.25.12", "playwright": "1.58.2"}

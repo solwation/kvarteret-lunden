@@ -15,7 +15,8 @@ Ett historiskt gissat triangeltak motiverar ensamt ingen optimeringskedja.
 Nedan följer daterade resultat och möjlig testtäckning, inte en obligatorisk
 minimilista för varje ändring. Utöka gröna planer bara vid ny kod, fel eller
 konkret materiell risk; ta bara om felaktiga kamerapositioner. Befintliga snabba
-`npm test`/bygge och automatisk Pages-status kvarstår; dokument kräver ingen ny
+`npm test`/bygge och automatisk Pages-status kvarstår; Pages kör också
+`npm run test:node`, alla Nodetester utom de som startar en webbläsare (#357); dokument kräver ingen ny
 livebrowserkontroll av oförändrad app.
 
 ## Diskret ånga från skorstenar och takhuvar i kyla, #345
